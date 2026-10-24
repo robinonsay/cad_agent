@@ -1,0 +1,341 @@
+{
+  "about": "Held-out evaluation set for cad_agent. Never tune on these; report results only. Each request comes with the user's L1 requirements (atomic, measurable where possible) and the verification method we expect for each. Tiers: 1 easy (1-2 parts, every size stated) .. 5 very hard (needs features, analyses or mechanisms the current shape library lacks). 'beyond_library' lists what the current system cannot represent yet, so a failure there maps the frontier rather than a bug.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, hand calculations, FEA, modal)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert, drop, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "T1-01", "tier": 1, "title": "name plate",
+      "request": "A desk name plate: a 100 x 20 x 5 mm base with a 100 mm wide, 40 mm tall, 3 mm thick plate standing upright along its back edge.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 100 x 20 x 5 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "The plate shall be 100 mm wide, 40 mm tall and 3 mm thick.", "method": "inspection"},
+        {"id": "L1.3", "text": "The plate shall stand vertically on top of the base along its back edge.", "method": "inspection"},
+        {"id": "L1.4", "text": "The name plate shall stand on a desk without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T1-02", "tier": 1, "title": "round coaster",
+      "request": "A plain round coaster 90 mm across and 4 mm thick.",
+      "l1": [
+        {"id": "L1.1", "text": "The coaster shall be a single round disc 90 mm in diameter.", "method": "inspection"},
+        {"id": "L1.2", "text": "The coaster shall be 4 mm thick.", "method": "inspection"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T1-03", "tier": 1, "title": "pen cup",
+      "request": "A pen cup: a round tube 80 mm across and 100 mm tall standing on a round base 90 mm across and 5 mm thick.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be a round disc 90 mm across and 5 mm thick.", "method": "inspection"},
+        {"id": "L1.2", "text": "The cup shall be a hollow tube 80 mm across and 100 mm tall, open at the top.", "method": "inspection"},
+        {"id": "L1.3", "text": "The cup shall stand centred on top of the base.", "method": "inspection"},
+        {"id": "L1.4", "text": "A pen 10 mm across shall fit inside the cup and reach the base.", "method": "demonstration"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T1-04", "tier": 1, "title": "door wedge",
+      "request": "A door wedge 120 mm long and 40 mm wide that rises from nothing to 25 mm at one end.",
+      "l1": [
+        {"id": "L1.1", "text": "The wedge shall be a single triangular prism 120 mm long and 40 mm wide.", "method": "inspection"},
+        {"id": "L1.2", "text": "The wedge shall rise from 0 mm to 25 mm along its length.", "method": "inspection"},
+        {"id": "L1.3", "text": "The wedge shall rest on its flat bottom face.", "method": "inspection"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T1-05", "tier": 1, "title": "monitor riser",
+      "request": "A monitor riser: a 400 x 200 x 15 mm board on two 60 mm tall supports, one under each end.",
+      "l1": [
+        {"id": "L1.1", "text": "The top board shall be 400 x 200 x 15 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly two supports, one under each end of the board.", "method": "inspection"},
+        {"id": "L1.3", "text": "The top of the board shall be 75 mm above the desk.", "method": "inspection"},
+        {"id": "L1.4", "text": "The riser shall stand without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T1-06", "tier": 1, "title": "shelf peg",
+      "request": "A shelf peg: a rod 6 mm across and 40 mm long with a round head 12 mm across and 3 mm thick on one end.",
+      "l1": [
+        {"id": "L1.1", "text": "The rod shall be 6 mm in diameter and 40 mm long.", "method": "inspection"},
+        {"id": "L1.2", "text": "The head shall be a disc 12 mm in diameter and 3 mm thick.", "method": "inspection"},
+        {"id": "L1.3", "text": "The head shall be centred on one end of the rod, on the rod's axis.", "method": "inspection"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T2-01", "tier": 2, "title": "book stand",
+      "request": "A book stand: a 200 x 150 x 8 mm base, a back support 180 mm tall leaning back at 75 degrees, and a 20 mm high lip along the front to hold the book.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 200 x 150 x 8 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "The back support shall be 180 mm tall and lean back at 75 degrees from horizontal.", "method": "inspection"},
+        {"id": "L1.3", "text": "A front lip 20 mm high shall run along the front edge of the base.", "method": "inspection"},
+        {"id": "L1.4", "text": "A book 30 mm thick shall rest between the lip and the back support.", "method": "demonstration"},
+        {"id": "L1.5", "text": "The stand shall not tip with the book resting on it.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T2-02", "tier": 2, "title": "small bench",
+      "request": "A small bench: a 400 x 150 x 20 mm seat on two side panels 300 mm tall that run the full depth of the seat.",
+      "l1": [
+        {"id": "L1.1", "text": "The seat shall be 400 x 150 x 20 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be two side panels, one under each end of the seat.", "method": "inspection"},
+        {"id": "L1.3", "text": "Each side panel shall be 300 mm tall and 150 mm deep.", "method": "inspection"},
+        {"id": "L1.4", "text": "The bench shall stand without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T2-03", "tier": 2, "title": "sign holder",
+      "request": "A sign holder: a 120 x 60 x 6 mm base with a 120 x 100 x 3 mm upright panel across the middle, braced by a triangular gusset at each end behind it.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 120 x 60 x 6 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "The upright panel shall be 120 mm wide, 100 mm tall and 3 mm thick.", "method": "inspection"},
+        {"id": "L1.3", "text": "The panel shall stand vertically across the middle of the base, front to back.", "method": "inspection"},
+        {"id": "L1.4", "text": "Two triangular gussets shall brace the back of the panel to the base, one at each end.", "method": "inspection"},
+        {"id": "L1.5", "text": "All parts shall form one connected body.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T2-04", "tier": 2, "title": "remote caddy",
+      "request": "A remote control caddy: a 160 x 100 x 4 mm floor with 50 mm tall, 3 mm thick walls on all four sides.",
+      "l1": [
+        {"id": "L1.1", "text": "The floor shall be 160 x 100 x 4 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "Walls shall enclose all four sides of the floor.", "method": "inspection"},
+        {"id": "L1.3", "text": "Each wall shall be 50 mm tall and 3 mm thick and rise above the floor.", "method": "inspection"},
+        {"id": "L1.4", "text": "A remote 40 x 20 x 150 mm shall fit inside standing on its end.", "method": "demonstration"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T2-05", "tier": 2, "title": "cable peg rack",
+      "request": "A cable organiser: a 150 x 40 x 5 mm base with five round pegs 8 mm across and 30 mm tall evenly spaced in a row along it.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 150 x 40 x 5 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly five pegs, each 8 mm across and 30 mm tall.", "method": "inspection"},
+        {"id": "L1.3", "text": "The pegs shall stand upright on the base, evenly spaced in one row along its length.", "method": "inspection"},
+        {"id": "L1.4", "text": "A 6 mm cable shall fit between neighbouring pegs.", "method": "demonstration"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T2-06", "tier": 2, "title": "three-legged stool",
+      "request": "A three-legged stool: a round seat 250 mm across and 18 mm thick on three round legs 25 mm across and 350 mm tall.",
+      "l1": [
+        {"id": "L1.1", "text": "The seat shall be a round disc 250 mm across and 18 mm thick.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly three legs, each 25 mm across and 350 mm tall.", "method": "inspection"},
+        {"id": "L1.3", "text": "The legs shall be under the seat, spread in a triangle and inside the seat's outline.", "method": "inspection"},
+        {"id": "L1.4", "text": "The stool shall stand without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T3-01", "tier": 3, "title": "phone stand by function",
+      "request": "A phone stand for a phone 75 mm wide and 9 mm thick that holds it at about 60 degrees for watching videos.",
+      "l1": [
+        {"id": "L1.1", "text": "The stand shall hold a 75 x 150 x 9 mm phone at 60 +/- 5 degrees from horizontal.", "method": "demonstration"},
+        {"id": "L1.2", "text": "The phone shall not slide off the front of the stand.", "method": "demonstration"},
+        {"id": "L1.3", "text": "The stand with the phone on it shall not tip over.", "method": "analysis"},
+        {"id": "L1.4", "text": "The stand shall be no wider than 100 mm.", "method": "inspection"}
+      ],
+      "beyond_library": ["sizes must be derived from the stand-in object, none are given"]
+    },
+    {
+      "id": "T3-02", "tier": 3, "title": "headphone stand",
+      "request": "A headphone stand: a round base 130 mm across, a vertical post 260 mm tall rising from its centre, and a 90 mm wide cradle bar across the top of the post for the headband.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be round, 130 mm across.", "method": "inspection"},
+        {"id": "L1.2", "text": "The post shall rise vertically from the centre of the base.", "method": "inspection"},
+        {"id": "L1.3", "text": "The top of the cradle bar shall be 260 mm or more above the desk.", "method": "inspection"},
+        {"id": "L1.4", "text": "The cradle bar shall be 90 mm wide and sit on top of the post, centred.", "method": "inspection"},
+        {"id": "L1.5", "text": "The stand shall not tip with 300 g hanging from the bar.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "T3-03", "tier": 3, "title": "spice rack",
+      "request": "A two-tier spice rack 300 mm wide and 100 mm deep: a bottom board, a second shelf 120 mm above it, and side panels at both ends holding the shelves.",
+      "l1": [
+        {"id": "L1.1", "text": "The rack shall be 300 mm wide and 100 mm deep overall.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be a bottom board and one shelf 120 mm above it.", "method": "inspection"},
+        {"id": "L1.3", "text": "Side panels at both ends shall support both shelves.", "method": "inspection"},
+        {"id": "L1.4", "text": "A spice jar 45 mm across and 100 mm tall shall fit on the bottom board under the shelf.", "method": "demonstration"},
+        {"id": "L1.5", "text": "All parts shall form one connected body.", "method": "analysis"}
+      ],
+      "beyond_library": ["a part attached to two parents (shelf between both side panels)"]
+    },
+    {
+      "id": "T3-04", "tier": 3, "title": "laptop riser by function",
+      "request": "A laptop riser that lifts the back of a 15-inch laptop by 50 mm while its front edge stays on the desk.",
+      "l1": [
+        {"id": "L1.1", "text": "The riser shall support a 360 x 250 mm laptop with its back edge 50 +/- 5 mm above the desk.", "method": "demonstration"},
+        {"id": "L1.2", "text": "The laptop's front edge shall rest on the desk.", "method": "demonstration"},
+        {"id": "L1.3", "text": "The laptop shall not slide down the riser.", "method": "demonstration"},
+        {"id": "L1.4", "text": "The riser shall be no deeper than 250 mm.", "method": "inspection"}
+      ],
+      "beyond_library": ["sizes must be derived from the stand-in object, none are given"]
+    },
+    {
+      "id": "T3-05", "tier": 3, "title": "plant stand with lower shelf",
+      "request": "A plant stand: a 250 x 250 x 15 mm top on four 30 mm square legs 400 mm tall, with a lower shelf halfway down joining the legs.",
+      "l1": [
+        {"id": "L1.1", "text": "The top shall be 250 x 250 x 15 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be four 30 mm square legs, one near each corner, 400 mm tall.", "method": "inspection"},
+        {"id": "L1.3", "text": "A lower shelf shall join all four legs at half their height.", "method": "inspection"},
+        {"id": "L1.4", "text": "The stand shall not tip with a 3 kg pot centred on the top.", "method": "analysis"}
+      ],
+      "beyond_library": ["a part attached to several parents (shelf between four legs)"]
+    },
+    {
+      "id": "T3-06", "tier": 3, "title": "bookend by function",
+      "request": "An L-shaped bookend that holds up books 250 mm tall without sliding.",
+      "l1": [
+        {"id": "L1.1", "text": "The upright shall be tall enough to support books 250 mm tall at least halfway up (125 mm or more).", "method": "inspection"},
+        {"id": "L1.2", "text": "The base shall extend under the books so their weight keeps the bookend in place.", "method": "demonstration"},
+        {"id": "L1.3", "text": "The upright shall be perpendicular to the base.", "method": "inspection"},
+        {"id": "L1.4", "text": "The bookend shall not tip over when a 1 kg row of books leans on it.", "method": "analysis"}
+      ],
+      "beyond_library": ["sizes must be derived from function, few are given"]
+    },
+    {
+      "id": "T4-01", "tier": 4, "title": "desk organiser with compartments",
+      "request": "A desk organiser: a 200 x 120 x 5 mm base with a tray divided into three equal compartments by 40 mm tall walls, plus a round pen cup 60 mm across in the back right corner.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 200 x 120 x 5 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "Walls 40 mm tall shall enclose a tray divided into three equal compartments.", "method": "inspection"},
+        {"id": "L1.3", "text": "A round pen cup 60 mm across shall stand in the back right corner.", "method": "inspection"},
+        {"id": "L1.4", "text": "The pen cup and the tray shall not overlap.", "method": "analysis"}
+      ],
+      "beyond_library": ["dividers placed at fractions of a span", "a part placed relative to another part's corner"]
+    },
+    {
+      "id": "T4-02", "tier": 4, "title": "wall hook rack",
+      "request": "A wall hook rack: a 300 x 80 x 10 mm back board with four hooks angled 30 degrees upward, evenly spaced along it.",
+      "l1": [
+        {"id": "L1.1", "text": "The back board shall be 300 x 80 x 10 mm and stand vertically.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly four hooks, evenly spaced along the board.", "method": "inspection"},
+        {"id": "L1.3", "text": "Each hook shall point forward and up at 30 degrees from horizontal.", "method": "inspection"},
+        {"id": "L1.4", "text": "Each hook shall hold a 1 kg coat without bending more than 2 mm.", "method": "analysis"}
+      ],
+      "beyond_library": ["angled rods (cylinder at an arbitrary angle)", "structural analysis"]
+    },
+    {
+      "id": "T4-03", "tier": 4, "title": "table with aprons",
+      "request": "A small table: a 600 x 400 x 20 mm top on four 40 mm square legs 450 mm tall, set in 30 mm from the edges, with 60 mm tall apron rails joining the legs just under the top.",
+      "l1": [
+        {"id": "L1.1", "text": "The top shall be 600 x 400 x 20 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be four 40 mm square legs, 450 mm tall, each inset 30 mm from both edges.", "method": "inspection"},
+        {"id": "L1.3", "text": "Apron rails 60 mm tall shall join neighbouring legs directly under the top on all four sides.", "method": "inspection"},
+        {"id": "L1.4", "text": "The table shall not tip with 10 kg placed on one corner of the top.", "method": "analysis"}
+      ],
+      "beyond_library": ["inset offsets from an edge", "parts spanning between two other parts"]
+    },
+    {
+      "id": "T4-04", "tier": 4, "title": "two-step stool",
+      "request": "A two-step stool 400 mm wide: a lower step 150 mm high and 200 mm deep at the front, and an upper step 300 mm high and 200 mm deep behind it.",
+      "l1": [
+        {"id": "L1.1", "text": "The lower step surface shall be 150 mm above the floor and 200 mm deep.", "method": "inspection"},
+        {"id": "L1.2", "text": "The upper step surface shall be 300 mm above the floor, 200 mm deep and behind the lower step.", "method": "inspection"},
+        {"id": "L1.3", "text": "The stool shall be 400 mm wide.", "method": "inspection"},
+        {"id": "L1.4", "text": "The stool shall not tip when 100 kg stands on the front edge of the lower step.", "method": "analysis"}
+      ],
+      "beyond_library": ["structural load case"]
+    },
+    {
+      "id": "T4-05", "tier": 4, "title": "cable box with lid",
+      "request": "A cable management box 300 x 120 x 120 mm with a separate lid and a 40 mm wide slot in each end for the cables.",
+      "l1": [
+        {"id": "L1.1", "text": "The box shall be 300 x 120 x 120 mm on the outside with an open top.", "method": "inspection"},
+        {"id": "L1.2", "text": "Each end wall shall have a slot 40 mm wide.", "method": "inspection"},
+        {"id": "L1.3", "text": "A separate lid shall cover the top and sit on the box without falling in.", "method": "demonstration"},
+        {"id": "L1.4", "text": "A power strip 250 x 50 x 40 mm shall fit inside.", "method": "demonstration"}
+      ],
+      "beyond_library": ["holes and slots (subtracting parts)", "a second, separate body"]
+    },
+    {
+      "id": "T4-06", "tier": 4, "title": "tablet stand with cable hole",
+      "request": "A tablet stand: 180 x 120 x 8 mm base, a support leaning back at 65 degrees and 140 mm tall, a 12 mm front ledge, and a 20 mm round hole through the support for the charging cable.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 180 x 120 x 8 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "The support shall lean back at 65 degrees and be 140 mm tall.", "method": "inspection"},
+        {"id": "L1.3", "text": "A 12 mm ledge shall run along the front edge of the base.", "method": "inspection"},
+        {"id": "L1.4", "text": "A 20 mm hole shall pass through the support near its bottom, centred left to right.", "method": "test"},
+        {"id": "L1.5", "text": "A tablet 250 x 170 x 8 mm shall rest against the support without tipping the stand.", "method": "demonstration"}
+      ],
+      "beyond_library": ["holes through a tilted part"]
+    },
+    {
+      "id": "T5-01", "tier": 5, "title": "shelf bracket rated for load",
+      "request": "A shelf bracket for a 200 mm deep shelf that must carry 5 kg at the front edge when printed in PLA.",
+      "l1": [
+        {"id": "L1.1", "text": "The bracket shall support a shelf 200 mm deep.", "method": "inspection"},
+        {"id": "L1.2", "text": "With 5 kg at 200 mm from the wall, the front shall deflect less than 2 mm.", "method": "analysis"},
+        {"id": "L1.3", "text": "With 5 kg at 200 mm from the wall, the bracket shall have a safety factor of at least 2 against PLA failure, including the weaker layer direction.", "method": "analysis"},
+        {"id": "L1.4", "text": "The bracket shall mount flat against a wall.", "method": "inspection"}
+      ],
+      "beyond_library": ["structural analysis (hand calculation or FEA)", "material model with print orientation"]
+    },
+    {
+      "id": "T5-02", "tier": 5, "title": "hinged box",
+      "request": "A small box 80 x 60 x 40 mm with a lid that hinges along the back edge.",
+      "l1": [
+        {"id": "L1.1", "text": "The box shall be 80 x 60 x 40 mm closed.", "method": "inspection"},
+        {"id": "L1.2", "text": "The lid shall rotate about a hinge along the back edge.", "method": "demonstration"},
+        {"id": "L1.3", "text": "The lid shall open to at least 90 degrees without hitting the box.", "method": "demonstration"}
+      ],
+      "beyond_library": ["mechanisms and moving parts", "clearances between parts", "pins and holes"]
+    },
+    {
+      "id": "T5-03", "tier": 5, "title": "speaker stand resonance",
+      "request": "A desktop speaker stand 150 x 150 mm and 120 mm tall that lifts a 2 kg speaker without resonating below 100 Hz.",
+      "l1": [
+        {"id": "L1.1", "text": "The top shall be 150 x 150 mm and 120 mm above the desk.", "method": "inspection"},
+        {"id": "L1.2", "text": "The stand shall carry a 2 kg speaker without tipping.", "method": "analysis"},
+        {"id": "L1.3", "text": "With the speaker on it, the stand's first natural frequency shall be above 100 Hz.", "method": "analysis"}
+      ],
+      "beyond_library": ["modal analysis (FEA eigenfrequencies)"]
+    },
+    {
+      "id": "T5-04", "tier": 5, "title": "child chair",
+      "request": "A child's chair: seat 300 x 300 mm at 300 mm high, a backrest 250 mm tall leaning back 10 degrees, and four legs, strong enough for 40 kg.",
+      "l1": [
+        {"id": "L1.1", "text": "The seat shall be 300 x 300 mm with its top 300 mm above the floor.", "method": "inspection"},
+        {"id": "L1.2", "text": "The backrest shall rise 250 mm above the seat at the back, leaning back 10 degrees.", "method": "inspection"},
+        {"id": "L1.3", "text": "There shall be four legs, one near each corner of the seat.", "method": "inspection"},
+        {"id": "L1.4", "text": "The chair shall not tip when 40 kg sits on it or leans on the backrest.", "method": "analysis"},
+        {"id": "L1.5", "text": "The chair shall carry 40 kg with a safety factor of at least 3.", "method": "analysis"}
+      ],
+      "beyond_library": ["structural analysis", "parts attached to two parents (backrest to seat and rear legs)"]
+    },
+    {
+      "id": "T5-05", "tier": 5, "title": "stackable tray",
+      "request": "A stackable tray 200 x 150 x 30 mm whose bottom fits inside the top of an identical tray so they nest securely.",
+      "l1": [
+        {"id": "L1.1", "text": "Each tray shall be 200 x 150 x 30 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "Two identical trays shall stack with the upper one's bottom locating inside the lower one's walls.", "method": "demonstration"},
+        {"id": "L1.3", "text": "Stacked trays shall not slide sideways more than 1 mm.", "method": "demonstration"}
+      ],
+      "beyond_library": ["self-referential fit between copies", "clearances and tolerances"]
+    },
+    {
+      "id": "T5-06", "tier": 5, "title": "cantilever desk shelf",
+      "request": "A clamp-on desk shelf that grips a desk edge 20 to 30 mm thick and holds a 300 x 200 mm shelf above the desk for a 3 kg monitor.",
+      "l1": [
+        {"id": "L1.1", "text": "The clamp shall fit desk edges from 20 to 30 mm thick.", "method": "demonstration"},
+        {"id": "L1.2", "text": "The shelf shall be 300 x 200 mm and level.", "method": "inspection"},
+        {"id": "L1.3", "text": "With a 3 kg monitor centred on it, the shelf shall deflect less than 3 mm.", "method": "analysis"},
+        {"id": "L1.4", "text": "With the monitor, the clamp shall not slip off the desk.", "method": "analysis"}
+      ],
+      "beyond_library": ["adjustable or clamping mechanism", "structural analysis", "friction"]
+    }
+  ]
+}

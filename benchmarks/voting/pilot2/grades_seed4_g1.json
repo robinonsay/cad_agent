@@ -1,0 +1,18 @@
+{
+  "R5369": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R8695": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R9047": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R8281": {"grade": "WRONG", "reason": "base is a 70x4x4 mm strip, not a square base; tube balances on a thin bar"},
+  "R7926": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R6200": {"grade": "WRONG", "reason": "records modelled as 600 mm tall block under the stand; stand floats at z=600; left panel misoriented, 60 mm thick"},
+  "R8185": {"grade": "WRONG", "reason": "base is a 70x4x4 mm strip, not a square base; tube balances on a thin bar"},
+  "R1620": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R3941": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R8231": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R1837": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R5185": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R1981": {"grade": "WRONG", "reason": "board only 32.8 x 19.7 x 0.7 mm, far too small for two 120 mm bowls"},
+  "R9568": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R6289": {"grade": "WRONG", "reason": "extra flat 300x60x2 'lip' plate floats over the whole wedge at z=20, making a flat top"},
+  "R4354": {"grade": "WRONG", "reason": "board is 120x120x80 mm block; too small for two 120 mm bowls side by side"}
+}

@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "claude-context": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@zilliz/claude-context-mcp@latest"],
+      "env": {
+        "EMBEDDING_PROVIDER": "Ollama",
+        "EMBEDDING_MODEL": "nomic-embed-text",
+        "OLLAMA_HOST": "http://127.0.0.1:11434",
+        "MILVUS_ADDRESS": "localhost:19530"
+      }
+    }
+  }
+}

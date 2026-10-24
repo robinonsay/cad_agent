@@ -1,0 +1,1757 @@
+{
+ "g000": {
+  "label": "no",
+  "confidence": "low",
+  "why": "tilted slab shape contradicts flat strip"
+ },
+ "g001": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g002": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g003": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g004": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g005": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g006": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g007": {
+  "label": "no",
+  "confidence": "low",
+  "why": "orientation tilt, requirement is shape only"
+ },
+ "g008": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "flat rectangular block matches flat strip"
+ },
+ "g009": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "length 300 matches"
+ },
+ "g010": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 30 matches"
+ },
+ "g011": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "single-part object length 300 matches"
+ },
+ "g012": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "single-part object depth 30 matches"
+ },
+ "g013": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 3 matches"
+ },
+ "g014": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "rectangular block shape matches"
+ },
+ "g015": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "single part count matches"
+ },
+ "g016": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g017": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g018": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not stated in requirement"
+ },
+ "g019": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "rectangular block shape matches"
+ },
+ "g020": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 360 matches"
+ },
+ "g021": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 80 matches"
+ },
+ "g022": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 18 matches"
+ },
+ "g023": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 360 matches"
+ },
+ "g024": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 80 matches"
+ },
+ "g025": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 18 matches"
+ },
+ "g026": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "lying flat thinnest side vertical matches"
+ },
+ "g027": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not orientation requirement"
+ },
+ "g028": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not orientation requirement"
+ },
+ "g029": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not orientation requirement"
+ },
+ "g030": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not orientation requirement"
+ },
+ "g031": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not orientation requirement"
+ },
+ "g032": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not orientation requirement"
+ },
+ "g033": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "diameter 45 matches"
+ },
+ "g034": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "solid round rod shape; lying-flat ambiguous for rod"
+ },
+ "g035": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part shape, partial"
+ },
+ "g036": {
+  "label": "no",
+  "confidence": "low",
+  "why": "only 'is a part', too weak"
+ },
+ "g037": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "single cylinder count matches"
+ },
+ "g038": {
+  "label": "no",
+  "confidence": "high",
+  "why": "length not stated in requirement"
+ },
+ "g039": {
+  "label": "no",
+  "confidence": "high",
+  "why": "too weak"
+ },
+ "g040": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round shape; axis consistent with request"
+ },
+ "g041": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "solid round rod matches solid cylinder"
+ },
+ "g042": {
+  "label": "no",
+  "confidence": "low",
+  "why": "generic part, not shape or diameter"
+ },
+ "g043": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "solid round rod matches"
+ },
+ "g044": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "length 250 matches"
+ },
+ "g045": {
+  "label": "no",
+  "confidence": "high",
+  "why": "diameter, not length requirement"
+ },
+ "g046": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis left to right matches"
+ },
+ "g047": {
+  "label": "no",
+  "confidence": "high",
+  "why": "diameter, not axis requirement"
+ },
+ "g048": {
+  "label": "no",
+  "confidence": "high",
+  "why": "length, not axis requirement"
+ },
+ "g049": {
+  "label": "no",
+  "confidence": "high",
+  "why": "bottom height, not axis"
+ },
+ "g050": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis left to right matches"
+ },
+ "g051": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width should be 250 if axis left-right"
+ },
+ "g052": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "hollow tube shape matches"
+ },
+ "g053": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "single part count matches"
+ },
+ "g054": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "single tube count matches"
+ },
+ "g055": {
+  "label": "no",
+  "confidence": "high",
+  "why": "diameter not in this requirement"
+ },
+ "g056": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in this requirement"
+ },
+ "g057": {
+  "label": "no",
+  "confidence": "high",
+  "why": "wall not in this requirement"
+ },
+ "g058": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height not in this requirement"
+ },
+ "g059": {
+  "label": "no",
+  "confidence": "high",
+  "why": "too weak"
+ },
+ "g060": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in this requirement"
+ },
+ "g061": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in this requirement"
+ },
+ "g062": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height not in this requirement"
+ },
+ "g063": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in this requirement"
+ },
+ "g064": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part, partial shape check"
+ },
+ "g065": {
+  "label": "no",
+  "confidence": "high",
+  "why": "solid rod contradicts hollow tube"
+ },
+ "g066": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "hollow round tube matches"
+ },
+ "g067": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part lying flat, partial"
+ },
+ "g068": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "outer diameter 70 matches"
+ },
+ "g069": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "thickness 4 likely wall thickness"
+ },
+ "g070": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 15 matches"
+ },
+ "g071": {
+  "label": "no",
+  "confidence": "high",
+  "why": "diameter not in this requirement"
+ },
+ "g072": {
+  "label": "no",
+  "confidence": "high",
+  "why": "diameter not in this requirement"
+ },
+ "g073": {
+  "label": "no",
+  "confidence": "high",
+  "why": "wall not in this requirement"
+ },
+ "g074": {
+  "label": "no",
+  "confidence": "high",
+  "why": "hole size not in this requirement"
+ },
+ "g075": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "vertical axis as 90 degrees tilt"
+ },
+ "g076": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "wedge shape matches"
+ },
+ "g077": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in requirement"
+ },
+ "g078": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in requirement"
+ },
+ "g079": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in requirement"
+ },
+ "g080": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "wedge shape matches"
+ },
+ "g081": {
+  "label": "no",
+  "confidence": "high",
+  "why": "angle not in requirement"
+ },
+ "g082": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement not in requirement"
+ },
+ "g083": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "single wedge count matches"
+ },
+ "g084": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in requirement"
+ },
+ "g085": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size not in requirement"
+ },
+ "g086": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 300 matches"
+ },
+ "g087": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 60 matches"
+ },
+ "g088": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 300 matches"
+ },
+ "g089": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 60 matches"
+ },
+ "g090": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width not in this requirement"
+ },
+ "g091": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth not in this requirement"
+ },
+ "g092": {
+  "label": "no",
+  "confidence": "low",
+  "why": "bottom on table is not front edge height"
+ },
+ "g093": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "top at 20 matches back height"
+ },
+ "g094": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 20 matches"
+ },
+ "g095": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "slope atan(20/60) implied by heights and depth"
+ },
+ "g096": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width not in this requirement"
+ },
+ "g097": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth not in this requirement"
+ },
+ "g098": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 20 matches"
+ },
+ "g099": {
+  "label": "no",
+  "confidence": "low",
+  "why": "bottom on table is not front edge height"
+ },
+ "g100": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "top 20 matches"
+ },
+ "g101": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width, not resting flat"
+ },
+ "g102": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth, not resting flat"
+ },
+ "g103": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "bottom on table, partial resting check"
+ },
+ "g104": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width, not resting flat"
+ },
+ "g105": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth, not resting flat"
+ },
+ "g106": {
+  "label": "no",
+  "confidence": "high",
+  "why": "slope not about resting flat"
+ },
+ "g107": {
+  "label": "no",
+  "confidence": "high",
+  "why": "slope not about resting flat"
+ },
+ "g108": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height, not resting flat"
+ },
+ "g109": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base width 150 matches"
+ },
+ "g110": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base depth 60 matches"
+ },
+ "g111": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base thickness 6 matches"
+ },
+ "g112": {
+  "label": "no",
+  "confidence": "high",
+  "why": "counts two front panels; one is back panel"
+ },
+ "g113": {
+  "label": "no",
+  "confidence": "high",
+  "why": "design has 3 parts, not 2"
+ },
+ "g114": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "panel width 150 matches"
+ },
+ "g115": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "panel height 90 matches"
+ },
+ "g116": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "panel thickness 4 matches"
+ },
+ "g117": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "front panel on top of base matches"
+ },
+ "g118": {
+  "label": "no",
+  "confidence": "high",
+  "why": "in front of base, not on top"
+ },
+ "g119": {
+  "label": "no",
+  "confidence": "high",
+  "why": "count not in requirement, wrong part name"
+ },
+ "g120": {
+  "label": "no",
+  "confidence": "high",
+  "why": "beside base, not on top"
+ },
+ "g121": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "front panel along front edge matches"
+ },
+ "g122": {
+  "label": "no",
+  "confidence": "high",
+  "why": "front panel at back edge wrong"
+ },
+ "g123": {
+  "label": "no",
+  "confidence": "high",
+  "why": "left edge wrong"
+ },
+ "g124": {
+  "label": "no",
+  "confidence": "high",
+  "why": "right edge wrong"
+ },
+ "g125": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base under front panel matches"
+ },
+ "g126": {
+  "label": "no",
+  "confidence": "high",
+  "why": "centred contradicts front edge"
+ },
+ "g127": {
+  "label": "no",
+  "confidence": "high",
+  "why": "count wrong and different requirement"
+ },
+ "g128": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "tipping stability test matches"
+ },
+ "g129": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base width 180 matches"
+ },
+ "g130": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base depth 70 matches"
+ },
+ "g131": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base thickness 6 matches"
+ },
+ "g132": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base height 6 matches"
+ },
+ "g133": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "three dividers matches"
+ },
+ "g134": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "divider width 180 matches"
+ },
+ "g135": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "divider height 60 matches"
+ },
+ "g136": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "divider thickness 4 matches"
+ },
+ "g137": {
+  "label": "no",
+  "confidence": "high",
+  "why": "lying flat contradicts standing vertically"
+ },
+ "g138": {
+  "label": "no",
+  "confidence": "low",
+  "why": "placement not in this requirement"
+ },
+ "g139": {
+  "label": "no",
+  "confidence": "high",
+  "why": "dividers touching not required"
+ },
+ "g140": {
+  "label": "no",
+  "confidence": "high",
+  "why": "round shape wrong"
+ },
+ "g141": {
+  "label": "no",
+  "confidence": "high",
+  "why": "round shape wrong"
+ },
+ "g142": {
+  "label": "no",
+  "confidence": "high",
+  "why": "round shape wrong"
+ },
+ "g143": {
+  "label": "no",
+  "confidence": "high",
+  "why": "too weak"
+ },
+ "g144": {
+  "label": "no",
+  "confidence": "high",
+  "why": "touching contradicts spacing"
+ },
+ "g145": {
+  "label": "no",
+  "confidence": "high",
+  "why": "touching contradicts spacing"
+ },
+ "g146": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "block with 180 side left-right consistent"
+ },
+ "g147": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "block shape, partial"
+ },
+ "g148": {
+  "label": "no",
+  "confidence": "low",
+  "why": "count belongs to other requirement"
+ },
+ "g149": {
+  "label": "no",
+  "confidence": "low",
+  "why": "ends placement not stated"
+ },
+ "g150": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "evenly spaced row front to back matches"
+ },
+ "g151": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "divider on top of base matches"
+ },
+ "g152": {
+  "label": "no",
+  "confidence": "high",
+  "why": "touching contradicts spacing"
+ },
+ "g153": {
+  "label": "no",
+  "confidence": "high",
+  "why": "ends placement not stated, axis loose"
+ },
+ "g154": {
+  "label": "no",
+  "confidence": "high",
+  "why": "pencil wrong stand-in"
+ },
+ "g155": {
+  "label": "no",
+  "confidence": "high",
+  "why": "pencil 8 mm wrong stand-in"
+ },
+ "g156": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height irrelevant to letter fit"
+ },
+ "g157": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width, not letter fit"
+ },
+ "g158": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness, not letter fit"
+ },
+ "g159": {
+  "label": "no",
+  "confidence": "high",
+  "why": "30 mm book wrong stand-in"
+ },
+ "g160": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "5 mm thick stand-in between dividers"
+ },
+ "g161": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "5 mm block checks gap thickness"
+ },
+ "g162": {
+  "label": "no",
+  "confidence": "high",
+  "why": "irrelevant width check"
+ },
+ "g163": {
+  "label": "no",
+  "confidence": "high",
+  "why": "number not in requirement"
+ },
+ "g164": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "plate width 120 matches"
+ },
+ "g165": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "plate depth 80 matches"
+ },
+ "g166": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "plate height 5 matches"
+ },
+ "g167": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "plate thickness 5 matches"
+ },
+ "g168": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "two egg cups matches"
+ },
+ "g169": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "outer diameter 45 matches"
+ },
+ "g170": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "wall 2 matches"
+ },
+ "g171": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "hollow tube matches"
+ },
+ "g172": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate, wrong part"
+ },
+ "g173": {
+  "label": "no",
+  "confidence": "high",
+  "why": "whole object size, other requirement"
+ },
+ "g174": {
+  "label": "no",
+  "confidence": "high",
+  "why": "whole object size, other requirement"
+ },
+ "g175": {
+  "label": "no",
+  "confidence": "high",
+  "why": "whole object size, other requirement"
+ },
+ "g176": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis left-right wrong"
+ },
+ "g177": {
+  "label": "no",
+  "confidence": "low",
+  "why": "axis belongs to other requirement"
+ },
+ "g178": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis front-back wrong"
+ },
+ "g179": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "inner 41 implied by 45 and 2 wall"
+ },
+ "g180": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part, partial"
+ },
+ "g181": {
+  "label": "no",
+  "confidence": "high",
+  "why": "design has 3 parts"
+ },
+ "g182": {
+  "label": "no",
+  "confidence": "low",
+  "why": "orientation not in this requirement"
+ },
+ "g183": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate, wrong part"
+ },
+ "g184": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate, wrong part"
+ },
+ "g185": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "inner at least 41 consistent"
+ },
+ "g186": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "inner at most 43, weak but consistent"
+ },
+ "g187": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "outer at least 45 matches"
+ },
+ "g188": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "outer at most 45 matches"
+ },
+ "g189": {
+  "label": "no",
+  "confidence": "low",
+  "why": "orientation not in this requirement"
+ },
+ "g190": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 20 matches"
+ },
+ "g191": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "vertical = 90 degrees"
+ },
+ "g192": {
+  "label": "no",
+  "confidence": "high",
+  "why": "0 degrees contradicts vertical"
+ },
+ "g193": {
+  "label": "no",
+  "confidence": "low",
+  "why": "count belongs to other requirement"
+ },
+ "g194": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "cup on top of plate matches"
+ },
+ "g195": {
+  "label": "no",
+  "confidence": "high",
+  "why": "to right of plate, not on top"
+ },
+ "g196": {
+  "label": "no",
+  "confidence": "high",
+  "why": "to left of plate, not on top"
+ },
+ "g197": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "one at each end left-right matches"
+ },
+ "g198": {
+  "label": "no",
+  "confidence": "low",
+  "why": "even spacing not stated, trivial for two"
+ },
+ "g199": {
+  "label": "no",
+  "confidence": "high",
+  "why": "fitting in means falling through"
+ },
+ "g200": {
+  "label": "no",
+  "confidence": "high",
+  "why": "fitting in means falling through"
+ },
+ "g201": {
+  "label": "no",
+  "confidence": "high",
+  "why": "leaning box irrelevant"
+ },
+ "g202": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "43 mm round rests on cup"
+ },
+ "g203": {
+  "label": "no",
+  "confidence": "high",
+  "why": "hole >= 43 lets egg fall through"
+ },
+ "g204": {
+  "label": "no",
+  "confidence": "high",
+  "why": "trivially true, says nothing"
+ },
+ "g205": {
+  "label": "no",
+  "confidence": "high",
+  "why": "fitting in means falling through"
+ },
+ "g206": {
+  "label": "no",
+  "confidence": "low",
+  "why": "flat box stand-in wrong shape"
+ },
+ "g207": {
+  "label": "no",
+  "confidence": "high",
+  "why": "fitting in means falling through"
+ },
+ "g208": {
+  "label": "no",
+  "confidence": "high",
+  "why": "leaning irrelevant"
+ },
+ "g209": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base width 100 matches"
+ },
+ "g210": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base depth 60 matches"
+ },
+ "g211": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base thickness 6 matches"
+ },
+ "g212": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "diameter 50 matches"
+ },
+ "g213": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "length 70 matches"
+ },
+ "g214": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "solid rod shape; orientation ambiguous"
+ },
+ "g215": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "solid round rod matches"
+ },
+ "g216": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, other requirement"
+ },
+ "g217": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base, wrong part"
+ },
+ "g218": {
+  "label": "no",
+  "confidence": "high",
+  "why": "back edge wrong placement and part"
+ },
+ "g219": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base, wrong part"
+ },
+ "g220": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "solid rod shape; axis consistent with request"
+ },
+ "g221": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "horizontal = 0 degrees tilt"
+ },
+ "g222": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not axis"
+ },
+ "g223": {
+  "label": "no",
+  "confidence": "high",
+  "why": "length, not axis"
+ },
+ "g224": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis left to right matches"
+ },
+ "g225": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis left to right matches"
+ },
+ "g226": {
+  "label": "no",
+  "confidence": "high",
+  "why": "diameter, not axis"
+ },
+ "g227": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "cylinder on top of base matches"
+ },
+ "g228": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not placement"
+ },
+ "g229": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base shape, not placement"
+ },
+ "g230": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "centred on base matches"
+ },
+ "g231": {
+  "label": "no",
+  "confidence": "high",
+  "why": "too weak"
+ },
+ "g232": {
+  "label": "no",
+  "confidence": "high",
+  "why": "too weak"
+ },
+ "g233": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape/axis, not placement"
+ },
+ "g234": {
+  "label": "no",
+  "confidence": "high",
+  "why": "diameter, not placement"
+ },
+ "g235": {
+  "label": "no",
+  "confidence": "high",
+  "why": "left edge contradicts centred"
+ },
+ "g236": {
+  "label": "no",
+  "confidence": "high",
+  "why": "right edge contradicts centred"
+ },
+ "g237": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape/axis, not placement"
+ },
+ "g238": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "tipping stability test matches"
+ },
+ "g239": {
+  "label": "no",
+  "confidence": "low",
+  "why": "bottom on table says little about rolling"
+ },
+ "g240": {
+  "label": "no",
+  "confidence": "high",
+  "why": "interference, not stability"
+ },
+ "g241": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height number not in requirement"
+ },
+ "g242": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not stability"
+ },
+ "g243": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not stability"
+ },
+ "g244": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not stability"
+ },
+ "g245": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not stability"
+ },
+ "g246": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width left-right should be 300"
+ },
+ "g247": {
+  "label": "no",
+  "confidence": "low",
+  "why": "tilted slab shape, not size"
+ },
+ "g248": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 3 matches"
+ },
+ "g249": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not size"
+ },
+ "g250": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "bottom on table, partial resting check"
+ },
+ "g251": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "length 250 matches"
+ },
+ "g252": {
+  "label": "no",
+  "confidence": "high",
+  "why": "length, not axis"
+ },
+ "g253": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis left-right wrong for bangle"
+ },
+ "g254": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis left-right wrong"
+ },
+ "g255": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis, not diameter; also wrong"
+ },
+ "g256": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis, not diameter; also wrong"
+ },
+ "g257": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 15 matches"
+ },
+ "g258": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis vertical matches"
+ },
+ "g259": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis vertical matches"
+ },
+ "g260": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 15 matches"
+ },
+ "g261": {
+  "label": "no",
+  "confidence": "low",
+  "why": "0 degrees contradicts vertical"
+ },
+ "g262": {
+  "label": "no",
+  "confidence": "low",
+  "why": "upright contradicts flat ring axis vertical"
+ },
+ "g263": {
+  "label": "no",
+  "confidence": "high",
+  "why": "two wedges touching wrong"
+ },
+ "g264": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not width/depth"
+ },
+ "g265": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not heights"
+ },
+ "g266": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 20 matches"
+ },
+ "g267": {
+  "label": "no",
+  "confidence": "high",
+  "why": "top height, not resting flat"
+ },
+ "g268": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "wedge lying flat, partial"
+ },
+ "g269": {
+  "label": "no",
+  "confidence": "high",
+  "why": "wedge on wedge wrong"
+ },
+ "g270": {
+  "label": "no",
+  "confidence": "low",
+  "why": "tipping, not flat on largest face"
+ },
+ "g271": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not base size"
+ },
+ "g272": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base on panel wrong"
+ },
+ "g273": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base on itself nonsense"
+ },
+ "g274": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g275": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g276": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g277": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g278": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g279": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g280": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g281": {
+  "label": "no",
+  "confidence": "high",
+  "why": "tilted slab, not count"
+ },
+ "g282": {
+  "label": "no",
+  "confidence": "high",
+  "why": "count, not panel size"
+ },
+ "g283": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not size"
+ },
+ "g284": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not size"
+ },
+ "g285": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not size"
+ },
+ "g286": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not size"
+ },
+ "g287": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not size"
+ },
+ "g288": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not size"
+ },
+ "g289": {
+  "label": "no",
+  "confidence": "high",
+  "why": "behind base, not on top"
+ },
+ "g290": {
+  "label": "no",
+  "confidence": "high",
+  "why": "panel touching panel wrong"
+ },
+ "g291": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "tipping stability test matches"
+ },
+ "g292": {
+  "label": "no",
+  "confidence": "low",
+  "why": "connectivity, not tipping"
+ },
+ "g293": {
+  "label": "no",
+  "confidence": "low",
+  "why": "contact area, not tipping"
+ },
+ "g294": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base with itself nonsense"
+ },
+ "g295": {
+  "label": "no",
+  "confidence": "low",
+  "why": "connectivity, not tipping"
+ },
+ "g296": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not base size"
+ },
+ "g297": {
+  "label": "no",
+  "confidence": "high",
+  "why": "divider, wrong part"
+ },
+ "g298": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not base size"
+ },
+ "g299": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not base size"
+ },
+ "g300": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not count"
+ },
+ "g301": {
+  "label": "no",
+  "confidence": "high",
+  "why": "count, not divider size"
+ },
+ "g302": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "upright block matches standing vertically"
+ },
+ "g303": {
+  "label": "no",
+  "confidence": "low",
+  "why": "tilted slab contradicts vertical"
+ },
+ "g304": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not placement"
+ },
+ "g305": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not placement"
+ },
+ "g306": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not placement"
+ },
+ "g307": {
+  "label": "no",
+  "confidence": "low",
+  "why": "letter stand-in sizes not stated"
+ },
+ "g308": {
+  "label": "no",
+  "confidence": "low",
+  "why": "letter stand-in sizes not stated"
+ },
+ "g309": {
+  "label": "no",
+  "confidence": "high",
+  "why": "180 mm tall stand-in wrong"
+ },
+ "g310": {
+  "label": "no",
+  "confidence": "low",
+  "why": "whole object, not plate"
+ },
+ "g311": {
+  "label": "no",
+  "confidence": "low",
+  "why": "whole object, not plate"
+ },
+ "g312": {
+  "label": "no",
+  "confidence": "high",
+  "why": "whole object height is 25, not plate"
+ },
+ "g313": {
+  "label": "no",
+  "confidence": "low",
+  "why": "whole object, not plate"
+ },
+ "g314": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not plate size"
+ },
+ "g315": {
+  "label": "no",
+  "confidence": "high",
+  "why": "egg cup, wrong part and axis"
+ },
+ "g316": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate on plate nonsense"
+ },
+ "g317": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not plate size"
+ },
+ "g318": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate, wrong part"
+ },
+ "g319": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate, wrong part"
+ },
+ "g320": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis vertical matches"
+ },
+ "g321": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not height/axis"
+ },
+ "g322": {
+  "label": "no",
+  "confidence": "high",
+  "why": "cups touching wrong"
+ },
+ "g323": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate, wrong part"
+ },
+ "g324": {
+  "label": "no",
+  "confidence": "high",
+  "why": "cups touching contradicts ends"
+ },
+ "g325": {
+  "label": "no",
+  "confidence": "high",
+  "why": "cups touching contradicts ends"
+ },
+ "g326": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "along left edge approximates left end"
+ },
+ "g327": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "along right edge approximates right end"
+ },
+ "g328": {
+  "label": "no",
+  "confidence": "high",
+  "why": "fitting in means falling through"
+ },
+ "g329": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height, not egg rest"
+ },
+ "g330": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not egg rest"
+ },
+ "g331": {
+  "label": "no",
+  "confidence": "high",
+  "why": "tipping, not egg rest"
+ },
+ "g332": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base height 6 matches"
+ },
+ "g333": {
+  "label": "no",
+  "confidence": "low",
+  "why": "shape, not base size"
+ },
+ "g334": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not base size"
+ },
+ "g335": {
+  "label": "no",
+  "confidence": "high",
+  "why": "cylinder, wrong part"
+ },
+ "g336": {
+  "label": "no",
+  "confidence": "high",
+  "why": "beside, wrong placement"
+ },
+ "g337": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not cylinder size"
+ },
+ "g338": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement, not axis"
+ },
+ "g339": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not placement"
+ },
+ "g340": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not placement"
+ },
+ "g341": {
+  "label": "no",
+  "confidence": "high",
+  "why": "size, not placement"
+ },
+ "g342": {
+  "label": "no",
+  "confidence": "low",
+  "why": "number not in requirement"
+ },
+ "g343": {
+  "label": "no",
+  "confidence": "low",
+  "why": "number from request, not requirement"
+ },
+ "g344": {
+  "label": "no",
+  "confidence": "high",
+  "why": "front edge contradicts centred"
+ },
+ "g345": {
+  "label": "no",
+  "confidence": "high",
+  "why": "back edge contradicts centred"
+ },
+ "g346": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "tipping stability test matches"
+ },
+ "g347": {
+  "label": "no",
+  "confidence": "low",
+  "why": "contact area, not rolling/tipping"
+ },
+ "g348": {
+  "label": "no",
+  "confidence": "low",
+  "why": "placement, not stability"
+ },
+ "g349": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness, not stability"
+ },
+ "g350": {
+  "label": "no",
+  "confidence": "low",
+  "why": "placement, not stability"
+ }
+}

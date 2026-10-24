@@ -1,0 +1,18 @@
+{
+ "R8347": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R8426": {"grade": "WRONG", "reason": "strip is 30 x 30 mm instead of 300 mm long; length requirement violated"},
+ "R3611": {"grade": "WRONG", "reason": "balls sit under the bar (z 0-30, bar at z 30-45) instead of on its ends"},
+ "R6196": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R8378": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R6539": {"grade": "MINOR", "reason": "overall 360x80x18 correct, but built as two stacked 9 mm slabs rather than one solid block"},
+ "R4832": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R2234": {"grade": "WRONG", "reason": "strip is 30 x 30 mm instead of 300 mm long; length requirement violated"},
+ "R6423": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R1292": {"grade": "WRONG", "reason": "end panels front/back not left/right, right panel floats at z 299; base upright; single 60 mm record slab, no 20 records"},
+ "R1284": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R9708": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R5019": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R3166": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R9420": {"grade": "CORRECT", "reason": "all stated requirements met"},
+ "R6863": {"grade": "WRONG", "reason": "end panels front/back and floating at z 157.5; base stands upright; single record slab overlaps panels; not a sensible stand"}
+}

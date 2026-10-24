@@ -1,0 +1,192 @@
+{
+  "about": "Development set for cad_agent: tune and debug on these, never on heldout.json. Everyday desk/home objects buildable from the six primitives (box, panel = tilted slab, wedge, cylinder, tube, sphere) plus counts and arrangements (corners, ends, rows, triangle). None is a copy or paraphrase of a held-out request or of the 16 bench.py objects. Each request comes with the user's L1 requirements (atomic, measurable) and the verification method expected for each. Tiers: 1 easy (1-2 parts, every size stated), 2 moderate (repeated parts or arrangements, every size stated), 3 harder (some sizes implied by a function or a stand-in object).",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, hand calculations, FEA, modal)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert, drop, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "D1-01", "tier": 1, "title": "ball paperweight",
+      "request": "A paperweight: a ball 60 mm across sitting centred on top of a round base 50 mm across and 6 mm thick.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be a round disc 50 mm in diameter and 6 mm thick.", "method": "inspection"},
+        {"id": "L1.2", "text": "The ball shall be a sphere 60 mm in diameter.", "method": "inspection"},
+        {"id": "L1.3", "text": "The ball shall sit centred on top of the base.", "method": "inspection"},
+        {"id": "L1.4", "text": "The base and the ball shall form one connected body.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D1-02", "tier": 1, "title": "ruler",
+      "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+      "l1": [
+        {"id": "L1.1", "text": "The ruler shall be a single flat strip.", "method": "inspection"},
+        {"id": "L1.2", "text": "The strip shall be 300 mm long (left to right) and 30 mm wide (front to back).", "method": "inspection"},
+        {"id": "L1.3", "text": "The strip shall be 3 mm thick.", "method": "inspection"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D1-03", "tier": 1, "title": "keyboard wrist rest",
+      "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+      "l1": [
+        {"id": "L1.1", "text": "The wrist rest shall be a single rectangular block.", "method": "inspection"},
+        {"id": "L1.2", "text": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.", "method": "inspection"},
+        {"id": "L1.3", "text": "The block shall lie flat on the desk with its largest face down.", "method": "inspection"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D1-04", "tier": 1, "title": "rolling pin",
+      "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+      "l1": [
+        {"id": "L1.1", "text": "The rolling pin shall be a single solid cylinder 45 mm in diameter.", "method": "inspection"},
+        {"id": "L1.2", "text": "The cylinder shall be 250 mm long.", "method": "inspection"},
+        {"id": "L1.3", "text": "The cylinder's axis shall run horizontally, left to right.", "method": "inspection"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D1-05", "tier": 1, "title": "bangle",
+      "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+      "l1": [
+        {"id": "L1.1", "text": "The bangle shall be a single hollow tube open at both ends.", "method": "inspection"},
+        {"id": "L1.2", "text": "The tube shall be 70 mm in outer diameter with a 4 mm wall.", "method": "inspection"},
+        {"id": "L1.3", "text": "The tube shall be 15 mm tall with its axis vertical.", "method": "inspection"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D1-06", "tier": 1, "title": "keyboard tilt wedge",
+      "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+      "l1": [
+        {"id": "L1.1", "text": "The tilt wedge shall be a single wedge.", "method": "inspection"},
+        {"id": "L1.2", "text": "The wedge shall be 300 mm wide and 60 mm deep.", "method": "inspection"},
+        {"id": "L1.3", "text": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.", "method": "inspection"},
+        {"id": "L1.4", "text": "The wedge shall rest flat on the desk on its largest face.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D2-01", "tier": 2, "title": "napkin holder",
+      "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 150 x 60 x 6 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly two upright panels.", "method": "inspection"},
+        {"id": "L1.3", "text": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.", "method": "inspection"},
+        {"id": "L1.4", "text": "One panel shall stand on top of the base along its front edge and the other along its back edge.", "method": "inspection"},
+        {"id": "L1.5", "text": "The holder shall stand on a table without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D2-02", "tier": 2, "title": "dumbbell paperweight",
+      "request": "A dumbbell paperweight: a horizontal bar 15 mm across and 80 mm long running left to right, with a ball 30 mm across on each end.",
+      "l1": [
+        {"id": "L1.1", "text": "The bar shall be a cylinder 15 mm in diameter and 80 mm long.", "method": "inspection"},
+        {"id": "L1.2", "text": "The bar's axis shall run horizontally, left to right.", "method": "inspection"},
+        {"id": "L1.3", "text": "There shall be exactly two balls, each a sphere 30 mm in diameter.", "method": "inspection"},
+        {"id": "L1.4", "text": "One ball shall be at each end of the bar.", "method": "inspection"},
+        {"id": "L1.5", "text": "The bar and both balls shall form one connected body.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D2-03", "tier": 2, "title": "trivet on ball feet",
+      "request": "A trivet: a 150 x 150 x 6 mm plate raised on four balls 15 mm across, one under each corner.",
+      "l1": [
+        {"id": "L1.1", "text": "The plate shall be 150 x 150 x 6 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly four feet, each a sphere 15 mm in diameter.", "method": "inspection"},
+        {"id": "L1.3", "text": "One foot shall be under each corner of the plate.", "method": "inspection"},
+        {"id": "L1.4", "text": "The plate shall rest level on its four feet without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D2-04", "tier": 2, "title": "letter rack",
+      "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 180 x 70 x 6 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly three dividers.", "method": "inspection"},
+        {"id": "L1.3", "text": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.", "method": "inspection"},
+        {"id": "L1.4", "text": "The dividers shall stand on top of the base in an evenly spaced row running front to back.", "method": "inspection"},
+        {"id": "L1.5", "text": "A letter 5 mm thick shall fit upright between two neighbouring dividers.", "method": "demonstration"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D2-05", "tier": 2, "title": "egg holder",
+      "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+      "l1": [
+        {"id": "L1.1", "text": "The plate shall be 120 x 80 x 5 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.", "method": "inspection"},
+        {"id": "L1.3", "text": "Each egg cup shall be 20 mm tall with its axis vertical.", "method": "inspection"},
+        {"id": "L1.4", "text": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.", "method": "inspection"},
+        {"id": "L1.5", "text": "An egg 43 mm across shall rest in each cup without falling through.", "method": "demonstration"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D2-06", "tier": 2, "title": "watch stand",
+      "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be 100 x 60 x 6 mm.", "method": "inspection"},
+        {"id": "L1.2", "text": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.", "method": "inspection"},
+        {"id": "L1.3", "text": "The cylinder's axis shall run horizontally, left to right.", "method": "inspection"},
+        {"id": "L1.4", "text": "The cylinder shall rest centred on top of the base.", "method": "inspection"},
+        {"id": "L1.5", "text": "The stand shall rest on a table without rolling or tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D3-01", "tier": 3, "title": "raised pet bowl platform",
+      "request": "A raised platform for two pet bowls: a board on four legs that holds the board 80 mm off the floor, big enough for two bowls 120 mm across side by side.",
+      "l1": [
+        {"id": "L1.1", "text": "There shall be exactly four legs, one under each corner of the board.", "method": "inspection"},
+        {"id": "L1.2", "text": "The top of the board shall be 80 mm above the floor.", "method": "inspection"},
+        {"id": "L1.3", "text": "Two bowls 120 mm in diameter shall rest side by side on the board without overhanging it.", "method": "demonstration"},
+        {"id": "L1.4", "text": "The platform shall stand without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D3-02", "tier": 3, "title": "record stand",
+      "request": "A stand for vinyl records: a base with an upright end panel at the left end and another at the right end, holding at least 20 records (315 mm square, 3 mm thick) standing on edge between them.",
+      "l1": [
+        {"id": "L1.1", "text": "There shall be exactly two upright end panels, one at the left end and one at the right end of the base.", "method": "inspection"},
+        {"id": "L1.2", "text": "The clear gap between the end panels shall be at least 60 mm.", "method": "inspection"},
+        {"id": "L1.3", "text": "The base shall be at least 315 mm deep so a record standing on edge does not overhang it.", "method": "inspection"},
+        {"id": "L1.4", "text": "A stack of 20 records 315 x 315 x 3 mm standing on edge shall fit between the end panels.", "method": "demonstration"},
+        {"id": "L1.5", "text": "The stand shall rest on a shelf without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D3-03", "tier": 3, "title": "ball display stand",
+      "request": "A display stand for a 70 mm ball: a short tube on a square base that cradles the ball so it cannot roll off.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be a square plate.", "method": "inspection"},
+        {"id": "L1.2", "text": "The cradle shall be a hollow tube standing upright, centred on top of the base.", "method": "inspection"},
+        {"id": "L1.3", "text": "The tube's inner diameter shall be smaller than 70 mm so the ball cannot fall into it.", "method": "inspection"},
+        {"id": "L1.4", "text": "A ball 70 mm in diameter shall rest on the tube with its centre over the base and not roll off.", "method": "demonstration"},
+        {"id": "L1.5", "text": "With the ball in place the stand shall not tip over.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    },
+    {
+      "id": "D3-04", "tier": 3, "title": "paper towel holder",
+      "request": "A paper towel holder: a heavy round base with a vertical rod in its centre that a kitchen roll 280 mm long and 120 mm across slides over.",
+      "l1": [
+        {"id": "L1.1", "text": "The base shall be a round disc at least 140 mm in diameter.", "method": "inspection"},
+        {"id": "L1.2", "text": "The rod shall be a vertical cylinder standing centred on top of the base.", "method": "inspection"},
+        {"id": "L1.3", "text": "The rod shall be at least 280 mm tall above the base.", "method": "inspection"},
+        {"id": "L1.4", "text": "The rod shall be no more than 35 mm in diameter so a roll with a 40 mm core slides over it.", "method": "demonstration"},
+        {"id": "L1.5", "text": "The holder with a roll on it shall stand without tipping.", "method": "analysis"}
+      ],
+      "beyond_library": []
+    }
+  ]
+}

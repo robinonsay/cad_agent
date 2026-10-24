@@ -1,0 +1,20 @@
+seeds graded: [0, 1, 2, 3, 4]
+P_panel: good 58/80 (correct 52), verified 26, false pass 1/26, false fail 33/58
+C_cascade: good 55/80 (correct 49), verified 40, false pass 5/40, false fail 20/55
+paired: {'tie': 75, 'P only good': 4, 'C only good': 1}
+D1-01  C: Cv Cv Cv Cv Cv   P: Cv Cv Cv Cv Cv
+D1-02  C: Cv Cu Wu Cv Cu   P: Cu Cu Wu Cu Cu
+D1-03  C: Cv Cv Mv Cv Cv   P: Cv Cv Mv Cv Cv
+D1-04  C: Cv Cv Cv Cv Cv   P: Cv Cv Cv Cv Cv
+D1-05  C: Cv Cv Cv Cv Cv   P: Cv Cu Cv Cv Cv
+D1-06  C: Cu Cu Cu Cu Wu   P: Cu Cu Cu Cu Wu
+D2-01  C: Cv Cv Cv Cu Cv   P: Cu Cu Cu Cu Cu
+D2-02  C: Wv Wv Wv Wv Wv   P: Wu Wu Wv Wu Wu
+D2-03  C: Cv Cv Cv Cv Cv   P: Cu Cu Cu Cu Cu
+D2-04  C: Wu Cu Cv Cu Cv   P: Cv Cu Cv Cu Cv
+D2-05  C: Wu Wu Cu Cu Cu   P: Cu Wu Cu Cu Cu
+D2-06  C: Cv Wu Cu Cv Cu   P: Cv Cv Cu Cv Cu
+D3-01  C: Wu Wu Wu Wu Wu   P: Wu Wu Wu Wu Wu
+D3-02  C: Wu Wu Wu Wu Wu   P: Wu Wu Wu Wu Wu
+D3-03  C: Cu Mu Mu Wu Wu   P: Wu Cu Mu Wu Wu
+D3-04  C: Mu Wu Mu Mu Wu   P: Mu Wu Mu Mu Mu

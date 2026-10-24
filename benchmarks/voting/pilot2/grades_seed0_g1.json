@@ -1,0 +1,18 @@
+{
+  "R1934": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R5078": {"grade": "WRONG", "reason": "tube inner diameter 43 gives 1 mm walls instead of the requested 2 mm"},
+  "R7874": {"grade": "WRONG", "reason": "board is a 120x120x80 block; 120 mm wide cannot fit two 120 mm bowls side by side"},
+  "R1441": {"grade": "WRONG", "reason": "only two dividers placed (front and back); third divider missing"},
+  "R9338": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R4499": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R6320": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R9218": {"grade": "CORRECT", "reason": "all stated requirements met; base 70x70.4 is negligibly non-square"},
+  "R7077": {"grade": "WRONG", "reason": "base is a 70x4x4 strip, not a square base; tube mostly unsupported"},
+  "R3862": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R6412": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R3369": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R2642": {"grade": "WRONG", "reason": "balls sit on top of the bar (inboard, x centres 15 and 65) instead of on its ends"},
+  "R5971": {"grade": "CORRECT", "reason": "all stated requirements met"},
+  "R5135": {"grade": "WRONG", "reason": "panels are front/back offset not left/right, base is a tiny floating rail, right panel floats; no record space"},
+  "R5745": {"grade": "CORRECT", "reason": "all stated requirements met"}
+}

@@ -1,0 +1,1047 @@
+{
+ "bt014": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "diameter 45 matches"
+ },
+ "verify150": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "cylinder size, axis, centring all match"
+ },
+ "bt083": {
+  "label": "no",
+  "confidence": "high",
+  "why": "divider thickness not evidence of letter gap"
+ },
+ "verify162": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra front_edge part with wrong dimensions"
+ },
+ "bt080": {
+  "label": "no",
+  "confidence": "low",
+  "why": "placement at ends does not check gap for letter"
+ },
+ "bt123": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "partial check of resting on top of base"
+ },
+ "bt087": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "plate height 5 matches"
+ },
+ "verify152": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "dimensions match; orientation unstated in plain request"
+ },
+ "verify161": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "wedge dims and slope match"
+ },
+ "verify132": {
+  "label": "no",
+  "confidence": "high",
+  "why": "length/width axes swapped vs requirement"
+ },
+ "bt118": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "diameter 50 matches"
+ },
+ "bt032": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "outer diameter 70 matches"
+ },
+ "bt079": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "5 mm stand-in checks gap; 1 mm clearance slightly stricter"
+ },
+ "verify131": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "all dimensions and axes match"
+ },
+ "verify200": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness 1.5 vs 3"
+ },
+ "bt020": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part partial; axis extra but consistent with design"
+ },
+ "bt036": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 60 matches"
+ },
+ "bt019": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis left to right matches"
+ },
+ "bt086": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 80 matches"
+ },
+ "verify165": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base dims match"
+ },
+ "bt177": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth 30 vs 60"
+ },
+ "bt013": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thinnest side vertical equals largest face down"
+ },
+ "bt031": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part partial check; vertical axis consistent with design"
+ },
+ "bt012": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "rectangular block lying flat"
+ },
+ "bt009": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "body presumably the block; matches"
+ },
+ "bt091": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "hollow tube matches; vertical axis consistent extra"
+ },
+ "bt067": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 60 matches"
+ },
+ "verify199": {
+  "label": "no",
+  "confidence": "high",
+  "why": "direction garbled 'right to right'"
+ },
+ "bt186": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis direction garbled"
+ },
+ "bt173": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth 60 vs 30"
+ },
+ "verify143": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base width/depth swapped"
+ },
+ "verify163": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra part, wrong dims and position"
+ },
+ "bt040": {
+  "label": "no",
+  "confidence": "low",
+  "why": "longest side direction does not check resting on largest face"
+ },
+ "verify160": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra back_edge slab not requested"
+ },
+ "bt037": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "max top height 20 matches back edge"
+ },
+ "bt033": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "thickness likely wall 4 mm"
+ },
+ "bt057": {
+  "label": "no",
+  "confidence": "high",
+  "why": "left edge vs front edge"
+ },
+ "bt038": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "at least 20 consistent but loose"
+ },
+ "bt010": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "rectangular block check"
+ },
+ "verify172": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "matches request"
+ },
+ "bt018": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "length 250 matches"
+ },
+ "verify198": {
+  "label": "no",
+  "confidence": "high",
+  "why": "64 mm hole larger than 45 outer"
+ },
+ "bt063": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 70 matches"
+ },
+ "bt121": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis left to right matches"
+ },
+ "bt096": {
+  "label": "no",
+  "confidence": "high",
+  "why": "beside plate instead of on top"
+ },
+ "verify154": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "dims match"
+ },
+ "bt015": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "solid rod partial; lying flat consistent"
+ },
+ "bt017": {
+  "label": "no",
+  "confidence": "low",
+  "why": "only orientation, no shape or diameter"
+ },
+ "verify147": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "plate dims match"
+ },
+ "bt180": {
+  "label": "no",
+  "confidence": "high",
+  "why": "wrong direction, garbled"
+ },
+ "bt028": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "bangle whole height 15"
+ },
+ "bt109": {
+  "label": "no",
+  "confidence": "high",
+  "why": "orientation not evidence egg won't fall through"
+ },
+ "verify140": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "front panel matches"
+ },
+ "bt004": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 3 matches"
+ },
+ "bt043": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 150 matches"
+ },
+ "bt116": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 60 matches"
+ },
+ "bt174": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth 40 vs 80"
+ },
+ "bt089": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "outer diameter 45 matches"
+ },
+ "verify144": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "dividers match"
+ },
+ "bt182": {
+  "label": "no",
+  "confidence": "high",
+  "why": "under plate instead of on top"
+ },
+ "bt076": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "5 mm stand-in checks gap width"
+ },
+ "bt035": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 300 matches"
+ },
+ "bt175": {
+  "label": "no",
+  "confidence": "high",
+  "why": "500 vs 250"
+ },
+ "bt011": {
+  "label": "no",
+  "confidence": "low",
+  "why": "orientation only, no shape check"
+ },
+ "bt023": {
+  "label": "no",
+  "confidence": "low",
+  "why": "orientation only, no tube check"
+ },
+ "verify133": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "dims match"
+ },
+ "bt104": {
+  "label": "no",
+  "confidence": "low",
+  "why": "cup height irrelevant to egg falling through"
+ },
+ "verify193": {
+  "label": "no",
+  "confidence": "low",
+  "why": "front_panel located at back edge"
+ },
+ "bt119": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "length 70 matches"
+ },
+ "bt042": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "max height 20 matches"
+ },
+ "verify137": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "62 hole gives 4 mm wall; matches"
+ },
+ "bt185": {
+  "label": "no",
+  "confidence": "high",
+  "why": "whole height 40 wrong (25)"
+ },
+ "bt092": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate test unrelated to egg cups"
+ },
+ "bt101": {
+  "label": "no",
+  "confidence": "high",
+  "why": "44 mm fitting contradicts egg not falling through"
+ },
+ "verify206": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness 6 vs 4"
+ },
+ "verify191": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height 10 vs 20"
+ },
+ "bt176": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axis direction garbled"
+ },
+ "bt052": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 150 matches"
+ },
+ "bt111": {
+  "label": "no",
+  "confidence": "high",
+  "why": "beside instead of on top"
+ },
+ "bt107": {
+  "label": "no",
+  "confidence": "high",
+  "why": "at least 25 contradicts 20 tall"
+ },
+ "verify134": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "dims match"
+ },
+ "verify207": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base width 90 vs 180"
+ },
+ "bt046": {
+  "label": "no",
+  "confidence": "high",
+  "why": "two front panels contradicts front/back pair"
+ },
+ "bt061": {
+  "label": "no",
+  "confidence": "low",
+  "why": "placement test, not panel count"
+ },
+ "verify170": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "41 hole gives 2 mm wall; matches"
+ },
+ "bt054": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 4 matches"
+ },
+ "bt181": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness 7 vs 2"
+ },
+ "bt071": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "ends placement roughly consistent with front-back row"
+ },
+ "bt066": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 180 matches"
+ },
+ "verify204": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra slab, wrong width"
+ },
+ "bt102": {
+  "label": "no",
+  "confidence": "high",
+  "why": "hole at least 43 lets egg fall through"
+ },
+ "bt049": {
+  "label": "no",
+  "confidence": "low",
+  "why": "position test, not panel count"
+ },
+ "verify188": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width 60 vs 30, axes swapped"
+ },
+ "bt125": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "centring matches"
+ },
+ "verify146": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "dividers match"
+ },
+ "bt105": {
+  "label": "no",
+  "confidence": "high",
+  "why": "plate test unrelated"
+ },
+ "bt084": {
+  "label": "no",
+  "confidence": "high",
+  "why": "divider base height unrelated to letter gap"
+ },
+ "verify208": {
+  "label": "no",
+  "confidence": "low",
+  "why": "thickness direction garbled"
+ },
+ "bt183": {
+  "label": "no",
+  "confidence": "high",
+  "why": "direction garbled"
+ },
+ "bt045": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 6 matches"
+ },
+ "bt073": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "partial: on top of base"
+ },
+ "verify136": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "matches"
+ },
+ "verify203": {
+  "label": "no",
+  "confidence": "high",
+  "why": "tall at front instead of back"
+ },
+ "bt051": {
+  "label": "no",
+  "confidence": "high",
+  "why": "unrelated to panel count"
+ },
+ "verify190": {
+  "label": "no",
+  "confidence": "high",
+  "why": "length 175 vs 250"
+ },
+ "bt070": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "standing upright matches"
+ },
+ "bt069": {
+  "label": "no",
+  "confidence": "low",
+  "why": "placement not in this requirement"
+ },
+ "verify189": {
+  "label": "no",
+  "confidence": "high",
+  "why": "depth 56 vs 80"
+ },
+ "bt098": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "one at each end left to right"
+ },
+ "bt001": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 30 matches"
+ },
+ "bt029": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part partial; flat orientation consistent"
+ },
+ "bt064": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 6 matches"
+ },
+ "bt113": {
+  "label": "no",
+  "confidence": "high",
+  "why": "count not evidence egg rests"
+ },
+ "bt021": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "solid rod matches; axis extra consistent"
+ },
+ "bt082": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width unrelated to letter gap"
+ },
+ "bt050": {
+  "label": "no",
+  "confidence": "high",
+  "why": "unrelated to panel count"
+ },
+ "verify159": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "matches"
+ },
+ "verify153": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "matches"
+ },
+ "bt078": {
+  "label": "no",
+  "confidence": "high",
+  "why": "wrong-size book stand-in"
+ },
+ "verify149": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base matches"
+ },
+ "bt090": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "thickness likely wall 2 mm"
+ },
+ "bt039": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height 0 wrong"
+ },
+ "verify158": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "matches"
+ },
+ "bt060": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base on panel, inverted"
+ },
+ "bt003": {
+  "label": "no",
+  "confidence": "high",
+  "why": "width 30 vs 300"
+ },
+ "verify169": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "plate matches"
+ },
+ "verify139": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base matches"
+ },
+ "bt094": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "axis vertical matches"
+ },
+ "verify156": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "dims match"
+ },
+ "bt041": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "triangular wedge check; flat consistent"
+ },
+ "bt027": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 15 matches"
+ },
+ "bt130": {
+  "label": "no",
+  "confidence": "low",
+  "why": "placement, not cylinder size"
+ },
+ "verify167": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base matches"
+ },
+ "bt022": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "hollow tube check; flat orientation consistent"
+ },
+ "bt095": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "partial: on top of plate"
+ },
+ "bt093": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 20 matches"
+ },
+ "bt044": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 60 matches"
+ },
+ "verify157": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra rotated cushion part"
+ },
+ "bt103": {
+  "label": "no",
+  "confidence": "low",
+  "why": "at most 45 allows egg to fall through"
+ },
+ "bt062": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 180 matches"
+ },
+ "bt122": {
+  "label": "no",
+  "confidence": "high",
+  "why": "centring unrelated to axis"
+ },
+ "bt008": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 18 matches"
+ },
+ "bt100": {
+  "label": "no",
+  "confidence": "high",
+  "why": "43 mm fit contradicts not falling through"
+ },
+ "verify148": {
+  "label": "no",
+  "confidence": "high",
+  "why": "43 mm hole: 1 mm wall, egg falls through"
+ },
+ "bt127": {
+  "label": "no",
+  "confidence": "high",
+  "why": "centring unrelated to size"
+ },
+ "bt072": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "evenly spaced row front to back"
+ },
+ "bt077": {
+  "label": "no",
+  "confidence": "low",
+  "why": "allows left-to-right, ambiguous direction"
+ },
+ "bt048": {
+  "label": "no",
+  "confidence": "high",
+  "why": "tilted panel, unrelated to count"
+ },
+ "bt129": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part partial check"
+ },
+ "verify171": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base matches"
+ },
+ "bt128": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base test unrelated to pillow"
+ },
+ "bt085": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 120 matches"
+ },
+ "verify202": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra leaning cushion part"
+ },
+ "bt075": {
+  "label": "no",
+  "confidence": "low",
+  "why": "8 mm pencil wrong stand-in for 5 mm letter"
+ },
+ "bt047": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base test unrelated to panel count"
+ },
+ "bt025": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "diameter 70 matches"
+ },
+ "verify142": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "panels match"
+ },
+ "bt106": {
+  "label": "no",
+  "confidence": "high",
+  "why": "placement unrelated; allows wrong direction"
+ },
+ "bt187": {
+  "label": "no",
+  "confidence": "high",
+  "why": "under base instead of on top"
+ },
+ "bt074": {
+  "label": "no",
+  "confidence": "high",
+  "why": "pencil into divider, wrong stand-in"
+ },
+ "bt117": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 6 matches"
+ },
+ "verify168": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "dividers match"
+ },
+ "verify164": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra slab under wedge"
+ },
+ "bt088": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "count 2 matches"
+ },
+ "bt059": {
+  "label": "no",
+  "confidence": "high",
+  "why": "base count unrelated, wrong"
+ },
+ "verify141": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "front panel matches"
+ },
+ "verify201": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness 36 vs 18"
+ },
+ "bt112": {
+  "label": "no",
+  "confidence": "high",
+  "why": "cylinder between cups unrelated"
+ },
+ "bt056": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "front panel along front edge"
+ },
+ "verify135": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra rotated part"
+ },
+ "bt179": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "partial: back panel on top"
+ },
+ "bt108": {
+  "label": "no",
+  "confidence": "high",
+  "why": "top at least 30 contradicts 25"
+ },
+ "bt055": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "partial: front panel on top"
+ },
+ "verify196": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness 2.8 vs 4"
+ },
+ "bt002": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 30 matches"
+ },
+ "verify138": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "matches"
+ },
+ "verify197": {
+  "label": "no",
+  "confidence": "low",
+  "why": "depth direction garbled"
+ },
+ "bt006": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 360 matches"
+ },
+ "bt005": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "body presumably the block"
+ },
+ "verify192": {
+  "label": "no",
+  "confidence": "high",
+  "why": "thickness 4.2 vs 6"
+ },
+ "bt081": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height unrelated to letter gap"
+ },
+ "bt026": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "thickness likely wall 4"
+ },
+ "verify151": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "matches"
+ },
+ "bt058": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "tipping test; 5 degree tilt reasonable extra"
+ },
+ "bt184": {
+  "label": "no",
+  "confidence": "high",
+  "why": "hole at least 22 does not prevent falling through"
+ },
+ "bt068": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "thickness 4 matches"
+ },
+ "bt114": {
+  "label": "no",
+  "confidence": "high",
+  "why": "hole at least 45 lets egg fall through"
+ },
+ "bt178": {
+  "label": "no",
+  "confidence": "high",
+  "why": "height 14 vs 20"
+ },
+ "bt000": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "length 300 matches"
+ },
+ "verify155": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra leaning cushion part"
+ },
+ "bt110": {
+  "label": "no",
+  "confidence": "high",
+  "why": "whole height 20 wrong (25)"
+ },
+ "bt099": {
+  "label": "no",
+  "confidence": "high",
+  "why": "beside instead of on top"
+ },
+ "bt007": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "depth 80 matches"
+ },
+ "bt124": {
+  "label": "no",
+  "confidence": "high",
+  "why": "beside instead of on top"
+ },
+ "bt024": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part partial check"
+ },
+ "bt053": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 90 matches"
+ },
+ "bt097": {
+  "label": "no",
+  "confidence": "high",
+  "why": "beside instead of on top"
+ },
+ "verify166": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "front panel matches"
+ },
+ "bt120": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "solid rod partial; orientation ambiguous"
+ },
+ "bt115": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "width 100 matches"
+ },
+ "verify194": {
+  "label": "no",
+  "confidence": "low",
+  "why": "thickness direction garbled"
+ },
+ "bt126": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "covers tipping part only"
+ },
+ "bt030": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "hollow tube check; flat consistent"
+ },
+ "bt065": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "count 3 matches"
+ },
+ "bt016": {
+  "label": "yes",
+  "confidence": "low",
+  "why": "round part partial check"
+ },
+ "verify195": {
+  "label": "no",
+  "confidence": "high",
+  "why": "axes swapped, thickness 3"
+ },
+ "verify205": {
+  "label": "no",
+  "confidence": "high",
+  "why": "extra slab"
+ },
+ "verify145": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "base matches"
+ },
+ "bt034": {
+  "label": "yes",
+  "confidence": "high",
+  "why": "height 15 matches"
+ }
+}

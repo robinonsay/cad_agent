@@ -1,0 +1,10 @@
+(precision / covered / all-correct / empty, over 36 requirements)
+1 sample, no filter                          precision 0.68  L1s covered 0.86  all-correct 0.67  empty 0.00  mean kept 2.2
+1 sample + ornith gate 0.6 (today)           precision 0.74  L1s covered 0.83  all-correct 0.64  empty 0.03  mean kept 1.9
+1 sample + panel gate 0.6                    precision 0.83  L1s covered 0.83  all-correct 0.69  empty 0.08  mean kept 1.7
+union of 3 + ornith gate 0.6                 precision 0.57  L1s covered 0.86  all-correct 0.47  empty 0.00  mean kept 3.4
+union of 3 + panel gate 0.6                  precision 0.79  L1s covered 0.89  all-correct 0.64  empty 0.03  mean kept 2.4
+union of 3 + panel gate 0.5                  precision 0.68  L1s covered 0.89  all-correct 0.53  empty 0.03  mean kept 2.9
+union of 7 + ornith gate 0.6                 precision 0.50  L1s covered 0.92  all-correct 0.42  empty 0.00  mean kept 5.1
+union of 7 + panel gate 0.6                  precision 0.76  L1s covered 0.92  all-correct 0.56  empty 0.00  mean kept 3.1
+union of 7 + panel gate 0.5                  precision 0.63  L1s covered 0.94  all-correct 0.47  empty 0.00  mean kept 3.9

@@ -1,0 +1,3512 @@
+[
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The body is a flat slab tilted at an angle, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"body\", \"shape\": \"panel\"}]",
+  "id": "g000"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The whole object's longest size is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 300}]",
+  "id": "g001"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 30 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 30}]",
+  "id": "g002"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The whole object's thickness is 3 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 3}]",
+  "id": "g003"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The body's longest size is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 300}]",
+  "id": "g004"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The body's width (left to right) is 30 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 30}]",
+  "id": "g005"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The body's thickness is 3 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 3}]",
+  "id": "g006"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The body's tilt angle from the horizontal is 0 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 0}]",
+  "id": "g007"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.1",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The ruler shall be a single flat strip.",
+  "method": "inspection",
+  "test": "The body is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"body\", \"shape\": \"box\"}]",
+  "id": "g008"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.2",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 300 mm long (left to right) and 30 mm wide (front to back).",
+  "method": "inspection",
+  "test": "The body's longest size is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 300}]",
+  "id": "g009"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.2",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 300 mm long (left to right) and 30 mm wide (front to back).",
+  "method": "inspection",
+  "test": "The body's depth (front to back) is 30 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 30}]",
+  "id": "g010"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.2",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 300 mm long (left to right) and 30 mm wide (front to back).",
+  "method": "inspection",
+  "test": "The whole object's longest size is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 300}]",
+  "id": "g011"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.2",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 300 mm long (left to right) and 30 mm wide (front to back).",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 30 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 30}]",
+  "id": "g012"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.3",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 3 mm thick.",
+  "method": "inspection",
+  "test": "The body's thickness is 3 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 3}]",
+  "id": "g013"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.1",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The wrist rest shall be a single rectangular block.",
+  "method": "inspection",
+  "test": "The body is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"body\", \"shape\": \"box\"}]",
+  "id": "g014"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.1",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The wrist rest shall be a single rectangular block.",
+  "method": "inspection",
+  "test": "The design has exactly 1 body parts.",
+  "sig": "[\"count\", {\"count\": 1, \"op\": \"eq\", \"part\": \"body\", \"shape\": null}]",
+  "id": "g015"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.1",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The wrist rest shall be a single rectangular block.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 360 mm (within 3.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 360}]",
+  "id": "g016"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.1",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The wrist rest shall be a single rectangular block.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 80}]",
+  "id": "g017"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.1",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The wrist rest shall be a single rectangular block.",
+  "method": "inspection",
+  "test": "The whole object's height is 18 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 18}]",
+  "id": "g018"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.1",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The wrist rest shall be a single rectangular block.",
+  "method": "inspection",
+  "test": "The body is a rectangular block.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"body\", \"shape\": \"box\"}]",
+  "id": "g019"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.2",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 360 mm (within 3.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 360}]",
+  "id": "g020"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.2",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 80}]",
+  "id": "g021"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.2",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.",
+  "method": "inspection",
+  "test": "The whole object's height is 18 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 18}]",
+  "id": "g022"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.2",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.",
+  "method": "inspection",
+  "test": "The body's width (left to right) is 360 mm (within 3.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 360}]",
+  "id": "g023"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.2",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.",
+  "method": "inspection",
+  "test": "The body's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 80}]",
+  "id": "g024"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.2",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.",
+  "method": "inspection",
+  "test": "The body's height is 18 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 18}]",
+  "id": "g025"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The body is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"body\", \"shape\": \"box\"}]",
+  "id": "g026"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The body's width (left to right) is 360 mm (within 3.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 360}]",
+  "id": "g027"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The body's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 80}]",
+  "id": "g028"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The body's height is 18 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"body\", \"tol\": null, \"value\": 18}]",
+  "id": "g029"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 360 mm (within 3.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 360}]",
+  "id": "g030"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 80}]",
+  "id": "g031"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The whole object's height is 18 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 18}]",
+  "id": "g032"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder's diameter is 45 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 45}]",
+  "id": "g033"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g034"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a round part, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"cylinder\", \"shape\": \"round\"}]",
+  "id": "g035"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a part, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"cylinder\", \"shape\": \"any\"}]",
+  "id": "g036"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The design has exactly 1 cylinder parts.",
+  "sig": "[\"count\", {\"count\": 1, \"op\": \"eq\", \"part\": \"cylinder\", \"shape\": null}]",
+  "id": "g037"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The whole object's longest size is 250 mm (within 2.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 250}]",
+  "id": "g038"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a part.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"cylinder\", \"shape\": \"any\"}]",
+  "id": "g039"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a round part, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"round\"}]",
+  "id": "g040"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g041"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a part, with its longest side left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"any\"}]",
+  "id": "g042"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.1",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The rolling pin shall be a single solid cylinder 45 mm in diameter.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g043"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.2",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder shall be 250 mm long.",
+  "method": "inspection",
+  "test": "The cylinder's longest size is 250 mm (within 2.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 250}]",
+  "id": "g044"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.2",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder shall be 250 mm long.",
+  "method": "inspection",
+  "test": "The cylinder's diameter is 45 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 45}]",
+  "id": "g045"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.3",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g046"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.3",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder's diameter is 45 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 45}]",
+  "id": "g047"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.3",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder's longest size is 250 mm (within 2.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 250}]",
+  "id": "g048"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.3",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder's bottom surface height above the table is 0 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 0}]",
+  "id": "g049"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.3",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder is a round part, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"round\"}]",
+  "id": "g050"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.3",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 45 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 45}]",
+  "id": "g051"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a hollow round tube, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"tube\", \"shape\": \"tube\"}]",
+  "id": "g052"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The design has exactly 1 parts.",
+  "sig": "[\"count\", {\"count\": 1, \"op\": \"eq\", \"part\": null, \"shape\": null}]",
+  "id": "g053"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The design has exactly 1 tube parts.",
+  "sig": "[\"count\", {\"count\": 1, \"op\": \"eq\", \"part\": \"tube\", \"shape\": null}]",
+  "id": "g054"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube's diameter is 70 mm (within 0.7 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 70}]",
+  "id": "g055"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube's inner (hole) diameter is 62 mm (within 0.62 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 62}]",
+  "id": "g056"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube's thickness is 4 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 4}]",
+  "id": "g057"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The whole object's height is 15 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 15}]",
+  "id": "g058"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a part.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"tube\", \"shape\": \"any\"}]",
+  "id": "g059"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube's diameter is at least 70 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"ge\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 70}]",
+  "id": "g060"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube's inner (hole) diameter is at most 62 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"le\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 62}]",
+  "id": "g061"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube's height is 15 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 15}]",
+  "id": "g062"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube's thickness is at least 4 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"ge\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 4}]",
+  "id": "g063"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a round part.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"tube\", \"shape\": \"round\"}]",
+  "id": "g064"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a solid round rod or disc.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"tube\", \"shape\": \"cylinder\"}]",
+  "id": "g065"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a hollow round tube.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"tube\", \"shape\": \"tube\"}]",
+  "id": "g066"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a round part, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"tube\", \"shape\": \"round\"}]",
+  "id": "g067"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.2",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 70 mm in outer diameter with a 4 mm wall.",
+  "method": "inspection",
+  "test": "The tube's diameter is 70 mm (within 0.7 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 70}]",
+  "id": "g068"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.2",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 70 mm in outer diameter with a 4 mm wall.",
+  "method": "inspection",
+  "test": "The tube's thickness is 4 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 4}]",
+  "id": "g069"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube's height is 15 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 15}]",
+  "id": "g070"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube's diameter is 70 mm (within 0.7 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 70}]",
+  "id": "g071"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube's diameter is at most 70 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"le\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 70}]",
+  "id": "g072"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube's thickness is 4 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 4}]",
+  "id": "g073"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube's inner (hole) diameter is 62 mm (within 0.62 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 62}]",
+  "id": "g074"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube's tilt angle from the horizontal is 90 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 90}]",
+  "id": "g075"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge is a triangular wedge.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"wedge\", \"shape\": \"wedge\"}]",
+  "id": "g076"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 300}]",
+  "id": "g077"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 60}]",
+  "id": "g078"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge's height is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 20}]",
+  "id": "g079"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge is a triangular wedge, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"wedge\", \"shape\": \"wedge\"}]",
+  "id": "g080"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge's tilt angle from the horizontal is 18.43 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 18.43}]",
+  "id": "g081"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge's bottom surface height above the table is 0 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 0}]",
+  "id": "g082"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The design has exactly 1 wedge parts.",
+  "sig": "[\"count\", {\"count\": 1, \"op\": \"eq\", \"part\": \"wedge\", \"shape\": null}]",
+  "id": "g083"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 300}]",
+  "id": "g084"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 60}]",
+  "id": "g085"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.2",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 300 mm wide and 60 mm deep.",
+  "method": "inspection",
+  "test": "The wedge's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 300}]",
+  "id": "g086"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.2",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 300 mm wide and 60 mm deep.",
+  "method": "inspection",
+  "test": "The wedge's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 60}]",
+  "id": "g087"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.2",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 300 mm wide and 60 mm deep.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 300}]",
+  "id": "g088"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.2",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 300 mm wide and 60 mm deep.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 60}]",
+  "id": "g089"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The wedge's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 300}]",
+  "id": "g090"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The wedge's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 60}]",
+  "id": "g091"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The wedge's bottom surface height above the table is 0 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 0}]",
+  "id": "g092"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The wedge's top surface height above the table is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"top\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 20}]",
+  "id": "g093"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The wedge's height is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 20}]",
+  "id": "g094"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The wedge's tilt angle from the horizontal is 18.435 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 18.43494882292201}]",
+  "id": "g095"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 300}]",
+  "id": "g096"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 60}]",
+  "id": "g097"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The whole object's height is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 20}]",
+  "id": "g098"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The whole object's bottom surface height above the table is 0 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 0}]",
+  "id": "g099"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The whole object's top surface height above the table is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"top\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 20}]",
+  "id": "g100"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The whole object's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 300}]",
+  "id": "g101"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The whole object's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 60}]",
+  "id": "g102"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The whole object's bottom surface height above the table is 0 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 0}]",
+  "id": "g103"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The wedge's width (left to right) is 300 mm (within 3 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 300}]",
+  "id": "g104"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The wedge's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 60}]",
+  "id": "g105"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The wedge's tilt angle from the horizontal is 18.43 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 18.43}]",
+  "id": "g106"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The wedge's tilt angle from the horizontal is 18.435 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"wedge\", \"tol\": null, \"value\": 18.435}]",
+  "id": "g107"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The whole object's height is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 20}]",
+  "id": "g108"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.1",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The base shall be 150 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's width (left to right) is 150 mm (within 1.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 150}]",
+  "id": "g109"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.1",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The base shall be 150 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 60}]",
+  "id": "g110"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.1",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The base shall be 150 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's thickness is 6 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 6}]",
+  "id": "g111"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The design has exactly 2 front panel parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": \"front_panel\", \"shape\": null}]",
+  "id": "g112"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The design has exactly 2 parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": null, \"shape\": null}]",
+  "id": "g113"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel's width (left to right) is 150 mm (within 1.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"front_panel\", \"tol\": null, \"value\": 150}]",
+  "id": "g114"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel's height is 90 mm (within 0.9 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"front_panel\", \"tol\": null, \"value\": 90}]",
+  "id": "g115"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel's thickness is 4 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"front_panel\", \"tol\": null, \"value\": 4}]",
+  "id": "g116"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"front_panel\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g117"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is in front of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"front_panel\", \"relation\": \"in_front_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g118"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The design has exactly 2 front panel parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": \"front_panel\", \"shape\": null}]",
+  "id": "g119"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is beside the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"front_panel\", \"relation\": \"beside\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g120"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is along the front edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"front\"}]",
+  "id": "g121"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is along the back edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"back\"}]",
+  "id": "g122"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is along the left edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"left\"}]",
+  "id": "g123"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is along the right edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"right\"}]",
+  "id": "g124"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The base is underneath the front panel, touching it.",
+  "sig": "[\"relation\", {\"other\": \"front_panel\", \"part\": \"base\", \"relation\": \"underneath\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g125"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"center\"}]",
+  "id": "g126"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The design has exactly 2 parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": null, \"shape\": null}]",
+  "id": "g127"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.5",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The holder shall stand on a table without tipping.",
+  "method": "analysis",
+  "test": "The object stands on its own on a flat table without tipping over, even when the table is tilted 5 degrees.",
+  "sig": "[\"stable\", {\"density\": 0.00124, \"load\": null, \"tilt_deg\": 5.0}]",
+  "id": "g128"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's width (left to right) is 180 mm (within 1.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 180}]",
+  "id": "g129"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's depth (front to back) is 70 mm (within 0.7 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 70}]",
+  "id": "g130"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's thickness is 6 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 6}]",
+  "id": "g131"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's height is 6 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 6}]",
+  "id": "g132"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.2",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "There shall be exactly three dividers.",
+  "method": "inspection",
+  "test": "The design has exactly 3 divider parts.",
+  "sig": "[\"count\", {\"count\": 3, \"op\": \"eq\", \"part\": \"divider\", \"shape\": null}]",
+  "id": "g133"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider's width (left to right) is 180 mm (within 1.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 180}]",
+  "id": "g134"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider's height is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 60}]",
+  "id": "g135"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider's thickness is 4 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 4}]",
+  "id": "g136"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"divider\", \"shape\": \"box\"}]",
+  "id": "g137"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"divider\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g138"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is beside the divider, touching it.",
+  "sig": "[\"relation\", {\"other\": \"divider\", \"part\": \"divider\", \"relation\": \"beside\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g139"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a round part, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"divider\", \"shape\": \"round\"}]",
+  "id": "g140"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a round part, with its axis front to back.",
+  "sig": "[\"shape\", {\"orient\": \"y\", \"part\": \"divider\", \"shape\": \"round\"}]",
+  "id": "g141"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a round part, with its axis vertical.",
+  "sig": "[\"shape\", {\"orient\": \"z\", \"part\": \"divider\", \"shape\": \"round\"}]",
+  "id": "g142"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a part.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"divider\", \"shape\": \"any\"}]",
+  "id": "g143"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is in front of the divider, touching it.",
+  "sig": "[\"relation\", {\"other\": \"divider\", \"part\": \"divider\", \"relation\": \"in_front_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g144"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is behind the divider, touching it.",
+  "sig": "[\"relation\", {\"other\": \"divider\", \"part\": \"divider\", \"relation\": \"behind\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g145"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a rectangular block, with its longest side left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"divider\", \"shape\": \"box\"}]",
+  "id": "g146"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a rectangular block.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"divider\", \"shape\": \"box\"}]",
+  "id": "g147"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The design has exactly 3 divider parts.",
+  "sig": "[\"count\", {\"count\": 3, \"op\": \"eq\", \"part\": \"divider\", \"shape\": null}]",
+  "id": "g148"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider parts are placed one at each end of the base, front to back.",
+  "sig": "[\"arrangement\", {\"axis\": \"y\", \"other\": \"base\", \"part\": \"divider\", \"pattern\": \"ends\"}]",
+  "id": "g149"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider parts are placed in an evenly spaced straight row, front to back.",
+  "sig": "[\"arrangement\", {\"axis\": \"y\", \"other\": \"base\", \"part\": \"divider\", \"pattern\": \"row\"}]",
+  "id": "g150"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"divider\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g151"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider is beside the divider, touching it.",
+  "sig": "[\"relation\", {\"other\": \"divider\", \"part\": \"divider\", \"relation\": \"beside\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g152"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider parts are placed one at each end of the base, left to right or front to back.",
+  "sig": "[\"arrangement\", {\"axis\": null, \"other\": \"base\", \"part\": \"divider\", \"pattern\": \"ends\"}]",
+  "id": "g153"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A pencil (8 mm across, 170 mm long), standing upright, fits into the divider with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": false, \"clearance\": 1.0, \"into\": [\"divider\"], \"min_depth\": null, \"object\": \"pencil\", \"orientation\": \"upright\", \"size\": null}]",
+  "id": "g154"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A pencil (8 mm across, 170 mm long), standing upright, fits between the divider and the divider with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": true, \"clearance\": 1.0, \"into\": [\"divider\", \"divider\"], \"min_depth\": null, \"object\": \"pencil\", \"orientation\": \"upright\", \"size\": null}]",
+  "id": "g155"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "The divider's height is at least 5 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"ge\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 5}]",
+  "id": "g156"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "The divider's width (left to right) is 180 mm (within 1.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 180}]",
+  "id": "g157"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "The divider's thickness is 4 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 4}]",
+  "id": "g158"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A book (160 x 240 x 30 mm), standing upright, fits into the divider with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": false, \"clearance\": 1.0, \"into\": [\"divider\"], \"min_depth\": null, \"object\": \"book\", \"orientation\": \"upright\", \"size\": null}]",
+  "id": "g159"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A book (5 x 120 x 40 mm), standing upright, fits between the divider and the divider with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": true, \"clearance\": 1.0, \"into\": [\"divider\", \"divider\"], \"min_depth\": null, \"object\": \"book\", \"orientation\": \"upright\", \"size\": [5, 120, 40]}]",
+  "id": "g160"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A box (5 x 5 x 5 mm), standing upright, fits between the divider and the divider with 1 mm clearance all round, going at least 5 mm deep.",
+  "sig": "[\"fits\", {\"between\": true, \"clearance\": 1.0, \"into\": [\"divider\", \"divider\"], \"min_depth\": 5, \"object\": \"box\", \"orientation\": \"upright\", \"size\": [5, 5, 5]}]",
+  "id": "g161"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "The whole object's width (left to right) is at least 5 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"ge\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 5}]",
+  "id": "g162"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "The whole object's width (left to right) is at most 176 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"le\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 176}]",
+  "id": "g163"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The plate's width (left to right) is 120 mm (within 1.2 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"plate\", \"tol\": null, \"value\": 120}]",
+  "id": "g164"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The plate's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"plate\", \"tol\": null, \"value\": 80}]",
+  "id": "g165"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The plate's height is 5 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"plate\", \"tol\": null, \"value\": 5}]",
+  "id": "g166"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The plate's thickness is 5 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"plate\", \"tol\": null, \"value\": 5}]",
+  "id": "g167"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The design has exactly 2 egg cup parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": \"egg_cup\", \"shape\": null}]",
+  "id": "g168"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup's diameter is 45 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 45}]",
+  "id": "g169"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup's thickness is 2 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 2}]",
+  "id": "g170"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g171"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The design has exactly 1 plate parts.",
+  "sig": "[\"count\", {\"count\": 1, \"op\": \"eq\", \"part\": \"plate\", \"shape\": null}]",
+  "id": "g172"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 120 mm (within 1.2 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 120}]",
+  "id": "g173"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 80}]",
+  "id": "g174"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The whole object's height is 5 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 5}]",
+  "id": "g175"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g176"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube, with its axis vertical.",
+  "sig": "[\"shape\", {\"orient\": \"z\", \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g177"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube, with its axis front to back.",
+  "sig": "[\"shape\", {\"orient\": \"y\", \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g178"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup's inner (hole) diameter is 41 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 41}]",
+  "id": "g179"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup is a round part.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"egg_cup\", \"shape\": \"round\"}]",
+  "id": "g180"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The design has exactly 2 parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": null, \"shape\": null}]",
+  "id": "g181"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g182"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The plate is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"plate\", \"shape\": \"box\"}]",
+  "id": "g183"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The plate is a rectangular block, with its longest side vertical.",
+  "sig": "[\"shape\", {\"orient\": \"z\", \"part\": \"plate\", \"shape\": \"box\"}]",
+  "id": "g184"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup's inner (hole) diameter is at least 41 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"ge\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 41}]",
+  "id": "g185"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup's inner (hole) diameter is at most 43 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"le\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 43}]",
+  "id": "g186"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup's diameter is at least 45 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"ge\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 45}]",
+  "id": "g187"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup's diameter is at most 45 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"le\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 45}]",
+  "id": "g188"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube, standing upright (not lying flat).",
+  "sig": "[\"shape\", {\"orient\": \"upright\", \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g189"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.3",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "Each egg cup shall be 20 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The egg cup's height is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 20}]",
+  "id": "g190"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.3",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "Each egg cup shall be 20 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The egg cup's tilt angle from the horizontal is 90 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 90}]",
+  "id": "g191"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.3",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "Each egg cup shall be 20 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The egg cup's tilt angle from the horizontal is 0 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 0}]",
+  "id": "g192"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The design has exactly 2 egg cup parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": \"egg_cup\", \"shape\": null}]",
+  "id": "g193"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup sits on top of the plate, touching it.",
+  "sig": "[\"relation\", {\"other\": \"plate\", \"part\": \"egg_cup\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g194"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup is to the right of the plate, touching it.",
+  "sig": "[\"relation\", {\"other\": \"plate\", \"part\": \"egg_cup\", \"relation\": \"right_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g195"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup is to the left of the plate, touching it.",
+  "sig": "[\"relation\", {\"other\": \"plate\", \"part\": \"egg_cup\", \"relation\": \"left_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g196"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup parts are placed one at each end of the plate, left to right.",
+  "sig": "[\"arrangement\", {\"axis\": \"x\", \"other\": \"plate\", \"part\": \"egg_cup\", \"pattern\": \"ends\"}]",
+  "id": "g197"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup parts are placed in an evenly spaced straight row, left to right.",
+  "sig": "[\"arrangement\", {\"axis\": \"x\", \"other\": \"plate\", \"part\": \"egg_cup\", \"pattern\": \"row\"}]",
+  "id": "g198"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A round cylinder (43 mm across, 43 mm long), standing upright, fits into the egg cup with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": false, \"clearance\": 1.0, \"into\": [\"egg_cup\"], \"min_depth\": null, \"object\": \"cylinder\", \"orientation\": \"upright\", \"size\": [43, 43]}]",
+  "id": "g199"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A round cylinder (44 mm across, 44 mm long), standing upright, fits into the egg cup with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": false, \"clearance\": 1.0, \"into\": [\"egg_cup\"], \"min_depth\": null, \"object\": \"cylinder\", \"orientation\": \"upright\", \"size\": [44, 44]}]",
+  "id": "g200"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A box (43 x 43 x 43 mm), leaning against the front of the egg cup, stays at rest without sliding or tipping over (friction coefficient 0.3).",
+  "sig": "[\"rests_on\", {\"also_touches\": null, \"angle\": null, \"facing\": null, \"mode\": \"lean\", \"mu\": 0.3, \"object\": \"box\", \"orientation\": null, \"size\": [43, 43, 43], \"support\": \"egg_cup\", \"tilt_deg\": 5.0}]",
+  "id": "g201"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A round cylinder (43 mm across, 43 mm long), lying on the egg cup, stays at rest without sliding or tipping over (friction coefficient 0.3).",
+  "sig": "[\"rests_on\", {\"also_touches\": null, \"angle\": null, \"facing\": null, \"mode\": \"lie\", \"mu\": 0.3, \"object\": \"cylinder\", \"orientation\": null, \"size\": [43, 43], \"support\": \"egg_cup\", \"tilt_deg\": 5.0}]",
+  "id": "g202"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "The egg cup's inner (hole) diameter is at least 43 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"ge\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 43}]",
+  "id": "g203"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "The egg cup's inner (hole) diameter is at most 45 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"inner_diameter\", \"op\": \"le\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 45}]",
+  "id": "g204"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A round cylinder (43 mm across, 43 mm long), standing upright, fits into the egg cup with 1 mm clearance all round, going at least 20 mm deep.",
+  "sig": "[\"fits\", {\"between\": false, \"clearance\": 1.0, \"into\": [\"egg_cup\"], \"min_depth\": 20, \"object\": \"cylinder\", \"orientation\": \"upright\", \"size\": [43, 43]}]",
+  "id": "g205"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A box (43 x 43 x 5 mm), lying on the egg cup, stays at rest without sliding or tipping over (friction coefficient 0.3).",
+  "sig": "[\"rests_on\", {\"also_touches\": null, \"angle\": null, \"facing\": null, \"mode\": \"lie\", \"mu\": 0.3, \"object\": \"box\", \"orientation\": null, \"size\": [43, 43, 5], \"support\": \"egg_cup\", \"tilt_deg\": 5.0}]",
+  "id": "g206"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A box (43 x 43 x 43 mm), standing upright, fits into the egg cup with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": false, \"clearance\": 1.0, \"into\": [\"egg_cup\"], \"min_depth\": null, \"object\": \"box\", \"orientation\": \"upright\", \"size\": [43, 43, 43]}]",
+  "id": "g207"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A round cylinder (43 mm across, 43 mm long), leaning against the front of the egg cup, stays at rest without sliding or tipping over (friction coefficient 0.3).",
+  "sig": "[\"rests_on\", {\"also_touches\": null, \"angle\": null, \"facing\": null, \"mode\": \"lean\", \"mu\": 0.3, \"object\": \"cylinder\", \"orientation\": null, \"size\": [43, 43], \"support\": \"egg_cup\", \"tilt_deg\": 5.0}]",
+  "id": "g208"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's width (left to right) is 100 mm (within 1 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 100}]",
+  "id": "g209"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 60}]",
+  "id": "g210"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's thickness is 6 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 6}]",
+  "id": "g211"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder's diameter is 50 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 50}]",
+  "id": "g212"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder's longest size is 70 mm (within 0.7 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 70}]",
+  "id": "g213"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g214"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g215"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"center\"}]",
+  "id": "g216"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The base is a rectangular block.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"base\", \"shape\": \"box\"}]",
+  "id": "g217"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder is along the back edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"back\"}]",
+  "id": "g218"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The base is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"base\", \"shape\": \"box\"}]",
+  "id": "g219"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g220"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.3",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder's tilt angle from the horizontal is 0 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 0}]",
+  "id": "g221"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.3",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g222"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.3",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder's longest size is 70 mm (within 0.7 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 70}]",
+  "id": "g223"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.3",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder is a round part, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"round\"}]",
+  "id": "g224"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.3",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g225"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.3",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder's diameter is 50 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 50}]",
+  "id": "g226"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"cylinder\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g227"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g228"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The base is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"base\", \"shape\": \"box\"}]",
+  "id": "g229"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"center\"}]",
+  "id": "g230"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The base is a part.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"base\", \"shape\": \"any\"}]",
+  "id": "g231"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is a part.",
+  "sig": "[\"shape\", {\"orient\": null, \"part\": \"cylinder\", \"shape\": \"any\"}]",
+  "id": "g232"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g233"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder's diameter is 50 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 50}]",
+  "id": "g234"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is along the left edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"left\"}]",
+  "id": "g235"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is along the right edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"right\"}]",
+  "id": "g236"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is a round part, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"round\"}]",
+  "id": "g237"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The object stands on its own on a flat table without tipping over, even when the table is tilted 5 degrees.",
+  "sig": "[\"stable\", {\"density\": 0.00124, \"load\": null, \"tilt_deg\": 5.0}]",
+  "id": "g238"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The whole object's bottom surface height above the table is 0 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 0}]",
+  "id": "g239"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "No two parts pass through each other.",
+  "sig": "[\"no_overlap\", {\"max_volume\": 1.0, \"parts\": null}]",
+  "id": "g240"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The whole object's top surface height above the table is 76 mm (within 0.76 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"top\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 76}]",
+  "id": "g241"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The base's width (left to right) is 100 mm (within 1 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 100}]",
+  "id": "g242"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The base's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 60}]",
+  "id": "g243"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The base's thickness is 6 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 6}]",
+  "id": "g244"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The cylinder's diameter is 50 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"diameter\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 50}]",
+  "id": "g245"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.2",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 300 mm long (left to right) and 30 mm wide (front to back).",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 30 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 30}]",
+  "id": "g246"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.2",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 300 mm long (left to right) and 30 mm wide (front to back).",
+  "method": "inspection",
+  "test": "The body is a flat slab tilted at an angle, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"body\", \"shape\": \"panel\"}]",
+  "id": "g247"
+ },
+ {
+  "req": "D1-02",
+  "l1": "L1.3",
+  "request": "A plain ruler: a flat strip 300 mm long, 30 mm wide and 3 mm thick, lying flat.",
+  "requirement": "The strip shall be 3 mm thick.",
+  "method": "inspection",
+  "test": "The whole object's thickness is 3 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 3}]",
+  "id": "g248"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.2",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall be 360 mm wide, 80 mm deep and 18 mm tall.",
+  "method": "inspection",
+  "test": "The body is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"body\", \"shape\": \"box\"}]",
+  "id": "g249"
+ },
+ {
+  "req": "D1-03",
+  "l1": "L1.3",
+  "request": "A keyboard wrist rest: one solid block 360 mm wide, 80 mm deep and 18 mm tall.",
+  "requirement": "The block shall lie flat on the desk with its largest face down.",
+  "method": "inspection",
+  "test": "The whole object's bottom surface height above the table is 0 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 0}]",
+  "id": "g250"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.2",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder shall be 250 mm long.",
+  "method": "inspection",
+  "test": "The whole object's longest size is 250 mm (within 2.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 250}]",
+  "id": "g251"
+ },
+ {
+  "req": "D1-04",
+  "l1": "L1.3",
+  "request": "A rolling pin: a solid cylinder 45 mm across and 250 mm long, lying on its side running left to right.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The whole object's longest size is 250 mm (within 2.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 250}]",
+  "id": "g252"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a hollow round tube, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"tube\", \"shape\": \"tube\"}]",
+  "id": "g253"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.1",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The bangle shall be a single hollow tube open at both ends.",
+  "method": "inspection",
+  "test": "The tube is a round part, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"tube\", \"shape\": \"round\"}]",
+  "id": "g254"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.2",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 70 mm in outer diameter with a 4 mm wall.",
+  "method": "inspection",
+  "test": "The tube is a hollow round tube, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"tube\", \"shape\": \"tube\"}]",
+  "id": "g255"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.2",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 70 mm in outer diameter with a 4 mm wall.",
+  "method": "inspection",
+  "test": "The tube is a round part, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"tube\", \"shape\": \"round\"}]",
+  "id": "g256"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The whole object's height is 15 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 15}]",
+  "id": "g257"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube is a hollow round tube, with its axis vertical.",
+  "sig": "[\"shape\", {\"orient\": \"z\", \"part\": \"tube\", \"shape\": \"tube\"}]",
+  "id": "g258"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube is a round part, with its axis vertical.",
+  "sig": "[\"shape\", {\"orient\": \"z\", \"part\": \"tube\", \"shape\": \"round\"}]",
+  "id": "g259"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The whole object's height is 15 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 15.0}]",
+  "id": "g260"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube's tilt angle from the horizontal is 0 degrees (within 0.5 degrees).",
+  "sig": "[\"dimension\", {\"measure\": \"angle\", \"op\": \"eq\", \"param\": null, \"part\": \"tube\", \"tol\": null, \"value\": 0.0}]",
+  "id": "g261"
+ },
+ {
+  "req": "D1-05",
+  "l1": "L1.3",
+  "request": "A bangle: a ring 70 mm across and 15 mm tall with a 4 mm thick wall, lying flat.",
+  "requirement": "The tube shall be 15 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The tube is a hollow round tube, standing upright (not lying flat).",
+  "sig": "[\"shape\", {\"orient\": \"upright\", \"part\": \"tube\", \"shape\": \"tube\"}]",
+  "id": "g262"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.1",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The tilt wedge shall be a single wedge.",
+  "method": "inspection",
+  "test": "The wedge is beside the wedge, touching it.",
+  "sig": "[\"relation\", {\"other\": \"wedge\", \"part\": \"wedge\", \"relation\": \"beside\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g263"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.2",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 300 mm wide and 60 mm deep.",
+  "method": "inspection",
+  "test": "The wedge is a triangular wedge, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"wedge\", \"shape\": \"wedge\"}]",
+  "id": "g264"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The wedge is a triangular wedge, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"wedge\", \"shape\": \"wedge\"}]",
+  "id": "g265"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.3",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall be 20 mm tall at its back edge and 0 mm tall at its front edge.",
+  "method": "inspection",
+  "test": "The whole object's height is 20 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 20.0}]",
+  "id": "g266"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The whole object's top surface height above the table is at least 20 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"top\", \"op\": \"ge\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 20}]",
+  "id": "g267"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The wedge is a triangular wedge, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"wedge\", \"shape\": \"wedge\"}]",
+  "id": "g268"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The wedge sits on top of the wedge, touching it.",
+  "sig": "[\"relation\", {\"other\": \"wedge\", \"part\": \"wedge\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g269"
+ },
+ {
+  "req": "D1-06",
+  "l1": "L1.4",
+  "request": "A keyboard tilt wedge: 300 mm wide and 60 mm deep, rising from nothing at the front to 20 mm at the back.",
+  "requirement": "The wedge shall rest flat on the desk on its largest face.",
+  "method": "analysis",
+  "test": "The object stands on its own on a flat table without tipping over, even when the table is tilted 5 degrees.",
+  "sig": "[\"stable\", {\"density\": 0.00124, \"load\": null, \"tilt_deg\": 5.0}]",
+  "id": "g270"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.1",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The base shall be 150 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"base\", \"shape\": \"box\"}]",
+  "id": "g271"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.1",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The base shall be 150 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base sits on top of the front panel, touching it.",
+  "sig": "[\"relation\", {\"other\": \"front_panel\", \"part\": \"base\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g272"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.1",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The base shall be 150 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"base\", \"where\": \"center\"}]",
+  "id": "g273"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"front_panel\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g274"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel is beside the front panel, touching it.",
+  "sig": "[\"relation\", {\"other\": \"front_panel\", \"part\": \"front_panel\", \"relation\": \"beside\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g275"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel is along the front edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"front\"}]",
+  "id": "g276"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel is along the back edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"back\"}]",
+  "id": "g277"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"center\"}]",
+  "id": "g278"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel is along the left edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"left\"}]",
+  "id": "g279"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel is along the right edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"right\"}]",
+  "id": "g280"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.2",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "There shall be exactly two upright panels.",
+  "method": "inspection",
+  "test": "The front panel is a flat slab tilted at an angle, standing upright (not lying flat).",
+  "sig": "[\"shape\", {\"orient\": \"upright\", \"part\": \"front_panel\", \"shape\": \"panel\"}]",
+  "id": "g281"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The design has exactly 2 front panel parts.",
+  "sig": "[\"count\", {\"count\": 2, \"op\": \"eq\", \"part\": \"front_panel\", \"shape\": null}]",
+  "id": "g282"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel is along the front edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"front\"}]",
+  "id": "g283"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel is along the back edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"back\"}]",
+  "id": "g284"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"center\"}]",
+  "id": "g285"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel is along the left edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"left\"}]",
+  "id": "g286"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel is along the right edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"front_panel\", \"where\": \"right\"}]",
+  "id": "g287"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.3",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "Each panel shall be 150 mm wide, 90 mm tall and 4 mm thick.",
+  "method": "inspection",
+  "test": "The front panel sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"front_panel\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g288"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is behind the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"front_panel\", \"relation\": \"behind\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g289"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.4",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "One panel shall stand on top of the base along its front edge and the other along its back edge.",
+  "method": "inspection",
+  "test": "The front panel is behind the front panel, touching it.",
+  "sig": "[\"relation\", {\"other\": \"front_panel\", \"part\": \"front_panel\", \"relation\": \"behind\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g290"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.5",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The holder shall stand on a table without tipping.",
+  "method": "analysis",
+  "test": "The object stands on its own on a flat table without tipping over, even when the table is tilted 5 degrees.",
+  "sig": "[\"stable\", {\"density\": 0.00124, \"load\": null, \"tilt_deg\": 5}]",
+  "id": "g291"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.5",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The holder shall stand on a table without tipping.",
+  "method": "analysis",
+  "test": "Base, front panel form one connected body.",
+  "sig": "[\"connected\", {\"parts\": [\"base\", \"front_panel\"]}]",
+  "id": "g292"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.5",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The holder shall stand on a table without tipping.",
+  "method": "analysis",
+  "test": "The front panel touches the base with at least 20 mm\u00b2 of contact.",
+  "sig": "[\"touches\", {\"min_area\": null, \"other\": \"base\", \"part\": \"front_panel\"}]",
+  "id": "g293"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.5",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The holder shall stand on a table without tipping.",
+  "method": "analysis",
+  "test": "The base touches the base with at least 20 mm\u00b2 of contact.",
+  "sig": "[\"touches\", {\"min_area\": null, \"other\": \"base\", \"part\": \"base\"}]",
+  "id": "g294"
+ },
+ {
+  "req": "D2-01",
+  "l1": "L1.5",
+  "request": "A napkin holder: a 150 x 60 x 6 mm base with two upright panels 150 mm wide, 90 mm tall and 4 mm thick, one along the front edge and one along the back edge.",
+  "requirement": "The holder shall stand on a table without tipping.",
+  "method": "analysis",
+  "test": "All parts form one connected body.",
+  "sig": "[\"connected\", {\"parts\": null}]",
+  "id": "g295"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The base is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"base\", \"shape\": \"box\"}]",
+  "id": "g296"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The divider is a rectangular block, standing upright (not lying flat).",
+  "sig": "[\"shape\", {\"orient\": \"upright\", \"part\": \"divider\", \"shape\": \"box\"}]",
+  "id": "g297"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The base is underneath the divider, touching it.",
+  "sig": "[\"relation\", {\"other\": \"divider\", \"part\": \"base\", \"relation\": \"underneath\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g298"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.1",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The base shall be 180 x 70 x 6 mm.",
+  "method": "inspection",
+  "test": "The divider sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"divider\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g299"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.2",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "There shall be exactly three dividers.",
+  "method": "inspection",
+  "test": "The divider parts are placed one at each end of the base, front to back.",
+  "sig": "[\"arrangement\", {\"axis\": \"y\", \"other\": \"base\", \"part\": \"divider\", \"pattern\": \"ends\"}]",
+  "id": "g300"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The design has exactly 3 divider parts.",
+  "sig": "[\"count\", {\"count\": 3, \"op\": \"eq\", \"part\": \"divider\", \"shape\": null}]",
+  "id": "g301"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a rectangular block, standing upright (not lying flat).",
+  "sig": "[\"shape\", {\"orient\": \"upright\", \"part\": \"divider\", \"shape\": \"box\"}]",
+  "id": "g302"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.3",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "Each divider shall be 180 mm wide, 60 mm tall and 4 mm thick, standing vertically.",
+  "method": "inspection",
+  "test": "The divider is a flat slab tilted at an angle, standing upright (not lying flat).",
+  "sig": "[\"shape\", {\"orient\": \"upright\", \"part\": \"divider\", \"shape\": \"panel\"}]",
+  "id": "g303"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider's width (left to right) is 180 mm (within 1.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 180}]",
+  "id": "g304"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider's height is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 60}]",
+  "id": "g305"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.4",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "The dividers shall stand on top of the base in an evenly spaced row running front to back.",
+  "method": "inspection",
+  "test": "The divider's thickness is 4 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"divider\", \"tol\": null, \"value\": 4}]",
+  "id": "g306"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A box (5 x 180 x 60 mm), standing upright, fits between the divider and the divider with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": true, \"clearance\": 1.0, \"into\": [\"divider\", \"divider\"], \"min_depth\": null, \"object\": \"box\", \"orientation\": \"upright\", \"size\": [5, 180, 60]}]",
+  "id": "g307"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A box (5 x 180 x 60 mm), standing upright, fits between the divider and the divider with 1 mm clearance all round, going at least 5 mm deep.",
+  "sig": "[\"fits\", {\"between\": true, \"clearance\": 1.0, \"into\": [\"divider\", \"divider\"], \"min_depth\": 5, \"object\": \"box\", \"orientation\": \"upright\", \"size\": [5, 180, 60]}]",
+  "id": "g308"
+ },
+ {
+  "req": "D2-04",
+  "l1": "L1.5",
+  "request": "A letter rack: a 180 x 70 x 6 mm base with three dividers 180 mm wide, 60 mm tall and 4 mm thick standing upright in an evenly spaced row from front to back.",
+  "requirement": "A letter 5 mm thick shall fit upright between two neighbouring dividers.",
+  "method": "demonstration",
+  "test": "A box (5 x 60 x 180 mm), standing upright, fits between the divider and the divider with 1 mm clearance all round, going at least 5 mm deep.",
+  "sig": "[\"fits\", {\"between\": true, \"clearance\": 1.0, \"into\": [\"divider\", \"divider\"], \"min_depth\": 5, \"object\": \"box\", \"orientation\": \"upright\", \"size\": [5, 60, 180]}]",
+  "id": "g309"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The whole object's longest size is 120 mm (within 1.2 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 120}]",
+  "id": "g310"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The whole object's depth (front to back) is 80 mm (within 0.8 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 80}]",
+  "id": "g311"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The whole object's height is 5 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 5}]",
+  "id": "g312"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The whole object's width (left to right) is 120 mm (within 1.2 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": null, \"tol\": null, \"value\": 120}]",
+  "id": "g313"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The plate is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"plate\", \"shape\": \"box\"}]",
+  "id": "g314"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g315"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The plate sits on top of the plate, touching it.",
+  "sig": "[\"relation\", {\"other\": \"plate\", \"part\": \"plate\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g316"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.1",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The plate shall be 120 x 80 x 5 mm.",
+  "method": "inspection",
+  "test": "The egg cup sits on top of the plate, touching it.",
+  "sig": "[\"relation\", {\"other\": \"plate\", \"part\": \"egg_cup\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g317"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The plate is a flat slab tilted at an angle, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"plate\", \"shape\": \"panel\"}]",
+  "id": "g318"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.2",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "There shall be exactly two egg cups, each a hollow tube 45 mm in outer diameter with a 2 mm wall.",
+  "method": "inspection",
+  "test": "The plate's thickness is 5 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"eq\", \"param\": null, \"part\": \"plate\", \"tol\": null, \"value\": 5}]",
+  "id": "g319"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.3",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "Each egg cup shall be 20 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The egg cup is a hollow round tube, with its axis vertical.",
+  "sig": "[\"shape\", {\"orient\": \"z\", \"part\": \"egg_cup\", \"shape\": \"tube\"}]",
+  "id": "g320"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.3",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "Each egg cup shall be 20 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The egg cup sits on top of the plate, touching it.",
+  "sig": "[\"relation\", {\"other\": \"plate\", \"part\": \"egg_cup\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g321"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.3",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "Each egg cup shall be 20 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The egg cup is beside the egg cup, touching it.",
+  "sig": "[\"relation\", {\"other\": \"egg_cup\", \"part\": \"egg_cup\", \"relation\": \"beside\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g322"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.3",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "Each egg cup shall be 20 mm tall with its axis vertical.",
+  "method": "inspection",
+  "test": "The plate is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"plate\", \"shape\": \"box\"}]",
+  "id": "g323"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup is to the left of the egg cup, touching it.",
+  "sig": "[\"relation\", {\"other\": \"egg_cup\", \"part\": \"egg_cup\", \"relation\": \"left_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g324"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup is to the right of the egg cup, touching it.",
+  "sig": "[\"relation\", {\"other\": \"egg_cup\", \"part\": \"egg_cup\", \"relation\": \"right_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g325"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup is along the left edge of the plate.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"plate\", \"part\": \"egg_cup\", \"where\": \"left\"}]",
+  "id": "g326"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.4",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "The egg cups shall stand on top of the plate, one near the left end and one near the right end.",
+  "method": "inspection",
+  "test": "The egg cup is along the right edge of the plate.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"plate\", \"part\": \"egg_cup\", \"where\": \"right\"}]",
+  "id": "g327"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "A round cylinder (43 mm across, 20 mm long), standing upright, fits into the egg cup with 1 mm clearance all round.",
+  "sig": "[\"fits\", {\"between\": false, \"clearance\": 1.0, \"into\": [\"egg_cup\"], \"min_depth\": null, \"object\": \"cylinder\", \"orientation\": \"upright\", \"size\": [43, 20]}]",
+  "id": "g328"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "The egg cup's height is at least 20 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"ge\", \"param\": null, \"part\": \"egg_cup\", \"tol\": null, \"value\": 20}]",
+  "id": "g329"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "The egg cup sits on top of the plate, touching it.",
+  "sig": "[\"relation\", {\"other\": \"plate\", \"part\": \"egg_cup\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g330"
+ },
+ {
+  "req": "D2-05",
+  "l1": "L1.5",
+  "request": "An egg holder: a 120 x 80 x 5 mm plate with two short tubes 45 mm across, 20 mm tall with 2 mm walls, standing on top side by side, one at each end from left to right.",
+  "requirement": "An egg 43 mm across shall rest in each cup without falling through.",
+  "method": "demonstration",
+  "test": "The object stands on its own on a flat table without tipping over, even when the table is tilted 5 degrees.",
+  "sig": "[\"stable\", {\"density\": 0.00124, \"load\": null, \"tilt_deg\": 5.0}]",
+  "id": "g331"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base's height is 6 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"height\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 6}]",
+  "id": "g332"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base is a rectangular block, lying flat (its thinnest side vertical).",
+  "sig": "[\"shape\", {\"orient\": \"flat\", \"part\": \"base\", \"shape\": \"box\"}]",
+  "id": "g333"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The cylinder is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"center\"}]",
+  "id": "g334"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The cylinder is a solid round rod or disc, with its axis left to right.",
+  "sig": "[\"shape\", {\"orient\": \"x\", \"part\": \"cylinder\", \"shape\": \"cylinder\"}]",
+  "id": "g335"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.1",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The base shall be 100 x 60 x 6 mm.",
+  "method": "inspection",
+  "test": "The base is beside the cylinder, touching it.",
+  "sig": "[\"relation\", {\"other\": \"cylinder\", \"part\": \"base\", \"relation\": \"beside\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g336"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.2",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The pillow shall be a solid cylinder 50 mm in diameter and 70 mm long.",
+  "method": "inspection",
+  "test": "The cylinder sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"cylinder\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g337"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.3",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder's axis shall run horizontally, left to right.",
+  "method": "inspection",
+  "test": "The cylinder sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"cylinder\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g338"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder's longest size is 70 mm (within 0.7 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"length\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 70}]",
+  "id": "g339"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The base's width (left to right) is 100 mm (within 1 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"width\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 100}]",
+  "id": "g340"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The base's depth (front to back) is 60 mm (within 0.6 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"depth\", \"op\": \"eq\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 60}]",
+  "id": "g341"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder's top surface height above the table is 66 mm (within 0.66 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"top\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 66}]",
+  "id": "g342"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder's bottom surface height above the table is 6 mm (within 0.5 mm).",
+  "sig": "[\"dimension\", {\"measure\": \"bottom\", \"op\": \"eq\", \"param\": null, \"part\": \"cylinder\", \"tol\": null, \"value\": 6}]",
+  "id": "g343"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is along the front edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"front\"}]",
+  "id": "g344"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.4",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The cylinder shall rest centred on top of the base.",
+  "method": "inspection",
+  "test": "The cylinder is along the back edge of the base.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"back\"}]",
+  "id": "g345"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The object stands on its own on a flat table without tipping over, even when the table is tilted 5 degrees.",
+  "sig": "[\"stable\", {\"density\": 0.00124, \"load\": null, \"tilt_deg\": 5}]",
+  "id": "g346"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The cylinder touches the base with at least 20 mm\u00b2 of contact.",
+  "sig": "[\"touches\", {\"min_area\": null, \"other\": \"base\", \"part\": \"cylinder\"}]",
+  "id": "g347"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The cylinder is centred on the base, left to right and front to back.",
+  "sig": "[\"edge\", {\"axis\": null, \"max_offset\": null, \"other\": \"base\", \"part\": \"cylinder\", \"where\": \"center\"}]",
+  "id": "g348"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The base's thickness is at least 6 mm.",
+  "sig": "[\"dimension\", {\"measure\": \"thickness\", \"op\": \"ge\", \"param\": null, \"part\": \"base\", \"tol\": null, \"value\": 6}]",
+  "id": "g349"
+ },
+ {
+  "req": "D2-06",
+  "l1": "L1.5",
+  "request": "A watch stand: a 100 x 60 x 6 mm base with a cylinder 50 mm across and 70 mm long lying on its side on top, running left to right and centred.",
+  "requirement": "The stand shall rest on a table without rolling or tipping.",
+  "method": "analysis",
+  "test": "The cylinder sits on top of the base, touching it.",
+  "sig": "[\"relation\", {\"other\": \"base\", \"part\": \"cylinder\", \"relation\": \"on_top_of\", \"tol\": 0.5, \"touching\": true}]",
+  "id": "g350"
+ }
+]
