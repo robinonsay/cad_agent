@@ -1,0 +1,61 @@
+{
+  "judge": "independent judge #2, iteration 012",
+  "design": "V2_s12/20261024-193034",
+  "variant": "V2",
+  "meets_requirements": false,
+  "verdict": "DOES NOT MEET",
+  "class": "CORRECT (no gate fails, every weight-3 L3 passes); one weight-2 L3 fails",
+  "weighted_score": "135/137 = 0.985 over applicable non-physical L3s",
+  "worst_weight3_normalised_margin": "+0.20 (L3.4.1.1 d=0.10, L3.4.2.1 d=0.10, L3.5.1.1 d=0.40 vs 0.30, L3.6.1.1 d=0.40 vs 0.30; each /0.5)",
+  "frame": "Delivered frame used as is, except that a Y-mirror (y' = 45 - y) maps the jack wall (design -Y) onto the grading delta's +Y side. USB is already at -X, floor underside Z=-8.1 (enclosure-frame Z = z + 8.1). Board frame = design frame.",
+  "gates": {"G0": "pass", "G1": "pass", "G2": "pass", "G3": "pass", "G4": "pass", "G5": "pass"},
+  "measured": {
+    "bodies": "base 103.174 x 58.174 x 22.300 (Z -8.1..14.2), lid 103.174 x 58.174 x 4.5 (Z 12.1..16.6); both NoError, 1 shell each; base^lid = 0 mm3",
+    "L3.2.1.1 board clearance": "1.10 (limit 0.5)",
+    "L3.2.2.1 / L3.4.3.1": "V-PICO 4.29 (>=0.2); headers+jacks 1.21 (>=0.3)",
+    "standoffs": "4 at (2.5,2.5) (87.5,2.5) (2.5,42.5) (87.5,42.5); pitch 85.0 x 40.0; axis offset 0.00; OD 5.10; pilot insc. 1.70; pilot depth 5.10 (top -1.6, bottom -6.7); tops coplanar at -1.60; floor contact 18.1 mm2",
+    "L3.4.1.1 / L3.4.2.1": "0.10 (lid lip bottom 12.1 over board margin X 0..0.35) / 0.10 (floor top -5.7)",
+    "L3.5.1.1 USB plug": "d=0.40 (limit 0.30); opening 10.8 (Y 17.1..27.9) x 7.8 (Z 1.0..8.8), centre (Y 22.5, Z 4.9); within grown envelope (margin 1.1 per side)",
+    "L3.6.1.1 jack plugs": "d=0.40 each; openings insc. 8.80 / circumscribed 8.81, centres X 24.0/45.0/66.0, Z 2.5; spacing 21.0; within grown envelope (margin 1.1)",
+    "opening counts": "-X: 1 port opening; design -Y (graded +Y): 3; +X: 0; +Y: 0; other walls only the blind boss-pilot/lid screw holes (screw holes)",
+    "L3.8.1.1": "after filling the 4 port openings and 4 lid screw holes, the cavity (85625 mm3) is a separate void from the outside: 0 unlisted openings",
+    "lid": "plate 2.40; outline = base outline (identical bbox incl. corner bosses); lip 1.2 thick, gap 0.25 on all 4 sides, engagement 2.10 (lip bottom 12.1, rim 14.2); total height 4.5; 4 lid holes insc. 3.40 coaxial with boss pilots (offset 0.00)",
+    "bosses": "4, OD 6.6, pilot insc. 2.50, depth 6.10 (8.1..14.2)",
+    "walls / floor / lid": "2.40 / 2.40 / 2.40 (range 0.00)",
+    "printability": "base: only downward faces are the USB opening top (bridge 10.8, exempt) and the round jack holes (8.81, exempt); lid outer-face-down: 0; bed contact 85.7% / 85.0%",
+    "envelope": "103.17 x 58.17 x 24.70 <= 110 x 65 x 35, X longest",
+    "install / drivers": "V-INSTALL 1.10 from base except designed standoff-top seating; driver columns 0.60",
+    "stability": "COM height 12.4 above table, 5 deg shift 1.09 vs >= 28.8 to every support edge; tipping margins USB 0.0191 vs 0.0065 N.m, jacks 0.0103 vs 0.0053 N.m (40 g)",
+    "self_report": "every clear_of/inside value within 0.01 of the judge's (hole_ko 0.096 vs 0.100); same pass/fail"
+  },
+  "requirement_results": [
+    {"id": "L1.1", "pass": false, "evidence": "L3.1.3.1 FAILS: USB_MOUTH X = +2.96 (Pico PCB -X edge at 4.26, receptacle overhang 1.3) vs grading-delta window [-1.8, -0.8]. Passing: layout.json parses, catalogue ids exist; USB_AXIS -X; jack axes -Y (mirror to +Y); jack mouths at Y=0 (mirrored 45.0, window [44.5,46.0]); RBA pairwise overlap 0; parts clear V-HOLE-KO by 5.0; jack spacing 21.0; header pins on grid residual 0.00."},
+    {"id": "L1.2", "pass": true, "evidence": "clear_of(ALL, board minus 8.0 seat columns, 0.5): d=1.10; inner X 92.2 >= 90.4; V-PICO inside cavity d=4.29."},
+    {"id": "L1.3", "pass": true, "evidence": "4 standoffs coaxial with the holes (offset 0.00), pitch 85.0 x 40.0, OD 5.10, tops all -1.60, pilots 1.70 x 5.10 deep, floor contact 18.1 mm2, base 1 shell, screw-head columns clear by 0.10."},
+    {"id": "L1.4", "pass": true, "evidence": "V-KO-TOP d=0.10 (lid lip bottom Z 12.1), V-KO-BOT d=0.10 (floor top -5.7), standoff height 4.1 above floor, headers/jacks inside cavity d=1.21."},
+    {"id": "L1.5", "pass": true, "evidence": "V-USB-PLUG (mouth (2.96,22.5,4.9), axis -X) clear by 0.40; opening 10.8 x 7.8 at Y 17.1..27.9, Z 1.0..8.8 lies inside the plug envelope grown 1.5 (margin 1.1); exactly 1 opening in -X wall."},
+    {"id": "L1.6", "pass": true, "evidence": "Three V-JACK-PLUG envelopes (axes X 24/45/66, Z 2.5, along -Y) clear by 0.40, mutually disjoint; openings Ø8.80-8.81 within Ø11.0 grown envelopes; exactly 3 openings in the jack wall, none in +X."},
+    {"id": "L1.7", "pass": true, "evidence": "Separate 1-shell bodies, overlap 0; flat 2.4 plate with continuous lip, gap 0.25 per side, engagement 2.1, total 4.5; 4 M3 corner bosses (pilot 2.50 x 6.1, OD 6.6) with coaxial Ø3.40 lid holes; seam flush."},
+    {"id": "L1.8", "pass": true, "evidence": "No unlisted opening (cavity sealed once the 4 port openings and 4 lid screw holes are filled); walls/floor/lid 2.40; min ligament 1.6 (lid-hole ring), port ligaments >= 3.8."},
+    {"id": "L1.9", "pass": true, "evidence": "Both NoError, 1 shell; no unsupported overhang except the exempt 10.8 USB bridge and Ø8.81 round holes; bed contact 85.7% / 85.0%; thinnest feature lid lip 1.2 (≈1.05 at the corner notches); per-body bbox 103.2 max."},
+    {"id": "L1.10", "pass": true, "evidence": "103.17 x 58.17 x 24.70 within 110 x 65 x 35, X longest; flat underside (single plane Z -8.1); stable at 5 deg and under 0.5 N port pulls."},
+    {"id": "L1.11", "pass": true, "evidence": "Board drop path clear of base by 1.10 (only designed contact on standoff tops); Ø6 driver columns clear by 0.60; board and lid fasteners separate."},
+    {"id": "L1.12", "pass": true, "evidence": "base.stl, lid.stl, .scad, layout.json (with print orientations), self_report.json present; seating verified (board on standoff tops 0.00, hole residual 0.00); self-report agrees within 0.01."}
+  ],
+  "defects": [
+    {
+      "requirement_id": "L3.1.3.1 (L2.1.3, L1.1) per V2 grading delta 2",
+      "where": "layout (layout.json reference module_1_1, rpi_pico2 at x=4.26, y=12.0, z=2.5, rot_z=0): USB_MOUTH datum at board-frame (2.96, 22.5, 4.9); the receptacle sits 2.96 mm inside the board's -X edge (X=0). Visible in views/ghost_top.png and ghost_iso.png (receptacle stub at the left end of the Pico, inboard of the board edge) and open_top.png.",
+      "what": "Port mouth position along X fails the V2 grading delta: the Pico's micro-USB mouth is inboard of the board edge instead of 0.8-1.8 mm beyond it.",
+      "expected": "USB_MOUTH X in [-1.8, -0.8] board frame (Pico PCB -X edge at X in [-0.5, +0.5]), keeping L3.5.1.1 d >= 0.30 and L3.5.2.1 opening within the plug envelope grown 1.5.",
+      "observed": "USB_MOUTH X = +2.96 (margin -3.76 to the nearest bound -0.8).",
+      "severity": "minor"
+    }
+  ],
+  "observations": [
+    "To Robin: the V2 delta window USB_MOUTH X in [-1.8, -0.8] conflicts with L2.1.3's own wording (first header pin on the grid column nearest -X) and with L3.1.6.1 on the catalogue grid for a 90 x 45 board (first column X 5.63): a mouth in the window puts pin 1 at X 1.07..2.07, where there is no grid hole (residual >= 1.0). The design follows the grid rule exactly (pin 1 at 5.63, mouth 2.96). Graded as written.",
+    "Jack bodies 1 and 2 (X 21..27 and 42..48, Y 0..12, Z 0..5) touch the Pico PCB edge (Y 12.0, Z 2.5..3.5) with zero clearance; passes L3.1.4.1 (0 mm3) but leaves no assembly tolerance.",
+    "Corner bosses are external half-cylinders centred near the outer wall corners (-3.287, -3.287 etc.), adding 3.1 mm per side to the plan size; within the size limit.",
+    "claude-context MCP was unavailable in this session; no code search was needed (all files read by known path)."
+  ]
+}

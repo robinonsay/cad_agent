@@ -1,0 +1,169 @@
+{
+  "request": "An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer. Requirements: The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout. The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports. The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board. With the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico and jacks shall lie inside the enclosure. With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side. With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time through two openings in the opposite end wall without touching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side. The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed. The closed enclosure shall have no openings other than the USB opening, the two jack openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick. The base and the lid shall each be one manifold body that prints on an FDM printer without supports. The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat on a desk without tipping. With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver. The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+  "base_request": "An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.",
+  "seed": 0,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.3",
+      "text": "The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.4",
+      "text": "With the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico and jacks shall lie inside the enclosure.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.5",
+      "text": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+      "method": "test"
+    },
+    {
+      "id": "L1.6",
+      "text": "With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time through two openings in the opposite end wall without touching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side.",
+      "method": "test"
+    },
+    {
+      "id": "L1.7",
+      "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.8",
+      "text": "The closed enclosure shall have no openings other than the USB opening, the two jack openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.9",
+      "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat on a desk without tipping.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.11",
+      "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.",
+      "method": "test"
+    },
+    {
+      "id": "L1.12",
+      "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": null,
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [
+      "base",
+      "lid"
+    ],
+    "all_verified": false,
+    "l1_not_passed": []
+  },
+  "notes": [
+    "the request mentions 50 ('An enclosure for a 70 x 50 mm perfboard that will hold a Raspber') but no dimension uses it",
+    "the request mentions 2 ('that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mou') but no dimension uses it",
+    "the request mentions 2 ('ting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the') but no dimension uses it",
+    "the request mentions 2 ('s: The design shall place the Pico 2 and the two 3.5 mm jacks on the 70') but no dimension uses it",
+    "the request mentions 50 ('d the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, w') but no dimension uses it",
+    "the request mentions 50 ('Pico's USB port facing one short (50 mm) end and both jacks facing the oth') but no dimension uses it",
+    "the request mentions 50 ('hall declare that layout. The 70 x 50 x 1.6 mm board shall fit inside the') but no dimension uses it",
+    "the request mentions 1.6 ('declare that layout. The 70 x 50 x 1.6 mm board shall fit inside the closed') but no dimension uses it",
+    "the request mentions 0.5 ('the closed enclosure with at least 0.5 mm clearance to every printed surface') but no dimension uses it",
+    "the request mentions 12 ('of the enclosure shall come within 12 mm above the board's top surface or 4') but no dimension uses it",
+    "the request mentions 1.5 ('that opening shall be no more than 1.5 mm bigger than the plug on any side.') but no dimension uses it",
+    "the request mentions 1.5 ('each opening shall be no more than 1.5 mm bigger than the plug on any side.') but no dimension uses it",
+    "the request mentions 2 ('its walls, floor and lid shall be 2 to 4 mm thick. The base and the lid') but no dimension uses it",
+    "the request mentions 35 ('shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm s') but no dimension uses it"
+  ],
+  "components": [
+    {
+      "name": "base",
+      "description": "base manifold body, 90 x 70 x 4 mm thick, 70 mm side aligned with the board's 70 mm length, with a 70 x 50 mm recessed floor for the perfboard, a 20 mm x 10 mm USB port opening in one short (50 mm) end wall sized 1.5 mm larger than a micro-USB plug, two 6.35 mm jack openings in the opposite short end wall each 1.5 mm larger than a 3.5 mm plug, four corner standoffs with pilot holes, and four screw bosses",
+      "count": 1,
+      "shape": "box",
+      "params": {
+        "width": 90.0,
+        "depth": 70.0,
+        "height": 4.0
+      },
+      "place": null,
+      "arrangement": null,
+      "size": [
+        90.0,
+        70.0,
+        4.0
+      ],
+      "positions": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "built": "The base is a flat plate 90 mm wide (left to right), 70 mm deep (front to back) and 4 mm thick. It is the main body of the object.",
+      "status": null,
+      "residual": []
+    },
+    {
+      "name": "lid",
+      "description": "lid manifold body, 90 x 70 x 4 mm thick, sliding-fit over the base with four screw bosses, no openings except the four screw bosses",
+      "count": 1,
+      "shape": "panel",
+      "params": {
+        "width": 90.0,
+        "height": 4.0,
+        "thickness": 4.0,
+        "angle": 90.0,
+        "lean": "back"
+      },
+      "place": {
+        "parent": "base",
+        "side": "back",
+        "x": "center",
+        "y": "center",
+        "z": "center"
+      },
+      "arrangement": null,
+      "size": [
+        90.0,
+        4.0,
+        4.0
+      ],
+      "positions": [
+        [
+          0.0,
+          70.0,
+          0.0
+        ]
+      ],
+      "built": "The lid is a flat slab 4 mm thick, 90 mm wide and 4 mm tall, standing upright. It is fixed to the back face of the base, behind it, running the full width of the base, running the full height of the base.",
+      "status": null,
+      "residual": []
+    }
+  ],
+  "cascade": {
+    "frozen": false,
+    "version": 0,
+    "outcome": null,
+    "checks": 0,
+    "outer_iterations": 0,
+    "l1": [],
+    "loops": {}
+  }
+}

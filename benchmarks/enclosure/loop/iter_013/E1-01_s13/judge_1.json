@@ -1,0 +1,47 @@
+{
+  "judge": 1,
+  "iteration": "013",
+  "design": "E1-01_s13 (package 20261024-201352)",
+  "verdict": "MEETS",
+  "class": "CORRECT",
+  "meets_requirements": true,
+  "weighted_score": 1.0,
+  "worst_weight3_normalised_margin": {"value": 0.2, "checks": ["L3.4.2.1 (d=0.10 vs >=0)", "L3.5.1.1 (d=0.40 vs >=0.30)", "L3.6.1.1 (d=0.40 vs >=0.30)"]},
+  "gates": {"G0": "PASS", "G1": "PASS", "G2": "PASS", "G3": "PASS", "G4": "PASS", "G5": "PASS"},
+  "frame": "delivered already in the enclosure frame (USB opening at -X, board frame origin = board top min corner, floor underside at Z=-8.1); no transform applied",
+  "method": "References (M-PERF, M-HDR, M-PICO2, M-JACK-1/2, all V- envelopes) rebuilt independently from requirements.md 2.2/2.3 at the layout.json pose (identical to the default layout A2); measured base.stl and lid.stl with manifold3d (min_gap, boolean, decompose, slice) and trimesh ray casting. claude-context MCP was unavailable in this session; no code search was needed (only known paths were read).",
+  "measured": {
+    "shells_base_lid": [1, 1], "manifold_status": ["NoError", "NoError"], "base_lid_overlap_mm3": 0.0,
+    "bbox_closed_mm": [84.17, 64.17, 24.70],
+    "board_clearance_L3.2.1.1_mm": 1.448,
+    "pico_in_cavity_L3.2.2.1_mm": 4.923, "headers_in_cavity_mm": ">=5.3", "jacks_in_cavity_mm": 1.676,
+    "inner_X_length_mm": 73.2,
+    "standoffs": {"count": 4, "axes": [[2,2],[68,2],[2,48],[68,48]], "pitch_mm": [66.0, 46.0], "axis_offset_mm": 0.0, "OD_mm": 5.10, "top_Z_board_frame": -1.6, "top_spread_mm": 0.0, "pilot_dia_inscribed_mm": 1.700, "pilot_depth_mm": 5.1, "height_above_floor_mm": 4.1, "floor_contact_mm2": 18.2},
+    "keepout_top_d_mm": 0.180, "keepout_bottom_d_mm": 0.100, "hole_ko_d_mm": 0.100, "lid_lowest_above_board_mm": 12.1,
+    "usb_plug_d_mm": 0.400, "usb_opening": {"Y": [19.6, 30.4], "Z": [1.0, 8.8], "size_mm": [10.8, 7.8], "centre_board_frame": [-2.8, 25.0, 4.9], "oversize_margin_mm": 1.1},
+    "jack_plug_d_mm": [0.4005, 0.4005], "jack_openings": [{"centre_YZ": [17.5, 2.5], "dia_inscribed_mm": 8.80}, {"centre_YZ": [32.5, 2.5], "dia_inscribed_mm": 8.80}], "jack_envelopes_intersect_mm3": 0.0,
+    "opening_counts_through": {"-X": 1, "+X": 2, "other": 0},
+    "lid": {"plate_mm": 2.4, "lip_gap_per_side_mm": 0.25, "lip_engagement_mm": 2.1, "total_height_mm": 4.5, "outline_vs_base": "identical (both -7.087..77.087 x -7.087..57.087 incl. corner bosses/pads)", "screw_holes": 4, "hole_dia_mm": 3.40, "hole_axis_offset_mm": 0.0, "seam_gap_mm": 0.0},
+    "lid_bosses": {"count": 4, "pilot_dia_mm": 2.50, "pilot_depth_mm": 6.1, "OD_mm": 6.6},
+    "walls_floor_lid_mm": [2.4, 2.4, 2.4],
+    "ligaments_min_mm": {"usb": 5.4, "jacks": 3.8, "between_jacks": 6.19},
+    "overhang_offending_patches": 0, "overhang_note": "only downward faces: USB opening top bridge 10.8 mm (<=15, exempt) and jack-hole tops (round D8.8 <=12, exempt)",
+    "bed_contact": {"base": 0.86, "lid": 0.85},
+    "install_sweep_d_mm": 0.948, "driver_columns_d_mm": 0.60, "lid_driver_columns": "clear",
+    "stability": {"tilt5_shift_mm": 1.08, "min_arm_mm": 29.0, "min_tip_margin_Nmm": 4.88},
+    "self_report_agreement": "100% within 0.10 mm (max |diff| 0.005 mm on hole KO)"
+  },
+  "l1_results": {
+    "L1.1": "PASS", "L1.2": "PASS", "L1.3": "PASS", "L1.4": "PASS", "L1.5": "PASS", "L1.6": "PASS",
+    "L1.7": "PASS", "L1.8": "PASS", "L1.9": "PASS", "L1.10": "PASS", "L1.11": "PASS", "L1.12": "PASS"
+  },
+  "defects": [],
+  "observations": [
+    "Rubric section 6 table lists standoff pilot D 2.0-2.2 mm, but requirements L2.3.3 / A9 (M2 self-tap) say 1.6-1.8; graded on requirements.md (1.70 passes). For Robin.",
+    "The literal end-wall slab recipe (rubric 3.4) also captures the two blind lid-boss pilot pockets per end wall (11.0 mm3 each, at e.g. [-4.0,-4.0,8.1]-[-2.085,-2.085,14.2]) because the corner bosses straddle the end-wall slabs. They are screw holes (allowed by L1.8) and do not pass through the wall, so through-opening counts are 1 (-X) / 2 (+X).",
+    "Several margins are thin and would be eaten by FDM variation: bottom keep-out 0.10 mm (floor top Z -5.7 vs -5.6), screw-head keep-out 0.10 mm (wall inner face 1.6 from board edge vs 1.5 needed), lip bottom 0.10 mm above V-KO-TOP, lid lip engagement 2.1 (min 2.0), boss pilot depth 6.1 (min 6.0), standoff pilot depth 5.1 (min 5.0). All pass as written.",
+    "Lid lip notches (D7.11 at the boss axes) remove only ~0.04 mm2 of lip section; the lip stays one continuous ring (slice at Z 13 = one annulus).",
+    "Board holes are D2.0 and the board screw is M2 (zero clearance; agent's own check margin 0.01). Not graded (A7: drill out).",
+    "Renders (model_*.png, ghost_*.png) agree with the measurements: one rectangular opening in the -X wall (model_left.png), two round holes in the +X wall (model_right.png), external corner bosses with lid pads, no floating fragments."
+  ]
+}

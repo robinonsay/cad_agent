@@ -1,0 +1,179 @@
+{
+ "judge": "judge_1",
+ "iteration": "001",
+ "package": "iter_001/target_s0/20261024-035938",
+ "meets_requirements": false,
+ "verdict": "DOES NOT MEET",
+ "class": "WRONG",
+ "gates": {
+  "G0": "FAIL",
+  "G1": "FAIL",
+  "G2": "FAIL (L3.2.2.1 cavity zero; L3.2.1.1 vacuous)",
+  "G3": "FAIL",
+  "G4": "FAIL",
+  "G5": "FAIL"
+ },
+ "measured": {
+  "shells": 1,
+  "manifold": "NoError",
+  "triangles": 12,
+  "bbox": [
+   0,
+   0,
+   0,
+   90,
+   74,
+   4
+  ],
+  "volume_mm3": 26640.0,
+  "cavity_volume_mm3": 0.0,
+  "vpico_outside_cavity_mm3": 1194.2,
+  "z_thickness_median": 4.0,
+  "standoffs": 0,
+  "openings_minusX": 0,
+  "openings_plusX": 0,
+  "bed_contact": 1.0,
+  "seated_board_frame_origin_in_model": [
+   10,
+   12,
+   9.6
+  ]
+ },
+ "requirement_results": [
+  {
+   "id": "L1.1",
+   "evidence": "No layout.json in the package (files present: checks/ (empty), design.json, llm/, measurements.txt, model.scad, model.stl, views/). design.json has no reference parts and no poses; model.scad contains only cube([90,70,4]) and a 90x4x4 strip, so no M-PICO2, M-HDR or M-JACK is placed anywhere. L3.1.1.1 FAIL (no file), L3.1.2.1/L3.1.3.1/L3.1.4.x/L3.1.5.1/L3.1.6.1 UNVERIFIED=FAIL. run.log: 'translate_L1.1: saturated after 30 iteration(s)'.",
+   "pass": false
+  },
+  {
+   "id": "L1.2",
+   "evidence": "Measured model.stl (manifold3d): one shell, bbox [0,0,0]-[90,74,4], volume 26640 mm^3 = exactly its convex hull, so V-CAVITY volume = 0.0 mm^3 (no interior void). Seating rule (no standoffs, no cavity) puts the RBA centred over the plate with underside 4.0 above the top face: board frame origin at model (10,12,9.6). V-PICO (1194.2 mm^3) lies 100% outside the cavity -> L3.2.2.1 FAIL. L3.2.2.2 inner X length between end walls: no end walls exist -> FAIL. L3.2.1.2 'fits' (70x50x1.6 into BASE): no recess or pocket, top face Z=4 is a single plane -> FAIL. L3.2.1.1 clear_of(ALL, M-PERF, 0.5) = 4.0 mm passes only vacuously (the board floats in free air above a plate).",
+   "pass": false
+  },
+  {
+   "id": "L1.3",
+   "evidence": "Vertex Z values are only {0, 4}; face normals are only the six box normals. There are 0 standoffs (need 4 at pitch 65.0 x 45.0 +/-0.25), no pilot holes (need d2.0-2.2, depth >= 5.0), no OD to measure. L3.3.1.1/1.2/1.3/1.4, L3.3.2.1/2.2, L3.3.3.1/3.2, L3.3.4.1 FAIL. L3.3.4.2 (base one shell) passes on the fused single body but the lid is fused into it (see L1.7).",
+   "pass": false
+  },
+  {
+   "id": "L1.4",
+   "evidence": "No lid plate exists above the board: the highest material is Z=4.0, the board top (seated per rule) is Z=9.6, so the enclosure never closes over the board (L3.4.1.2 lid-underside proxy: no lid above the board -> FAIL). L3.4.3.1 inside(M-HDR u M-JACK, V-CAVITY, 0.3): cavity volume 0 -> FAIL. L3.4.2.2 standoff height: no standoffs -> FAIL. L3.4.1.1 (V-KO-TOP intersect body = 0.0 mm^3) and L3.4.2.1 (V-KO-BOT intersect = 0.0, min gap 0.0) pass only vacuously.",
+   "pass": false
+  },
+  {
+   "id": "L1.5",
+   "evidence": "There is no -X end wall: the body's -X face is the 4 mm tall edge of a plate (X=0, Y 0-74, Z 0-4) with nothing above Z=4. No USB opening exists (V-AP-USB count = 0, need 1; L3.5.3.1 FAIL); L3.5.2.1 opening size UNVERIFIED=FAIL. L3.5.1.1 clear_of(ALL, V-USB-PLUG, 0.3) is unobstructed only because there is no enclosure. design.json claims a '20 mm x 10 mm USB port opening' that is not in the geometry (and 20x10 would exceed the 13.0 x 10.0 limit anyway).",
+   "pass": false
+  },
+  {
+   "id": "L1.6",
+   "evidence": "No +X end wall (X=90 face is the 4 mm plate edge) and no jack openings: V-AP-AUX count = 0, need 2 (L3.6.3.1 FAIL); L3.6.2.1 UNVERIFIED=FAIL. design.json claims 'two 6.35 mm jack openings' that do not exist. L3.6.1.1 unobstructed only vacuously.",
+   "pass": false
+  },
+  {
+   "id": "L1.7",
+   "evidence": "No separate lid: no lid.stl; in model.scad the 'lid' is linear_extrude of a 4x4 square, 90 long, at Y 70-74, Z 0-4, unioned with the base, giving one fused shell (decompose() = 1). L3.7.1.1 needs BASE 1 shell AND LID 1 shell -> FAIL; L3.7.1.2 no_overlap: the two are fused -> FAIL; L3.7.2.1/2.2 no lip; L3.7.3.x no bosses, no lid holes, no snaps or rails; L3.7.4.1 no seam -> all FAIL. Visible as the orange strip along the back edge in model_iso.png and model_top.png.",
+   "pass": false
+  },
+  {
+   "id": "L1.8",
+   "evidence": "No walls at all: column probes on a 2 mm grid (1584 probes) give Z thickness 4.00 everywhere, i.e. a solid plate, not a shell. Side walls 2.0-4.0 (L3.8.2.1): none exist -> FAIL; lid plate (L3.8.2.3): none -> FAIL; L3.8.2.2 floor = 4.0 passes as a number but is a solid slab with nothing on top; L3.8.1.1 the 'enclosure' is open on 5 sides above Z=4 -> FAIL; L3.8.4.1 no wall-to-floor joints -> FAIL; L3.8.3.1 no openings -> UNVERIFIED=FAIL.",
+   "pass": false
+  },
+  {
+   "id": "L1.9",
+   "evidence": "The single body passes its own printability checks (manifold NoError, 1 shell, 0 overhang faces, bed contact 100% of plan box, 90x74x4 <= 200). But the lid body does not exist, so L3.9.2.1 / L3.9.1.1 / L3.9.3.1 for the LID are UNVERIFIED = FAIL, and no print orientation is declared (no layout.json).",
+   "pass": false
+  },
+  {
+   "id": "L1.10",
+   "evidence": "Assembly bbox 90.0 x 74.0 x 4.0: Y = 74.0 > 70.0 (margin -4.0 mm) -> L3.10.1.1 FAIL; the excess is the fused 'lid' strip at Y 70-74. X>Y holds. L3.10.2.1 stable passes (a flat slab), L3.10.4.1 underside flat passes, L3.10.3.1 tipping margin per port UNVERIFIED (there are no ports) = FAIL.",
+   "pass": false
+  },
+  {
+   "id": "L1.11",
+   "evidence": "No standoffs, no screws, no lid -> L3.11.3.1 (lid and board fasteners separate) cannot be confirmed: FAIL. L3.11.1.1 (install path) and L3.11.2.1 (driver columns) are unobstructed only because there is nothing to install into.",
+   "pass": false
+  },
+  {
+   "id": "L1.12",
+   "evidence": "Package gate G0 fails: base.stl, lid.stl, layout.json and the agent's interference report are all missing (checks/ is empty; design.json verification: verified=[], unchecked=['base','lid'], all_verified=false; outcome null). The package's own claims are false: the base description lists 'recessed floor, USB opening, two jack openings, four corner standoffs with pilot holes, four screw bosses' and the lid description 'sliding-fit over the base, 90 x 70 x 4' but the geometry is a plain 90x70x4 cube plus a 90x4x4 strip. run.log shows the run was killed at the 90-minute timeout.",
+   "pass": false
+  }
+ ],
+ "defects": [
+  {
+   "requirement_id": "L3.12.1.1 (L2.12.1, L1.12) gate G0",
+   "where": "package folder iter_001/target_s0/20261024-035938/: files base.stl, lid.stl, layout.json, interference report; checks/ folder",
+   "what": "Required package files missing; only a single fused model.stl is delivered and the checks/ folder is empty",
+   "expected": "base.stl and lid.stl (closed assembly pose, enclosure frame, mm), .scad, layout.json with board layout and print orientations, agent clear_of/inside report",
+   "observed": "Only model.stl (1 shell, 12 triangles, bbox [0,0,0]-[90,74,4]), model.scad, design.json (verification: verified=[], unchecked=[base,lid]). Run killed at 90-min timeout.",
+   "severity": "blocker"
+  },
+  {
+   "requirement_id": "L3.7.1.1 / L3.7.1.2 (L2.7.1, L1.7) gate G1; also L3.7.2.1, L3.7.2.2, L3.7.3.1-3.5, L3.7.4.1, L3.9.2.1 (lid)",
+   "where": "'lid' feature (SCAD c_lid, orange): box [0,70,0]-[90,74,4] mm, fused to base at the base's +Y face (Y=70, normal +Y); shown as orange strip along back edge in model_iso.png and top band of model_top.png",
+   "what": "No separate removable lid. The 'lid' is a 90 x 4 x 4 mm strip unioned onto the back edge of the base, so base and lid are one shell and nothing covers the board",
+   "expected": "Two separate bodies, each 1 shell, BASE intersect LID <= 1.0 mm^3; lid plate 2.0-4.0 thick spanning the whole cavity top; locating lip engagement >= 2.0 with 0.15-0.35 per-side gap; 4 bosses (pilot 2.4-2.6, depth >= 6.0, OD >= 6.0) with coaxial lid holes 3.3-3.5, or >= 2 snaps / slide rails",
+   "observed": "decompose() = 1 shell for the whole model; lid strip occupies Y 70-74, Z 0-4 (fused, not separable); no lip, no bosses, no holes, no seam",
+   "severity": "blocker"
+  },
+  {
+   "requirement_id": "L3.1.1.1 (L2.1.1, L1.1); also L3.1.2.1, L3.1.3.1, L3.1.4.1-4.3, L3.1.5.1, L3.1.6.1, L3.12.1.2",
+   "where": "layout: layout.json absent; design.json has no reference parts; nothing in model.scad references the Pico, headers or jacks",
+   "what": "No board layout declared and no catalogue parts placed",
+   "expected": "layout.json naming M-PERF, M-PICO2 (+M-HDR), 2 x M-JACK with poses; USB_AXIS within 1 deg of -X, USB_MOUTH X in [-1.8,-0.8]; JACK_AXIS within 1 deg of +X, JACK_MOUTH X in [69.5,71.0]; jack axis spacing >= 11.0; pins on the 2.54 grid",
+   "observed": "No layout file, no part poses; measurements.txt: 'reference parts (board/Pico/jacks) recorded in design: none'",
+   "severity": "blocker"
+  },
+  {
+   "requirement_id": "L3.2.2.1 (L2.2.2, L1.2); also L3.2.2.2, L3.2.1.2, L3.4.3.1 (L2.4.3, L1.4), L3.8.2.1, L3.8.2.3, L3.8.1.1, L3.8.4.1 (L1.8)",
+   "where": "whole body, model frame: solid box [0,0,0]-[90,74,4]; top face Z=4 (normal +Z) is one flat plane with no recess; all five sides above Z=4 are open. Seated RBA (seating rule) board frame origin at model (10, 12, 9.6). Seen in every render (model_front/back/left/right.png show a 4 mm thick bar only)",
+   "what": "There is no enclosure: no walls, no cavity, no lid plate. The design is a solid 4 mm plate",
+   "expected": "A closed shell with walls, floor and lid 2.0-4.0 thick; inner X length between end walls >= 71.7 at board height; inner Y >= 51.0; cavity containing V-PICO with >= 0.2 and headers/jacks with >= 0.3 clearance; lid underside >= 12.0 above board top; floor gap >= 4.0 below board underside; no openings other than USB, 2 jacks and screw holes",
+   "observed": "Convex hull volume = solid volume = 26640 mm^3, so V-CAVITY = 0.0 mm^3; V-PICO 1194.2 mm^3 entirely outside any cavity; column probes (1584, 2 mm grid) give 4.00 mm solid thickness everywhere; vertex Z values only {0, 4}; no material above Z=4",
+   "severity": "blocker"
+  },
+  {
+   "requirement_id": "L3.3.1.1 (L2.3.1, L1.3) gate G5; also L3.3.1.2-1.4, L3.3.2.1-2.2, L3.3.3.1-3.2, L3.3.4.1, L3.4.2.2, L3.11.3.1",
+   "where": "base top face Z=4, model frame; expected standoff axes at board-frame holes (2.5,2.5),(67.5,2.5),(2.5,47.5),(67.5,47.5); top view model_top.png shows a featureless blue rectangle",
+   "what": "No standoffs and no pilot holes; the board has nothing to sit on or screw into",
+   "expected": "4 standoffs, pitch 65.0 x 45.0 (+/-0.25), OD 5.0-7.0, tops coplanar within 0.10, height 4.0-10.0 above floor, pilot d2.0-2.2 depth >= 5.0 (or insert d3.5-3.6 depth >= 4.0, OD >= 6.5), contact with floor >= 15 mm^2 each",
+   "observed": "0 standoffs; mesh is 12 triangles (a plain box), face normals only +/-X, +/-Y, +/-Z",
+   "severity": "blocker"
+  },
+  {
+   "requirement_id": "L3.5.3.1 (L2.5.3, L1.5) gate G3; also L3.5.2.1, L3.5.1.1 (vacuous)",
+   "where": "-X end (model X=0 face, Y 0-74, Z 0-4, normal -X): only the edge of the plate; nothing above Z=4. Shown in model_left.png (thin bar with orange square at one end)",
+   "what": "No -X end wall and no USB opening",
+   "expected": "A -X end wall 2.0-4.0 thick with exactly one opening around USB_MOUTH (board frame (-1.3, 25.0, 4.9)) that clears V-USB-PLUG overmold 10.0 x 7.0 by >= 0.3 (opening >= 10.6 x 7.6) and is no larger than 13.0 x 10.0",
+   "observed": "Wall absent; opening count 0. design.json claims a 20 x 10 mm USB opening that does not exist in the geometry (and would exceed 13.0 x 10.0)",
+   "severity": "blocker"
+  },
+  {
+   "requirement_id": "L3.6.3.1 (L2.6.3, L1.6) gate G4; also L3.6.2.1, L3.6.1.1 (vacuous)",
+   "where": "+X end (model X=90 face, Y 0-74, Z 0-4, normal +X): only the plate edge. Shown in model_right.png",
+   "what": "No +X end wall and no jack openings",
+   "expected": "A +X end wall with exactly two openings on JACK_AXIS_1/2 (default layout board frame Y 17.5 and 32.5, Z 2.5, axis +X), each clearing the d8.0 overmold by >= 0.3 (>= d8.6) and no larger than d11.0, ligament >= 1.5",
+   "observed": "Wall absent; opening count 0. design.json claims two 6.35 mm openings that do not exist",
+   "severity": "blocker"
+  },
+  {
+   "requirement_id": "L3.10.1.1 (L2.10.1, L1.10); also L3.10.3.1",
+   "where": "assembly bbox, model frame [0,0,0]-[90,74,4]; excess from the fused 'lid' strip at Y 70-74 (back edge, normal +Y); model_top.png orange band",
+   "what": "Closed outside size exceeds the Y limit",
+   "expected": "X <= 90.0, Y <= 70.0, Z <= 35.0, X > Y",
+   "observed": "90.0 x 74.0 x 4.0: Y margin -4.0 mm. Tipping margin per port (L3.10.3.1) UNVERIFIED: no ports exist",
+   "severity": "minor"
+  },
+  {
+   "requirement_id": "L3.12.2.1 (L2.12.2, L1.12)",
+   "where": "design.json components[].description and verification block; model.scad comments",
+   "what": "Self-report absent and the package's descriptions contradict the geometry",
+   "expected": "Agent clear_of/inside report agreeing with the judge within 0.10 mm; descriptions that match what was built",
+   "observed": "No report (checks/ empty, verification.verified = []). Base described as having a recessed floor, USB opening, 2 jack openings, 4 standoffs with pilots and 4 bosses; lid described as 90 x 70 x 4 sliding-fit. Built: plain cube 90x70x4 + strip 90x4x4",
+   "severity": "minor"
+  }
+ ],
+ "summary": "DOES NOT MEET (class WRONG; gates G0, G1, G3, G4, G5 fail). The delivered design is a single solid 90 x 74 x 4 mm slab: cube([90,70,4]) with a 90 x 4 x 4 'lid' strip fused along its back edge (Y 70-74). Measured with manifold3d: 1 shell, 12 triangles, volume 26640 mm^3 = its convex hull, so there is no cavity, no walls, no lid plate, no standoffs, no openings and no declared board layout; base.stl, lid.stl, layout.json and the self-report are missing, and the run was killed at the 90-min timeout with L1.1 translation saturated. All 12 L1s fail. The only checks that pass (flat slab printability, stability, and clear_of checks against plug, keep-out and install envelopes) pass vacuously because there is no enclosure to obstruct them. Weighted score is effectively 0 for meaningful checks; the worst weight-3 margin is unbounded (V-PICO 100% outside a zero-volume cavity; 0 of 4 standoffs). Observations: (1) benchmarks/enclosure/parts/ is empty, so the parts catalogue the requirements reference does not exist yet; I built reference volumes from requirements.md section 2.2 numbers. (2) The claude-context MCP server failed to connect in this session; no code search was needed, only reads of known paths (plus one grep inside requirements.md for headings)."
+}

@@ -1,0 +1,16 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A requirement is usually checked by several small tests, each covering one piece of it.
+
+Requirement: The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed.
+One test: The base is a rectangular block.
+
+Is this test about something the requirement talks about (the same part and the same kind of property, place or behaviour), with no number or direction that disagrees with the requirement?
+
+=== RESPONSE ===
+p_yes=0.742

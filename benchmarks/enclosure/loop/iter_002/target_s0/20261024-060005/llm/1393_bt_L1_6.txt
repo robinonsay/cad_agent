@@ -1,0 +1,16 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A requirement is usually checked by several small tests, each covering one piece of it.
+
+Requirement: With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time through two openings in the opposite end wall without touching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side.
+One test: A round cylinder (3.65 mm across, 20 mm long), standing upright, fits between the base and the lid with 1 mm clearance all round.
+
+Is this test about something the requirement talks about (the same part and the same kind of property, place or behaviour), with no number or direction that disagrees with the requirement?
+
+=== RESPONSE ===
+p_yes=0.283

@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.7 seed=8001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for an 80 x 40 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 is plugged into female header sockets, so its underside sits 8.5 mm above the board, with its micro-USB port exposed through one short end of the enclosure. One 3.5 mm jack is exposed through the other short end, and a 10 mm diameter, 20 mm tall capacitor stands upright on the board. Leave at least 3 mm of space above the tallest part. The enclosure is a base and a removable lid, printed on an FDM printer.
+
+Two arrangements of the parts on the board:
+A: raspberry pi pico 2 (usb) faces the short (40 mm) end at -X; 3.5 mm jack (jack) faces the short (40 mm) end at -X.
+B: raspberry pi pico 2 (usb) faces the long (80 mm) side at -Y; 3.5 mm jack (jack) faces the short (40 mm) end at -X.
+
+Which arrangement matches the request?
+
+=== RESPONSE ===
+{
+  "pick": "B"
+}

@@ -1,0 +1,46 @@
+{
+  "id": "perfboard",
+  "schema": 1,
+  "units": "mm",
+  "names": ["perfboard", "perf board", "protoboard", "proto board", "prototyping board", "double sided perfboard", "stripboard"],
+  "kind": "board",
+  "source": "Generic double-sided FR4 prototyping board. Width and depth come from the request; thickness, corner-hole inset and diameter, and grid pitch are typical values for green 2.54 mm proto boards (requirements.md A7; standard 1.6 mm FR4 laminate; 0.1 in through-hole grid).",
+  "frame": "board: origin at the min-X, min-Y corner of the top surface, X along width, Y along depth, Z up; the board occupies Z -thickness..0",
+  "params": {
+    "width": {"default": null, "from_request": true, "source": "request text (board size)"},
+    "depth": {"default": null, "from_request": true, "source": "request text (board size)"},
+    "thickness": {"default": 1.6, "source": "standard FR4 laminate thickness (requirements.md A7)"},
+    "hole_inset": {"default": 2.5, "source": "corner-hole centre distance from each edge, typical proto board (requirements.md A7)"},
+    "hole_diameter": {"default": 3.0, "source": "corner mounting hole, typical proto board (requirements.md A7)"},
+    "grid_pitch": {"default": 2.54, "source": "0.1 in through-hole grid"}
+  },
+  "gate_params": {"width": 100.0, "depth": 75.0, "source": "sample size used only by the load-time validation gate; never a design value"},
+  "datasheet_size": ["width", "depth", "thickness"],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {"id": "pcb", "primitive": "box", "size": ["width", "depth", "thickness"], "at": [0, 0, "-thickness"]}
+  ],
+  "datums": {
+    "TOP": {"kind": "plane", "at": [0, 0, 0], "normal": [0, 0, 1]},
+    "BOTTOM": {"kind": "plane", "at": [0, 0, "-thickness"], "normal": [0, 0, -1]},
+    "EDGE_X0": {"kind": "plane", "at": [0, 0, 0], "normal": [-1, 0, 0]},
+    "EDGE_X1": {"kind": "plane", "at": ["width", 0, 0], "normal": [1, 0, 0]},
+    "EDGE_Y0": {"kind": "plane", "at": [0, 0, 0], "normal": [0, -1, 0]},
+    "EDGE_Y1": {"kind": "plane", "at": [0, "depth", 0], "normal": [0, 1, 0]},
+    "HOLE": {"kind": "axis_list", "dir": [0, 0, 1], "diameter": "hole_diameter",
+             "at": [["hole_inset", "hole_inset", 0],
+                    ["width - hole_inset", "hole_inset", 0],
+                    ["hole_inset", "depth - hole_inset", 0],
+                    ["width - hole_inset", "depth - hole_inset", 0]]}
+  },
+  "grid": {"pitch": "grid_pitch", "origin": ["hole_inset", "hole_inset", 0],
+           "source": "assumption: grid registered to hole 1; real boards vary, so grid conformance is a soft check"},
+  "connectors": [],
+  "self_checks": [
+    {"name": "holes inside the board outline", "expr": "hole_inset - hole_diameter / 2", "op": "ge", "value": 0, "tol": 0},
+    {"name": "hole pattern X pitch = width - 2 inset", "expr": "HOLE[1].x - HOLE[0].x", "value": "width - 2 * hole_inset", "tol": 1e-6},
+    {"name": "hole pattern Y pitch = depth - 2 inset", "expr": "HOLE[2].y - HOLE[0].y", "value": "depth - 2 * hole_inset", "tol": 1e-6},
+    {"name": "top plane at Z = 0", "expr": "TOP.z", "value": 0, "tol": 1e-9},
+    {"name": "bottom plane one thickness down", "expr": "pcb.min_z", "value": "-thickness", "tol": 1e-9}
+  ]
+}

@@ -1,0 +1,10 @@
+Measured part table (iter_002 target_s0, cascade, seed 0, run killed at 90-min timeout; package written by agent before kill; views rendered by Run step with OpenSCAD)
+design.json keys: ['base_request', 'cascade', 'components', 'l1', 'notes', 'outcome', 'request', 'seed', 'verification']  outcome=None
+model.stl: faces=12 watertight=True volume=26640.0 mm^3
+printed bodies (connected components): 1
+  body 0: min=[0.0, 0.0, 0.0] max=[90.0, 74.0, 4.0] size=[90.0, 74.0, 4.0] watertight=True vol=26640.0
+overall bbox: min=[0.0, 0.0, 0.0] max=[90.0, 74.0, 4.0] size=[90.0, 74.0, 4.0]
+components declared in model.scad: base = cube 90x70x4 at [0,0,0]; lid = 90(x) x 4(y) x 4(z) strip at y=70..74 (unioned, fused into one body)
+reference parts (board/Pico/jacks) recorded in design: none
+openings / standoffs / walls / base-lid split: none present in geometry
+model.scad is byte-identical to iter_001/target_s0 (greedy seed 0, cascade path unchanged)

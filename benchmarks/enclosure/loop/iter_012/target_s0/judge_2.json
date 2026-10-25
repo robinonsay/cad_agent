@@ -1,0 +1,42 @@
+{
+  "judge": 2,
+  "iteration": "012",
+  "design": "target_s0/20261024-191427",
+  "meets_requirements": true,
+  "class": "CORRECT",
+  "verdict": "MEETS",
+  "weighted_score": 1.0,
+  "worst_weight3_normalised_margin": 0.2,
+  "worst_weight3_margin_check": "L3.4.2.1 floor-top to V-KO-BOT d = 0.10 mm (limit >= 0; floor top Z -5.7 vs keep-out bottom -5.6 board frame)",
+  "tooling_note": "claude-context MCP server failed to connect; no repo search was needed (all paths were known), measurements done with manifold3d/trimesh on base.stl and lid.stl",
+  "measured": {
+    "shells_base_lid": [1, 1], "manifold_status": "NoError/NoError", "base_lid_overlap_mm3": 0.0,
+    "closed_envelope_mm": [84.174, 64.174, 24.7],
+    "board_clearance_L3.2.1.1_mm": 1.4495,
+    "vpico_in_cavity_L3.2.2.1_mm": 4.923, "headers_jacks_in_cavity_L3.4.3.1_mm": [5.3, 1.676, 1.676],
+    "inner_x_length_mm": 73.2,
+    "standoffs": {"count": 4, "axes": [[2.0,2.0],[68.0,2.0],[2.0,48.0],[68.0,48.0]], "pitch": [66.0, 46.0], "OD": 5.1, "pilot_inscribed_d": 1.687, "pilot_depth": 5.1, "top_z": -1.6, "height_above_floor_top": 4.1, "floor_contact_mm2": 18.2},
+    "keepout_top_d": 0.180, "keepout_bot_d": 0.100, "hole_ko_d": 0.100, "install_sweep_d_excl_seats": 1.6, "driver_columns_d": 0.6, "lid_driver_d": 0.0,
+    "usb_plug_d": 0.40, "usb_opening": {"Y": [19.6, 30.4], "Z": [1.0, 8.8], "WxH": [10.8, 7.8], "outside_grown_envelope_mm3": 0.0},
+    "jack_plug_d": [0.40, 0.40], "jack_openings": [{"centre_YZ": [17.48, 2.47], "d": 8.81}, {"centre_YZ": [32.51, 2.53], "d": 8.81}], "jack_envelopes_intersect_mm3": 0.0,
+    "opening_counts_-X_+X_other": [1, 2, 0],
+    "cavity_sealed_with_ports_plugged": true,
+    "lid": {"plate_thickness": 2.4, "lip_Z": [12.1, 14.2], "lip_engagement": 2.1, "lip_gap_per_side": 0.25, "lip_notch_to_boss_gap": 0.25, "total_height": 4.5, "outline_matches_base": true, "screw_holes": 4, "hole_inscribed_d": 3.374, "seam_gap": 0.0},
+    "lid_bosses": {"count": 4, "OD": 6.6, "pilot_inscribed_d": 2.481, "pilot_depth": 6.1, "axes": [[-3.787,-3.787],[73.787,-3.787],[-3.787,53.787],[73.787,53.787]]},
+    "wall_floor_lid_thickness_median": [2.4, 2.4, 2.4],
+    "overhang_patches_unexempted": 0, "bed_contact": {"base": 0.855, "lid": 0.849},
+    "stability": {"com_enclosure": [34.91, 25.0, 4.3], "tilt_limit_deg_min": 68.9, "usb_pull_tip_vs_restore_Nmm": [6.5, 16.48], "jack_pull_tip_vs_restore_Nmm": [5.3, 16.55]},
+    "self_report_agreement": "all reported clear_of/inside values within 0.01 mm of judge (board 1.4482/1.4495, Pico 4.9233/4.9233, jacks 1.6758/1.6758, KO-top 0.1803/0.1803, KO-bot 0.100/0.100, hole-KO 0.0958/0.100, USB 0.400/0.400, jacks 0.400/0.400, drivers 0.5964/0.600)"
+  },
+  "requirement_results": {
+    "L1.1": "PASS", "L1.2": "PASS", "L1.3": "PASS", "L1.4": "PASS", "L1.5": "PASS", "L1.6": "PASS",
+    "L1.7": "PASS", "L1.8": "PASS", "L1.9": "PASS", "L1.10": "PASS", "L1.11": "PASS", "L1.12": "PASS"
+  },
+  "defects": [],
+  "observations": [
+    "Margins are thin but passing: floor top only 0.10 mm below V-KO-BOT (L3.4.2.1), wall inner face 0.10 mm from V-HOLE-KO columns (L3.3.5.1), lid lip underside 0.18 mm from V-KO-TOP (L3.4.1.1), board pilot depth 5.1 vs 5.0, lid-boss pilot depth 6.1 vs 6.0, lip engagement 2.1 vs 2.0.",
+    "Lid-screw bosses are full-height cylinders outside the wall corners (centres 0.213 mm inside the outer corner), poking 0.21 mm into the cavity corners; the lid lip is notched (dia 7.11) around them with 0.25 mm gap. Acceptable, noted only.",
+    "Physical tests L3.5.1.2, L3.6.1.2, L3.7.3.6 not performed (N/A, no print).",
+    "To Robin: rubric.md section 6 table lists board pilot dia 2.0-2.2 but requirements.md L2.3.3 says 1.6-1.8 (M2 self-tap); graded on requirements.md (measured 1.69)."
+  ]
+}

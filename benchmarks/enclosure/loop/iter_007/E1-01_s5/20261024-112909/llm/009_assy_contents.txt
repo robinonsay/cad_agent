@@ -1,0 +1,34 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb (takes a plug_microusb_b))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack (takes a plug_trs_3p5))
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "yes",
+    "quantity": 2
+  },
+  "perfboard": {
+    "quantity": 1
+  },
+  "rpi_pico2": {
+    "exposed": "yes",
+    "quantity": 1
+  }
+}

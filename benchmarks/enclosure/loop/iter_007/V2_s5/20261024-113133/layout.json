@@ -1,0 +1,197 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          45.0
+        ],
+        "length": 45.0,
+        "words": "the short (45 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 90.0,
+        "span": [
+          0.0,
+          45.0
+        ],
+        "length": 45.0,
+        "words": "the short (45 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          90.0
+        ],
+        "length": 90.0,
+        "words": "the long (90 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 45.0,
+        "span": [
+          0.0,
+          90.0
+        ],
+        "length": 90.0,
+        "words": "the long (90 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "perfboard",
+      "params": {
+        "width": 90.0,
+        "depth": 45.0
+      },
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "connector_1_1",
+      "part": "jack_3p5_pj320a",
+      "params": {},
+      "x": 22.2200107702625,
+      "y": 12.0,
+      "z": 0.0,
+      "rot_z": -90.0,
+      "item": "connector_1",
+      "copy": 0,
+      "role": "content",
+      "edge": "-Y",
+      "of": null
+    },
+    {
+      "id": "connector_1_2",
+      "part": "jack_3p5_pj320a",
+      "params": {},
+      "x": 42.5400107702625,
+      "y": 12.0,
+      "z": 0.0,
+      "rot_z": -90.0,
+      "item": "connector_1",
+      "copy": 1,
+      "role": "content",
+      "edge": "-Y",
+      "of": null
+    },
+    {
+      "id": "connector_1_3",
+      "part": "jack_3p5_pj320a",
+      "params": {},
+      "x": 62.8600107702625,
+      "y": 12.0,
+      "z": 0.0,
+      "rot_z": -90.0,
+      "item": "connector_1",
+      "copy": 2,
+      "role": "content",
+      "edge": "-Y",
+      "of": null
+    },
+    {
+      "id": "module_1_1",
+      "part": "rpi_pico2",
+      "params": {},
+      "x": 20.3,
+      "y": 12.0,
+      "z": 8.5,
+      "rot_z": 0.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "content",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "module_1_1_stack_1",
+      "part": "header_female_2p54",
+      "params": {
+        "pins": 20.0,
+        "pitch": 2.54
+      },
+      "x": 21.67,
+      "y": 13.61,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "stack",
+      "edge": null,
+      "of": "module_1_1"
+    },
+    {
+      "id": "module_1_1_stack_2",
+      "part": "header_female_2p54",
+      "params": {
+        "pins": 20.0,
+        "pitch": 2.54
+      },
+      "x": 21.67,
+      "y": 31.39,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "stack",
+      "edge": null,
+      "of": "module_1_1"
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 90.0,
+    "board_depth": 45.0,
+    "keepout_above": 12.0,
+    "keepout_below": 4.0,
+    "board_clearance": 0.5,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 110.0,
+    "max_y": 65.0,
+    "max_z": 35.0
+  },
+  "grid_residual": 1.4916433890176393
+}

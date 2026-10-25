@@ -1,0 +1,44 @@
+MODEL: ornith-1.5:9b T=0.5 seed=1
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Object: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+Units are millimetres. X runs left to right (width), Y runs front to back (depth; the front is the side facing the user), Z runs up (height). The object rests on a table at z = 0.
+
+Parts of the design:
+  - base: base manifold body, 90 x 70 x 4 mm thick, 70 mm side aligned with the board's 70 mm length, with a 70 x 50 mm recessed floor for the perfboard, a 20 mm x 10 mm USB port opening in one short (50 mm) end wall sized 1.5 mm larger than a micro-USB plug, two 6.35 mm jack openings in the opposite short end wall each 1.5 mm larger than a 3.5 mm plug, four corner standoffs with pilot holes, and four screw bosses
+  - lid: lid manifold body, 90 x 70 x 4 mm thick, sliding-fit over the base with four screw bosses, no openings except the four screw bosses
+
+Requirement L1.1: "The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout."
+Verification method: inspection
+
+Your previous tests were rejected:
+- the number "2" in the requirement is not used by any test
+- the number "3.5 mm" in the requirement is not used by any test
+- the number "70" in the requirement is not used by any test
+- the number "50 mm" in the requirement is not used by any test
+- the requirement says "corner" but no test checks it: add an arrangement test (corners)
+- no test was accepted yet
+- the test "The lid sits on top of the base, touching it." does not check this requirement (reviewer said no)
+- the test "The base sits on top of the base, touching it." would not catch a wrong design (kills no relevant mutant)
+
+Which kinds of automatic test check this requirement? Pick 1 to 3:
+- count: how many copies of a part there are (or how many parts the whole object has)
+- dimension: one size of a part or of the whole object (width, depth, height, length, thickness, diameter, inner diameter, tilt angle, or how high its top/bottom is above the table)
+- shape: which kind of shape a part is (box, panel, wedge, cylinder, tube, sphere) and which way it lies
+- relation: a part sits on top of / underneath / in front of / behind / left of / right of / beside another part, touching it (in front of = outside it, against its front face; for 'on X along its front edge' use on_top_of plus an edge test)
+- edge: a part is along the front, back, left or right edge of another part, or centred on it
+- span: a part runs the full width, depth or height of another part
+- arrangement: the copies of a part are at the corners, at the two ends, in a row, in a triangle or spread out
+
+=== RESPONSE ===
+{
+  "tests": [
+    "count",
+    "shape",
+    "arrangement"
+  ]
+}

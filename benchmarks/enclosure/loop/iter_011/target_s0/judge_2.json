@@ -1,0 +1,39 @@
+{
+  "judge": "independent judge #2, iteration 011, design target_s0 (package 20261024-172919)",
+  "verdict": "MEETS",
+  "class": "CORRECT",
+  "meets_requirements": true,
+  "weighted_score": 1.0,
+  "worst_weight3_normalised_margin": {"value": 0.2, "where": "L3.4.2.1 (floor top 0.10 mm below V-KO-BOT), L3.5.1.1 and L3.6.1.1 (plug envelopes 0.40 mm vs 0.30 mm)"},
+  "frame": "STLs delivered in board frame (board X 0-70, Y 0-50, top Z 0); USB opening at -X, so no rotation or mirroring was needed. Enclosure-frame Z = board Z + 8.1.",
+  "method": "All numbers measured by the judge with manifold3d/trimesh on base.stl and lid.stl, against references rebuilt from requirements.md section 2.2/2.3 at the declared layout (which equals the default layout A2). Agent numbers were used only for L3.12.2.1. claude-context MCP was unavailable this session; no code search was needed (all paths were known).",
+  "gates": {"G0": "PASS", "G1": "PASS", "G2": "PASS", "G3": "PASS", "G4": "PASS", "G5": "PASS"},
+  "measured": {
+    "bodies": "base 1 shell NoError, bbox [-7.087,-7.087,-8.1]-[77.087,57.087,14.2]; lid 1 shell NoError, bbox [-7.087,-7.087,12.1]-[77.087,57.087,16.6]; base^lid -1.6e-14 mm3",
+    "board_clearance_L3.2.1.1": "d = 1.450 mm (standoff side wall to board outside the 8.0 mm seat columns); walls 1.6, floor 4.1 below underside",
+    "pico_in_cavity_L3.2.2.1": "d = 4.923 mm (receptacle corner to USB-opening edge)",
+    "headers_jacks_in_cavity_L3.4.3.1": "headers >= 5.3 (search cap), jacks 1.676 mm (jack mouth corner to the edge of the +X opening)",
+    "inner_X_length_L3.2.2.2": "73.2 mm (X -1.6 to 71.6)",
+    "standoffs": "4, axes at (2,2),(68,2),(2,48),(68,48); pitch 66.00 x 46.00; offset 0.00; OD 5.10; tops all Z -1.60 (spread 0); pilot inscribed 1.700, bottom Z -6.7 (depth 5.10 from top); floor contact 18.1 mm2; height above floor top 4.10",
+    "keepouts": "V-KO-TOP d = 0.180 (lid lip bottom Z 12.1 at X -0.15); V-KO-BOT d = 0.100 (floor top Z -5.7), standoffs inside V-SEAT; V-HOLE-KO d = 0.100 (wall inner face 3.6 from hole axis; lip 0.1 above column top)",
+    "usb": "opening 10.80 (Y 19.6-30.4) x 7.80 (Z 1.0-8.8), centre (Y 25.0, Z 4.9) board frame, in -X wall X -4.0..-1.6; V-USB-PLUG d = 0.400; aperture entirely inside envelope+1.5",
+    "jacks": "two round openings inscribed 8.80, centres (Y 17.5, Z 2.5) and (Y 32.5, Z 2.5), +X wall X 71.6..74.0; V-JACK-PLUG d = 0.400 each; envelopes do not intersect; apertures inside envelope+1.5",
+    "opening_counts": "-X 1 / +X 2 / unlisted 0 (other wall-shell voids: 4 lid-hole+boss-pilot screw holes, blind; 4 standoff pilots, blind from the cavity side)",
+    "lid": "plate 2.4 thick (Z 14.2-16.6), outline equal to base outline (sym. diff 4e-8 mm2, Hausdorff 0.027); lip 1.2 thick, Z 12.1-14.2 (engagement 2.1), gap 0.25 on all 4 sides and 0.254 at the boss notches; total lid height 4.5; 4 lid holes inscribed 3.400 coaxial (offset 0) with boss pilots inscribed 2.500, pilot bottom Z 8.1 (depth 6.1), boss OD 6.6",
+    "walls": "-X/+X/-Y/+Y 2.40, floor 2.40, lid plate 2.40",
+    "printability": "base open-up: only downward faces are the round jack-hole tops (dia 8.8 <= 12, exempt) and the USB opening top (bridge 10.8 <= 15); lid flipped: none; bed contact base 85.5%, lid 84.9%; min thickness base 1.40, lid 1.20; min mating gap 0.25",
+    "envelope": "84.17 x 64.17 x 24.70 mm, X > Y",
+    "stability": "stable at 5 deg (COM 12.4 above table, >= 32 mm from support edge); 0.5 N pull margins >= +0.006 N.m at every port, every direction (40 g)",
+    "install_and_service": "V-INSTALL d = 1.60 for every base feature except the standoff tops, which touch V-INSTALL's bottom face with 0 penetration (designed contact, requirements 1.3); V-DRIVER d = 0.600; V-LIDDRIVER penetration 0",
+    "seating": "board underside on standoff tops 0.00; hole/pilot residual 0.00",
+    "self_report_agreement": "all agent clear_of/inside values within 0.10 of the judge's (board 1.448 vs 1.450, contents 1.676 vs 1.676, Pico 4.923 vs 4.923, KO-top 0.180 vs 0.180, KO-bot 0.100 vs 0.100, hole-KO 0.096 vs 0.100, driver 0.596 vs 0.600, plugs 0.400 vs 0.400)"
+  },
+  "defects": [],
+  "observations": [
+    {"to": "loop", "where": "base, 4 lid-screw bosses at (-3.787,-3.787), (73.787,-3.787), (-3.787,53.787), (73.787,53.787), Z -8.1..14.2; model_iso.png, model_top.png corners", "what": "Bosses are external corner cylinders that also bulge 0.207 mm into each cavity corner (0.81 mm3 per corner, base inside box [-1.6,-1.6]-[0,0]). No requirement is broken; it is cosmetic and makes the closed box 84 x 64 rather than about 78 x 58."},
+    {"to": "loop", "where": "self_report.json, inside_contents.per_source for module_1_1_stack_1/2", "what": "Header distances are reported as 5.2 mm, which is the min_gap search cap (clearance + 5.0), not a distance; the true value is >= 5.7 (floor top). Pass/fail agrees and the reported L3 value (1.676, the jacks) is right, so L3.12.2.1 passes; capped values should be marked as lower bounds."},
+    {"to": "loop", "where": "layout.json field grid_residual = 2.876", "what": "Disagrees with the judge's Pico header-pin residual 0.000 (and with the agent's own grid_conformance check 0.000); it seems to include the exempt PJ-320A terminals or another quantity. Not graded."},
+    {"to": "Robin", "where": "rubric.md section 6 measured-values table, row 'Standoff OD, pilot dia, pilot depth'", "what": "The table lists pilot dia 2.0-2.2, but requirements.md A9 and L2.3.3 say 1.6-1.8 for M2 self-tapping screws. Graded on requirements.md (1.70 passes); the rubric row looks stale."},
+    {"to": "loop", "where": "margins", "what": "The thinnest margins are 0.10 mm: floor top vs V-KO-BOT (L3.4.2.1), pilot depth 5.10 vs 5.0 (L3.3.3.2), boss pilot depth 6.10 vs 6.0, lip engagement 2.10 vs 2.0, lid underside 12.1 vs 12.0 (L3.4.1.2), lid-hole ligament 1.598 vs 1.5. All pass, but a 0.1 mm print error would fail them."}
+  ]
+}

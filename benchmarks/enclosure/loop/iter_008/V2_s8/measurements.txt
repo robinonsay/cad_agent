@@ -1,0 +1,23 @@
+Package: V2_s8/20261024-124743
+
+Printed bodies (measured from delivered STLs, mm, enclosure frame, closed pose)
+body           xmin     ymin     zmin     xmax     ymax     zmax       dx       dy       dz    vol mm3 watertight
+base          -6.96    -6.16    -8.10    96.16    51.16    14.20   103.12    57.32    22.30    27316.4 True
+lid           -6.96    -6.16    12.10    96.16    51.16    16.60   103.12    57.32     4.50    12993.5 True
+ALL           -6.96    -6.16    -8.10    96.16    51.16    16.60   103.12    57.32    24.70
+
+Reference parts (bounding boxes of the % ghost primitives in model.scad, mm)
+ref                          xmin     ymin     zmin     xmax     ymax     zmax       dx       dy       dz
+board                        0.00     0.00    -1.60    90.00    45.00     0.00    90.00    45.00     1.60
+module_1_1                  -1.30    12.00     2.50    51.00    33.00     6.30    52.30    21.00     3.80
+module_1_1_stack_1           0.10    12.36     0.00    50.90    14.86     2.50    50.80     2.50     2.50
+module_1_1_stack_2           0.10    30.14     0.00    50.90    32.64     2.50    50.80     2.50     2.50
+connector_1_1               22.22     0.00     0.00    28.22    12.00     5.00     6.00    12.00     5.00
+connector_1_2               42.54     0.00     0.00    48.54    12.00     5.00     6.00    12.00     5.00
+connector_1_3               62.86     0.00     0.00    68.86    12.00     5.00     6.00    12.00     5.00
+
+outcome: unsatisfied
+failing checks (self_report.json, delivered STLs): ['grid_conformance']
+conflicts: [('flush_to_edge', 'module_1_1'), ('pin_pattern', 'connector_1_1'), ('pin_pattern', 'connector_1_2'), ('pin_pattern', 'connector_1_3')]
+coverage: [('module_1', {'yes': 3}, 'exposed')]
+views: ['ghost_back.png', 'ghost_front.png', 'ghost_iso.png', 'ghost_left.png', 'ghost_right.png', 'ghost_top.png', 'model_back.png', 'model_front.png', 'model_iso.png', 'model_left.png', 'model_right.png', 'model_top.png', 'open_iso.png', 'open_top.png']

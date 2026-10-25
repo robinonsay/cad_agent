@@ -1,0 +1,169 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          60.0
+        ],
+        "length": 60.0,
+        "words": "the short (60 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 80.0,
+        "span": [
+          0.0,
+          60.0
+        ],
+        "length": 60.0,
+        "words": "the short (60 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          80.0
+        ],
+        "length": 80.0,
+        "words": "the long (80 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 60.0,
+        "span": [
+          0.0,
+          80.0
+        ],
+        "length": 80.0,
+        "words": "the long (80 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "perfboard",
+      "params": {
+        "width": 80.0,
+        "depth": 60.0
+      },
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "connector_1_1",
+      "part": "jack_3p5_pj320a",
+      "params": {},
+      "x": 12.0,
+      "y": 33.5799892297375,
+      "z": 0.0,
+      "rot_z": 180.0,
+      "item": "connector_1",
+      "copy": 0,
+      "role": "content",
+      "edge": "-X",
+      "of": null
+    },
+    {
+      "id": "module_1_1",
+      "part": "rpi_pico2",
+      "params": {},
+      "x": 15.3,
+      "y": 19.5,
+      "z": 2.5,
+      "rot_z": 0.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "content",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "module_1_1_stack_1",
+      "part": "header_male_2p54",
+      "params": {
+        "pins": 20.0,
+        "pitch": 2.54
+      },
+      "x": 16.67,
+      "y": 21.11,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "stack",
+      "edge": null,
+      "of": "module_1_1"
+    },
+    {
+      "id": "module_1_1_stack_2",
+      "part": "header_male_2p54",
+      "params": {
+        "pins": 20.0,
+        "pitch": 2.54
+      },
+      "x": 16.67,
+      "y": 38.89,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "stack",
+      "edge": null,
+      "of": "module_1_1"
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 80.0,
+    "board_depth": 60.0,
+    "keepout_above": 12.0,
+    "keepout_below": 4.0,
+    "board_clearance": 0.5,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 100.0,
+    "max_y": 80.0,
+    "max_z": 35.0
+  },
+  "grid_residual": 1.3541787178951
+}

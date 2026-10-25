@@ -1,0 +1,17 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for a 90 x 45 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 lies along the board with its micro-USB port exposed through one short end, and three 3.5 mm jacks sit in a row along one long edge of the board, exposed through that long side of the enclosure. Cables must plug in with the lid on. The enclosure is a base and a removable lid, printed on an FDM printer.
+
+How is the raspberry pi pico 2 mounted on the board? Options:
+- header_male_2p54: male header (the raspberry pi pico 2 sits 2.5 mm above the board)
+- header_female_2p54: female header (the raspberry pi pico 2 sits 8.5 mm above the board)
+
+=== RESPONSE ===
+{
+  "stack": "header_female_2p54"
+}

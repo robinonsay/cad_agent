@@ -1,0 +1,101 @@
+{
+  "about": "Sibling enclosure requests for the control loop, in dev.json format. They exercise the same abilities as E1-01 (catalogue parts placed by datums, board layout, standoffs at the catalogue hole pattern, wall openings sized from plug envelopes, a base and a lid, interference and clearance checks against keep-out volumes) with different numbers and layouts, so the loop cannot converge by fitting E1-01. A loop iteration counts as converged only when E1-01 passes and every variant here passes its gates (rubric.md section 6). Each variant is graded with requirements.md's L2/L3 tree, re-instantiated with the numbers in its own request and L1s (the 'grading_deltas' list says what changes). Catalogue parts used: perfboard (generic, sized per request; corner holes 3.0 mm at 2.5 mm from each edge unless stated), rpi_pico2, header_male_2p54, header_female_2p54 (8.5 mm socket), jack_3p5_pj320a, plug_microusb_b, plug_trs_3p5; the capacitor in V3 is a plain cylinder whose size is given in the request.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "V1", "tier": 4, "title": "Pico 2 logger box, ports on one end",
+      "request": "An enclosure for an 80 x 60 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 and one 3.5 mm jack sit on the board, and both the Pico's micro-USB port and the jack must be exposed through the same short end of the enclosure so cables plug in with the lid on. The enclosure is a base and a removable lid, printed on an FDM printer.",
+      "l1": [
+        {"id": "L1.1", "text": "The design shall place the Pico 2 and one 3.5 mm jack on the 80 x 60 mm board, from the parts catalogue, with the Pico's USB port and the jack both facing the same short (60 mm) end, without the parts colliding or covering the corner holes, and shall declare that layout.", "method": "inspection"},
+        {"id": "L1.2", "text": "The 80 x 60 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports.", "method": "analysis"},
+        {"id": "L1.3", "text": "The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board.", "method": "inspection"},
+        {"id": "L1.4", "text": "With the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico and the jack shall lie inside the enclosure.", "method": "analysis"},
+        {"id": "L1.5", "text": "With the lid closed, a micro-USB cable and a 3.5 mm plug shall both plug fully, at the same time, through two separate openings in the same end wall without touching the enclosure or each other, and each opening shall be no more than 1.5 mm bigger than its plug on any side.", "method": "test"},
+        {"id": "L1.6", "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed.", "method": "inspection"},
+        {"id": "L1.7", "text": "The closed enclosure shall have no openings other than the two port openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.", "method": "analysis"},
+        {"id": "L1.8", "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.", "method": "analysis"},
+        {"id": "L1.9", "text": "The closed enclosure shall be no larger than 100 x 80 x 35 mm, longest along the board's 80 mm side, and shall stand flat on a desk without tipping.", "method": "analysis"},
+        {"id": "L1.10", "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.", "method": "test"},
+        {"id": "L1.11", "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.", "method": "inspection"}
+      ],
+      "grading_deltas": [
+        "board 80 x 60 x 1.6; holes at (2.5, 2.5), (77.5, 2.5), (2.5, 57.5), (77.5, 57.5); standoff pitch 75.0 x 55.0",
+        "both ports on the -X end: USB_AXIS and JACK_AXIS both within 1 deg of -X; jack mouth X in [-1.8, 0.5]; USB mouth X in [2.54, 3.54] (the Pico's first pin on grid column 0, OWNER_DECISIONS 1, gives X 3.04; window +/- 0.5)",
+        "the USB and jack plug envelopes must not intersect each other (ligament between openings >= 1.5)",
+        "the +X end wall has no opening; aperture enumeration expects 2 regions in the -X wall only",
+        "size limit 100 x 80 x 35"
+      ],
+      "beyond_library": [
+        "subtraction: two differently shaped openings (rectangular and round) in one wall",
+        "parts catalogue placement with two ports on the same edge (plug envelopes must not collide)",
+        "interior placement, cavity, two printable bodies, envelope generation and interference checks (as E1-01)"
+      ]
+    },
+    {
+      "id": "V2", "tier": 4, "title": "Pico 2 controller, three jacks on a long side",
+      "request": "An enclosure for a 90 x 45 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 lies along the board with its micro-USB port exposed through one short end, and three 3.5 mm jacks sit in a row along one long edge of the board, exposed through that long side of the enclosure. Cables must plug in with the lid on. The enclosure is a base and a removable lid, printed on an FDM printer.",
+      "l1": [
+        {"id": "L1.1", "text": "The design shall place the Pico 2 and three 3.5 mm jacks on the 90 x 45 mm board, from the parts catalogue, with the Pico's USB port facing one short (45 mm) end and all three jacks facing the same long (90 mm) side, at least 11 mm apart, without the parts colliding or covering the corner holes, and shall declare that layout.", "method": "inspection"},
+        {"id": "L1.2", "text": "The 90 x 45 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports.", "method": "analysis"},
+        {"id": "L1.3", "text": "The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board.", "method": "inspection"},
+        {"id": "L1.4", "text": "With the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico and the jacks shall lie inside the enclosure.", "method": "analysis"},
+        {"id": "L1.5", "text": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.", "method": "test"},
+        {"id": "L1.6", "text": "With the lid closed, three 3.5 mm plugs shall plug fully into the three jacks at the same time through three openings in the long side wall without touching the enclosure or each other, and each opening shall be no more than 1.5 mm bigger than the plug on any side.", "method": "test"},
+        {"id": "L1.7", "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed.", "method": "inspection"},
+        {"id": "L1.8", "text": "The closed enclosure shall have no openings other than the USB opening, the three jack openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.", "method": "analysis"},
+        {"id": "L1.9", "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.", "method": "analysis"},
+        {"id": "L1.10", "text": "The closed enclosure shall be no larger than 110 x 65 x 35 mm, longest along the board's 90 mm side, and shall stand flat on a desk without tipping.", "method": "analysis"},
+        {"id": "L1.11", "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.", "method": "test"},
+        {"id": "L1.12", "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.", "method": "inspection"}
+      ],
+      "grading_deltas": [
+        "board 90 x 45 x 1.6; holes at (2.5, 2.5), (87.5, 2.5), (2.5, 42.5), (87.5, 42.5); standoff pitch 85.0 x 40.0",
+        "USB on the -X end (USB_AXIS within 1 deg of -X, mouth X in [2.46, 3.46]: the Pico's first pin on grid column 0, OWNER_DECISIONS 1, gives X 2.96; window +/- 0.5); jacks on the +Y side (JACK_AXIS_k within 1 deg of +Y, mouths Y in [44.5, 46.0])",
+        "three jack openings in the +Y wall, pairwise axis spacing >= 11.0; none in the +X wall",
+        "the side-wall jack openings must not cut the lid seam or a corner boss (ligament >= 1.5)",
+        "size limit 110 x 65 x 35"
+      ],
+      "beyond_library": [
+        "subtraction: a row of three round openings in a long wall plus a rectangular opening in an end wall",
+        "ports on two perpendicular walls: plug envelopes along X and along Y",
+        "interior placement, cavity, two printable bodies, envelope generation and interference checks (as E1-01)"
+      ]
+    },
+    {
+      "id": "V3", "tier": 4, "title": "Pico 2 on sockets with a tall capacitor",
+      "request": "An enclosure for an 80 x 40 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 is plugged into female header sockets, so its underside sits 8.5 mm above the board, with its micro-USB port exposed through one short end of the enclosure. One 3.5 mm jack is exposed through the other short end, and a 10 mm diameter, 20 mm tall capacitor stands upright on the board. Leave at least 3 mm of space above the tallest part. The enclosure is a base and a removable lid, printed on an FDM printer.",
+      "l1": [
+        {"id": "L1.1", "text": "The design shall place the Pico 2 on 8.5 mm female header sockets, one 3.5 mm jack and a 10 mm diameter, 20 mm tall upright capacitor on the 80 x 40 mm board, with the Pico's USB port facing one short (40 mm) end and the jack facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout.", "method": "inspection"},
+        {"id": "L1.2", "text": "The 80 x 40 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports.", "method": "analysis"},
+        {"id": "L1.3", "text": "The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board.", "method": "inspection"},
+        {"id": "L1.4", "text": "With the lid closed, no part of the enclosure shall come within 23 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico, sockets, jack and capacitor shall lie inside the enclosure.", "method": "analysis"},
+        {"id": "L1.5", "text": "With the lid closed, a micro-USB cable shall plug fully into the raised Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.", "method": "test"},
+        {"id": "L1.6", "text": "With the lid closed, a 3.5 mm plug shall plug fully into the jack through one opening in the opposite end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.", "method": "test"},
+        {"id": "L1.7", "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed.", "method": "inspection"},
+        {"id": "L1.8", "text": "The closed enclosure shall have no openings other than the USB opening, the jack opening and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.", "method": "analysis"},
+        {"id": "L1.9", "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.", "method": "analysis"},
+        {"id": "L1.10", "text": "The closed enclosure shall be no larger than 100 x 60 x 45 mm, longest along the board's 80 mm side, and shall stand flat on a desk without tipping.", "method": "analysis"},
+        {"id": "L1.11", "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.", "method": "test"},
+        {"id": "L1.12", "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.", "method": "inspection"}
+      ],
+      "grading_deltas": [
+        "board 80 x 40 x 1.6; holes at (2.5, 2.5), (77.5, 2.5), (2.5, 37.5), (77.5, 37.5); standoff pitch 75.0 x 35.0",
+        "Pico PCB underside at Z 8.5 (catalogue header_female_2p54 replaces header_male_2p54): USB_MOUTH Z about 10.9, so the USB opening sits high and the jack opening low",
+        "V-KO-TOP height 23.0 (tallest part 20.0 + 3.0) instead of 12.0; the capacitor (cylinder 10 x 20) is a reference model and must lie inside V-CAVITY with clearance 0.3",
+        "one jack opening in the +X wall; jack axis within 1 deg of +X, mouth X in [79.5, 81.0]",
+        "size limit 100 x 60 x 45; standoff and boss heights may differ from E1-01, but the 2-4 mm wall rule stays"
+      ],
+      "beyond_library": [
+        "a taller cavity driven by a stated part height, with port openings at very different heights on the two ends",
+        "a second header catalogue part (female sockets) changing the Pico's datums",
+        "interior placement, cavity, two printable bodies, envelope generation and interference checks (as E1-01)"
+      ]
+    }
+  ]
+}

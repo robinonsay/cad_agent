@@ -84,6 +84,15 @@ class TestBenchmarkRunner(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.plan(mode="cascade", ids=["A"], with_l1=False)
 
+    def test_assembly_without_l1_is_refused_up_front(self):
+        with self.assertRaises(ValueError) as cm:
+            self.plan(mode="assembly", ids=["A"], with_l1=False)
+        self.assertIn("assembly", str(cm.exception))
+        with self.assertRaises(ValueError):
+            self.plan(mode="assembly")                  # B has no L1s
+        cmd = br.agent_command(self.plan(mode="assembly", ids=["A"])[0])
+        self.assertEqual(cmd[cmd.index("--mode") + 1], "assembly")
+
     def test_records_every_run_and_resumes(self):
         runner = FakeRunner({("A", 1): (3, "unsatisfied"), ("B", 0): (None, None), ("B", 1): (1, None)})
         lines = br.run_benchmark(self.plan(), self.results, runner, log=lambda _: None)

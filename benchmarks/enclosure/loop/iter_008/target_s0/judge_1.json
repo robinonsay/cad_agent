@@ -1,0 +1,130 @@
+{
+  "judge": "judge_1",
+  "iteration": "008",
+  "package": "benchmarks/enclosure/loop/iter_008/target_s0/20261024-124355",
+  "meets_requirements": false,
+  "class": "WRONG",
+  "gates": {
+    "G0": "PASS",
+    "G1": "PASS",
+    "G2": "PASS",
+    "G3": "FAIL",
+    "G4": "PASS",
+    "G5": "PASS"
+  },
+  "weighted_score": 0.918,
+  "worst_weight3_margin": "L3.5.1.1: plug envelope penetrates the full 2.4 mm -X wall (168 mm3); margin about -2.7 mm (normalised about -5.4)",
+  "requirement_results": [
+    {
+      "id": "L1.1",
+      "pass": false,
+      "evidence": "layout.json parses and names perfboard, rpi_pico2 (+2 header_male_2p54), 2x jack_3p5_pj320a (L3.1.1.1 PASS). Axes: USB -X, jacks +X (L3.1.2.1 PASS). No pairwise collisions (pcb-to-jack gap 0.2 mm in X) and parts 5.0 mm clear of the \u00d87 screw columns (L3.1.4.1/.2 PASS); plan within X[-2,71] Y[0,50] (L3.1.4.3 PASS); jack axis spacing 15.24 mm >= 11 (L3.1.5.1 PASS). FAIL L3.1.3.1: Pico placed at x=6.8 so USB_MOUTH = (5.5, 25.0, 4.9) board frame, limit X in [-1.8,-0.8] (margin -6.3 mm). FAIL L3.1.6.1: worst pin-to-grid residual 1.12 mm (jack terminal at X 59.8; header rows X 8.17+2.54i / Y 16.11 residual 1.08) vs <= 0.15."
+    },
+    {
+      "id": "L1.2",
+      "pass": true,
+      "evidence": "Judge clear_of(ALL, M-PERF minus \u00d88 seat columns, 0.5): d = 1.10 mm (wall inner faces at X -1.1/71.1, Y -1.1/51.1; floor top Z -5.7; lid lip bottom Z 12.1). inside(V-PICO, cavity, 0.2): d = 5.20 mm. Inner X length 72.2 >= 71.7. 70x50x1.6 board fits base with 0.5 clearance."
+    },
+    {
+      "id": "L1.3",
+      "pass": true,
+      "evidence": "4 standoffs measured by slicing base at Z -3.5: axes (2.5,2.5),(67.5,2.5),(2.5,47.5),(67.5,47.5), pitch 65.0 x 45.0, offset 0.00 to PERF_HOLE_k; OD 5.30 (5.0-7.0); tops all at Z -1.60 (spread 0); pilot inscribed \u00d82.100 (2.0-2.2), ray-cast pilot bottom Z -6.7 -> depth 5.1 >= 5.0; standoffs fused to floor (annulus ~18.6 mm2 >= 15), base 1 shell; screw-head columns clear d = 0.10."
+    },
+    {
+      "id": "L1.4",
+      "pass": true,
+      "evidence": "clear_of(ALL, V-KO-TOP Z0..12, 0) d = 0.10 (lid lip bottom at Z 12.1 overhangs board footprint edges X 69.65-70 etc.); clear_of(ALL, V-KO-BOT Z -5.6..-1.6 minus seats) d = 0.10 (floor top Z -5.7); standoff height above floor 4.1 (4-10); inside(headers+jacks, cavity, 0.3) d = 1.21."
+    },
+    {
+      "id": "L1.5",
+      "pass": false,
+      "evidence": "GATE G3 FAILS. There is no USB opening at all: aperture slab of the -X end wall (X -3.5..-1.1) minus ALL has 0 through-regions (only the two blind corner-boss pilot pockets). V-USB-PLUG built at the declared USB_MOUTH (5.5,25.0,4.9) intersects BASE: 168.0 mm3, box [-3.5,20.0,1.4]-[-1.1,30.0,8.4] board frame (= full 2.4 mm wall x 10.0 x 7.0 overmold). L3.5.1.1 FAIL, L3.5.3.1 FAIL (count 0 vs 1), L3.5.2.1 FAIL (no opening to grade; vacuous). The agent itself flagged module_1.usb as 'not exposed'."
+    },
+    {
+      "id": "L1.6",
+      "pass": true,
+      "evidence": "Two through-openings in the +X wall (X 71.1..73.5), each inscribed \u00d88.80, centres (Y 17.60, Z 2.5) and (Y 32.84, Z 2.5) board frame, coaxial with the jack mouths. clear_of(ALL, V-JACK-PLUG-k, 0.3): d = 0.401 / 0.401 mm; aperture minus (envelope grown 1.5) = 0.000 mm3 for both; envelopes 15.24 mm apart (no mutual intersection); count = 2."
+    },
+    {
+      "id": "L1.7",
+      "pass": true,
+      "evidence": "base 1 shell, lid 1 shell, manifold NoError, base^lid = 0.0 mm3. Lip outer 71.7x51.7 vs base inner 72.2x52.2: ray-cast gap 0.25 mm on all four sides; engagement Z 12.1..14.2 = 2.1 mm. 4 corner bosses OD 6.10 at (\u00b1, -3.11/53.11 / 73.11), pilot \u00d82.50, bottom Z 8.1 -> depth 6.1 from top Z 14.2; lid holes inscribed \u00d83.40, coaxial (offset 0); lid-screw driver columns clear (d 0.0, no penetration). Seam gap 0 (plate on rim at Z 14.2), plate 77x57 flush with tray."
+    },
+    {
+      "id": "L1.8",
+      "pass": true,
+      "evidence": "Ray-cast thickness: all four walls 2.40 (range 2.40-2.40), floor 2.40, lid plate 2.40. Hull-minus-solids voids: cavity connects to outside only through the two jack holes; corner pilot/lid-hole pockets are separate blind screw holes; 0 unlisted openings. Ligaments: jack hole bottom Z -1.905 to floor top -5.7 = 3.8, between holes 6.43, hole top 6.9 to seam 14.2 = 7.3; walls are one piece with the floor. (Note: the absence of the USB opening is graded under L1.5, not here.)"
+    },
+    {
+      "id": "L1.9",
+      "pass": true,
+      "evidence": "Both bodies 1 shell, manifold3d NoError, watertight. Overhang scan (base open-side-up, lid flipped outer-face-down): only downward faces are the upper halves of the two \u00d88.8 jack holes (exempt round holes <= 12 in a vertical wall, 33.2 mm2) plus zero-area slivers; lid 0. Bed contact base 87%, lid 86%. Thinnest mating gaps 0.25 (lip) and ~0.25 (lip notch vs boss); lip wall 1.2 >= 0.8. Bounding boxes 82.3 x 62.3 x 22.3 / 4.5 <= 200."
+    },
+    {
+      "id": "L1.10",
+      "pass": true,
+      "evidence": "Closed envelope 82.32 x 62.32 x 24.70 mm (<= 90 x 70 x 35, X > Y). Flat underside: whole base bottom at Z -8.1, no protrusions. Stable at 5\u00b0 (footprint 82x62, height 24.7). 0.5 N pull at the jack centres (10.6 mm above table) gives 5.3 N\u00b7mm vs ~16 N\u00b7mm restoring (40 g, ~41 mm lever)."
+    },
+    {
+      "id": "L1.11",
+      "pass": true,
+      "evidence": "clear_of(BASE, RBA plan silhouette X0..70 Y0..50 swept to Z 19.2, minus seat columns, 0.2): d = 0.85 mm. Driver columns \u00d86 on the board holes: d = 0.60. Lid screws go into corner bosses, board screws into standoffs: no shared fastener."
+    },
+    {
+      "id": "L1.12",
+      "pass": false,
+      "evidence": "Package present: base.stl, lid.stl, base/lid/model .scad, model.3mf, layout.json (with print orientations), self_report.json; STLs in mm (L3.12.1.1 PASS). Seating verifies: standoff tops Z -1.60 = PERF_BOTTOM, hole axes coaxial residual 0 (L3.12.1.2 PASS). Reported clear_of/inside values agree with the judge within 0.005 mm, BUT L3.12.2.1 FAIL: the self-report has no USB plug clear_of check at all, and its 'apertures_-X' check claims 'expected 0' through-openings in the -X wall and PASSES, a false claim (the requirement is exactly 1 USB opening there)."
+    }
+  ],
+  "defects": [
+    {
+      "requirement_id": "L3.5.1.1 (L2.5.1, L1.5) - GATE G3",
+      "severity": "blocker",
+      "where": "base, -X end wall (solid slab X -3.5..-1.1, full Y -3.5..53.5, Z -8.1..14.2); intersection box [-3.5, 20.0, 1.4]-[-1.1, 30.0, 8.4] mm board frame (enclosure frame with floor underside at Z=0: Z 9.5..16.5); renders: ghost_front.png (blue USB receptacle block upper-left, inside the solid -X wall, ~5.5 mm in from the board edge), open_iso.png (far-left end wall inner face is unbroken), model_iso.png",
+      "what": "No USB opening exists anywhere in the enclosure. The micro-USB plug envelope V-USB-PLUG (shell 6.9x1.85 then overmold 10.0x7.0, along -X from USB_MOUTH (5.5, 25.0, 4.9)) runs straight into the solid -X wall.",
+      "expected": "clear_of(ALL, V-USB-PLUG, 0.3): no penetration and d >= 0.30 mm. Needed: a through-opening in the -X wall containing at least Y 19.7..30.3, Z 1.1..8.7 (board frame; overmold + 0.3 about the USB axis Y 25.0, Z 4.9) for its full thickness",
+      "observed": "penetration 168.0 mm3 (the whole 2.4 mm wall x 10.0 x 7.0 overmold section), all in BASE; d undefined (negative). The agent flagged this itself (text_coverage: module_1.usb not exposed) but still delivered."
+    },
+    {
+      "requirement_id": "L3.5.3.1 (L2.5.3, L1.5)",
+      "severity": "major",
+      "where": "base, -X end wall, aperture slab X -3.5..-1.1; only regions found are the blind corner-boss pilot pockets [-3.49,-3.5,8.1]-[-1.41,-1.41,16.6] and [-3.49,51.41,8.1]-[-1.41,53.5,16.6]; render open_iso.png / model_iso.png",
+      "what": "USB opening count in the -X wall is zero.",
+      "expected": "exactly 1 through-opening (V-AP-USB one connected region) in the -X wall",
+      "observed": "0 through-openings"
+    },
+    {
+      "requirement_id": "L3.5.2.1 (L2.5.2, L1.5)",
+      "severity": "major",
+      "where": "base, -X end wall (no opening present)",
+      "what": "The opening-size check cannot be satisfied meaningfully because the opening does not exist (vacuous); scored FAIL because L2.5.2 presupposes the single USB opening of L2.5.3.",
+      "expected": "an opening lying inside V-USB-PLUG grown by 1.5: no larger than Y 18.5..31.5 x Z -0.1..9.9 board frame (<= 13.0 x 10.0) while still containing Y 19.7..30.3 x Z 1.1..8.7",
+      "observed": "no opening"
+    },
+    {
+      "requirement_id": "L3.1.3.1 (L2.1.3, L1.1)",
+      "severity": "major",
+      "where": "layout.json reference module_1_1 (rpi_pico2) at x=6.8, y=14.5, z=2.5; Pico PCB spans X 6.8..57.8, receptacle X 5.5..11.0; USB_MOUTH = (5.5, 25.0, 4.9) board frame; render ghost_top.png (Pico block starts well right of the board's left edge) and ghost_front.png",
+      "what": "The Pico's USB mouth is 5.5 mm inboard of the -X board edge instead of at it, so the port does not reach the -X end.",
+      "expected": "USB_MOUTH X in [-1.8, -0.8] (Pico PCB -X edge at board X 0.0 \u00b1 0.5); when moved, the -X wall inner face must then sit at X <= USB_MOUTH.x - 0.2 (e.g. <= -1.5 for mouth at -1.3) to keep L3.2.2.1, with inner X length >= 71.7",
+      "observed": "USB_MOUTH X = 5.5 (margin -6.3 mm); -X wall inner face at X -1.1"
+    },
+    {
+      "requirement_id": "L3.12.2.1 (L2.12.2, L1.12)",
+      "severity": "minor",
+      "where": "self_report.json results 'apertures_-X' and the missing USB clear_of entry",
+      "what": "Self-report is incomplete and makes a false claim: it never runs clear_of for the USB plug, and its -X aperture check asserts 'expected 0' through-openings and passes.",
+      "expected": "a clear_of result for V-USB-PLUG (which would be FAIL, penetration ~168 mm3) and an aperture check expecting 1 opening in -X; agreement with the judge within 0.10 on every clear_of/inside",
+      "observed": "no USB clear_of entry; apertures_-X passed=true with expected 0. (All reported clear_of/inside values do agree within 0.005 mm: board 1.100, contents 1.208, KO top/bot 0.100, hole KO 0.096, drivers 0.596, jack plugs 0.400.)"
+    },
+    {
+      "requirement_id": "L3.1.6.1 (L2.1.6, L1.1)",
+      "severity": "minor",
+      "where": "layout.json: headers module_1_1_stack_1/2 at x=8.17, y=16.11/33.89; jacks connector_1_1/1_2 at x=58.0 (terminals at X 66.8, 63.8, 59.8, 58.8); grid origin (2.5, 2.5) pitch 2.54 from perfboard part.json",
+      "what": "Header and jack pins do not land on the perfboard 2.54 mm grid.",
+      "expected": "max pin-to-grid residual <= 0.15 mm",
+      "observed": "worst residual 1.12 mm (jack terminal at X 59.8); header pins 1.08 mm (X offset 0.59, Y offset 0.91). Observation for Robin: the catalogue PJ-320A terminal spacings (3.0/4.0/1.0 mm) cannot all fall on a 2.54 grid (agent's best 0.54), so this criterion is unattainable for the jacks as catalogued; the header residual, however, is avoidable (rows 17.78 = 7 x 2.54 apart)."
+    }
+  ],
+  "summary": "DOES NOT MEET (class WRONG: gate G3 fails). The enclosure is a clean, well-dimensioned base+lid: board fit 1.10 mm, 4 standoffs on the 65x45 pattern (OD 5.3, pilot \u00d82.10 x 5.1 deep), keep-outs clear by 0.10 mm, both 3.5 mm jack openings (\u00d88.80 at Y 17.60/32.84, Z 2.5) clear the plug envelopes by 0.40 mm, 0.25 mm lip fit with 2.1 mm engagement, 4 corner screw bosses, 2.4 mm walls/floor/lid, 82.3x62.3x24.7 mm, manifold single-shell bodies, no support needed. But there is NO USB opening: the -X end wall is solid, and the declared layout puts the Pico 5.5 mm inboard (USB_MOUTH X 5.5 instead of -1.8..-0.8), so the micro-USB plug envelope penetrates the wall by 168 mm3 at board-frame [-3.5,20,1.4]-[-1.1,30,8.4]. L1.5 fails (L3.5.1.1, L3.5.2.1, L3.5.3.1), L1.1 fails (L3.1.3.1 USB mouth position; L3.1.6.1 grid residual 1.12, partly a catalogue conflict), L1.12 fails (self-report omits the USB clear_of and its -X aperture check wrongly expects 0 openings). Weighted score about 123/134 = 0.92. Observation: model_left.png and model_right.png are byte-identical and model_front/back are identical, so the orthographic end views cannot show the jack holes; the iso views show them. claude-context MCP was unavailable this session (connection failure); no repo search was needed beyond reading known paths."
+}

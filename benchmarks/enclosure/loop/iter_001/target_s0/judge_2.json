@@ -1,0 +1,57 @@
+{
+  "judge": "judge_2",
+  "iteration": "iter_001",
+  "design": "target_s0 (package folder 20261024-035938)",
+  "verdict": "DOES NOT MEET",
+  "class": "WRONG",
+  "meets_requirements": false,
+  "gates": {"G0_package": "FAIL", "G1_manifold_two_bodies": "FAIL", "G2_board_fit": "FAIL", "G3_usb_plug": "FAIL (no -X wall/opening; clear_of passes only vacuously)", "G4_jack_plugs": "FAIL (no +X wall/openings; clear_of passes only vacuously)", "G5_board_fixed": "FAIL"},
+  "measured": {
+    "model.stl": "12 faces, 8 vertices, watertight, manifold3d NoError, 1 shell, volume 26640.0 mm^3",
+    "bbox_mm": [[0.0, 0.0, 0.0], [90.0, 74.0, 4.0]],
+    "geometry": "one solid rectangular block: SCAD 'base' cube X0-90 Y0-70 Z0-4 unioned with SCAD 'lid' strip X0-90 Y70-74 Z0-4",
+    "cavity_volume_hull_minus_solid_mm3": 0.0,
+    "standoffs": 0, "walls": 0, "openings_-X/+X/other": "0/0/0", "bodies": 1,
+    "seating_fallback_pose": "no standoffs -> RBA centred on body, board underside 4.0 above floor top: board X10-80 Y12-62 Z8.0-9.6",
+    "board_clear_of_0.5": "d = 4.0 mm (vacuous: nothing surrounds the board)",
+    "V-PICO_outside_hull_mm3": "1194.2 of 1194.2 (entirely outside the enclosure)",
+    "V-KO-TOP_d": ">= 5.0 (vacuous)", "V-KO-BOT_d": "0.0 (touches slab top Z=4)",
+    "V-USB-PLUG_d": ">= 5.3 (vacuous, no wall)",
+    "package_files": "present: model.stl, model.scad, design.json, views/*.png; missing: base.stl, lid.stl, 3MF, layout.json, self clearance report; design.json verification: all components unchecked; run killed at 90-min timeout"
+  },
+  "L1": {
+    "L1.1": "FAIL - no layout.json, design.json records no catalogue parts; benchmarks/enclosure/parts/ is empty so no catalogue ids exist",
+    "L1.2": "FAIL - no cavity (0 mm^3); V-PICO 100% outside hull; a 70x50x1.6 board cannot fit into a 4 mm solid slab",
+    "L1.3": "FAIL - 0 standoffs (need 4 on 65.0 x 45.0, OD 5-7, pilot 2.0-2.2 x >=5 deep)",
+    "L1.4": "FAIL - headers/jacks not inside a cavity (L3.4.3.1); no standoffs (L3.4.2.2); no lid above board (L3.4.1.2)",
+    "L1.5": "FAIL - no -X end wall, USB opening count 0 (need 1)",
+    "L1.6": "FAIL - no +X end wall, jack opening count 0 (need 2)",
+    "L1.7": "FAIL - 1 fused body; 'lid' is a 90x4x4 strip on the +Y face, not a separate covering part; no lip, no retention",
+    "L1.8": "FAIL - no side walls, no lid plate; board fully exposed on all sides; only floor exists (4.0 thick)",
+    "L1.9": "FAIL - the single slab prints (0 overhangs, 100% bed contact) but no separate lid body exists to check (L3.9.2.1 UNVERIFIED for LID)",
+    "L1.10": "FAIL - closed bbox 90.0 x 74.0 x 4.0: Y = 74.0 > 70.0 (+4.0) due to the 'lid' strip at Y70-74; stable and flat pass",
+    "L1.11": "FAIL - no standoffs so the board has no seated pose to drop onto and no screws to reach (UNVERIFIED = FAIL); install/driver clear_of pass only vacuously",
+    "L1.12": "FAIL - base.stl, lid.stl, layout.json, self-report missing; SCAD comments claim a USB opening, jack openings, standoffs, bosses and recessed floor that do not exist in the geometry"
+  },
+  "defects": [
+    {"req": "L3.12.1.1 (L2.12.1, L1.12) G0", "status": "FAIL", "body": "both", "feature": "design package", "location": "iter_001/target_s0/20261024-035938/", "measured": "only model.stl (single fused body), model.scad, design.json", "limit": "base.stl, lid.stl, .scad, layout.json, self clearance report all present", "needed": "deliver base.stl and lid.stl as separate bodies in closed pose plus layout.json and a clearance report"},
+    {"req": "L3.7.1.1 / L3.9.2.1 (L2.7.1, L1.7; L2.9.2, L1.9) G1", "status": "FAIL", "body": "both", "feature": "'lid' (SCAD c_lid) fused to 'base' (c_base)", "face": "lid strip bonded to the base's +Y outer face (normal +Y) along X0-90, Z0-4", "location": "lid strip [0,70,0]-[90,74,4]; base [0,0,0]-[90,70,4]; manifold3d decompose() = 1 shell", "render": "model_top.png orange band at top edge; model_back.png all orange; model_left.png/model_right.png orange square at one end", "measured": "1 body", "limit": "2 bodies (BASE, LID), each 1 shell, intersection <= 1.0 mm^3", "needed": "a separate lid body covering the full plan of the base at the top of the walls"},
+    {"req": "L3.2.2.1 / L3.2.1.2 / L3.2.2.2 (L2.2.x, L1.2) G2", "status": "FAIL", "body": "base", "feature": "cavity (none exists)", "location": "whole body [0,0,0]-[90,74,4]; hull-minus-solid = 0.0 mm^3", "render": "model_iso.png flat solid slab", "measured": "V-PICO outside hull 1194.2 of 1194.2 mm^3; inner X length between end walls: no walls", "limit": "inside(V-PICO, V-CAVITY, 0.2) d >= 0.20; inner X >= 71.7; 70x50x1.6 fits with 0.5", "needed": "an internal void at least 71.7 (X) x 51.0 (Y) at board height, enclosing the board with >= 0.5 clearance"},
+    {"req": "L3.3.1.1 / L3.3.3.1 (L2.3.1, L2.3.3, L1.3) G5", "status": "FAIL", "body": "base", "feature": "standoffs (none)", "location": "slab top Z=4.0, X0-90 Y0-74 has no protrusions", "render": "model_iso.png, model_top.png uniform face", "measured": "count 0", "limit": "4 standoffs on a 65.0 x 45.0 rectangle, OD 5.0-7.0, pilot 2.0-2.2 x >= 5.0 deep, height 4.0-10.0 above floor top", "needed": "4 standoffs at board-hole axes, tops coplanar within 0.10"},
+    {"req": "L3.5.3.1 / L3.5.1.1 (L2.5.x, L1.5) G3", "status": "FAIL", "body": "base", "feature": "-X end wall and USB opening (none)", "location": "X=0 face of slab only spans Z0-4; nothing at USB axis height (seating-fallback Z 14.5)", "render": "model_left.png / model_right.png: 4 mm slab end face only", "measured": "opening count 0; plug clear_of d >= 5.3 only because there is no wall", "limit": "1 opening in -X wall; clear_of(ALL, V-USB-PLUG, 0.3); opening within plug+1.5 (<= 13.0 x 10.0)", "needed": "an end wall at -X reaching above the USB axis with one opening around USB_MOUTH"},
+    {"req": "L3.6.3.1 / L3.6.1.1 (L2.6.x, L1.6) G4", "status": "FAIL", "body": "base", "feature": "+X end wall and two jack openings (none)", "location": "X=90 face spans Z0-4 only", "render": "model_left.png / model_right.png", "measured": "opening count 0", "limit": "2 openings in +X wall, each <= dia 11.0, plug clear_of >= 0.3, axes >= 11.0 apart", "needed": "an end wall at +X with two openings around JACK_MOUTH_1/2"},
+    {"req": "L3.1.1.1 (L2.1.1, L1.1)", "status": "FAIL", "body": "layout", "feature": "layout.json (missing)", "measured": "no layout, no catalogue part placed; parts/ catalogue directory is empty", "limit": "layout.json names M-PERF, M-PICO2(+headers), 2x M-JACK from catalogue", "needed": "declared pose of each RBA part in board frame"},
+    {"req": "L3.4.3.1 / L3.4.2.2 / L3.4.1.2 (L2.4.x, L1.4)", "status": "FAIL", "body": "both", "feature": "component enclosure", "measured": "headers/jacks outside hull; no standoffs; no lid above board", "limit": "inside >= 0.3; standoff height 4.0-10.0; lid underside >= 12.0 above board top", "needed": "outer Z >= floor + 4.0 + 1.6 + 12.0 + lid plate (about 21.6 with 2.0 plates), <= 35"},
+    {"req": "L3.8.1.1 / L3.8.2.1 / L3.8.2.3 (L2.8.x, L1.8)", "status": "FAIL", "body": "both", "feature": "side walls and lid plate (none)", "location": "whole perimeter of [0,0,0]-[90,74,4]", "render": "model_iso.png", "measured": "0 walls; floor 4.0 (at upper limit, passes); lid plate absent", "limit": "4 walls and lid plate 2.0-4.0 thick, no unlisted openings", "needed": "closed shell around the board"},
+    {"req": "L3.10.1.1 (L2.10.1, L1.10)", "status": "FAIL", "body": "both", "feature": "closed envelope", "location": "lid strip Y70-74", "render": "model_top.png orange band", "measured": "90.0 x 74.0 x 4.0", "limit": "<= 90 x 70 x 35, X > Y", "margin": "Y -4.0 mm", "needed": "outer Y <= 70.0"},
+    {"req": "L3.11.x (L2.11.x, L1.11)", "status": "UNVERIFIED", "body": "base", "feature": "board install / screw access", "measured": "no standoffs, no board fasteners; seated pose undefined", "limit": "install sweep d >= 0.2 onto standoffs; driver columns clear", "needed": "standoffs and screws as in L1.3"},
+    {"req": "L3.12.2.1 (L2.12.2, L1.12)", "status": "FAIL", "body": "both", "feature": "self-claims in model.scad comments", "measured": "comments claim recessed floor, 20x10 USB opening, two 6.35 jack openings, 4 standoffs with pilots, 4 bosses, sliding lid; none present in the 12-face STL", "limit": "agent report agrees with judge within 0.10", "needed": "claims generated from measured geometry"}
+  ],
+  "observations": [
+    "benchmarks/enclosure/parts/ is empty: no part.json catalogue exists, so neither the agent nor a grader can build M- references from the catalogue; I used requirements.md section 2.2 numbers for the fallback measurements.",
+    "The lid was placed with side 'back' (+Y) of the base and shape 'panel' 4x4 cross-section: a component-placement failure, not a lid.",
+    "run.log: translate:L1.1 saturated after 30 iterations; the request's numbers 50, 1.6, 0.5, 12, 1.5, 35 were used by no dimension; run hit the 90-min timeout.",
+    "claude-context MCP server failed to connect in this session; no code search was needed (all paths were known)."
+  ],
+  "weighted_score_estimate": "about 0.10 (only trivially-true L3s pass: floor thickness 4.0, stable, flat underside, overhang/bed contact on the slab, bbox <= 200, X <= 90)"
+}

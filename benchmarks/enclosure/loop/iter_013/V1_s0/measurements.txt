@@ -1,0 +1,19 @@
+package: 20261024-202705
+
+PRINTED BODIES (STL bounding boxes, enclosure frame, mm)
+body            min x    min y    min z    max x    max y    max z   size x   size y   size z  watertight  volume_mm3
+base            -6.59    -6.59    -8.10    86.59    66.59    14.20    93.17    73.17    22.30  True        30220.3
+lid             -6.59    -6.59    12.10    86.59    66.59    16.60    93.17    73.17     4.50  True        14844.9
+assembly        -6.59    -6.59    -8.10    86.59    66.59    16.60    93.17    73.17    24.70
+
+REFERENCE PARTS (from ghost.scad, which the design records; cube primitives transformed)
+ref                         min x    min y    min z    max x    max y    max z   size x   size y   size z
+board                        0.00     0.00    -1.60    80.00    60.00     0.00    80.00    60.00     1.60
+module_1_1                   3.04    11.88     2.50    55.34    32.88     6.30    52.30    21.00     3.80
+module_1_1_stack_1           4.44    12.24     0.00    55.24    14.74     2.50    50.80     2.50     2.50
+module_1_1_stack_2           4.44    30.02     0.00    55.24    32.52     2.50    50.80     2.50     2.50
+connector_1_1                0.00    41.00     0.00    12.00    47.00     5.00    12.00     6.00     5.00
+
+design.json outcome: verified
+self_report all_passed: True
+conflicts: 0

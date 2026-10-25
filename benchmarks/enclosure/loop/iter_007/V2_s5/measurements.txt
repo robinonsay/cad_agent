@@ -1,0 +1,17 @@
+package: /Users/robinonsay/python/llm-bt/benchmarks/enclosure/loop/iter_007/V2_s5/20261024-113133
+
+Printed bodies (measured from delivered STLs, mm, enclosure frame, closed pose)
+body         xmin     ymin     zmin     xmax     ymax     zmax       dx       dy       dz    vol mm3 watertight
+base        -6.16    -6.16    -8.10    96.16    51.16    15.00   102.32    57.32    23.10    27958.1       True
+lid         -6.16    -6.16    12.90    96.16    51.16    17.40   102.32    57.32     4.50    12889.6       True
+ALL         -6.16    -6.16    -8.10    96.16    51.16    17.40   102.32    57.32    25.50
+
+Reference parts (bounding boxes of the % ghost primitives in model.scad, mm)
+ref                        xmin     ymin     zmin     xmax     ymax     zmax       dx       dy       dz
+board                      0.00     0.00    -1.60    90.00    45.00     0.00    90.00    45.00     1.60
+connector_1_1             22.22     0.00     0.00    28.22    12.00     5.00     6.00    12.00     5.00
+connector_1_2             42.54     0.00     0.00    48.54    12.00     5.00     6.00    12.00     5.00
+connector_1_3             62.86     0.00     0.00    68.86    12.00     5.00     6.00    12.00     5.00
+module_1_1                19.00    12.00     8.50    71.30    33.00    12.30    52.30    21.00     3.80
+module_1_1_stack_1        20.40    12.36     0.00    71.20    14.86     8.50    50.80     2.50     8.50
+module_1_1_stack_2        20.40    30.14     0.00    71.20    32.64     8.50    50.80     2.50     8.50

@@ -1,0 +1,82 @@
+{
+  "judge": "independent judge #2",
+  "iteration": "012",
+  "design": "V1_s0 (package 20261024-192348)",
+  "variant": "V1",
+  "verdict": "DOES NOT MEET",
+  "class": "CORRECT (no gate fails, every weight-3 L3 passes; one weight-2 L3 fails)",
+  "meets_requirements": false,
+  "weighted_score": 0.985,
+  "weighted_score_detail": "135/137 over 65 applicable L3s (physical L3.5.1.2, L3.6.1.2, L3.7.3.6 N/A)",
+  "worst_normalised_margin_weight3": 0.20,
+  "worst_normalised_margin_detail": "L3.4.1.1 / L3.4.2.1 keep-out d = 0.10 mm vs >= 0 (0.10/0.5); L3.5.1.1 / L3.6.1.1 plug d = 0.40 vs >= 0.30 (0.10/0.5)",
+  "frame": "Delivered STLs are already in the board/enclosure frame (USB and jack end at -X, board top Z = 0). Rubric enclosure frame (floor underside Z = 0) = design Z + 8.1. Transform: translate Z +8.1, no rotation or mirror.",
+  "tooling_note": "claude-context MCP server failed to connect in this session; no code search was needed (all paths given), measurements made with manifold3d/trimesh on the delivered STLs.",
+  "gates": {
+    "G0 package (L3.12.1.1)": "PASS",
+    "G1 manifold and two bodies (L3.9.2.1, L3.7.1.1)": "PASS: base 1 shell NoError, lid 1 shell NoError, base^lid 8e-15 mm3",
+    "G2 board fit (L3.2.1.1, L3.4.1.1, L3.4.2.1)": "PASS: d = 1.10 / 0.10 / 0.10 mm",
+    "G3 USB plug seats (L3.5.1.1)": "PASS: d = 0.40 mm, no penetration",
+    "G4 jack plug seats (L3.6.1.1)": "PASS: d = 0.40 mm, no penetration",
+    "G5 board fixed (L3.3.1.1, L3.3.3.1)": "PASS: 4 standoffs, pilot 1.70 mm"
+  },
+  "measured_values": {
+    "board_clearance_L3.2.1.1": "1.10 mm (>= 0.5)",
+    "pico_in_cavity_L3.2.2.1": "4.37 mm (>= 0.2)",
+    "headers_jack_in_cavity_L3.4.3.1": "headers >= 5.3 (capped), jack 1.21 mm (>= 0.3)",
+    "standoffs": "count 4; axes (2.5,2.5) (77.5,2.5) (2.5,57.5) (77.5,57.5); pitch 75.00 x 55.00; axis offset 0.00; OD 5.10; pilot inscribed 1.70; pilot depth 5.10 (top Z -1.6, bottom Z -6.7); top-Z spread 0.00",
+    "keepout_top_bottom": "0.10 / 0.10 mm (lid lip bottom Z 12.10; floor top Z -5.70)",
+    "usb_plug_d": "0.40 mm; opening Y 16.98-27.78, Z 1.00-8.80 (10.80 x 7.80), centre (Y 22.38, Z 4.90) board frame; inside plug+1.5 envelope (0.0 mm3 outside)",
+    "jack_plug_d": "0.40 mm; opening round, Y 39.60-48.40, Z -1.90-6.90 (dia 8.81), centre (Y 44.0, Z 2.5); inside plug+1.5 envelope (0.0 mm3 outside)",
+    "plug_envelopes_intersect": "0.0 mm3; ligament between openings 11.81 mm",
+    "opening_counts": "-X 2 through (plus 2 blind boss-pilot regions, not openings) / +X 0 / -Y 0 / +Y 0 / floor 0 (4 blind standoff pilots); cavity sealed when the two ports are filled (gap to outside 1.40 mm)",
+    "lid_fit": "lip outer 81.70 x 61.70 vs base inner 82.20 x 62.20: 0.25 mm per side on all 4 sides; engagement 2.10 (lip bottom Z 12.10, rim Z 14.20)",
+    "thickness": "walls -X/+X/-Y/+Y median 2.40 range 2.40-2.40; floor 2.40; lid plate 2.40",
+    "lid_form": "plate 2.40, outline = base outline (symmetric difference 0.0 mm2), lip 2.10, total 4.50, 4 holes dia 3.40 coaxial with boss pilots dia 2.50 depth 6.10, boss OD 6.60",
+    "overhangs": "0 offending faces > 1 mm2 (only the 10.8 mm bridge over the USB opening and the dia 8.81 round jack hole, both exempt); lid 0",
+    "bed_contact": "base 86.9 %, lid 86.4 %",
+    "shells": "base 1 / lid 1",
+    "closed_envelope": "93.17 x 73.17 x 24.70 mm (<= 100 x 80 x 35, X longest)",
+    "install_driver": "install d = 0.95 (>= 0.2); driver d = 0.60 (>= 0)",
+    "self_report_agreement": "100 %: board 1.100/1.100, pico 4.370/4.370, jack 1.208/1.208, keep-outs 0.100/0.100, hole KO 0.096/0.100, drivers 0.596/0.600, plugs 0.400/0.400"
+  },
+  "requirement_results": [
+    {"id": "L1.1", "pass": false, "evidence": "L3.1.3.1 FAIL: USB_MOUTH X = 3.04 (Pico PCB edge at X 4.34 minus 1.3 receptacle overhang), V1 limit [-1.8, 0.5]. Others pass: layout.json parses, ids in catalogue; USB_AXIS and JACK_AXIS both -X (jack rot_z 180); JACK_MOUTH (0.0, 44.0, 2.5) in range; RBA pairwise interference 0; parts vs hole keep-outs d = 5.0; plan bounds X 0-55.34, Y 11.88-47 inside [-2, 81] x [0, 60]; header pins on grid (residual 0.00); plug envelopes do not intersect."},
+    {"id": "L1.2", "pass": true, "evidence": "clear_of(ALL, board minus dia-8 seats, 0.5): d = 1.10 (walls at X -1.1/81.1, Y -1.1/61.1; corner bosses 1.35); inside(V-PICO) d = 4.37; inner X length 82.2 >= 80.4."},
+    {"id": "L1.3", "pass": true, "evidence": "4 standoffs fused to floor, axes on the 4 holes (offset 0.00), pitch 75.0 x 55.0, OD 5.10, pilot 1.70 x 5.10 deep, tops coplanar at Z -1.60 = board underside; screw-head columns d = 0.10."},
+    {"id": "L1.4", "pass": true, "evidence": "V-KO-TOP d = 0.10 (lid lip bottom Z 12.10 over the board edge band X 0.35/79.65); V-KO-BOT d = 0.10 (floor top Z -5.70); Pico, headers and jack inside the cavity (d 4.37 / >= 5.3 / 1.21)."},
+    {"id": "L1.5", "pass": true, "evidence": "Two separate openings in the -X wall: USB rectangle 10.80 x 7.80 centred (Y 22.38, Z 4.90), jack round dia 8.81 centred (Y 44.0, Z 2.5). Plug envelopes clear by 0.40 / 0.40 (>= 0.30), do not intersect each other (ligament 11.81), each opening within 1.5 of its plug (0.40 / 0.405 per side, 0.0 mm3 outside the grown envelope)."},
+    {"id": "L1.6", "pass": true, "evidence": "Separate base and lid (1 shell each, overlap 8e-15 mm3); lip fit 0.25 per side, engagement 2.10; 4 x M3 screws: boss pilots dia 2.50 x 6.10, OD 6.60, lid holes dia 3.40 coaxial (offset 0.00); plate 2.40, outline matches base exactly, total lid height 4.50; seam gap 0, flush."},
+    {"id": "L1.7", "pass": true, "evidence": "Only the two -X port openings and the screw holes: with the ports filled the cavity is sealed (1.40 mm from outside); +X/-Y/+Y walls and floor have no through openings. Walls, floor and lid all 2.40 thick; ligaments >= 3.79 (jack hole to floor top), 5.40 (USB top to rim), 11.81 (between openings)."},
+    {"id": "L1.8", "pass": true, "evidence": "Base and lid each 1 shell, manifold3d NoError, watertight; no unsupported overhang > 1 mm2 in print orientation (base open-up: only a 10.8 mm bridge and a dia 8.81 hole, both exempt; lid face-down: none); bed contact 86.9 % / 86.4 %; thinnest feature lip 1.2 mm; bodies 93.2 x 73.2 x 22.3 and 4.5 mm."},
+    {"id": "L1.9", "pass": true, "evidence": "Closed 93.17 x 73.17 x 24.70 mm <= 100 x 80 x 35, longest along X (board 80 mm side); flat underside at Z -8.10 (bosses also on the bed); tip angle 71 deg; 0.5 N pull margin 17.5 N.mm (USB) / 18.7 N.mm (jack)."},
+    {"id": "L1.10", "pass": true, "evidence": "Install sweep (board silhouette, Pico and jack lie inside it) d = 0.95 >= 0.2; driver columns dia 6 d = 0.60 >= 0; board (M2) and lid (M3) fasteners separate."},
+    {"id": "L1.11", "pass": true, "evidence": "base.stl, lid.stl, base/lid/model.scad, layout.json (with print orientations), self_report.json present and load; units mm; seating rule: standoff tops at board underside (0.00), hole/pilot residual 0.00; self-report agrees with my measurements within 0.004 mm on every clear_of/inside check."}
+  ],
+  "defects": [
+    {
+      "req": "L3.1.3.1 (L2.1.3, V1 L1.1; V1 grading delta 'both mouths X in [-1.8, 0.5]')",
+      "status": "FAIL",
+      "body": "layout",
+      "feature": "Pico 2 pose in layout.json (reference 'module_1_1', part rpi_pico2, x 4.34, y 11.88, z 2.5, rot_z 0) and therefore its USB_MOUTH datum",
+      "face": "USB receptacle mouth face (normal -X) of the Pico, inside the -X end of the board",
+      "location": "USB_MOUTH at (3.04, 22.38, 4.90) board frame = (3.04, 22.38, 13.00) enclosure frame; the -X wall inner face is at X -1.10, outer face at X -3.50",
+      "measured": "USB_MOUTH X = 3.04 mm",
+      "limit": "X in [-1.8, 0.5]",
+      "margin": "-2.54 mm",
+      "reference": "M-PICO2 USB_MOUTH = PCB origin X - usb_overhang (1.3) per parts/rpi_pico2/part.json; JACK_MOUTH (0.0, 44.0, 2.5) passes",
+      "render": "ghost_top.png: purple Pico block (left-centre) with its receptacle stub starting about 3 mm right of the board's -X edge; ghost_iso.png: Pico receptacle set back from the -X wall; ghost_left.png: receptacle seen through the USB opening",
+      "evidence": "layout.json references[1]; measurements.txt 'module_1_1 min (3.04, ...)'",
+      "needed": "USB_MOUTH X must be within [-1.8, 0.5] (currently 3.04; move it at least 2.54 mm toward -X), while keeping the USB plug clearance >= 0.30 and the opening within 1.5 of the plug",
+      "also_fails": [],
+      "severity": "major (weight 2; not a gate)"
+    }
+  ],
+  "observations": [
+    "For Robin (requirement conflict): in V1, L3.1.3.1 (USB_MOUTH X in [-1.8, 0.5]) and L3.1.6.1 (Pico header pins on the board grid, residual <= 0.15) cannot both pass with the catalogue perfboard. USB_MOUTH X = first-pin X - 1.37 - 1.3, so the first pin would have to be at X 0.87-3.17, but the first grid column of the 80 x 60 board is at X 5.71 (and the catalogue's minimum grid margin is 4.74). A V1 design must therefore fail one of the two and can never MEET as written. The [-1.8, 0.5] window looks copied from the jack-mouth rule; something like [2.5, 3.5] (first pin on grid column 0, as E1-01's L2.1.3) would match the Pico. Graded as written.",
+    "Functionally the USB plug still seats with 0.40 mm clearance: its overmold enters the 10.8 x 7.8 opening and runs about 5 mm into the cavity over the board's -X margin, 1.4 mm above the board top.",
+    "Renders: model_left.png shows the two -X openings (round jack left, rectangular USB right, viewed from -X); model_right.png shows a plain +X wall; open_iso.png shows the standoffs and both openings. The orange strips on the opening edges in model_left.png are OpenSCAD cut-face colouring, not geometry. No floating fragments, wrong-side walls or inverted lid seen.",
+    "The four lid-screw bosses stand outside the tray corners (OD 6.6, out to X/Y -6.59 and 86.59/66.59), which makes the convex hull larger than the tray; this does not open the cavity (sealed when the ports are filled).",
+    "Small margins, all passing: keep-out top/bottom 0.10, hole keep-out 0.10, lip engagement 2.10 vs 2.0, pilot depth 5.10 vs 5.0, standoff OD 5.10 vs 5.0."
+  ]
+}

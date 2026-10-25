@@ -1,0 +1,33 @@
+{
+  "id": "plug_trs_3p5",
+  "schema": 1,
+  "units": "mm",
+  "names": ["3.5 mm plug", "3.5 mm trs plug", "trs plug", "aux plug", "audio plug", "3.5 mm cable plug", "jack plug"],
+  "kind": "plug",
+  "source": "3.5 mm TRS plug per IEC 60130-8: shaft diameter 3.5 mm, shaft length about 14 mm; overmold diameter 8.0 x 25 mm is a typical cable (requirements.md A6, M-PLUG-TRS). Measure the owner's cables.",
+  "frame": "plug: origin at the tip, axis along +X toward the cable; it is inserted by moving along -X (mating direction = -PLUG_AXIS)",
+  "params": {
+    "shaft_diameter": {"default": 3.5, "source": "IEC 60130-8: shaft diameter"},
+    "shaft_length": {"default": 14.0, "source": "typical plug: tip to overmold"},
+    "overmold_diameter": {"default": 8.0, "source": "typical cable overmold (requirements.md A6)"},
+    "overmold_length": {"default": 25.0, "source": "typical cable overmold (requirements.md A6)"},
+    "stop_gap": {"default": 1.0, "source": "maximum overmold-to-mouth gap at full mate (requirements.md M-PLUG-TRS)"}
+  },
+  "datasheet_size": ["shaft_length + overmold_length", "overmold_diameter", "overmold_diameter"],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {"id": "shaft", "primitive": "cylinder", "d": "shaft_diameter", "h": "shaft_length", "at": [0, 0, 0], "dir": [1, 0, 0]},
+    {"id": "overmold", "primitive": "cylinder", "d": "overmold_diameter", "h": "overmold_length", "at": ["shaft_length", 0, 0], "dir": [1, 0, 0]}
+  ],
+  "datums": {
+    "PLUG_TIP": {"kind": "point", "at": [0, 0, 0]},
+    "PLUG_AXIS": {"kind": "axis", "at": [0, 0, 0], "dir": [1, 0, 0], "diameter": "shaft_diameter"},
+    "SEAT": {"kind": "point", "at": ["shaft_length - stop_gap", 0, 0]},
+    "OVERMOLD_FACE": {"kind": "plane", "at": ["shaft_length", 0, 0], "normal": [-1, 0, 0]}
+  },
+  "connectors": [],
+  "self_checks": [
+    {"name": "shaft diameter", "expr": "shaft.size_y", "value": 3.5, "tol": 0.05},
+    {"name": "overmold diameter", "expr": "overmold.size_z", "value": 8.0, "tol": 0.3}
+  ]
+}

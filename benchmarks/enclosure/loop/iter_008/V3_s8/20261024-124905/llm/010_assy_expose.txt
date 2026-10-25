@@ -1,0 +1,15 @@
+MODEL: ornith-1.5:9b T=0.3 seed=8000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+L1.5 says: "With the lid closed, a micro-USB cable shall plug fully into the raised Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+
+Must the micro-usb plug plug into the raspberry pi pico 2's usb connector from outside the closed enclosure? Answer yes or no.
+
+=== RESPONSE ===
+{
+  "answer": "yes"
+}

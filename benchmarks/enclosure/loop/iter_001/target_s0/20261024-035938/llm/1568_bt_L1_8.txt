@@ -1,0 +1,16 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A requirement is usually checked by several small tests, each covering one piece of it.
+
+Requirement: The closed enclosure shall have no openings other than the USB opening, the two jack openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.
+One test: The whole object's thickness is at most 4 mm.
+
+Is this test about something the requirement talks about (the same part and the same kind of property, place or behaviour), with no number or direction that disagrees with the requirement?
+
+=== RESPONSE ===
+p_yes=0.840

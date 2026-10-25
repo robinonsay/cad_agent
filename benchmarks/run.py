@@ -43,7 +43,7 @@ from typing import Callable, Dict, Iterator, List, Optional, Sequence, Set, Tupl
 
 REPO = Path(__file__).resolve().parent.parent
 AGENT = REPO / "cad_agent.py"
-TIMEOUT = 20 * 60            # seconds per run
+TIMEOUT = 200 * 60           # seconds per run
 LOCK = Path(tempfile.gettempdir()) / "cad_agent_benchmark.lock"
 # cad_agent's exit codes (cad_agent.EXIT_*). 2 is argparse's usage error (bad --l1,
 # --mode cascade without --l1, ...), raised before any design exists: an invocation
@@ -111,12 +111,12 @@ def plan_runs(requests: Sequence[dict], condition: str, seeds: Sequence[int], ou
     if unknown:
         raise ValueError(f"unknown request ids: {', '.join(unknown)}")
     chosen = [by_id[i] for i in ids] if ids else list(requests)
-    if mode == "cascade":  # the cascade controls to the L1s; without them every run is a usage error
+    if mode in ("cascade", "assembly"):  # both control to the L1s; without them every run is a usage error
         if not with_l1:
-            raise ValueError("mode 'cascade' needs the L1 requirements (do not pass --no-l1)")
+            raise ValueError(f"mode '{mode}' needs the L1 requirements (do not pass --no-l1)")
         missing = [r["id"] for r in chosen if not r.get("l1")]
         if missing:
-            raise ValueError(f"mode 'cascade' needs L1 requirements; none for: {', '.join(missing)}")
+            raise ValueError(f"mode '{mode}' needs L1 requirements; none for: {', '.join(missing)}")
     return [RunSpec(condition, r["id"], seed, r["request"], r.get("l1") if with_l1 else None, mode,
                     out / condition / r["id"] / f"seed{seed}", tuple(agent_args))
             for r in chosen for seed in seeds]
@@ -236,12 +236,12 @@ def main(argv: Optional[List[str]] = None) -> int:
                         help="pass the request's L1 requirements to the agent (the default)")
     parser.add_argument("--no-l1", dest="with_l1", action="store_false",
                         help="withhold the L1 requirements from the agent")
-    parser.add_argument("--mode", default="default", choices=["default", "cascade"],
+    parser.add_argument("--mode", default="default", choices=["default", "cascade", "assembly"],
                         help="agent mode, passed through as --mode when not 'default'")
     parser.add_argument("--agent-args", default="",
                         help='extra cad_agent.py options for every run, e.g. "--judges qwen3.5:9b,gemma4:latest"')
     parser.add_argument("--out", type=Path, required=True, help="output directory")
-    parser.add_argument("--timeout", type=float, default=TIMEOUT, help="seconds per run (default 20 min)")
+    parser.add_argument("--timeout", type=float, default=TIMEOUT, help="seconds per run (default 200 min)")
     args = parser.parse_args(argv)
 
     try:

@@ -1,0 +1,31 @@
+MODEL: ornith-1.5:9b T=0.5 seed=28
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Object: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+Units are millimetres. X runs left to right (width), Y runs front to back (depth; the front is the side facing the user), Z runs up (height). The object rests on a table at z = 0.
+
+Parts of the design:
+  - base: base manifold body, 90 x 70 x 4 mm thick, 70 mm side aligned with the board's 70 mm length, with a 70 x 50 mm recessed floor for the perfboard, a 20 mm x 10 mm USB port opening in one short (50 mm) end wall sized 1.5 mm larger than a micro-USB plug, two 6.35 mm jack openings in the opposite short end wall each 1.5 mm larger than a 3.5 mm plug, four corner standoffs with pilot holes, and four screw bosses
+  - lid: lid manifold body, 90 x 70 x 4 mm thick, sliding-fit over the base with four screw bosses, no openings except the four screw bosses
+
+Requirement L1.9: "The base and the lid shall each be one manifold body that prints on an FDM printer without supports."
+Verification method: analysis
+
+Your previous tests were rejected:
+- the test "All parts form one connected body." does not check this requirement (reviewer said no)
+- the test "The lid sits on top of the base, touching it." does not check this requirement (reviewer said no)
+
+Fill in one or more "touches" tests that together check this requirement.
+A touches test checks: a part is joined to another part with real face contact.
+Slots:
+- part: one part
+- other: the part it must be joined to
+Use every number the requirement gives that this kind of test can check, exactly as given.
+Example: {"tests": [{"part": "lid", "other": "base"}]}
+
+=== RESPONSE ===
+{"tests": [{"other": "base", "part": "lid"}]}

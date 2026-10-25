@@ -1,0 +1,16 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A requirement is usually checked by several small tests, each covering one piece of it.
+
+Requirement: The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout.
+One test: The lid is beside the base, touching it.
+
+Is this test about something the requirement talks about (the same part and the same kind of property, place or behaviour), with no number or direction that disagrees with the requirement?
+
+=== RESPONSE ===
+p_yes=0.277

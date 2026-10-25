@@ -1,0 +1,59 @@
+package: /Users/robinonsay/python/llm-bt/benchmarks/enclosure/loop/iter_012/target_s0/20261024-191427
+Printed bodies (delivered STLs, enclosure frame, mm):
+  base   min (-7.087, -7.087, -8.100) max (77.087, 57.087, 14.200) size 84.174 x 64.174 x 22.300  watertight=True volume=25222.9 mm3
+  lid    min (-7.087, -7.087, 12.100) max (77.087, 57.087, 16.600) size 84.174 x 64.174 x 4.500  watertight=True volume=11622.2 mm3
+  closed assembly size 84.174 x 64.174 x 24.700
+
+Reference parts (layout.json):
+  0 {"id": "board", "part": "perfboard", "x": 0.0, "y": 0.0, "z": 0.0, "rot_z": 0.0}
+  1 {"id": "module_1_1", "part": "rpi_pico2", "x": 4.42, "y": 14.5, "z": 2.5, "rot_z": 0.0}
+  2 {"id": "module_1_1_stack_1", "part": "header_male_2p54", "x": 5.79, "y": 16.11, "z": 0.0, "rot_z": 0.0}
+  3 {"id": "module_1_1_stack_2", "part": "header_male_2p54", "x": 5.79, "y": 33.89, "z": 0.0, "rot_z": 0.0}
+  4 {"id": "connector_1_1", "part": "jack_3p5_pj320a", "x": 58.0, "y": 14.5, "z": 0.0, "rot_z": 0.0}
+  5 {"id": "connector_1_2", "part": "jack_3p5_pj320a", "x": 58.0, "y": 29.5, "z": 0.0, "rot_z": 0.0}
+
+self_report references table:
+{
+ "board": {
+  "part": "perfboard",
+  "d": 1.448231,
+  "check": "inside_board"
+ },
+ "module_1_1": {
+  "part": "rpi_pico2",
+  "d": 4.923251,
+  "check": "inside_contents"
+ },
+ "module_1_1_stack_1": {
+  "part": "header_male_2p54",
+  "d": 5.2,
+  "check": "inside_contents",
+  "d_capped": true,
+  "d_text": "\u2265 5.2000"
+ },
+ "module_1_1_stack_2": {
+  "part": "header_male_2p54",
+  "d": 5.2,
+  "check": "inside_contents",
+  "d_capped": true,
+  "d_text": "\u2265 5.2000"
+ },
+ "connector_1_1": {
+  "part": "jack_3p5_pj320a",
+  "d": 1.675773,
+  "check": "inside_contents"
+ },
+ "connector_1_2": {
+  "part": "jack_3p5_pj320a",
+  "d": 1.675773,
+  "check": "inside_contents"
+ }
+}
+
+Reference part bounding boxes (catalogue geometry instantiated with layout.json params, posed at x,y,z,rot_z; enclosure frame, mm):
+  board                perfboard          min (0.00, 0.00, -1.60) max (70.00, 50.00, 0.00) size 70.00 x 50.00 x 1.60
+  module_1_1           rpi_pico2          min (3.12, 14.50, 2.50) max (55.42, 35.50, 6.30) size 52.30 x 21.00 x 3.80
+  module_1_1_stack_1   header_male_2p54   min (4.52, 14.86, 0.00) max (55.32, 17.36, 2.50) size 50.80 x 2.50 x 2.50
+  module_1_1_stack_2   header_male_2p54   min (4.52, 32.64, 0.00) max (55.32, 35.14, 2.50) size 50.80 x 2.50 x 2.50
+  connector_1_1        jack_3p5_pj320a    min (58.00, 14.50, 0.00) max (70.00, 20.50, 5.00) size 12.00 x 6.00 x 5.00
+  connector_1_2        jack_3p5_pj320a    min (58.00, 29.50, 0.00) max (70.00, 35.50, 5.00) size 12.00 x 6.00 x 5.00

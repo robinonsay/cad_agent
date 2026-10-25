@@ -1,0 +1,16 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A requirement is usually checked by several small tests, each covering one piece of it.
+
+Requirement: The base and the lid shall each be one manifold body that prints on an FDM printer without supports.
+One test: All parts form one connected body.
+
+Is this test about something the requirement talks about (the same part and the same kind of property, place or behaviour), with no number or direction that disagrees with the requirement?
+
+=== RESPONSE ===
+p_yes=0.587

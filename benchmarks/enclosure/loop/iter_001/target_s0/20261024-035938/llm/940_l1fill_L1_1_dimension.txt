@@ -1,0 +1,71 @@
+MODEL: ornith-1.5:9b T=0.5 seed=8
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Object: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+Units are millimetres. X runs left to right (width), Y runs front to back (depth; the front is the side facing the user), Z runs up (height). The object rests on a table at z = 0.
+
+Parts of the design:
+  - base: base manifold body, 90 x 70 x 4 mm thick, 70 mm side aligned with the board's 70 mm length, with a 70 x 50 mm recessed floor for the perfboard, a 20 mm x 10 mm USB port opening in one short (50 mm) end wall sized 1.5 mm larger than a micro-USB plug, two 6.35 mm jack openings in the opposite short end wall each 1.5 mm larger than a 3.5 mm plug, four corner standoffs with pilot holes, and four screw bosses
+  - lid: lid manifold body, 90 x 70 x 4 mm thick, sliding-fit over the base with four screw bosses, no openings except the four screw bosses
+
+Requirement L1.1: "The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout."
+Verification method: inspection
+
+Your previous tests were rejected:
+- the test "The design has exactly 1 lid parts." does not check this requirement (reviewer said no)
+- the test "The lid sits on top of the base, touching it." does not check this requirement (reviewer said no)
+- the test "The lid is centred on the base, left to right and front to back." does not check this requirement (reviewer said no)
+- the test "The lid is along the front edge of the base." contradicts the test "The lid is centred on the base, left to right and front to back.": both cannot hold for every copy
+- the test "The lid is along the back edge of the base." contradicts the test "The lid is centred on the base, left to right and front to back.": both cannot hold for every copy
+- the test "The lid is along the back edge of the base." contradicts the test "The lid is along the front edge of the base.": both cannot hold for every copy
+- the test "The lid is along the left edge of the base." contradicts the test "The lid is centred on the base, left to right and front to back.": both cannot hold for every copy
+- the number "50 mm" in the requirement is not used by any test
+
+Fill in one or more "dimension" tests that together check this requirement.
+A dimension test checks: one size of a part or of the whole object (width, depth, height, length, thickness, diameter, inner diameter, tilt angle, or how high its top/bottom is above the table).
+Slots:
+- part: which part (whole_object = the whole object's overall size)
+- measure: width = left to right (X), depth = front to back (Y), height = vertical (Z), length = longest size, thickness = thinnest size (a tube's wall), diameter, inner_diameter, angle = tilt from the horizontal, top / bottom = height of its top / bottom surface above the table
+- value: the number in mm (degrees for angle)
+- op: eq = equal, ge = at least, le = at most
+- tol: allowed error in mm; 0 = the default
+Use every number the requirement gives that this kind of test can check, exactly as given.
+Example: {"tests": [{"part": "base", "measure": "width", "value": 150, "op": "eq", "tol": 0}]}
+
+=== RESPONSE ===
+{
+  "tests": [
+    {
+      "measure": "width",
+      "op": "eq",
+      "part": "base",
+      "tol": 0,
+      "value": 90
+    },
+    {
+      "measure": "depth",
+      "op": "eq",
+      "part": "base",
+      "tol": 0,
+      "value": 70
+    },
+    {
+      "measure": "thickness",
+      "op": "eq",
+      "part": "base",
+      "tol": 0,
+      "value": 4
+    },
+    {
+      "measure": "width",
+      "op": "eq",
+      "part": "lid",
+      "tol": 0,
+      "value": 90
+    }
+  ]
+}

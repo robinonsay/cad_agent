@@ -1,0 +1,36 @@
+{
+  "id": "jack_3p5_pj320a",
+  "schema": 1,
+  "units": "mm",
+  "names": ["3.5 mm jack", "3.5 mm aux jack", "aux jack", "audio jack", "trs jack", "3.5 mm trs jack", "headphone jack", "pj-320a", "pj320a", "3.5 mm socket"],
+  "kind": "connector",
+  "source": "PJ-320A type PCB-mount 3.5 mm TRS jack, vendor datasheet (e.g. LCSC C18438 drawing): body 12.0 x 6.0 x 5.0 mm, bore 3.6 mm, axis 2.5 mm above the PCB, mouth on the front face (requirements.md A5, M-JACK).",
+  "frame": "jack: origin at the body min corner, body bottom on Z = 0, mouth on the +X face",
+  "params": {
+    "body_length": {"default": 12.0, "source": "datasheet: body length along the plug axis"},
+    "body_width": {"default": 6.0, "source": "datasheet: body width"},
+    "body_height": {"default": 5.0, "source": "datasheet: body height"},
+    "bore_diameter": {"default": 3.6, "source": "datasheet: barrel bore"},
+    "axis_height": {"default": 2.5, "source": "datasheet: plug axis above the PCB"}
+  },
+  "datasheet_size": [12.0, 6.0, 5.0],
+  "size_tolerance": 0.5,
+  "geometry": [
+    {"id": "body", "primitive": "box", "size": ["body_length", "body_width", "body_height"], "at": [0, 0, 0]}
+  ],
+  "datums": {
+    "MOUTH": {"kind": "point", "at": ["body_length", "body_width / 2", "axis_height"]},
+    "AXIS": {"kind": "axis", "at": ["body_length", "body_width / 2", "axis_height"], "dir": [1, 0, 0], "diameter": "bore_diameter"},
+    "BOTTOM": {"kind": "plane", "at": [0, 0, 0], "normal": [0, 0, -1]}
+  },
+  "connectors": [
+    {"name": "jack", "mouth": "MOUTH", "axis": "AXIS", "mates": "plug_trs_3p5", "overhang_datum": "MOUTH"}
+  ],
+  "notes": "footprint pins are not modelled yet (grid conformance, L3.1.6.1, needs them)",
+  "self_checks": [
+    {"name": "R5 bore diameter", "expr": "AXIS.diameter", "value": 3.6, "tol": 0.2},
+    {"name": "R5 axis height above the board", "expr": "AXIS.z", "value": 2.5, "tol": 0.3},
+    {"name": "mouth on the +X face", "expr": "MOUTH.x - body.max_x", "value": 0, "tol": 1e-6},
+    {"name": "axis along +X", "expr": "AXIS.dx", "value": 1, "tol": 1e-6}
+  ]
+}

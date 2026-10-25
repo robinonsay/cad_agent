@@ -1,0 +1,116 @@
+{
+  "judge": "judge_1",
+  "iteration": "006",
+  "design": "target_s0/20261024-103235",
+  "meets_requirements": false,
+  "class": "CORRECT",
+  "verdict": "DOES NOT MEET",
+  "weighted_score": 0.9925,
+  "worst_weight3_normalised_margin": 0.2,
+  "gates": {
+    "G0": true,
+    "G1": true,
+    "G2": true,
+    "G3": true,
+    "G4": true,
+    "G5": true
+  },
+  "requirement_results": [
+    {
+      "id": "L1.1",
+      "pass": false,
+      "evidence": "FAIL on L3.1.6.1 only. Passes: layout.json parses, all ids in catalogue (perfboard, rpi_pico2, header_male_2p54 x2, jack_3p5_pj320a x2); rot_z=0 so USB_AXIS=-X, JACK_AXIS=+X (0 deg); USB_MOUTH=(-1.30,24.09,4.90) in [-1.8,-0.8]; JACK_MOUTH X=70.0 at Y 17.667/32.333; spacing 14.67>=11.0; RBA pairwise interference 0 mm3; parts clear of V-HOLE-KO by >=5 mm; plan bounds X[-1.3,70.0] Y[13.59,35.33]. FAIL L3.1.6.1: Pico header pin X residual to PERF_GRID (origin (2.5,2.5), pitch 2.54) = 1.130 mm > 0.15 for all 40 pins (Y residual 0.000); jack footprint pins not modelled in catalogue -> UNVERIFIED for both jacks."
+    },
+    {
+      "id": "L1.2",
+      "pass": true,
+      "evidence": "Measured on STLs: clear_of(ALL, M-PERF minus 4 x D8 seat columns, 0.5) d=1.100 mm (pen 0); inside(V-PICO, cavity, 0.2) d=1.523 (receptacle corner to USB opening edge); inner X length between end walls 73.0 (>=71.7); cavity 73.0 x 52.2 takes 71 x 51 box (fits proxy)."
+    },
+    {
+      "id": "L1.3",
+      "pass": true,
+      "evidence": "4 standoffs at (2.5,2.5),(67.5,2.5),(2.5,47.5),(67.5,47.5): pitch 65.00/45.00, axis offset 0.00; OD 5.30 (slice z=-3.5); tops all at Z=-1.6 (spread 0); pilot D2.10 (inscribed r 1.050), depth 5.0 (top -1.6 to bottom -6.6, ray cast) - exactly at limit; standoff-floor contact annulus 18.6 mm2>=15; base 1 shell; screw-head columns V-HOLE-KO minus D2.9 core clear d=0.100 (lid lip bottom at Z 12.1)."
+    },
+    {
+      "id": "L1.4",
+      "pass": true,
+      "evidence": "clear_of(ALL,V-KO-TOP,0) d=0.100 (lid lip underside Z=12.1 over board footprint strip X 69.65-70.85 / -0.45..; lid plate underside 14.1); clear_of(ALL,V-KO-BOT minus D7 seats,0) d=0.100 (floor top Z=-5.7); standoff height above floor 4.1 (4-10); inside(headers+jacks, cavity, 0.3) d=1.208."
+    },
+    {
+      "id": "L1.5",
+      "pass": true,
+      "evidence": "USB opening in -X wall: one region X[-4.3,-1.9] Y[18.69,29.49] Z[1.0,8.8] board frame (10.8 x 7.8, centre Y 24.09 Z 4.90). clear_of(ALL, V-USB-PLUG, 0.3) d=0.400 (pen 0). Opening minus (V-USB-PLUG grown 1.5) = 0.0 mm3. The two other small regions the slab method finds (X[-4.3,-2.62] Y[-3.5,-1.82] and Y[51.82,53.5], Z[8.1,14.1]) are the blind corner-boss lid-screw pilots, not through-openings."
+    },
+    {
+      "id": "L1.6",
+      "pass": true,
+      "evidence": "Two D8.81 holes in +X wall, centres Y 17.667 / 32.333, Z 2.5, X[71.1,73.5]. clear_of(ALL, V-JACK-PLUG-k, 0.3) d=0.4005 / 0.4005; envelopes do not intersect; opening minus grown envelopes = 0.0 mm3; D8.81<=11. Count 2 (excluding boss pilots, as for L1.5)."
+    },
+    {
+      "id": "L1.7",
+      "pass": true,
+      "evidence": "Base and lid each 1 shell, manifold NoError; base^lid = 0.0 mm3; lip-to-wall gap 0.250 on all 4 sides (ray cast Z=13); lip engagement 14.1-12.1=2.0 (exactly at limit); 4 bosses D6.0 (free-standing r 2.996-3.0), pilot D2.50, depth 6.0 (8.1->14.1, exactly at limit); lid holes D3.40 coaxial 0.00; nothing above lid (driver access clear); seam: lid plate seated on wall top Z 14.1, gap 0, outer faces flush (-X at -4.30, -Y at -3.50 for both bodies)."
+    },
+    {
+      "id": "L1.8",
+      "pass": true,
+      "evidence": "With the 3 port openings plugged, the cavity component of hull-minus-ALL is 1.0+ mm from outside (sealed) -> 0 unlisted openings; walls -X/+X/-Y/+Y 2.40 (median, range 0), floor 2.40, lid plate 2.40; ligaments: USB top 5.3 to seam, bottom 6.7 to floor top; jack holes 3.8 to floor top, 7.2 to seam, 5.86 between; tray walls monolithic with floor."
+    },
+    {
+      "id": "L1.9",
+      "pass": true,
+      "evidence": "Base (open side up): only downward faces are the D8.81 jack-hole crowns (round holes <=12, exempt) and the 10.8 mm USB-opening top bridge at Z 8.8 (<=15, exempt) -> 0 offending; lid (outer face down): 0 downward faces; shells 1/1, manifold; bed contact 0.875 / 0.867; min feature lip 1.2, mating gaps 0.25; bodies 82.95x62.15x22.2 and 82.95x62.15x4.4 <=200."
+    },
+    {
+      "id": "L1.10",
+      "pass": true,
+      "evidence": "Closed envelope 82.95 x 62.15 x 24.60 (<=90x70x35, X>Y); flat underside at Z=-8.1 incl. bosses; CoM near plan centre, base 77.8x57 -> stable at 5 deg; 0.5 N at USB port (13.0 mm above table) tipping 0.0065 N.m vs restoring 0.04 kg*9.81*0.0389 m = 0.0153 N.m, margin >0 (jacks 10.6 mm, margin larger)."
+    },
+    {
+      "id": "L1.11",
+      "pass": true,
+      "evidence": "Install sweep (RBA plan silhouette incl. receptacle X -1.3, swept +Z to rim+5): only contact is the intended standoff-top seating at Z -1.6; lateral clearance 0.60 (receptacle to -X inner wall at X -1.9) with seats excluded; driver columns D6 clear d=0.60; lid screws (bosses) separate from board screws (standoffs)."
+    },
+    {
+      "id": "L1.12",
+      "pass": true,
+      "evidence": "base.stl, lid.stl, base/lid/model.scad, layout.json (with body print orientations), self_report.json present; STL bbox in mm; seating verified (board bottom = standoff tops, 0.00; hole-pilot offset 0.00); self-report agrees within 0.10 on every clear_of/inside (top/bottom KO 0.100 vs 0.100, hole KO 0.096 vs 0.100, plugs 0.400 vs 0.400, board 1.100, Pico 1.523, contents 1.208, drivers 0.596 vs 0.600)."
+    }
+  ],
+  "defects": [
+    {
+      "requirement_id": "L3.1.6.1 (L2.1.6, L1.1)",
+      "where": "layout: Pico 2 male header rows module_1_1_stack_1 (Y 15.20) and module_1_1_stack_2 (Y 32.98), all 40 pin axes at board-frame X = 1.37 + 2.54*i (i=0..19), Z 0; jacks connector_1_1/1_2 at X 58-70 (footprint pins absent). Board frame = enclosure frame shifted Z by +8.1. Render: ghost_top.png (purple Pico block, left edge flush at board -X edge) and ghost_front.png.",
+      "what": "Header pins do not land on the perfboard's 2.54 mm grid (catalogue PERF_GRID origin = hole 1 at (2.5, 2.5)); jack pin grid conformance cannot be verified because the catalogue jack has no footprint pins.",
+      "expected": "every pin axis within 0.15 mm of a PERF_GRID hole (max residual <= 0.15): Pico pin-1 X in [2.35, 2.65] or [-0.19, 0.11] (mod 2.54), i.e. Pico origin x in [0.98, 1.28] or [-1.56, -1.26]; jack pins checked too.",
+      "observed": "max residual 1.130 mm (X residual 1.130 on all 40 pins, Y residual 0.000; Pico origin x=0.00, pin-1 at X 1.37 vs nearest grid columns -0.04 / 2.50); jack pins: UNVERIFIED (no data). Margin -0.98 mm. Note for Robin: with this grid registration the requirement conflicts with L2.1.3 (USB_MOUTH X in [-1.8,-0.8] forces pin-1 X in [0.87,1.87], best achievable residual 0.63 at x=+0.5), so it cannot pass as written unless the grid registration (not defined in requirements.md; catalogue marks it soft) or L2.1.3 changes.",
+      "severity": "minor"
+    }
+  ],
+  "measured_values": {
+    "board_clearance_L3.2.1.1": 1.1,
+    "pico_in_cavity_L3.2.2.1": 1.523,
+    "headers_jacks_in_cavity_L3.4.3.1": 1.208,
+    "standoffs": "4; pitch 65.00/45.00; offset 0.00",
+    "standoff_OD_pilot_depth": "5.30; 2.10; 5.0",
+    "keepout_top_bottom_d": "0.100 / 0.100",
+    "usb_plug_d": 0.4,
+    "usb_oversize_outside_mm3": 0.0,
+    "usb_opening": "10.8 x 7.8, centre (X -3.1, Y 24.09, Z 4.90) board frame",
+    "jack_plug_d": "0.4005 / 0.4005",
+    "jack_oversize_outside_mm3": 0.0,
+    "jack_openings": "D8.81 at (Y 17.667, Z 2.5) and (Y 32.333, Z 2.5)",
+    "opening_counts": "-X 1 / +X 2 / other 0 (boss pilots excluded)",
+    "lip_gap_engagement": "0.25 all sides; 2.0",
+    "wall_floor_lid": "2.40 / 2.40 / 2.40 (range 0)",
+    "overhang_patches": 0,
+    "bed_contact": "0.875 / 0.867",
+    "shells": "1 / 1",
+    "envelope": "82.95 x 62.15 x 24.60",
+    "install_sweep_lateral_d": 0.6,
+    "driver_d": 0.6,
+    "self_report_agreement": "100% within 0.10",
+    "grid_residual_max": 1.13
+  },
+  "summary": "DOES NOT MEET (class CORRECT: all gates G0-G5 and every weight-3 L3 pass). 11 of 12 L1s pass on independent STL measurement; L1.1 fails only on L3.1.6.1 (weight 1): Pico header pins are 1.13 mm off the catalogue 2.54 mm grid in X, and jack pins are unverifiable. Weighted score 133/134 = 0.993; worst normalised weight-3 margin +0.20 (several checks sit at exactly 0.10 mm over limit: V-KO-TOP 0.100, V-KO-BOT 0.100, USB plug 0.400 vs 0.30, jack plugs 0.4005 vs 0.30); several weight-1/2 checks sit exactly on their limits (pilot depth 5.0, boss pilot depth 6.0, lip engagement 2.0). Observations (not verdict-changing): (1) L3.1.6.1 as written conflicts with L2.1.3 under the catalogue grid origin (best possible residual 0.63 mm for any Pico with USB_MOUTH in [-1.8,-0.8]) and the jack part.json has no footprint pins - a requirement/catalogue issue for Robin; (2) the end-wall/side-wall aperture slabs pick up the four blind corner-boss pilots (Z 8.1-14.1), treated as screw holes; (3) no render shows the interior lid-off (standoffs, lip not visible) and ghost_top colours jack 2 nearly like the board. Frame: design frame equals board frame; enclosure frame = +8.1 in Z, no rotation. claude-context MCP was unavailable this session; no code search was needed (only known paths read)."
+}

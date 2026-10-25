@@ -1,0 +1,106 @@
+package: V1_s0/20261024-192348
+Printed bodies (delivered STLs, enclosure frame, mm):
+  base   min (-6.587, -6.587, -8.100) max (86.587, 66.587, 14.200) size 93.174 x 73.174 x 22.300  watertight=True volume=30220.3 mm3
+  lid    min (-6.587, -6.587, 12.100) max (86.587, 66.587, 16.600) size 93.174 x 73.174 x 4.500  watertight=True volume=14844.9 mm3
+  closed assembly size 93.174 x 73.174 x 24.700
+
+Reference parts (layout.json):
+  0 {"id": "board", "part": "perfboard", "x": 0.0, "y": 0.0, "z": 0.0, "rot_z": 0.0}
+  1 {"id": "module_1_1", "part": "rpi_pico2", "x": 4.34, "y": 11.879999999999999, "z": 2.5, "rot_z": 0.0}
+  2 {"id": "module_1_1_stack_1", "part": "header_male_2p54", "x": 5.71, "y": 13.489999999999998, "z": 0.0, "rot_z": 0.0}
+  3 {"id": "module_1_1_stack_2", "part": "header_male_2p54", "x": 5.71, "y": 31.27, "z": 0.0, "rot_z": 0.0}
+  4 {"id": "connector_1_1", "part": "jack_3p5_pj320a", "x": 12.0, "y": 47.0, "z": 0.0, "rot_z": 180.0}
+
+self_report references table:
+{
+ "board": {
+  "part": "perfboard",
+  "d": 1.099998,
+  "check": "inside_board"
+ },
+ "module_1_1": {
+  "part": "rpi_pico2",
+  "d": 4.370309,
+  "check": "inside_contents"
+ },
+ "module_1_1_stack_1": {
+  "part": "header_male_2p54",
+  "d": 5.2,
+  "check": "inside_contents",
+  "d_capped": true,
+  "d_text": "\u2265 5.2000"
+ },
+ "module_1_1_stack_2": {
+  "part": "header_male_2p54",
+  "d": 5.2,
+  "check": "inside_contents",
+  "d_capped": true,
+  "d_text": "\u2265 5.2000"
+ },
+ "connector_1_1": {
+  "part": "jack_3p5_pj320a",
+  "d": 1.207568,
+  "check": "inside_contents"
+ }
+}
+
+Reference part bounding boxes (catalogue geometry instantiated with layout.json params, posed at x,y,z,rot_z; enclosure frame, mm):
+  board                perfboard          min (0.00, 0.00, -1.60) max (80.00, 60.00, 0.00) size 80.00 x 60.00 x 1.60
+  module_1_1           rpi_pico2          min (3.04, 11.88, 2.50) max (55.34, 32.88, 6.30) size 52.30 x 21.00 x 3.80
+  module_1_1_stack_1   header_male_2p54   min (4.44, 12.24, 0.00) max (55.24, 14.74, 2.50) size 50.80 x 2.50 x 2.50
+  module_1_1_stack_2   header_male_2p54   min (4.44, 30.02, 0.00) max (55.24, 32.52, 2.50) size 50.80 x 2.50 x 2.50
+  connector_1_1        jack_3p5_pj320a    min (0.00, 41.00, 0.00) max (12.00, 47.00, 5.00) size 12.00 x 6.00 x 5.00
+
+layout.json board block:
+{
+ "part": "perfboard",
+ "specimen": null,
+ "params": {
+  "width": 80.0,
+  "depth": 60.0,
+  "thickness": 1.6,
+  "hole_inset": 2.5,
+  "hole_diameter": 3.0,
+  "hole_keepout_diameter": 7.0,
+  "grid_pitch": 2.54,
+  "grid_margin_x": 4.74,
+  "grid_margin_y": 2.54
+ },
+ "holes": [
+  [
+   2.5,
+   2.5,
+   0.0
+  ],
+  [
+   77.5,
+   2.5,
+   0.0
+  ],
+  [
+   2.5,
+   57.5,
+   0.0
+  ],
+  [
+   77.5,
+   57.5,
+   0.0
+  ]
+ ],
+ "hole_diameter": 3.0,
+ "hole_keepout_diameter": 7.0,
+ "grid": {
+  "origin": [
+   5.71,
+   3.33,
+   0.0
+  ],
+  "pitch": 2.54,
+  "count": [
+   28,
+   22
+  ]
+ },
+ "screw": "screw_m2_selftap"
+}

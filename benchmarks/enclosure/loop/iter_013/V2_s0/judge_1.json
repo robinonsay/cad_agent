@@ -1,0 +1,56 @@
+{
+  "judge": "judge_1",
+  "iteration": "013",
+  "design": "V2_s0 (package 20261024-202830)",
+  "verdict": "DOES NOT MEET",
+  "class": "CORRECT",
+  "meets_requirements": false,
+  "weighted_score": "135/137 = 0.985",
+  "worst_weight3_normalised_margin": "+0.20 (several weight-3 checks have only 0.10 mm margin: L3.4.1.1, L3.4.2.1, L3.5.1.1, L3.6.1.1, L3.7.5.1 lip engagement 2.1 vs 2.0)",
+  "frame": "Delivered STL frame = board frame (board top-surface min corner at origin, board Z -1.6..0). The jacks are on the -Y side; the V2 grading frame (jacks at +Y) is obtained by mirroring y' = 45 - y. All coordinates below are in the delivered STL frame unless marked y'.",
+  "gates": {"G0": "PASS", "G1": "PASS", "G2": "PASS", "G3": "PASS", "G4": "PASS", "G5": "PASS"},
+  "measured": {
+    "bodies": "base: 1 shell, manifold NoError, bbox [-6.587,-6.587,-8.1]-[96.587,51.587,14.2]; lid: 1 shell, NoError, bbox [-6.587,-6.587,12.1]-[96.587,51.587,16.6]; base^lid volume 0",
+    "envelope_closed": "103.17 x 58.17 x 24.70 mm (limit 110 x 65 x 35, X longest) PASS",
+    "board_clearance_L3.2.1.1": "d = 1.10 mm (>= 0.50)",
+    "pico_in_cavity_L3.2.2.1": "d = 4.29 mm (>= 0.20)",
+    "headers_jacks_in_cavity_L3.4.3.1": "d = 1.21 mm (>= 0.30)",
+    "standoffs": "4, axes within 0.02 of holes (2.5,2.5),(87.5,2.5),(2.5,42.5),(87.5,42.5); pitch 85.0 x 40.0; OD 5.05-5.14; pilot inscribed ~1.69-1.70 (1.6-1.8), depth 5.1 from top Z -1.6 to -6.7 (>= 5.0); tops coplanar at Z -1.600; height above floor top 4.1",
+    "keepouts": "top d = 0.10 (lid lip underside Z 12.1 vs keep-out top Z 12.0); bottom d = 0.10 (floor top Z -5.7 vs -5.6); screw-head columns d = 0.10",
+    "usb": "plug envelope d = 0.40 (>= 0.30); opening in -X wall (x -3.5..-1.1) Y 17.1-27.9 x Z 1.0-8.8 = 10.8 x 7.8, centre (Y 22.5, Z 4.9) (<= 13 x 10, within grown envelope); 1 region",
+    "jacks": "plug envelopes d = 0.40 each; openings in -Y wall (y -3.5..-1.1), inscribed dia ~8.80, axes X 24.0/45.0/66.0 at Z 2.5 (spacing 21.0); 3 regions; none in +X wall; ligament to floor top 3.8, to seam 7.3, between holes 12.2",
+    "openings_other_L3.8.1.1": "0 unlisted (axis-aligned ray grid at 0.5 mm from all 6 sides: leaks only through the USB and three jack openings); corner screw holes are blind/allowed",
+    "lid": "plate 2.4 thick; outline equals base outline; lip 1.2 thick, gap 0.251 on all 4 sides, engagement 2.1 (Z 12.1-14.2), total lid height 4.5; 4 lid holes inscribed ~3.40 coaxial within 0.02 of boss pilots; boss pilots ~2.50, depth 6.1 (Z 14.2 to 8.1), OD 6.6",
+    "walls_floor_lid_thickness": "all 2.40 (min=max=median)",
+    "overhang_L3.9.1.1": "0 offending patches: only the USB opening top (10.8 mm bridge, exempt) and the upper halves of the three dia 8.8 jack holes (exempt); zero-area degenerate faces at the rim Z 14.2 ignored",
+    "bed_contact": "base 85.6 %, lid 85.0 %",
+    "stability": "tip angles 64-76 deg (> 5); pull margins USB +0.0126 N*m, jack +0.0050 N*m (40 g)",
+    "install_and_drivers": "install sweep d = 1.10 (>= 0.20); driver columns d = 0.60 (>= 0)",
+    "self_report_L3.12.2.1": "agent's clear_of/inside values agree with judge within 0.005 mm (100 %)"
+  },
+  "defects": [
+    {
+      "req": "L3.1.3.1 (L2.1.3, L1.1)",
+      "status": "FAIL",
+      "body": "layout",
+      "feature": "Pico 2 placement along X (layout.json reference module_1_1, x = 4.26) and therefore USB_MOUTH",
+      "face": "USB receptacle mouth face, normal -X",
+      "location": "USB_MOUTH at (2.96, 22.5, 4.9) board frame; receptacle box X 2.96-8.46, Y 18.5-26.5, Z 3.5-6.3",
+      "measured": "USB_MOUTH X = 2.96",
+      "limit": "V2 grading delta: USB_MOUTH X in [-1.8, -0.8]",
+      "margin": "-3.76 mm",
+      "reference": "M-PICO2 (rpi_pico2 part.json) at the declared pose; USB_MOUTH = PCB min-X - usb_overhang 1.3",
+      "render": "ghost_top.png / ghost_iso.png: the Pico's USB end (left) sits about 3 mm in from the board's -X edge",
+      "evidence": "layout.json references[module_1_1].x = 4.26; measurements.txt module_1_1 min x 2.96",
+      "needed": "USB_MOUTH X in [-1.8, -0.8] (Pico PCB min-X in [-0.5, 0.5]); currently 2.96",
+      "note_to_robin": "Probable requirement conflict: with the catalogue perfboard grid for 90 x 45 (32 columns, first column X 5.63, grid_margin_x 4.74) the Pico's first header pin can sit no closer than X 5.63, which puts USB_MOUTH at 2.96 exactly as this design did (L2.1.3's own wording, 'first header pin on the grid column nearest the -X edge', is met; grid residual 0.00). Any mouth X in [-1.8, -0.8] needs the first pin at X 0.87-1.87, which is at least 0.32 mm off any grid position and outside the grid, so L3.1.3.1 and L3.1.6.1 cannot both pass. Suggest changing the V2 delta to mouth X in [2.46, 3.46]. Graded as written per rubric section 7."
+    }
+  ],
+  "observations": [
+    "Pico PCB long edge (Y 12.0, Z 2.5-3.5) is in zero-gap contact with the back faces of jacks 1 and 2 (X 21-27 and 42-48, Y 12.0): intersection 0 mm^3 so L3.1.4.1 passes, but there is no assembly tolerance; the vendor drawing notes a 12.2 mm body, which would overlap by 0.2 mm. Visible in ghost_top.png (jack blocks touch the Pico block).",
+    "Several critical checks pass with only 0.10 mm margin (lid lip underside Z 12.1 vs top keep-out 12.0; floor top Z -5.7 vs bottom keep-out -5.6; screw-head columns; lip engagement 2.1 vs 2.0; plug clearances 0.40 vs 0.30).",
+    "Corner bosses (axis (-3.287,-3.287) etc., r 3.3) intrude about 0.21 mm into the cavity's inner corners (corner (-1.1,-1.1) is 3.09 from the axis); harmless (board corner 1.35 away, lid lip notched to r 3.55, gap 0.25).",
+    "base.stl contains zero-area degenerate downward triangles at Z 14.2 where the corner bosses meet the rim (e.g. near (0,-3.5), (-3.5,0)); no effect on manifold status.",
+    "claude-context MCP server was unavailable this session; no code search was needed (only known paths were read)."
+  ]
+}

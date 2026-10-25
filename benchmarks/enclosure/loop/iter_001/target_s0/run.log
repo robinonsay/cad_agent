@@ -1,0 +1,253 @@
+Working in /Users/robinonsay/python/llm-bt/benchmarks/enclosure/loop/iter_001/target_s0/20261024-035938 (OpenSCAD: /Applications/OpenSCAD-2021.01.app/Contents/MacOS/OpenSCAD, mode cascade)
+[ INFO] extract_components   : components: base, lid
+[ INFO] shape:base           : base: shape box (3 votes)
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] shape:lid            : lid: shape panel (2 votes)
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] parent:lid           : lid: parent base (named)
+[ INFO] side:lid             : lid: possible sides of base: ['top', 'bottom', 'back', 'front'] (rejected [])
+[ INFO] side:lid             : lid: side scores {top: 0.52, bottom: 0.49, back: 0.57, front: 0.53} -> back
+[ INFO] finish:lid           : lid: placed {"parent": "base", "side": "back", "x": "center", "y": "center", "z": "center"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 2 routed to lid
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 50 routed to base
+[ INFO] account_for_numbers  : number 0.5 routed to base
+[ INFO] account_for_numbers  : number 12 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 1.5 routed to base
+[ INFO] account_for_numbers  : number 2 routed to base
+[ INFO] params:base          : base: {"width": 90.0, "depth": 70.0, "height": 4.0}
+[ INFO] params:lid           : lid: {"width": 90.0, "height": 4.0, "thickness": 4.0, "angle": 90.0, "lean": "back"}
+[ INFO] compile_check        : compiled: 1 body, size [90, 74, 4]
+[ INFO] physical_checks      : volume 26640 mm^3, centre of mass [45, 37, 2]
+[ WARN] translate:L1.1       : translate_L1.1: saturated after 30 iteration(s); error 1 hard / 0.000 / 4.000; residual: the test "The design has exactly 1 parts." does not check this requirement (reviewer said no); the test "The design has exactly 1 lid parts." does not check this requirement (reviewer said no); the test "The base's thickness is 4 mm (within 0.5 mm)." does not check this requirement (reviewer said no); the test "The lid sits on top of the base, touching it." does not check this requirement (reviewer said no)

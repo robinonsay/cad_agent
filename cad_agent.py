@@ -39,6 +39,11 @@ a provisional design, turns the person's L1 requirements into frozen typed check
 (cad_checks.py) and then drives the design to those checks in a closed loop,
 ending with a verification matrix instead of per-part yes/no verdicts.
 
+With --mode assembly (alias enclosure; needs --l1), assembly.py designs from a
+parts catalogue (parts.py) and a feature graph with cuts and separate printed
+bodies (feature_graph.py). It is built milestone by milestone and stops with a
+typed "not implemented: <stage>" where the tree ends today.
+
 Conventions shared by every prompt and by the geometry code: millimetres;
 X runs left -> right (width), Y runs front -> back (depth), Z runs up (height).
 """
@@ -846,6 +851,7 @@ class Design:
     best: Optional[Tuple[int, List[Component]]] = None
     export_path: Optional[Path] = None
     cascade: Optional[object] = None                          # cascade.CascadeState in --mode cascade
+    assy: Optional[object] = None                             # assembly.AssemblyState in --mode assembly
 
     def component(self, name: str) -> Optional[Component]:
         return next((c for c in self.components if c.name == name), None)
@@ -1361,7 +1367,7 @@ def assign_roles(raws: Sequence[Tuple[str, str, int]], request: str) -> List[Com
 class ExtractComponents(Step):
     """LLM: split the request into named components with a count (first = main body)."""
 
-    def __init__(self, design: Design, llm: OllamaAgent, max_attempts: int = 3):
+    def __init__(self, design: Design, llm: OllamaAgent, max_attempts: int = 30):
         super().__init__("extract_components", design)
         self.llm = llm
         self.max_attempts = max_attempts
@@ -1507,7 +1513,7 @@ def propose_params(llm: OllamaAgent, d: Design, c: Component, notes: List[str],
 class FillParams(Step):
     """LLM fills the chosen shape's typed parameters; Python validates them."""
 
-    def __init__(self, design: Design, llm: OllamaAgent, comp: Component, max_attempts: int = 3):
+    def __init__(self, design: Design, llm: OllamaAgent, comp: Component, max_attempts: int = 30):
         super().__init__(f"params:{comp.name}", design)
         self.llm, self.comp, self.max_attempts = llm, comp, max_attempts
 
@@ -1951,7 +1957,7 @@ class AccountForNumbers(Step):
     routes a note to that component's FillParams. Bounded per number.
     """
 
-    def __init__(self, design: Design, llm: OllamaAgent, max_attempts: int = 2):
+    def __init__(self, design: Design, llm: OllamaAgent, max_attempts: int = 20):
         super().__init__("account_for_numbers", design)
         self.llm, self.max_attempts = llm, max_attempts
 
@@ -2190,6 +2196,8 @@ def write_design_json(d: Design, outcome: Optional[str] = None) -> Path:
         rows = getattr(d.cascade, "rows", None) or []
         record["verification"]["all_verified"] = getattr(d.cascade, "outcome", None) == "verified"
         record["verification"]["l1_not_passed"] = [r["l1_id"] for r in rows if r.get("status") != "pass"]
+    if d.assy is not None and hasattr(d.assy, "summary"):
+        record["assembly"] = d.assy.summary()
     path = d.workdir / "design.json"
     path.write_text(json.dumps(record, indent=2, default=str))
     return path
@@ -2370,7 +2378,7 @@ class PhysicalChecks(Step):
             p[a] < root.position[a] - 1e-3 or p[a] + c.size[a] > root.position[a] + root.size[a] + 1e-3
             for p in c.positions for a in (0, 1))]
         tries = d.number_attempts.get("tipping", 0)
-        if overhang and tries < 2:
+        if overhang and tries < 20:
             d.number_attempts["tipping"] = tries + 1
             for c in overhang:
                 c.notes.setdefault("params", []).append(
@@ -2406,7 +2414,7 @@ class VerifyComponent(Step):
     best-ranked one replaces it. Rejected designs are never revisited.
     """
 
-    def __init__(self, design: Design, llm: OllamaAgent, comp: Component, max_attempts: int = 6):
+    def __init__(self, design: Design, llm: OllamaAgent, comp: Component, max_attempts: int = 60):
         super().__init__(f"verify:{comp.name}", design)
         self.llm, self.comp, self.max_attempts = llm, comp, max_attempts
 
@@ -2754,7 +2762,7 @@ class CheckComponentVisual(Step):
 class VisualVerdict(Step):
     """Turn the visual answers into targeted repairs, keeping the best design so far."""
 
-    def __init__(self, design: Design, llm: OllamaAgent, max_rounds: int = 2):
+    def __init__(self, design: Design, llm: OllamaAgent, max_rounds: int = 20):
         super().__init__("visual_verdict", design)
         self.llm, self.max_rounds = llm, max_rounds
 
@@ -2930,7 +2938,7 @@ class ExportModel(Step):
 
 def build_tree(design: Design, llm: OllamaAgent, vlm: Optional[OllamaAgent] = None,
                input_fn: Callable[[str], str] = input, auto_approve: bool = False,
-               max_rounds: int = 40, max_visual_rounds: int = 2) -> py_trees.behaviour.Behaviour:
+               max_rounds: int = 400, max_visual_rounds: int = 20) -> py_trees.behaviour.Behaviour:
     understand = py_trees.composites.Sequence("understand", memory=True, children=[
         ExtractComponents(design, llm),
         ForEach("components", design, lambda d: [component_subtree(d, llm, c) for c in d.components]),
@@ -2958,7 +2966,7 @@ def build_tree(design: Design, llm: OllamaAgent, vlm: Optional[OllamaAgent] = No
     ])
 
 
-def run(root: py_trees.behaviour.Behaviour, max_ticks: int = 10000) -> Status:
+def run(root: py_trees.behaviour.Behaviour, max_ticks: int = 100000) -> Status:
     """Tick the tree until it stops RUNNING."""
     tree = py_trees.trees.BehaviourTree(root)
     tree.setup()
@@ -3031,15 +3039,25 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument("--vision-model", default=None, help="vision model (default: --model)")
     parser.add_argument("--think", action="store_true", help="let the model reason first (slower)")
     parser.add_argument("--auto", action="store_true", help="accept without asking the person")
-    parser.add_argument("--max-visual-rounds", type=int, default=2)
+    parser.add_argument("--max-visual-rounds", type=int, default=20)
     parser.add_argument("--seed", type=int, default=0,
                         help="offset for every LLM sampling seed; 0 = the default deterministic run")
     parser.add_argument("--l1", default=None, metavar="PATH_OR_JSON",
                         help="the person's L1 requirements: a JSON file or inline JSON list of {id,text,method}")
-    parser.add_argument("--mode", default="default", choices=["default", "cascade"],
+    parser.add_argument("--mode", default="default", choices=["default", "cascade", "assembly", "enclosure"],
                         help="default: back-translation verification; cascade: L1s -> frozen typed checks, "
-                             "closed-loop design against them (needs --l1; see cascade.py)")
+                             "closed-loop design against them (needs --l1; see cascade.py); assembly (alias "
+                             "enclosure): catalogue parts + feature graph, base and lid bodies (needs --l1; "
+                             "see assembly.py)")
+    parser.add_argument("--parts", type=Path, default=Path(__file__).parent / "benchmarks/enclosure/parts",
+                        help="assembly mode: the parts catalogue folder (one <id>/part.json per part)")
+    parser.add_argument("--rules", type=Path, default=Path(__file__).parent / "design_rules.json",
+                        help="assembly mode: generic design rules (FDM fits, fasteners), each value with a source")
+    parser.add_argument("--with-models", action="store_true",
+                        help="assembly mode: allow imported mesh models found in --parts (second arm)")
     args = parser.parse_args(argv)
+    if args.mode == "enclosure":
+        args.mode = "assembly"
 
     base_request = " ".join(args.request).strip() or input("What should I build?\n> ").strip()
     if not base_request:
@@ -3050,6 +3068,8 @@ def main(argv: Optional[List[str]] = None) -> int:
         parser.error(f"--l1: {e}")
     if args.mode == "cascade" and not l1:
         parser.error("--mode cascade needs --l1 (the requirements are what the cascade controls to)")
+    if args.mode == "assembly" and not l1:
+        parser.error("--mode assembly needs --l1 (the requirements are what the assembly loop controls to)")
     request = request_with_l1(base_request, l1)
 
     py_trees.logging.level = py_trees.logging.Level.INFO
@@ -3061,10 +3081,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     vlm = OllamaAgent(args.vision_model or args.model, args.host, log_dir=workdir / "llm",
                       think=args.think, seed_offset=args.seed) if args.vision else None
     design = Design(request=request, workdir=workdir, seed=args.seed, l1=l1, base_request=base_request)
-    cascade_mod = None
+    cascade_mod = assy_mod = None
     if args.mode == "cascade":
         import cascade as cascade_mod  # imported here: it imports this module back
         root = cascade_mod.build_cascade_tree(design, llm, auto_approve=args.auto)
+    elif args.mode == "assembly":
+        import assembly as assy_mod  # imported here: it imports this module back
+        root = assy_mod.build_assembly_tree(design, llm, parts_dir=args.parts, rules_path=args.rules,
+                                            with_models=args.with_models, auto_approve=args.auto)
     else:
         root = build_tree(design, llm, vlm, auto_approve=args.auto, max_visual_rounds=args.max_visual_rounds)
     print(f"Working in {workdir} (OpenSCAD: {OPENSCAD}, mode {args.mode})", flush=True)
@@ -3082,6 +3106,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     except Exception:
         write_design_json(design, "crashed")  # benchmarks must see a crash as a crash, then the traceback
         raise
+    if status == Status.SUCCESS and assy_mod is not None:
+        rec = assy_mod.finalize(design, llm)
+        write_design_json(design, rec["outcome"])
+        print(f"Done: {design.export_path}; {llm.calls} LLM calls, {time.time() - started:.0f} s")
+        return EXIT_OK if rec["outcome"] == "verified" else EXIT_UNSATISFIED
     if status == Status.SUCCESS and cascade_mod is not None:
         rec = cascade_mod.finalize(design, llm)
         write_design_json(design, rec["outcome"])

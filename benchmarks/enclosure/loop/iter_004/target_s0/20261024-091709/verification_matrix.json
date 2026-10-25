@@ -1,0 +1,320 @@
+[
+  {
+    "l1_id": "L1.1",
+    "text": "The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout.",
+    "method": "inspection",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.2",
+    "text": "The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports.",
+    "method": "analysis",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.3",
+    "text": "The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board.",
+    "method": "inspection",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.4",
+    "text": "With the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico and jacks shall lie inside the enclosure.",
+    "method": "analysis",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.5",
+    "text": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.6",
+    "text": "With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time through two openings in the opposite end wall without touching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.7",
+    "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed.",
+    "method": "inspection",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.8",
+    "text": "The closed enclosure shall have no openings other than the USB opening, the two jack openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.",
+    "method": "analysis",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.9",
+    "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.",
+    "method": "analysis",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.10",
+    "text": "The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat on a desk without tipping.",
+    "method": "analysis",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.11",
+    "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.",
+    "method": "test",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "L1.12",
+    "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no check covers this requirement"
+  },
+  {
+    "l1_id": "rules",
+    "text": "rule-derived checks (generic consequences of the contents, the spec and printing)",
+    "method": "analysis",
+    "passed": true,
+    "margin": -0.0,
+    "checks": [
+      {
+        "id": "separable",
+        "type": "separable",
+        "text": "base and lid are each one shell and overlap by at most 1 mm3 when closed",
+        "passed": true,
+        "margin": 1.0,
+        "evidence": "shells {'base': 1, 'lid': 1}, worst overlap -1.073e-16 mm3 (max 1)"
+      },
+      {
+        "id": "inside_references",
+        "type": "inside",
+        "text": "the board assembly (minus the seat columns) lies inside the closed enclosure with 0.5 mm clearance",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "references: 0.5000 mm from the enclosure (need >= 0.5)"
+      },
+      {
+        "id": "clear_board",
+        "type": "clear_of",
+        "text": "no printed surface within 0.5 mm of the board, except the standoff tops in the seat columns",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "min gap to board 0.5000 mm (need >= 0.5)"
+      },
+      {
+        "id": "clear_module_1_1_envelope",
+        "type": "clear_of",
+        "text": "module_1_1_envelope at least 0.2 mm from every printed surface",
+        "passed": true,
+        "margin": 0.31,
+        "evidence": "min gap to module_1_1_envelope 0.5000 mm (need >= 0.2)"
+      },
+      {
+        "id": "clear_keepout_top",
+        "type": "clear_of",
+        "text": "nothing printed inside the component keep-out above the board",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "min gap to board_ko_top 0.0000 mm (need >= 0)"
+      },
+      {
+        "id": "clear_keepout_bottom",
+        "type": "clear_of",
+        "text": "nothing printed inside the solder-side keep-out, except standoffs in the seat columns",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "min gap to board_ko_bot 0.0000 mm (need >= 0)"
+      },
+      {
+        "id": "clear_module_1_1_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in module_1_1 at full mate and its withdrawal path stay 0.3 mm from the enclosure",
+        "passed": true,
+        "margin": 0.009999,
+        "evidence": "min gap to module_1_1_plug 0.3000 mm (need >= 0.3)"
+      },
+      {
+        "id": "clear_connector_1_1_plug",
+        "type": "clear_of",
+        "text": "the plug_trs_3p5 plug in connector_1_1 at full mate and its withdrawal path stay 0.3 mm from the enclosure",
+        "passed": true,
+        "margin": 0.009594,
+        "evidence": "min gap to connector_1_1_plug 0.2996 mm (need >= 0.3)"
+      },
+      {
+        "id": "clear_connector_1_2_plug",
+        "type": "clear_of",
+        "text": "the plug_trs_3p5 plug in connector_1_2 at full mate and its withdrawal path stay 0.3 mm from the enclosure",
+        "passed": true,
+        "margin": 0.009599,
+        "evidence": "min gap to connector_1_2_plug 0.2996 mm (need >= 0.3)"
+      },
+      {
+        "id": "apertures_-X",
+        "type": "aperture_count",
+        "text": "wall -X has exactly 1 opening(s)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall -X: 1 opening(s), expected 1"
+      },
+      {
+        "id": "oversize_module_1_1_cut",
+        "type": "aperture_oversize",
+        "text": "the opening of module_1_1_cut is at most 1.5 mm bigger than its plug per side",
+        "passed": true,
+        "margin": 1.21,
+        "evidence": "opening 10.600 x 7.600 vs plug 10.000 x 7.000: 0.300 mm per side (max 1.5)"
+      },
+      {
+        "id": "apertures_+X",
+        "type": "aperture_count",
+        "text": "wall +X has exactly 2 opening(s)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall +X: 2 opening(s), expected 2"
+      },
+      {
+        "id": "oversize_connector_1_1_cut",
+        "type": "aperture_oversize",
+        "text": "the opening of connector_1_1_cut is at most 1.5 mm bigger than its plug per side",
+        "passed": true,
+        "margin": 1.21,
+        "evidence": "opening 8.600 x 8.600 vs plug 8.000 x 8.000: 0.300 mm per side (max 1.5)"
+      },
+      {
+        "id": "oversize_connector_1_2_cut",
+        "type": "aperture_oversize",
+        "text": "the opening of connector_1_2_cut is at most 1.5 mm bigger than its plug per side",
+        "passed": true,
+        "margin": 1.21,
+        "evidence": "opening 8.600 x 8.600 vs plug 8.000 x 8.000: 0.300 mm per side (max 1.5)"
+      },
+      {
+        "id": "apertures_-Y",
+        "type": "aperture_count",
+        "text": "wall -Y has exactly 0 opening(s)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall -Y: 0 opening(s), expected 0"
+      },
+      {
+        "id": "apertures_+Y",
+        "type": "aperture_count",
+        "text": "wall +Y has exactly 0 opening(s)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall +Y: 0 opening(s), expected 0"
+      },
+      {
+        "id": "seated",
+        "type": "seated",
+        "text": "the board rests on the standoff tops (gap <= 0.1 mm) with every hole on a pilot axis (offset <= 0.25 mm)",
+        "passed": true,
+        "margin": 0.1,
+        "evidence": "worst standoff gap 0.0000 mm (max 0.1), worst hole-pilot offset 0.0000 mm (max 0.25)"
+      },
+      {
+        "id": "bbox",
+        "type": "bbox_within",
+        "text": "closed outside size within 90 x 70 x 35 mm",
+        "passed": true,
+        "margin": 7.760231,
+        "evidence": "outside 82.25 x 60.95 x 24.40 mm, max 90 x 70 x 35 with X longest"
+      },
+      {
+        "id": "below_split_module_1_1_cut",
+        "type": "port_below_split",
+        "text": "module_1_1_cut top plus the minimum ligament stays below the split plane",
+        "passed": true,
+        "margin": 3.81,
+        "evidence": "module_1_1_cut top 8.700 + ligament 1.5 vs split 14.000"
+      },
+      {
+        "id": "below_split_connector_1_1_cut",
+        "type": "port_below_split",
+        "text": "connector_1_1_cut top plus the minimum ligament stays below the split plane",
+        "passed": true,
+        "margin": 5.71,
+        "evidence": "connector_1_1_cut top 6.800 + ligament 1.5 vs split 14.000"
+      },
+      {
+        "id": "below_split_connector_1_2_cut",
+        "type": "port_below_split",
+        "text": "connector_1_2_cut top plus the minimum ligament stays below the split plane",
+        "passed": true,
+        "margin": 5.71,
+        "evidence": "connector_1_2_cut top 6.800 + ligament 1.5 vs split 14.000"
+      },
+      {
+        "id": "pilot_depth_standoff_1",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_1 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "pilot depth 5 vs standoff 4.000 + floor 2.400 - 0.8"
+      },
+      {
+        "id": "pilot_depth_standoff_2",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_2 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "pilot depth 5 vs standoff 4.000 + floor 2.400 - 0.8"
+      },
+      {
+        "id": "pilot_depth_standoff_3",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_3 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "pilot depth 5 vs standoff 4.000 + floor 2.400 - 0.8"
+      },
+      {
+        "id": "pilot_depth_standoff_4",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_4 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "pilot depth 5 vs standoff 4.000 + floor 2.400 - 0.8"
+      }
+    ],
+    "note": ""
+  }
+]

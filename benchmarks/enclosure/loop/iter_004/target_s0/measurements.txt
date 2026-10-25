@@ -1,0 +1,16 @@
+package: 20261024-091709
+
+## Printed bodies (delivered STLs, closed pose, mm)
+body           xmin     ymin     zmin     xmax     ymax     zmax      dx      dy      dz watertight volume_mm3
+base          -6.77    -5.47    -8.00    75.47    55.47    14.00   82.25   60.95   22.00 True 23698
+lid           -6.77    -5.47    12.00    75.47    55.47    16.40   82.25   60.95    4.40 True 10991
+assembly      -6.77    -5.47    -8.00    75.47    55.47    16.40   82.25   60.95   24.40
+
+## Reference parts (layout.json pose + catalogue geometry, enclosure frame, mm)
+id                           part               edge     xmin     ymin     zmin     xmax     ymax     zmax
+board                        perfboard          None     0.00     0.00    -1.60    70.00    50.00     0.00
+module_1_1                   rpi_pico2          -X      -1.30    13.59     2.50    51.00    34.59     6.30
+module_1_1_stack_1           header_male_2p54   -X       0.10    13.95     0.00    50.90    16.45     2.50
+module_1_1_stack_2           header_male_2p54   -X       0.10    31.73     0.00    50.90    34.23     2.50
+connector_1_1                jack_3p5_pj320a    +X      58.00    14.67     0.00    70.00    20.67     5.00
+connector_1_2                jack_3p5_pj320a    +X      58.00    29.33     0.00    70.00    35.33     5.00

@@ -1,0 +1,24 @@
+MODEL: ornith-1.5:9b T=0.7 seed=12002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for a 90 x 45 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 lies along the board with its micro-USB port exposed through one short end, and three 3.5 mm jacks sit in a row along one long edge of the board, exposed through that long side of the enclosure. Cables must plug in with the lid on. The enclosure is a base and a removable lid, printed on an FDM printer.
+
+The board edges:
+- -X: the short (45 mm) end at -X
+- +X: the short (45 mm) end at +X
+- -Y: the long (90 mm) side at -Y
+- +Y: the long (90 mm) side at +Y
+
+Which board edge does each part's connector face, so its cable plugs in through that end or side of the enclosure?
+- module_1: raspberry pi pico 2 x1 (usb connector)
+- connector_1: 3.5 mm jack x3 (jack connector)
+
+=== RESPONSE ===
+{
+  "connector_1": "-Y",
+  "module_1": "-X"
+}

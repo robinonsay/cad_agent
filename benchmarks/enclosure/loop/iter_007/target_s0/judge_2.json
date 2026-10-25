@@ -1,0 +1,64 @@
+{
+  "judge": "independent judge #2, iteration 007, design target_s0 (package 20261024-112706)",
+  "verdict": "DOES NOT MEET",
+  "class": "CORRECT (no gate fails, every weight-3 L3 passes)",
+  "meets_requirements": false,
+  "weighted_score": "133/134 = 0.993 over applicable non-physical L3s",
+  "worst_weight3_normalised_margin": "+0.20 (L3.4.1.1, L3.4.2.1, L3.5.1.1 and L3.6.1.1 each pass with only 0.10 mm margin)",
+  "gates": {"G0": "pass (see observation O1)", "G1": "pass", "G2": "pass", "G3": "pass", "G4": "pass", "G5": "pass"},
+  "frame": "Delivered STLs are already in the board frame (board top Z=0, USB end -X). Enclosure-frame Z = board Z + 8.10. No transform applied. All coordinates below are board frame, mm.",
+  "measured_values": {
+    "L3.2.1.1 board clearance": "d = 1.100 (limit >= 0.5)",
+    "L3.2.2.1 / L3.4.3.1 Pico in cavity / headers+jacks in cavity": "1.523 / 1.208 (limits >= 0.2 / >= 0.3)",
+    "L3.2.2.2 inner X length": "73.0 (X -1.9 to 71.1; limit >= 71.7)",
+    "L3.3.1.x standoffs": "4; centres (2.5,2.5),(67.5,2.5),(2.5,47.5),(67.5,47.5) within 0.02; pitch 65.0 / 45.0; axis offset <= 0.02; tops all Z -1.60 (= PERF_BOTTOM)",
+    "L3.3.2.1 / L3.3.3.x standoff OD, pilot": "OD 5.25-5.34; pilot inscribed 2.084, max 2.119; depth 5.1 (Z -1.6 to -6.7)",
+    "L3.4.1.1 / L3.4.2.1 keep-outs": "d = 0.100 (lid lip underside Z 12.1) / d = 0.100 (floor top Z -5.7)",
+    "L3.4.2.2 standoff height above floor": "4.1",
+    "L3.5.1.1 / L3.5.2.1 USB": "plug d = 0.400; aperture fully inside the 1.5-grown plug envelope (0 mm3 outside)",
+    "USB opening": "10.8 (Y) x 7.8 (Z), Y 18.69-29.49, Z 1.0-8.8, centre (Y 24.09, Z 4.9), through the -X wall X -4.3 to -1.9",
+    "L3.6.1.1 / L3.6.2.1 jacks": "plug d = 0.4005 each; envelopes do not intersect; apertures 0 mm3 outside grown envelopes",
+    "Jack openings": "round D 8.81 at (Y 17.60, Z 2.5) and (Y 32.84, Z 2.5) through the +X wall X 71.1-73.5; axis spacing 15.24",
+    "Opening counts -X / +X / other": "1 / 2 / 0 (besides blind boss pilots under the lid screw holes and blind standoff pilots)",
+    "L3.7.2.x lip": "gap 0.25 on all four sides; engagement 2.1 (lip Z 12.1 to rim 14.2)",
+    "L3.7.3.x lid screws": "4 bosses OD 6.1, pilot ID 2.48-2.52, depth 6.1; lid holes inscribed 3.374, coaxial within 0.02; lid-driver columns d = 0.0 (no interference)",
+    "L3.8.2.x thickness": "walls -X/+X/-Y/+Y 2.40/2.40/2.40/2.40, floor 2.40, lid plate 2.40 (ranges < 0.01)",
+    "L3.9.1.1 / L3.9.3.1 printability": "no offending overhangs (only round jack holes D 8.8 and a 10.8 mm bridge over the USB opening, both exempt); bed contact base 87%, lid 86%",
+    "L3.9.4.1 thin features": "0 samples below 0.8 mm on either body",
+    "L3.9.2.1 shells": "base 1 / lid 1, manifold3d NoError; base^lid volume 0",
+    "L3.10.1.1 closed envelope": "83.12 x 62.32 x 24.70",
+    "L3.10.2.1 / L3.10.3.1 stability": "stable at 5 deg; port pull tipping moment 6.5 N.mm (USB, Z 13.0 above table) vs restoring 16.3 N.mm",
+    "L3.11.x install / drivers": "install sweep lateral clearance >= 0.6 (USB receptacle to -X wall inner face), only contact is the intended seat on the standoff tops; driver columns d = 0.6",
+    "L3.12.2.1 self-report": "all 17 reported clear_of/inside values agree within 0.005 mm, same pass/fail"
+  },
+  "requirement_results": {
+    "L1.1": "FAIL - only L3.1.6.1 (grid conformance, weight 1) fails; L3.1.1.1, L3.1.2.1, L3.1.3.1, L3.1.4.1-3, L3.1.5.1 pass",
+    "L1.2": "PASS", "L1.3": "PASS", "L1.4": "PASS", "L1.5": "PASS", "L1.6": "PASS", "L1.7": "PASS",
+    "L1.8": "PASS", "L1.9": "PASS", "L1.10": "PASS", "L1.11": "PASS", "L1.12": "PASS (see observations O1, O3)"
+  },
+  "defects": [
+    {
+      "req": "L3.1.6.1 (L2.1.6, L1.1)",
+      "status": "FAIL",
+      "body": "layout",
+      "feature": "Pico 2 header pins (module_1_1_stack_1/2) and both PJ-320A jack terminals (connector_1_1, connector_1_2) in layout.json",
+      "face": "pin axes on the perfboard top (Z 0)",
+      "location": "Pico pins X = 1.37 + 2.54 i (i = 0..19), rows Y 15.20 and 32.98: every pin 1.13 off the nearest grid column (grid columns X = 2.50 + 2.54 k, nearest -0.04 and 2.50); Y is on grid. Jack 1 terminals (66.8,15.2) 0.80, (63.8,15.2) 0.34, (59.8,15.2) 1.12, (58.8,20.0) 0.51; jack 2 terminals (66.8,30.44) 0.80, (63.8,30.44) 0.34, (59.8,30.44) 1.12, (58.8,35.24) 0.51",
+      "measured": "max pin-to-grid residual 1.13 mm (PERF_GRID origin (2.5, 2.5), pitch 2.54, from the perfboard catalogue)",
+      "limit": "<= 0.15 mm",
+      "margin": "-0.98 mm",
+      "reference": "PERF_GRID (catalogue perfboard grid registered to PERF_HOLE_1), M-HDR PINS, M-JACK PINS",
+      "render": "ghost_top.png: Pico (purple block, left) and jacks (right, against the +X wall); the off-grid offset itself is not visible in a render, it is a layout-number defect",
+      "evidence": "layout.json references; agent's own grid_conformance check reports the same 1.13",
+      "needed": "every Pico pin and jack terminal axis within 0.15 of a grid hole. Pico: pin 0 X within 0.15 of 2.50 or -0.04 (now 1.37), but that puts USB_MOUTH at X -0.17 or -2.71, outside L2.1.3's [-1.8, -0.8]. Jacks: the catalogue PJ-320A terminal pattern (3.0 / 4.0 / 1.0 mm spacings) cannot get below 0.54 for any grid registration. As written this L3 cannot pass together with L2.1.3 and the current catalogue; see observation O2."
+    }
+  ],
+  "observations": [
+    "O1 (to Robin, L3.12.1.1/G0): read literally, 'STL bounding boxes within 20-200 per axis' fails every flat lid; this lid is 83.12 x 62.32 x 4.50. I graded the intent (units are mm: the largest extents are 83.12 / 62.32, not inches or metres) as PASS. If it is meant literally, G0 fails and the design is WRONG.",
+    "O2 (to Robin, L2.1.6 vs L2.1.3 and the catalogue): with the grid registered to hole 1 (perfboard part.json, marked soft), the Pico pin X window that L2.1.3 allows is [0.87, 1.87], and it never overlaps the on-grid windows [-0.19, 0.11] / [2.35, 2.65]. The PJ-320A terminal pattern can't get below 0.54 for any registration. The requirements' own default layout (pins at X 1.37, rows Y 16.11 / 33.89) is off this grid too. L3.1.6.1 can't pass unless the grid registration becomes a free design variable, the tolerance changes, or the jack footprint/part changes. I graded it as written (FAIL).",
+    "O3 (package): verification_matrix.md marks all twelve L1s 'FAIL n/a (no check covers this requirement)' and files all 52 checks under l1_id 'rules'. The agent's L1 traceability is broken, and that claim is false for L1.2-L1.11, which the measurements show pass. L3.12.2.1 still passes because the numeric clear_of/inside values agree.",
+    "O4: the four lid-screw bosses (OD 6.1, centres (-3.91,-3.11), (73.11,-3.11), (-3.91,53.11), (73.11,53.11)) are half outside the wall corners and stick 0.21 mm into the cavity corners. This is harmless: they stay 1.95 mm from the board corners. Visible in model_iso.png and open_top.png.",
+    "O5: four weight-3 clearances pass with only 0.10 mm margin: lid lip underside at Z 12.1 vs the 12.0 keep-out, floor top at Z -5.7 vs the -5.6 keep-out, and plug clearance 0.40 vs 0.30 for the USB and both jacks. They are correct but leave no slack for print tolerance.",
+    "claude-context MCP server failed to connect in this session; no code search was needed (only files at known paths were read), so no grep fallback was used."
+  ]
+}

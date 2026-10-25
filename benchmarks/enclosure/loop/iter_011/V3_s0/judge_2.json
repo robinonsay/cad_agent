@@ -1,0 +1,123 @@
+{
+ "judge": "judge_2",
+ "iteration": "011",
+ "design": "V3_s0",
+ "package": "/Users/robinonsay/python/llm-bt/benchmarks/enclosure/loop/iter_011/V3_s0/20261024-174332",
+ "verdict": "DOES NOT MEET",
+ "klass": "MINOR",
+ "meets_requirements": false,
+ "weighted_score": 0.926,
+ "worst_weight3_normalised_margin": -2.92,
+ "gates": {
+  "G0": "PASS",
+  "G1": "PASS",
+  "G2": "PASS",
+  "G3": "PASS",
+  "G4": "PASS",
+  "G5": "PASS"
+ },
+ "failed_l3": [
+  "L3.3.1.3",
+  "L3.3.1.4",
+  "L3.12.1.2",
+  "L3.12.2.1"
+ ],
+ "frame_transform": "design frame has USB at +X; normalised by rotating 180 deg about Z through (40,20): x'=80-x, y'=40-y. Coordinates below are board frame (Z=0 board top, floor underside Z=-8.1) unless marked design frame",
+ "requirement_results": [
+  {
+   "id": "L1.1",
+   "pass": true,
+   "evidence": "layout.json parses and every catalogue id exists (perfboard 80x40, rpi_pico2 at z 8.5 on 2 x header_female_2p54 (8.5 tall), 1 x jack_3p5_pj320a, generic_cylinder d10 h20). Normalised frame (rotate 180 deg about Z): USB_AXIS -X, USB_MOUTH (3.04, 20.0, 10.9); JACK_AXIS +X, mouth X 80.0 (limit [79.5, 81.0]). RBA pairwise interference 0 (capacitor to Pico PCB gap 0.16, to headers 3.0, to jack 2.5). Parts clear of the dia 7.0 V-HOLE-KO columns at the V3 holes. Header pins on the 28x14 grid (origin 5.71, 3.49), residual 0.00 (L3.1.6.1). L3.1.5.1 N/A (one jack)."
+  },
+  {
+   "id": "L1.2",
+   "pass": true,
+   "evidence": "clear_of(ALL, M-PERF minus dia 8.0 columns at the V3 holes, 0.5): d = 1.586 mm, no penetration. Cavity 83.2 x 43.2 against the 80 x 40 board (1.6 per side). inside(V-PICO) d = 4.847 >= 0.2. Inner X length 83.2 >= 80.4."
+  },
+  {
+   "id": "L1.3",
+   "pass": false,
+   "evidence": "4 standoffs (OD 5.1, tops coplanar at Z -1.6, 4.1 above the floor top -5.7, fused, contact about 18 mm2 each), pilots inscribed dia 1.70 in [1.6, 1.8], 5.1 deep. BUT the axes are on a 76.0 x 36.0 pattern, 0.707 mm off V3's 75.0 x 35.0 holes: L3.3.1.3 and L3.3.1.4 FAIL. L3.3.5.1 hole-KO columns clear (d 0.10, lid lip at Z 23.1 above the 23.0 column top)."
+  },
+  {
+   "id": "L1.4",
+   "pass": true,
+   "evidence": "clear_of(ALL, V-KO-TOP 80x40xZ0..23, 0): d = 0.180 (lid lip bottom Z 23.1 at X -1.35..-0.15, outside the footprint; plate underside Z 25.2). clear_of(ALL, V-KO-BOT minus seat columns, 0): d = 0.100 (floor top Z -5.7). inside(headers + jack, cavity, 0.3): d = 1.676. Capacitor inside, d = 5.2. Standoff height 4.1 in [4, 10]."
+  },
+  {
+   "id": "L1.5",
+   "pass": true,
+   "evidence": "V-USB-PLUG (shell 6.9x1.85, overmold 10x7 from X 78.46 outward in design frame, axis Z 10.9, Y 20): clear_of(ALL, 0.3) d = 0.400. Opening in the USB end wall (design +X, X 81.6..84.0): one region, Y 14.6..25.4, Z 7.0..14.8 (10.8 x 7.8, centred Y 20.0, Z 10.9), within the 13.0 x 10.0 grown envelope. Opening count 1."
+  },
+  {
+   "id": "L1.6",
+   "pass": true,
+   "evidence": "V-JACK-PLUG (shaft dia 3.5, X 0..-1; overmold dia 8.0 from X -1 outward, axis Y 20 Z 2.5, design frame): clear_of(ALL, 0.3) d = 0.4005. One round opening, dia 8.81 (inscribed 8.80), centred Y 20.0 Z 2.5 in the jack end wall X -4.0..-1.6; <= 11.0; count 1 (V3 has one jack)."
+  },
+  {
+   "id": "L1.7",
+   "pass": true,
+   "evidence": "base 1 shell and lid 1 shell, manifold NoError, overlap 7e-14 mm3. Lip-to-wall gap 0.25 on all 4 sides (ray-measured: wall inner face 41.6/21.6 from the centre, lip outer 41.35/21.35). Lip engagement 2.1 (Z 23.1..25.2). Plate 2.4 thick, outline equals the base outline (bbox -7.087..87.087 x -7.087..47.087 for both), total lid height 4.5 <= 6.0. 4 corner bosses OD 6.6, pilots dia 2.50, 6.1 deep; lid holes dia 3.40, coaxial. Seam gap 0, faces flush."
+  },
+  {
+   "id": "L1.8",
+   "pass": true,
+   "evidence": "Aperture enumeration: jack end wall 1 region (146 mm3), USB end wall 1 region (202 mm3), +/-Y walls 0, lid plate 0, floor only the 4 blind standoff-pilot tips (2.27 mm3 each, not through). Wall thickness (ray median) 2.40 on all 4 walls, floor 2.40, lid plate 2.40, range 0. Ligaments >= 1.5 (jack hole to floor top 3.8, USB opening to seam 10.4)."
+  },
+  {
+   "id": "L1.9",
+   "pass": true,
+   "evidence": "Both bodies 1 shell, manifold. Overhang scan (base open side up, lid outer face down): only the top of the dia 8.8 round jack hole (exempt, <= 12) and the 10.8 mm bridge over the USB opening (exempt, <= 15). Lid: none. Bed contact 84.7% (base), 84.0% (lid). Thinnest feature: lip 1.2 mm; notch-to-boss gap 0.25. Each body <= 200 mm."
+  },
+  {
+   "id": "L1.10",
+   "pass": true,
+   "evidence": "Closed envelope 94.17 x 54.17 x 35.70 mm <= 100 x 60 x 45, X longest. Flat underside at Z -8.1 (bosses flush). Stable at 5 deg. Cable pull 0.5 N at the USB centre (19.0 mm above the table): tipping 9.5 Nmm against restoring >= 18 Nmm (40 g, 47 mm arm)."
+  },
+  {
+   "id": "L1.11",
+   "pass": true,
+   "evidence": "V-INSTALL (board silhouette X0..80 Y0..40, Z -1.6..30.2) against BASE, standoff-top contact excluded: d = 1.60 >= 0.2. Driver columns dia 6.0 on the V3 holes: d = 1.10 >= 0. Lid screws (M3 into the corner bosses) are separate from the board screws (M2). The L3s pass, but the 0.7 mm pilot offset (L1.3) means the board screws will not run straight into the pilots."
+  },
+  {
+   "id": "L1.12",
+   "pass": false,
+   "evidence": "All files present and loading (base.stl, lid.stl, SCAD, layout.json with print orientations, self_report.json), units mm (L3.12.1.1 pass). The seating rule fails: hole-axis residual 0.707 > 0.25 (L3.12.1.2). The self-report disagrees with the judge on seated/driver/board clearance (L3.12.2.1)."
+  }
+ ],
+ "defects": [
+  {
+   "requirement_id": "L3.3.1.3 (L2.3.1, L1.3)",
+   "severity": "major",
+   "where": "base, the 4 board standoffs (standoff_1..4) and their pilots (standoff_k_pilot), on the floor; measured axes (slice at Z -3.5, board frame) (2.00,1.98),(78.01,2.02),(2.00,37.98),(78.01,38.02); pilots (1.995,1.996),(77.997,1.994),(1.995,37.996),(77.997,37.994). Same in the normalised frame (x'=80-x, y'=40-y), since the pattern is symmetric. Render: open_top.png, the four small orange pilot dots at the cavity corners (about pixels (131,264),(636,264),(131,503),(636,503)); the ghost renders draw the board without holes, so the offset is not visible in any render",
+   "what": "Standoff pitch is wrong for V3's board: 76.0 x 36.0 instead of 75.0 x 35.0. Cause in the data: parts/perfboard/part.json params.hole_inset default 2.0 (E1-01 photo value) was used; V3's grading delta puts the holes 2.5 in from each edge. The V3 request text does not state the inset, so this may be a catalogue/request data gap rather than agent logic (see the observation for Robin).",
+   "expected": "pitch 75.0 +/- 0.25 along X and 35.0 +/- 0.25 along Y; standoff axes at board frame (2.5,2.5),(77.5,2.5),(2.5,37.5),(77.5,37.5)",
+   "observed": "pitch 76.0 (X) x 36.0 (Y); margin -0.73 mm on each axis (normalised -2.9)"
+  },
+  {
+   "requirement_id": "L3.3.1.4 (L2.3.1, L1.3)",
+   "severity": "major",
+   "where": "base, all 4 standoffs, each axis 0.71 mm diagonally outward toward its board corner from the board hole: e.g. standoff_1 axis (2.0,2.0) vs PERF_HOLE_1 (2.5,2.5), board frame, Z -8.1 to -1.6. Render: open_top.png corners",
+   "what": "Each standoff/pilot axis is 0.707 mm off its board hole. An M2 screw (dia 2.0) coaxial with the pilot would sit with its edge 1.71 mm from the hole centre, past the dia 3.0 hole's 1.5 mm radius, so it hits the hole wall by about 0.21 mm and cannot go straight down into the pilot.",
+   "expected": "each standoff axis within 0.25 mm of its PERF_HOLE_k",
+   "observed": "0.707 mm for all four (margin -0.44 mm)"
+  },
+  {
+   "requirement_id": "L3.12.1.2 (L2.12.1, L1.12)",
+   "severity": "major",
+   "where": "layout.json board pose (x 0, y 0) together with base standoff pilots; seating-rule fit, board frame",
+   "what": "The declared layout does not pass the seating rule: board underside on the standoff tops is fine (0.00 mm, Z -1.6), but the hole-axis residual is 0.707 mm. A least-squares re-seat cannot fix it because the 75x35 hole pattern does not match the 76x36 pilot pattern (best-fit translation is zero).",
+   "expected": "board on standoff tops <= 0.10 mm and hole-to-pilot axis residual <= 0.25 mm",
+   "observed": "standoff-top gap 0.00 mm (pass); residual 0.707 mm (fail)"
+  },
+  {
+   "requirement_id": "L3.12.2.1 (L2.12.2, L1.12)",
+   "severity": "minor",
+   "where": "20261024-174332/self_report.json and verification_matrix.md: checks 'seated', 'clear_driver_0..3', 'clear_board'",
+   "what": "The self-report disagrees with an independent measurement because its board-hole references are at inset 2.0. 'seated' says hole-pilot offset 0.0000 mm; judge 0.707. 'clear_driver_k' says d = 0.596 mm; judge 1.100 (driver columns dia 6.0 on the V3 holes, against BASE). 'clear_board' says d = 1.448; judge 1.586 (M-PERF minus dia 8.0 columns at the V3 holes). Other reported values agree within 0.10: KO-top 0.180, KO-bottom 0.100, USB plug 0.400, jack plug 0.400/0.4005, Pico inside 4.847, contents inside 1.676, hole KO 0.096/0.100.",
+   "expected": "100% agreement within 0.10 mm",
+   "observed": "3 of the 10 compared reports disagree (differences 0.71, 0.50 and 0.14 mm)"
+  }
+ ],
+ "summary": "DOES NOT MEET (class MINOR: all gates G0-G5 pass, but weight-3 L3.3.1.3, L3.3.1.4 and L3.12.1.2 fail). Weighted score 125/135 = 0.926; worst weight-3 normalised margin -2.9 (L3.3.1.3). One root cause: Standoffs and their M2 pilots are on the agent's catalogue hole pattern (inset 2.0 -> 76.0 x 36.0), not V3's graded pattern (holes at (2.5,2.5),(77.5,2.5),(2.5,37.5),(77.5,37.5), pitch 75.0 x 35.0). Everything else measured independently passes: board clearance 1.59, keep-outs 0.18/0.10, USB plug 0.40, jack plug 0.40, walls/floor/lid 2.4, lip gap 0.25 and engagement 2.1, envelope 94.2x54.2x35.7, no overhangs beyond exempt ones, 1 shell per body. Observations (do not change the verdict): (1) For Robin: the V3 request text does not state the hole inset (2.5) or diameter (3.0); the perfboard part.json defaults (2.0 / dia 2.0) come from the E1-01 photo, so the agent could not derive 2.5 from its inputs. Graded as written. (2) The corner bosses (axis (-3.787,-3.787), OD 6.6) poke 0.15 mm into each inner cavity corner; harmless. (3) layout.json 'grid_residual': 2.75 contradicts the agent's own grid_conformance 0.00; judge measures 0.00. (4) The renders and STLs are in V3_s0/20261024-174332/, not V3_s0/views. (5) claude-context MCP was unavailable (it failed to connect); only known paths were read and no repo search was needed."
+}

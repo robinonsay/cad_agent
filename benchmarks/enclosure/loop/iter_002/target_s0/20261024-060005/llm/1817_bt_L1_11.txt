@@ -1,0 +1,16 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A requirement is usually checked by several small tests, each covering one piece of it.
+
+Requirement: With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.
+One test: A box (10 x 10 x 60 mm), standing upright, fits into the base with 1 mm clearance all round, going at least 10 mm deep.
+
+Is this test about something the requirement talks about (the same part and the same kind of property, place or behaviour), with no number or direction that disagrees with the requirement?
+
+=== RESPONSE ===
+p_yes=0.431

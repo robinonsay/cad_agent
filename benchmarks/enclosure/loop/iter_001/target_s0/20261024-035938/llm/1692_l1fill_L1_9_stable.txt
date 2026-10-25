@@ -1,0 +1,31 @@
+MODEL: ornith-1.5:9b T=0.5 seed=21
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Object: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+Units are millimetres. X runs left to right (width), Y runs front to back (depth; the front is the side facing the user), Z runs up (height). The object rests on a table at z = 0.
+
+Parts of the design:
+  - base: base manifold body, 90 x 70 x 4 mm thick, 70 mm side aligned with the board's 70 mm length, with a 70 x 50 mm recessed floor for the perfboard, a 20 mm x 10 mm USB port opening in one short (50 mm) end wall sized 1.5 mm larger than a micro-USB plug, two 6.35 mm jack openings in the opposite short end wall each 1.5 mm larger than a 3.5 mm plug, four corner standoffs with pilot holes, and four screw bosses
+  - lid: lid manifold body, 90 x 70 x 4 mm thick, sliding-fit over the base with four screw bosses, no openings except the four screw bosses
+
+Requirement L1.9: "The base and the lid shall each be one manifold body that prints on an FDM printer without supports."
+Verification method: analysis
+
+Your previous tests were rejected:
+- the test "All parts form one connected body." does not check this requirement (reviewer said no)
+
+Fill in one or more "stable" tests that together check this requirement.
+A stable test checks: the object stands on a table without tipping over (optionally with a load on a part).
+Slots:
+- load_mass_g: a load in grams resting on a part (0 = no load)
+- load_part: the part the load rests on (none = no load)
+- tilt_deg: how far the table may tilt without the object tipping; 0 = the default (5)
+Use every number the requirement gives that this kind of test can check, exactly as given.
+Example: {"tests": [{"load_mass_g": 0, "load_part": "none", "tilt_deg": 0}]}
+
+=== RESPONSE ===
+{"tests": [{"load_mass_g": 0, "load_part": "none", "tilt_deg": 0}]}

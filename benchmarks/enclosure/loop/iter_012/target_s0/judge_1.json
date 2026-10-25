@@ -1,0 +1,40 @@
+{
+  "judge": 1,
+  "iteration": "012",
+  "design": "iter_012/target_s0/20261024-191427",
+  "verdict": "MEETS",
+  "class": "CORRECT",
+  "meets_requirements": true,
+  "weighted_score": 1.0,
+  "worst_weight3_normalised_margin": {"l3": "L3.4.2.1", "measured_d_mm": 0.10, "limit_mm": 0.0, "normalised": 0.20},
+  "frame_transform": "none (delivered in enclosure frame; board frame = enclosure frame; floor underside Z=-8.1)",
+  "gates": {"G0": "PASS", "G1": "PASS", "G2": "PASS", "G3": "PASS", "G4": "PASS", "G5": "PASS"},
+  "measured": {
+    "shells_base_lid": [1, 1], "manifold_status": "NoError/NoError", "base_lid_overlap_mm3": 0.0,
+    "closed_envelope_mm": [84.174, 64.174, 24.7],
+    "L3.2.1.1_board_clearance_d": 1.448, "L3.2.2.1_pico_in_cavity_d": 4.923, "L3.4.3.1_hdr_jacks_in_cavity_d": 1.676,
+    "L3.2.2.2_inner_x_length": 73.2,
+    "standoffs": {"count": 4, "axes": [[2,2],[68,2],[2,48],[68,48]], "pitch_xy": [66.0, 46.0], "axis_offset": 0.0, "OD": 5.10, "pilot_inscribed_d": 1.700, "pilot_depth_from_top": 5.1, "top_z": -1.6, "top_spread": 0.0, "floor_contact_mm2": 18.12, "height_above_floor_top": 4.1},
+    "L3.4.1.1_ko_top_d": 0.180, "L3.4.2.1_ko_bot_d": 0.100, "L3.3.5.1_hole_ko_d": 0.100, "L3.1.4.2_parts_vs_hole_ko_d": ">=5.0",
+    "L3.5.1.1_usb_plug_d": 0.400, "usb_opening": {"W_Y": 10.8, "H_Z": 7.8, "centre_board_frame_YZ": [25.0, 4.9], "outside_grown_envelope_mm3": 0.0},
+    "L3.6.1.1_jack_plug_d": [0.4005, 0.4005], "jack_openings": {"d_inscribed": 8.81, "centres_board_frame_YZ": [[17.5, 2.5], [32.5, 2.5]], "outside_grown_envelope_mm3": [0.0, 0.0]}, "jack_envelopes_intersect_mm3": 0.0,
+    "opening_counts_-X_+X_other": [1, 2, 0],
+    "lid": {"plate_t": 2.4, "lip_engagement": 2.1, "lip_gap_per_side_min_med_max": [0.25, 0.25, 0.25], "lip_to_corner_boss_gap": 0.25, "total_height": 4.5, "outline_symdiff_mm2": 0.0, "seam_gap": 0.0, "holes_inscribed_d": 3.40, "hole_axis_offset": 0.0},
+    "lid_bosses": {"count": 4, "OD": 6.6, "pilot_inscribed_d": 2.500, "pilot_depth": 6.1},
+    "thickness_median_range": {"walls": [2.4, 2.4, 2.4], "floor": [2.4, 2.4, 2.4], "lid": [2.4, 2.4, 2.4]},
+    "overhang_offending_patches": 0, "overhang_exempt": "Ø8.81 jack holes (round <=12) and the 10.8 mm USB-opening bridge (<=15)",
+    "bed_contact": {"base": 0.855, "lid": 0.849}, "min_local_thickness": {"base": 1.40, "lid": 1.20},
+    "L3.11.1.1_install_d": "only designed contact at standoff tops (inside V-SEAT); next nearest 1.6 (walls)",
+    "L3.11.2.1_driver_d": 0.600, "L3.7.3.4_lid_driver_d": "clear (nothing above lid top Z 16.6)",
+    "stability": {"tilt_limit_deg": 68.9, "tip_margin_Nmm_usb": 6.09, "tip_margin_Nmm_jack": 7.29}, "underside": "single plane Z=-8.1",
+    "self_report_agreement": "100% (max |d_agent-d_judge| = 0.004 mm, hole_ko 0.0958 vs 0.1000)"
+  },
+  "defects": [],
+  "observations": [
+    "Margins are thin but pass: floor top Z -5.7 is 0.10 below V-KO-BOT (L3.4.2.1); lid lip bottom Z 12.1 is 0.10 above / 0.15 outside V-KO-TOP (d=0.18, L3.4.1.1); base inner wall faces at X -1.6 / Y -1.6 etc. are 0.10 from the Ø7 V-HOLE-KO columns (L3.3.5.1).",
+    "Corner lid bosses (Ø6.6 at (±3.787 outside the board corners)) protrude about 0.21 mm into the inner corners of the cavity; harmless, 2.06 mm from the board corner.",
+    "For Robin: rubric.md section 6 measured-values table lists standoff pilot Ø as 2.0-2.2, while requirements.md L2.3.3/A9 say Ø1.6-1.8 for M2 self-tapping; graded on requirements.md (1.700 passes).",
+    "For Robin: the PJ-320A drawing shows a 2.0 mm Ø5 nose ahead of the body that the catalogue model omits; with this design it would sit inside the Ø8.81 hole (wall inner face at X 71.6, nose to X 72.0), so no conflict here."
+  ],
+  "claude_context": "claude-context MCP server failed to connect in this session; no repo search was needed (all paths were given)."
+}

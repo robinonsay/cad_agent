@@ -1,0 +1,21 @@
+E1-01 12 L1s
+V1 11 L1s
+V2 12 L1s
+V3 12 L1s
+cad_agent.py: OK
+cad_checks.py: OK
+cascade.py: OK
+assembly.py: OK
+assembly_checks.py: OK
+feature_graph.py: OK
+layout.py: OK
+parts.py: OK
+design_rules.json: OK
+E1-01 E1-01_s13 rc=0 secs=82 missing=[]
+E1-01 E1-01_s14 rc=0 secs=77 missing=[]
+E1-01 target_s0 rc=0 secs=76 missing=[]
+ALLDONE
+V1 rc=0 secs=85 missing=[]
+V2 rc=0 secs=86 missing=[]
+V3 rc=0 secs=71 missing=[]
+VDONE

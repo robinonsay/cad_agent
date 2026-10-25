@@ -1,0 +1,120 @@
+package: V2_s12/20261024-193034
+Printed bodies (delivered STLs, enclosure frame, mm):
+  base   min (-6.587, -6.587, -8.100) max (96.587, 51.587, 14.200) size 103.174 x 58.174 x 22.300  watertight=True volume=27566.5 mm3
+  lid    min (-6.587, -6.587, 12.100) max (96.587, 51.587, 16.600) size 103.174 x 58.174 x 4.500  watertight=True volume=12935.7 mm3
+  closed assembly size 103.174 x 58.174 x 24.700
+
+Reference parts (layout.json):
+  0 {"id": "board", "part": "perfboard", "x": 0.0, "y": 0.0, "z": 0.0, "rot_z": 0.0}
+  1 {"id": "module_1_1", "part": "rpi_pico2", "x": 4.26, "y": 12.0, "z": 2.5, "rot_z": 0.0}
+  2 {"id": "module_1_1_stack_1", "part": "header_male_2p54", "x": 5.63, "y": 13.61, "z": 0.0, "rot_z": 0.0}
+  3 {"id": "module_1_1_stack_2", "part": "header_male_2p54", "x": 5.63, "y": 31.39, "z": 0.0, "rot_z": 0.0}
+  4 {"id": "connector_1_1", "part": "jack_3p5_pj320a", "x": 21.0, "y": 12.0, "z": 0.0, "rot_z": -90.0}
+  5 {"id": "connector_1_2", "part": "jack_3p5_pj320a", "x": 42.0, "y": 12.0, "z": 0.0, "rot_z": -90.0}
+  6 {"id": "connector_1_3", "part": "jack_3p5_pj320a", "x": 63.0, "y": 12.0, "z": 0.0, "rot_z": -90.0}
+
+self_report references table:
+{
+ "board": {
+  "part": "perfboard",
+  "d": 1.099998,
+  "check": "inside_board"
+ },
+ "module_1_1": {
+  "part": "rpi_pico2",
+  "d": 4.294601,
+  "check": "inside_contents"
+ },
+ "module_1_1_stack_1": {
+  "part": "header_male_2p54",
+  "d": 5.2,
+  "check": "inside_contents",
+  "d_capped": true,
+  "d_text": "\u2265 5.2000"
+ },
+ "module_1_1_stack_2": {
+  "part": "header_male_2p54",
+  "d": 5.2,
+  "check": "inside_contents",
+  "d_capped": true,
+  "d_text": "\u2265 5.2000"
+ },
+ "connector_1_1": {
+  "part": "jack_3p5_pj320a",
+  "d": 1.207568,
+  "check": "inside_contents"
+ },
+ "connector_1_2": {
+  "part": "jack_3p5_pj320a",
+  "d": 1.207568,
+  "check": "inside_contents"
+ },
+ "connector_1_3": {
+  "part": "jack_3p5_pj320a",
+  "d": 1.207567,
+  "check": "inside_contents"
+ }
+}
+
+Reference part bounding boxes (catalogue geometry instantiated with layout.json params, posed at x,y,z,rot_z; enclosure frame, mm):
+  board                perfboard          min (0.00, 0.00, -1.60) max (90.00, 45.00, 0.00) size 90.00 x 45.00 x 1.60
+  module_1_1           rpi_pico2          min (2.96, 12.00, 2.50) max (55.26, 33.00, 6.30) size 52.30 x 21.00 x 3.80
+  module_1_1_stack_1   header_male_2p54   min (4.36, 12.36, 0.00) max (55.16, 14.86, 2.50) size 50.80 x 2.50 x 2.50
+  module_1_1_stack_2   header_male_2p54   min (4.36, 30.14, 0.00) max (55.16, 32.64, 2.50) size 50.80 x 2.50 x 2.50
+  connector_1_1        jack_3p5_pj320a    min (21.00, 0.00, 0.00) max (27.00, 12.00, 5.00) size 6.00 x 12.00 x 5.00
+  connector_1_2        jack_3p5_pj320a    min (42.00, 0.00, 0.00) max (48.00, 12.00, 5.00) size 6.00 x 12.00 x 5.00
+  connector_1_3        jack_3p5_pj320a    min (63.00, 0.00, 0.00) max (69.00, 12.00, 5.00) size 6.00 x 12.00 x 5.00
+
+layout.json board block:
+{
+ "part": "perfboard",
+ "specimen": null,
+ "params": {
+  "width": 90.0,
+  "depth": 45.0,
+  "thickness": 1.6,
+  "hole_inset": 2.5,
+  "hole_diameter": 3.0,
+  "hole_keepout_diameter": 7.0,
+  "grid_pitch": 2.54,
+  "grid_margin_x": 4.74,
+  "grid_margin_y": 2.54
+ },
+ "holes": [
+  [
+   2.5,
+   2.5,
+   0.0
+  ],
+  [
+   87.5,
+   2.5,
+   0.0
+  ],
+  [
+   2.5,
+   42.5,
+   0.0
+  ],
+  [
+   87.5,
+   42.5,
+   0.0
+  ]
+ ],
+ "hole_diameter": 3.0,
+ "hole_keepout_diameter": 7.0,
+ "grid": {
+  "origin": [
+   5.63,
+   3.45,
+   0.0
+  ],
+  "pitch": 2.54,
+  "count": [
+   32,
+   16
+  ]
+ },
+ "screw": "screw_m2_selftap"
+}

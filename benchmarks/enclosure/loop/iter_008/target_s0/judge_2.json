@@ -1,0 +1,41 @@
+{
+  "judge": 2,
+  "iteration": "008",
+  "design": "target_s0/20261024-124355",
+  "verdict": "DOES NOT MEET",
+  "class": "WRONG",
+  "gates": {"G0_package": "PASS", "G1_manifold_two_bodies": "PASS", "G2_board_fit": "PASS", "G3_usb_plug_seats": "FAIL", "G4_jack_plugs_seat": "PASS", "G5_board_fixed": "PASS"},
+  "meets_requirements": false,
+  "frame_note": "No transform needed: STLs are delivered in the board frame (board top Z=0, USB end intended at -X, jacks at +X). Enclosure-frame Z (floor underside = 0) = board-frame Z + 8.1.",
+  "measured": {
+    "shells_base_lid": [1, 1], "manifold": "NoError both", "base_lid_overlap_mm3": 0.0,
+    "closed_envelope_mm": [82.32, 62.32, 24.70],
+    "board_clearance_L3.2.1.1": 1.10, "V-PICO_inside_L3.2.2.1": 5.20, "hdr_jacks_inside_L3.4.3.1": 1.208,
+    "KO_TOP_d": 0.10, "KO_BOT_d": 0.10, "hole_KO_d": 0.10, "driver_d": 0.60, "install_lateral_d": 1.10,
+    "standoffs": {"count": 4, "axes": [[2.5,2.5],[67.5,2.5],[2.5,47.5],[67.5,47.5]], "OD": 5.30, "pilot_d": 2.10, "pilot_depth": 5.1, "top_z": -1.6},
+    "lid_bosses": {"count": 4, "pilot_d": 2.50, "depth": 6.1, "OD": 6.1, "lid_hole_d": 3.40, "coaxial": true},
+    "lip": {"gap_per_side": 0.25, "engagement": 2.1},
+    "walls_floor_lid_t": [2.4, 2.4, 2.4],
+    "openings": {"-X": 0, "+X": 2, "-Y": 0, "+Y": 0, "unlisted": 0},
+    "jack_openings_board_frame": [{"d": 8.82, "centre_yz": [17.60, 2.50]}, {"d": 8.82, "centre_yz": [32.84, 2.50]}],
+    "jack_plug_d": [0.401, 0.401],
+    "usb_plug": {"declared_USB_MOUTH": [5.5, 25.0, 4.9], "penetration_mm3": 168.0, "intersection_bbox_board_frame": [[-3.5, 20.0, 1.4], [-1.1, 30.0, 8.4]]},
+    "grid_residual_max": 1.12,
+    "overhang_patches": "only downward faces of the two Ø8.8 jack holes (exempt)", "bed_contact": {"base": 0.871, "lid": 0.864}
+  },
+  "failed_L3": ["L3.5.1.1", "L3.5.2.1", "L3.5.3.1", "L3.1.3.1", "L3.1.6.1"],
+  "defects": [
+    {"req": "L3.5.1.1 (L2.5.1, L1.5) gate G3", "status": "FAIL", "body": "base", "feature": "-X end wall (tray wall at X -3.5..-1.1); there is no USB opening at all (no cut in base.scad/model.scad for module_1.usb)", "face": "-X end wall, outer face normal -X and inner face normal +X", "location": "V-USB-PLUG intersection box board frame [-3.5, 20.0, 1.4]-[-1.1, 30.0, 8.4] = enclosure frame Z 9.5-16.5", "measured": "penetration 168.0 mm3 (d undefined)", "limit": "d >= 0.30 mm, penetration <= 0.01 mm3", "reference": "V-USB-PLUG overmold 10.0 x 7.0 about declared USB_MOUTH (5.5, 25.0, 4.9) board frame, swept along -X", "render": "model_iso.png / open_iso.png: the -X end (far-left, hidden) has no hole; ghost_top.png shows the Pico receptacle (purple tab, left) about 6.6 mm inside the -X inner wall; model_left.png shows a blank end wall", "needed": "a through opening in the -X wall containing Y 19.7-30.3, Z 1.1-8.7 board frame (overmold + 0.3) at the USB axis Y 25.0, Z 4.9"},
+    {"req": "L3.5.3.1 (L2.5.3, L1.5)", "status": "FAIL", "body": "base", "feature": "-X wall apertures", "location": "slab X -3.5..-1.1, Y -1.1..51.1, Z -5.7..14.2 board frame", "measured": "0 openings", "limit": "1", "needed": "exactly 1 opening in the -X wall"},
+    {"req": "L3.5.2.1 (L2.5.2, L1.5)", "status": "FAIL (no opening to evaluate)", "body": "base", "feature": "USB opening", "measured": "absent", "limit": "opening inside V-USB-PLUG grown 1.5: within Y 18.5-31.5, Z -0.1-9.9 board frame (<= 13.0 x 10.0)", "needed": "opening inside that box and containing the 0.3-grown envelope"},
+    {"req": "L3.1.3.1 (L2.1.3, L1.1)", "status": "FAIL", "body": "layout", "feature": "module_1_1 (rpi_pico2) pose in layout.json: x = 6.8", "location": "USB_MOUTH (5.5, 25.0, 4.9) board frame; receptacle box X 5.5-11.0", "measured": "USB_MOUTH X = 5.5", "limit": "X in [-1.8, -0.8] (PCB flush with -X board edge +/- 0.5)", "margin": "-6.3 mm", "render": "ghost_top.png, ghost_iso.png", "needed": "Pico PCB min-X in [-0.5, +0.5] so USB_MOUTH X is about -1.3; then the -X inner wall face must sit at X <= -1.5 (mouth >= 0.2 inside it, L3.2.2.1) - currently -1.1"},
+    {"req": "L3.1.6.1 (L2.1.6, L1.1)", "status": "FAIL", "body": "layout", "feature": "header pins of module_1_1_stack_1/2 and jack PINS vs PERF_GRID (origin hole 1 at (2.5, 2.5), pitch 2.54)", "measured": "max residual 1.12 mm (jack terminal at X 59.8); Pico header pins at X 8.17+2.54i, Y 16.11/33.89 residual about 1.08", "limit": "<= 0.15", "needed": "header pin axes on the grid, e.g. pin X = 2.5 + 2.54k and row Y = 2.5 + 2.54m (rows 17.78 = 7 pitches apart fit)"}
+  ],
+  "observations": [
+    "model_left.png and model_right.png are identical and neither shows the two Ø8.8 jack holes that exist in the +X wall (Y 17.6/32.84, Z 2.5 board frame, visible in model_iso.png); the end-view renders are unreliable.",
+    "Agent's own aperture_count check for -X says 'expected 0' and passes; L1.5 requires 1. The agent did flag the uncovered USB in text_coverage, and it reports no clear_of for the USB plug envelope.",
+    "For Robin: L3.1.6.1 is infeasible with the catalogue PJ-320A pin pattern (3.0/4.0/1.0 mm terminal spacing; best grid residual 0.54 mm > 0.15), and the requirements' own default layout (Pico pin 1 at X 1.37) is 1.13 off a hole-1-registered grid. Graded as written.",
+    "Corner lid bosses (Ø6.1 at (-3.11,-3.11) etc.) bulge about 0.2 mm into the cavity corners at the inner wall junction; no requirement fails from it."
+  ],
+  "self_report_agreement": "all reported clear_of/inside values agree within 0.01 mm (KO 0.10, hole KO 0.096 vs 0.10, driver 0.596 vs 0.60, jack plug 0.400 vs 0.401, board 1.10, contents 1.208, V-PICO 5.20)"
+}

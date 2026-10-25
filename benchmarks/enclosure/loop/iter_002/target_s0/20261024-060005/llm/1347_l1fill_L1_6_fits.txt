@@ -1,0 +1,60 @@
+MODEL: ornith-1.5:9b T=0.5 seed=3
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Object: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+Units are millimetres. X runs left to right (width), Y runs front to back (depth; the front is the side facing the user), Z runs up (height). The object rests on a table at z = 0.
+
+Parts of the design:
+  - base: base manifold body, 90 x 70 x 4 mm thick, 70 mm side aligned with the board's 70 mm length, with a 70 x 50 mm recessed floor for the perfboard, a 20 mm x 10 mm USB port opening in one short (50 mm) end wall sized 1.5 mm larger than a micro-USB plug, two 6.35 mm jack openings in the opposite short end wall each 1.5 mm larger than a 3.5 mm plug, four corner standoffs with pilot holes, and four screw bosses
+  - lid: lid manifold body, 90 x 70 x 4 mm thick, sliding-fit over the base with four screw bosses, no openings except the four screw bosses
+
+Requirement L1.6: "With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time through two openings in the opposite end wall without touching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side."
+Verification method: test
+
+Your previous tests were rejected:
+- the number "3.5 mm" in the requirement is not used by any test
+- the number "1.5 mm" in the requirement is not used by any test
+- the number "2" in the requirement is not used by any test
+- no test was accepted yet
+- the test "A round cylinder (7 mm across, 7 mm long), standing upright, fits into the base with 1 mm clearance all round." gives the object sizes the requirement does not state; use the requirement's sizes for it
+- the test "A round cylinder (6.5 mm across, 6.5 mm long), standing upright, fits into the base with 1 mm clearance all round." gives the object sizes the requirement does not state; use the requirement's sizes for it
+- the test "The base's inner (hole) diameter is at least 3.5 mm." would not catch a wrong design (kills no relevant mutant)
+- the test "The base's inner (hole) diameter is at most 4 mm." would not catch a wrong design (kills no relevant mutant)
+
+Fill in one or more "fits" tests that together check this requirement.
+A fits test checks: a stand-in object (phone, tablet, laptop, book, pencil, or a box/cylinder of given size) fits into a part or between two parts.
+Slots:
+- object: the stand-in (box = any box-shaped thing, cylinder = any round thing)
+- size: [] for a phone/tablet/laptop/book/pencil of normal size; otherwise box = [three sizes in mm], cylinder = [diameter, length] in mm
+- into: the part it goes into, or the TWO parts it goes between
+- between: true if it goes between the two parts in `into`
+- orientation: upright = longest side vertical, edge = standing on its edge, flat = lying flat
+- min_depth: how deep it must go in mm (0 = the default, half the height)
+Use every number the requirement gives that this kind of test can check, exactly as given.
+Example: {"tests": [{"object": "pencil", "size": [], "into": ["lid"], "between": false, "orientation": "upright", "min_depth": 0}]}
+
+=== RESPONSE ===
+{
+  "tests": [
+    {
+      "between": true,
+      "into": ["base", "lid"],
+      "min_depth": 0,
+      "object": "cylinder",
+      "orientation": "upright",
+      "size": [6.5, 6.5]
+    },
+    {
+      "between": true,
+      "into": ["base", "lid"],
+      "min_depth": 0,
+      "object": "cylinder",
+      "orientation": "upright",
+      "size": [7, 7]
+    }
+  ]
+}

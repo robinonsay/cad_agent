@@ -521,8 +521,9 @@ class TestSearchStops(BehaviourTest):
         bad = dict(good, params={"width": 5, "depth": 5, "height": 10})
         lip.history = [(1, 0.0, 0, bad), (0, 0.0, 1, good), (0, 0.0, 2, bad)]
         lip.params = dict(bad["params"])
-        lip.verify_attempts = 6
-        self.tick(ca.VerifyComponent(self.design, ScriptedLLM({}), lip))
+        node = ca.VerifyComponent(self.design, ScriptedLLM({}), lip)
+        lip.verify_attempts = node.max_attempts
+        self.tick(node)
         self.assertEqual(lip.params, good["params"])
 
     def test_out_of_attempts_is_a_typed_failure_not_a_pass(self):
@@ -530,8 +531,9 @@ class TestSearchStops(BehaviourTest):
         snap = {"params": dict(lip.params), "place": dict(lip.place), "arrangement": None,
                 "shape": "box", "count": 1}
         lip.history = [(0, 0.0, 0, snap)]
-        lip.verify_attempts = 6
-        self.tick(ca.VerifyComponent(self.design, ScriptedLLM({}), lip))
+        node = ca.VerifyComponent(self.design, ScriptedLLM({}), lip)
+        lip.verify_attempts = node.max_attempts
+        self.tick(node)
         self.assertEqual(lip.status, "unsatisfied")
         self.assertTrue(lip.residual[0].startswith("saturated"))
         self.assertEqual([c.name for c in self.design.unsatisfied()], ["lip"])

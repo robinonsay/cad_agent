@@ -1,0 +1,16 @@
+package: /Users/robinonsay/python/llm-bt/benchmarks/enclosure/loop/iter_011/target_s0/20261024-172919
+
+Printed bodies (closed pose, enclosure frame, mm) from delivered STLs:
+body                   min                            max                            size
+base                   [  -7.087,   -7.087,   -8.100] [  77.087,   57.087,   14.200] [  84.174,   64.174,   22.300]  watertight=True vol=25222.9
+lid                    [  -7.087,   -7.087,   12.100] [  77.087,   57.087,   16.600] [  84.174,   64.174,    4.500]  watertight=True vol=11622.2
+assembly (base+lid)    [  -7.087,   -7.087,   -8.100] [  77.087,   57.087,   16.600] [  84.174,   64.174,   24.700]
+
+Reference parts (from ghost.scad reference lines, exported with OpenSCAD):
+id                     min                            max                            size   part
+board                  [   0.000,    0.000,   -1.600] [  70.000,   50.000,    0.000] [  70.000,   50.000,    1.600]  perfboard
+module_1_1             [   3.120,   14.500,    2.500] [  55.420,   35.500,    6.300] [  52.300,   21.000,    3.800]  rpi_pico2
+module_1_1_stack_1     [   4.520,   14.860,    0.000] [  55.320,   17.360,    2.500] [  50.800,    2.500,    2.500]  header_male_2p54
+module_1_1_stack_2     [   4.520,   32.640,    0.000] [  55.320,   35.140,    2.500] [  50.800,    2.500,    2.500]  header_male_2p54
+connector_1_1          [  58.000,   14.500,    0.000] [  70.000,   20.500,    5.000] [  12.000,    6.000,    5.000]  jack_3p5_pj320a
+connector_1_2          [  58.000,   29.500,    0.000] [  70.000,   35.500,    5.000] [  12.000,    6.000,    5.000]  jack_3p5_pj320a

@@ -66,10 +66,10 @@ import cad_checks as cc
 
 ca = cc._ca()  # cad_agent (the running script's module when cad_agent.py is __main__)
 
-MAX_OUTER = 3              # outer-loop refinements of the check set
-TRANSLATE_ITERATIONS = 3   # LLM proposals per L1
-DESIGN_ITERATIONS = 12     # accepted-or-rejected corrections of the inner loop
-DESIGN_PATIENCE = 3        # consecutive rejected corrections before "stagnated"
+MAX_OUTER = 30             # outer-loop refinements of the check set
+TRANSLATE_ITERATIONS = 30  # LLM proposals per L1
+DESIGN_ITERATIONS = 120    # accepted-or-rejected corrections of the inner loop
+DESIGN_PATIENCE = 30       # consecutive rejected corrections before "stagnated"
 BT_THRESHOLD = 0.6         # back-translation P(yes) needed (measured: correct >= 0.69, wrong part <= 0.53)
 ACCEPT_EPS = 0.01         # smallest violation decrease the design loop accepts: below it a move
                           # mostly spends other checks' tolerance (a 4 mm panel shaved to 3.6 mm

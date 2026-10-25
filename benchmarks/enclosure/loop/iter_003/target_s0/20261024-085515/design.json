@@ -1,0 +1,249 @@
+{
+  "request": "An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer. Requirements: The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout. The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports. The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board. With the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico and jacks shall lie inside the enclosure. With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side. With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time through two openings in the opposite end wall without touching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side. The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed. The closed enclosure shall have no openings other than the USB opening, the two jack openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick. The base and the lid shall each be one manifold body that prints on an FDM printer without supports. The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat on a desk without tipping. With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver. The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+  "base_request": "An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.",
+  "seed": 0,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, without the parts colliding or covering the corner holes, and shall declare that layout.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its supports.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.3",
+      "text": "The board shall rest on exactly four standoffs, one under each corner hole, each with a pilot hole for a screw through the board.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.4",
+      "text": "With the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes, and the Pico and jacks shall lie inside the enclosure.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.5",
+      "text": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+      "method": "test"
+    },
+    {
+      "id": "L1.6",
+      "text": "With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time through two openings in the opposite end wall without touching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side.",
+      "method": "test"
+    },
+    {
+      "id": "L1.7",
+      "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.8",
+      "text": "The closed enclosure shall have no openings other than the USB opening, the two jack openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.9",
+      "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat on a desk without tipping.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.11",
+      "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.",
+      "method": "test"
+    },
+    {
+      "id": "L1.12",
+      "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": "failed",
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [],
+    "all_verified": false
+  },
+  "notes": [],
+  "components": [],
+  "assembly": {
+    "stage": "arrange_contents",
+    "notes": [
+      "arrange: {'module_1': '-X', 'connector_1': '-X'} infeasible (ports_do_not_fit: -X: connector_1_1 and connector_1_2 are 7.25 mm apart, the plugs need 10.1 mm)",
+      "arrange: {'module_1': '+X', 'connector_1': '+X'} infeasible (ports_do_not_fit: +X: connector_1_1 and connector_1_2 are 7.25 mm apart, the plugs need 10.1 mm)",
+      "arrange: {'module_1': '-Y', 'connector_1': '+Y'} infeasible (collides: module_1_1 x connector_1_1: 34 mm3; module_1_1 x connector_1_2: 34 mm3; module_1_1_stack_1 x connector_1_2: 74.2 mm3; module_1_1_stack_2 x connector_1_1: 74.2 mm3)",
+      "arrange: {'module_1': '+Y', 'connector_1': '-Y'} infeasible (collides: module_1_1 x connector_1_1: 34 mm3; module_1_1 x connector_1_2: 34 mm3; module_1_1_stack_1 x connector_1_1: 74.2 mm3; module_1_1_stack_2 x connector_1_2: 74.2 mm3)",
+      "no confirmed feasible arrangement: {'module_1': '-Y', 'connector_1': '-Y'}: rejected by the controller (p_yes 0.10) | {'module_1': '-Y', 'connector_1': '+Y'}: collides: module_1_1 x connector_1_1: 34 mm3; module_1_1 x connector_1_2: 34 mm3; module_1_1_stack_1 x connector_1_2: 74.2 mm3; module_1_1_stack_2 x connector_1_1: 74.2 mm3 | {'module_1': '+Y', 'connector_1': '-Y'}: collides: module_1_1 x connector_1_1: 34 mm3; module_1_1 x connector_1_2: 34 mm3; module_1_1_stack_1 x connector_1_1: 74.2 mm3; module_1_1_stack_2 x connector_1_2: 74.2 mm3 | {'module_1': '+Y', 'connector_1': '+Y'}: rejected by the controller (p_yes 0.08)"
+    ],
+    "parts_dir": "/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts",
+    "rules_path": "/Users/robinonsay/python/llm-bt/design_rules.json",
+    "with_models": false,
+    "catalog": [
+      "generic_cylinder",
+      "header_female_2p54",
+      "header_male_2p54",
+      "heatset_m2p5",
+      "jack_3p5_pj320a",
+      "perfboard",
+      "plug_microusb_b",
+      "plug_trs_3p5",
+      "rpi_pico2",
+      "screw_m2p5_selftap",
+      "screw_m3_selftap"
+    ],
+    "catalog_errors": [],
+    "rules": {
+      "sliding_fit_min": 0.15,
+      "sliding_fit_max": 0.35,
+      "sliding_fit": 0.25,
+      "board_to_wall": 0.5,
+      "plug_to_opening": 0.3,
+      "opening_oversize_max": 1.5,
+      "min_ligament": 1.5,
+      "wall_default": 2.4,
+      "floor_default": 2.4,
+      "min_feature": 0.8,
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0,
+      "round_hole_exempt_max": 12.0,
+      "bed_x": 200.0,
+      "bed_y": 200.0,
+      "bed_z": 200.0,
+      "layer_height": 0.2,
+      "fn": 64.0,
+      "standoff_wall_min": 1.6,
+      "component_height_default": 10.0,
+      "solder_side_default": 3.0,
+      "keepout_margin": 1.0,
+      "plug_travel": 40.0,
+      "driver_clearance": 1.0,
+      "driver_diameter": 6.0,
+      "overlap_max": 1.0,
+      "interference_max": 0.01,
+      "seat_gap_max": 0.1,
+      "seat_axis_residual_max": 0.25,
+      "lip_engagement": 2.0,
+      "lip_wall": 1.2,
+      "boss_wall_min": 1.6,
+      "cut_overrun": 1.0,
+      "screw_hole_clearance_min": 0.2,
+      "max_quantity": 8.0,
+      "part_to_wall": 0.2,
+      "measure_tol": 0.01,
+      "margin_scale": 1.0,
+      "lookup_k": 3.0,
+      "layout_step": 0.5,
+      "aperture_min_volume": 1.0,
+      "parity_volume_rel": 0.005,
+      "parity_bbox": 0.05
+    },
+    "spec": {
+      "board_width": 70.0,
+      "board_depth": 50.0,
+      "keepout_above": 12.0,
+      "keepout_below": 12.0,
+      "board_clearance": 0.5,
+      "headroom": 0.5,
+      "opening_oversize_max": 1.5,
+      "wall_min": 2.0,
+      "wall_max": 4.0,
+      "max_x": 90.0,
+      "max_y": 70.0,
+      "max_z": 35.0
+    },
+    "spec_provenance": {
+      "board_width": "request:\"An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW r\"",
+      "board_depth": "request:\"An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio key\"",
+      "keepout_above": "L1.4:\"the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its undersi\"",
+      "keepout_below": "L1.4:\"the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its undersi\"",
+      "board_clearance": "L1.2:\"m board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where \"",
+      "headroom": "rules:board_to_wall",
+      "opening_oversize_max": "L1.5:\"ching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.\"",
+      "wall_min": "L1.8:\"ings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.\"",
+      "wall_max": "L1.8:\"and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.\"",
+      "max_x": "L1.10:\"The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and sha\"",
+      "max_y": "L1.10:\"The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall st\"",
+      "max_z": "L1.10:\"The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat\""
+    },
+    "contents": [
+      {
+        "part": "perfboard",
+        "kind": "board",
+        "quantity": 1,
+        "exposed": false,
+        "name": "perfboard",
+        "params": {
+          "width": 70.0,
+          "depth": 50.0
+        },
+        "id": "board"
+      },
+      {
+        "part": "rpi_pico2",
+        "kind": "module",
+        "quantity": 1,
+        "exposed": true,
+        "name": "raspberry pi pico 2",
+        "id": "module_1",
+        "params": {}
+      },
+      {
+        "part": "jack_3p5_pj320a",
+        "kind": "connector",
+        "quantity": 2,
+        "exposed": true,
+        "name": "3.5 mm jack",
+        "id": "connector_1",
+        "params": {}
+      }
+    ],
+    "layout": {},
+    "fasteners": {
+      "fastener.board.thread_diameter": 2.5,
+      "fastener.board.pilot_diameter": 2.1,
+      "fastener.board.pilot_min": 2.0,
+      "fastener.board.pilot_max": 2.2,
+      "fastener.board.clearance_diameter": 2.9,
+      "fastener.board.head_diameter": 5.0,
+      "fastener.board.head_height": 1.75,
+      "fastener.board.length": 8.0,
+      "fastener.board.min_engagement": 5.0,
+      "fastener.board.min_boss_od": 5.0
+    },
+    "choices": {
+      "stack[module_1]": {
+        "value": "header_male_2p54",
+        "by": "llm",
+        "votes": {
+          "header_male_2p54": 2,
+          "header_female_2p54": 1
+        }
+      },
+      "fastener[board]": {
+        "value": "screw_m2p5_selftap",
+        "by": "rule:smallest_thread_through_board_hole"
+      }
+    },
+    "assumptions": [
+      "headroom = 0.5 mm from rules:board_to_wall (the text states no number for it)"
+    ],
+    "stl_source": {},
+    "components": [],
+    "results": [],
+    "results_manifold": [],
+    "files": [],
+    "deferred_gate_rules": {
+      "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
+      "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
+      "R9": "skipped: imported models are compared only in the --with-models arm (M14)"
+    },
+    "feature_graph": null
+  }
+}

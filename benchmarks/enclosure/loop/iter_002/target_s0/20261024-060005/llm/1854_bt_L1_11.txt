@@ -1,0 +1,16 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A requirement is usually checked by several small tests, each covering one piece of it.
+
+Requirement: With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.
+One test: The object stands on its own on a flat table without tipping over, even with a 20 g load on the top of the base, even when the table is tilted 5 degrees.
+
+Is this test about something the requirement talks about (the same part and the same kind of property, place or behaviour), with no number or direction that disagrees with the requirement?
+
+=== RESPONSE ===
+p_yes=0.395

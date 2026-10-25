@@ -1,0 +1,83 @@
+{
+  "judge": 1,
+  "iteration": "005",
+  "design": "target_s0/20261024-095851",
+  "verdict": "DOES NOT MEET",
+  "class": "CORRECT (no gate fails, every weight-3 L3 passes)",
+  "meets_requirements": false,
+  "weighted_score": 0.985,
+  "worst_weight3_normalised_margin": {"value": 0.2, "checks": ["L3.4.1.1", "L3.4.2.1"], "detail": "d = 0.10 mm vs >= 0.0 (one-sided, /0.5)"},
+  "frame": "STLs are already in the board frame (board top Z=0, board X 0..70, Y 0..50, USB end -X). Enclosure-frame Z = board Z + 8.1 (floor underside at board Z -8.1). No rotation or mirroring needed.",
+  "tooling_note": "claude-context MCP server failed to connect in this session; no code search was needed (all paths known). Measurements made with manifold3d + trimesh on base.stl / lid.stl using the rubric section 3 recipes; references rebuilt independently from parts/*/part.json at the layout.json pose.",
+  "gates": {"G0": "PASS", "G1": "PASS", "G2": "PASS", "G3": "PASS", "G4": "PASS", "G5": "PASS"},
+  "measured_values": {
+    "board_clearance_L3.2.1.1_mm": 1.100,
+    "pico_in_cavity_L3.2.2.1_mm": "0.60 (V-PICO as bounding solids) / 1.52 (exact M-PICO2 shape)",
+    "headers_jacks_in_cavity_L3.4.3.1_mm": 1.208,
+    "standoffs": "count 4; pitch X 65.00 / Y 45.00; axis offset 0.00 to PERF_HOLE_1..4; tops all at Z -1.60 (= PERF_BOTTOM)",
+    "standoff_OD_pilot": "OD 5.30; pilot inscribed dia 2.10; pilot depth 5.00 from top (bottom at Z -6.6)",
+    "keepouts_top_bottom_mm": "0.10 / 0.10",
+    "usb_plug_d_mm": 0.400,
+    "usb_opening": "W 10.80 (Y 18.69-29.49) x H 7.80 (Z 1.00-8.80), centre (Y 24.09, Z 4.90) board frame; in -X wall X -4.3..-1.9; inside 1.5-grown plug envelope",
+    "jack_plug_d_mm": [0.4005, 0.4005],
+    "jack_openings": "dia 8.81 each, centres (Y 17.667, Z 2.5) and (Y 32.333, Z 2.5), +X wall X 71.1..73.5",
+    "opening_counts_-X_+X_other": "1 / 2 / 0 (only extra voids: blind board-standoff pilots from inside, lid-screw holes into blind boss pilots)",
+    "lid_lip": "gap 0.25 on all four sides (lip X -1.65..70.85, Y -0.85..50.85 vs base inner X -1.9..71.1, Y -1.1..51.1); engagement 2.0 (Z 12.1..14.1)",
+    "thickness_wall_floor_lid_mm": "2.40 / 2.40 / 2.40 (uniform)",
+    "overhangs": "base: only the tops of the two dia 8.81 jack holes (exempt, round <= 12) and the top of the USB opening (bridge 10.8 <= 15, exempt); lid (outer face down): none",
+    "bed_contact": "base 0.875, lid 0.867",
+    "shells_base_lid": "1 / 1, both manifold NoError, overlap 0.0 mm3",
+    "closed_envelope_mm": "82.95 x 62.15 x 24.60",
+    "install_sweep_d_mm": "0.60 (excluding the standoff-top seating contact, which is 0.0 by definition)",
+    "driver_columns_d_mm": "0.60 board screws; lid-screw columns 0.0 (start on the lid top face, no interference)",
+    "self_report_agreement": "FAIL: clear_board 0.853 vs judge 1.100 (delta 0.247)"
+  },
+  "requirement_results": {
+    "L1.1": "FAIL (L3.1.6.1 fails: header pin grid residual 1.13 mm > 0.15; jack pins unverifiable). All other L1.1 L3s pass.",
+    "L1.2": "PASS", "L1.3": "PASS", "L1.4": "PASS", "L1.5": "PASS", "L1.6": "PASS",
+    "L1.7": "PASS", "L1.8": "PASS", "L1.9": "PASS", "L1.10": "PASS", "L1.11": "PASS",
+    "L1.12": "FAIL (L3.12.2.1 fails: self-report disagrees with judge by 0.247 mm on the board-clearance check)"
+  },
+  "defects": [
+    {
+      "req": "L3.1.6.1 (L2.1.6, L1.1)",
+      "status": "FAIL",
+      "body": "layout",
+      "feature": "Pico 2 header rows module_1_1_stack_1 / module_1_1_stack_2 (layout.json), and both jacks connector_1_1 / connector_1_2",
+      "face": "header pin axes (vertical, -Z) on PERF_TOP",
+      "location": "header pins at X = 1.37 + 2.54*i (i=0..19), Y = 15.20 and 32.98, Z = 0, board frame; nearest PERF_GRID columns (origin (2.5, 2.5), pitch 2.54) are X = -0.04 and 2.50",
+      "measured": "max pin-to-grid residual 1.13 mm (all 40 pins off by 1.13 mm in X; Y residual 0.00). Jacks: no footprint pin datums in parts/jack_3p5_pj320a/part.json, so their residual is UNVERIFIED",
+      "limit": "<= 0.15 mm",
+      "margin": "-0.98 mm",
+      "reference": "PERF_GRID (catalogue perfboard grid, origin = PERF_HOLE_1 (2.5, 2.5), pitch 2.54); M-HDR PINS",
+      "render": "ghost_top.png: the brown header slab under the purple Pico, left half of the image; ghost_front.png shows the header strip from X 0.1",
+      "evidence": "layout.json grid_residual = 1.13; run.log reports the same conflict",
+      "needed": "every header pin X within 0.15 of 2.5 + 2.54k (e.g. Pico PCB origin X = 1.13 +/- 0.15, first pin at X 2.50) while keeping USB_MOUTH X in [-1.8, -0.8]; under the current catalogue grid registration these two are mutually infeasible (best achievable residual 0.63 mm at Pico X = +0.5) - see observation O1. Jack residual needs footprint pin datums for jack_3p5_pj320a in the catalogue.",
+      "also_fails": []
+    },
+    {
+      "req": "L3.12.2.1 (L2.12.2, L1.12)",
+      "status": "FAIL",
+      "body": "both",
+      "feature": "self_report.json check clear_board (agent's version of L3.2.1.1); also inside_references vs L3.4.3.1",
+      "face": "standoff top rim vs board underside near PERF_HOLE_1..4 (where the agent's 0.853 comes from)",
+      "location": "the agent's minimum occurs at the standoff top edge (r 2.65) vs the board kept outside a dia 7.0 column, around (2.5, 2.5, -1.6), (67.5, 2.5, -1.6), (2.5, 47.5, -1.6), (67.5, 47.5, -1.6) board frame",
+      "measured": "agent d = 0.8532 mm; judge d = 1.100 mm (min gap is the board edges to the inner walls, X 70.0 -> 71.1 and Y 0/50 -> -1.1/51.1); |delta| = 0.247 mm. The judge reproduces the agent's 0.848 only by subtracting dia 7.0 columns, not the dia 8.0 columns L2.2.1 specifies. Similarly inside_references 0.853 vs judge L3.4.3.1 1.208 (agent merges board + parts into one inside check)",
+      "limit": "same pass/fail and |d_agent - d_judge| <= 0.10 mm for every clear_of/inside L3 reported",
+      "margin": "-0.147 mm",
+      "reference": "M-PERF minus dia 8.0 columns on PERF_HOLE_1..4 (V-SEAT grown by 0.5)",
+      "render": "not visible in renders (a number in self_report.json / verification_matrix.md)",
+      "evidence": "self_report.json results[clear_board].margin 0.3532 (d 0.8532)",
+      "needed": "self-reported d for the L3.2.1.1 board-clearance check within 0.10 of 1.100 mm (reference volume as defined in L2.2.1), and a separate inside(M-HDR + M-JACK-1 + M-JACK-2, cavity, 0.3) result within 0.10 of 1.208 mm",
+      "also_fails": []
+    }
+  ],
+  "observations": [
+    "O1 (for Robin, requirement conflict): with the catalogue grid registered at PERF_HOLE_1 = (2.5, 2.5), L2.1.3 (USB_MOUTH X in [-1.8, -0.8], i.e. Pico PCB X in [-0.5, 0.5], first pin X in [0.87, 1.87]) and L2.1.6 (pins within 0.15 of grid X = -0.04 or 2.50) cannot both pass: best residual is 0.63 mm. Either the grid registration of the real board must be measured, or one of these limits needs a decision. Graded as written (FAIL).",
+    "O2 (for Robin): L3.12.1.1's literal '20-200 per axis' would fail any flat lid (this lid is 4.4 mm tall in Z). Graded PASS because rubric step 2 frames it as an inches/metres unit check and the lid is clearly in mm.",
+    "O3: Several numbers sit exactly on their limits with zero margin: board-standoff pilot depth 5.00 (>= 5.0), lid-boss pilot depth 6.00 (>= 6.0), boss OD 6.00 (>= 6.0); keep-out gaps top/bottom are only 0.10.",
+    "O4: The four lid-screw bosses (dia 6.0, centres (-3.875, -3.075), (73.075, -3.075), (-3.875, 53.075), (73.075, 53.075)) stand outside the walls as external columns (outer extent X -6.87..76.07, Y -6.07..56.07) and also intrude ~1.0 mm into the cavity corners (boss reaches X -0.875 vs inner wall X -1.9); the lid lip is notched around them (dia 6.51). Allowed (A13) and all clearances still pass.",
+    "O5: Renders: model_left.png / model_right.png show only the see-through intersection of the USB rectangle and the jack circles, because the interior is the same colour as the walls; no render shows the USB opening outline clearly. A highlighted or sectioned port render would help future judges.",
+    "O6: L3.11.1.1 install sweep was measured excluding the seating contact (standoff tops touch PERF_BOTTOM at d = 0.0 by design); with that excluded d = 0.60."
+  ]
+}

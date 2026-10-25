@@ -1,0 +1,38 @@
+{
+  "judge": 2,
+  "package": "iter_012/E1-01_s12/20261024-192751",
+  "verdict": "MEETS",
+  "class": "CORRECT",
+  "meets_requirements": true,
+  "weighted_score": 1.0,
+  "worst_weight3_normalised_margin": 0.2,
+  "worst_weight3_margin_items": ["L3.4.2.1 KO-BOT d=0.10 (floor top Z=-5.70 vs keep-out bottom -5.60)", "L3.5.1.1 USB plug d=0.40 vs 0.30", "L3.6.1.1 jack plugs d=0.40 vs 0.30", "L3.7.5.1 lip engagement 2.10 vs 2.0"],
+  "frame": "delivered frame already equals the enclosure frame (USB opening at -X, X along 70 mm); identity transform; board frame = enclosure frame (board top Z=0, floor underside Z=-8.10)",
+  "tooling_note": "claude-context MCP server failed to connect in this session; no code search was needed (all files read by known path). Measurements by manifold3d 3.5 + trimesh in the repo venv on base.stl / lid.stl.",
+  "gates": {"G0": "PASS", "G1": "PASS", "G2": "PASS", "G3": "PASS", "G4": "PASS", "G5": "PASS"},
+  "measured_values": {
+    "board_clearance_L3.2.1.1": "d=1.45 mm (to standoff sides outside the 8.0 columns; walls 1.60, bosses 2.06) >= 0.5",
+    "pico_in_cavity_L3.2.2.1": "d=4.92 >= 0.2",
+    "headers_jacks_in_cavity_L3.4.3.1": "d=1.68 >= 0.3",
+    "standoffs": "count 4 at (2,2),(68,2),(2,48),(68,48); pitch 66.00 x 46.00; axis offset 0.00; OD 5.10; pilot inscribed 1.70; pilot depth 5.10 (Z -1.60 to -6.70, blind, floor intact below); top Z -1.60 all four (spread 0)",
+    "keepout_top_bottom": "KO-TOP d=0.18 (lid lip inner bottom edge at X=-0.15,Z=12.10); KO-BOT d=0.10 (floor top Z=-5.70)",
+    "usb": "plug d=0.40; opening 10.80 (Y 19.6-30.4) x 7.80 (Z 1.0-8.8), centre (Y 25.0, Z 4.9); inside grown envelope, margin 1.10",
+    "jacks": "plug d=0.40 each; envelopes do not intersect; openings inscribed dia 8.80 centred (Y 17.5 / 32.5, Z 2.5); inside grown envelope, margin 1.09",
+    "opening_counts": "-X 1 / +X 2 / other 0 (besides 4 lid screw holes into blind boss pilots); with port openings plugged the cavity void is sealed, bbox [-1.6,-1.6,-6.7]-[71.6,51.6,14.2]",
+    "lid": "lip-to-wall gap 0.25 all four sides and 0.25 to boss surfaces at the notches; engagement 2.10 (lip Z 12.10-14.20); plate 2.40 (Z 14.20-16.60); total lid height 4.50; plate outline = base outline (symmetric difference 0.0 mm2 at Z=10 vs Z=15.4)",
+    "thickness": "walls -X/+X/-Y/+Y 2.40 (range 0), floor 2.40, lid plate 2.40",
+    "printability": "overhang: only exempt faces (Ø8.8 round jack holes; 10.8 mm USB top bridge); bed contact base 85.5%, lid 84.9% (outer face down); shells 1/1, manifold NoError",
+    "envelope": "84.17 x 64.17 x 24.70 (X > Y)",
+    "install_driver": "V-INSTALL: penetration 0, only designed contact at standoff tops; nearest other base surface 1.60; driver columns d=0.60",
+    "self_report": "all agent clear_of/inside values agree within 0.005 mm (1.448/1.4495, 0.1803/0.1803, 0.100/0.100, 0.0958/0.100, 0.400/0.400, 4.9233/4.9233, 1.6758/1.6758, 0.5964/0.600)"
+  },
+  "requirement_results": "see StructuredOutput; every L1.1-L1.12 PASS",
+  "defects": [],
+  "observations": [
+    "Lid screw holes are plain Ø3.4 through-holes with no counterbore: M3 pan heads stand ~2 mm proud of the lid top (lid.stl, holes at (-3.79,-3.79),(73.79,-3.79),(-3.79,53.79),(73.79,53.79), model_top.png corners). Not graded.",
+    "Corner bosses stand outside the walls (outer bbox 84.17 x 64.17 vs ~78 x 58 wall box). Allowed (A13), but the design is ~6 mm larger each way than needed.",
+    "Several margins are thin but positive: KO-BOT 0.10, HOLE-KO columns to inner wall faces 0.10 (weight 2), KO-TOP 0.18, plug clearances 0.40 vs 0.30.",
+    "Note for Robin (rubric): with bosses outside the walls, V-CAVITY = hull(ALL) - ALL (connected component) also takes in the ~3.09 mm exterior pockets between the bosses outside the -X and +X walls, because the port openings connect them to the cavity. It did not change any result here (inside() distances are to the solids), but the V-CAVITY definition can admit exterior space when features protrude outside the walls.",
+    "ghost_top.png shows only one jack (the other blends into the board colour); open_top.png shows both. Render artefact only."
+  ]
+}

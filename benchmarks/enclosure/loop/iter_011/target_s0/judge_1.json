@@ -1,0 +1,52 @@
+{
+  "judge": 1,
+  "iteration": "011",
+  "design": "target_s0/20261024-172919",
+  "verdict": "MEETS",
+  "class": "CORRECT",
+  "meets_requirements": true,
+  "weighted_score": 1.0,
+  "worst_weight3_normalised_margin": 0.20,
+  "worst_weight3_margin_checks": ["L3.4.2.1 d=0.100 vs >=0 (floor top Z -5.7, KO-BOT bottom -5.6)", "L3.5.1.1 d=0.400 vs >=0.30", "L3.6.1.1 d=0.4005 vs >=0.30"],
+  "frame": "STLs delivered in the board frame (Z=0 board top, USB end -X); no rotation needed. Enclosure-frame Z = board Z + 8.1.",
+  "gates": {"G0": "PASS", "G1": "PASS", "G2": "PASS", "G3": "PASS", "G4": "PASS", "G5": "PASS"},
+  "measured_values": {
+    "L3.2.1.1 board clearance (excluding Ø8 seat columns)": "1.448 mm (>=0.5)",
+    "L3.2.2.1 / L3.4.3.1 V-PICO in cavity / headers+jacks in cavity": "4.923 / 1.676 mm (>=0.2 / >=0.3)",
+    "standoffs": "4 at (2,2),(68,2),(2,48),(68,48); pitch 66.0 x 46.0; axis offset 0.000; OD 5.10; tops all Z -1.600 (spread 0); pilot Ø1.70, depth 5.10 (Z -1.6 to -6.7, blind)",
+    "standoff-floor contact": "18.2 mm2 each (>=15)",
+    "L3.4.1.1 / L3.4.2.1 keep-outs": "0.180 / 0.100 mm (>=0 / >=0)",
+    "L3.3.5.1 screw-head columns": "0.100 mm",
+    "L3.5.1.1 USB plug envelope d": "0.400 mm (>=0.30), no penetration",
+    "USB opening": "10.80 (Y 19.6-30.4) x 7.80 (Z 1.0-8.8), centre (Y 25.0, Z 4.9) board frame; inside V-USB-PLUG grown 1.5: outside volume 0.0",
+    "L3.6.1.1 jack plug envelopes d": "0.4005 / 0.4005 mm (>=0.30); envelopes disjoint",
+    "jack openings": "Ø8.81 centred (Y 17.5, Z 2.5) and (Y 32.5, Z 2.5); inside grown envelopes: outside volume 0.0",
+    "opening counts -X/+X/other": "1 / 2 / 0 (cavity sealed when the 3 ports are plugged: min gap to outside 1.40 mm); the blind lid-screw/boss-pilot holes in the four corners are screw holes",
+    "lid lip": "lip outer X -1.35..71.35, Y -1.35..51.35 vs base inner -1.6..71.6, -1.6..51.6: 0.25 per side, min lid-lip to base gap 0.25; engagement 2.10 (Z 12.1-14.2)",
+    "lid": "plate 2.40 (Z 14.2-16.6), total height 4.50, outline identical to base outline (4620.68 mm2 both); 4 holes Ø3.40 coaxial (0.000) with boss pilots Ø2.50 depth 6.10; boss OD 6.60",
+    "wall/floor/lid thickness (ray cast, median, range)": "-X 2.40, +X 2.40, -Y 2.40, +Y 2.40, floor 2.40, lid 2.40 (all ranges 0)",
+    "overhang": "0 offending patches (only USB opening top bridge 10.8 <=15 and Ø8.81 round jack-hole tops, both exempt); lid 0",
+    "bed contact": "base 0.855, lid 0.849",
+    "shells": "base 1 / lid 1, manifold NoError, base^lid -1.6e-14 mm3",
+    "closed envelope": "84.17 x 64.17 x 24.70 mm",
+    "L3.11.1.1 install sweep (seat columns excluded)": "0.948 mm (>=0.2)",
+    "L3.11.2.1 driver columns": "0.600 mm",
+    "L3.7.3.4 lid driver columns": "0.000 mm, no penetration (>=0)",
+    "stability": "tip angles 66.8-72.4 deg (>5); 0.5 N pull: USB restoring 0.0153 vs tipping 0.0065 N*m, jacks 0.0153 vs 0.0053",
+    "L3.12.2.1 self-report agreement": "all reported clear_of/inside values within 0.005 mm of judge values, same pass/fail"
+  },
+  "requirement_results": {
+    "L1.1": "PASS", "L1.2": "PASS", "L1.3": "PASS", "L1.4": "PASS", "L1.5": "PASS", "L1.6": "PASS",
+    "L1.7": "PASS", "L1.8": "PASS", "L1.9": "PASS", "L1.10": "PASS", "L1.11": "PASS", "L1.12": "PASS"
+  },
+  "defects": [],
+  "observations": [
+    "Rubric section 6 table lists board pilot Ø 2.0-2.2, but requirements L2.3.3 (A9, M2 self-tap) says 1.6-1.8; graded against requirements.md (1.70 passes). Robin should fix the rubric table.",
+    "The corner lid bosses (Ø6.6 at (-3.787,-3.787) etc.) protrude about 0.21 mm into the inner cavity corners (inner corner at (-1.6,-1.6) is 3.09 from the boss axis); harmless, the lid lip is notched (Ø7.11) to keep 0.25 mm clearance.",
+    "The rubric's end-wall-slab aperture recipe also picks up the four blind lid-screw/boss-pilot holes (X -4.0..-2.085 and 72.085..74.0, Z 8.1-16.6) because the bosses overlap the wall corners; they do not reach the cavity and are screw holes, so they were not counted as port openings.",
+    "layout.json carries grid_residual 2.876 although the Pico header pins sit exactly on the A7 grid (residual 0.000); the large value presumably comes from the grid-exempt PJ-320A terminals. Worth renaming or documenting.",
+    "PJ-320A's real 2.0 mm Ø5 nose (noted in part.json) is not in the catalogue body; it would extend to X 72.0, into the Ø8.81 wall hole (fits). Not graded.",
+    "Margins are thin by design: KO-BOT 0.10 mm, screw-head columns 0.10 mm, plug clearances 0.10 mm over the limit. Any regression in wall/floor placement will flip these.",
+    "claude-context MCP server failed to connect in this session; no repo search was needed (all paths were given), measurements used the rubric recipes in Python."
+  ]
+}

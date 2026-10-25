@@ -1,0 +1,50 @@
+{
+  "judge": "independent judge #1, iteration 007, design 'target' (package 20261024-112706)",
+  "verdict": "DOES NOT MEET",
+  "class": "CORRECT (no gate fails, every weight-3 L3 passes)",
+  "meets_requirements": false,
+  "weighted_score": "133/134 = 0.993 over 64 applicable L3s (N/A: L3.5.1.2, L3.6.1.2, L3.7.3.6 physical; L3.7.3.5 snap/slide not used)",
+  "worst_weight3_normalised_margin": "+0.20 (L3.4.1.1 d=0.10, L3.4.2.1 d=0.10, L3.5.1.1 margin 0.10; each /0.5)",
+  "tooling_note": "claude-context MCP server failed to connect in this session; no code search was needed (only known file paths were read). All numbers below measured by the judge with manifold3d + trimesh on base.stl / lid.stl, references rebuilt from parts/*/part.json at the pose in layout.json.",
+  "gates": {"G0 package": "PASS", "G1 manifold + two bodies": "PASS", "G2 board fit": "PASS", "G3 USB plug seats": "PASS", "G4 jack plugs seat": "PASS", "G5 board fixed": "PASS"},
+  "measured": {
+    "frame": "delivered frame already equals enclosure/board frame (USB at -X, board top Z=0); no transform applied",
+    "bodies": {"base": "1 shell, NoError, bbox [-6.96,-6.16,-8.10]-[76.16,56.16,14.20], vol 24467.3", "lid": "1 shell, NoError, bbox [-6.96,-6.16,12.10]-[76.16,56.16,16.60], vol 11355.5", "base^lid": "0.000 mm3"},
+    "L3.2.1.1 board clearance": "1.10 (limit 0.50)",
+    "L3.2.2.1 / L3.4.3.1 inside": "1.523 / 1.208 (limits 0.20 / 0.30)",
+    "standoffs": "4; pitch 65.00 x 45.00; axis offset 0.00; OD 5.30; pilot D 2.100 inscribed; pilot depth 5.10 (top Z -1.60 to bottom -6.70); tops coplanar (spread 0.00); height above floor top 4.10",
+    "keep-outs": "top d=0.10 (lid lip underside Z 12.10); bottom d=0.10 (floor top Z -5.70)",
+    "USB": "plug d=0.400; opening 10.80 x 7.80 (Y 18.69-29.49, Z 1.00-8.80), centre (Y 24.09, Z 4.90), 0.40 oversize per side",
+    "jacks": "plug d=0.4005 each, envelopes disjoint; openings D 8.81 at (Y 17.60, Z 2.50) and (Y 32.84, Z 2.50), axis spacing 15.24",
+    "opening counts": "-X 1 / +X 2 / other 0 (ports sealed -> cavity void never reaches the hull surface; the only other through-features are the 4 lid-screw holes into blind boss pilots)",
+    "lid": "lip gap 0.250 on all 4 sides at Z 12.5 and 13.8; engagement 2.10 (lip Z 12.10 to rim 14.20); 4 bosses OD 6.10, pilot D 2.500, depth 6.10; lid holes D 3.400 coaxial 0.00; seam gap 0, outer faces flush",
+    "thickness": "walls -X/+X/-Y/+Y 2.40 (range 0.00); floor 2.40; lid plate 2.40",
+    "printability": "base open-up: only downward faces are the top halves of the D8.81 jack holes and the 10.8 mm USB-opening bridge (both exempt); lid outer-down: 0 overhang; bed contact 87.1% / 86.4%; thinnest feature lid lip 1.20; mating gaps 0.25 / 0.254",
+    "envelope": "83.12 x 62.32 x 24.70 (limit 90 x 70 x 35, X>Y)",
+    "stability": "tip angle 68 deg; 0.5 N pull margin USB +9.8, jacks +11.0 N.mm (40 g)",
+    "install/driver": "V-INSTALL d=0.60 (excluding the designed seat contact at the standoff tops); V-DRIVER d=0.60; V-HOLE-KO d=0.10; lid driver columns clear",
+    "self_report": "all agent clear_of/inside d values agree within 0.005 mm, same pass/fail"
+  },
+  "defects": [
+    {
+      "req": "L3.1.6.1 (L2.1.6, L1.1)",
+      "status": "FAIL",
+      "body": "layout",
+      "feature": "Pico 2 header pins (module_1_1_stack_1/2) and PJ-320A terminals (connector_1_1, connector_1_2) in layout.json",
+      "face": "pin axes on the board top plane Z=0",
+      "location": "Pico pins at board-frame X = 1.37 + 2.54*i (Y 15.20 and 32.98); grid (catalogue origin at hole 1) at X,Y = 2.50 + 2.54*k. Y is on grid (residual 0.00), X is off by 1.13 for all 40 pins. Jack terminals at X 66.8/63.8/59.8/58.8, Y 15.20/20.00 (jack 1) and 30.44/35.24 (jack 2): residual up to 1.12",
+      "measured": "max residual 1.13", "limit": "<= 0.15", "margin": "-0.98",
+      "reference": "PERF_GRID (origin (2.5,2.5), pitch 2.54), rpi_pico2 PINS_A/PINS_B, jack_3p5_pj320a PINS",
+      "render": "ghost_top.png: purple Pico rectangle at left with its -X end flush to the board edge",
+      "evidence": "layout.json grid_residual 1.13; judge recomputation",
+      "needed": "every pin axis within 0.15 of a grid hole. For the Pico this needs an X shift of +1.13 or -1.41, which moves USB_MOUTH to X -0.17 or -2.71, outside the L3.1.3.1 window [-1.8, -0.8] (best achievable inside the window: 0.63). For the PJ-320A the catalogue terminal offsets (3.2, 6.2, 10.2, 11.2 behind the mouth) cannot meet a 2.54 grid at any pose (best 0.54). Not fixable by the design agent; requirement/catalogue question for Robin."
+    }
+  ],
+  "observations_for_robin": [
+    "L3.1.6.1 is infeasible as written with the current catalogue (jack terminal pattern) and, for the Pico, contradicts L3.1.3.1 under the assumed grid registration to hole 1 (part.json marks it soft). The loop cannot reach MEETS on E1-01 until this requirement or the catalogue changes.",
+    "L3.12.1.1's literal units test (bounding box 20-200 per axis) is violated by any flat lid: this lid is 83.12 x 62.32 x 4.50. Graded PASS on the check's stated purpose (units are clearly mm, not inches or metres). Suggest rewording to 'largest dimension 20-200'.",
+    "verification_matrix.md lists every L1 as 'FAIL n/a (no check covers this requirement)' because all checks are filed under 'rules' and none are traced to L1/L3 ids; the numbers are right but the traceability is broken.",
+    "Several margins are exactly 0.10 mm (keep-out top and bottom, hole keep-out, pilot depth 5.10 vs 5.0, lip engagement 2.10 vs 2.0): passes, but no slack for print tolerance.",
+    "Lid screw bosses are external corner columns (OD 6.10) that intrude about 1.0 mm into the cavity corners; they clear the board corners by 1.95 and the lid lip through 0.254 notches."
+  ]
+}
