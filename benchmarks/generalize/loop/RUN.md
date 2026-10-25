@@ -66,7 +66,7 @@ curl -s http://localhost:11434/api/tags | "$PY" -c 'import json,sys; m=[x["name"
 # the full unit suite is green before spending hours of runs (about 20 minutes; no Ollama)
 cd "$REPO" && "$PY" -m unittest test_cascade test_cad_checks test_review_fixes test_cad_agent test_benchmark_runner \
     test_parts test_feature_graph test_assembly test_assembly_checks test_no_hardcoding test_generalize_suite \
-    test_controller test_controller_authority
+    test_controller test_controller_authority test_menus test_building_blocks
 ```
 
 `run_suite.py` repeats the first three checks itself and stops with exit 2 if one fails (a `--controller stub` run
@@ -78,7 +78,7 @@ test modules to the unittest line as they appear.
 > **Run policy (every iteration):**
 > - Run the **whole train split** once at `SEED` on the iteration's wording (`--paraphrase K`, K = iteration mod 3),
 >   then the **regression set** at `SEED`, then the **stub train run** (`--controller stub`, same wording). These are
->   the three commands below (and in `launch_config.json`), in this order, and nothing in parallel.
+>   the three commands below, then the target set (T01, fourth command) (and in `launch_config.json`), in this order, and nothing in parallel.
 > - The gap analyst may narrow the train run to a named subset in section 1 (the designs the delta touches
 >   plus five sentinels from different families). The full train split must still run at least every third
 >   iteration and always before a held-out measurement.
@@ -93,7 +93,14 @@ K=$((10#$NNN % 3))     # the iteration's wording: 0 = design.json, 1 and 2 = des
 "$PY" benchmarks/generalize/run_suite.py --iter "$NNN" --seed "$SEED" --paraphrase "$K"                     # train
 "$PY" benchmarks/generalize/run_suite.py --iter "$NNN" --seed "$SEED" --regression                          # E1-01, V1-V3
 "$PY" benchmarks/generalize/run_suite.py --iter "$NNN" --seed "$SEED" --paraphrase "$K" --controller stub   # authority probe
+"$PY" benchmarks/generalize/run_suite.py --iter "$NNN" --seed "$SEED" --target                              # T01, Robin's own design
 ```
+
+The **target set** (`--target`, `TARGET_IDS` in `run_suite.py`: T01, the SPD clip-in flat pedal adapter, `designs/T01/`) is Robin's own real print
+request. It runs every iteration like the regression set (no paraphrases unless `--paraphrase K` is given), writes `iter_NNN/T01_sS`, is never part of the
+train split or the held-out split, and does not move the `regression` status. It is judged against `designs/T01/requirements.md` (which holds its
+rubric rows, section 7) and caches verdicts like any other design (`cache_verdicts.py`). Run it alone with
+`run_suite.py --iter NNN --seed S --target` (add `T01` to name it).
 
 The detached launcher (`launch_suite.py ITER SEED [holdout]`) runs exactly these from `loop/launch_config.json`:
 `{"commands": [[arg, ...], ...], "holdout_commands": [[arg, ...]]}`, each command the arguments after the

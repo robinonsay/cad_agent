@@ -1,0 +1,80 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n2 = 20 mm (request): "...printed piece. The sensor, an HC-SR04 ultrasonic unit (45 x 20 mm board, with two 16 mm transducers at 26 mm pitch), fac..."
+n3 = 16 mm (request): "...sor, an HC-SR04 ultrasonic unit (45 x 20 mm board, with two 16 mm transducers at 26 mm pitch), faces forward and sits 40..."
+n4 = 26 mm (request): "...sonic unit (45 x 20 mm board, with two 16 mm transducers at 26 mm pitch), faces forward and sits 40 mm forward of the sh..."
+n5 = 40 mm (request): "...o 16 mm transducers at 26 mm pitch), faces forward and sits 40 mm forward of the shaft axis of the motor, which is an N2..."
+n6 = 12 (request): "...of the shaft axis of the motor, which is an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) held in a clamp pocket. At the..."
+n7 = 10 mm (request): "...he shaft axis of the motor, which is an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) held in a clamp pocket. At the sha..."
+n8 = 3 mm (request): "...s of the motor, which is an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) held in a clamp pocket. At the shaft end there..."
+n9 = 6 (request): "...shaft) held in a clamp pocket. At the shaft end there is a 6 x 3 mm magnet pocket for an encoder. The whole bracket is f..."
+n10 = 3 mm (request): "...ft) held in a clamp pocket. At the shaft end there is a 6 x 3 mm magnet pocket for an encoder. The whole bracket is fixe..."
+n11 = 8 (L1.1): "...r's shaft axis runs horizontal and sideways, at a height of 8 to 30 mm above the chassis face. The sensor's transducers ..."
+n12 = 30 mm (L1.1): "...haft axis runs horizontal and sideways, at a height of 8 to 30 mm above the chassis face. The sensor's transducers point..."
+n13 = 40.0 mm (L1.1): "...ensor's transducers point forward, with its rear board face 40.0 mm (39.5 to 40.5 mm) in front of the shaft axis. Declar..."
+n14 = 39.5 (L1.1): "...ransducers point forward, with its rear board face 40.0 mm (39.5 to 40.5 mm) in front of the shaft axis. Declare the lay..."
+n15 = 40.5 mm (L1.1): "...rs point forward, with its rear board face 40.0 mm (39.5 to 40.5 mm) in front of the shaft axis. Declare the layout...."
+n16 = 12 (L1.2): "...Make the clamp pocket for the motor's 12 x 10 mm body 0.1 to 0.3 mm oversize on each of the two dime..."
+n17 = 10 mm (L1.2): "...Make the clamp pocket for the motor's 12 x 10 mm body 0.1 to 0.3 mm oversize on each of the two dimensions,..."
+n18 = 0.1 (L1.2): "...Make the clamp pocket for the motor's 12 x 10 mm body 0.1 to 0.3 mm oversize on each of the two dimensions, and keep..."
+n19 = 0.3 mm (L1.2): "...ake the clamp pocket for the motor's 12 x 10 mm body 0.1 to 0.3 mm oversize on each of the two dimensions, and keep it c..."
+n20 = 0.15 mm (L1.2): "...e two dimensions, and keep it coaxial with the shaft within 0.15 mm...."
+n21 = 3 mm (L1.3): "...A stop wall takes the motor's gearbox face and lets the 3 mm shaft through; the shaft must spin freely with nothing prin..."
+n22 = 6 (L1.4): "...Add a pocket for a single 6 x 3 mm disc magnet. It is coaxial with the shaft axis and f..."
+n23 = 3 mm (L1.4): "...Add a pocket for a single 6 x 3 mm disc magnet. It is coaxial with the shaft axis and faces th..."
+n24 = 2.0 mm (L1.4): "...shaft axis and faces the shaft tip, with the magnet's face 2.0 mm (1.5 to 2.5 mm) away from the tip. Make it wider than ..."
+n25 = 1.5 (L1.4): "...xis and faces the shaft tip, with the magnet's face 2.0 mm (1.5 to 2.5 mm) away from the tip. Make it wider than the mag..."
+n26 = 2.5 mm (L1.4): "...faces the shaft tip, with the magnet's face 2.0 mm (1.5 to 2.5 mm) away from the tip. Make it wider than the magnet by 0..."
+n27 = 0.1 (L1.4): "...2.5 mm) away from the tip. Make it wider than the magnet by 0.1 to 0.3 mm and deeper by 0.15 to 0.35 mm...."
+n28 = 0.3 mm (L1.4): "...away from the tip. Make it wider than the magnet by 0.1 to 0.3 mm and deeper by 0.15 to 0.35 mm...."
+n29 = 0.15 (L1.4): "...ake it wider than the magnet by 0.1 to 0.3 mm and deeper by 0.15 to 0.35 mm...."
+n30 = 0.35 mm (L1.4): "...ider than the magnet by 0.1 to 0.3 mm and deeper by 0.15 to 0.35 mm...."
+n31 = 0.1 (L1.5): "...goes into a slot that is deeper than the board is thick by 0.1 to 0.6 mm and wider than it is long by 0.2 to 0.6 mm; it ..."
+n32 = 0.6 mm (L1.5): "...nto a slot that is deeper than the board is thick by 0.1 to 0.6 mm and wider than it is long by 0.2 to 0.6 mm; it should..."
+n33 = 0.2 (L1.5): "...oard is thick by 0.1 to 0.6 mm and wider than it is long by 0.2 to 0.6 mm; it should drop in from above and rest on the ..."
+n34 = 0.6 mm (L1.5): "...thick by 0.1 to 0.6 mm and wider than it is long by 0.2 to 0.6 mm; it should drop in from above and rest on the slot flo..."
+n35 = 200 (L1.5): "...slot floor at the declared pose. In front, a plate covering 200 mm2 or more of the front face holds it, and a rear wall ..."
+n36 = 400 (L1.5): "...of the front face holds it, and a rear wall covers at least 400 mm2 of the back...."
+n37 = 18 (L1.6): "...window in the plate for each transducer, centred on it and 18 to 19 mm across, and continue each as a straight channel o..."
+n38 = 19 mm (L1.6): "...w in the plate for each transducer, centred on it and 18 to 19 mm across, and continue each as a straight channel of the..."
+n39 = 4 (L1.7): "...Leave room behind the board for the 4-pin header and the wires plugged into it, and cut a window..."
+n40 = 20 (L1.8): "...at base plate, with the heads counterbored. Space the bolts 20 to 60 mm apart, let the tips stick out 5 to 15 mm beyond ..."
+n41 = 60 mm (L1.8): "...e plate, with the heads counterbored. Space the bolts 20 to 60 mm apart, let the tips stick out 5 to 15 mm beyond the pl..."
+n42 = 5 (L1.8): ".... Space the bolts 20 to 60 mm apart, let the tips stick out 5 to 15 mm beyond the plate, and leave a hex-key column free..."
+n43 = 15 mm (L1.8): "...ce the bolts 20 to 60 mm apart, let the tips stick out 5 to 15 mm beyond the plate, and leave a hex-key column free over..."
+n44 = 2.0 mm (L1.9): "...It needs to be sturdy: keep walls and ligaments at 2.0 mm minimum, make the base plate 4.0 to 8.0 mm thick, leave at..."
+n45 = 4.0 (L1.9): "...walls and ligaments at 2.0 mm minimum, make the base plate 4.0 to 8.0 mm thick, leave at least 2.0 mm of material round ..."
+n46 = 8.0 mm (L1.9): "...and ligaments at 2.0 mm minimum, make the base plate 4.0 to 8.0 mm thick, leave at least 2.0 mm of material round every ..."
+n47 = 2.0 mm (L1.9): "...um, make the base plate 4.0 to 8.0 mm thick, leave at least 2.0 mm of material round every bolt hole, give the plate bet..."
+n48 = 150 (L1.9): "...e between the motor pocket and the sensor slot a section of 150 mm2 or more, and make sure the whole bracket is one conn..."
+n49 = 60 (L1.11): "...Overall size must not exceed 60 x 60 x 35 mm, and it must sit flat on its chassis face with..."
+n50 = 60 (L1.11): "...Overall size must not exceed 60 x 60 x 35 mm, and it must sit flat on its chassis face without t..."
+n51 = 35 mm (L1.11): "...Overall size must not exceed 60 x 60 x 35 mm, and it must sit flat on its chassis face without tipping o..."
+n52 = 0 (L1.12): "...erables: the bracket as an STL with the chassis face at Z = 0 (mm), the OpenSCAD source, the declared layout and hardwar..."
+
+n1 (45) states board_width, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_depth": "n2", "keepout_above": "n2", "keepout_below": "n2", "board_clearance": "n2", "headroom": "n2", "opening_oversize_max": "n2", "wall_min": "n2", "wall_max": "n2", "max_x": "n2", "max_y": "n2", "max_z": "n2"}

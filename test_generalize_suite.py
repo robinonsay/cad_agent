@@ -56,13 +56,14 @@ def request_json(rid, text):
 
 
 class Tree:
-    """A throwaway repo: two train designs, the enclosure regression files, two catalogues and a fake agent."""
+    """A throwaway repo: two train designs and one target design (T01), the enclosure regression files, two catalogues
+    and a fake agent."""
 
     def __init__(self, root: Path):
         self.root = root
         g = root / "benchmarks" / "generalize"
         e = root / "benchmarks" / "enclosure"
-        for gid, text in (("G90", "a box"), ("G91", "a WIDE bracket")):
+        for gid, text in (("G90", "a box"), ("G91", "a WIDE bracket"), ("T01", "a pedal adapter")):
             d = g / "designs" / gid
             d.mkdir(parents=True)
             (d / "design.json").write_text(json.dumps(request_json(gid, text)))
@@ -268,6 +269,27 @@ class TestCases(TreeCase):
         with self.assertRaises(ValueError):
             rs.load_cases(self.paths, "regression", ["V4"])
 
+    def test_target_designs_are_not_train_cases(self):
+        """T01 lives in designs/ like a train design but runs only as the target split (Robin's own design)."""
+        self.assertEqual(rs.TARGET_IDS, ("T01",))
+        self.assertIn("T01", rs.design_ids(self.paths.designs))
+        self.assertNotIn("T01", [c.id for c in rs.load_cases(self.paths, "train")])
+        with self.assertRaises(ValueError):
+            rs.load_cases(self.paths, "train", ["T01"])
+        tgt = rs.load_cases(self.paths, "target")
+        self.assertEqual([c.id for c in tgt], list(rs.TARGET_IDS))
+        g = self.paths.generalize
+        self.assertEqual(tgt[0].spec_files, [g / "designs/T01/requirements.md", g / "designs/T01/design.json",
+                                             g / "rubric.md"])
+        self.assertEqual(self.paths.catalogues("target"), [g / "parts", self.paths.enclosure / "parts"])
+        with self.assertRaises(ValueError):
+            rs.load_cases(self.paths, "target", ["G90"])
+        with self.assertRaises(ValueError):
+            rs.load_cases(self.paths, "regression", ["T01"])           # T01 is not in the enclosure regression set
+        with self.assertRaises(ValueError):
+            rs.load_cases(self.paths, "target", paraphrase=1)          # no paraphrases.json in the fake tree
+        self.assertEqual(rs.build_parser().parse_args(["--iter", "1", "--target"]).target, True)
+
     def test_iteration_labels(self):
         self.assertEqual(rs.iter_label("7"), "007")
         self.assertEqual(rs.iter_label(12), "012")
@@ -387,6 +409,18 @@ class TestRunAndSummary(TreeCase):
         self.assertEqual(cv.store_verdicts(self.paths, "001", cv.parse_verdicts(good))["summary"]["regression"], "pass")
         bad = {"E1-01_s1": {"verdict": "DNM", "class": "CORRECT"}}
         self.assertEqual(cv.store_verdicts(self.paths, "001", cv.parse_verdicts(bad))["summary"]["regression"], "fail")
+
+    def test_target_runs_alongside_the_regression_set_in_one_iteration_folder(self):
+        rows, s = self.run_cases(split="target")
+        self.assertEqual([r["name"] for r in rows], ["T01_s1"])
+        self.assertEqual(rows[0]["split"], "target")
+        self.assertEqual(rows[0]["missing"], [])
+        self.assertEqual(self.paths.iter_dir("target", "001"), self.paths.iter_dir("train", "001"))
+        self.assertEqual(s["counts"]["target"]["runs"], 1)
+        self.assertNotIn("train", s["counts"])
+        self.assertEqual(s["regression"], "not_run")             # the target set does not move the regression bar
+        log = (self.paths.iter_dir("target", "001") / "T01_s1" / "run.log").read_text()
+        self.assertIn("benchmarks/generalize/parts", log)        # the T01 parts live in the generalize catalogue
 
     def test_holdout_score_needs_every_run_judged(self):
         d = self.paths.iter_dir("holdout", "001")
@@ -569,11 +603,13 @@ class TestLaunchConfig(unittest.TestCase):
             self.assertTrue((REPO / args[0]).is_file(), args[0])
             return rs.build_parser().parse_args(args[1:])
 
-        train, reg, stub = (parsed(c) for c in cfg["commands"])
+        train, reg, stub, target = (parsed(c) for c in cfg["commands"])
         self.assertEqual((train.split, train.regression, train.paraphrase, train.controller), ("train", False, 2, "llm"))
         self.assertEqual((reg.regression, reg.paraphrase, reg.controller), (True, 0, "llm"))
         self.assertEqual((stub.split, stub.paraphrase, stub.controller), ("train", 2, "stub"))
-        self.assertTrue(train.iter == reg.iter == stub.iter == "005" and train.seed == stub.seed == 5)
+        self.assertEqual((target.target, target.paraphrase, target.controller), (True, 0, "llm"))
+        self.assertTrue(train.iter == reg.iter == stub.iter == target.iter == "005"
+                        and train.seed == stub.seed == target.seed == 5)
         (hold,) = (parsed(c) for c in cfg["holdout_commands"])
         self.assertEqual((hold.split, hold.paraphrase, hold.controller), ("holdout", 2, "llm"))
 

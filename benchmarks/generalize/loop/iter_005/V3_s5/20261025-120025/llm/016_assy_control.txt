@@ -1,0 +1,29 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for an 80 x 40 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 is plugged into female header sockets, so its underside sits 8.5 mm above the board, with its micro-USB port exposed through one short end of the enclosure. One 3.5 mm jack is exposed through the other short end, and a 10 mm diameter, 20 mm tall capacitor stands upright on the board. Leave at least 3 mm of space above the tallest part. The enclosure is a base and a removable lid, printed on an FDM printer.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. text_coverage (L1.5, L1.6): module_1.usb (raspberry pi pico 2) is closed, but L1.5 names a micro-usb plug: "With the lid closed, a micro-USB cable shall plug fully into the raised Pico through one opening in its end wall without touching the enclosure, and that ope..."; needs: an opening for each connector whose mating plug the text names
+
+The design now:
+- board (primary): perfboard x1
+- module_1: raspberry pi pico 2 x1; connectors: usb closed
+- connector_1: 3.5 mm jack x1; connectors: jack open through +X
+- generic_1: capacitor x1
+- lid closure: lip; lid bosses: outside_corners
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- A: expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed
+- B: stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? Answer with its letter.
+
+=== RESPONSE ===
+{
+  "action": "A"
+}

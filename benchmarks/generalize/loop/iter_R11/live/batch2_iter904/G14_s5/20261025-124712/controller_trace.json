@@ -1,0 +1,399 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "5804afb1df96dc41",
+        "graph": "879e3ecb41beb1e2",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "arduino_nano",
+              1,
+              []
+            ],
+            [
+              "control_1",
+              "buzzer_12mm",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": "screw_m3_selftap"
+          },
+          "retention": "pocket"
+        }
+      },
+      "error": {
+        "hard_failures": 3,
+        "violation": 9.79
+      },
+      "failing": [
+        "retention_board",
+        "content_placed_control_1",
+        "text_coverage"
+      ],
+      "terms": [
+        {
+          "check": "retention_board",
+          "type": "retention",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.3",
+            "L1.5",
+            "L1.7",
+            "L1.12"
+          ],
+          "where": "arduino nano held by pocket: free travel (mm) -z 0.00, +z 8.30, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 8.30 > 0.5; options the plant cannot build here:... at board (arduino nano) toward +z",
+          "deficit": 7.79,
+          "unit": "mm",
+          "direction": "decrease the free travel of the part in its worst direction",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -7.79,
+          "detail": "arduino nano held by pocket: free travel (mm) -z 0.00, +z 8.30, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 8.30 > 0.5; options the plant cannot build here:..."
+        },
+        {
+          "check": "content_placed_control_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.1",
+            "L1.4",
+            "L1.7",
+            "L1.8",
+            "L1.12"
+          ],
+          "where": "control_1 (buzzer_12mm) is not placed: arduino_nano is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "control_1 (buzzer_12mm) is not placed: arduino_nano is not a carrier: no relation places it yet (GM2b)"
+        },
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5"
+          ],
+          "where": "board.usb (arduino nano) is closed, but request names a mini-usb plug: \"leave that end open, so a mini-USB plug can be inserted and the lid can still be slid off while the cable is attached.\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "0 named plug connection(s) covered; uncovered: board.usb takes plug_miniusb_b named by request, L1.5"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "5804afb1df96dc41",
+      "error_before": {
+        "hard_failures": 3,
+        "violation": 9.79
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "expose",
+          "target": "board.usb",
+          "value": true,
+          "words": "expose board.usb: open the enclosure wall for the arduino nano's usb connector so a mini-usb plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "request",
+              "quote": "leave that end open, so a mini-USB plug can be inserted and the lid can still be slid off while the cable is attached."
+            },
+            {
+              "source": "L1.5",
+              "quote": "Leave out the end wall where the mini-USB connector is, so a mini-USB plug can be driven all the way into the Nano without contacting the box, keeping at least 0.3 mm from the plug and its overmold on all sides, both with the lid seated and as it slides."
+            }
+          ],
+          "key": "expose:board.usb=True",
+          "letter": "B"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "C"
+        }
+      ],
+      "votes": {
+        "B": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "board.usb",
+        "value": true,
+        "words": "expose board.usb: open the enclosure wall for the arduino nano's usb connector so a mini-usb plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "request",
+            "quote": "leave that end open, so a mini-USB plug can be inserted and the lid can still be slid off while the cable is attached."
+          },
+          {
+            "source": "L1.5",
+            "quote": "Leave out the end wall where the mini-USB connector is, so a mini-USB plug can be driven all the way into the Nano without contacting the box, keeping at least 0.3 mm from the plug and its overmold on all sides, both with the lid seated and as it slides."
+          }
+        ],
+        "key": "expose:board.usb=True"
+      },
+      "chosen": "B",
+      "accepted": true,
+      "reason": "fewer failing checks (3 -> 2)",
+      "error_after": {
+        "hard_failures": 2,
+        "violation": 8.79
+      },
+      "state_after": "c705dbbbba2ef7bc",
+      "failing_after": [
+        "content_placed_control_1",
+        "retention_board"
+      ],
+      "llm_calls": 3,
+      "secs": 3.03
+    },
+    {
+      "step": 2,
+      "state_before": "c705dbbbba2ef7bc",
+      "error_before": {
+        "hard_failures": 2,
+        "violation": 8.79
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "set_retention",
+        "target": "board",
+        "value": "crush_ribs",
+        "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+        "targets": [
+          "retention_board"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_retention:board=crush_ribs"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (2 -> 1)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "state_after": "2a2adb3eaae3a698",
+      "failing_after": [
+        "content_placed_control_1"
+      ],
+      "llm_calls": 3,
+      "secs": 2.83
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 2
+  },
+  "final": {
+    "state": {
+      "decisions": "2a2adb3eaae3a698",
+      "graph": "9ec362351c42ac55",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "arduino_nano",
+            1,
+            [
+              "usb"
+            ]
+          ],
+          [
+            "control_1",
+            "buzzer_12mm",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {
+          "wall[board.usb]": "-X"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": "screw_m3_selftap"
+        },
+        "retention": "crush_ribs"
+      }
+    },
+    "error": {
+      "hard_failures": 1,
+      "violation": 1.0
+    },
+    "failing": [
+      "content_placed_control_1"
+    ],
+    "terms": [
+      {
+        "check": "content_placed_control_1",
+        "type": "content_placed",
+        "requirement": [
+          "L1.1",
+          "L1.4",
+          "L1.7",
+          "L1.8",
+          "L1.12"
+        ],
+        "where": "control_1 (buzzer_12mm) is not placed: arduino_nano is not a carrier: no relation places it yet (GM2b)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": true,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "control_1 (buzzer_12mm) is not placed: arduino_nano is not a carrier: no relation places it yet (GM2b)"
+      }
+    ]
+  },
+  "secs": 6.09,
+  "authority": {
+    "decisions": {
+      "plant": 4,
+      "llm": 2,
+      "guardrail": 2,
+      "semantic-rule": 1
+    },
+    "proposal": {
+      "llm_slots": 7,
+      "default_slots": 3,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.5238
+  },
+  "accepted": [
+    {
+      "kind": "expose",
+      "target": "board.usb",
+      "value": true,
+      "words": "expose board.usb: open the enclosure wall for the arduino nano's usb connector so a mini-usb plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "request",
+          "quote": "leave that end open, so a mini-USB plug can be inserted and the lid can still be slid off while the cable is attached."
+        },
+        {
+          "source": "L1.5",
+          "quote": "Leave out the end wall where the mini-USB connector is, so a mini-USB plug can be driven all the way into the Nano without contacting the box, keeping at least 0.3 mm from the plug and its overmold on all sides, both with the lid seated and as it slides."
+        }
+      ],
+      "key": "expose:board.usb=True",
+      "step": 1
+    },
+    {
+      "kind": "set_retention",
+      "target": "board",
+      "value": "crush_ribs",
+      "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+      "targets": [
+        "retention_board"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_retention:board=crush_ribs",
+      "step": 2
+    }
+  ]
+}

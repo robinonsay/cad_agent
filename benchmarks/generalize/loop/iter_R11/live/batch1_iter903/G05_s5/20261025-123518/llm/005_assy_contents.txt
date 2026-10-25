@@ -1,0 +1,60 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on one short end, there are two rows of 19 header pins pointing up (jumper wires go on those), and the PCB antenna is at the other end. Alongside it goes a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm holes, which should be visible through a window in the front, and two 6 mm tactile buttons placed next to that window, with each button axis no closer than 4 mm to the window edge and the two buttons no closer than 12 mm to each other. The window has to reveal the 21.7 x 10.9 mm active area with a margin of 1 mm or more all round, without clipping the 25 x 14 mm viewing area. Give each button a printed plunger that genuinely presses its switch and protrudes 1.5 to 3.5 mm above the lid. At the back, which is the end wall behind the board's USB end, the USB port has to stay reachable so a micro-USB plug seats fully with the lid fitted. Leave the antenna end open: no wall or lid within 8 mm of the board end above the board's top face, and nothing within 5 mm above the module there (low edge stops below the board top are fine). As the ESP32 has no holes, the housing must hold it by the underside and edges. It consists of a base, a removable lid with a locating lip fastened by four M3 screws, and two plungers, all printed on an FDM printer with no supports.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- gear_spur_generic: spur gear (generic)
+- oled_ssd1306_096: 0.96 inch oled (display)
+- button_tact_6mm: 6mm tactile button (control)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "button_tact_6mm": {
+    "quantity": 2
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 1
+  },
+  "gear_spur_generic": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "oled_ssd1306_096": {
+    "quantity": 1
+  },
+  "perfboard": {
+    "quantity": 1
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  }
+}

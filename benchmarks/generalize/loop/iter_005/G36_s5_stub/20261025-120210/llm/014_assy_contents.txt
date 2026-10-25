@@ -1,0 +1,19 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Could you design a knob that fits an Alps RK09 pot? That has a 6 mm D-shaft and a 7 mm threaded bushing. The knob should be 18 mm high and 24 mm across, and it clamps onto the shaft with a radial M3 grub screw; its M3 nut is trapped in a hex pocket inside the knob. Please include the panel the pot is mounted through as well: 3 mm thick, with a 7.2 mm hole for the bushing. Keep the underside rim of the knob 1 mm off the panel. Both the knob and the panel are separate FDM printed pieces.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"arduino_nano": {"quantity": 0, "exposed": "yes"}, "arduino_uno_r3": {"quantity": 0, "usb_exposed": "yes", "dc_exposed": "yes"}, "jack_3p5_pj320a": {"quantity": 0, "exposed": "yes"}, "dc_jack_pj002a": {"quantity": 0, "exposed": "yes"}}

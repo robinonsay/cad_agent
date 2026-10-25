@@ -36,3 +36,211 @@ iter 005 split train: 40 runs, seed 5, controller llm, paraphrase 2, code 46b953
 [35/40] G42_s5 rc=1 32.8 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
 [36/40] G43_s5 rc=1 38.0 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
 [37/40] G45_s5 rc=1 35.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[38/40] G47_s5 rc=1 30.6 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[39/40] G49_s5 rc=1 40.1 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=choose_archetype
+[40/40] G50_s5 rc=3 67.1 s renders=True missing=[] stage=done
+{
+  "counts": {
+    "train": {
+      "runs": 40,
+      "rc": {
+        "1": 33,
+        "0": 2,
+        "3": 5
+      },
+      "no_output": 33,
+      "with_renders": 7,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 7
+    }
+  },
+  "regression": "not_run",
+  "to_judge": [
+    "G02_s5",
+    "G04_s5",
+    "G06_s5",
+    "G08_s5",
+    "G11_s5",
+    "G13_s5",
+    "G50_s5"
+  ],
+  "cached": [],
+  "code_unchanged": false,
+  "paraphrase": 2,
+  "stub_verified": 0,
+  "llm_dependent": []
+}
+iter 005 split regression: 4 runs, seed 5, controller llm, paraphrase 0, code 46b9530eac79 (unchanged vs iter_004: False)
+[1/4] E1-01_s5 rc=0 85.8 s renders=True missing=[] stage=done
+[2/4] V1_s5 rc=0 97.7 s renders=True missing=[] stage=done
+[3/4] V2_s5 rc=0 97.6 s renders=True missing=[] stage=done
+[4/4] V3_s5 rc=0 98.6 s renders=True missing=[] stage=done
+{
+  "counts": {
+    "train": {
+      "runs": 40,
+      "rc": {
+        "1": 33,
+        "0": 2,
+        "3": 5
+      },
+      "no_output": 33,
+      "with_renders": 7,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 7
+    },
+    "regression": {
+      "runs": 4,
+      "rc": {
+        "0": 4
+      },
+      "no_output": 0,
+      "with_renders": 4,
+      "timed_out": 0,
+      "judged": 2,
+      "meets": 2,
+      "correct": 2,
+      "to_judge": 2
+    }
+  },
+  "regression": "pending",
+  "to_judge": [
+    "G02_s5",
+    "G04_s5",
+    "G06_s5",
+    "G08_s5",
+    "G11_s5",
+    "G13_s5",
+    "G50_s5",
+    "V1_s5",
+    "V3_s5"
+  ],
+  "cached": [
+    "E1-01_s5",
+    "V2_s5"
+  ],
+  "code_unchanged": false,
+  "paraphrase": 2,
+  "stub_verified": 0,
+  "llm_dependent": []
+}
+iter 005 split train: 40 runs, seed 5, controller stub, paraphrase 2, code 46b9530eac79 (unchanged vs iter_004: False)
+[1/40] G01_s5_stub rc=1 0.3 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[2/40] G02_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[3/40] G03_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[4/40] G04_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[5/40] G05_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[6/40] G06_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[7/40] G08_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[8/40] G09_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[9/40] G10_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[10/40] G11_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[11/40] G12_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[12/40] G13_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[13/40] G14_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[14/40] G16_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[15/40] G17_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[16/40] G18_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[17/40] G20_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[18/40] G21_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[19/40] G22_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[20/40] G23_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[21/40] G24_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[22/40] G26_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[23/40] G27_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[24/40] G29_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[25/40] G30_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[26/40] G31_s5_stub rc=1 0.3 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[27/40] G32_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[28/40] G33_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[29/40] G35_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[30/40] G36_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[31/40] G37_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[32/40] G38_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[33/40] G40_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[34/40] G41_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[35/40] G42_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[36/40] G43_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[37/40] G45_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[38/40] G47_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[39/40] G49_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+[40/40] G50_s5_stub rc=1 0.2 s renders=False missing=['layout.json', 'self_report.json', '*.stl'] stage=contents
+{
+  "counts": {
+    "train": {
+      "runs": 40,
+      "rc": {
+        "1": 33,
+        "0": 2,
+        "3": 5
+      },
+      "no_output": 33,
+      "with_renders": 7,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 7
+    },
+    "regression": {
+      "runs": 4,
+      "rc": {
+        "0": 4
+      },
+      "no_output": 0,
+      "with_renders": 4,
+      "timed_out": 0,
+      "judged": 2,
+      "meets": 2,
+      "correct": 2,
+      "to_judge": 2
+    },
+    "train_stub": {
+      "runs": 40,
+      "rc": {
+        "1": 40
+      },
+      "no_output": 40,
+      "with_renders": 0,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 0
+    }
+  },
+  "regression": "pending",
+  "to_judge": [
+    "G02_s5",
+    "G04_s5",
+    "G06_s5",
+    "G08_s5",
+    "G11_s5",
+    "G13_s5",
+    "G50_s5",
+    "V1_s5",
+    "V3_s5"
+  ],
+  "cached": [
+    "E1-01_s5",
+    "V2_s5"
+  ],
+  "code_unchanged": false,
+  "paraphrase": 2,
+  "stub_verified": 0,
+  "llm_dependent": [
+    "G02",
+    "G04",
+    "G06",
+    "G08",
+    "G11",
+    "G13",
+    "G50"
+  ]
+}

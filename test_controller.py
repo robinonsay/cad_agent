@@ -112,19 +112,22 @@ class TestAccept(unittest.TestCase):
 
 class TestLoop(Case):
     def test_expose_is_kept_and_traced(self):
-        llm = FakeLLM(dict(closed_usb("E1-01"), assy_control=[{"action": "A"}]))
+        llm = FakeLLM(dict(closed_usb("E1-01"), assy_control=[{"action": "expose:module_1.usb"}]))
         rc, pkg, _ = run_offline("E1-01", self.root, self.rules, llm=llm, tag="kept")
         rec = json.loads((pkg / "design.json").read_text())["assembly"]
         trace = json.loads((pkg / "controller_trace.json").read_text())
         self.assertEqual(rc, ca.EXIT_OK)
-        self.assertEqual(llm.labels().count(C.CONTROL_LABEL), ca.VOTES)
+        # changed in migration delta R02: one call per distinct ordering of the menu (expose + stop: two orderings)
+        self.assertEqual(llm.labels().count(C.CONTROL_LABEL), 2)
         prompt = next(p for lb, p, _ in llm.calls if lb == C.CONTROL_LABEL)
-        self.assertIn("A: expose module_1.usb", prompt)
-        self.assertIn("B: stop", prompt)
+        # changed in migration delta R02: the menu is content-keyed (ids, not letters) and shown in shuffled orders
+        self.assertIn("- expose:module_1.usb: open the enclosure wall", prompt)
+        self.assertIn("- stop: keep the design as it is", prompt)
+        self.assertNotIn("- A: ", prompt)
         self.assertIn(l1_with("E1-01", "micro-USB cable"), prompt)
         ch = rec["choices"]["exposed[module_1]"]
         self.assertEqual((ch["value"], ch["by"], ch["step"]), (True, C.CONTROLLER_BY, 1))
-        self.assertEqual(ch["votes"], {"A": ca.VOTES})
+        self.assertEqual(ch["votes"], {"expose:module_1.usb": 2})
         self.assertEqual(ch["overrides"]["contents_votes"], {"no": ca.VOTES})
         self.assertEqual([r["resolved"] for r in rec["coverage"]], ["exposed"])
         self.assertEqual(rec["controller"], {"kind": "llm", "budget": 6, "steps": 1, "kept": 1, "stop": "every check passes"})
@@ -132,7 +135,7 @@ class TestLoop(Case):
         s0, s1 = trace["steps"]
         self.assertEqual(s0["error"], {"hard_failures": 1, "violation": 1.0})
         self.assertEqual(s0["failing"], ["text_coverage"])
-        self.assertEqual((s1["accepted"], s1["chosen"], s1["action"]["kind"]), (True, "A", "expose"))
+        self.assertEqual((s1["accepted"], s1["chosen"], s1["action"]["kind"]), (True, "expose:module_1.usb", "expose"))
         self.assertEqual(s1["error_after"], {"hard_failures": 0, "violation": 0})
         self.assertNotEqual(s1["state_before"], s1["state_after"])
         self.assertEqual(len(s1["state_before"]), C.DIGEST_HEX)
@@ -151,7 +154,7 @@ class TestLoop(Case):
         self.assertTrue(results[f"clear_{pico}_plug"]["passed"])
 
     def test_stop_leaves_the_failure_visible(self):
-        llm = FakeLLM(dict(closed_usb("E1-01"), assy_control=[{"action": "B"}]))
+        llm = FakeLLM(dict(closed_usb("E1-01"), assy_control=[{"action": "stop"}]))
         rc, pkg, _ = run_offline("E1-01", self.root, self.rules, llm=llm, tag="stop")
         rec = json.loads((pkg / "design.json").read_text())["assembly"]
         trace = json.loads((pkg / "controller_trace.json").read_text())
@@ -168,7 +171,7 @@ class TestLoop(Case):
     def test_infeasible_expose_is_rejected_and_typed(self):
         # every placement holding the Pico's exposed connector collides: the action cannot be applied; the design is
         # unchanged, the action is tabu, the loop stops, and text_coverage is typed as a coverage conflict
-        llm = FakeLLM(dict(closed_usb("V1"), assy_control=[{"action": "A"}]))
+        llm = FakeLLM(dict(closed_usb("V1"), assy_control=[{"action": "expose:module_1.usb"}]))
         orig = lay.Placer.place
 
         def place(placer, items_, assign):
@@ -195,7 +198,7 @@ class TestLoop(Case):
         self.assertIn(l1_text("V1", l1_with("V1", "micro-USB cable"))[:40], conflicts[0]["conflict"])
 
     def test_a_step_that_raises_the_error_is_undone(self):
-        d, llm = staged("E1-01", self.root / "undo", dict(closed_usb("E1-01"), assy_control=[{"action": "A"}]),
+        d, llm = staged("E1-01", self.root / "undo", dict(closed_usb("E1-01"), assy_control=[{"action": "expose:module_1.usb"}]),
                         self.rules)
         st = d.assy
         real = C.plant
@@ -218,7 +221,7 @@ class TestLoop(Case):
     def test_budget_bounds_the_steps(self):
         (self.root / "b0").mkdir(exist_ok=True)
         rules = test_rules(self.root / "b0", fn=24, controller_step_budget=0)
-        d, llm = staged("E1-01", self.root / "budget", dict(closed_usb("E1-01"), assy_control=[{"action": "A"}]), rules)
+        d, llm = staged("E1-01", self.root / "budget", dict(closed_usb("E1-01"), assy_control=[{"action": "expose:module_1.usb"}]), rules)
         trace = C.run_loop(d, llm)
         self.assertEqual(trace["stop"], {"reason": "step budget spent (0)", "step": 0})
         self.assertNotIn(C.CONTROL_LABEL, llm.labels())
@@ -229,8 +232,8 @@ class TestLoop(Case):
         plan, results, links = C.plant(st)
         terms = C.error_vector(st, results, links)
         options = C.menu(st, results, []) + [C.STOP_ACTION]
-        prompt = C.control_prompt(d, st, terms, options, ["step 1: A (expose module_1.usb) was undone: test"])
-        self.assertIn("Earlier steps:\n- step 1: A (expose module_1.usb) was undone: test", prompt)
+        prompt = C.control_prompt(d, st, terms, options, ["step 1: expose:module_1.usb was undone: test"])
+        self.assertIn("Earlier steps:\n- step 1: expose:module_1.usb was undone: test", prompt)
         self.assertIn("- module_1: raspberry pi pico 2 x1; connectors: usb closed", prompt)
         self.assertEqual(C.menu(st, results, ["expose:module_1.usb=True"]), [])        # tabu
 
@@ -375,7 +378,7 @@ class TestRegressionInvariance(Case):
         # the 9B's real Contents answer (USB closed) + the controller's expose gives the very package of a run whose
         # Contents exposed it (the path rule:text_coverage forced before R01): feature graph, layout and meshes
         out = {}
-        for tag, script in (("yes", script_for("E1-01")), ("no", dict(closed_usb("E1-01"), assy_control=[{"action": "A"}]))):
+        for tag, script in (("yes", script_for("E1-01")), ("no", dict(closed_usb("E1-01"), assy_control=[{"action": "expose:module_1.usb"}]))):
             llm = FakeLLM(script)
             rc, pkg, _ = run_offline("E1-01", self.root, self.rules, llm=llm, tag=f"inv_{tag}")
             out[tag] = (rc, graph_hash(pkg), json.loads((pkg / "layout.json").read_text())["references"],
@@ -383,7 +386,8 @@ class TestRegressionInvariance(Case):
         self.assertEqual(out["yes"][0], out["no"][0])
         self.assertEqual(out["yes"][1], out["no"][1])
         self.assertEqual(out["yes"][2], out["no"][2])
-        self.assertEqual((out["yes"][3], out["no"][3]), (0, ca.VOTES))   # no question when nothing actionable fails
+        self.assertEqual((out["yes"][3], out["no"][3]), (0, 2))   # no question when nothing actionable fails (R02: two
+                                                                  # orderings of expose + stop)
 
 
 if __name__ == "__main__":

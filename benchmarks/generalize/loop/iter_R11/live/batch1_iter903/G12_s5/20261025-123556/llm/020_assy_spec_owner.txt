@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n52 = 50 (L1.11): "...counting ears and tabs, the shut box must fit within 125 x 50 x 26 mm, with the long direction running along the 54.4 mm..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n52 state?
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- generic_1.size_y: the size_y of the rectangular block (request text) (mm)
+
+=== RESPONSE ===
+{
+  "owner": "generic_1.size_y"
+}

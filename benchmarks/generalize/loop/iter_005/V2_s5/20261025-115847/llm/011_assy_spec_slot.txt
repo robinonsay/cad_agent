@@ -1,0 +1,46 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 90 (request): "...An enclosure for a 90 x 45 mm perfboard with a mounting hole in each corner. A Ra..."
+n2 = 45 mm (request): "...An enclosure for a 90 x 45 mm perfboard with a mounting hole in each corner. A Raspberry..."
+n3 = 2 (request): "...rd with a mounting hole in each corner. A Raspberry Pi Pico 2 lies along the board with its micro-USB port exposed throu..."
+n4 = 3.5 mm (request): "...its micro-USB port exposed through one short end, and three 3.5 mm jacks sit in a row along one long edge of the board, ..."
+n5 = 2 (L1.1): "...The design shall place the Pico 2 and three 3.5 mm jacks on the 90 x 45 mm board, from the pa..."
+n6 = 3.5 mm (L1.1): "...The design shall place the Pico 2 and three 3.5 mm jacks on the 90 x 45 mm board, from the parts catalogue, wi..."
+n7 = 90 (L1.1): "...design shall place the Pico 2 and three 3.5 mm jacks on the 90 x 45 mm board, from the parts catalogue, with the Pico's ..."
+n8 = 45 mm (L1.1): "...n shall place the Pico 2 and three 3.5 mm jacks on the 90 x 45 mm board, from the parts catalogue, with the Pico's USB p..."
+n9 = 45 mm (L1.1): "...parts catalogue, with the Pico's USB port facing one short (45 mm) end and all three jacks facing the same long (90 mm) ..."
+n10 = 90 mm (L1.1): "...short (45 mm) end and all three jacks facing the same long (90 mm) side, at least 11 mm apart, without the parts collidi..."
+n11 = 11 mm (L1.1): "...all three jacks facing the same long (90 mm) side, at least 11 mm apart, without the parts colliding or covering the cor..."
+n12 = 90 (L1.2): "...The 90 x 45 x 1.6 mm board shall fit inside the closed enclosure w..."
+n13 = 45 (L1.2): "...The 90 x 45 x 1.6 mm board shall fit inside the closed enclosure with a..."
+n14 = 1.6 mm (L1.2): "...The 90 x 45 x 1.6 mm board shall fit inside the closed enclosure with at least 0..."
+n15 = 0.5 mm (L1.2): "...m board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where ..."
+n16 = 12 mm (L1.4): "...the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its undersi..."
+n17 = 4 mm (L1.4): "...re shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the hol..."
+n18 = 1.5 mm (L1.5): "...ching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n19 = 3.5 mm (L1.6): "...With the lid closed, three 3.5 mm plugs shall plug fully into the three jacks at the same tim..."
+n20 = 1.5 mm (L1.6): "...osure or each other, and each opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n22 = 4 mm (L1.8): "...and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n23 = 110 (L1.10): "...The closed enclosure shall be no larger than 110 x 65 x 35 mm, longest along the board's 90 mm side, and sha..."
+n24 = 65 (L1.10): "...The closed enclosure shall be no larger than 110 x 65 x 35 mm, longest along the board's 90 mm side, and shall st..."
+n25 = 35 mm (L1.10): "...The closed enclosure shall be no larger than 110 x 65 x 35 mm, longest along the board's 90 mm side, and shall stand fla..."
+n26 = 90 mm (L1.10): "...no larger than 110 x 65 x 35 mm, longest along the board's 90 mm side, and shall stand flat on a desk without tipping...."
+
+n21 (2) states wall_min, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- wall_max: the maximum wall, floor and lid thickness (mm)
+
+
+=== RESPONSE ===
+{
+  "wall_max": "n22"
+}

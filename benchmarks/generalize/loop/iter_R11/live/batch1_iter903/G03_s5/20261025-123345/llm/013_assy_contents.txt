@@ -1,0 +1,52 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'd like a housing for an ESP32-DevKitC V4 board, which measures 54.4 x 27.9 mm and is 1.6 mm thick, with its pin headers sticking up roughly 8.5 mm. It has no mounting holes, so rather than screws the housing needs ribs or clips to keep it in place. One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on. At the antenna end, leave 8 mm of empty room past the board, with no wall or cover material over the module. The cover should be its own printed piece that snaps on and can come off again. Print on an FDM printer in PLA, no supports, and keep the closed housing within 75 x 45 x 25 mm.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- tp4056_usbc_module: tp4056 (module; cable connector: usb connector (takes a usb-c plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_cylinder: capacitor (generic)
+- gear_spur_generic: spur gear (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 1
+  },
+  "gear_spur_generic": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "tp4056_usbc_module": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

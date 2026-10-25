@@ -1,0 +1,237 @@
+{
+  "id": "pedal_shimano_pd_m520",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "shimano pd-m520",
+    "pd-m520",
+    "m520 pedal",
+    "spd pedal",
+    "shimano spd pedal",
+    "clipless pedal",
+    "mtb clipless pedal",
+    "pd m520"
+  ],
+  "kind": "mech",
+  "source": "Shimano PD-M520 SPD pedal (two-sided, compatible cleats SM-SH51 and SM-SH56): stack height 17.0 mm and pedal centre to crank arm 55 mm (retailer spec tables: bike-components, Reid Cycles), spindle thread 9/16 in x 20 TPI (cycling-standard crank thread, 14.29 mm), cleat adjustment 20 mm fore-aft / 5 mm lateral (Shimano PD-M520 dealer text). The body size, the cage footprint and the engagement depth are UNVERIFIED: no drawing was reachable (Shimano dealer-manual PDFs returned 403 to the research tool).",
+  "frame": "pedal: Y along the spindle with +Y outboard (away from the crank arm), origin on the spindle axis at the pedal centre (the cleat centre line), X fore-aft (travel direction), Z toward the shoe; SOLE_PLANE is the plane at stack height where the shoe sole (here the adapter's pedal-side face) rests, the cleat protrudes below it into the binding",
+  "params": {
+    "stack_height": {
+      "default": 17.0,
+      "source": "retailer spec tables: PD-M520 'height 17.0 mm' (stack height). Interpreted as spindle axis to the sole plane: UNVERIFIED reading, Robin to measure with calipers from the spindle centre to the plane a flat shoe sole touches"
+    },
+    "crank_to_centre": {
+      "default": 55.0,
+      "source": "retailer spec tables: PD-M520 'pedal centre to crank arm 55 mm' (distance from the pedal centre to the inner face of the crank arm along the spindle). Robin to confirm on his crank (washers/spacers change it)"
+    },
+    "body_axle_length": {
+      "default": 70.0,
+      "source": "UNVERIFIED (Robin to measure): pedal body length along the spindle; approximate from product photos, no drawing found"
+    },
+    "body_fore_aft": {
+      "default": 100.0,
+      "source": "UNVERIFIED (Robin to measure): pedal body length in the travel direction; approximate from product photos, no drawing found"
+    },
+    "spindle_diameter": {
+      "default": 14.29,
+      "source": "9/16 in pedal thread major diameter (cycling-standard crank thread); the unthreaded spindle between thread and body is smaller: envelope only"
+    },
+    "cage_half_x": {
+      "default": 22.0,
+      "source": "UNVERIFIED (Robin to measure): half-length (fore-aft) of the binding cage footprint that the cleat and its jaws occupy; assumed from the cleat length + margin"
+    },
+    "cage_half_y": {
+      "default": 20.0,
+      "source": "UNVERIFIED (Robin to measure): half-width (across the pedal) of the binding cage footprint; assumed from the cleat width + margin"
+    },
+    "cage_depth": {
+      "default": 8.0,
+      "source": "UNVERIFIED (Robin to measure): depth below the sole plane occupied by the cleat and the binding jaws; assumed (cleat height 7 mm + 1 mm)"
+    },
+    "crank_margin": {
+      "default": 2.0,
+      "source": "ASSUMPTION: minimum gap kept between any adapter material and the crank arm's inner face, covering washers/spacers and crank flex (uncertainty +/-1 mm)"
+    },
+    "release_angle": {
+      "default": 15.0,
+      "source": "UNVERIFIED (Robin to measure): heel-out twist (degrees) about the cleat's vertical axis that releases the SM-SH51 cleat; assumed, Shimano publishes a release angle that was not reachable"
+    },
+    "crank_slab_extent": {
+      "default": 80.0,
+      "source": "ASSUMPTION: half-size of the crank-side keep-out slab in X and Z, large enough to cover the crank arm's inner face next to the pedal (uncertainty +/-20 mm)"
+    }
+  },
+  "datasheet_size": [
+    "body_fore_aft",
+    "crank_to_centre + body_axle_length / 2",
+    "2 * stack_height"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "body_fore_aft",
+        "body_axle_length",
+        "2 * stack_height"
+      ],
+      "at": [
+        "-body_fore_aft / 2",
+        "-body_axle_length / 2",
+        "-stack_height"
+      ]
+    },
+    {
+      "id": "spindle",
+      "primitive": "cylinder",
+      "d": "spindle_diameter",
+      "h": "crank_to_centre - body_axle_length / 2",
+      "at": [
+        0,
+        "-crank_to_centre",
+        0
+      ],
+      "dir": [
+        0,
+        1,
+        0
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "binding_cage",
+      "primitive": "box",
+      "size": [
+        "2 * cage_half_x",
+        "2 * cage_half_y",
+        "cage_depth"
+      ],
+      "at": [
+        "-cage_half_x",
+        "-cage_half_y",
+        "stack_height - cage_depth"
+      ]
+    },
+    {
+      "id": "crank_side",
+      "primitive": "box",
+      "size": [
+        "2 * crank_slab_extent",
+        "crank_slab_extent",
+        "2 * crank_slab_extent"
+      ],
+      "at": [
+        "-crank_slab_extent",
+        "-crank_to_centre + crank_margin - crank_slab_extent",
+        "-crank_slab_extent"
+      ]
+    }
+  ],
+  "datums": {
+    "SPINDLE": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        1,
+        0
+      ],
+      "diameter": "spindle_diameter"
+    },
+    "SOLE_PLANE": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "stack_height"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "CLEAT_CENTRE": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "stack_height"
+      ]
+    },
+    "CRANK_FACE": {
+      "kind": "plane",
+      "at": [
+        0,
+        "-crank_to_centre",
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    }
+  },
+  "connectors": [],
+  "unverified": [
+    "stack_height (reading)",
+    "body_axle_length",
+    "body_fore_aft",
+    "cage_half_x",
+    "cage_half_y",
+    "cage_depth",
+    "release_angle",
+    "crank_to_centre (confirm with his crank)"
+  ],
+  "notes": "Envelope only, for clearance and engagement checks: the body is a plain box (the real PD-M520 is open and much smaller in volume), so every clearance against it is conservative. Both sides of the real pedal are binding sides; only the +Z side is modelled as used. 'binding_cage' is the volume below the sole plane that the cleat and the pedal jaws occupy: only the cleat may enter it. 'crank_side' is the slab behind the crank-arm face (offset by crank_margin) that no adapter material may enter, for any rotation about the cleat axis up to the release angle and any lateral cleat setting. The clip-in motion (shoe tipped about the cleat's front hook) is not modelled: the hook position is not catalogued.",
+  "import_gate_notes": "R1: bounding box = body_fore_aft x (crank_to_centre + body_axle_length / 2) x (2 * stack_height), tolerance 0.2 mm (plain box body; the spindle lies inside this extent in X and Z). Datum directions are unit vectors. Designed contact (the adapter's pedal-side face on the sole plane) is not interference. The keepouts are reserved volumes, not solids.",
+  "self_checks": [
+    {
+      "name": "spindle fits inside the body height",
+      "expr": "2 * stack_height - spindle_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "cage inside the body footprint (fore-aft)",
+      "expr": "body_fore_aft / 2 - cage_half_x",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "cage inside the body footprint (across)",
+      "expr": "body_axle_length / 2 - cage_half_y",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "body clears the crank arm",
+      "expr": "crank_to_centre - body_axle_length / 2",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "spindle runs along +Y",
+      "expr": "SPINDLE.dy",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "sole plane faces the shoe",
+      "expr": "SOLE_PLANE.z",
+      "value": 17.0,
+      "tol": 0.01
+    }
+  ]
+}

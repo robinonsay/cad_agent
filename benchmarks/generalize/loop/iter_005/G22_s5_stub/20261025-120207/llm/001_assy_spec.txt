@@ -1,0 +1,72 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 90 (request): "...I'd like a bracket with a 90 degree bend to connect two pieces of 2020 aluminium T-slot..."
+n2 = 2020 (request): "...ke a bracket with a 90 degree bend to connect two pieces of 2020 aluminium T-slot extrusion (each 20 x 20 mm, with a 6.2..."
+n3 = 20 (request): "...connect two pieces of 2020 aluminium T-slot extrusion (each 20 x 20 mm, with a 6.2 mm slot opening). The horizontal piec..."
+n4 = 20 mm (request): "...ct two pieces of 2020 aluminium T-slot extrusion (each 20 x 20 mm, with a 6.2 mm slot opening). The horizontal piece end..."
+n5 = 6.2 mm (request): "...of 2020 aluminium T-slot extrusion (each 20 x 20 mm, with a 6.2 mm slot opening). The horizontal piece ends against the ..."
+n6 = 4 mm (request): "...nst the side of the vertical piece, and gussets of at least 4 mm thickness brace the two arms. Every arm is secured by a..."
+n7 = 90 degrees (L1.1): "...e face of the vertical extrusion; the two seating faces are 90 degrees apart, and each touches its extrusion over at lea..."
+n8 = 400 (L1.1): "...degrees apart, and each touches its extrusion over at least 400 square mm...."
+n9 = 1 (L1.2): "...s lying on the centreline of its extrusion's T-slot, within 1 degree of square to the arm, between 15 and 30 mm from the..."
+n10 = 15 (L1.2): "...ion's T-slot, within 1 degree of square to the arm, between 15 and 30 mm from the corner. The two distances differ by no..."
+n11 = 30 mm (L1.2): "...-slot, within 1 degree of square to the arm, between 15 and 30 mm from the corner. The two distances differ by no more t..."
+n12 = 0.5 mm (L1.2): "...m from the corner. The two distances differ by no more than 0.5 mm...."
+n13 = 5.5 (L1.3): "...A clearance hole of 5.5 to 5.9 mm takes each bolt, opening into a counterbore 9.9 t..."
+n14 = 5.9 mm (L1.3): "...A clearance hole of 5.5 to 5.9 mm takes each bolt, opening into a counterbore 9.9 to 10.6 mm..."
+n15 = 9.9 (L1.3): "...f 5.5 to 5.9 mm takes each bolt, opening into a counterbore 9.9 to 10.6 mm wide and 2.95 to 3.4 mm deep so the button he..."
+n16 = 10.6 mm (L1.3): "...o 5.9 mm takes each bolt, opening into a counterbore 9.9 to 10.6 mm wide and 2.95 to 3.4 mm deep so the button head ends..."
+n17 = 2.95 (L1.3): "...ch bolt, opening into a counterbore 9.9 to 10.6 mm wide and 2.95 to 3.4 mm deep so the button head ends up below the arm..."
+n18 = 3.4 mm (L1.3): "...opening into a counterbore 9.9 to 10.6 mm wide and 2.95 to 3.4 mm deep so the button head ends up below the arm's face. ..."
+n19 = 3.0 mm (L1.3): "...the arm's face. Bolt length must grip the T-nut by at least 3.0 mm and stop short of the slot floor...."
+n20 = 5.7 (L1.4): "...Each arm locates in its T-slot with a pair of tongues 5.7 to 6.0 mm wide, reaching 3.5 to 5.6 mm below the seating fa..."
+n21 = 6.0 mm (L1.4): "...ach arm locates in its T-slot with a pair of tongues 5.7 to 6.0 mm wide, reaching 3.5 to 5.6 mm below the seating face, ..."
+n22 = 3.5 (L1.4): "...T-slot with a pair of tongues 5.7 to 6.0 mm wide, reaching 3.5 to 5.6 mm below the seating face, with at least 0.1 mm of..."
+n23 = 5.6 mm (L1.4): "...with a pair of tongues 5.7 to 6.0 mm wide, reaching 3.5 to 5.6 mm below the seating face, with at least 0.1 mm of cleara..."
+n24 = 0.1 mm (L1.4): "...eaching 3.5 to 5.6 mm below the seating face, with at least 0.1 mm of clearance inside the slot. Nothing else of the bra..."
+n25 = 0.2 (L1.5): "...The tongues of each arm trap the T-nut, leaving a 0.2 to 0.5 mm gap on each side along the slot, with the nut cen..."
+n26 = 0.5 mm (L1.5): "...The tongues of each arm trap the T-nut, leaving a 0.2 to 0.5 mm gap on each side along the slot, with the nut centred on..."
+n27 = 0.3 mm (L1.5): "...g the slot, with the nut centred on the bolt axis to within 0.3 mm...."
+n28 = 4.0 mm (L1.7): "...wo arms are tied by a gusset (at least one) no thinner than 4.0 mm, extending at least 10 mm from the corner along each ..."
+n29 = 10 mm (L1.7): "...t (at least one) no thinner than 4.0 mm, extending at least 10 mm from the corner along each arm, and it must leave both..."
+n30 = 5.0 (L1.8): "...Arms are 5.0 to 8.0 mm thick; the corner section has at least 150 square..."
+n31 = 8.0 mm (L1.8): "...Arms are 5.0 to 8.0 mm thick; the corner section has at least 150 square mm of mat..."
+n32 = 150 (L1.8): "...ms are 5.0 to 8.0 mm thick; the corner section has at least 150 square mm of material, and there are 3.0 mm or more of m..."
+n33 = 3.0 mm (L1.8): "...ction has at least 150 square mm of material, and there are 3.0 mm or more of material around each bolt hole...."
+n34 = 75 degrees (L1.9): "...e stated print orientation must put both bolt axes at least 75 degrees away from the build direction, so the bolt tensio..."
+n35 = 20 (L1.10): "...M in the stated orientation without supports, with at least 20 percent of its plan bounding box on the bed and no featur..."
+n36 = 0.8 mm (L1.10): "...nt of its plan bounding box on the bed and no feature under 0.8 mm thick...."
+n37 = 19 (L1.11): "...The bracket is 19 to 21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at le..."
+n38 = 21 mm (L1.11): "...The bracket is 19 to 21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at least 0.5 m..."
+n39 = 48 (L1.11): "...The bracket is 19 to 21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at least 0.5 mm away from the openi..."
+n40 = 22 (L1.11): "...The bracket is 19 to 21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at least 0.5 mm away from the openings o..."
+n41 = 48 mm (L1.11): "...The bracket is 19 to 21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at least 0.5 mm away from the openings of the ex..."
+n42 = 0.5 mm (L1.11): "...21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at least 0.5 mm away from the openings of the extrusions' unused slot..."
+n43 = 0.2 mm (L1.12): "...STL, the OpenSCAD source, the declared bolt axes (to within 0.2 mm and 1 degree of the model), bolt length, nut position..."
+n44 = 1 (L1.12): "...enSCAD source, the declared bolt axes (to within 0.2 mm and 1 degree of the model), bolt length, nut positions and print..."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

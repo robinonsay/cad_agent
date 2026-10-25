@@ -424,7 +424,9 @@ decided only the text-to-slot mapping, the part counts and which ends the ports 
 and overruled the model twice (`rule:text_coverage` overrode its exposure vote in 11 of the 12 regression runs of
 iterations 002–004; the rebate came from `rule:text_evidence[closure]`). Each rule passed the judges on the family it was written
 for, and each one is keyed to that family's wording. This section is the target; migration delta R01 (below) is
-implemented, and R02–R10 move the rest of the code onto it, one shippable delta at a time.
+implemented, R02 (option-ID bias: content-keyed shuffled menus, permutation voting, no probability gate, verifier-
+guided search) is implemented, R11 (generic building blocks: cradle retention, panel mount, Contents admission) is
+implemented, and R03–R10 move the rest of the code onto it, one shippable delta at a time.
 
 ### 10.1 The split
 
@@ -433,7 +435,7 @@ implemented, and R02–R10 move the rest of the code onto it, one shippable delt
 | **Plant** | Python | Resolves the design's decisions into solids: feature-graph expressions, datums, continuous sizing to limits (setpoints, cavity bounds, boss and vent interval solves), placement solves, grid snapping. Deterministic. Manifold3d for every inner build; OpenSCAD only for the delivered package. Re-runs the stages an action invalidates, from their checkpoints. | `feature_graph.py`, `layout.py`, `parts.py` envelope generators, `assembly.derive*`, `assembly.plant_error`, `controller.rerun` | derivation rules (`rule:cavity_from_contents`, `rule:connector_to_cut`, ...) and defaults that read no text |
 | **Sensors** | Python | Measure the design and report a typed **error vector**: for each failing check, which requirement (L1 ids), where (bodies, walls, connector, coordinates), by how much (mm or count) and in which direction. Text sensors read what a sentence names and report a mismatch; they never change the design. | `assembly.build_plan` + `assembly_checks.run_plan`; `controller.error_vector` | any check, including text sensors (`text_coverage`, `closure_evidence`) |
 | **Actuators** | Python | A typed, generic action space. Python enumerates only valid arguments (catalogue ids, number ids from the text, design_rules vocabularies, feasible faces), applies the chosen action to a fork of the state, and rejects it with the plant's typed failure when it is infeasible. | `controller.ACTUATORS`, `controller.apply_action`, `assembly.expose_connector` | none (an actuator executes a choice; it never makes one) |
-| **Controller** | the local 9B (ornith-1.5:9b) | Reads the request, the ranked error vector, the design state and the feedback of earlier steps, and picks one action per step from a lettered menu (voted; optionally the 3-model panel). Never a free number. | `controller.run_loop`, `controller.control_prompt`, `controller.ask`; the proposal stages' questions | n/a |
+| **Controller** | the local 9B (ornith-1.5:9b) | Reads the request, the ranked error vector, the design state and the feedback of earlier steps, and picks one action per step from a content-keyed menu (R02: action ids, shown in seeded orderings, permutation-voted; optionally the 3-model panel). Never a free number. | `controller.run_loop`, `controller.control_prompt`, `controller.ask`; the proposal stages' questions | n/a |
 | **Guardrails** | Python | Physics and manufacturability that hold for any design: manifold bodies, minimum wall, printable overhangs and bridges, a screw that physically passes its hole, screw-head and driver columns, designed contact exempt by construction, and the acceptance rule itself (no step may raise the controllable error beyond the trust region; no vote may pick an alternative with strictly larger error). | `rule:bridge_roof`, `rule:hole_column_d`, `rule:fixed_by_primary`, `rule:prescore`, `controller.accept` | yes: these are the only rules besides plant derivations |
 | **Semantic rules** | — | A rule that reads the text and picks a meaning (which part, edge, exposure, form, closure, feature). **Forbidden.** Every one still in the code is registered `pending_migration` with the delta that retires it (`controller_rules.json`). | registry | no new ones, ever |
 
@@ -454,14 +456,16 @@ fixtures because its arguments come from part data (interfaces, datums), the des
 |---|---|---|---|---|
 | `expose` (feature: envelope aperture) | a closed connector `item.connector` whose mating part a failing `text_coverage` row names | arrange | a USB port in an enclosure wall, a cable entry in a housing, a jack through a fixture plate | **R01** |
 | `set_closure` (structural form) | each lid closure the plant builds (`assembly.buildable_closures`) other than the current one | derive | lip / rebate today; snap, slide, hinge with GM9 | **R01** |
-| `stop` | always offered, always last | — | — | **R01** |
-| `set_stack` | an item's catalogue `mount.stack_options` | stack | headers vs sockets, spacers, a module on a riser | R02 |
+| `stop` | always offered (R02: shown in a shuffled place, not pinned last) | — | — | **R01** |
+| `set_stack` | an item's catalogue `mount.stack_options` | stack | headers vs sockets, spacers, a module on a riser | R05 |
 | `set_fastener` | a fastener use (board, lid, later any chain) × the catalogue fasteners that pass the guardrails | arrange / derive | board screws, lid screws, bolts into T-nuts, heat-set inserts | R03 |
 | `set_vent_face` | each named part zone (a row over it) or (exposed member, relation) wall | vents | vents over a chip, slots opposite a jack, fan intake in a lid | R04 |
 | `add_part` / `remove_part` / `set_quantity` | catalogue ids the text names; items; counts 0..max_quantity | stack (contents re-derived) | a missing fan, a second board, two clips instead of one | R05 |
 | `set_edge` / `set_relation` (relations: faces, on edge, through wall; later mates, coaxial, on pattern) | an item × feasible faces; a gated pair × relation values | arrange | ports on one end, a sensor facing out of a bracket, a shaft through a block | R06 |
 | `set_form` (structural form) | the plant-feasible archetypes (`shell` today; plate, bracket, block, cradle, revolved, joint_pair, clip with GM5–GM8) | archetype | box vs plate vs L-bracket vs hinge pair | R07 |
 | `set_param` (parameter within bounds) | a spec or part-size slot × the number ids in the text that fit its unit and band, or its rules default; never a free number | the stage that reads the slot | a wall band, a size limit, a clearance, a hinge gap | R08 |
+| `set_retention` (structural form of a cradle) | each retention option of `design_rules.json building_blocks.retention` the plant can build for a primary without usable mounting holes, other than the current one (an unbuildable one is named in the `retention` sensor's detail) | derive | crush ribs, snap clips, a plain locating pocket | **R11** |
+| `set_panel` (feature: panel mount) | a panel part (catalogue `mount.type` panel) the primary does not carry × the panel faces the plant derives (the lid today) | derive | an LED, an encoder, a pot or a toggle through the lid | **R11** |
 | feature add / remove / modify (with GM milestones) | interface instances × feature kinds the plant derives (window, vent row, pocket, bore, boss, rib) | derive | a window over a display, a pocket for a magnet, a bore for a bearing | GM4–GM10 |
 
 Validation is by application: the action is applied to a fork of the invalidated stage's checkpoint, the stages
@@ -488,11 +492,16 @@ The design now:
 - lid closure: lip; lid bosses: outside_corners
 
 Actions you can take now (one per step; Python applies it, rebuilds and measures again):
-- A: expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug ...
-- B: stop: keep the design as it is (the failing requirements above stay failing)
+- stop: keep the design as it is (the failing requirements above stay failing)
+- expose:module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug ...
 
-Which one action makes the design do what the request asks? Answer with its letter.
+Which one action makes the design do what the request asks? First give a one-sentence reason, then the action's id
+exactly as listed.
 ```
+
+(R02 form; until R02 the menu was lettered A, B, ... with the corrections first and `stop` last. The schema is
+`{reason: string ≤ 240, action: enum of the ids in Python's order}`; the other ordering of this two-entry menu lists
+`expose:module_1.usb` first.)
 
 - **Error terms** (`controller.ErrorTerm`): check id and type; `requirement` = the L1 ids the check is traced to
   (spec-slot provenance, the catalogue parts an L1 names, and since R01 the L1s a text sensor quotes); `where` in
@@ -505,7 +514,10 @@ Which one action makes the design do what the request asks? Answer with its lett
 - **State words**: each content item with each connector open through which wall or closed, the closure, the boss
   layout. Compact on purpose: the 9B answers short enum questions best (benchmarks/reports/2026-10-23-voting.md).
 - **Menu**: the actions of the failing checks in error order, minus every action already tried in this run (tabu),
-  at most `controller_menu_max` (8), `stop` last, lettered.
+  at most `controller_menu_max` (8), plus `stop`. R02: each line is `- <action id>: <words>`; the menu is shown in up
+  to `menu_orderings` (3) distinct orderings, the cyclic rotations of one permutation seeded by the request, the state
+  digest, the step and the run seed (`menus.orderings`), so no entry is pinned first or last. Python's enumeration
+  order is only the schema enum (the model never sees it) and the stub's first option.
 - **Feedback**: every earlier step in one line: kept (with the error change), undone (with the error change and what
   fails now) or could not be applied (with the stage's note).
 
@@ -517,9 +529,19 @@ Which one action makes the design do what the request asks? Answer with its lett
    and the controllable error key `(hard failures, summed violation)` (typed conflicts excluded, as in 7.11).
 2. **Stop** when no failing check offers an action (`every check passes` or `no failing check has an action`), or when
    the step budget `design_rules.json controller_step_budget` (6) is spent. The stub controller has budget 0.
-3. **Ask** one voted question (`assy_control`, `assembly.tally`: 3 samples, the greedy one first; a tie goes to the
-   greedy answer). From R09, with `--judges`, the panel ranks the menu by its mean p_yes. No valid answer counts as
-   stop.
+3. **Ask** one permutation-voted question (`assy_control`, `menus.perm_vote`, R02): one greedy call per ordering
+   (`menu_samples` 1 × `menu_orderings` 3; a two-entry menu has two orderings). The winner has the most votes (a tie
+   goes to the tied option answered earliest, ordering 0 first; an invalid answer never wins a tie); it is **confident** when at least `menu_min_valid` (2) answers are valid and
+   `menu_consistency_min` (1.0) of them agree. No valid answer counts as stop. From R09, with `--judges`, the panel
+   votes the same way.
+3a. **Search** (R02, verifier-guided best-of-N): the candidates are every action with a vote (most votes first) and,
+   when the vote is not confident, the next-ranked alternatives, at most `controller_search_k` (3) and at most
+   `controller_search_max_evals` (12) plant evaluations per run (a hard cap since the R02/R11 review fixes: once spent the loop stops before asking). A
+   confident `stop` ends the loop; a `stop` candidate scores the current error. Each action candidate is applied on its
+   own fork (step 4) and measured; among the candidates step 5 accepts (and a `stop` candidate) the lowest controllable
+   error `(hard failures, violation)` wins, and the controller's vote ranking only breaks ties. An action no vote named
+   that wins is recorded `search:controller` (a guardrail decision); `controller_search_depth` > 1 (lookahead) is not
+   implemented and is clipped to 1.
 4. **Apply** the choice on a fork: `fork_from(st, stage)` copies the checkpoint the stage took at its entry (no record of
    a discarded downstream pass leaks: votes, notes, assumptions, number ownership), re-applies every accepted action and
    the new one, and re-runs the stages from there (`rerun`). A proposal stage may ask its own questions again (the
@@ -531,7 +553,8 @@ Which one action makes the design do what the request asks? Answer with its lett
    An infeasible action is recorded in `st.control["infeasible"]`; a text sensor whose every action is infeasible is
    typed as a conflict (a requirement question for Robin), and the current state is re-measured so the next
    comparison uses the same typing on both sides.
-6. **Feed back** what happened and loop. The applied action is tabu for the rest of the run.
+6. **Feed back** what happened and loop. The applied action, and every candidate that was undone or infeasible, is
+   tabu for the rest of the run; a candidate that measured acceptable but lost to a lower one stays on the menu.
 7. After the loop, the tree goes on: **Build** compiles the final graph with OpenSCAD (once), Verify measures the
    delivered STLs, and WritePackage writes `controller_trace.json`. The loop never fails the tree.
 
@@ -542,7 +565,12 @@ Every run writes `controller_trace.json` next to `design.json` (and `design.json
 - `steps[0]` (initial): `state` = {`decisions`: sha1 (16 hex) of the decision vector, `graph`: sha1 (16 hex) of the
   feature graph, `summary`: the vector (contents with exposed connectors, stacks, faces, relations, closure, boss layout,
   archetype, vent face, fasteners)}, `error` key, `failing` ids, `terms` (the whole error vector).
-- `steps[k]`: `state_before`, `error_before`, `menu` (letters, actions, targets), `votes`, `chosen`, `action`,
+- `steps[k]` (schema 2 since R02): `state_before` (digest) and `state_summary` (the decision vector), `error_before`,
+  `terms_before`, `menu` (actions with `id`), `orders` (the orderings shown), `vote` (every answer with its ordering,
+  position and reason; votes, consistency, confident), `chosen` (the vote's winner, an id), `candidates` (each measured
+  action: votes, rank, outcome kept / not_selected / undone / infeasible / stop, `error_after`, `failing_after`,
+  `state_after`, `sensor_delta`, secs), `selected`, `selected_by` (llm / search_among_votes / search), `outcome`,
+  `evals`; and as before
   `accepted` (true / false / null for stop), `reason`, `error_after`, `state_after`, `failing_after`, `llm_calls`, `secs`.
 - `stop` {reason, step}, `final` {state, error, failing, terms}, `secs`, `budget`, `trust_region`, `controller`
   (`llm` | `stub`).
@@ -566,7 +594,7 @@ controller then corrects the proposal from the error vector.
 | ParseSpec | slot → number id mapping (voted), re-ask, owner question | settle_spec (band, frame) | — (becomes `set_param` proposals, R08) |
 | Contents | quantities, per-connector exposure (voted) | primary reference (plant: frame convention) | — (correction actions R05) |
 | ExposureCoverage | — | **text-coverage sensor (R01)** | retired `rule:text_coverage` (R01) |
-| ChooseStack | stack vote among text-backed options | — | `rule:text_evidence[stack]` → R02 |
+| ChooseStack | stack vote among text-backed options | — | `rule:text_evidence[stack]`, `rule:catalogue_default`, `rule:first_option[stack]` → R05 |
 | ArrangeContents | edge vote, relation question, p_yes rank, A/B pick | placement, prescore (guardrail) | `rule:text_evidence[board]` (board screw) → R03 |
 | Vents | vent relation, vent size mapping | vent solve | `rule:vent_zone` → R04 |
 | BuildEnvelopes | — | envelopes | — |
@@ -609,15 +637,16 @@ regression set with a scripted controller that picks the correction.
 | Delta | Converts | Sensor(s) | Actuator(s) | Done when (offline tests) |
 |---|---|---|---|---|
 | **R01** (implemented) | `rule:text_coverage`, `rule:coverage_infeasible`, `rule:text_evidence[closure]`; renames the shared `rule:text_evidence` per site | `text_coverage` (controllable; a typed conflict only when every expose is infeasible), `closure_evidence` | `expose`, `set_closure`, `stop` | closed loop after the first manifold build with checkpoints, error vector, trace, authority audit; `--controller stub`; `run_suite --paraphrase / --controller stub`; registry + authority test; regression byte-identical with the controller exposing the USB |
-| **R02** | `rule:text_evidence[stack]` | `stack_evidence` (the text names a stack option the item does not use) | `set_stack(item, option)` (stack) | V3 with the controller choosing sockets gives iteration 004's geometry; V1/V2 unchanged |
-| **R03** | `rule:text_evidence[board]`, `rule:text_evidence[lid]` | `fastener_evidence` per use (a fastener a role clause names is not the one used) | `set_fastener(use, part)` over guardrail-valid fasteners (arrange for the board, derive for the lid) | the delta 002 C1 table reproduced by scripted corrections; the defaults (`rule:interface_thread`, `rule:smallest_thread_through_board_hole`, `rule:largest_complete_screw`) stay plant |
+| **R02** (implemented) | — (option-ID / position bias, `iter_R02/delta.md`; the stack conversion moved to R05); `rule:first_option` split per site | — (the p_yes arrangement ranking becomes a content-keyed class menu; agreement across orderings is the confidence) | every menu content-keyed (ids, a reason first), shown in seeded Latin-square orderings, permutation-voted (`menus.py`); verifier-guided best-of-N in the loop (`controller_search_*`) | the bias audit (`benchmarks/generalize/audit_controller.py`, `iter_R02/audit_*.json`); a position-biased fake is low-confidence and searched; the stub takes Python's first option under every shuffle |
+| **R03** | `rule:text_evidence[board]`, `rule:text_evidence[lid]` | `fastener_evidence` per use (a fastener a role clause names is not the one used) | `set_fastener(use, part)` over guardrail-valid fasteners (arrange for the board, derive for the lid) | the delta 002 C1 table reproduced by scripted corrections; `rule:interface_thread` stays plant (datasheet); the word-gated defaults `rule:smallest_thread_through_board_hole` and `rule:largest_complete_screw` (semantic since R02) become the proposals set_fastener corrects |
 | **R04** | `rule:vent_zone` | `vent_placed` / `vent_zone` as controllable sensors (an unresolved vent text fails) | `set_vent_face` (zones, related walls) | G02 lid row and G11 wall row reproduced by scripted choices; G50 offered both kinds |
-| **R05** | — (Contents' proposal becomes correctable) | `named_part_missing`, `content_count`, `content_placed` | `add_part`, `remove_part`, `set_quantity` | the 18 "nothing to design around" stops become correctable proposals; the Contents enums are offered in Python's proposal order (alias evidence first, invisible to the LLM), so the stub keeps Python's proposal and the authority probe sees downstream rules |
-| **R06** | — (arrangement as actions) | `face_relation` and plug / collision / bbox checks drive actions | `set_edge`, `set_relation`; menu pre-scoring on manifold (predicted error per action shown) | V1 "same short end" corrected by `set_edge` from a wrong first vote; no regression change with a right one |
-| **R07** | the archetype text gate (`rule:only_feasible` today) | `form_evidence` (the text names a form the design is not) | `set_form(archetype)` over plant-feasible archetypes | `rule:only_feasible` reads plant feasibility only; GM5 archetypes plug in as actuator arguments |
+| **R05** | `rule:text_evidence[stack]`, `rule:catalogue_default`, `rule:first_option[stack]`, `rule:primary_reference` (Contents' proposal becomes correctable) | `named_part_missing`, `content_count`, `content_placed`, `stack_evidence` | `add_part`, `remove_part`, `set_quantity`, `set_stack(item, option)`, `set_primary` | the 18 "nothing to design around" stops become correctable proposals; the Contents enums are offered in Python's proposal order (alias evidence first, invisible to the LLM), so the stub keeps Python's proposal and the authority probe sees downstream rules |
+| **R06** | `rule:first_option[arrange]` (arrangement as actions) | `face_relation` and plug / collision / bbox checks drive actions | `set_edge`, `set_relation`; menu pre-scoring on manifold (predicted error per action shown) | V1 "same short end" corrected by `set_edge` from a wrong first vote; no regression change with a right one |
+| **R07** | the archetype text gate (`rule:only_feasible` today), `rule:first_option[archetype]`, `rule:default_closure` | `form_evidence` (the text names a form the design is not; the lid sentences shown with the buildable closures and their meaning, no word gate: reviewer F1) | `set_form(archetype)` over plant-feasible archetypes | `rule:only_feasible` reads plant feasibility only; GM5 archetypes plug in as actuator arguments |
 | **R08** | — (parameter mapping as actions) | number coverage (a stated number no slot uses), slot band, bbox vs stated limit | `set_param(slot, number id or rules default)` | the iteration 001 V3 headroom mis-map corrected by `set_param` instead of the owner question |
 | **R09** | — | — | panel choices (3-model mean p_yes per menu option, batched per model) with `--judges`; trust region and budget tuned from trajectories | measured on train + paraphrases (no Ollama in tests) |
 | **R10** | anything left (the registry has no `pending_migration` entry) | — | — | `test_controller_authority` asserts zero pending semantic rules |
+| **R11** (implemented; generic building blocks, developed in a worktree as "R03: building blocks" and renumbered at the merge with R02 because R03 is the `set_fastener` conversion above; `iter_R11/delta.md`) | — (new plant only: `rule:default_retention`, `rule:cradle`, `rule:panel_mount` plant; `rule:no_screw_fits` guardrail) | `retention_*`, `supported`, `rib_interference_*`, `snap_strain_*`, `snap_overlap_*`, `panel_*` (measured on solids and STLs); an unsizable part reported by its `content_placed` check | `set_retention(board, option)` (ids `set_retention:board=<option>`), `set_panel(item, lid)` (ids `set_panel:<item>=lid`), registered through `ACTUATORS` / `APPLIERS`, so they go through R02's content-keyed menu, permutation vote and search; Contents admission of every named non-accessory catalogue part (through R02's shuffled Contents menu) | `test_building_blocks` (23); regression E1-01 / V1–V3 feature graph, layout and canonical STLs unchanged |
 
 GM milestones go on in parallel, but every new capability lands as plant + sensors + actuators; a capability that
 needs a semantic rule is redesigned before review.

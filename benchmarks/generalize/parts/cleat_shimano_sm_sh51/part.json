@@ -1,0 +1,280 @@
+{
+  "id": "cleat_shimano_sm_sh51",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "shimano spd cleat",
+    "spd cleat",
+    "sm-sh51",
+    "sm-sh51 cleat",
+    "sm sh51",
+    "shimano sm-sh51",
+    "2-bolt cleat",
+    "mtb cleat",
+    "clipless cleat"
+  ],
+  "kind": "mech",
+  "source": "Shimano SM-SH51 SPD single-release cleat (also fits SM-SH56 pedals/cleat sets): two M5 cleat bolts 15 mm centre to centre (forum reports for 'SPD, SPD-R and clones'; NOT a Shimano drawing), fore-aft adjustment 20 mm and lateral 5 mm (Shimano PD-M520 dealer text), bolts tightened 2.5 N*m then 5 to 6 N*m with a 4 mm hex key (same). Overall size and the recess are UNVERIFIED.",
+  "frame": "cleat: X along the shoe's fore-aft direction (travel direction), Y across the shoe (parallel to the pedal axle), Z up; origin at the centre of the cleat footprint on its MOUNT_FACE (the face that is bolted against the shoe sole or, here, the adapter); the cleat body and its engagement hardware extend toward -Z, the bolts are inserted from -Z toward +Z",
+  "params": {
+    "length": {
+      "default": 36.0,
+      "source": "UNVERIFIED (Robin to measure): aggregated retailer text 'approximately 36 mm long, 34 mm wide, 7 mm high' (no Shimano drawing found); which of the two plan sizes lies along the travel direction is also unconfirmed"
+    },
+    "width": {
+      "default": 34.0,
+      "source": "UNVERIFIED (Robin to measure): same retailer text as length"
+    },
+    "height": {
+      "default": 7.0,
+      "source": "UNVERIFIED (Robin to measure): same retailer text: overall height from the mount face down to the bottom of the cleat"
+    },
+    "bolt_pitch": {
+      "default": 15.0,
+      "source": "cycling forum reports (Cycling UK forum, 'SPD 2 bolt 15 mm centres'); a second source says 14 mm. UNVERIFIED against a Shimano drawing: Robin to measure on his cleat"
+    },
+    "bolt_thread_diameter": {
+      "default": 5.0,
+      "source": "Shimano SPD cleat bolt is M5 (retailer listings M5 x 10 mm / M5 x 11.5 mm)"
+    },
+    "bolt_standard_length": {
+      "default": 10.0,
+      "source": "retailer listings of Shimano SPD cleat bolts: M5 x 10 mm standard (11.5 and 16 mm variants also sold); the length used in the adapter is chosen per design"
+    },
+    "bolt_head_diameter": {
+      "default": 8.5,
+      "source": "UNVERIFIED (Robin to measure): assumed equal to an ISO 4762 M5 head (dk 8.5); the Shimano cleat bolt head is flatter and may differ"
+    },
+    "bolt_hex_key": {
+      "default": 4.0,
+      "source": "Shimano PD-M520 dealer text: cleat bolts use a 4 mm hex key"
+    },
+    "fore_aft_range": {
+      "default": 20.0,
+      "source": "Shimano PD-M520 dealer text: cleat adjustment range 20 mm front to back"
+    },
+    "lateral_range": {
+      "default": 5.0,
+      "source": "Shimano PD-M520 dealer text: cleat adjustment range 5 mm right to left"
+    },
+    "bolt_torque_final": {
+      "default": 5.5,
+      "source": "Shimano PD-M520 dealer text: final cleat bolt torque 5 to 6 N*m (middle value, N*m)"
+    },
+    "recess_depth": {
+      "default": 3.0,
+      "source": "UNVERIFIED (Robin to measure): how far the cleat's mount face sits above the shoe's pedal-contact (sole) surface, so that the cleat protrudes (height - recess_depth) below the sole; assumed 3 mm, not found in any source"
+    },
+    "recess_margin": {
+      "default": 2.0,
+      "source": "ASSUMPTION: plan margin round the cleat footprint kept free for the cleat recess (uncertainty +/-1 mm)"
+    },
+    "bolt_seat_depth": {
+      "default": 2.0,
+      "source": "UNVERIFIED (Robin to measure): depth below the mount face of the floor on which the cleat bolt head bears (the cleat's thickness at the bolt holes; the head is counterbored into the cleat). Assumed height - 5.0 so that an ISO 4762 M5 head (k 5.0) stands flush with the cleat's lower face; the real Shimano cleat bolt head is flatter and the true seat depth is not in any source found"
+    }
+  },
+  "datasheet_size": [
+    "length",
+    "width",
+    "height"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "length",
+        "width",
+        "height"
+      ],
+      "at": [
+        "-length / 2",
+        "-width / 2",
+        "-height"
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "recess",
+      "primitive": "box",
+      "size": [
+        "length + 2 * recess_margin",
+        "width + 2 * recess_margin",
+        "recess_depth"
+      ],
+      "at": [
+        "-length / 2 - recess_margin",
+        "-width / 2 - recess_margin",
+        "-recess_depth"
+      ]
+    },
+    {
+      "id": "bolt_travel",
+      "primitive": "box",
+      "size": [
+        "bolt_pitch + fore_aft_range + bolt_head_diameter",
+        "lateral_range + bolt_head_diameter",
+        "height"
+      ],
+      "at": [
+        "-(bolt_pitch + fore_aft_range + bolt_head_diameter) / 2",
+        "-(lateral_range + bolt_head_diameter) / 2",
+        "-height"
+      ]
+    }
+  ],
+  "datums": {
+    "MOUNT_FACE": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "SOLE_PLANE": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "-recess_depth"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "-height"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "CENTRE": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "bolt_thread_diameter"
+    },
+    "BOLT": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "bolt_thread_diameter",
+      "keepout_diameter": "bolt_head_diameter",
+      "at": [
+        [
+          "-bolt_pitch / 2",
+          0,
+          0
+        ],
+        [
+          "bolt_pitch / 2",
+          0,
+          0
+        ]
+      ]
+    },
+    "BOLT_SEAT": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "-bolt_seat_depth"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    }
+  },
+  "connectors": [],
+  "unverified": [
+    "length",
+    "width",
+    "height",
+    "bolt_pitch (14 or 15 mm reported)",
+    "bolt_head_diameter",
+    "bolt_seat_depth",
+    "recess_depth",
+    "orientation of the bolt line (assumed along the travel direction X)",
+    "the cleat's engagement surface profile (not modelled)"
+  ],
+  "notes": "Envelope only: the cleat body is a plain box, the clip-in hooks and bearing surfaces are not modelled. The bolt line is assumed along the travel direction (X); the 15 mm pitch is for the two cleat bolts. The keepout 'recess' is the cavity the adapter must leave open round the cleat between its mount face and the sole plane; 'bolt_travel' is the swept plan area of the two bolt axes (+ head) over the full fore-aft and lateral adjustment ranges, which the adapter's bolt slots and nut seats must cover. Standard cleat hardware for the adapter is catalogue bolt_m5_iso4762 and nut_m5; the Shimano cleat nut plate is not used. The bolt heads bear on BOLT_SEAT (counterbored into the cleat's lower face); the bolt shank then runs +Z through the mount face into the adapter.",
+  "import_gate_notes": "R1: bounding box = length x width x height, tolerance 0.2 mm (plain box envelope). Datum directions are unit vectors. Designed contact (cleat mount face against the adapter, bolts in their holes) is not interference. The recess and bolt_travel keepouts are reserved volumes, not solids.",
+  "self_checks": [
+    {
+      "name": "bolt pitch",
+      "expr": "BOLT[1].x - BOLT[0].x",
+      "value": 15.0,
+      "tol": 1.1
+    },
+    {
+      "name": "bolts are M5",
+      "expr": "BOLT.diameter",
+      "value": 5.0,
+      "tol": 0.05
+    },
+    {
+      "name": "bolt heads fit across the width",
+      "expr": "width - bolt_head_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "recess shallower than the cleat is tall",
+      "expr": "height - recess_depth",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "bolts enter toward the mount face",
+      "expr": "BOLT.dz",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "body below the mount face",
+      "expr": "body.max_z",
+      "value": 0,
+      "tol": 1e-06
+    },
+    {
+      "name": "bolt seat inside the cleat",
+      "expr": "height - bolt_seat_depth",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

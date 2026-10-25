@@ -1,0 +1,88 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 6 mm (request): "...So I want a belt idler. The housing takes a 6 mm wide GT2 belt (1.38 mm thick, smooth back to the bearings)..."
+n2 = 1.38 mm (request): "...want a belt idler. The housing takes a 6 mm wide GT2 belt (1.38 mm thick, smooth back to the bearings) and the whole thi..."
+n3 = 40 (request): "...int as one FDM part with no supports, and be no bigger than 40 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x..."
+n4 = 40 (request): "...s one FDM part with no supports, and be no bigger than 40 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x 4 mm..."
+n5 = 25 mm (request): "...FDM part with no supports, and be no bigger than 40 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x 4 mm) on t..."
+n6 = 623 (request): "...and be no bigger than 40 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x 4 mm) on top of each other on one M3 ..."
+n7 = 3 (request): "...er than 40 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x 4 mm) on top of each other on one M3 x 12 bolt, act..."
+n8 = 10 (request): "...han 40 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x 4 mm) on top of each other on one M3 x 12 bolt, acting ..."
+n9 = 4 mm (request): "...0 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x 4 mm) on top of each other on one M3 x 12 bolt, acting as a ..."
+n10 = 12 (request): "...3 bearings (3 x 10 x 4 mm) on top of each other on one M3 x 12 bolt, acting as a roller; their outer rings must spin fre..."
+n11 = 0.4 mm (request): "...a roller; their outer rings must spin freely with at least 0.4 mm of air all round, in a chamber no wider than 12 mm. Th..."
+n12 = 12 mm (request): "...t least 0.4 mm of air all round, in a chamber no wider than 12 mm. The bolt head presses on the upper bearing and a smal..."
+n13 = 4.6 (request): "...n the upper bearing and a small boss rising from the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm tall, not touching the o..."
+n14 = 5.0 mm (request): "...pper bearing and a small boss rising from the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm tall, not touching the outer ri..."
+n15 = 0.3 (request): "...d a small boss rising from the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm tall, not touching the outer ring) holds up th..."
+n16 = 0.8 mm (request): "...ll boss rising from the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm tall, not touching the outer ring) holds up the lower..."
+n17 = 5.7 (request): "...erneath the floor there is a hex pocket trapping an M3 nut (5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, leaving at l..."
+n18 = 5.9 mm (request): "...the floor there is a hex pocket trapping an M3 nut (5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, leaving at least 1.2..."
+n19 = 2.6 (request): "...hex pocket trapping an M3 nut (5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, leaving at least 1.2 mm of floor over it)..."
+n20 = 3.4 mm (request): "...cket trapping an M3 nut (5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, leaving at least 1.2 mm of floor over it); the ..."
+n21 = 1.2 mm (request): "...o 5.9 mm across flats, 2.6 to 3.4 mm deep, leaving at least 1.2 mm of floor over it); the bolt must reach at least 1.5 m..."
+n22 = 1.5 mm (request): "...east 1.2 mm of floor over it); the bolt must reach at least 1.5 mm into that nut. You drop the bearings and bolt in from..."
+n23 = 0.3 mm (request): "...lt axis, and its back must just touch both bearings: within 0.3 mm, at least 2 mm of overlap on each, centred on the sta..."
+n24 = 2 mm (request): "...back must just touch both bearings: within 0.3 mm, at least 2 mm of overlap on each, centred on the stack within 0.25 mm..."
+n25 = 0.25 mm (request): "...least 2 mm of overlap on each, centred on the stack within 0.25 mm. Cut a 7 mm wide belt channel, so the belt has 0.5 mm..."
+n26 = 7 mm (request): "...overlap on each, centred on the stack within 0.25 mm. Cut a 7 mm wide belt channel, so the belt has 0.5 mm spare each si..."
+n27 = 0.5 mm (request): "...thin 0.25 mm. Cut a 7 mm wide belt channel, so the belt has 0.5 mm spare each side and at least 0.5 mm on the tooth side..."
+n28 = 0.5 mm (request): "...hannel, so the belt has 0.5 mm spare each side and at least 0.5 mm on the tooth side. To tension the belt you slide the ..."
+n29 = 5 mm (request): "...o add a single slot for an M3 screw into the machine frame: 5 mm of travel, 3.3 to 3.6 mm wide, with space for the screw..."
+n30 = 3.3 (request): "...lot for an M3 screw into the machine frame: 5 mm of travel, 3.3 to 3.6 mm wide, with space for the screw head and a hex ..."
+n31 = 3.6 mm (request): "...an M3 screw into the machine frame: 5 mm of travel, 3.3 to 3.6 mm wide, with space for the screw head and a hex key anyw..."
+n32 = 623 (L1.1): "...From the parts catalogue, put in the belt run, the two 623 bearings, the M3 bolt, the M3 nut and the M3 mounting screw..."
+n33 = 4.6 (L1.2): "...other, held between the bolt head and a boss on the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm high) which touches nothi..."
+n34 = 5.0 mm (L1.2): "...held between the bolt head and a boss on the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm high) which touches nothing but ..."
+n35 = 0.3 (L1.2): "...he bolt head and a boss on the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm high) which touches nothing but the inner ring..."
+n36 = 0.8 mm (L1.2): "...head and a boss on the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm high) which touches nothing but the inner ring of the ..."
+n37 = 0.4 mm (L1.3): "...Outer rings must be free to turn, with 0.4 mm or more between them and the block on every side, inside a..."
+n38 = 12 mm (L1.3): "...nd the block on every side, inside a chamber not wider than 12 mm. Bearings and bolt go in from the top, the nut from th..."
+n39 = 7 mm (L1.4): "...Channel for the belt: 7 mm wide, straight through and open at each end of the block, l..."
+n40 = 0.5 mm (L1.4): "...straight through and open at each end of the block, leaving 0.5 mm beside the belt on both sides and 0.5 mm or more on t..."
+n41 = 0.5 mm (L1.4): "...the block, leaving 0.5 mm beside the belt on both sides and 0.5 mm or more on the tooth side...."
+n42 = 0 (L1.5): "...r rings of both bearings, not pushed into them (gap between 0 and 0.3 mm). It overlaps each bearing's width by 2 mm or m..."
+n43 = 0.3 mm (L1.5): "...s of both bearings, not pushed into them (gap between 0 and 0.3 mm). It overlaps each bearing's width by 2 mm or more, a..."
+n44 = 2 mm (L1.5): "...between 0 and 0.3 mm). It overlaps each bearing's width by 2 mm or more, and is centred on the stack to within 0.25 mm...."
+n45 = 0.25 mm (L1.5): "...idth by 2 mm or more, and is centred on the stack to within 0.25 mm...."
+n46 = 3.3 (L1.6): "...Provide one slot, 3.3 to 3.6 mm wide, so the block can travel 5 mm along the belt..."
+n47 = 3.6 mm (L1.6): "...Provide one slot, 3.3 to 3.6 mm wide, so the block can travel 5 mm along the belt on an M3..."
+n48 = 5 mm (L1.6): "...ovide one slot, 3.3 to 3.6 mm wide, so the block can travel 5 mm along the belt on an M3 mounting screw; the head and a ..."
+n49 = 5.7 (L1.7): "...r the floor, opening onto the mounting face, holds the nut: 5.7 to 5.9 mm across flats and 2.6 to 3.4 mm deep, with 1.2 ..."
+n50 = 5.9 mm (L1.7): "...loor, opening onto the mounting face, holds the nut: 5.7 to 5.9 mm across flats and 2.6 to 3.4 mm deep, with 1.2 mm or m..."
+n51 = 2.6 (L1.7): "...ounting face, holds the nut: 5.7 to 5.9 mm across flats and 2.6 to 3.4 mm deep, with 1.2 mm or more of floor over it. Th..."
+n52 = 3.4 mm (L1.7): "...face, holds the nut: 5.7 to 5.9 mm across flats and 2.6 to 3.4 mm deep, with 1.2 mm or more of floor over it. The bolt t..."
+n53 = 1.2 mm (L1.7): "...ut: 5.7 to 5.9 mm across flats and 2.6 to 3.4 mm deep, with 1.2 mm or more of floor over it. The bolt tip is at least 1...."
+n54 = 1.5 mm (L1.7): "...h 1.2 mm or more of floor over it. The bolt tip is at least 1.5 mm inside the nut and stays inside the block...."
+n55 = 2 mm (L1.8): "...body that FDM prints without supports; every wall at least 2 mm thick...."
+n56 = 40 (L1.9): "...Overall dimensions no more than 40 x 40 x 25 mm, and the block sits flat on its mounting face...."
+n57 = 40 (L1.9): "...Overall dimensions no more than 40 x 40 x 25 mm, and the block sits flat on its mounting face...."
+n58 = 25 mm (L1.9): "...Overall dimensions no more than 40 x 40 x 25 mm, and the block sits flat on its mounting face...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+Your previous answer broke these rules: board_width and board_depth and keepout_above and keepout_below and board_clearance and headroom and opening_oversize_max and wall_min and wall_max and max_x and max_y and max_z all use n1 (6 mm, 'So I want a belt idler. The housing takes a 6 mm wide GT2 belt (1.38 mm thick, smooth back to the bearings)'); each number in the text states one quantity. Answer again and fix that.
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

@@ -977,6 +977,31 @@
         "plug_microusb_b"
       ],
       "brief": "A desktop console: Pi Zero 2 W with a 40 mm fan above it on 32 mm pitch, OLED window and EC11 encoder on the front panel, and both micro-USB ports exposed at the rear. Vents on the sides, and the Pi's heat must have an exhaust path. The case closes with snap latches."
+    },
+    {
+      "id": "T01",
+      "title": "SPD clip-in flat pedal adapter",
+      "family": "mechanical_mount",
+      "split": "target",
+      "capabilities": [
+        "datum_placement",
+        "bolt_pattern",
+        "slot_adjust",
+        "captive_nut",
+        "keepout_clearance",
+        "rotation_clearance",
+        "load_path",
+        "print_orientation",
+        "pattern_array"
+      ],
+      "parts": [
+        "cleat_shimano_sm_sh51",
+        "pedal_shimano_pd_m520",
+        "bolt_m5_iso4762",
+        "nut_m5",
+        "grub_m4_iso4026"
+      ],
+      "brief": "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes"
     }
   ],
   "parts": [
@@ -1244,6 +1269,31 @@
       "id": "gear_spur_generic",
       "kind": "generic",
       "datasheet_note": "Involute spur gear per ISO 54 module series: module, tooth count, face width and pressure angle 20 degrees from the request; pitch dia = m*z."
+    },
+    {
+      "id": "cleat_shimano_sm_sh51",
+      "kind": "mech",
+      "datasheet_note": "Shimano SM-SH51 SPD cleat: two M5 bolts about 15 mm apart (forum value, UNVERIFIED), 20 mm fore-aft / 5 mm lateral adjustment (Shimano PD-M520 dealer text), overall about 36 x 34 x 7 mm (retailer text, UNVERIFIED); Robin to measure."
+    },
+    {
+      "id": "pedal_shimano_pd_m520",
+      "kind": "mech",
+      "datasheet_note": "Shimano PD-M520 SPD pedal: stack height 17.0 mm and pedal centre to crank arm 55 mm (retailer spec tables); body and binding cage sizes UNVERIFIED (approximate, plain-box envelope); Robin to measure."
+    },
+    {
+      "id": "bolt_m5_iso4762",
+      "kind": "fastener",
+      "datasheet_note": "ISO 4762 M5 socket-head screw: head 8.5 dia x 5.0 mm, 4 mm hex key, clearance hole 5.5 mm."
+    },
+    {
+      "id": "nut_m5",
+      "kind": "fastener",
+      "datasheet_note": "ISO 4032 M5 hex nut: 8.0 mm AF x 4.7 mm."
+    },
+    {
+      "id": "grub_m4_iso4026",
+      "kind": "fastener",
+      "datasheet_note": "ISO 4026 M4 flat-point hex socket set screw: 2 mm key, tap drill 3.3 mm, optional traction pin."
     }
   ]
 }

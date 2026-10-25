@@ -1,0 +1,24 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a housing for a power module built on an 80 x 60 mm perfboard that gives off roughly 8 W. The board has a 3 mm hole in every corner, set 2.5 mm in from the edges. Populating it are a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a 20 x 12 mm heatsink standing 20 mm tall, and a pair of electrolytic capacitors, each 10 mm in diameter and 16 mm tall. Cooling comes from a 40 x 40 x 10 mm fan attached under the lid on the inside, pushing air down into the box through an opening in the lid. It's held with M3 socket-head screws on its 32 mm hole pattern, and the opposite end wall gets exhaust slots. A 5.5 x 2.1 mm DC plug has to plug into the jack while the lid is on. Keep the fan intake 5 mm or more from the nearest tall component; I read that as the fan frame being at least 5 mm from everything on the board. The housing is a base and a removable lid fastened with M3 screws, printed on an FDM printer, and no bigger than 100 x 80 x 40 mm. Every screw is an ISO 4762 M3 socket-head cap screw, and my stock lengths are 6, 8, 10, 12, 14, 16 and 20 mm.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_cylinder: capacitor (generic)
+- generic_box: rectangular block (generic)
+- gear_spur_generic: spur gear (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"perfboard": {"quantity": 0}, "esp32_devkitc_v4": {"quantity": 0, "exposed": "yes"}, "arduino_nano": {"quantity": 0, "exposed": "yes"}, "arduino_uno_r3": {"quantity": 0, "usb_exposed": "yes", "dc_exposed": "yes"}, "dc_jack_pj002a": {"quantity": 0, "exposed": "yes"}, "jack_3p5_pj320a": {"quantity": 0, "exposed": "yes"}, "generic_cylinder": {"quantity": 0}, "generic_box": {"quantity": 0}, "gear_spur_generic": {"quantity": 0}}

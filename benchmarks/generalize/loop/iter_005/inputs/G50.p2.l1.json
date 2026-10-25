@@ -1,0 +1,72 @@
+[
+  {
+    "id": "L1.1",
+    "text": "From the parts catalogue, position the Pi Zero 2 W, the fan, the OLED and the encoder so that nothing collides and the Pi's two micro-USB ports face the rear wall; declare the layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Inside the case the Pi is carried on four standoffs, one at each of its four mounting holes, with screws. Keep the board edges 0.5 mm or more from the side and front walls, and the entire Pi, connectors and all, 0.2 mm or more inside the cavity.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "With the lid on, it must be possible to push two micro-USB cable plugs all the way into the Pi's two micro-USB ports through the rear wall simultaneously, with no contact with the case or with each other. No opening may exceed the plug by more than 1.5 mm on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "Mount the fan over the Pi with four screws in its 32 mm hole pattern, blowing downward. In plan its axis must be within 6 mm of the centre of the Pi board, and there must be 5 mm or more of free air over the inlet and under the exhaust.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "Put vent slots in the side walls: 300 square millimetres or more of open area above the fan's mid-plane for intake, and 300 square millimetres or more below the fan for exhaust. Each slot is 2 to 3 mm wide, with 1.5 mm or more of wall left between slots. Spread the intake vents and the exhaust vents over at least two different walls each, and do not put any vent in the front panel, the lid or the floor. A vent counts as intake if its area-weighted centre is above the fan's mid-plane and as exhaust if it is at or below the fan's exhaust face; none may straddle the fan's frame between them.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "Inside the case there has to be a continuous route for air, wide enough for a 5 mm sphere to roll along: intake vents, through the fan, then past the Pi to the exhaust vents. Check it in these legs: from a vent's inner mouth to the middle of the 5 mm air gap over the fan inlet, and from the middle of the 5 mm air gap under the fan exhaust, past the Pi, to an exhaust vent's inner mouth. The slots themselves are sized by the vent rule.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "The window in the front panel has to reveal the full 25 x 14 mm viewing area of the OLED with nothing in the way, without being too big: 26 to 29 mm wide and 15 to 22 mm tall, centred on the viewing area in width, with its bottom edge 0.4 to 2.0 mm lower than the viewing area's.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "Behind the window, glass towards the front, the OLED is held by M2 screws going into posts at its two header-side holes and located by pins in the other two holes, which sit just 1.5 mm from the glass edge, too close for a screw post or head. Leave 3 mm free behind the board for header pins and wires, and keep the OLED 0.5 mm or more away from the fan, the encoder and the Pi.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "The encoder goes through a hole in the front panel with its body on the inside and its nut and shaft on the outside; at the hole the panel is 2 to 3 mm thick, thin enough for the thread to reach.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "Build the case as a base and a separate lid. The lid locates on the base with a sliding fit and stays closed with snap latches that can flex without breaking: four to eight cantilever hooks, with two or more on each of two opposite side walls, spaced at least 20 mm apart along the wall. Each hook catches a blind recess by 0.6 to 1.2 mm, and peak bending strain must not exceed 1.5 percent.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.11",
+    "text": "Apart from the window, the encoder hole, the two USB openings and the vents, the closed case must be sealed, with walls, floor and lid each 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "Each of the base and the lid is one manifold body that prints on an FDM printer without supports; round holes to 12 mm, bridges to 15 mm and a horizontal step to 1.2 mm deep (a hook's return face, say) are acceptable.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.13",
+    "text": "Keep the closed case within 90 x 70 x 45 mm so that it sits on a desk and does not tip.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.14",
+    "text": "Deliverables: STLs for the base and the lid, the OpenSCAD source, the declared layout, and the agent's own clearance report, matching an independent measurement.",
+    "method": "inspection"
+  }
+]

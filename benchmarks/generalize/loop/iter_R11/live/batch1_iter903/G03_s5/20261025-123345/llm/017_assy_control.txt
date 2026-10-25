@@ -1,0 +1,29 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'd like a housing for an ESP32-DevKitC V4 board, which measures 54.4 x 27.9 mm and is 1.6 mm thick, with its pin headers sticking up roughly 8.5 mm. It has no mounting holes, so rather than screws the housing needs ribs or clips to keep it in place. One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on. At the antenna end, leave 8 mm of empty room past the board, with no wall or cover material over the module. The cover should be its own printed piece that snaps on and can come off again. Print on an FDM printer in PLA, no supports, and keep the closed housing within 75 x 45 x 25 mm.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. retention_board (L1.1): esp32 devkitc held by pocket: free travel (mm) -z 0.00, +z 10.70, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 10.70 > 0.5; options the plant cannot build he... at board (esp32 devkitc) toward +z; off by 10.2 mm; needs: decrease the free travel of the part in its worst direction
+2. text_coverage (L1.5): board.usb (esp32 devkitc) is closed, but request names a micro-usb plug: "One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on."; needs: an opening for each connector whose mating plug the text names
+
+The design now:
+- board (primary): esp32 devkitc x1; connectors: usb closed
+- lid closure: lip; lid bosses: outside_corners
+- board retention: pocket
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- A: hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction
+- B: expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed
+- C: stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? Answer with its letter.
+
+=== RESPONSE ===
+{
+  "action": "B"
+}

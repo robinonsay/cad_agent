@@ -1,0 +1,63 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 20 (request): "...I'm after a cover for a GT2 pulley with 20 teeth (16 mm over the teeth, 18 mm flanges) sitting on the..."
+n2 = 16 mm (request): "...I'm after a cover for a GT2 pulley with 20 teeth (16 mm over the teeth, 18 mm flanges) sitting on the 5 mm shaft of..."
+n3 = 18 mm (request): "...cover for a GT2 pulley with 20 teeth (16 mm over the teeth, 18 mm flanges) sitting on the 5 mm shaft of a NEMA 17 steppe..."
+n4 = 5 mm (request): "...teeth (16 mm over the teeth, 18 mm flanges) sitting on the 5 mm shaft of a NEMA 17 stepper (42.3 mm square face, a 22 mm..."
+n5 = 17 (request): "...e teeth, 18 mm flanges) sitting on the 5 mm shaft of a NEMA 17 stepper (42.3 mm square face, a 22 mm pilot, and M3 holes..."
+n6 = 42.3 mm (request): "...mm flanges) sitting on the 5 mm shaft of a NEMA 17 stepper (42.3 mm square face, a 22 mm pilot, and M3 holes on a 31 mm ..."
+n7 = 22 mm (request): "...the 5 mm shaft of a NEMA 17 stepper (42.3 mm square face, a 22 mm pilot, and M3 holes on a 31 mm square). The hub is 3 m..."
+n8 = 31 mm (request): "...pper (42.3 mm square face, a 22 mm pilot, and M3 holes on a 31 mm square). The hub is 3 mm up from the motor face and th..."
+n9 = 3 mm (request): "...a 22 mm pilot, and M3 holes on a 31 mm square). The hub is 3 mm up from the motor face and the shaft pokes out 24 mm. Th..."
+n10 = 24 mm (request): "...hub is 3 mm up from the motor face and the shaft pokes out 24 mm. There needs to be 2 mm of space between the cover and ..."
+n11 = 2 mm (request): "...motor face and the shaft pokes out 24 mm. There needs to be 2 mm of space between the cover and the pulley and shaft eve..."
+n12 = 6 mm (request): "...shaft everywhere, with one opening on a single side where a 6 mm GT2 belt can run straight off to another pulley 100 mm ..."
+n13 = 100 mm (request): "...here a 6 mm GT2 belt can run straight off to another pulley 100 mm away. Screw it down with two M3 bolts into two of the..."
+n14 = 17 (L1.1): "...Take the NEMA 17 motor, GT2 pulley, belt and the pair of M3 bolts from the p..."
+n15 = 3 mm (L1.1): "...lts from the parts catalogue and position them with the hub 3 mm over the motor face; declare that layout...."
+n16 = 2 mm (L1.2): "...The cover must stay 2 mm or more away from the turning pulley and the shaft in every..."
+n17 = 3 mm (L1.2): "...above the pulley, above the shaft end) but not by more than 3 mm radially or 3.5 mm above the shaft end, so it isn't blo..."
+n18 = 3.5 mm (L1.2): "...above the shaft end) but not by more than 3 mm radially or 3.5 mm above the shaft end, so it isn't bloated. Keep at leas..."
+n19 = 0.5 mm (L1.2): "...mm above the shaft end, so it isn't bloated. Keep at least 0.5 mm off the belt where it wraps the pulley, treating the w..."
+n20 = 6 mm (L1.2): "...t where it wraps the pulley, treating the wrapped belt as a 6 mm tall cylinder on the pulley's belt plane whose radius e..."
+n21 = 0.5 mm (L1.3): "...g that side on either side of the pulley, pass through with 0.5 mm or more clearance to each, and the slot is no more th..."
+n22 = 3 mm (L1.3): "...mm or more clearance to each, and the slot is no more than 3 mm wider or taller than the two runs combined...."
+n23 = 22 mm (L1.5): "...It rests flat on the motor face, centres on the 22 mm pilot with a sliding fit of 0.15 to 0.35 mm per side, and d..."
+n24 = 0.15 (L1.5): "...otor face, centres on the 22 mm pilot with a sliding fit of 0.15 to 0.35 mm per side, and does not extend past the 42.3 ..."
+n25 = 0.35 mm (L1.5): "...e, centres on the 22 mm pilot with a sliding fit of 0.15 to 0.35 mm per side, and does not extend past the 42.3 mm squar..."
+n26 = 42.3 mm (L1.5): "...t of 0.15 to 0.35 mm per side, and does not extend past the 42.3 mm square of the motor face...."
+n27 = 2 (L1.6): "...m the belt slot and two bolt holes; walls, top and ears are 2 to 4 mm thick, ears allowed up to 5 mm...."
+n28 = 4 mm (L1.6): "...belt slot and two bolt holes; walls, top and ears are 2 to 4 mm thick, ears allowed up to 5 mm...."
+n29 = 5 mm (L1.6): "...walls, top and ears are 2 to 4 mm thick, ears allowed up to 5 mm...."
+n30 = 40 (L1.8): "...fold body that prints on FDM with no supports, and at least 40 percent of its plan bounding box lies on the bed...."
+n31 = 45 (L1.9): "...No larger than 45 x 45 x 35 mm...."
+n32 = 45 (L1.9): "...No larger than 45 x 45 x 35 mm...."
+n33 = 35 mm (L1.9): "...No larger than 45 x 45 x 35 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+Your previous answer broke these rules: board_width and board_depth and keepout_above and keepout_below and board_clearance and headroom and opening_oversize_max and wall_min and wall_max and max_x and max_y and max_z all use n1 (20, 'I'm after a cover for a GT2 pulley with 20 teeth (16 mm over the teeth, 18 mm flanges) sitting on the'); each number in the text states one quantity. Answer again and fix that.
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

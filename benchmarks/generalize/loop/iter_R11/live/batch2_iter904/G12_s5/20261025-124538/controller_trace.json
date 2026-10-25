@@ -1,0 +1,645 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "8b9480bc33010d35",
+        "graph": "61a3e38b794954b3",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "esp32_devkitc_v4",
+              1,
+              []
+            ],
+            [
+              "control_1",
+              "led_5mm",
+              3,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": "screw_m3_selftap"
+          },
+          "retention": "pocket"
+        }
+      },
+      "error": {
+        "hard_failures": 8,
+        "violation": 20.69
+      },
+      "failing": [
+        "retention_board",
+        "content_placed_control_1",
+        "content_placed_generic_1",
+        "text_coverage",
+        "apertures_-X",
+        "apertures_+X",
+        "apertures_-Y",
+        "apertures_+Y"
+      ],
+      "terms": [
+        {
+          "check": "retention_board",
+          "type": "retention",
+          "requirement": [
+            "L1.1"
+          ],
+          "where": "esp32 devkitc held by pocket: free travel (mm) -z 0.00, +z 10.20, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 10.20 > 0.5; options the plant cannot build he... at board (esp32 devkitc) toward +z",
+          "deficit": 9.69,
+          "unit": "mm",
+          "direction": "decrease the free travel of the part in its worst direction",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -9.69,
+          "detail": "esp32 devkitc held by pocket: free travel (mm) -z 0.00, +z 10.20, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 10.20 > 0.5; options the plant cannot build he..."
+        },
+        {
+          "check": "content_placed_control_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.1",
+            "L1.5",
+            "L1.9"
+          ],
+          "where": "control_1 (led_5mm) is not placed: esp32_devkitc_v4 is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "control_1 (led_5mm) is not placed: esp32_devkitc_v4 is not a carrier: no relation places it yet (GM2b)"
+        },
+        {
+          "check": "content_placed_generic_1",
+          "type": "content_placed",
+          "requirement": [],
+          "where": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ...",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ..."
+        },
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.4"
+          ],
+          "where": "board.usb (esp32 devkitc) is closed, but request names a micro-usb plug: \"I want to plug a micro-USB cable into one short end while the lid is on.\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "0 named plug connection(s) covered; uncovered: board.usb takes plug_microusb_b named by request, L1.4"
+        },
+        {
+          "check": "apertures_-X",
+          "type": "aperture_count",
+          "requirement": [],
+          "where": "wall -X: 2 through opening(s), expected 0; 0 blind region(s)",
+          "deficit": 2.0,
+          "unit": "count",
+          "direction": "make the number of through openings in the wall right",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.0,
+          "detail": "wall -X: 2 through opening(s), expected 0; 0 blind region(s)"
+        },
+        {
+          "check": "apertures_+X",
+          "type": "aperture_count",
+          "requirement": [],
+          "where": "wall +X: 2 through opening(s), expected 0; 0 blind region(s)",
+          "deficit": 2.0,
+          "unit": "count",
+          "direction": "make the number of through openings in the wall right",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.0,
+          "detail": "wall +X: 2 through opening(s), expected 0; 0 blind region(s)"
+        },
+        {
+          "check": "apertures_-Y",
+          "type": "aperture_count",
+          "requirement": [],
+          "where": "wall -Y: 2 through opening(s), expected 0; 0 blind region(s)",
+          "deficit": 2.0,
+          "unit": "count",
+          "direction": "make the number of through openings in the wall right",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.0,
+          "detail": "wall -Y: 2 through opening(s), expected 0; 0 blind region(s)"
+        },
+        {
+          "check": "apertures_+Y",
+          "type": "aperture_count",
+          "requirement": [],
+          "where": "wall +Y: 2 through opening(s), expected 0; 0 blind region(s)",
+          "deficit": 2.0,
+          "unit": "count",
+          "direction": "make the number of through openings in the wall right",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.0,
+          "detail": "wall +Y: 2 through opening(s), expected 0; 0 blind region(s)"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "8b9480bc33010d35",
+      "error_before": {
+        "hard_failures": 8,
+        "violation": 20.69
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "set_panel",
+          "target": "control_1",
+          "value": "lid",
+          "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+          "targets": [
+            "content_placed_control_1"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_panel:control_1=lid",
+          "letter": "B"
+        },
+        {
+          "kind": "expose",
+          "target": "board.usb",
+          "value": true,
+          "words": "expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "request",
+              "quote": "I want to plug a micro-USB cable into one short end while the lid is on."
+            },
+            {
+              "source": "L1.4",
+              "quote": "It must be possible to push a micro-USB cable all the way into the board, lid on, through one hole in the end wall at \u2212X."
+            }
+          ],
+          "key": "expose:board.usb=True",
+          "letter": "C"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "D"
+        }
+      ],
+      "votes": {
+        "C": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "board.usb",
+        "value": true,
+        "words": "expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "request",
+            "quote": "I want to plug a micro-USB cable into one short end while the lid is on."
+          },
+          {
+            "source": "L1.4",
+            "quote": "It must be possible to push a micro-USB cable all the way into the board, lid on, through one hole in the end wall at \u2212X."
+          }
+        ],
+        "key": "expose:board.usb=True"
+      },
+      "chosen": "C",
+      "accepted": true,
+      "reason": "fewer failing checks (8 -> 7)",
+      "error_after": {
+        "hard_failures": 7,
+        "violation": 19.69
+      },
+      "state_after": "3754198922c9ad88",
+      "failing_after": [
+        "content_placed_control_1",
+        "content_placed_generic_1",
+        "apertures_-X",
+        "apertures_+X",
+        "apertures_-Y",
+        "apertures_+Y",
+        "retention_board"
+      ],
+      "llm_calls": 3,
+      "secs": 3.64
+    },
+    {
+      "step": 2,
+      "state_before": "3754198922c9ad88",
+      "error_before": {
+        "hard_failures": 7,
+        "violation": 19.69
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "set_panel",
+          "target": "control_1",
+          "value": "lid",
+          "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+          "targets": [
+            "content_placed_control_1"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_panel:control_1=lid",
+          "letter": "B"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "C"
+        }
+      ],
+      "votes": {
+        "B": 2,
+        "A": 1
+      },
+      "action": {
+        "kind": "set_panel",
+        "target": "control_1",
+        "value": "lid",
+        "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+        "targets": [
+          "content_placed_control_1"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_panel:control_1=lid"
+      },
+      "chosen": "B",
+      "accepted": true,
+      "reason": "fewer failing checks (7 -> 6)",
+      "error_after": {
+        "hard_failures": 6,
+        "violation": 14.79
+      },
+      "state_after": "d418211f60cfb325",
+      "failing_after": [
+        "content_placed_generic_1",
+        "apertures_-X",
+        "apertures_+X",
+        "apertures_-Y",
+        "apertures_+Y",
+        "retention_board"
+      ],
+      "llm_calls": 3,
+      "secs": 3.61
+    },
+    {
+      "step": 3,
+      "state_before": "d418211f60cfb325",
+      "error_before": {
+        "hard_failures": 6,
+        "violation": 14.79
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "set_retention",
+        "target": "board",
+        "value": "crush_ribs",
+        "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+        "targets": [
+          "retention_board"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_retention:board=crush_ribs"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (6 -> 5)",
+      "error_after": {
+        "hard_failures": 5,
+        "violation": 5.0
+      },
+      "state_after": "1996433202e31b37",
+      "failing_after": [
+        "content_placed_generic_1",
+        "apertures_-X",
+        "apertures_+X",
+        "apertures_-Y",
+        "apertures_+Y"
+      ],
+      "llm_calls": 3,
+      "secs": 3.55
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 3
+  },
+  "final": {
+    "state": {
+      "decisions": "1996433202e31b37",
+      "graph": "32f69b39ec2365da",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "esp32_devkitc_v4",
+            1,
+            [
+              "usb"
+            ]
+          ],
+          [
+            "control_1",
+            "led_5mm",
+            3,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {
+          "wall[board.usb]": "-X"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": "screw_m3_selftap"
+        },
+        "retention": "crush_ribs",
+        "panel": {
+          "control_1": "lid"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 5,
+      "violation": 5.0
+    },
+    "failing": [
+      "content_placed_generic_1",
+      "apertures_-X",
+      "apertures_+X",
+      "apertures_-Y",
+      "apertures_+Y"
+    ],
+    "terms": [
+      {
+        "check": "content_placed_generic_1",
+        "type": "content_placed",
+        "requirement": [],
+        "where": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ...",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": true,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ..."
+      },
+      {
+        "check": "apertures_-X",
+        "type": "aperture_count",
+        "requirement": [],
+        "where": "wall -X: 2 through opening(s), expected 1; 0 blind region(s)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "make the number of through openings in the wall right",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "wall -X: 2 through opening(s), expected 1; 0 blind region(s)"
+      },
+      {
+        "check": "apertures_+X",
+        "type": "aperture_count",
+        "requirement": [],
+        "where": "wall +X: 1 through opening(s), expected 0; 0 blind region(s)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "make the number of through openings in the wall right",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "wall +X: 1 through opening(s), expected 0; 0 blind region(s)"
+      },
+      {
+        "check": "apertures_-Y",
+        "type": "aperture_count",
+        "requirement": [],
+        "where": "wall -Y: 1 through opening(s), expected 0; 0 blind region(s)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "make the number of through openings in the wall right",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "wall -Y: 1 through opening(s), expected 0; 0 blind region(s)"
+      },
+      {
+        "check": "apertures_+Y",
+        "type": "aperture_count",
+        "requirement": [],
+        "where": "wall +Y: 1 through opening(s), expected 0; 0 blind region(s)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "make the number of through openings in the wall right",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "wall +Y: 1 through opening(s), expected 0; 0 blind region(s)"
+      }
+    ]
+  },
+  "secs": 11.06,
+  "authority": {
+    "decisions": {
+      "plant": 3,
+      "llm": 3,
+      "guardrail": 1,
+      "semantic-rule": 2
+    },
+    "proposal": {
+      "llm_slots": 11,
+      "default_slots": 2,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      },
+      {
+        "decision": "fastener[lid]",
+        "by": "rule:text_evidence[lid]",
+        "migration": "R03"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.6667
+  },
+  "accepted": [
+    {
+      "kind": "expose",
+      "target": "board.usb",
+      "value": true,
+      "words": "expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "request",
+          "quote": "I want to plug a micro-USB cable into one short end while the lid is on."
+        },
+        {
+          "source": "L1.4",
+          "quote": "It must be possible to push a micro-USB cable all the way into the board, lid on, through one hole in the end wall at \u2212X."
+        }
+      ],
+      "key": "expose:board.usb=True",
+      "step": 1
+    },
+    {
+      "kind": "set_panel",
+      "target": "control_1",
+      "value": "lid",
+      "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+      "targets": [
+        "content_placed_control_1"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_panel:control_1=lid",
+      "step": 2
+    },
+    {
+      "kind": "set_retention",
+      "target": "board",
+      "value": "crush_ribs",
+      "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+      "targets": [
+        "retention_board"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_retention:board=crush_ribs",
+      "step": 3
+    }
+  ]
+}

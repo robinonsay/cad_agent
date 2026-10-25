@@ -1,0 +1,68 @@
+MODEL: ornith-1.5:9b T=0.3 seed=31000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 80 (request): "...should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in ..."
+n2 = 105 mm (request): "...be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG wi..."
+n3 = 20 mm (L1.2): "...The cleat shall be adjustable fore-aft by at least 20 mm and sideways by at least 5 mm, as on a shoe, and shall clam..."
+n4 = 5 mm (L1.2): "...ustable fore-aft by at least 20 mm and sideways by at least 5 mm, as on a shoe, and shall clamp firmly at any position i..."
+n5 = 4 mm (L1.2): "...ve so that it does not turn when a bolt is tightened with a 4 mm hex key...."
+n6 = 4 mm (L1.3): "...h bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pe..."
+n7 = 600 (L1.5): "...lane outside the cleat, and a flat bearing area of at least 600 mm2 on it...."
+n8 = 2.0 mm (L1.6): "...either way, every point of the adapter shall stay at least 2.0 mm from the crank arm's inner face...."
+n9 = 80 (L1.7): "...d like a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of..."
+n10 = 105 mm (L1.7): "...a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of 8 to 1..."
+n11 = 8 (L1.7): "...0 and 105 mm, with a thickness above the pedal-side face of 8 to 14 mm, not counting the grip features...."
+n12 = 14 mm (L1.7): "...105 mm, with a thickness above the pedal-side face of 8 to 14 mm, not counting the grip features...."
+n13 = 8 (L1.8): "...The top face shall carry grip features for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over..."
+n14 = 1.5 (L1.8): "...features for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the pl..."
+n15 = 5.0 mm (L1.8): "...es for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the platform..."
+n16 = 60 (L1.8): "...ns or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the platform's plan area and kept at least 3 m..."
+n17 = 3 mm (L1.8): "...st 60 percent of the platform's plan area and kept at least 3 mm from its edge...."
+n18 = 2500 (L1.9): "...The adapter shall carry a standing rider: a 2500 N load on a 30 x 30 mm patch at the outer edge of the platf..."
+n19 = 30 (L1.9): "...he adapter shall carry a standing rider: a 2500 N load on a 30 x 30 mm patch at the outer edge of the platform, with onl..."
+n20 = 30 mm (L1.9): "...apter shall carry a standing rider: a 2500 N load on a 30 x 30 mm patch at the outer edge of the platform, with only the..."
+n21 = 1 (L1.9): "...p footprint as support, shall give a bending stress at most 1/1.5 of the printed material's 25 MPa in-plane strength...."
+n22 = 1.5 (L1.9): "...footprint as support, shall give a bending stress at most 1/1.5 of the printed material's 25 MPa in-plane strength...."
+n23 = 25 (L1.9): "...ve a bending stress at most 1/1.5 of the printed material's 25 MPa in-plane strength...."
+n24 = 0.8 mm (L1.11): "...s in its declared orientation, with no feature thinner than 0.8 mm, and fit a 200 x 200 x 200 mm bed...."
+n25 = 200 (L1.11): "...orientation, with no feature thinner than 0.8 mm, and fit a 200 x 200 x 200 mm bed...."
+n26 = 200 (L1.11): "...ation, with no feature thinner than 0.8 mm, and fit a 200 x 200 x 200 mm bed...."
+n27 = 200 mm (L1.11): "...with no feature thinner than 0.8 mm, and fit a 200 x 200 x 200 mm bed...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "none",
+  "max_y": "none",
+  "max_z": "none",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "none"
+}

@@ -1,0 +1,71 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 68.6 (request): "...I want a housing for an Arduino Uno R3 board — 68.6 x 53.3 mm with four 3.2 mm mounting holes — which rests on..."
+n2 = 53.3 mm (request): "...I want a housing for an Arduino Uno R3 board — 68.6 x 53.3 mm with four 3.2 mm mounting holes — which rests on four stan..."
+n3 = 3.2 mm (request): "...sing for an Arduino Uno R3 board — 68.6 x 53.3 mm with four 3.2 mm mounting holes — which rests on four standoffs locate..."
+n4 = 5.5 mm (request): "...he board's mounting holes. The board has a USB-B port and a 5.5 mm barrel jack along the same short edge, and I need to ..."
+n5 = 68.6 (L1.2): "...With the case shut, the 68.6 x 53.3 x 1.6 mm board must have at least 0.5 mm of space to..."
+n6 = 53.3 (L1.2): "...With the case shut, the 68.6 x 53.3 x 1.6 mm board must have at least 0.5 mm of space to every..."
+n7 = 1.6 mm (L1.2): "...With the case shut, the 68.6 x 53.3 x 1.6 mm board must have at least 0.5 mm of space to every printed s..."
+n8 = 0.5 mm (L1.2): "...ase shut, the 68.6 x 53.3 x 1.6 mm board must have at least 0.5 mm of space to every printed surface, other than at its ..."
+n9 = 5 (L1.3): "...one at each of its four mounting holes. Outside diameter is 5 to 7 mm, their top planes agree within 0.1 mm, and each ca..."
+n10 = 7 mm (L1.3): "...t each of its four mounting holes. Outside diameter is 5 to 7 mm, their top planes agree within 0.1 mm, and each carries..."
+n11 = 0.1 mm (L1.3): "...utside diameter is 5 to 7 mm, their top planes agree within 0.1 mm, and each carries a pilot hole deep enough for a 10 m..."
+n12 = 10 mm (L1.3): "...hin 0.1 mm, and each carries a pilot hole deep enough for a 10 mm M3 self-tapping screw to seat (the 1.6 mm board counte..."
+n13 = 1.6 mm (L1.3): "...deep enough for a 10 mm M3 self-tapping screw to seat (the 1.6 mm board counted)...."
+n14 = 12 mm (L1.4): "...Case closed, nothing may be closer than 12 mm above the board's top surface or 4 mm beneath its underside..."
+n15 = 4 mm (L1.4): "...g may be closer than 12 mm above the board's top surface or 4 mm beneath its underside; the standoffs at the holes are t..."
+n16 = 0.3 mm (L1.5): "...he receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and th..."
+n17 = 1.5 mm (L1.5): "...the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side...."
+n18 = 5.5 (L1.6): "...Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must g..."
+n19 = 2.1 mm (L1.6): "...Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully i..."
+n20 = 0.3 mm (L1.6): "...hat same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening ..."
+n21 = 1.5 mm (L1.6): "...the case all round, and the opening can exceed the plug by 1.5 mm at most on any side...."
+n22 = 5 (L1.7): "...Fit the lid with a straight line of 5 to 9 vent slots right above the ATmega328P. Each is 1.5 to..."
+n23 = 9 (L1.7): "...Fit the lid with a straight line of 5 to 9 vent slots right above the ATmega328P. Each is 1.5 to 3.0 m..."
+n24 = 1.5 (L1.7): "...ne of 5 to 9 vent slots right above the ATmega328P. Each is 1.5 to 3.0 mm wide and 8 to 12 mm long on a 3.5 to 6.5 mm pi..."
+n25 = 3.0 mm (L1.7): "...to 9 vent slots right above the ATmega328P. Each is 1.5 to 3.0 mm wide and 8 to 12 mm long on a 3.5 to 6.5 mm pitch, and..."
+n26 = 8 (L1.7): "...right above the ATmega328P. Each is 1.5 to 3.0 mm wide and 8 to 12 mm long on a 3.5 to 6.5 mm pitch, and the open area a..."
+n27 = 12 mm (L1.7): "...t above the ATmega328P. Each is 1.5 to 3.0 mm wide and 8 to 12 mm long on a 3.5 to 6.5 mm pitch, and the open area adds ..."
+n28 = 3.5 (L1.7): "...ga328P. Each is 1.5 to 3.0 mm wide and 8 to 12 mm long on a 3.5 to 6.5 mm pitch, and the open area adds up to at least 1..."
+n29 = 6.5 mm (L1.7): "...Each is 1.5 to 3.0 mm wide and 8 to 12 mm long on a 3.5 to 6.5 mm pitch, and the open area adds up to at least 100 mm²...."
+n30 = 100 (L1.7): "...3.5 to 6.5 mm pitch, and the open area adds up to at least 100 mm²...."
+n31 = 2 (L1.8): "...flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstan..."
+n32 = 3 mm (L1.8): "...plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of ..."
+n33 = 0.15 (L1.8): "...g in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 m..."
+n34 = 0.35 mm (L1.8): "...ebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held..."
+n35 = 1 mm (L1.8): "...e, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held by four M3 self-tapping screws that go into four..."
+n36 = 2 (L1.9): "...slots and the screw holes, and the walls, floor and lid are 2 to 4 mm thick...."
+n37 = 4 mm (L1.9): "...and the screw holes, and the walls, floor and lid are 2 to 4 mm thick...."
+n38 = 45 (L1.10): "...or FDM printing with no supports: overhangs no steeper than 45° from vertical and bridges no longer than 15 mm...."
+n39 = 15 mm (L1.10): "...o steeper than 45° from vertical and bridges no longer than 15 mm...."
+n40 = 100 (L1.11): "...Overall the closed case is limited to 100 x 70 x 35 mm, with the longest dimension along the board's..."
+n41 = 70 (L1.11): "...Overall the closed case is limited to 100 x 70 x 35 mm, with the longest dimension along the board's 68.6..."
+n42 = 35 mm (L1.11): "...Overall the closed case is limited to 100 x 70 x 35 mm, with the longest dimension along the board's 68.6 mm side,..."
+n43 = 68.6 mm (L1.11): "...x 70 x 35 mm, with the longest dimension along the board's 68.6 mm side, and it should sit flat on a desk without tippin..."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

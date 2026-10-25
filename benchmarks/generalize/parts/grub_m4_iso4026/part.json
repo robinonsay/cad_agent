@@ -1,0 +1,152 @@
+{
+  "id": "grub_m4_iso4026",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "m4 grub screw",
+    "m4 set screw",
+    "m4 grub",
+    "iso 4026 m4",
+    "m4 flat point set screw",
+    "m4 traction pin"
+  ],
+  "kind": "fastener",
+  "source": "ISO 4026 M4 hex socket set screw, flat point: hex key s = 2.0 mm; tap drill 3.3 mm per ISO 261; stock lengths 4 to 20 mm. Used as an optional threaded traction pin: the threaded stud protrudes from the platform face.",
+  "frame": "fastener: axis along Z, origin on the drive end face, thread toward -Z",
+  "params": {
+    "thread_diameter": {
+      "default": 4.0,
+      "source": "nominal thread diameter (M4)"
+    },
+    "key_size": {
+      "default": 2.0,
+      "source": "ISO 4026 hex socket width s"
+    },
+    "tap_diameter": {
+      "default": 3.3,
+      "source": "ISO 261 / DIN 336 tap drill for M4 coarse thread (6H), the pilot hole in a printed boss"
+    },
+    "min_engagement": {
+      "default": 6.0,
+      "source": "ASSUMPTION: thread engagement in printed plastic of at least 1.5 x the thread diameter (uncertainty +/-2 mm); convention, not a standard"
+    },
+    "tool_access_height": {
+      "default": 15.0,
+      "source": "ASSUMPTION: straight clearance above the drive end for a 2 mm hex key (uncertainty +/-5 mm)"
+    },
+    "length": {
+      "default": null,
+      "from_request": true,
+      "source": "request text (stud length; stock lengths are standard, so it is chosen per design)"
+    }
+  },
+  "gate_params": {
+    "length": 10.0,
+    "source": "sample length used only by the load-time validation gate; never a design value"
+  },
+  "datasheet_size": [
+    "thread_diameter",
+    "thread_diameter",
+    "length"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "shank",
+      "primitive": "cylinder",
+      "d": "thread_diameter",
+      "h": "length",
+      "at": [
+        0,
+        0,
+        "-length"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "tool_access",
+      "primitive": "cylinder",
+      "d": "thread_diameter",
+      "h": "tool_access_height",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "thread_diameter",
+      "keepout_diameter": "thread_diameter"
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "-length"
+      ]
+    }
+  },
+  "connectors": [],
+  "import_gate_notes": "R1: bounding box = thread_diameter x thread_diameter x length, tolerance 0.2 mm (plain cylinder; the hex socket is omitted). Datum directions are unit vectors. Designed contact (thread in its tapped hole) is not interference. The tool_access keepout is a reserved volume, not a solid.",
+  "self_checks": [
+    {
+      "name": "tap drill below the thread",
+      "expr": "thread_diameter - tap_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hex key fits inside the thread diameter",
+      "expr": "thread_diameter - key_size",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "engagement fits in the gate length",
+      "expr": "length - min_engagement",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

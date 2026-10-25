@@ -1,0 +1,164 @@
+{
+ "paraphrases": [
+  {
+   "id": "T01",
+   "tier": 4,
+   "title": "SPD clip-in flat pedal adapter",
+   "request": "Conversion kit: flat platforms that clip onto my clipless SPD mountain bike pedals. Each platform takes the standard Shimano SM-SH51 two-bolt cleat, bolted on with M5 bolts and nuts, and the cleat has to slide fore-aft for adjustment as in a shoe, so that my shoes can use the pedals as flat pedals with grip. Pedals are Shimano PD-M520-type SPD pedals. Platform size like a normal flat pedal: 80 to 105 mm in each plan direction. Print it on an FDM printer in PETG without supports; a single design for both pedals, or a left/right pair.",
+   "request_verbatim": "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes",
+   "request_notes": "Added to Robin's words (requirements.md section 3): pedal = Shimano PD-M520-type SPD (A1), cleat = SM-SH51 two-bolt (A2), M5 bolts and nuts (A4), fore-aft adjustment like a shoe (A6), platform 80 to 105 mm each way from commercial SPD-to-flat adapters (A7), FDM PETG without supports (A9), one part or an L/R pair (FD4). Dimensions marked UNVERIFIED in the catalogue (cleat size, bolt pitch, pedal body) are for Robin to measure on his own cleat and pedal.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place one catalogue Shimano SM-SH51 cleat with its mount face on the adapter's cleat seat, held by its two bolt positions using standard M5 hardware (catalogue M5 socket-head bolts and M5 hex nuts), and declare the layout: cleat pose, bolts, nuts, grip features and print orientation.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Cleat adjustment is at least 20 mm fore-aft and at least 5 mm sideways, like a shoe cleat, and the cleat clamps solidly anywhere in that range; every nut is captive so it cannot spin when a bolt is tightened with a 4 mm hex key.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Wherever the cleat sits in its range the M5 hardware fits: bolt heads seat on the cleat and a 4 mm hex key reaches each from the pedal side with the adapter off the pedal, each bolt threads through the full nut thickness, and no bolt tip gets to the platform's top face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The cleat has to clip into the SPD pedal: on the pedal in the engaged pose only the cleat may enter the pedal's binding space or the cleat's recess space, for every cleat position in the adjustment range.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "The adapter's pedal-side face rests on the pedal's sole plane as a shoe sole does: nothing of the adapter below that plane except the cleat, and at least 600 mm2 of flat bearing area on it.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Crank arm clearance: for the cleat anywhere in its sideways range and the adapter twisted about the cleat axis by the release angle in either direction, every adapter point is 2.0 mm or more from the crank arm's inner face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Flat-pedal sized platform: both plan dimensions 80 to 105 mm, and 8 to 14 mm thick above the pedal-side face excluding grip features.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Grip for shoes on the top face: 8 or more raised pins or ridges, 1.5 to 5.0 mm tall each, covering at least 60 percent of the platform plan area and at least 3 mm in from the edge.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Rider load: 2500 N on a 30 x 30 mm patch at the platform's outer edge, supported only by the cleat clamp footprint, must give a bending stress no higher than the material's 25 MPa in-plane strength divided by 1.5.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "A single printed part works on both pedals, meaning the part and its mirror image both pass every check, or else a left/right pair of two mirror-image parts is declared and each passes every check on its own pedal.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Every printed body is a single manifold that prints in PETG on FDM with no supports in its declared orientation, has no feature under 0.8 mm, and fits a 200 x 200 x 200 mm bed.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliver an STL for each printed body, the OpenSCAD source, the declared layout and the agent's own clearance and strength report; the report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the cleat's MOUNT_FACE, SOLE_PLANE and BOLT axis list, and the pedal's SOLE_PLANE and CRANK_FACE, fix the adapter's seat, recess and bolt slots",
+    "slotted bolt seats: a bolt travel region (fore-aft and lateral ranges) with a clamp and captive nut pockets that cover it",
+    "captive-nut trap (hex pocket, side or open entry) for a catalogue M5 nut and a counterbore or access column for a catalogue M5 bolt",
+    "keep-out envelopes from the catalogue: the cleat recess, the pedal binding cage and the crank-side slab, swept over the cleat adjustment and the release twist",
+    "a load-path hand calculation from the delivered mesh (section modulus at the support edge, bending stress against a stated allowable)",
+    "grip features: pins (optionally catalogue M4 grub screws in tapped bosses) or ridges, counted and located on the top face",
+    "mirror symmetry: the same part on the left and right pedal, or a declared mirror pair",
+    "print orientation: pedal-side face on the bed, no supports"
+   ]
+  },
+  {
+   "id": "T01",
+   "tier": 4,
+   "title": "SPD clip-in flat pedal adapter",
+   "request": "I need to 3D print an adapter that turns my SPD clipless mountain bike pedals into flat pedals (a conversion kit). The standard Shimano SM-SH51 two-bolt SPD cleat bolts onto the adapter with M5 bolts and nuts, the adapter clips into the pedal, and the top has grip for my shoes. The cleat must be adjustable fore-aft like on a shoe. The pedals are Shimano PD-M520-type SPD pedals. Make the platform an ordinary flat-pedal size, 80 to 105 mm each way, printable in PETG on an FDM printer without supports, as one part for both pedals or as a left/right pair.",
+   "request_verbatim": "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes",
+   "request_notes": "Added to Robin's words (requirements.md section 3): pedal = Shimano PD-M520-type SPD (A1), cleat = SM-SH51 two-bolt (A2), M5 bolts and nuts (A4), fore-aft adjustment like a shoe (A6), platform 80 to 105 mm each way from commercial SPD-to-flat adapters (A7), FDM PETG without supports (A9), one part or an L/R pair (FD4). Dimensions marked UNVERIFIED in the catalogue (cleat size, bolt pitch, pedal body) are for Robin to measure on his own cleat and pedal.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "The adapter holds one Shimano SM-SH51 cleat from the catalogue, its mount face against the cleat seat, bolted at the cleat's two bolt positions with standard M5 hardware (catalogue M5 socket-head bolts, M5 hex nuts); the design declares its layout (cleat pose, bolts, nuts, grip features, print orientation).",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The cleat moves at least 20 mm fore-aft and at least 5 mm sideways, as on a shoe, and clamps firmly at every position in that range. Each nut is held captive, so it will not turn while a bolt is tightened with a 4 mm hex key.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "At all cleat positions in the range: bolt heads seat on the cleat and a 4 mm hex key can reach them from the pedal side with the adapter off the pedal; each bolt engages its nut over the nut's full thickness; no bolt tip reaches the platform's top face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Clipping in has to work: with the adapter on the pedal in the engaged pose, only the cleat enters the pedal's binding space or the cleat's recess space, at every cleat position in the adjustment range.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "The pedal-side face of the adapter lies on the pedal's sole plane like a shoe sole, with no adapter material below the plane outside the cleat and at least 600 mm2 of flat bearing area on the plane.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Keep 2.0 mm or more between every adapter point and the crank arm's inner face, for any sideways cleat setting in its range and with the adapter twisted about the cleat axis through the release angle either way.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Size the platform like a commercial flat pedal: each plan dimension 80 to 105 mm and a thickness of 8 to 14 mm above the pedal-side face, grip features excluded.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Give the top face grip for shoes: at least 8 raised pins or ridges, 1.5 to 5.0 mm tall, spread across at least 60 percent of the plan area and at least 3 mm from the edge.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Strength for a standing rider: 2500 N over a 30 x 30 mm patch at the platform's outer edge, with only the cleat clamp footprint as support, gives a bending stress of at most 25 MPa (the in-plane strength) divided by 1.5.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "The same printed part must suit both pedals: it and its mirror image both pass every check, or a left/right pair of two mirror-image parts is declared and each passes on its own pedal.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Each printed body is one manifold body, prints in PETG on an FDM printer in its declared orientation without supports, has no feature thinner than 0.8 mm and fits a 200 x 200 x 200 mm bed.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Hand over the STL of every printed body, the OpenSCAD source, the declared layout and the agent's own clearance and strength report, which has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the cleat's MOUNT_FACE, SOLE_PLANE and BOLT axis list, and the pedal's SOLE_PLANE and CRANK_FACE, fix the adapter's seat, recess and bolt slots",
+    "slotted bolt seats: a bolt travel region (fore-aft and lateral ranges) with a clamp and captive nut pockets that cover it",
+    "captive-nut trap (hex pocket, side or open entry) for a catalogue M5 nut and a counterbore or access column for a catalogue M5 bolt",
+    "keep-out envelopes from the catalogue: the cleat recess, the pedal binding cage and the crank-side slab, swept over the cleat adjustment and the release twist",
+    "a load-path hand calculation from the delivered mesh (section modulus at the support edge, bending stress against a stated allowable)",
+    "grip features: pins (optionally catalogue M4 grub screws in tapped bosses) or ridges, counted and located on the top face",
+    "mirror symmetry: the same part on the left and right pedal, or a declared mirror pair",
+    "print orientation: pedal-side face on the bed, no supports"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,161 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": -0.7,
+        "span": [
+          0.0,
+          18.0
+        ],
+        "length": 18.0,
+        "words": "the short (18 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 45.0,
+        "span": [
+          0.0,
+          18.0
+        ],
+        "length": 18.0,
+        "words": "the short (18 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          -0.7,
+          45.0
+        ],
+        "length": 45.7,
+        "words": "the long (45.7 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 18.0,
+        "span": [
+          -0.7,
+          45.0
+        ],
+        "length": 45.7,
+        "words": "the long (45.7 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "arduino_nano",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "keepout_above": 10.0,
+    "keepout_below": 3.0,
+    "board_clearance": 0.3,
+    "headroom": 1.0,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 80.0,
+    "max_y": 40.0,
+    "max_z": 30.0
+  },
+  "board": {
+    "part": "arduino_nano",
+    "specimen": null,
+    "params": {
+      "pcb_length": 45.0,
+      "pcb_width": 18.0,
+      "pcb_thickness": 1.6,
+      "hole_diameter": 1.7,
+      "hole_from_short_edge": 0.9,
+      "hole_from_long_edge": 1.38,
+      "usb_width": 7.7,
+      "usb_depth": 9.0,
+      "usb_height": 3.9,
+      "usb_overhang": 0.7,
+      "pin_pitch": 2.54,
+      "pin_row_spacing": 15.24,
+      "pin_count": 15.0,
+      "header_body_height": 2.5,
+      "pin_tail_length": 6.0,
+      "top_parts_height": 3.5
+    },
+    "holes": [
+      [
+        0.9,
+        1.38,
+        0.0
+      ],
+      [
+        44.1,
+        1.38,
+        0.0
+      ],
+      [
+        0.9,
+        16.62,
+        0.0
+      ],
+      [
+        44.1,
+        16.62,
+        0.0
+      ]
+    ],
+    "hole_diameter": 1.7,
+    "hole_keepout_diameter": 4.0,
+    "grid": null,
+    "screw": null
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0,
+  "unplaced": [
+    {
+      "id": "control_1",
+      "part": "buzzer_12mm",
+      "quantity": 1,
+      "reason": "arduino_nano is not a carrier: no relation places it yet (GM2b)"
+    }
+  ]
+}

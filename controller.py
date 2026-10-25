@@ -1,5 +1,5 @@
 """The closed-loop controller of --mode assembly (generalization loop owner decision D1; loop/ARCHITECTURE.md section
-"Controller architecture (D1)", migration delta R01).
+"Controller architecture (D1)", migration deltas R01 and R02).
 
     initial proposal (the stages up to DeriveFeatures) -> build on manifold -> sense (typed error vector)
       -> the LLM picks one correction from a typed action menu (voted)
@@ -15,6 +15,13 @@ requirement, where, by how much, which direction) and the actuators (ACTUATORS: 
 each validated by being applied). The LLM only picks one menu entry; it never invents a number. Every step is logged
 (controller_trace.json in the package). StubController is the authority probe: the first offered option of every
 question, no corrective steps, no LLM calls.
+
+R02 (option-ID bias, menus.py): the menu is content-keyed (the model answers an action id such as
+`expose:module_1.usb`, after a one-sentence reason) and shown in seeded shuffled orders (stop is not pinned last); the
+question is asked under K orderings (permutation voting). A choice consistent across orderings is high-confidence; the
+surviving actions (every action with a vote, plus the next-ranked alternatives when the vote is inconsistent) are each
+applied on a fork and measured, and the action with the lowest controllable error is kept (verifier-guided best-of-N:
+design_rules.json controller_search_k / _depth / _max_evals); the LLM's ranking only breaks error ties.
 
 Nothing here holds a number, part or face that is specific to one request (test_no_hardcoding.py scans this module);
 every decision string is registered in controller_rules.json (test_controller_authority.py).
@@ -35,19 +42,22 @@ from typing import Any, Callable, Dict, List, Mapping, Optional, Sequence, Tuple
 from py_trees.common import Status
 
 import assembly as A
+import building_blocks as BB    # migration delta R11 (building blocks): actions register through ACTUATORS / APPLIERS
 import cad_checks as cc
 import feature_graph as fg
+import menus
 
 ca = cc._ca()
 
 CONTROL_LABEL = "assy_control"          # the label of the controller's voted question (transcripts, scripted fakes)
 CONTROLLER_BY = "llm:controller"        # `by` of every decision the controller's accepted actions record
-STOP = "stop"                           # the menu entry that ends the loop (always offered, always last)
+STOP = "stop"                           # the menu entry that ends the loop (always offered; R02: shown in a shuffled place)
+SEARCH_BY = "search:controller"         # `by` of an action no LLM vote named, kept because it measured the lowest error
 REGISTRY_PATH = Path(__file__).resolve().parent / "controller_rules.json"
 RULE_RE = re.compile(r"rule:([A-Za-z_][A-Za-z0-9_]*)(\[[A-Za-z0-9_]+\])?")
 QUOTE_MAX = 160                         # longest quote / detail shown to the controller per error term
 DIGEST_HEX = 16                         # hex characters of a state digest (sha1 prefix)
-TRACE_SCHEMA = 1
+TRACE_SCHEMA = 2                        # R02: content-keyed menus, permutation votes, search candidates
 
 # The re-runnable stages in pipeline order (each takes a checkpoint of the state at its entry, assembly.checkpoint).
 # An action names the first stage it invalidates; applying it re-runs that stage and every later one, from that
@@ -87,12 +97,13 @@ def load_registry(path: Optional[Path] = None) -> Dict[str, dict]:
 
 def decision_class(by: str, registry: Mapping[str, dict]) -> str:
     """Who made a recorded decision: llm (the controller, including a vote among Python's error-tied survivors),
-    guardrail (an error-based plant choice), or the registered class of a rule (plant, guardrail, semantic-rule, ...);
-    unregistered for a rule name the registry lacks."""
+    guardrail (an error-based plant choice: prescore, or since R02 the verifier search keeping an alternative no LLM vote
+    named), or the registered class of a rule (plant, guardrail, semantic-rule, ...); unregistered for a rule name the
+    registry lacks."""
     b = str(by or "")
     if b.startswith("llm") or "llm:" in b:
         return "llm"
-    if b.startswith("prescore:"):
+    if b.startswith(("prescore:", "search:")):      # an error-based choice among the controller's alternatives
         return "guardrail"
     name = canonical_rule(b)
     if name is None:
@@ -277,24 +288,42 @@ class Action:
     targets: List[str] = field(default_factory=list)   # the failing check ids it addresses
     invalidates: str = "derive"
     evidence: List[dict] = field(default_factory=list)  # the quotes of the check it addresses (recorded on the choice)
+    ident: str = ""                 # the content key the controller answers with (R02); "" = the generic form (id)
 
     @property
     def key(self) -> str:
+        """The tabu / infeasibility key (R01 form, kept so records stay comparable)."""
         return f"{self.kind}:{self.target}={self.value}"
+
+    @property
+    def id(self) -> str:
+        """The content key shown in the menu and answered by the controller (R02): `<kind>:<target>` plus `=<value>`
+        when the value is not a plain switch, or the actuator's own ident (`set_closure:rebate`, `stop`). Generic: a new
+        action kind gets an id with no change here."""
+        if self.ident:
+            return self.ident
+        if not self.target:
+            return self.kind if self.value in (True, None, "") else f"{self.kind}:{self.value}"
+        return f"{self.kind}:{self.target}" + ("" if self.value in (True, None, "") else f"={self.value}")
+
+    @property
+    def desc(self) -> str:
+        """The action's words without the leading "<kind> <target>:" (the id says that)."""
+        return self.words.split(": ", 1)[1] if ": " in self.words else self.words
 
     def to_dict(self) -> dict:
         return {"kind": self.kind, "target": self.target, "value": self.value, "words": self.words,
                 "targets": list(self.targets), "invalidates": self.invalidates, "evidence": list(self.evidence),
-                "key": self.key}
+                "key": self.key, "id": self.id, "ident": self.ident}
 
     @classmethod
     def from_dict(cls, d: Mapping[str, Any]) -> "Action":
         return cls(d["kind"], d["target"], d["value"], d.get("words", ""), list(d.get("targets", [])),
-                   d.get("invalidates", "derive"), list(d.get("evidence", [])))
+                   d.get("invalidates", "derive"), list(d.get("evidence", [])), d.get("ident", ""))
 
 
 STOP_ACTION = Action(STOP, "", None, "stop: keep the design as it is (the failing requirements above stay failing)",
-                     [], "")
+                     [], "", ident=STOP)
 
 
 def expose_actions(st: "A.AssemblyState", r: cc.CheckResult) -> List[Action]:
@@ -328,7 +357,7 @@ def closure_actions(st: "A.AssemblyState", r: cc.CheckResult) -> List[Action]:
             continue
         meaning = (st.rules.closures.get(name) or {}).get("meaning", name)
         out.append(Action("set_closure", "closure", name, f"set the lid closure to {name}: {meaning}", [r.check_id],
-                          "derive", quotes))
+                          "derive", quotes, ident=f"set_closure:{name}"))
     return out
 
 
@@ -336,6 +365,10 @@ ACTUATORS: Dict[str, Callable[["A.AssemblyState", cc.CheckResult], List[Action]]
     "coverage": expose_actions,
     "closure_evidence": closure_actions,
 }
+# migration delta R11 (building blocks): the blocks' action kinds and sensor directions register here (generic Action);
+# their appliers join APPLIERS below
+ACTUATORS.update(BB.ACTUATORS)
+DIRECTIONS.update(BB.DIRECTIONS)
 
 
 def menu(st: "A.AssemblyState", results: Sequence[cc.CheckResult], tabu: Sequence[str]) -> List[Action]:
@@ -353,17 +386,32 @@ def menu(st: "A.AssemblyState", results: Sequence[cc.CheckResult], tabu: Sequenc
     return out[:cap]
 
 
-def apply_action(st: "A.AssemblyState", action: Action, record: Mapping[str, Any]) -> None:
+def _apply_expose(st: "A.AssemblyState", action: Action, record: Mapping[str, Any], by: str) -> None:
+    item, connector = action.target.split(".", 1)
+    A.expose_connector(st, item, connector, by=by, record=record)
+
+
+def _apply_closure(st: "A.AssemblyState", action: Action, record: Mapping[str, Any], by: str) -> None:
+    st.control["closure"] = action.value
+    A.choice(st, "closure", action.value, by, **dict(record))
+
+
+# action kind -> applier(state, action, record, by). A new action kind registers its applier here (and its actions in
+# ACTUATORS); the menu, the permutation vote and the search take any kind unchanged.
+APPLIERS: Dict[str, Callable[["A.AssemblyState", Action, Mapping[str, Any], str], None]] = {
+    "expose": _apply_expose,
+    "set_closure": _apply_closure,
+}
+APPLIERS.update(BB.APPLIERS)    # migration delta R11 (building blocks): set_retention, set_panel plug into R02's table
+
+
+def apply_action(st: "A.AssemblyState", action: Action, record: Mapping[str, Any], by: str = CONTROLLER_BY) -> None:
     """Apply one accepted (or candidate) action's decision to a state. Idempotent: it is re-applied on the checkpoint of
     every later action."""
-    if action.kind == "expose":
-        item, connector = action.target.split(".", 1)
-        A.expose_connector(st, item, connector, by=CONTROLLER_BY, record=record)
-    elif action.kind == "set_closure":
-        st.control["closure"] = action.value
-        A.choice(st, "closure", action.value, CONTROLLER_BY, **dict(record))
-    else:
+    fn = APPLIERS.get(action.kind)
+    if fn is None:
         raise ValueError(f"no actuator for action kind {action.kind!r}")
+    fn(st, action, record, by)
 
 
 # ---------------------------------------------------------------------------
@@ -384,15 +432,17 @@ def plant(st: "A.AssemblyState") -> Tuple[Any, List[cc.CheckResult], Dict[str, L
     return plan, results, links
 
 
-def fork_from(st: "A.AssemblyState", stage: str) -> "A.AssemblyState":
+def fork_from(st: "A.AssemblyState", stage: str, control: Optional[Mapping[str, Any]] = None) -> "A.AssemblyState":
     """A fresh copy of the state as it was at the entry of `stage` (its checkpoint), carrying the checkpoints of every
-    earlier stage; the stages from `stage` on re-take theirs when they run."""
+    earlier stage; the stages from `stage` on re-take theirs when they run. `control` (default: st.control) is the
+    controller's bookkeeping the fork starts from; the loop passes the snapshot taken before a step's candidates, so
+    every candidate of one step is measured under the same sensor typing (review fix B1)."""
     if stage not in st.checkpoints:
         raise ValueError(f"no checkpoint for stage {stage!r} (stages run: {', '.join(st.checkpoints) or 'none'})")
     sc = A.snapshot(st.checkpoints[stage])
     order = RERUN_ORDER.index(stage)
     sc.checkpoints = {k: v for k, v in st.checkpoints.items() if k in RERUN_ORDER and RERUN_ORDER.index(k) < order}
-    sc.control = copy.deepcopy(st.control)
+    sc.control = copy.deepcopy(dict(st.control if control is None else control))
     return sc
 
 
@@ -432,6 +482,7 @@ def decision_vector(st: "A.AssemblyState") -> dict:
         "closure": (ch.get("closure") or {}).get("value"), "boss_layout": (ch.get("boss_layout") or {}).get("value"),
         "archetype": (ch.get("archetype") or {}).get("value"), "vent_face": (ch.get("vent_face") or {}).get("value"),
         "fasteners": {u: (ch.get(f"fastener[{u}]") or {}).get("value") for u in ("board", "lid")},
+        **BB.decisions(st),                          # R11: building-block decisions (only when a block decided)
     }
 
 
@@ -467,38 +518,53 @@ def state_words(st: "A.AssemblyState") -> str:
     tail = [f"lid closure: {(ch.get('closure') or {}).get('value', '?')}"]
     if ch.get("boss_layout"):
         tail.append(f"lid bosses: {ch['boss_layout']['value']}")
-    return "\n".join(lines + ["- " + "; ".join(tail)])
+    return "\n".join(lines + ["- " + "; ".join(tail)] + BB.state_lines(st))   # R11: block decisions
+
+
+ACTIONS_LINE = "Actions you can take now (one per step; Python applies it, rebuilds and measures again):"
+CONTROL_QUESTION = ("Which one action makes the design do what the request asks? First give a one-sentence reason, then "
+                    "the action's id exactly as listed.")
+
+
+def menu_lines(options: Sequence[Action]) -> str:
+    """The content-keyed menu (R02): one line per action, `- <id>: <words>`, in the order given."""
+    return "\n".join(f"- {a.id}: {a.desc}" for a in options)
+
+
+def menu_prompt(head: str, options: Sequence[Action]) -> str:
+    """The question tail after `head` (request, error vector, state, feedback): the menu in the order given."""
+    return f"{head}\n\n{ACTIONS_LINE}\n{menu_lines(options)}\n\n{CONTROL_QUESTION}"
+
+
+def control_head(design, st: "A.AssemblyState", terms: Sequence[ErrorTerm], feedback: Sequence[str]) -> str:
+    """Everything the controller reads before the menu: the request, the ranked error vector (top
+    rules.controller_error_terms), the design now and the earlier steps."""
+    n = int(st.rules.values.get("controller_error_terms", 6))
+    errs = "\n".join(f"{k}. {t.words()}" for k, t in enumerate(terms[:n], 1)) or "(none)"
+    more = f"\n({len(terms) - n} more failing checks not shown)" if len(terms) > n else ""
+    past = ("\n\nEarlier steps:\n" + "\n".join(f"- {f}" for f in feedback)) if feedback else ""
+    return (f"Request: {design.base_request or design.request}\n\n"
+            f"The design was built and measured. Requirements that fail now (worst first):\n{errs}{more}\n\n"
+            f"The design now:\n{state_words(st)}{past}")
 
 
 def control_prompt(design, st: "A.AssemblyState", terms: Sequence[ErrorTerm], options: Sequence[Action],
                    feedback: Sequence[str]) -> str:
-    """The controller's question: the request, the ranked error vector (top rules.controller_error_terms), the design
-    now, earlier steps, and the lettered menu (STOP last)."""
-    n = int(st.rules.values.get("controller_error_terms", 6))
-    errs = "\n".join(f"{k}. {t.words()}" for k, t in enumerate(terms[:n], 1)) or "(none)"
-    more = f"\n({len(terms) - n} more failing checks not shown)" if len(terms) > n else ""
-    menu_lines = "\n".join(f"- {letter}: {a.words}" for letter, a in zip(letters(len(options)), options))
-    past = ("\n\nEarlier steps:\n" + "\n".join(f"- {f}" for f in feedback)) if feedback else ""
-    return (f"Request: {design.base_request or design.request}\n\n"
-            f"The design was built and measured. Requirements that fail now (worst first):\n{errs}{more}\n\n"
-            f"The design now:\n{state_words(st)}{past}\n\n"
-            f"Actions you can take now (one per step; Python applies it, rebuilds and measures again):\n{menu_lines}\n\n"
-            "Which one action makes the design do what the request asks? Answer with its letter.")
+    """The controller's question with the menu in the order given (R02: content-keyed; the loop shows seeded shuffles
+    of Python's enumeration, see ask)."""
+    return menu_prompt(control_head(design, st, terms, feedback), options)
 
 
-def letters(n: int) -> List[str]:
-    return [chr(ord("A") + k) for k in range(n)]
-
-
-def ask(llm, prompt: str, n: int) -> Tuple[Optional[int], Dict[str, int]]:
-    """One voted menu question (assembly.tally: VOTES samples, the greedy answer first; a tie goes to the greedy
-    sample). Returns (option index or None, votes)."""
-    keys = letters(n)
-    counts = A.tally(llm, prompt, ca.obj_schema({"action": {"type": "string", "enum": keys}}), CONTROL_LABEL,
-                     {"action": keys})
-    votes = {k: v for k, v in counts["action"].items() if k is not None}
-    pick = A.majority(counts["action"])
-    return (None if pick is None else keys.index(pick)), votes
+def ask(llm, render: Callable[[List[Action]], str], options: Sequence[Action], rules: Mapping[str, Any],
+        seed_material: str) -> "menus.MenuVote":
+    """One permutation-voted menu question (R02, menus.perm_vote): the options (Python's enumeration, the schema enum and
+    the stub's first option) are shown in rules.menu_orderings seeded orders; the controller answers a reason and an
+    action id. Returns the MenuVote (pick = an action id, or None when no answer was valid)."""
+    by_id = {a.id: a for a in options}
+    if len(by_id) != len(options):
+        raise ValueError(f"duplicate action ids in the menu: {[a.id for a in options]}")
+    return menus.perm_vote(llm, CONTROL_LABEL, lambda order: render([by_id[i] for i in order]), list(by_id), rules,
+                           seed_material)
 
 
 def accept(old: cc.ErrorKey, new: cc.ErrorKey, trust: float) -> Tuple[bool, str]:
@@ -533,20 +599,99 @@ def key_dict(k: cc.ErrorKey) -> dict:
     return {"hard_failures": k.hard_failures, "violation": k.violation}
 
 
+def search_rules(values: Mapping[str, Any]) -> Dict[str, int]:
+    """The verifier-search budget (R02, design_rules.json): k candidates per step, lookahead depth (1 = best-of-N; deeper
+    lookahead is not implemented and is clipped to 1, recorded in the trace), plant evaluations per run."""
+    k = max(1, int(values.get("controller_search_k", 1)))
+    depth = int(values.get("controller_search_depth", 1))
+    return {"k": k, "depth": 1, "depth_requested": depth,
+            "max_evals": max(0, int(values.get("controller_search_max_evals", k * 6)))}
+
+
+def search_candidates(vote: "menus.MenuVote", k: int, evals_left: int) -> List[str]:
+    """The action ids the verifier measures this step (R02): every action the controller voted for, most votes first;
+    when the vote is not consistent across orderings, the next-ranked alternatives too (canonical order); at most k ids,
+    and at most evals_left of them other than stop (stop costs no plant evaluation). evals_left is a hard cap (review
+    fix 2: rules.controller_search_max_evals bounds the run's plant evaluations; none is measured once it is spent). A
+    confident stop is the only candidate, whatever rules.menu_consistency_min allows other actions to have votes."""
+    if vote.confident and vote.pick == STOP:
+        return [STOP]
+    ranked = vote.ranked()
+    out = [i for i in ranked if vote.votes.get(i, 0) > 0][:k]
+    if not vote.confident:
+        out += [i for i in ranked if i not in out][: max(0, k - len(out))]
+    trimmed, n = [], 0
+    for i in out:
+        if i != STOP:
+            if n >= max(0, evals_left):
+                continue
+            n += 1
+        trimmed.append(i)
+    return trimmed
+
+
+def evaluate(design, llm, st: "A.AssemblyState", accepted: Sequence[dict], action: Action, record: Mapping[str, Any],
+             by: str, control: Optional[Mapping[str, Any]] = None) -> dict:
+    """Apply one candidate action on a fork of the checkpoint it invalidates (every accepted action re-applied first),
+    re-run the stages from there and measure on manifold. Returns {fork, err, plan, results, links}; err is the typed
+    reason the action could not be applied (any exception of a re-run stage or the build: reviewer finding F5). `control`:
+    the controller bookkeeping the fork starts from (fork_from; the loop passes the step's pre-candidate snapshot)."""
+    out: Dict[str, Any] = {"fork": None, "err": None, "plan": None, "results": None, "links": None}
+    design_fork = copy.copy(design)
+    try:
+        fork = fork_from(st, action.invalidates, control)
+        design_fork.assy = fork
+        out["fork"] = fork
+        for done in accepted:
+            apply_action(fork, Action.from_dict(done["action"]), done["record"], done.get("by", CONTROLLER_BY))
+        apply_action(fork, action, record, by)
+        err = rerun(design_fork, llm, action.invalidates)
+        if err is None:
+            fork.assumptions = dedupe(fork.assumptions)
+            out["plan"], out["results"], out["links"] = plant(fork)
+        out["err"] = err
+    except AssertionError:
+        raise                       # a scripted test's unexpected question: never hidden as an infeasible action
+    except Exception as e:          # noqa: BLE001 - the loop never fails the tree (F5)
+        out["err"] = f"{type(e).__name__}: {e}"
+    return out
+
+
+def _sel_key(c: dict, rank: Mapping[str, int]) -> Tuple:
+    e = c["error_after"]
+    return (e["hard_failures"], round(float(e["violation"]), 9), rank.get(c["id"], 10 ** 6))
+
+
 def run_loop(design, llm) -> dict:
     """The closed loop on design.assy (a derived initial proposal). Mutates the state in place when a step is accepted
-    and leaves the trajectory in st.trajectory; returns it."""
+    and leaves the trajectory in st.trajectory; returns it.
+
+    Each step (R02): the content-keyed menu is asked under seeded orderings (permutation vote); the surviving actions
+    (search_candidates) are each applied on a fork and measured; among those the acceptance rule keeps (no more failing
+    checks, the trust region), and stop when it is a candidate (the current error), the lowest controllable error wins,
+    the controller's vote ranking breaking ties. Every candidate is logged with its measured error.
+
+    Review fixes: every candidate of a step forks from the controller bookkeeping as it was before the step; when a
+    candidate is infeasible, its infeasibility is merged after the step's evaluations and the current design and every
+    feasible fork are re-measured under the merged sensor typing before acceptance (B1). The run measures at most
+    rules.controller_search_max_evals forks in all; once spent the loop stops before asking (2). A confident stop ends
+    the loop with no evaluation (search_candidates)."""
     st = design.assy
     r = st.rules.values
     budget = 0 if is_stub(llm) else int(r.get("controller_step_budget", 0))
     trust = float(r.get("controller_trust_region", 0.0))
+    vr = menus.vote_rules(r)
+    sr = search_rules(r)
     started = time.time()
     trace: Dict[str, Any] = {"schema": TRACE_SCHEMA, "controller": "stub" if is_stub(llm) else "llm",
-                             "budget": budget, "trust_region": trust, "steps": [], "stop": None}
+                             "budget": budget, "trust_region": trust, "vote_rules": dict(vr), "search": dict(sr),
+                             "steps": [], "stop": None, "evals": 0}
     st.trajectory = trace
     try:
         plan, results, links = plant(st)
-    except (ValueError, KeyError, fg.ExprError, A.pt.PartError) as e:
+    except AssertionError:
+        raise
+    except Exception as e:          # noqa: BLE001 - F5
         trace["stop"] = {"reason": f"the initial build failed: {type(e).__name__}: {e}", "step": 0}
         return trace
     terms = error_vector(st, results, links)
@@ -555,8 +700,10 @@ def run_loop(design, llm) -> dict:
                            "failing": [t.check for t in terms], "terms": [t.to_dict() for t in terms]})
     tabu: List[str] = []
     feedback: List[str] = []
-    accepted: List[dict] = list(st.control.get("accepted", []))     # [{action: Action.to_dict(), record}]
+    accepted: List[dict] = list(st.control.get("accepted", []))     # [{action: Action.to_dict(), record, by}]
     step = 0
+    evals = 0
+    nterms = int(r.get("controller_error_terms", 6))
     while True:
         offered = menu(st, results, tabu)
         if not offered:
@@ -567,71 +714,169 @@ def run_loop(design, llm) -> dict:
             trace["stop"] = {"reason": "stub controller: no corrective steps" if is_stub(llm) else
                              f"step budget spent ({budget})", "step": step}
             break
+        if evals >= sr["max_evals"]:           # review fix 2: max_evals is a hard cap on the run's plant evaluations
+            trace["stop"] = {"reason": f"search evaluation budget spent ({sr['max_evals']} plant evaluations)",
+                             "step": step}
+            break
         step += 1
-        options = offered + [STOP_ACTION]
-        prompt = control_prompt(design, st, terms, options, feedback)
+        options = offered + [STOP_ACTION]          # Python's enumeration: the schema enum and the stub's first option
+        by_id = {a.id: a for a in options}
+        before = state_digest(st)
+        head = control_head(design, st, terms, feedback)
+        seed = menus.material(design.base_request or design.request, before["decisions"], step, menus.run_seed(llm),
+                              CONTROL_LABEL)
         calls0, t0 = ncalls(llm), time.time()
-        pick, votes = ask(llm, prompt, len(options))
-        row: Dict[str, Any] = {"step": step, "state_before": state_digest(st)["decisions"], "error_before": key_dict(key),
-                               "menu": [dict(a.to_dict(), letter=l) for l, a in zip(letters(len(options)), options)],
-                               "votes": votes}
-        if pick is None or options[pick].kind == STOP:
-            row.update(chosen=None if pick is None else letters(len(options))[pick], action=STOP_ACTION.to_dict(),
-                       accepted=None, reason="no valid controller answer" if pick is None else "the controller chose stop",
-                       llm_calls=ncalls(llm) - calls0, secs=round(time.time() - t0, 2))
+        vote = ask(llm, lambda order: menu_prompt(head, order), options, vr, seed)
+        rank = {i: n for n, i in enumerate(vote.ranked())}
+        row: Dict[str, Any] = {"step": step, "state_before": before["decisions"], "state_summary": before["summary"],
+                               "error_before": key_dict(key), "terms_before": [t.to_dict() for t in terms[:nterms]],
+                               "menu": [a.to_dict() for a in options], "orders": vote.orders, "vote": vote.to_dict(),
+                               "votes": dict(vote.votes), "consistency": vote.consistency,
+                               "confident": vote.confident, "chosen": vote.pick}
+        cands = [] if vote.pick is None else search_candidates(vote, sr["k"], sr["max_evals"] - evals)
+        if not cands or cands == [STOP]:
+            row.update(action=STOP_ACTION.to_dict(), selected=STOP if cands else None, selected_by="llm",
+                       candidates=[{"id": STOP, "outcome": "stop", "votes": vote.votes.get(STOP, 0), "rank": 0,
+                                    "error_after": key_dict(key)}] if cands else [],
+                       accepted=None, outcome="stop",
+                       reason="no valid controller answer" if vote.pick is None else "the controller chose stop",
+                       evals=0, llm_calls=ncalls(llm) - calls0, secs=round(time.time() - t0, 2))
             trace["steps"].append(row)
             trace["stop"] = {"reason": row["reason"], "step": step}
             break
-        action = options[pick]
-        tabu.append(action.key)
-        record = {"step": step, "votes": votes, "evidence": list(action.evidence), "menu": len(options)}
-        design_fork = copy.copy(design)
-        try:
-            fork = fork_from(st, action.invalidates)
-            design_fork.assy = fork
-            for done in accepted:
-                apply_action(fork, Action.from_dict(done["action"]), done["record"])
-            apply_action(fork, action, record)
-            err = rerun(design_fork, llm, action.invalidates)
-            if err is None:
-                fork.assumptions = dedupe(fork.assumptions)
-                plan2, results2, links2 = plant(fork)
-        except (ValueError, KeyError, fg.ExprError, A.pt.PartError) as e:
-            err = f"{type(e).__name__}: {e}"
-        row["action"] = action.to_dict()
-        row["chosen"] = letters(len(options))[pick]
-        if err is not None:
-            st.control.setdefault("infeasible", {})[action.key] = err
-            row.update(accepted=False, reason=f"infeasible: {err}", error_after=None)
-            feedback.append(f"step {step}: {row['chosen']} ({action.kind} {action.target or action.value}) could not be "
-                            f"applied ({_short(err, 120)}); the design is unchanged")
-            # a sensor may type a failure as a conflict once its every action is known infeasible (assembly.coverage_check):
-            # re-measure the unchanged design so the next comparison uses the same typing on both sides
+        evaluated: List[dict] = []
+        measured: Dict[str, dict] = {}            # every feasible candidate: its fork and measurement
+        # review fix B1: every candidate of this step forks from the bookkeeping as it was before the step, and a
+        # candidate found infeasible is collected here, not written to the live state mid-step (a sensor types a failure
+        # as a conflict once its every action is infeasible: assembly.coverage_check / closure_evidence_check; a later
+        # fork must not be measured under a different typing than `key` and the stop candidate)
+        control0 = copy.deepcopy(dict(st.control))
+        infeasible_now: Dict[str, str] = {}
+        for cid in cands:
+            if cid == STOP:
+                evaluated.append({"id": STOP, "action": STOP_ACTION.to_dict(), "votes": vote.votes.get(STOP, 0),
+                                  "rank": rank[STOP], "outcome": "stop", "error_after": key_dict(key),
+                                  "reason": "keep the design as it is"})
+                continue
+            action = by_id[cid]
+            by = CONTROLLER_BY if vote.votes.get(cid, 0) > 0 else SEARCH_BY
+            record = {"step": step, "votes": dict(vote.votes), "consistency": vote.consistency,
+                      "confident": vote.confident, "evidence": list(action.evidence), "menu": len(options)}
+            t1 = time.time()
+            ev = evaluate(design, llm, st, accepted, action, record, by, control=control0)
+            evals += 1
+            cand: Dict[str, Any] = {"id": cid, "action": action.to_dict(), "votes": vote.votes.get(cid, 0),
+                                    "rank": rank[cid], "by": by}
+            if ev["err"] is not None:
+                infeasible_now[action.key] = ev["err"]
+                cand.update(outcome="infeasible", reason=f"infeasible: {ev['err']}", error_after=None)
+            else:
+                measured[cid] = dict(ev, record=record, by=by, action=action)
+            cand["secs"] = round(time.time() - t1, 2)
+            evaluated.append(cand)
+        if infeasible_now:
+            # merge the step's infeasibility, then re-measure the current design and every feasible fork under the
+            # merged typing, so `key`, the stop candidate and each candidate are compared on the same sensors
+            st.control.setdefault("infeasible", {}).update(infeasible_now)
+            merged = dict(st.control["infeasible"])
             try:
                 plan, results, links = plant(st)
                 key, terms = error_key(results), error_vector(st, results, links)
-            except (ValueError, KeyError, fg.ExprError, A.pt.PartError):
+            except AssertionError:
+                raise
+            except Exception:       # noqa: BLE001 - F5: the current design built before; keep its measurement
                 pass
-        else:
-            key2 = error_key(results2)
+            for c in evaluated:
+                if c["id"] == STOP:
+                    c["error_after"] = key_dict(key)
+            row["error_before_retyped"] = key_dict(key)
+            for cid, m in list(measured.items()):
+                m["fork"].control["infeasible"] = dict(merged)
+                try:
+                    m["plan"], m["results"], m["links"] = plant(m["fork"])
+                except AssertionError:
+                    raise
+                except Exception as e:  # noqa: BLE001 - F5
+                    measured.pop(cid)
+                    c = next(x for x in evaluated if x["id"] == cid)
+                    c.update(outcome="infeasible", reason=f"infeasible: {type(e).__name__}: {e}", error_after=None)
+        forks: Dict[str, dict] = {}
+        for c in evaluated:
+            m = measured.get(c["id"])
+            if m is None:
+                continue
+            key2 = error_key(m["results"])
             ok, why = accept(key, key2, trust)
-            row.update(accepted=ok, reason=why, error_after=key_dict(key2), state_after=state_digest(fork)["decisions"],
-                       failing_after=[x.check_id for x in results2 if not x.passed])
+            c.update(outcome="acceptable" if ok else "undone", reason=why, error_after=key_dict(key2),
+                     state_after=state_digest(m["fork"])["decisions"],
+                     failing_after=[x.check_id for x in m["results"] if not x.passed],
+                     sensor_delta={"hard_failures": key2.hard_failures - key.hard_failures,
+                                   "violation": round(key2.violation - key.violation, 6)})
             if ok:
-                accepted.append({"action": action.to_dict(), "record": dict(record)})
-                fork.control["accepted"] = list(accepted)
-                fork.control["infeasible"] = dict(st.control.get("infeasible", {}))
-                fork.trajectory = trace
-                st.__dict__.update(fork.__dict__)
-                plan, results, links, key = plan2, results2, links2, key2
-                terms = error_vector(st, results, links)
-                feedback.append(f"step {step}: {row['chosen']} ({action.kind} {action.target or action.value}) was kept: "
-                                f"{why}")
-            else:
-                feedback.append(f"step {step}: {row['chosen']} ({action.kind} {action.target or action.value}) was undone: "
-                                f"{why}; now failing: {', '.join(x.check_id for x in results2 if not x.passed)[:200]}")
+                forks[c["id"]] = dict(m, key=key2)
+        pool = [c for c in evaluated if c["outcome"] in ("acceptable", "stop")]
+        best = min(pool, key=lambda c: _sel_key(c, rank)) if pool else None
+        for c in evaluated:
+            if c is best:
+                c["outcome"] = "kept" if c["id"] != STOP else "stop"
+            elif c["outcome"] == "acceptable":
+                c["outcome"] = "not_selected"
+        row.update(candidates=evaluated, evals=sum(1 for c in evaluated if c["id"] != STOP))
+        for c in evaluated:
+            if c["id"] == STOP:
+                continue
+            a = by_id[c["id"]]
+            words = f"{c['id']}"
+            if c["outcome"] == "infeasible":
+                tabu.append(a.key)
+                why = _short(c["reason"].removeprefix("infeasible: "), 120)
+                feedback.append(f"step {step}: {words} could not be applied ({why}); the design is unchanged")
+            elif c["outcome"] == "undone":
+                tabu.append(a.key)
+                feedback.append(f"step {step}: {words} was undone: {c['reason']}; now failing: "
+                                f"{', '.join(c['failing_after'])[:200]}")
+            elif c["outcome"] == "not_selected":
+                feedback.append(f"step {step}: {words} was measured ({c['reason']}) but another action measured lower")
+        if best is not None and best["id"] == STOP:
+            row.update(action=STOP_ACTION.to_dict(), selected=STOP,
+                       selected_by="llm" if vote.pick == STOP else "search", accepted=None, outcome="stop",
+                       reason="the controller chose stop" if vote.pick == STOP else
+                       "search: no candidate action lowered the error below the current design; stop")
+            row.update(llm_calls=ncalls(llm) - calls0, secs=round(time.time() - t0, 2))
+            trace["steps"].append(row)
+            trace["stop"] = {"reason": row["reason"], "step": step}
+            break
+        if best is None:
+            only = evaluated[0] if len(evaluated) == 1 else None
+            row.update(action=(only or {}).get("action") or by_id[cands[0]].to_dict(), selected=None,
+                       selected_by=None, accepted=False,
+                       outcome=(only or {}).get("outcome", "undone"),
+                       reason=only["reason"] if only else "; ".join(f"{c['id']}: {c['reason']}" for c in evaluated),
+                       error_after=(only or {}).get("error_after"),
+                       **({"state_after": only["state_after"], "failing_after": only["failing_after"]}
+                          if only and only.get("state_after") else {}))
+        else:
+            f = forks[best["id"]]
+            action, fork = f["action"], f["fork"]
+            tabu.append(action.key)
+            accepted.append({"action": action.to_dict(), "record": dict(f["record"]), "by": f["by"]})
+            fork.control["accepted"] = list(accepted)
+            fork.control["infeasible"] = dict(st.control.get("infeasible", {}))
+            fork.trajectory = trace
+            st.__dict__.update(fork.__dict__)
+            plan, results, links, key = f["plan"], f["results"], f["links"], f["key"]
+            terms = error_vector(st, results, links)
+            row.update(action=action.to_dict(), selected=best["id"],
+                       selected_by="llm" if best["id"] == vote.pick else ("search" if best["by"] == SEARCH_BY
+                                                                          else "search_among_votes"),
+                       accepted=True, outcome="kept", reason=best["reason"], error_after=key_dict(key),
+                       state_after=state_digest(st)["decisions"],
+                       failing_after=[x.check_id for x in results if not x.passed],
+                       sensor_delta=best.get("sensor_delta"))
+            feedback.append(f"step {step}: {best['id']} was kept: {best['reason']}")
         row.update(llm_calls=ncalls(llm) - calls0, secs=round(time.time() - t0, 2))
         trace["steps"].append(row)
+    trace["evals"] = evals
     trace["final"] = {"state": state_digest(st), "error": key_dict(key), "failing": [t.check for t in terms],
                       "terms": [t.to_dict() for t in terms]}
     trace["secs"] = round(time.time() - started, 2)
@@ -756,7 +1001,11 @@ def first_option(schema: Mapping[str, Any]) -> Any:
 class StubController:
     """A controller with no information: every schema-constrained question gets the first offered option of each key,
     every p_yes is 0.5 (so a ranking keeps Python's enumeration order), and the closed loop takes no corrective step.
-    It makes no network call; its questions and answers are written to llm/ like any transcript (marked STUB)."""
+    It makes no network call; its questions and answers are written to llm/ like any transcript (marked STUB).
+
+    R02: menus are shown in seeded shuffled orders, but every schema enum stays in Python's unshuffled enumeration
+    order (menus.perm_vote; the model never sees the schema), so the stub's "first offered option" is the first option
+    of Python's enumeration, not of a shuffle: it stays the same no-information baseline under every ordering."""
 
     stub = True
     model = "stub"

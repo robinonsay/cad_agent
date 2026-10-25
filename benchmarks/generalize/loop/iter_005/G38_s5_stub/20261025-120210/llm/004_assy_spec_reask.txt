@@ -1,0 +1,67 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 70 (request): "...I want a holder that tips back and forth so I can solder a 70 x 50 mm perfboard upside down, with the components facing ..."
+n2 = 50 mm (request): "...nt a holder that tips back and forth so I can solder a 70 x 50 mm perfboard upside down, with the components facing down..."
+n3 = 3 mm (request): "...the components facing down. Each corner of the board has a 3 mm hole whose centre is 2.5 mm from the two nearest edges, ..."
+n4 = 2.5 mm (request): "...n. Each corner of the board has a 3 mm hole whose centre is 2.5 mm from the two nearest edges, and four pins at the corn..."
+n5 = 10 mm (request): "...d, where the component bodies dangle, nothing may be within 10 mm, and the soldering face must be open to the top. The b..."
+n6 = 20 degrees (request): "...3 bolts through the uprights of a heavy base, with at least 20 degrees of swing in each direction. That base has to be w..."
+n7 = 20 (request): "...t base has to be weighty enough that nothing tips over at a 20 degree tilt, and I print it flat on an FDM printer with n..."
+n8 = 70 (L1.1): "...The board (70 x 50 x 1.6 mm) is carried component side down on four corne..."
+n9 = 50 (L1.1): "...The board (70 x 50 x 1.6 mm) is carried component side down on four corner pin..."
+n10 = 1.6 mm (L1.1): "...The board (70 x 50 x 1.6 mm) is carried component side down on four corner pins of 2.7..."
+n11 = 2.7 (L1.1): "...6 mm) is carried component side down on four corner pins of 2.7 to 2.9 mm diameter that stand 1 to 3 mm above the solder..."
+n12 = 2.9 mm (L1.1): "...s carried component side down on four corner pins of 2.7 to 2.9 mm diameter that stand 1 to 3 mm above the solder side. ..."
+n13 = 1 (L1.1): "...wn on four corner pins of 2.7 to 2.9 mm diameter that stand 1 to 3 mm above the solder side. One pin goes in each 3 mm c..."
+n14 = 3 mm (L1.1): "...four corner pins of 2.7 to 2.9 mm diameter that stand 1 to 3 mm above the solder side. One pin goes in each 3 mm corner ..."
+n15 = 3 mm (L1.1): "...stand 1 to 3 mm above the solder side. One pin goes in each 3 mm corner hole and four seats around the pins support the ..."
+n16 = 10 mm (L1.2): "...ithin its outline, no printed body may approach closer than 10 mm to the underside, with the exception of the four seats..."
+n17 = 0 (L1.2): "...of the four seats beneath the holes, for every tilt between 0 and 20 degrees...."
+n18 = 20 degrees (L1.2): "...four seats beneath the holes, for every tilt between 0 and 20 degrees...."
+n19 = 0.5 mm (L1.3): "...he board should lower straight onto the pins, stay at least 0.5 mm away from every printed surface other than its seats,..."
+n20 = 20 degrees (L1.4): "...zontal axis running through two M3 pivot bolts, by at least 20 degrees in each direction, and never touches the base: at..."
+n21 = 0.5 mm (L1.4): "...ees in each direction, and never touches the base: at least 0.5 mm of clearance at all angles...."
+n22 = 5.0 mm (L1.5): "...base upright and into a pilot hole in the cradle, engaging 5.0 mm or more of thread, and the column above each head stay..."
+n23 = 0 (L1.6): "...The holder must not tip over. At 0 and at 20 degrees either way the centre of mass sits at lea..."
+n24 = 20 degrees (L1.6): "...The holder must not tip over. At 0 and at 20 degrees either way the centre of mass sits at least 5.0 mm within t..."
+n25 = 5.0 mm (L1.6): "...d at 20 degrees either way the centre of mass sits at least 5.0 mm within the base's footprint, a sideways push of 0.5 N..."
+n26 = 0.5 (L1.6): "...east 5.0 mm within the base's footprint, a sideways push of 0.5 N at the board's highest edge point leaves it standing, ..."
+n27 = 0.45 (L1.6): "...ase weighs at least half the total (mass = printed volume x 0.45 g/cm3, plus 30 g for the populated board, plus 1 g for ..."
+n28 = 30 (L1.6): "...st half the total (mass = printed volume x 0.45 g/cm3, plus 30 g for the populated board, plus 1 g for each bolt)...."
+n29 = 1 (L1.6): "...olume x 0.45 g/cm3, plus 30 g for the populated board, plus 1 g for each bolt)...."
+n30 = 50 (L1.7): "...The base is printed flat on its largest face with at least 50% of it on the bed, and the cradle gets a stated print orie..."
+n31 = 25 (L1.7): "...e cradle gets a stated print orientation that puts at least 25% on the bed...."
+n32 = 2.0 mm (L1.9): "...ost and ligament has to be sturdy: no printed feature under 2.0 mm thick apart from the pins, posts at least 5.0 mm acro..."
+n33 = 5.0 mm (L1.9): "...ture under 2.0 mm thick apart from the pins, posts at least 5.0 mm across, and at least 2.0 mm of material surrounding e..."
+n34 = 2.0 mm (L1.9): "...t from the pins, posts at least 5.0 mm across, and at least 2.0 mm of material surrounding each bolt and pilot hole...."
+n35 = 120 (L1.11): "...th zero tilt, the whole holder must come in at no more than 120 x 100 x 50 mm...."
+n36 = 100 (L1.11): "...o tilt, the whole holder must come in at no more than 120 x 100 x 50 mm...."
+n37 = 50 mm (L1.11): "..., the whole holder must come in at no more than 120 x 100 x 50 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+Your previous answer broke these rules: board_width and board_depth and keepout_above and keepout_below and board_clearance and headroom and opening_oversize_max and wall_min and wall_max and max_x and max_y and max_z all use n1 (70, 'I want a holder that tips back and forth so I can solder a 70 x 50 mm perfboard upside down, with the components facing '); each number in the text states one quantity. Answer again and fix that.
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

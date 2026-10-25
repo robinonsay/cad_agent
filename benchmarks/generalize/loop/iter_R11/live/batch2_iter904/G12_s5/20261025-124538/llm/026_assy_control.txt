@@ -1,0 +1,36 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a housing that goes on a wall and holds an ESP32 DevKitC V4 dev board (it measures 54.4 x 27.9 mm and has no screw holes; the micro-USB connector is on one short end and the PCB antenna on the opposite one). The housing gets two mounting ears for 4.2 mm countersunk wood screws, with the two screw slots 100 mm from each other, and each slot has to stay at least 3 mm clear of the ear's edge and of the box itself. Up top, three 5 mm LEDs shine out through the lid, sitting flush with its outer surface and unable to fall out. I want to plug a micro-USB cable into one short end while the lid is on. Don't cover the antenna end: no wall or lid above the antenna, and at least 8 mm of open space past the end of the board. The lid is fastened with M3 self-tapping screws. I'll print it in PLA on an FDM printer with the back face on the bed.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. retention_board (L1.1): esp32 devkitc held by pocket: free travel (mm) -z 0.00, +z 10.20, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 10.20 > 0.5; options the plant cannot build he... at board (esp32 devkitc) toward +z; off by 9.69 mm; needs: decrease the free travel of the part in its worst direction
+2. content_placed_control_1 (L1.1, L1.5, L1.9): control_1 (led_5mm) is not placed: esp32_devkitc_v4 is not a carrier: no relation places it yet (GM2b); needs: every content part placed
+3. content_placed_generic_1 (a generic rule): generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ...; needs: every content part placed
+4. text_coverage (L1.4): board.usb (esp32 devkitc) is closed, but request names a micro-usb plug: "I want to plug a micro-USB cable into one short end while the lid is on."; needs: an opening for each connector whose mating plug the text names
+5. apertures_-X (a generic rule): wall -X: 2 through opening(s), expected 0; 0 blind region(s); needs: make the number of through openings in the wall right
+6. apertures_+X (a generic rule): wall +X: 2 through opening(s), expected 0; 0 blind region(s); needs: make the number of through openings in the wall right
+(2 more failing checks not shown)
+
+The design now:
+- board (primary): esp32 devkitc x1; connectors: usb closed
+- control_1: 5mm led x3
+- lid closure: lip; lid bosses: outside_corners
+- board retention: pocket
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- A: hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction
+- B: mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face
+- C: expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed
+- D: stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? Answer with its letter.
+
+=== RESPONSE ===
+{
+  "action": "C"
+}

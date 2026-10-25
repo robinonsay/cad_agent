@@ -1,0 +1,72 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 45 (request): "...after a little housing for an Arduino Nano, whose board is 45 x 18 mm, to sit on a shelf. It should be possible to get a..."
+n2 = 18 mm (request): "...r a little housing for an Arduino Nano, whose board is 45 x 18 mm, to sit on a shelf. It should be possible to get a cab..."
+n3 = 5 mm (request): "...e housing has no fasteners whatsoever, and it carries three 5 mm status LEDs in its top face; they're separate parts wir..."
+n4 = 18 mm (L1.1): "...e, orient it so the mini-USB port looks at one of the short 18 mm ends, put three 5 mm LEDs in the lid, keep the parts f..."
+n5 = 5 mm (L1.1): "...ni-USB port looks at one of the short 18 mm ends, put three 5 mm LEDs in the lid, keep the parts from colliding, and sta..."
+n6 = 45 (L1.2): "...Inside the closed box the 45 x 18 x 1.6 mm board needs at least 0.5 mm of clearance from..."
+n7 = 18 (L1.2): "...Inside the closed box the 45 x 18 x 1.6 mm board needs at least 0.5 mm of clearance from ever..."
+n8 = 1.6 mm (L1.2): "...Inside the closed box the 45 x 18 x 1.6 mm board needs at least 0.5 mm of clearance from every printed..."
+n9 = 0.5 mm (L1.2): "...de the closed box the 45 x 18 x 1.6 mm board needs at least 0.5 mm of clearance from every printed surface (its posts ex..."
+n10 = 3.0 (L1.3): "...d no fewer, carry the board, each below a mounting hole and 3.0 to 4.0 mm wide (the hole's own keep-out being 4.0). A lo..."
+n11 = 4.0 mm (L1.3): "...wer, carry the board, each below a mounting hole and 3.0 to 4.0 mm wide (the hole's own keep-out being 4.0). A locating ..."
+n12 = 4.0 (L1.3): "...hole and 3.0 to 4.0 mm wide (the hole's own keep-out being 4.0). A locating pin runs through each hole, 0.1 to 0.3 mm un..."
+n13 = 0.1 (L1.3): "...keep-out being 4.0). A locating pin runs through each hole, 0.1 to 0.3 mm under the 1.7 mm hole size, and the header tai..."
+n14 = 0.3 mm (L1.3): "...t being 4.0). A locating pin runs through each hole, 0.1 to 0.3 mm under the 1.7 mm hole size, and the header tails must..."
+n15 = 1.7 mm (L1.3): "...ocating pin runs through each hole, 0.1 to 0.3 mm under the 1.7 mm hole size, and the header tails must not touch the fl..."
+n16 = 5.0 mm (L1.4): "...When the lid is shut, keep everything at least 5.0 mm above the top of the board, and at least 0.3 mm away from t..."
+n17 = 0.3 mm (L1.4): "...ng at least 5.0 mm above the top of the board, and at least 0.3 mm away from the header bodies and pin tails below...."
+n18 = 0.3 mm (L1.5): "...e Nano via one opening in the −X end wall, leaving at least 0.3 mm spare around the plug. Between that opening and the l..."
+n19 = 1.5 mm (L1.5): "...t opening and the lid seam, the floor and the corners leave 1.5 mm of wall or more. The opening may exceed the plug by 1..."
+n20 = 1.5 mm (L1.5): "...1.5 mm of wall or more. The opening may exceed the plug by 1.5 mm at most per side...."
+n21 = 5 mm (L1.6): "...Three 5 mm LEDs are carried by the lid: lenses stick out through holes..."
+n22 = 5.2 (L1.6): "...s are carried by the lid: lenses stick out through holes of 5.2 to 5.4 mm in the top face with the flanges held behind, ..."
+n23 = 5.4 mm (L1.6): "...arried by the lid: lenses stick out through holes of 5.2 to 5.4 mm in the top face with the flanges held behind, so ever..."
+n24 = 0.2 mm (L1.6): "...e can be pulled out forwards (flange overlap on the hole of 0.2 mm per side minimum). Put them in a line above the board..."
+n25 = 9.0 mm (L1.6): "...r side minimum). Put them in a line above the board, spaced 9.0 mm or more apart and 4.0 mm or more from the cavity edge..."
+n26 = 4.0 mm (L1.6): "...in a line above the board, spaced 9.0 mm or more apart and 4.0 mm or more from the cavity edge...."
+n27 = 5 mm (L1.7): "...ach long side and none on the end walls. Hooks are at least 5 mm wide and engage 0.6 to 1.0 mm, on an arm where the bend..."
+n28 = 0.6 (L1.7): "...e on the end walls. Hooks are at least 5 mm wide and engage 0.6 to 1.0 mm, on an arm where the bending strain 1.5 t y / ..."
+n29 = 1.0 mm (L1.7): "...e end walls. Hooks are at least 5 mm wide and engage 0.6 to 1.0 mm, on an arm where the bending strain 1.5 t y / L^2 (t ..."
+n30 = 1.5 (L1.7): "...nd engage 0.6 to 1.0 mm, on an arm where the bending strain 1.5 t y / L^2 (t thickness, y engagement, L free length) doe..."
+n31 = 2 (L1.7): "...6 to 1.0 mm, on an arm where the bending strain 1.5 t y / L^2 (t thickness, y engagement, L free length) does not exceed..."
+n32 = 0.02 (L1.7): "...(t thickness, y engagement, L free length) does not exceed 0.02...."
+n33 = 2.0 mm (L1.8): "...rate body that sits on the base via a sliding lip, at least 2.0 mm deep with 0.15 to 0.35 mm of clearance each side, and..."
+n34 = 0.15 (L1.8): "...ts on the base via a sliding lip, at least 2.0 mm deep with 0.15 to 0.35 mm of clearance each side, and closes flush wit..."
+n35 = 0.35 mm (L1.8): "...e base via a sliding lip, at least 2.0 mm deep with 0.15 to 0.35 mm of clearance each side, and closes flush without the..."
+n36 = 2.0 (L1.9): "...ening and three LED holes. Wall, floor and lid thickness is 2.0 to 3.0 mm, and every opening has at least 1.5 mm of mate..."
+n37 = 3.0 mm (L1.9): "...nd three LED holes. Wall, floor and lid thickness is 2.0 to 3.0 mm, and every opening has at least 1.5 mm of material ar..."
+n38 = 1.5 mm (L1.9): "...thickness is 2.0 to 3.0 mm, and every opening has at least 1.5 mm of material around it...."
+n39 = 60 (L1.11): "...Excluding the LED domes, the closed box can be at most 60 x 30 x 26 mm, with its long dimension running along the boa..."
+n40 = 30 (L1.11): "...Excluding the LED domes, the closed box can be at most 60 x 30 x 26 mm, with its long dimension running along the board'..."
+n41 = 26 mm (L1.11): "...ding the LED domes, the closed box can be at most 60 x 30 x 26 mm, with its long dimension running along the board's 45 ..."
+n42 = 45 mm (L1.11): "...x 26 mm, with its long dimension running along the board's 45 mm side, and it has to stand flat on a shelf and not tip...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+Your previous answer broke these rules: board_width and board_depth and keepout_above and keepout_below and board_clearance and headroom and opening_oversize_max and wall_min and wall_max and max_x and max_y and max_z all use n1 (45, 'after a little housing for an Arduino Nano, whose board is 45 x 18 mm, to sit on a shelf. It should be possible to get a'); each number in the text states one quantity. Answer again and fix that.
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

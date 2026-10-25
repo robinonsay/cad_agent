@@ -60,7 +60,17 @@ class FakeLLM(ScriptedLLM):
         if label.startswith(controller.CONTROL_LABEL) and not any(label.startswith(k) for k in self.script):
             self.calls.append((label, prompt, list(images)))
             return json.dumps({"action": schema["properties"]["action"]["enum"][0]})
+        # changed in migration delta R02: the arrangement-class menu (which replaced the p_yes ranking and the A/B pick)
+        # unscripted takes its first enum entry: Python's enumeration lists the classes in edge-vote order, so the vote's
+        # class comes first and a scripted run keeps the arrangement the vote gave (as when every class had equal p_yes)
+        arr = getattr(A, "ARRANGE_LABEL", None)
+        if arr and label.startswith(arr) and not any(label.startswith(k) for k in self.script):
+            self.calls.append((label, prompt, list(images)))
+            return json.dumps(self.arrangement_answer(prompt, schema))
         return super().chat(prompt, system, images, schema, temperature, seed, label)
+
+    def arrangement_answer(self, prompt, schema):
+        return {"reason": "", "arrangement": schema["properties"]["arrangement"]["enum"][0]}
 
 
 class SchemaLLM(FakeLLM):
@@ -88,6 +98,15 @@ class RankedLLM(FakeLLM):
     def p_yes(self, prompt, label="p_yes", system="", images=()):
         self.calls.append((label, prompt, list(images)))
         return next((p for keys, p in self.table if all(k in prompt for k in keys)), self.default)
+
+    def arrangement_answer(self, prompt, schema):
+        """Changed in migration delta R02: the arrangement-class menu is answered with the class whose words the table
+        scores highest (the recorded p_yes as the model's preference; a tie goes to Python's enumeration order)."""
+        ids = schema["properties"]["arrangement"]["enum"]
+        lines = {ln[2:].split(": ", 1)[0]: ln for ln in prompt.splitlines() if ln.startswith("- ")}
+        score = {i: next((p for keys, p in self.table if all(k in lines.get(i, "") for k in keys)), self.default)
+                 for i in ids}
+        return {"reason": "", "arrangement": max(ids, key=lambda i: (score[i], -ids.index(i)))}
 
 
 def fake_agent_factory(*args, **kwargs):
@@ -440,7 +459,7 @@ class TestParseSpec(unittest.TestCase):
         status, _ = run_stages(d, llm, "ParseSpec")
         st = d.assy
         self.assertEqual(status, ca.Status.SUCCESS)
-        self.assertEqual(llm.labels().count("assy_spec_owner"), ca.VOTES)
+        self.assertEqual(llm.labels().count("assy_spec_owner"), 2)   # R02: one call per distinct ordering (two options)
         owner_schema = next(sc for lb, sc in llm.schemas if lb == "assy_spec_owner")
         self.assertEqual(owner_schema["properties"]["owner"]["enum"], ["keepout_above", "keepout_below"])
         slot_schema = next(sc for lb, sc in llm.schemas if lb == "assy_spec_slot")
@@ -616,7 +635,7 @@ class TestContents(unittest.TestCase):
         llm = SchemaLLM(script_for("V1", assy_stack=[{"stack": "header_female_2p54"}]))
         status, _ = run_stages(d, llm, "ChooseStack")
         self.assertEqual(status, ca.Status.SUCCESS, d.assy.notes)
-        self.assertEqual(llm.labels().count("assy_stack"), ca.VOTES)
+        self.assertEqual(llm.labels().count("assy_stack"), 2)   # R02: one call per distinct ordering (two options)
         schema = next(sc for lb, sc in llm.schemas if lb == "assy_stack")
         self.assertEqual(schema["properties"]["stack"]["enum"], ["header_male_2p54", "header_female_2p54"])
         rec = d.assy.choices["stack[module_1]"]
@@ -655,7 +674,7 @@ class TestContents(unittest.TestCase):
         assy = rec["assembly"]
         naming = l1_with("V1", "micro-USB cable")
         self.assertNotIn("assy_expose", llm.labels())
-        self.assertEqual(llm.labels().count("assy_control"), ca.VOTES)
+        self.assertEqual(llm.labels().count("assy_control"), 2)   # R02: one call per distinct ordering (two options)
         self.assertEqual(llm.labels().count("assy_edge"), 2 * ca.VOTES)          # the placement ran exactly twice
         self.assertEqual(rc, ca.EXIT_UNSATISFIED)                                 # the package is written (not rc 1)
         self.assertEqual(rec["outcome"], "unsatisfied")
@@ -903,28 +922,69 @@ class TestArrange(unittest.TestCase):
         raise AssertionError(f"no stage {upto}")
 
     def test_iter003_replay_accepts_the_voted_arrangement_by_rank(self):
-        # iteration 003's real run: votes 2 x (-X, +X) and 1 x (-X, -X), p_yes < 0.5 for every candidate
+        # iteration 003's real run: votes 2 x (-X, +X) and 1 x (-X, -X), p_yes < 0.5 for every candidate.
+        # Changed in migration delta R02: no p_yes is asked; the error-tied classes are one content-keyed menu (the
+        # RankedLLM answers it with the class its recorded p_yes ranked highest) and the vote's class wins it in every
+        # ordering: llm:vote+menu, high confidence, no low-confidence assumption
         st, llm, status = self.arrange(script_for("E1-01", assy_edge=ITER003_EDGE_VOTES), iter003_table())
         self.assertEqual(status, ca.Status.SUCCESS, st.notes)
         self.assertEqual(st.choices["edge[module_1]"]["value"], "-X")
         self.assertEqual(st.choices["edge[connector_1]"]["value"], "+X")
         conf = st.choices["arrangement_confirmed"]
-        self.assertEqual(conf["by"], "llm:vote+rank")
+        self.assertEqual(conf["by"], "llm:vote+menu")
         self.assertEqual(conf["value"], {"module_1": "-X", "connector_1": "+X"})
-        self.assertEqual(conf["rank"], 1)
-        self.assertGreater(conf["margin_to_next"], 0)
-        low = [a for a in st.assumptions if a.startswith("arrangement accepted by rank")]
-        self.assertEqual(len(low), 1, st.assumptions)
+        self.assertEqual(conf["class_id"], "connector_1=+X,module_1=-X")
+        self.assertTrue(conf["class_vote"]["confident"])
+        self.assertEqual(conf["class_vote"]["consistency"], 1.0)
+        self.assertEqual([a for a in st.assumptions if a.startswith("arrangement")], [])
+        self.assertNotIn("assy_confirm", llm.labels())
         self.assertNotIn("assy_arrange_pick", llm.labels())
-        self.assertEqual(st.arrange["decision"], "llm:vote+rank")
+        self.assertEqual(st.arrange["decision"], "llm:vote+menu")
         self.assertEqual(st.arrange["truncated"], 0)
+
+    def test_iter003_replay_menu_overrides_the_edge_vote(self):
+        # R02/R11 review fix 6: the replayed iteration 003 answers (edge votes 2 x (-X, +X), 1 x (-X, -X)), but the
+        # arrangement menu is answered with a class other than the edge vote's, in every ordering. The menu path decides:
+        # llm:menu, the menu's class is built, and the edge vote's class is not
+        voted_id = "connector_1=+X,module_1=-X"
+
+        given = []
+
+        class OtherClass(RankedLLM):
+            def arrangement_answer(self, prompt, schema):
+                ids = schema["properties"]["arrangement"]["enum"]
+                given.append(next(i for i in reversed(ids) if i != voted_id))
+                return {"reason": "", "arrangement": given[-1]}
+
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        d = new_design("E1-01", Path(tmp.name))
+        llm = OtherClass(script_for("E1-01", assy_edge=ITER003_EDGE_VOTES), iter003_table())
+        status, child = run_stages(d, llm, "ArrangeContents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        menus_asked = [pr for lb, pr, _ in llm.calls if lb == A.ARRANGE_LABEL]
+        self.assertTrue(menus_asked)
+        ids = [ln[2:].split(": ", 1)[0] for ln in menus_asked[0].splitlines() if ln.startswith("- ")]
+        self.assertIn(voted_id, ids)
+        conf = st.choices["arrangement_confirmed"]
+        self.assertEqual(conf["by"], "llm:menu")
+        self.assertEqual(st.arrange["decision"], "llm:menu")
+        self.assertNotEqual(conf["class_id"], voted_id)
+        self.assertTrue(conf["class_vote"]["confident"])
+        self.assertEqual(conf["class_vote"]["votes"].get(voted_id, 0), 0)
+        self.assertEqual(set(given), {conf["class_id"]})
+        self.assertIn(conf["class_id"], ids)
 
     def test_symmetric_candidates_are_asked_once(self):
         st, llm, status = self.arrange(script_for("E1-01", assy_edge=ITER003_EDGE_VOTES), iter003_table())
         self.assertEqual(status, ca.Status.SUCCESS)
         feasible = [h for h in st.history if h["stage"] == "confirm_arrangement"]
         classes = {h["class"] for h in feasible}
-        self.assertEqual(llm.labels().count("assy_confirm"), len(classes))
+        # changed in migration delta R02: one menu question over the classes, one call per ordering (no p_yes per class)
+        self.assertEqual(llm.labels().count(A.ARRANGE_LABEL), min(len(classes), 3))
+        menu = next(pr for lb, pr, _ in llm.calls if lb == A.ARRANGE_LABEL)
+        self.assertEqual(sum(1 for ln in menu.splitlines() if ln.startswith("- ")), len(classes))
         self.assertEqual(st.arrange["classes"], len(classes))
         # the half turn is the board's only non-trivial symmetry and fixes no two-item assignment
         self.assertEqual(len(classes) * 2, len(feasible))
@@ -937,26 +997,37 @@ class TestArrange(unittest.TestCase):
         json.dumps(st.summary()["arrange"])                    # design.json carries the whole ranking
 
     def test_disagreement_asks_one_comparative_pick(self):
+        # Changed in migration delta R02 (was: the p_yes ranking named a challenger and a lettered A/B pick decided):
+        # the error-tied classes are one content-keyed, permutation-voted menu. Votes favour P = (-X, +X); the menu
+        # answers decide: P in every ordering -> llm:vote+menu; Q = (-X, -Y) in every ordering (consistent) -> llm:menu,
+        # Q; a split menu (inconsistent) leaves the edge vote's P -> llm:vote, with a low-confidence assumption
         cat = pt.Catalog.load(PARTS)
         words = edge_words(cat, "E1-01")
         usb, jack = connector_names(cat)
-        # votes favour P = (-X, +X); p_yes ranks Q = (-X, -Y), which is not P's mirror image, highest
-        table = [((f"({usb}) faces {words['-X']}", f"({jack}) face {words['-Y']}"), 0.4)]
         votes = [{"module_1": "-X", "connector_1": "+X"}]
         p, q = {"module_1": "-X", "connector_1": "+X"}, {"module_1": "-X", "connector_1": "-Y"}
-        for picks, expected in ((["B"], q), (["A"], p), (["A", "B", "C"], q)):     # the last is a tie
-            with self.subTest(picks=picks):
-                script = script_for("E1-01", assy_edge=votes, assy_arrange_pick=[{"pick": x} for x in picks])
-                st, llm, status = self.arrange(script, table, default=0.1)
+        pid, qid = "connector_1=+X,module_1=-X", "connector_1=-Y,module_1=-X"
+        for answers, expected, by in (([pid], p, "llm:vote+menu"), ([qid], q, "llm:menu"),
+                                      ([qid, pid, qid], p, "llm:vote")):
+            with self.subTest(answers=answers):
+                script = script_for("E1-01", assy_edge=votes,
+                                    **{A.ARRANGE_LABEL: [{"reason": "", "arrangement": x} for x in answers]})
+                st, llm, status = self.arrange(script, (), default=0.1)
                 self.assertEqual(status, ca.Status.SUCCESS, st.notes)
-                self.assertEqual(llm.labels().count("assy_arrange_pick"), ca.VOTES)    # one voted question
-                self.assertEqual(st.choices["arrangement_confirmed"]["by"], "llm:pick")
+                self.assertEqual(llm.labels().count(A.ARRANGE_LABEL), 3)      # one question, three orderings
+                self.assertNotIn("assy_arrange_pick", llm.labels())
+                self.assertEqual(st.choices["arrangement_confirmed"]["by"], by)
                 self.assertEqual(st.choices["arrangement_confirmed"]["value"], expected)
                 used = {k[5:-1]: v["value"] for k, v in st.choices.items() if k.startswith("edge[")}
                 self.assertEqual(used, expected)
-                prompt = next(pr for lb, pr, _ in llm.calls if lb == "assy_arrange_pick")
-                self.assertIn(f"A: raspberry pi pico 2 ({usb}) faces {words['-X']}", prompt)
-                self.assertIn(f"({jack}) face {words['-Y']}", prompt.split("B:")[1])
+                prompts = [pr for lb, pr, _ in llm.calls if lb == A.ARRANGE_LABEL]
+                self.assertIn(f"- {pid}: raspberry pi pico 2 ({usb}) faces {words['-X']}", prompts[0])
+                self.assertIn(f"- {qid}: ", prompts[0])
+                self.assertNotIn("\nA: ", prompts[0])
+                firsts = {[ln for ln in pr.splitlines() if ln.startswith("- ")][0] for pr in prompts}
+                self.assertEqual(len(firsts), 3)                              # a different class leads each ordering
+                low = [a for a in st.assumptions if "not consistent across menu orderings" in a]
+                self.assertEqual(len(low), int(by == "llm:vote"))
 
     def test_no_feasible_arrangement_lists_every_candidate(self):
         cat, rules, _ = placer_for("E1-01")
@@ -985,7 +1056,7 @@ class TestArrange(unittest.TestCase):
             status, _ = run_stages(d, llm, "ArrangeContents")
             self.assertEqual(status, ca.Status.SUCCESS)
             confirms = [h for h in d.assy.history if h["stage"] == "confirm_arrangement"]
-            self.assertTrue(all(h["p_yes"] < 0.5 for h in confirms))
+            self.assertNotIn("assy_confirm", llm.labels())        # R02: no p_yes at all
             # all three E1-01 ports on one 50 mm end cannot fit the plugs: pruned before asking, with a note
             self.assertTrue(any("infeasible" in n and "ports_do_not_fit" in n for n in d.assy.notes), d.assy.notes)
             self.assertNotIn(both, [h["assignment"] for h in confirms])
@@ -993,8 +1064,7 @@ class TestArrange(unittest.TestCase):
             used = {k[5:-1]: v["value"] for k, v in d.assy.choices.items() if k.startswith("edge[")}
             self.assertEqual(used, chosen["assignment"])
             self.assertEqual(used, d.assy.choices["arrangement_confirmed"]["value"])
-            self.assertEqual(d.assy.choices["arrangement_confirmed"]["by"], "llm:vote+rank")
-            self.assertTrue(any(a.startswith("arrangement accepted by rank") for a in d.assy.assumptions))
+            self.assertEqual(d.assy.choices["arrangement_confirmed"]["by"], "llm:vote+menu")   # R02
 
 
     # iteration 008 (C2, RC-803, ARCHITECTURE.md 7.11): pre-scored arrangement candidates
@@ -1035,7 +1105,7 @@ class TestArrange(unittest.TestCase):
         st, llm, status = self.arrange(script_for("E1-01", assy_edge=ITER003_EDGE_VOTES), iter003_table())
         self.assertEqual(status, ca.Status.SUCCESS, st.notes)
         self.assertEqual(st.arrange["filtered"], [])
-        self.assertEqual(st.arrange["decision"], "llm:vote+rank")
+        self.assertEqual(st.arrange["decision"], "llm:vote+menu")      # R02: the class menu agrees with the vote
         self.assertEqual(st.choices["arrangement_confirmed"]["value"], {"module_1": "-X", "connector_1": "+X"})
         scored = [c for c in st.arrange["candidates"] if c["outcome"] == "scored"]
         self.assertEqual(st.arrange["prescored"], len(scored))
@@ -2481,7 +2551,7 @@ class TestReplayIter003(unittest.TestCase):
         self.assertEqual([r["check_id"] for r in assy["results"] if not r["passed"]], [])
         self.assertEqual(self.rc, ca.EXIT_OK, assy["notes"])
         self.assertEqual(self.rec["outcome"], "verified")
-        self.assertEqual(assy["choices"]["arrangement_confirmed"]["by"], "llm:vote+rank")
+        self.assertEqual(assy["choices"]["arrangement_confirmed"]["by"], "llm:vote+menu")   # R02: the class menu replaced the p_yes rank
         self.assertNotIn("assy_arrange_pick", self.llm.labels())
         results = assy["results"]
         counts = {r["check_id"]: r["evidence"]["count"] for r in results if r["type"] == "aperture_count"}
@@ -2499,7 +2569,7 @@ class TestReplayIter003(unittest.TestCase):
         for h in heights:      # changed in iteration 004: the floor sits design_margin below the solder-side keep-out
             self.assertAlmostEqual(h, self.below + margin, places=9)
         json.dumps(assy["arrange"])
-        self.assertEqual(assy["arrange"]["decision"], "llm:vote+rank")
+        self.assertEqual(assy["arrange"]["decision"], "llm:vote+menu")   # R02: the class menu replaced the p_yes rank
 
 
 # iteration 004's recorded controller answers (iter_004/target_s0/20261024-091709/llm/001-021)
@@ -2553,7 +2623,7 @@ class TestReplayIter004(unittest.TestCase):
         self.assertEqual(self.rc, ca.EXIT_OK)
         # changed in iteration 006, then iteration 010: no conflicts (the jacks are an exemption, not a conflict)
         self.assertEqual(assy["conflicts"], [])
-        self.assertEqual(assy["choices"]["arrangement_confirmed"]["by"], "llm:vote+rank")
+        self.assertEqual(assy["choices"]["arrangement_confirmed"]["by"], "llm:vote+menu")   # R02: the class menu replaced the p_yes rank
         self.assertEqual(assy["spec"]["opening_oversize_max"], 1.5)
         for k in range(4):
             self.assertTrue(results[f"clear_hole_ko_{k}"]["passed"], results[f"clear_hole_ko_{k}"])
@@ -2740,7 +2810,7 @@ class TestReplayIter007(unittest.TestCase):
                 # changed in iteration 008 (behaviour intentionally changed, RC-801): no assy_expose question is asked;
                 # changed in migration delta R01: the controller's expose action (one voted assy_control question)
                 self.assertNotIn("assy_expose", llm.labels())
-                self.assertEqual(llm.labels().count("assy_control"), ca.VOTES)
+                self.assertEqual(llm.labels().count("assy_control"), 2)   # R02: one call per distinct ordering (two options)
                 naming = l1_with(rid, "micro-USB cable")
                 pico = next(c for c in assy["contents"] if c["part"] == "rpi_pico2")
                 self.assertTrue(pico["exposed"])
@@ -2953,13 +3023,15 @@ class TestFasteners(unittest.TestCase):
         self.assertEqual(A.board_screw(no_m2, wide, rules).id, "screw_m2p5_selftap")
         self.assertEqual(A.board_screw(cat, cat.instantiate("perfboard", {"width": w, "depth": d, "hole_diameter": 3.0}),
                                        rules).id, "screw_m2_selftap")
-        # a Ø1.5 hole takes no catalogue screw: ArrangeContents fails with the typed message
+        # a Ø1.5 hole takes no catalogue screw. Changed in migration delta R11: the board rests on its mount seat plane
+        # in a cradle instead (rule:no_screw_fits, a guardrail; building_blocks.cradle_instead_of_screws), no board screw
         self.assertIsNone(A.board_screw(cat, cat.instantiate("perfboard", {"width": w, "depth": d, "hole_diameter": 1.5}),
                                         rules))
         st, llm, status = TestArrange.arrange(self, script_for("E1-01"), board={"hole_diameter": 1.5})
-        self.assertEqual(status, ca.Status.FAILURE)
-        self.assertEqual(st.stage, "arrange_contents")
-        self.assertIn("no catalogue screw passes the board's mounting holes", st.notes[-1])
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes[-3:])
+        self.assertEqual((st.choices["support[board]"]["value"], st.choices["support[board]"]["by"]),
+                         ("cradle", "rule:no_screw_fits"))
+        self.assertNotIn("fastener[board]", st.choices)
         # the lid screw is still the largest thread
         self.assertEqual(A.lid_screw(cat, rules).id, "screw_m3_selftap")
 
@@ -3539,6 +3611,12 @@ def all_none(prompt):
     return {k: "none" for k in A_SLOTS}
 
 
+def same_question(a: str, b: str) -> bool:
+    """Two prompts ask the same question up to the order of their lines (migration delta R02: the option lines of a
+    menu are shown in seeded orderings)."""
+    return sorted(a.splitlines()) == sorted(b.splitlines())
+
+
 def recorded_prompt(run_dir: Path, label: str):
     """The PROMPT section of the first recorded transcript with this label in a package's llm/ folder (None if absent)."""
     files = sorted(run_dir.glob(f"*/llm/*_{label}.txt"))
@@ -3602,10 +3680,12 @@ class TestPrimaryReference(unittest.TestCase):
             if want is None:
                 raise unittest.SkipTest(f"no recorded {label} transcript in {run}")
             got = next(p for lb, p, _ in llm.calls if lb == label)
-            self.assertEqual(got, want, label)
+            self.assertTrue(same_question(got, want), (label, got, want))   # R02: option lines in a seeded order
 
     def test_primary_without_mount_holes_stops_typed(self):
-        # T3: the largest content part offers no mount_holes interface: a typed note, no exception, no package
+        # T3: the largest content part offers no mount_holes interface. Changed in migration delta R11: a part that rests
+        # on a seat plane pair is held by a cradle (building_blocks.py), so it is the primary with its seat interface;
+        # a holeless part with no seat/top plane pair still stops with a typed note, no exception, no package
         cat = pt.Catalog.load(BOTH)
         texts_ = gen_texts("G05")
         named = [pid for pid in cat.ids() if cat.get(pid).kind == "module" and A.text_evidence(texts_, cat.get(pid).names)]
@@ -3617,10 +3697,22 @@ class TestPrimaryReference(unittest.TestCase):
         d = gen_design("G05", self.root)
         status, child = run_stages(d, FakeLLM({"assy_spec": [all_none], "assy_contents": [reply]}), "Contents")
         st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes[-3:])
+        self.assertEqual(st.choices["primary"]["value"], holeless[0])
+        self.assertEqual(st.choices["primary"]["interface"], pt.SEAT)
+        self.assertFalse(any("exactly one board" in n for n in st.notes))
+        texts9 = gen_texts("G09")
+        no_top = next(pid for pid in cat.ids() if cat.get(pid).kind == "connector" and not cat.get(pid).request_params()
+                      and A.text_evidence(texts9, cat.get(pid).names)
+                      and pt.seat_interface(cat.instantiate(pid, {})) is None)
+        d = gen_design("G09", self.root)
+        status, child = run_stages(d, FakeLLM({"assy_spec": [all_none], "assy_contents": [
+            {no_top: {"quantity": 1, "exposed": "yes"}}]}), "Contents")
+        st = d.assy
         self.assertEqual(status, ca.Status.FAILURE)
         self.assertEqual(st.stage, "contents")
-        self.assertTrue(any("has no mount_holes interface" in n and holeless[0] in n for n in st.notes), st.notes)
-        self.assertFalse(any("exactly one board" in n for n in st.notes))
+        self.assertTrue(any("has no mount_holes interface and no seat/top plane pair" in n and no_top in n
+                            for n in st.notes), st.notes)
 
     def test_non_carrier_primary_lists_unplaced(self):
         # C1: a non-carrier primary carries no other contents; each other item is unplaced with a failing hard
@@ -3804,7 +3896,7 @@ class TestNumberOwnership(unittest.TestCase):
         status, _ = run_stages(d, llm, "Contents")
         st = d.assy
         self.assertEqual(status, ca.Status.SUCCESS, st.notes)
-        self.assertEqual(llm.labels().count("assy_spec_owner"), ca.VOTES)
+        self.assertEqual(llm.labels().count("assy_spec_owner"), 2)   # R02: one call per distinct ordering (two options)
         owner_schema = next(sc for lb, sc in llm.schemas if lb == "assy_spec_owner")
         self.assertEqual(owner_schema["properties"]["owner"]["enum"], ["headroom", "generic_1.height"])
         slot_schema = next(sc for lb, sc in llm.schemas if lb == "assy_spec_slot")
@@ -3850,17 +3942,51 @@ class TestNumberOwnership(unittest.TestCase):
         llm = FakeLLM(script_for(rid, assy_spec=[spec], assy_spec_owner=[owner], assy_params_reask=[reask]))
         status, _ = run_stages(d, llm, "Contents")
         st = d.assy
-        self.assertEqual(status, ca.Status.FAILURE, st.notes)
-        self.assertEqual(llm.labels().count("assy_spec_owner"), ca.VOTES)      # one owner question, never a second
+        # changed in migration delta R11 (building blocks; merged with R02): the unsizable part is rejected and reported (an unplaced item whose
+        # content_placed check fails with this typed reason); the rest of the design goes on
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        self.assertNotIn("generic_1", [c.get("id") for c in st.contents])
+        self.assertIn("generic_1", [u["id"] for u in st.unplaced])
+        self.assertEqual(llm.labels().count("assy_spec_owner"), 2)      # one owner question, never a second (R02: two orderings)
         self.assertEqual(llm.labels().count("assy_params_reask"), ca.VOTES)    # one re-ask
         self.assertTrue(reasks)
         self.assertFalse(any(re.search(rf"^{re.escape(tall)} = ", p, re.M) for p in reasks))  # the id is removed
-        stop = st.notes[-1]
+        stop = next(n for n in st.notes if "re-ask is final" in n)
         self.assertIn("re-ask is final", stop)
         self.assertIn(f"{other} ", stop)
         self.assertIn("max_z", stop)
         self.assertEqual((st.number_owner[tall], st.number_owner[other]), ("headroom", "max_z"))
         self.assertNotIn("generic_1.height", st.number_owner.values())
+
+    def test_rejected_part_does_not_leak_its_stop_reason(self):
+        # R02/R11 review fix 5: a part rejected with a typed param_stop (the final re-ask) must not hand that reason to
+        # the next unsizable part, whose own reason is "no number in the text for ..."
+        rid = "V3"
+        d = new_design(rid, self.root / "leak")
+        llm = FakeLLM(script_for(rid))
+        real_rp = pt.Part.request_params
+        asked = []
+
+        def request_params(part):
+            out = list(real_rp(part))
+            return out + ["test_size"] if part.id in ("generic_cylinder", "jack_3p5_pj320a") else out
+
+        def ask_params(stage, item, part, need):
+            asked.append(item["part"])
+            if len(asked) == 1:                          # the first unsizable part stops typed (as claim(final) does)
+                stage.param_stop = f"{item['part']}: TYPED STOP (test)"
+            return None
+
+        with mock.patch.object(pt.Part, "request_params", request_params), \
+                mock.patch.object(A.Contents, "ask_params", ask_params):
+            status, _ = run_stages(d, llm, "Contents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        self.assertEqual(len(asked), 2, asked)
+        why = {u["part"]: u["reason"] for u in st.unplaced if u["part"] in asked}
+        self.assertIn("TYPED STOP (test)", why[asked[0]])
+        self.assertNotIn("TYPED STOP", why[asked[1]])
+        self.assertIn(f"{asked[1]}: no number in the text for", why[asked[1]])
 
     def test_reasked_spec_slot_keeps_parse_spec_rules(self):
         # Fix round 1 N2: a spec slot re-asked after ParseSpec meets the same relations (> 0, wall band) and the frame
@@ -4077,9 +4203,9 @@ class TestFaceRelation(unittest.TestCase):
         rel = [k for k in results if k.startswith("face_relation_")]
         self.assertEqual(len(rel), 1, rel)
         self.assertTrue(results[rel[0]].passed, results[rel[0]].evidence)
-        self.assertEqual(st.choices["arrangement_confirmed"]["by"], "prescore+llm:vote+rank")
+        self.assertEqual(st.choices["arrangement_confirmed"]["by"], "prescore+llm:vote+menu")   # R02
         self.assertNotIn("assy_arrange_pick", llm.labels())
-        self.assertEqual(llm.labels().count(A.RELATION_LABEL), ca.VOTES)
+        self.assertEqual(llm.labels().count(A.RELATION_LABEL), 2)   # R02: one call per distinct ordering (two options)
         name = next(k for k in st.choices if k.startswith("relation["))
         self.assertEqual((st.choices[name]["value"], st.choices[name]["by"]), ("same", "llm:relation"))
         self.assertTrue(st.choices[name]["evidence"])
@@ -4124,12 +4250,13 @@ class TestFaceRelation(unittest.TestCase):
             self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
             return st, llm
 
-        split, llm = run([{"pair_1": "same"}, {"pair_1": "same"}, {"pair_1": A.NOT_STATED}], "split")
+        # changed in migration delta R02: the two values (same, not_stated) give two orderings, so the split is 1:1
+        split, llm = run([{"pair_1": "same"}, {"pair_1": A.NOT_STATED}], "split")
         plain, _ = run(None, "plain")
-        self.assertEqual(llm.labels().count(A.RELATION_LABEL), ca.VOTES)
+        self.assertEqual(llm.labels().count(A.RELATION_LABEL), 2)   # R02: one call per distinct ordering (two options)
         self.assertEqual(split.relations, [])
         asked = split.arrange["relations"]["asked"]
-        self.assertEqual([(r["votes"], r["constraint"]) for r in asked], [({"same": 2, A.NOT_STATED: 1}, None)])
+        self.assertEqual([(r["votes"], r["constraint"]) for r in asked], [({"same": 1, A.NOT_STATED: 1}, None)])
         self.assertFalse([k for k in split.choices if k.startswith("relation[")])
         self.assertEqual(split.layout, plain.layout)
         walls = member_walls(split)
@@ -4727,7 +4854,7 @@ class TestVents(unittest.TestCase):
         script.update(assy_vent_relation=[{"vents": f"connector_1.{conn}|opposite"}], assy_vent_spec=[spec])
         llm, status, child, st, results = gen_run(self.root, "G11", script)
         self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
-        self.assertEqual(llm.labels().count(A.VENT_RELATION_LABEL), ca.VOTES)
+        self.assertEqual(llm.labels().count(A.VENT_RELATION_LABEL), 2)   # R02: one call per distinct ordering (two options)
         p, c = next((p, c) for p, c in A.exposed_connectors(st) if p.part == jack)
         jack_wall = A.wall_facing(lay.world_datum(p, c["axis"]).dir)
         slots = [n for n in st.graph if n.role == "vent_cut"]
@@ -4774,12 +4901,14 @@ class TestVents(unittest.TestCase):
                     "\n\n=== RESPONSE ===", 1)[0]) for f in files]
                 got = [(lb, pr) for lb, pr, _ in llm.calls]
                 self.assertFalse([lb for lb, _ in got if lb.startswith(("assy_vent",))])
+                # changed in migration delta R02: menus are shown in seeded orderings, so a recorded question is asked
+                # again with the same lines in another order (same_question); the p_yes confirm is gone (the class menu)
                 for lb, pr in want:
                     if lb != "assy_confirm":
-                        self.assertIn((lb, pr), got, lb)
+                        self.assertTrue(any(lb == g and same_question(pr, q) for g, q in got), lb)
                 extra = Counter(lb for lb, _ in got) - Counter(lb for lb, _ in want)
-                self.assertLessEqual(set(extra), {"assy_control", "assy_edge", "assy_confirm"}, extra)
-                self.assertEqual(extra["assy_control"], ca.VOTES)
+                self.assertLessEqual(set(extra), {"assy_control", "assy_edge", "assy_confirm", A.ARRANGE_LABEL}, extra)
+                self.assertEqual(extra["assy_control"], 2)   # R02: two orderings of expose + stop
 
 
 class TestBridge(unittest.TestCase):

@@ -19,7 +19,8 @@ REPO = Path(__file__).parent
 REGISTRY = REPO / "controller_rules.json"
 ARCHITECTURE = REPO / "benchmarks" / "generalize" / "loop" / "ARCHITECTURE.md"
 MODULES = ("assembly.py", "assembly_checks.py", "feature_graph.py", "layout.py", "parts.py", "controller.py",
-           "cad_agent.py")
+           "cad_agent.py", "menus.py",     # changed in migration delta R02: menus.py (the shared menu plumbing) is scanned
+           "building_blocks.py")   # changed in migration delta R11 (building blocks): building_blocks.py is agent code
 RULE_RE = re.compile(r"rule:([A-Za-z_][A-Za-z0-9_]*)(\[[A-Za-z0-9_]+\])?")
 CLASSES = {"sensor", "actuator", "controller-information", "guardrail", "plant", "semantic-rule"}
 STATUSES = {"active", "pending_migration", "retired"}
@@ -191,6 +192,15 @@ class TestRegistry(unittest.TestCase):
         self.assertEqual(controller.decision_class("prescore+llm:vote+rank", reg), "llm")
         self.assertEqual(controller.decision_class("prescore:derive", reg), "guardrail")
         self.assertEqual(controller.decision_class("rule:never_registered", reg), "unregistered")
+
+    def test_every_decision_tag_the_controller_records_is_registered(self):
+        # R02/R11 review fix 1b: the `by` tags controller.py records (not rule names) are listed in decision_tags
+        import controller
+        tags = json.loads(REGISTRY.read_text())["decision_tags"]
+        for tag in (controller.CONTROLLER_BY, controller.SEARCH_BY):
+            self.assertIn(tag, tags, tag)
+        self.assertEqual(controller.decision_class(controller.SEARCH_BY, controller.load_registry()), "guardrail")
+        self.assertIn("guardrail", tags[controller.SEARCH_BY])
 
 
 if __name__ == "__main__":

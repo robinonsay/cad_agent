@@ -1,0 +1,335 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "be23625883d385f1",
+        "graph": "a9f21cccb1862639",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "esp32_devkitc_v4",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": "screw_m3_selftap"
+          },
+          "retention": "pocket"
+        }
+      },
+      "error": {
+        "hard_failures": 2,
+        "violation": 11.19
+      },
+      "failing": [
+        "retention_board",
+        "text_coverage"
+      ],
+      "terms": [
+        {
+          "check": "retention_board",
+          "type": "retention",
+          "requirement": [
+            "L1.1"
+          ],
+          "where": "esp32 devkitc held by pocket: free travel (mm) -z 0.00, +z 10.70, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 10.70 > 0.5; options the plant cannot build he... at board (esp32 devkitc) toward +z",
+          "deficit": 10.19,
+          "unit": "mm",
+          "direction": "decrease the free travel of the part in its worst direction",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -10.19,
+          "detail": "esp32 devkitc held by pocket: free travel (mm) -z 0.00, +z 10.70, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 10.70 > 0.5; options the plant cannot build he..."
+        },
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5"
+          ],
+          "where": "board.usb (esp32 devkitc) is closed, but request names a micro-usb plug: \"One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on.\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "0 named plug connection(s) covered; uncovered: board.usb takes plug_microusb_b named by request, L1.5"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "be23625883d385f1",
+      "error_before": {
+        "hard_failures": 2,
+        "violation": 11.19
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "expose",
+          "target": "board.usb",
+          "value": true,
+          "words": "expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "request",
+              "quote": "One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on."
+            },
+            {
+              "source": "L1.5",
+              "quote": "With the lid on, a micro-USB plug has to push right into the board's receptacle through one opening in the end wall, at least 0.3 mm clear of the plug all round."
+            }
+          ],
+          "key": "expose:board.usb=True",
+          "letter": "B"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "C"
+        }
+      ],
+      "votes": {
+        "B": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "board.usb",
+        "value": true,
+        "words": "expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "request",
+            "quote": "One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on."
+          },
+          {
+            "source": "L1.5",
+            "quote": "With the lid on, a micro-USB plug has to push right into the board's receptacle through one opening in the end wall, at least 0.3 mm clear of the plug all round."
+          }
+        ],
+        "key": "expose:board.usb=True"
+      },
+      "chosen": "B",
+      "accepted": true,
+      "reason": "fewer failing checks (2 -> 1)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 10.19
+      },
+      "state_after": "17481f838ff15bb4",
+      "failing_after": [
+        "retention_board"
+      ],
+      "llm_calls": 3,
+      "secs": 3.01
+    },
+    {
+      "step": 2,
+      "state_before": "17481f838ff15bb4",
+      "error_before": {
+        "hard_failures": 1,
+        "violation": 10.19
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "set_retention",
+        "target": "board",
+        "value": "crush_ribs",
+        "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+        "targets": [
+          "retention_board"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_retention:board=crush_ribs"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (1 -> 0)",
+      "error_after": {
+        "hard_failures": 0,
+        "violation": 0
+      },
+      "state_after": "2e89a678a3032e91",
+      "failing_after": [],
+      "llm_calls": 3,
+      "secs": 2.7
+    }
+  ],
+  "stop": {
+    "reason": "every check passes",
+    "step": 2
+  },
+  "final": {
+    "state": {
+      "decisions": "2e89a678a3032e91",
+      "graph": "267d6b26ef6afd93",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "esp32_devkitc_v4",
+            1,
+            [
+              "usb"
+            ]
+          ]
+        ],
+        "stacks": {},
+        "faces": {
+          "wall[board.usb]": "-X"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": "screw_m3_selftap"
+        },
+        "retention": "crush_ribs"
+      }
+    },
+    "error": {
+      "hard_failures": 0,
+      "violation": 0
+    },
+    "failing": [],
+    "terms": []
+  },
+  "secs": 5.96,
+  "authority": {
+    "decisions": {
+      "plant": 4,
+      "llm": 2,
+      "guardrail": 1,
+      "semantic-rule": 1
+    },
+    "proposal": {
+      "llm_slots": 12,
+      "default_slots": 0,
+      "llm_contents_items": 1
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.7143
+  },
+  "accepted": [
+    {
+      "kind": "expose",
+      "target": "board.usb",
+      "value": true,
+      "words": "expose board.usb: open the enclosure wall for the esp32 devkitc's usb connector so a micro-usb plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "request",
+          "quote": "One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on."
+        },
+        {
+          "source": "L1.5",
+          "quote": "With the lid on, a micro-USB plug has to push right into the board's receptacle through one opening in the end wall, at least 0.3 mm clear of the plug all round."
+        }
+      ],
+      "key": "expose:board.usb=True",
+      "step": 1
+    },
+    {
+      "kind": "set_retention",
+      "target": "board",
+      "value": "crush_ribs",
+      "words": "hold the esp32 devkitc with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+      "targets": [
+        "retention_board"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_retention:board=crush_ribs",
+      "step": 2
+    }
+  ]
+}

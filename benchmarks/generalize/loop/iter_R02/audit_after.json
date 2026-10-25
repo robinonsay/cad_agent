@@ -1,0 +1,3941 @@
+{
+ "schema": 1,
+ "model": "ornith-1.5:9b",
+ "k": 3,
+ "sources": [
+  "benchmarks/generalize/loop/iter_005/*/*/",
+  "benchmarks/enclosure/loop/iter_012/target_s0/*/"
+ ],
+ "agent": true,
+ "packages": 85,
+ "control_decisions": 12,
+ "edge_decisions": 6,
+ "llm_calls": 41,
+ "cache_hits": 165,
+ "secs": 145.0,
+ "summary": {
+  "control": {
+   "original": {
+    "calls": 12,
+    "valid": 12,
+    "first_position_rate": 0.9167,
+    "chance": 0.4375,
+    "mean_consistency": 1.0,
+    "sensor_best_rate": 1.0,
+    "stop_rate": 0.0
+   },
+   "lettered": {
+    "calls": 36,
+    "valid": 36,
+    "first_position_rate": 0.3611,
+    "chance": 0.4375,
+    "mean_consistency": 0.9444,
+    "sensor_best_rate": 1.0,
+    "stop_rate": 0.0
+   },
+   "keyed": {
+    "calls": 36,
+    "valid": 36,
+    "first_position_rate": 0.4167,
+    "chance": 0.4375,
+    "mean_consistency": 1.0,
+    "sensor_best_rate": 1.0,
+    "stop_rate": 0.0
+   },
+   "planted_lettered": {
+    "calls": 10,
+    "valid": 10,
+    "first_position_rate": 0.0,
+    "chance": 0.3167,
+    "mean_consistency": 1.0,
+    "sensor_best_rate": 1.0,
+    "stop_rate": 0.0,
+    "planted_rate": 0.0
+   },
+   "planted_keyed": {
+    "calls": 30,
+    "valid": 30,
+    "first_position_rate": 0.3333,
+    "chance": 0.3167,
+    "mean_consistency": 1.0,
+    "sensor_best_rate": 1.0,
+    "stop_rate": 0.0,
+    "planted_rate": 0.0
+   },
+   "lettered_all_orders": {
+    "decisions": 12,
+    "same_action_every_order": 10,
+    "same_position_every_order_not_action": 0
+   },
+   "agent": {
+    "decisions": 12,
+    "confident": 11,
+    "mean_consistency": 0.9722,
+    "sensor_best": 12,
+    "planted_picked": 0,
+    "planted_decisions": 10,
+    "first_position_rate": 0.4286
+   }
+  },
+  "edge": {
+   "decisions": 6,
+   "item_answers": 32,
+   "first_position_rate": 0.2812,
+   "chance": 0.25,
+   "mean_consistency": 0.625
+  }
+ },
+ "decisions": [
+  {
+   "id": "G02_s5/20261025-112704/step1",
+   "family": "control",
+   "n": 4,
+   "ids": [
+    "expose:board.usb",
+    "expose:board.dc",
+    "set_closure:rebate",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:board.usb",
+    "expose:board.dc",
+    "set_closure:rebate"
+   ],
+   "planted": null,
+   "logged": {
+    "votes": {
+     "C": 2,
+     "D": 1
+    },
+    "chosen": "C",
+    "accepted": true,
+    "reason": "fewer failing checks (2 -> 1)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:board.usb",
+      "expose:board.dc",
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "C",
+     "pick": "set_closure:rebate",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "set_closure:rebate",
+      "expose:board.dc",
+      "expose:board.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "C",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb",
+      "stop",
+      "set_closure:rebate",
+      "expose:board.dc"
+     ],
+     "k": 1,
+     "answer": "D",
+     "pick": "expose:board.dc",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:board.dc",
+      "expose:board.usb",
+      "set_closure:rebate"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "expose:board.dc",
+     "position": 1,
+     "n": 4
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate",
+      "expose:board.dc",
+      "expose:board.usb"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb",
+     "reason": "The USB-B requirement (L1.5) is the worst-failing requirement and is currently closed, so exposing the USB connector is the single action that resolves the most critical failure and satisfies the request's need for an opening for the named,",
+     "pick": "expose:board.usb",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate",
+      "expose:board.dc",
+      "expose:board.usb"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb",
+     "reason": "The USB-B requirement (L1.5) is the worst-failing requirement and is currently closed, so exposing the USB connector is the single action that resolves the most critical failure and satisfies the request's need for an opening for the named,",
+     "pick": "expose:board.usb",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.dc",
+      "expose:board.usb",
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb",
+     "reason": "The USB-B failure is listed first and is the more fundamental blocker (a single shared opening), while the DC failure is a separate opening that can be addressed independently; exposing the USB connector resolves the top-ranked requirement,",
+     "pick": "expose:board.usb",
+     "position": 1,
+     "n": 4
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:board.usb",
+     "votes": {
+      "expose:board.usb": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:board.usb",
+       "stop",
+       "expose:board.dc",
+       "set_closure:rebate"
+      ],
+      [
+       "stop",
+       "expose:board.dc",
+       "set_closure:rebate",
+       "expose:board.usb"
+      ],
+      [
+       "expose:board.dc",
+       "set_closure:rebate",
+       "expose:board.usb",
+       "stop"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.25,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.25,
+     "consistency": 0.6667,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 1,
+      "expose:board.dc": 2
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.25,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "set_closure:rebate": 1
+     }
+    }
+   }
+  },
+  {
+   "id": "G02_s5/20261025-112704/step2",
+   "family": "control",
+   "n": 3,
+   "ids": [
+    "expose:board.usb",
+    "expose:board.dc",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:board.usb",
+    "expose:board.dc"
+   ],
+   "planted": {
+    "kind": "set_closure",
+    "target": "closure",
+    "value": "lip",
+    "why": "changes the closure; no failing check asks for it"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "violation 2 -> 1 (lower)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:board.usb",
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:board.usb",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb",
+      "stop",
+      "expose:board.dc"
+     ],
+     "k": 0,
+     "answer": "C",
+     "pick": "expose:board.dc",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:board.dc",
+      "expose:board.usb"
+     ],
+     "k": 1,
+     "answer": "C",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:board.dc",
+      "expose:board.usb"
+     ],
+     "k": 2,
+     "answer": "C",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.usb",
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb",
+     "reason": "The request names a USB-B plug (L1.5) as the connector that must pass through the wall, so exposing the USB opening satisfies the currently failing text_coverage check, whereas the DC check only fails because the cover is closed and would, ",
+     "pick": "expose:board.usb",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.dc",
+      "stop",
+      "expose:board.usb"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb",
+     "reason": "The USB-B requirement (L1.5) is currently failing because the USB connector is closed, and opening it for the arduino uno r3's USB connector lets the USB-B plug's shell and moulded handle pass through the end wall while the case stays shut.",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.dc",
+      "expose:board.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb",
+     "reason": "The USB-B requirement (L1.5) is the remaining failure, and exposing the USB connector on the short edge where the USB-B receptacle sits will open the wall so the USB-B plug and its moulded handle can pass through, resolving the last failing",
+     "pick": "expose:board.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "set_closure:lip",
+      "expose:board.usb",
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "C",
+     "pick": "expose:board.dc",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "set_closure:lip",
+      "expose:board.usb",
+      "stop",
+      "expose:board.dc"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb",
+     "reason": "The failing text_coverage checks require openings for both the USB-B and DC plugs, but only one action is allowed per step; exposing the USB-B connector first resolves the most prominent failure (L1.5) and is the natural first step before a",
+     "pick": "expose:board.usb",
+     "position": 1,
+     "n": 4
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.dc",
+      "stop",
+      "expose:board.usb",
+      "set_closure:lip"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb",
+     "reason": "The USB-B requirement (L1.5) is the remaining failing check, so opening the wall for the USB connector resolves the worst remaining failure, while the DC opening is already satisfied.",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.dc",
+      "stop",
+      "expose:board.usb",
+      "set_closure:lip"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb",
+     "reason": "The USB-B requirement (L1.5) is the remaining failing check, so opening the wall for the USB connector resolves the worst remaining failure, while the DC opening is already satisfied.",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 4
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:board.usb",
+     "votes": {
+      "expose:board.usb": 2,
+      "expose:board.dc": 1
+     },
+     "consistency": 0.6667,
+     "confident": false,
+     "orders": [
+      [
+       "expose:board.usb",
+       "expose:board.dc",
+       "stop"
+      ],
+      [
+       "expose:board.dc",
+       "stop",
+       "expose:board.usb"
+      ],
+      [
+       "stop",
+       "expose:board.usb",
+       "expose:board.dc"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:board.usb",
+     "votes": {
+      "expose:board.usb": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:board.dc",
+       "expose:board.usb",
+       "set_closure:lip"
+      ],
+      [
+       "expose:board.dc",
+       "expose:board.usb",
+       "set_closure:lip",
+       "stop"
+      ],
+      [
+       "expose:board.usb",
+       "set_closure:lip",
+       "stop",
+       "expose:board.dc"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 0.6667,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.dc": 1,
+      "expose:board.usb": 2
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.25,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.25,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.dc": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "G02_s5/20261025-112704/step3",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "expose:board.dc",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:board.dc"
+   ],
+   "planted": {
+    "kind": "close",
+    "target": "board.usb",
+    "value": true,
+    "why": "closes an opening whose plug the text names: the coverage sensor reports it failing again"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (1 -> 0)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:board.dc",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "A",
+     "pick": "expose:board.dc",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:board.dc"
+     ],
+     "k": 1,
+     "answer": "B",
+     "pick": "expose:board.dc",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "A",
+     "pick": "expose:board.dc",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:board.dc"
+     ],
+     "k": 0,
+     "answer": "expose:board.dc",
+     "reason": "The only remaining failure is that the DC barrel jack is closed while the specification names a DC plug that must fully enter through a separate opening in that same end wall, so opening the wall for the DC connector is exactly what the one",
+     "pick": "expose:board.dc",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:board.dc"
+     ],
+     "k": 1,
+     "answer": "expose:board.dc",
+     "reason": "The only remaining failure is that the DC barrel jack is closed while the specification names a DC plug that must fully enter through a separate opening in that same end wall, so opening the wall for the DC connector is exactly what the one",
+     "pick": "expose:board.dc",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:board.dc",
+     "reason": "The request explicitly requires the DC barrel plug (with its moulded handle) to pass through the wall while the cover is on, so opening the enclosure for the DC connector is needed to satisfy the failing text_coverage requirement.",
+     "pick": "expose:board.dc",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "close:board.usb",
+      "expose:board.dc",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:board.dc",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.dc",
+      "close:board.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:board.dc",
+     "reason": "The request names a 5.5 mm DC barrel jack that must be reachable with the cover on, so the DC opening must be opened (the USB was already correctly opened in step 2, leaving only the DC requirement failing).",
+     "pick": "expose:board.dc",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "close:board.usb",
+      "stop",
+      "expose:board.dc"
+     ],
+     "k": 1,
+     "answer": "expose:board.dc",
+     "reason": "The request explicitly names the DC barrel plug (5.5 mm) as needing to pass through the wall while the cover is on, and the only remaining failure is that board.dc is closed; exposing it opens that opening so the DC plug can plug in with a ",
+     "pick": "expose:board.dc",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "expose:board.dc",
+      "close:board.usb"
+     ],
+     "k": 2,
+     "answer": "expose:board.dc",
+     "reason": "The request explicitly requires the DC barrel plug (with its moulded handle) to pass through the wall while the cover is on, and text_coverage L1.6 fails because board.dc is closed; exposing board.dc opens that opening so the DC plug can be",
+     "pick": "expose:board.dc",
+     "position": 1,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:board.dc",
+     "votes": {
+      "expose:board.dc": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:board.dc",
+       "stop"
+      ],
+      [
+       "stop",
+       "expose:board.dc"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:board.dc",
+     "votes": {
+      "expose:board.dc": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:board.dc",
+       "close:board.usb",
+       "stop"
+      ],
+      [
+       "close:board.usb",
+       "stop",
+       "expose:board.dc"
+      ],
+      [
+       "stop",
+       "expose:board.dc",
+       "close:board.usb"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.dc": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.dc": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.dc": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.dc": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.dc": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "G04_s5/20261025-112944/step1",
+   "family": "control",
+   "n": 3,
+   "ids": [
+    "expose:board.usb_data",
+    "expose:board.usb_power",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:board.usb_data",
+    "expose:board.usb_power"
+   ],
+   "planted": {
+    "kind": "close",
+    "target": "board.hdmi",
+    "value": true,
+    "why": "closes an opening the design has; no failing check asks for it"
+   },
+   "logged": {
+    "votes": {
+     "B": 1,
+     "A": 2
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "violation 2 -> 1 (lower)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:board.usb_data",
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:board.usb_data",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb_power",
+      "expose:board.usb_data",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:board.usb_data",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb_data",
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "A",
+     "pick": "expose:board.usb_data",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb_power",
+      "stop",
+      "expose:board.usb_data"
+     ],
+     "k": 2,
+     "answer": "C",
+     "pick": "expose:board.usb_data",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.usb_power",
+      "stop",
+      "expose:board.usb_data"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb_data",
+     "reason": "The failing requirement text_coverage explicitly names the data micro-USB plug (L1.6) as needing a fully-seating opening, and the design currently has usb_data closed while usb_power is already open, so exposing usb_data resolves the named,",
+     "pick": "expose:board.usb_data",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:board.usb_data",
+      "expose:board.usb_power"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb_data",
+     "reason": "The first failing requirement (text_coverage) is about usb_data being closed while the text explicitly names a micro-USB data plug that must seat through an opening; exposing usb_data directly resolves this top-priority failure, whereas usb",
+     "pick": "expose:board.usb_data",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.usb_data",
+      "stop",
+      "expose:board.usb_power"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb_data",
+     "reason": "The failing requirement text_coverage explicitly names the data micro-USB plug (L1.6) as needing a fully-seating opening, and the measurement shows board.usb_data is closed while board.usb_power is already open, so exposing the data port is",
+     "pick": "expose:board.usb_data",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "close:board.hdmi",
+      "expose:board.usb_data",
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:board.usb_data",
+     "position": 1,
+     "n": 4
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.usb_data",
+      "close:board.hdmi",
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb_data",
+     "reason": "The text explicitly requires both micro-USB plugs (data and power) to seat fully through openings in the same long wall with the lid shut, and the design currently has usb_data closed while usb_power is already open, so exposing usb_data is",
+     "pick": "expose:board.usb_data",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.usb_power",
+      "stop",
+      "close:board.hdmi",
+      "expose:board.usb_data"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb_data",
+     "reason": "The failing requirements are text_coverage for usb_data and usb_power, where the text explicitly names two micro-USB plugs that must seat fully through two openings in the same long wall; usb_data is currently closed (a hard failure), while",
+     "pick": "expose:board.usb_data",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.usb_data",
+      "expose:board.usb_power",
+      "stop",
+      "close:board.hdmi"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb_data",
+     "reason": "Requirement 1 fails because both usb_data and usb_power openings are closed while the text explicitly names two micro-USB plugs that must seat through that long wall; exposing usb_data resolves the first failing requirement, and exposing it",
+     "pick": "expose:board.usb_data",
+     "position": 0,
+     "n": 4
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:board.usb_data",
+     "votes": {
+      "expose:board.usb_data": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:board.usb_power",
+       "expose:board.usb_data"
+      ],
+      [
+       "expose:board.usb_power",
+       "expose:board.usb_data",
+       "stop"
+      ],
+      [
+       "expose:board.usb_data",
+       "stop",
+       "expose:board.usb_power"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:board.usb_data",
+     "votes": {
+      "expose:board.usb_data": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:board.usb_data",
+       "close:board.hdmi",
+       "expose:board.usb_power"
+      ],
+      [
+       "expose:board.usb_data",
+       "close:board.hdmi",
+       "expose:board.usb_power",
+       "stop"
+      ],
+      [
+       "close:board.hdmi",
+       "expose:board.usb_power",
+       "stop",
+       "expose:board.usb_data"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_data": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_data": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_data": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.25,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_data": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.25,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_data": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "G04_s5/20261025-112944/step2",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "expose:board.usb_power",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:board.usb_power"
+   ],
+   "planted": {
+    "kind": "close",
+    "target": "board.usb_data",
+    "value": true,
+    "why": "closes an opening whose plug the text names: the coverage sensor reports it failing again"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (1 -> 0)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:board.usb_power",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "A",
+     "pick": "expose:board.usb_power",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "A",
+     "pick": "expose:board.usb_power",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:board.usb_power"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "expose:board.usb_power",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:board.usb_power"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb_power",
+     "reason": "Requirement 1 explicitly names the micro-USB plug for usb_power and demands it seat fully through an opening in the closed lid, so exposing usb_power directly satisfies that stated requirement, whereas usb_data already passes and exposing a",
+     "pick": "expose:board.usb_power",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb_power",
+     "reason": "The failing requirement text_coverage names a micro-USB plug (L1.6) that must seat fully through an opening in the long wall while the lid is shut, but usb_power is currently closed; opening the wall for usb_power provides the required gap,",
+     "pick": "expose:board.usb_power",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:board.usb_power"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb_power",
+     "reason": "Requirement 1 explicitly names the micro-USB plug for usb_power and demands it seat fully through an opening in the closed lid, so exposing usb_power directly satisfies that stated requirement, whereas usb_data already passes and exposing a",
+     "pick": "expose:board.usb_power",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "close:board.usb_data",
+      "expose:board.usb_power",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:board.usb_power",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.usb_power",
+      "close:board.usb_data",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb_power",
+     "reason": "The failing requirement text_coverage names the power connector as a micro-USB plug that must seat fully through an opening in the long wall with the lid shut, but usb_power is currently closed; exposing it opens that wall so the micro-USB ",
+     "pick": "expose:board.usb_power",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.usb_power",
+      "close:board.usb_data",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb_power",
+     "reason": "The failing requirement text_coverage names the power connector as a micro-USB plug that must seat fully through an opening in the long wall with the lid shut, but usb_power is currently closed; exposing it opens that wall so the micro-USB ",
+     "pick": "expose:board.usb_power",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "close:board.usb_data",
+      "expose:board.usb_power"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb_power",
+     "reason": "The failing requirement text_coverage names the micro-USB power plug as the one that must seat fully through an opening in the long wall with the lid shut, so opening the wall for board.usb_power directly satisfies that stated requirement,",
+     "pick": "expose:board.usb_power",
+     "position": 2,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:board.usb_power",
+     "votes": {
+      "expose:board.usb_power": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:board.usb_power",
+       "stop"
+      ],
+      [
+       "stop",
+       "expose:board.usb_power"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:board.usb_power",
+     "votes": {
+      "expose:board.usb_power": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:board.usb_power",
+       "close:board.usb_data",
+       "stop"
+      ],
+      [
+       "close:board.usb_data",
+       "stop",
+       "expose:board.usb_power"
+      ],
+      [
+       "stop",
+       "expose:board.usb_power",
+       "close:board.usb_data"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_power": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_power": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_power": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_power": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb_power": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "G08_s5/20261025-113229/step1",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "expose:board.usb",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:board.usb"
+   ],
+   "planted": {
+    "kind": "set_closure",
+    "target": "closure",
+    "value": "rebate",
+    "why": "changes the closure; no failing check asks for it"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (1 -> 0)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:board.usb",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:board.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "A",
+     "pick": "expose:board.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:board.usb",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "A",
+     "pick": "expose:board.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:board.usb"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "expose:board.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:board.usb"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb",
+     "reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must reach the Pico through a single end-wall opening with the lid shut, and the current design has that connector closed, so exposing it is the only action that satisfies ",
+     "pick": "expose:board.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:board.usb"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb",
+     "reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must reach the Pico through a single end-wall opening with the lid shut, and the current design has that connector closed, so exposing it is the only action that satisfies ",
+     "pick": "expose:board.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:board.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb",
+     "reason": "The failing requirement L1.7 demands a micro-USB opening in an end wall so a plug can reach the Pico with the lid shut, and exposing board.usb creates exactly that opening, which the current design lacks.",
+     "pick": "expose:board.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "set_closure:rebate",
+      "expose:board.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:board.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "set_closure:rebate",
+      "stop",
+      "expose:board.usb"
+     ],
+     "k": 0,
+     "answer": "expose:board.usb",
+     "reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must be pushable all the way in through a single end-wall opening with the lid shut, and the current design has board.usb closed, so exposing that connector is the only way",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate",
+      "expose:board.usb"
+     ],
+     "k": 1,
+     "answer": "expose:board.usb",
+     "reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must reach the Pico through a single end-wall opening with the lid shut, and the current design has the USB connector closed, so exposing it is the only action that adds an",
+     "pick": "expose:board.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:board.usb",
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:board.usb",
+     "reason": "The failing requirement L1.7 needs an opening for the micro-USB connector so a plug can reach the Pico with the lid shut, and exposing board.usb creates exactly that opening.",
+     "pick": "expose:board.usb",
+     "position": 0,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:board.usb",
+     "votes": {
+      "expose:board.usb": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:board.usb"
+      ],
+      [
+       "expose:board.usb",
+       "stop"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:board.usb",
+     "votes": {
+      "expose:board.usb": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:board.usb",
+       "set_closure:rebate"
+      ],
+      [
+       "expose:board.usb",
+       "set_closure:rebate",
+       "stop"
+      ],
+      [
+       "set_closure:rebate",
+       "stop",
+       "expose:board.usb"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:board.usb": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "G11_s5/20261025-113508/step1",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "expose:connector_1.dc_in",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:connector_1.dc_in"
+   ],
+   "planted": {
+    "kind": "set_closure",
+    "target": "closure",
+    "value": "rebate",
+    "why": "changes the closure; no failing check asks for it"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (1 -> 0)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:connector_1.dc_in",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:connector_1.dc_in",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:connector_1.dc_in"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:connector_1.dc_in",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:connector_1.dc_in",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "A",
+     "pick": "expose:connector_1.dc_in",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:connector_1.dc_in"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "expose:connector_1.dc_in",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:connector_1.dc_in",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:connector_1.dc_in",
+     "reason": "The request requires a 5.5\u00d72.1 mm DC plug to mate with the jack while the lid is on, but the dc_in opening is closed; exposing it creates the needed plug access, and the vent slots are already placed so that requirement is satisfied.",
+     "pick": "expose:connector_1.dc_in",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:connector_1.dc_in",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "expose:connector_1.dc_in",
+     "reason": "The request requires a 5.5\u00d72.1 mm DC plug to mate with the jack while the lid is on, but the dc_in opening is closed; exposing it creates the needed plug access, and the vent slots are already placed so that requirement is satisfied.",
+     "pick": "expose:connector_1.dc_in",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:connector_1.dc_in"
+     ],
+     "k": 2,
+     "answer": "expose:connector_1.dc_in",
+     "reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in connector must be opened in the enclosure wall; this directly satisfies the failing text_coverage requirement, and the vent slots are already ",
+     "pick": "expose:connector_1.dc_in",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "set_closure:rebate",
+      "expose:connector_1.dc_in",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:connector_1.dc_in",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate",
+      "expose:connector_1.dc_in"
+     ],
+     "k": 0,
+     "answer": "expose:connector_1.dc_in",
+     "reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in opening must be cut into the wall (which this action does), and the vent rule is already satisfied by the exhaust slots on the opposite end, i",
+     "pick": "expose:connector_1.dc_in",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "expose:connector_1.dc_in",
+      "set_closure:rebate"
+     ],
+     "k": 1,
+     "answer": "expose:connector_1.dc_in",
+     "reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in connector must be opened in the enclosure wall; this directly satisfies the failing text_coverage requirement, whereas the vent failure is a '",
+     "pick": "expose:connector_1.dc_in",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "expose:connector_1.dc_in",
+      "set_closure:rebate"
+     ],
+     "k": 2,
+     "answer": "expose:connector_1.dc_in",
+     "reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in connector must be opened in the enclosure wall; this directly satisfies the failing text_coverage requirement, whereas the vent failure is a '",
+     "pick": "expose:connector_1.dc_in",
+     "position": 1,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:connector_1.dc_in",
+     "votes": {
+      "expose:connector_1.dc_in": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:connector_1.dc_in",
+       "stop"
+      ],
+      [
+       "stop",
+       "expose:connector_1.dc_in"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:connector_1.dc_in",
+     "votes": {
+      "expose:connector_1.dc_in": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:connector_1.dc_in",
+       "stop",
+       "set_closure:rebate"
+      ],
+      [
+       "stop",
+       "set_closure:rebate",
+       "expose:connector_1.dc_in"
+      ],
+      [
+       "set_closure:rebate",
+       "expose:connector_1.dc_in",
+       "stop"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:connector_1.dc_in": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:connector_1.dc_in": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:connector_1.dc_in": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:connector_1.dc_in": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:connector_1.dc_in": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "G13_s5/20261025-113758/step1",
+   "family": "control",
+   "n": 3,
+   "ids": [
+    "expose:module_1.usb",
+    "set_closure:rebate",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:module_1.usb",
+    "set_closure:rebate"
+   ],
+   "planted": null,
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (3 -> 2)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:module_1.usb",
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:module_1.usb",
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "set_closure:rebate",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "set_closure:rebate",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate",
+      "expose:module_1.usb"
+     ],
+     "k": 0,
+     "answer": "expose:module_1.usb",
+     "reason": "The request explicitly requires a micro-USB opening in the rear wall so the cable can plug in with the lid on, which directly satisfies text_coverage (L1.5); the other failing requirements (closure_evidence and bbox) are addressed by the 'L",
+     "pick": "expose:module_1.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate",
+      "expose:module_1.usb"
+     ],
+     "k": 1,
+     "answer": "expose:module_1.usb",
+     "reason": "The request explicitly requires a micro-USB opening in the rear wall so the cable can plug in with the lid on, which directly satisfies text_coverage (L1.5); the other failing requirements (closure_evidence and bbox) are addressed by the 'L",
+     "pick": "expose:module_1.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "set_closure:rebate",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:module_1.usb",
+     "reason": "The request explicitly requires a micro-USB opening in the rear wall so the cable can plug in with the lid on, and this is the only failing requirement that names a specific closure type (text_coverage); the lid closure already matches the ",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:module_1.usb",
+     "votes": {
+      "expose:module_1.usb": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "set_closure:rebate",
+       "expose:module_1.usb"
+      ],
+      [
+       "set_closure:rebate",
+       "expose:module_1.usb",
+       "stop"
+      ],
+      [
+       "expose:module_1.usb",
+       "stop",
+       "set_closure:rebate"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 1
+     }
+    }
+   }
+  },
+  {
+   "id": "G13_s5/20261025-113758/step2",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "set_closure:rebate",
+    "stop"
+   ],
+   "sensor_best": [
+    "set_closure:rebate"
+   ],
+   "planted": {
+    "kind": "close",
+    "target": "module_1.usb",
+    "value": true,
+    "why": "closes an opening whose plug the text names: the coverage sensor reports it failing again"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (2 -> 1)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "set_closure:rebate",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "set_closure:rebate"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "set_closure:rebate",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "A",
+     "pick": "set_closure:rebate",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "set_closure:rebate"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "set_closure:rebate",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate"
+     ],
+     "k": 0,
+     "answer": "set_closure:rebate",
+     "reason": "The request's failing requirement closure_evidence (L1.8) explicitly names a rebate closure and requires the text to name that closure type, so switching from lip to rebate satisfies L1.8; the bbox requirement is already met (84.17 x 64.17,",
+     "pick": "set_closure:rebate",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "set_closure:rebate",
+     "reason": "The request describes a lid that rises through a hole in the top plate and presses switches from above, so the lid is a flat plate that sits down in a rebate cut in the tops of the walls (matching L1.8's named closure), which set_closure:re",
+     "pick": "set_closure:rebate",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "set_closure:rebate"
+     ],
+     "k": 2,
+     "answer": "set_closure:rebate",
+     "reason": "The request's failing requirement closure_evidence (L1.8) explicitly names a rebate closure and requires the text to name that closure type, so switching from lip to rebate satisfies L1.8; the bbox requirement is already met (84.17 x 64.17,",
+     "pick": "set_closure:rebate",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "close:module_1.usb",
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "set_closure:rebate",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "set_closure:rebate",
+      "close:module_1.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "set_closure:rebate",
+     "reason": "The request describes a lid that rises through a hole in the top plate and presses switches from above, so the lid is a flat plate that sits down in a rebate cut in the tops of the walls (matching L1.8's named closure), which set_closure:rb",
+     "pick": "set_closure:rebate",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "set_closure:rebate",
+      "stop",
+      "close:module_1.usb"
+     ],
+     "k": 1,
+     "answer": "set_closure:rebate",
+     "reason": "The only failing requirement is closure_evidence (L1.8), which explicitly names a rebate closure; switching the lid from lip to rebate makes the named closure match the design, while the bbox requirement is already satisfied (84.17 x 64.17,",
+     "pick": "set_closure:rebate",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "close:module_1.usb",
+      "set_closure:rebate",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "set_closure:rebate",
+     "reason": "The request's lid closure is a flat plate that drops into a rebate in the top of the walls (matching L1.8), and the current lip closure fails closure_evidence; switching to rebate fixes that check, and the outside size stays within the 95 x",
+     "pick": "set_closure:rebate",
+     "position": 1,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "set_closure:rebate",
+     "votes": {
+      "set_closure:rebate": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "set_closure:rebate",
+       "stop"
+      ],
+      [
+       "stop",
+       "set_closure:rebate"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "set_closure:rebate",
+     "votes": {
+      "set_closure:rebate": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "close:module_1.usb",
+       "set_closure:rebate",
+       "stop"
+      ],
+      [
+       "set_closure:rebate",
+       "stop",
+       "close:module_1.usb"
+      ],
+      [
+       "stop",
+       "close:module_1.usb",
+       "set_closure:rebate"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "set_closure:rebate": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "set_closure:rebate": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "set_closure:rebate": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "set_closure:rebate": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "set_closure:rebate": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "V1_s5/20261025-115709/step1",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "expose:module_1.usb",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:module_1.usb"
+   ],
+   "planted": {
+    "kind": "close",
+    "target": "connector_1.jack",
+    "value": true,
+    "why": "closes an opening the design has; no failing check asks for it"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (1 -> 0)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 1,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 demands that both the micro-USB plug and the 3.5 mm plug plug fully through separate openings in the same end wall with the lid closed; the 3.5 mm jack is already open, so exposing the Pico's USB connector to a ",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 demands that both the micro-USB plug and the 3.5 mm plug plug fully through separate openings in the same end wall with the lid closed; the 3.5 mm jack is already open, so exposing the Pico's USB connector to a ",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 demands that both the micro-USB plug and the 3.5 mm plug plug fully through separate openings in the same end wall with the lid closed; the 3.5 mm jack is already open, so exposing the Pico's USB connector to a ",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "close:connector_1.jack",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:module_1.usb",
+      "close:connector_1.jack",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement (L1.5) demands that both the micro-USB plug and the 3.5 mm plug reach their connectors through separate openings in the same end wall with the lid closed; the jack is already open, so exposing the Pico's USB opening\u2014",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "expose:module_1.usb",
+      "close:connector_1.jack"
+     ],
+     "k": 1,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully through an opening in the same end wall with the lid closed, and the current design has the Pico's USB connector closed while the jack is already open\u2014so I ",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "close:connector_1.jack",
+      "expose:module_1.usb"
+     ],
+     "k": 2,
+     "answer": "expose:module_1.usb",
+     "reason": "L1.5 requires both the micro-USB plug and the 3.5 mm plug to reach their connectors through separate openings in the same end wall with the lid closed; the jack already passes through, so opening the wall for the Pico's USB is what's needed",
+     "pick": "expose:module_1.usb",
+     "position": 2,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:module_1.usb",
+     "votes": {
+      "expose:module_1.usb": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:module_1.usb"
+      ],
+      [
+       "expose:module_1.usb",
+       "stop"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:module_1.usb",
+     "votes": {
+      "expose:module_1.usb": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "close:connector_1.jack",
+       "stop",
+       "expose:module_1.usb"
+      ],
+      [
+       "stop",
+       "expose:module_1.usb",
+       "close:connector_1.jack"
+      ],
+      [
+       "expose:module_1.usb",
+       "close:connector_1.jack",
+       "stop"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "V2_s5/20261025-115847/step1",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "expose:module_1.usb",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:module_1.usb"
+   ],
+   "planted": {
+    "kind": "close",
+    "target": "connector_1.jack",
+    "value": true,
+    "why": "closes an opening the design has; no failing check asks for it"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (1 -> 0)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 1,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage (L1.5, L1.6) states that with the lid closed a micro-USB cable must plug fully into the Pico through an opening in the end wall without touching the enclosure, but module_1.usb is currently closed; the ",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage (L1.5, L1.6) states that with the lid closed a micro-USB cable must plug fully into the Pico through an opening in the end wall without touching the enclosure, but module_1.usb is currently closed; the ",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage (L1.5, L1.6) states that with the lid closed a micro-USB cable must plug fully into the Pico through an opening in the end wall without touching the enclosure, but module_1.usb is currently closed; the ",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "close:connector_1.jack",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop",
+      "close:connector_1.jack"
+     ],
+     "k": 0,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage (L1.5, L1.6) states that a micro-USB cable must plug fully into the Pico through an opening in the end wall with the lid closed, but the usb connector is currently closed; exposing it creates the needed",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "expose:module_1.usb",
+      "close:connector_1.jack"
+     ],
+     "k": 1,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage (L1.5, L1.6) states that a micro-USB cable must plug fully into the Pico through an opening in the end wall with the lid closed, and the only closed connector is module_1.usb, so exposing it directly un",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "close:connector_1.jack",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the Pico through an opening in the end wall with the lid closed; the current design has that opening closed, so exposing module_1.usb is the only step\u2014",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:module_1.usb",
+     "votes": {
+      "expose:module_1.usb": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:module_1.usb"
+      ],
+      [
+       "expose:module_1.usb",
+       "stop"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:module_1.usb",
+     "votes": {
+      "expose:module_1.usb": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "stop",
+       "expose:module_1.usb",
+       "close:connector_1.jack"
+      ],
+      [
+       "expose:module_1.usb",
+       "close:connector_1.jack",
+       "stop"
+      ],
+      [
+       "close:connector_1.jack",
+       "stop",
+       "expose:module_1.usb"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "V3_s5/20261025-120025/step1",
+   "family": "control",
+   "n": 2,
+   "ids": [
+    "expose:module_1.usb",
+    "stop"
+   ],
+   "sensor_best": [
+    "expose:module_1.usb"
+   ],
+   "planted": {
+    "kind": "close",
+    "target": "connector_1.jack",
+    "value": true,
+    "why": "closes an opening the design has; no failing check asks for it"
+   },
+   "logged": {
+    "votes": {
+     "A": 3
+    },
+    "chosen": "A",
+    "accepted": true,
+    "reason": "fewer failing checks (1 -> 0)"
+   },
+   "calls": [
+    {
+     "format": "original",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": -1,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "A",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "lettered",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 2,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 0,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall, but the usb connector is currently closed; exposing it creates the required opening so the micro-USB,",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 1,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall, but the usb connector is currently closed; exposing it creates the required opening so the micro-USB,",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 2
+    },
+    {
+     "format": "keyed",
+     "order": [
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 2,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement text_coverage (L1.5) explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; the current design has the USB connector closed, so exposing it",
+     "pick": "expose:module_1.usb",
+     "position": 0,
+     "n": 2
+    },
+    {
+     "format": "planted_lettered",
+     "order": [
+      "close:connector_1.jack",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 0,
+     "answer": "B",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "close:connector_1.jack",
+      "stop",
+      "expose:module_1.usb"
+     ],
+     "k": 0,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; the current design has that USB opening closed, so exposing it is the only way\u2014",
+     "pick": "expose:module_1.usb",
+     "position": 2,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "close:connector_1.jack",
+      "expose:module_1.usb",
+      "stop"
+     ],
+     "k": 1,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; the current design has that opening closed, so exposing it is the only action (",
+     "pick": "expose:module_1.usb",
+     "position": 1,
+     "n": 3
+    },
+    {
+     "format": "planted_keyed",
+     "order": [
+      "stop",
+      "close:connector_1.jack",
+      "expose:module_1.usb"
+     ],
+     "k": 2,
+     "answer": "expose:module_1.usb",
+     "reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; exposing the usb connector creates that opening, while the jack is already open",
+     "pick": "expose:module_1.usb",
+     "position": 2,
+     "n": 3
+    }
+   ],
+   "agent": {
+    "menu": {
+     "pick": "expose:module_1.usb",
+     "votes": {
+      "expose:module_1.usb": 2
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:module_1.usb",
+       "stop"
+      ],
+      [
+       "stop",
+       "expose:module_1.usb"
+      ]
+     ],
+     "first_position": 1
+    },
+    "planted": {
+     "pick": "expose:module_1.usb",
+     "votes": {
+      "expose:module_1.usb": 3
+     },
+     "consistency": 1.0,
+     "confident": true,
+     "orders": [
+      [
+       "expose:module_1.usb",
+       "close:connector_1.jack",
+       "stop"
+      ],
+      [
+       "close:connector_1.jack",
+       "stop",
+       "expose:module_1.usb"
+      ],
+      [
+       "stop",
+       "expose:module_1.usb",
+       "close:connector_1.jack"
+      ]
+     ],
+     "first_position": 1
+    }
+   },
+   "metrics": {
+    "keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.3333,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "lettered": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.6667,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     }
+    },
+    "original": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 1.0,
+     "chance": 0.5,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 1
+     }
+    },
+    "planted_keyed": {
+     "calls": 3,
+     "valid": 3,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 3
+     },
+     "planted_rate": 0.0
+    },
+    "planted_lettered": {
+     "calls": 1,
+     "valid": 1,
+     "first_position_rate": 0.0,
+     "chance": 0.3333,
+     "consistency": 1.0,
+     "sensor_best_rate": 1.0,
+     "stop_rate": 0.0,
+     "picks": {
+      "expose:module_1.usb": 1
+     },
+     "planted_rate": 0.0
+    }
+   }
+  },
+  {
+   "id": "E1-01_s5/20261025-115543/edge1",
+   "family": "edge",
+   "n": 4,
+   "items": [
+    "module_1",
+    "connector_1"
+   ],
+   "calls": [
+    {
+     "format": "original",
+     "k": -1,
+     "item": "module_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "original",
+     "k": -1,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "+X",
+     "position": 1,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "module_1",
+     "order": [
+      "+X",
+      "-Y",
+      "-X",
+      "+Y"
+     ],
+     "pick": "+X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "connector_1",
+     "order": [
+      "+X",
+      "-Y",
+      "-X",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "module_1",
+     "order": [
+      "-X",
+      "-Y",
+      "+X",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "-Y",
+      "+X",
+      "+Y"
+     ],
+     "pick": "+X",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "module_1",
+     "order": [
+      "-Y",
+      "-X",
+      "+X",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 1,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "connector_1",
+     "order": [
+      "-Y",
+      "-X",
+      "+X",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 1,
+     "n": 4
+    }
+   ],
+   "metrics": {
+    "first_position_rate": 0.375,
+    "chance": 0.25,
+    "consistency": 0.625,
+    "per_item": {
+     "module_1": {
+      "picks": {
+       "-X": 3,
+       "+X": 1
+      },
+      "consistency": 0.75
+     },
+     "connector_1": {
+      "picks": {
+       "+X": 2,
+       "-X": 2
+      },
+      "consistency": 0.5
+     }
+    }
+   }
+  },
+  {
+   "id": "G11_s5/20261025-113508/edge1",
+   "family": "edge",
+   "n": 4,
+   "items": [
+    "connector_1"
+   ],
+   "calls": [
+    {
+     "format": "original",
+     "k": -1,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "connector_1",
+     "order": [
+      "+Y",
+      "-Y",
+      "+X",
+      "-X"
+     ],
+     "pick": "+X",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "connector_1",
+     "order": [
+      "+Y",
+      "-X",
+      "+X",
+      "-Y"
+     ],
+     "pick": "-Y",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "connector_1",
+     "order": [
+      "+X",
+      "-Y",
+      "+Y",
+      "-X"
+     ],
+     "pick": "-X",
+     "position": 3,
+     "n": 4
+    }
+   ],
+   "metrics": {
+    "first_position_rate": 0.25,
+    "chance": 0.25,
+    "consistency": 0.5,
+    "per_item": {
+     "connector_1": {
+      "picks": {
+       "-X": 2,
+       "+X": 1,
+       "-Y": 1
+      },
+      "consistency": 0.5
+     }
+    }
+   }
+  },
+  {
+   "id": "G13_s5/20261025-113758/edge1",
+   "family": "edge",
+   "n": 4,
+   "items": [
+    "module_1"
+   ],
+   "calls": [
+    {
+     "format": "original",
+     "k": -1,
+     "item": "module_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "+Y",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "module_1",
+     "order": [
+      "+X",
+      "-Y",
+      "-X",
+      "+Y"
+     ],
+     "pick": "+Y",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "module_1",
+     "order": [
+      "+X",
+      "-Y",
+      "+Y",
+      "-X"
+     ],
+     "pick": "+X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "module_1",
+     "order": [
+      "+Y",
+      "+X",
+      "-Y",
+      "-X"
+     ],
+     "pick": "+X",
+     "position": 1,
+     "n": 4
+    }
+   ],
+   "metrics": {
+    "first_position_rate": 0.25,
+    "chance": 0.25,
+    "consistency": 0.5,
+    "per_item": {
+     "module_1": {
+      "picks": {
+       "+Y": 2,
+       "+X": 2
+      },
+      "consistency": 0.5
+     }
+    }
+   }
+  },
+  {
+   "id": "V1_s5/20261025-115709/edge1",
+   "family": "edge",
+   "n": 4,
+   "items": [
+    "connector_1"
+   ],
+   "calls": [
+    {
+     "format": "original",
+     "k": -1,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "connector_1",
+     "order": [
+      "-Y",
+      "-X",
+      "+Y",
+      "+X"
+     ],
+     "pick": "+X",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "connector_1",
+     "order": [
+      "+Y",
+      "-Y",
+      "+X",
+      "-X"
+     ],
+     "pick": "-X",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "connector_1",
+     "order": [
+      "-Y",
+      "+X",
+      "-X",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 2,
+     "n": 4
+    }
+   ],
+   "metrics": {
+    "first_position_rate": 0.25,
+    "chance": 0.25,
+    "consistency": 0.75,
+    "per_item": {
+     "connector_1": {
+      "picks": {
+       "-X": 3,
+       "+X": 1
+      },
+      "consistency": 0.75
+     }
+    }
+   }
+  },
+  {
+   "id": "V1_s5/20261025-115709/edge2",
+   "family": "edge",
+   "n": 4,
+   "items": [
+    "module_1",
+    "connector_1"
+   ],
+   "calls": [
+    {
+     "format": "original",
+     "k": -1,
+     "item": "module_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "original",
+     "k": -1,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "+X",
+     "position": 1,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "module_1",
+     "order": [
+      "-X",
+      "-Y",
+      "+X",
+      "+Y"
+     ],
+     "pick": "-X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "-Y",
+      "+X",
+      "+Y"
+     ],
+     "pick": "+X",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "module_1",
+     "order": [
+      "-X",
+      "-Y",
+      "+Y",
+      "+X"
+     ],
+     "pick": "-X",
+     "position": 0,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "-Y",
+      "+Y",
+      "+X"
+     ],
+     "pick": "+X",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "module_1",
+     "order": [
+      "-Y",
+      "+X",
+      "+Y",
+      "-X"
+     ],
+     "pick": "-X",
+     "position": 3,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "connector_1",
+     "order": [
+      "-Y",
+      "+X",
+      "+Y",
+      "-X"
+     ],
+     "pick": "-X",
+     "position": 3,
+     "n": 4
+    }
+   ],
+   "metrics": {
+    "first_position_rate": 0.375,
+    "chance": 0.25,
+    "consistency": 0.875,
+    "per_item": {
+     "module_1": {
+      "picks": {
+       "-X": 4
+      },
+      "consistency": 1.0
+     },
+     "connector_1": {
+      "picks": {
+       "+X": 3,
+       "-X": 1
+      },
+      "consistency": 0.75
+     }
+    }
+   }
+  },
+  {
+   "id": "V2_s5/20261025-115847/edge1",
+   "family": "edge",
+   "n": 4,
+   "items": [
+    "connector_1"
+   ],
+   "calls": [
+    {
+     "format": "original",
+     "k": -1,
+     "item": "connector_1",
+     "order": [
+      "-X",
+      "+X",
+      "-Y",
+      "+Y"
+     ],
+     "pick": "-Y",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 0,
+     "item": "connector_1",
+     "order": [
+      "+X",
+      "-X",
+      "+Y",
+      "-Y"
+     ],
+     "pick": "+Y",
+     "position": 2,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 1,
+     "item": "connector_1",
+     "order": [
+      "-Y",
+      "+Y",
+      "-X",
+      "+X"
+     ],
+     "pick": "+Y",
+     "position": 1,
+     "n": 4
+    },
+    {
+     "format": "shuffled",
+     "k": 2,
+     "item": "connector_1",
+     "order": [
+      "+X",
+      "+Y",
+      "-X",
+      "-Y"
+     ],
+     "pick": "-Y",
+     "position": 3,
+     "n": 4
+    }
+   ],
+   "metrics": {
+    "first_position_rate": 0.0,
+    "chance": 0.25,
+    "consistency": 0.5,
+    "per_item": {
+     "connector_1": {
+      "picks": {
+       "-Y": 2,
+       "+Y": 2
+      },
+      "consistency": 0.5
+     }
+    }
+   }
+  }
+ ]
+}

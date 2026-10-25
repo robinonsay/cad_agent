@@ -1,0 +1,196 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "a2a5590e0d90d09e",
+        "graph": "d8157bbce21a8bc3",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "rpi_zero2w",
+              1,
+              [
+                "usb_data",
+                "usb_power"
+              ]
+            ],
+            [
+              "display_1",
+              "oled_ssd1306_096",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {
+            "wall[board.usb_data]": "-Y",
+            "wall[board.usb_power]": "-Y"
+          },
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": "screw_m2p5_selftap",
+            "lid": "screw_m2_selftap"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "failing": [
+        "content_placed_display_1",
+        "vent_placed"
+      ],
+      "terms": [
+        {
+          "check": "content_placed_display_1",
+          "type": "content_placed",
+          "requirement": [],
+          "where": "display_1 (oled_ssd1306_096) is not placed: rpi_zero2w is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "display_1 (oled_ssd1306_096) is not placed: rpi_zero2w is not a carrier: no relation places it yet (GM2b)"
+        },
+        {
+          "check": "vent_placed",
+          "type": "vent_placed",
+          "requirement": [],
+          "where": "no vent slot placed: vent: face not resolved (face words only)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the vent slots the text asks for (typed conflict: vent: face not resolved (face words only))",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no vent slot placed: vent: face not resolved (face words only)"
+        }
+      ]
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 0
+  },
+  "final": {
+    "state": {
+      "decisions": "a2a5590e0d90d09e",
+      "graph": "d8157bbce21a8bc3",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "rpi_zero2w",
+            1,
+            [
+              "usb_data",
+              "usb_power"
+            ]
+          ],
+          [
+            "display_1",
+            "oled_ssd1306_096",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {
+          "wall[board.usb_data]": "-Y",
+          "wall[board.usb_power]": "-Y"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": "screw_m2p5_selftap",
+          "lid": "screw_m2_selftap"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 1,
+      "violation": 1.0
+    },
+    "failing": [
+      "content_placed_display_1",
+      "vent_placed"
+    ],
+    "terms": [
+      {
+        "check": "content_placed_display_1",
+        "type": "content_placed",
+        "requirement": [],
+        "where": "display_1 (oled_ssd1306_096) is not placed: rpi_zero2w is not a carrier: no relation places it yet (GM2b)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "display_1 (oled_ssd1306_096) is not placed: rpi_zero2w is not a carrier: no relation places it yet (GM2b)"
+      },
+      {
+        "check": "vent_placed",
+        "type": "vent_placed",
+        "requirement": [],
+        "where": "no vent slot placed: vent: face not resolved (face words only)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "the vent slots the text asks for (typed conflict: vent: face not resolved (face words only))",
+        "controllable": false,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "no vent slot placed: vent: face not resolved (face words only)"
+      }
+    ]
+  },
+  "secs": 0.42,
+  "authority": {
+    "decisions": {
+      "plant": 4,
+      "guardrail": 2,
+      "semantic-rule": 2
+    },
+    "proposal": {
+      "llm_slots": 9,
+      "default_slots": 3,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      },
+      {
+        "decision": "fastener[lid]",
+        "by": "rule:text_evidence[lid]",
+        "migration": "R03"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.5
+  },
+  "accepted": []
+}

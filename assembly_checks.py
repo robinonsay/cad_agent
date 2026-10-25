@@ -644,6 +644,11 @@ def value_check(check_id: str, typ: str, a: Mapping[str, Any], tol: Tol) -> cc.C
     return r
 
 
+# Migration delta R11: check types a building block registers (type -> fn(check_id, type, args, bodies, plan) ->
+# CheckResult); building_blocks.py fills it when it is imported (assembly imports it).
+EXTRA_CHECKS: Dict[str, Any] = {}
+
+
 def run_plan(plan: Plan, bodies: Mapping[str, Any]) -> List[cc.CheckResult]:
     """Every check of the plan on the given bodies (manifold solids or meshes loaded from STL)."""
     all_bodies = union(list(bodies.values()))
@@ -714,6 +719,8 @@ def run_plan(plan: Plan, bodies: Mapping[str, Any]) -> List[cc.CheckResult]:
         elif typ == "ligament":
             out.append(ligament(bodies[a["body"]], vols[a["cut"]], a["axis"], a["plane"], a["min"], plan.tol, cid,
                                 a.get("floor_z"), {c: vols[c] for c in a.get("neighbours", [])}, a["cut"]))
+        elif typ in EXTRA_CHECKS:            # migration delta R11: building-block sensors (building_blocks.py)
+            out.append(EXTRA_CHECKS[typ](cid, typ, a, bodies, plan))
         else:
             raise ValueError(f"unknown check type {typ!r}")
     return out

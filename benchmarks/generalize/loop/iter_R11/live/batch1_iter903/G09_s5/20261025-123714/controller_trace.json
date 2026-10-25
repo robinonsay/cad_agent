@@ -1,0 +1,413 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "e972112c8fe0c555",
+        "graph": "518458418493ae2a",
+        "summary": {
+          "contents": [
+            [
+              "connector_1",
+              "dc_jack_pj002a",
+              1,
+              [
+                "dc_in"
+              ]
+            ],
+            [
+              "board",
+              "battery_9v_pp3",
+              1,
+              []
+            ],
+            [
+              "mech_1",
+              "dowel_pin_generic",
+              1,
+              []
+            ],
+            [
+              "control_1",
+              "toggle_mts102",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": "screw_m3_selftap"
+          },
+          "retention": "pocket"
+        }
+      },
+      "error": {
+        "hard_failures": 6,
+        "violation": 54.28
+      },
+      "failing": [
+        "retention_board",
+        "text_coverage",
+        "bbox",
+        "content_placed_connector_1",
+        "content_placed_mech_1",
+        "content_placed_control_1"
+      ],
+      "terms": [
+        {
+          "check": "retention_board",
+          "type": "retention",
+          "requirement": [],
+          "where": "9v battery held by pocket: free travel (mm) -z 0.00, +z 12.20, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 12.20 > 0.5; options the plant cannot build here:... at board (9v battery) toward +z",
+          "deficit": 11.69,
+          "unit": "mm",
+          "direction": "decrease the free travel of the part in its worst direction",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -11.69,
+          "detail": "9v battery held by pocket: free travel (mm) -z 0.00, +z 12.20, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 12.20 > 0.5; options the plant cannot build here:..."
+        },
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5"
+          ],
+          "where": "connector_1.dc_in (dc jack) is closed, but request names a dc plug: \"On one end I want a panel DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug).\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "0 named plug connection(s) covered; uncovered: connector_1.dc_in takes plug_dc_barrel_5p5 named by request, request, L1.5"
+        },
+        {
+          "check": "bbox",
+          "type": "bbox_within",
+          "requirement": [],
+          "where": "outside 38.25 x 29.25 x 68.60 mm, max 90 x 45 x 30 with X longest",
+          "deficit": 38.59,
+          "unit": "mm",
+          "direction": "decrease the outside size",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -38.59,
+          "detail": "outside 38.25 x 29.25 x 68.60 mm, max 90 x 45 x 30 with X longest"
+        },
+        {
+          "check": "content_placed_connector_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.1"
+          ],
+          "where": "connector_1 (dc_jack_pj002a) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "connector_1 (dc_jack_pj002a) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+        },
+        {
+          "check": "content_placed_mech_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.6"
+          ],
+          "where": "mech_1 (dowel_pin_generic) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mech_1 (dowel_pin_generic) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+        },
+        {
+          "check": "content_placed_control_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.1",
+            "L1.4"
+          ],
+          "where": "control_1 (toggle_mts102) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "control_1 (toggle_mts102) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "e972112c8fe0c555",
+      "error_before": {
+        "hard_failures": 6,
+        "violation": 54.28
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the 9v battery with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "set_retention",
+        "target": "board",
+        "value": "crush_ribs",
+        "words": "hold the 9v battery with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+        "targets": [
+          "retention_board"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_retention:board=crush_ribs"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (6 -> 5)",
+      "error_after": {
+        "hard_failures": 5,
+        "violation": 42.59
+      },
+      "state_after": "c89c41456fc3d696",
+      "failing_after": [
+        "content_placed_connector_1",
+        "content_placed_mech_1",
+        "content_placed_control_1",
+        "bbox",
+        "text_coverage"
+      ],
+      "llm_calls": 3,
+      "secs": 4.4
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 1
+  },
+  "final": {
+    "state": {
+      "decisions": "c89c41456fc3d696",
+      "graph": "21e9bf6c8efb6bf8",
+      "summary": {
+        "contents": [
+          [
+            "connector_1",
+            "dc_jack_pj002a",
+            1,
+            [
+              "dc_in"
+            ]
+          ],
+          [
+            "board",
+            "battery_9v_pp3",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "dowel_pin_generic",
+            1,
+            []
+          ],
+          [
+            "control_1",
+            "toggle_mts102",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": "screw_m3_selftap"
+        },
+        "retention": "crush_ribs"
+      }
+    },
+    "error": {
+      "hard_failures": 5,
+      "violation": 42.59
+    },
+    "failing": [
+      "text_coverage",
+      "bbox",
+      "content_placed_connector_1",
+      "content_placed_mech_1",
+      "content_placed_control_1"
+    ],
+    "terms": [
+      {
+        "check": "text_coverage",
+        "type": "coverage",
+        "requirement": [
+          "L1.5"
+        ],
+        "where": "connector_1.dc_in (dc jack) is closed, but request names a dc plug: \"On one end I want a panel DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug).\"",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "an opening for each connector whose mating plug the text names",
+        "controllable": true,
+        "actionable": true,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "0 named plug connection(s) covered; uncovered: connector_1.dc_in takes plug_dc_barrel_5p5 named by request, request, L1.5"
+      },
+      {
+        "check": "bbox",
+        "type": "bbox_within",
+        "requirement": [],
+        "where": "outside 38.25 x 29.25 x 68.60 mm, max 90 x 45 x 30 with X longest",
+        "deficit": 38.59,
+        "unit": "mm",
+        "direction": "decrease the outside size",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -38.59,
+        "detail": "outside 38.25 x 29.25 x 68.60 mm, max 90 x 45 x 30 with X longest"
+      },
+      {
+        "check": "content_placed_connector_1",
+        "type": "content_placed",
+        "requirement": [
+          "L1.1"
+        ],
+        "where": "connector_1 (dc_jack_pj002a) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "connector_1 (dc_jack_pj002a) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+      },
+      {
+        "check": "content_placed_mech_1",
+        "type": "content_placed",
+        "requirement": [
+          "L1.6"
+        ],
+        "where": "mech_1 (dowel_pin_generic) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "mech_1 (dowel_pin_generic) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+      },
+      {
+        "check": "content_placed_control_1",
+        "type": "content_placed",
+        "requirement": [
+          "L1.1",
+          "L1.4"
+        ],
+        "where": "control_1 (toggle_mts102) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "control_1 (toggle_mts102) is not placed: battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+      }
+    ]
+  },
+  "secs": 4.65,
+  "authority": {
+    "decisions": {
+      "plant": 3,
+      "semantic-rule": 1,
+      "llm": 1,
+      "guardrail": 1
+    },
+    "proposal": {
+      "llm_slots": 8,
+      "default_slots": 3,
+      "llm_contents_items": 4
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.619
+  },
+  "accepted": [
+    {
+      "kind": "set_retention",
+      "target": "board",
+      "value": "crush_ribs",
+      "words": "hold the 9v battery with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+      "targets": [
+        "retention_board"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_retention:board=crush_ribs",
+      "step": 1
+    }
+  ]
+}

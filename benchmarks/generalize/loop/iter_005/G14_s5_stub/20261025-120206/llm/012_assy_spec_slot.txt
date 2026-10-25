@@ -1,0 +1,91 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n2 = 0.25 mm (request): "...rail, and the lid slides onto them along the long axis with 0.25 mm of fit clearance until it butts against the far end ..."
+n3 = 80 (request): "...n FDM printer, no supports; the closed box must stay within 80 x 40 x 30 mm...."
+n4 = 40 (request): "...printer, no supports; the closed box must stay within 80 x 40 x 30 mm...."
+n5 = 30 mm (request): "...ter, no supports; the closed box must stay within 80 x 40 x 30 mm...."
+n6 = 12 mm (L1.1): "...o with its mini-USB port towards the open short end and the 12 mm buzzer alongside the far end of the Nano, no closer th..."
+n7 = 2.0 mm (L1.1): "...mm buzzer alongside the far end of the Nano, no closer than 2.0 mm to it. The parts must not collide, and the layout mus..."
+n8 = 0.3 mm (L1.2): ".... The header pins and tails beneath the board need at least 0.3 mm of clearance from the base. Standoffs measure 3.0 to ..."
+n9 = 3.0 (L1.2): "...least 0.3 mm of clearance from the base. Standoffs measure 3.0 to 4.0 mm across and 8.8 to 12.0 mm high, with tops level..."
+n10 = 4.0 mm (L1.2): "...0.3 mm of clearance from the base. Standoffs measure 3.0 to 4.0 mm across and 8.8 to 12.0 mm high, with tops level withi..."
+n11 = 8.8 (L1.2): "...e from the base. Standoffs measure 3.0 to 4.0 mm across and 8.8 to 12.0 mm high, with tops level within 0.10 mm that tou..."
+n12 = 12.0 mm (L1.2): "...the base. Standoffs measure 3.0 to 4.0 mm across and 8.8 to 12.0 mm high, with tops level within 0.10 mm that touch the ..."
+n13 = 0.10 mm (L1.2): "...0 mm across and 8.8 to 12.0 mm high, with tops level within 0.10 mm that touch the underside of the board; the pins are ..."
+n14 = 1.4 (L1.2): "...0.10 mm that touch the underside of the board; the pins are 1.4 to 1.6 mm in diameter and rise at least 3.0 mm over the ..."
+n15 = 1.6 mm (L1.2): "...that touch the underside of the board; the pins are 1.4 to 1.6 mm in diameter and rise at least 3.0 mm over the board to..."
+n16 = 3.0 mm (L1.2): "...d; the pins are 1.4 to 1.6 mm in diameter and rise at least 3.0 mm over the board top, so the board can shift no more th..."
+n17 = 0.4 mm (L1.2): "...mm over the board top, so the board can shift no more than 0.4 mm along X or Y...."
+n18 = 0.5 mm (L1.3): "...The closed box has to contain the Nano with at least 0.5 mm of gap to all printed surfaces other than the standoffs, an..."
+n19 = 1.0 mm (L1.3): "...all printed surfaces other than the standoffs, and at least 1.0 mm from the highest part of the Nano up to the lid. Betw..."
+n20 = 19.0 mm (L1.3): "...ween the long walls the inside width should be no less than 19.0 mm...."
+n21 = 12.4 mm (L1.4): "...port toward the lid, in a printed pocket with a diameter of 12.4 mm; it rests on a ring-shaped ledge that doesn't pinch ..."
+n22 = 2.5 (L1.4): "...that doesn't pinch the leads. Above the ledge the pocket is 2.5 to 4.0 mm deep, the inner diameter of the ledge ring is ..."
+n23 = 4.0 mm (L1.4): "...esn't pinch the leads. Above the ledge the pocket is 2.5 to 4.0 mm deep, the inner diameter of the ledge ring is 8.0 to ..."
+n24 = 8.0 (L1.4): "...2.5 to 4.0 mm deep, the inner diameter of the ledge ring is 8.0 to 10.0 mm, and the pocket is surrounded by at least 1.6..."
+n25 = 10.0 mm (L1.4): "...4.0 mm deep, the inner diameter of the ledge ring is 8.0 to 10.0 mm, and the pocket is surrounded by at least 1.6 mm of ..."
+n26 = 1.6 mm (L1.4): "...is 8.0 to 10.0 mm, and the pocket is surrounded by at least 1.6 mm of material...."
+n27 = 0.3 mm (L1.5): "...into the Nano without contacting the box, keeping at least 0.3 mm from the plug and its overmold on all sides, both with..."
+n28 = 3.3 mm (L1.5): "...seated and as it slides. The base should reach no more than 3.3 mm past the front of the receptacle, and the end of the ..."
+n29 = 0.3 mm (L1.5): "...e receptacle, and the end of the lid should remain at least 0.3 mm away from the face of the overmold...."
+n30 = 60 degrees (L1.6): "...he base, and the lid has a groove to match; flanks slope at 60 degrees from horizontal with 0.25 mm of fit clearance on ..."
+n31 = 0.25 mm (L1.6): "...e to match; flanks slope at 60 degrees from horizontal with 0.25 mm of fit clearance on each flank, which prevents the l..."
+n32 = 40.0 mm (L1.6): "...ank, which prevents the lid lifting off. Rails are at least 40.0 mm in length and 3.0 to 4.0 mm in height, and project a..."
+n33 = 3.0 (L1.6): "...e lid lifting off. Rails are at least 40.0 mm in length and 3.0 to 4.0 mm in height, and project at least 1.2 mm past th..."
+n34 = 4.0 mm (L1.6): "...ifting off. Rails are at least 40.0 mm in length and 3.0 to 4.0 mm in height, and project at least 1.2 mm past the wall...."
+n35 = 1.2 mm (L1.6): "...in length and 3.0 to 4.0 mm in height, and project at least 1.2 mm past the wall. Keep the flank angle within 5 degrees ..."
+n36 = 5 degrees (L1.6): "...at least 1.2 mm past the wall. Keep the flank angle within 5 degrees of 60 and the flank gap between 0.20 and 0.30 mm; a..."
+n37 = 60 (L1.6): "...mm past the wall. Keep the flank angle within 5 degrees of 60 and the flank gap between 0.20 and 0.30 mm; any other gap ..."
+n38 = 0.20 (L1.6): "...lank angle within 5 degrees of 60 and the flank gap between 0.20 and 0.30 mm; any other gap between lid and base is at l..."
+n39 = 0.30 mm (L1.6): "...e within 5 degrees of 60 and the flank gap between 0.20 and 0.30 mm; any other gap between lid and base is at least 0.15..."
+n40 = 0.15 mm (L1.6): "...and 0.30 mm; any other gap between lid and base is at least 0.15 mm, and the lid skirt is at least 1.6 mm thick...."
+n41 = 1.6 mm (L1.6): "...and base is at least 0.15 mm, and the lid skirt is at least 1.6 mm thick...."
+n42 = 0.3 mm (L1.7): "...stop at the far end wall. Its end face ends up no more than 0.3 mm from that wall and its underside within 0.3 mm of the..."
+n43 = 0.3 mm (L1.7): "...no more than 0.3 mm from that wall and its underside within 0.3 mm of the wall tops. In plan it covers the Nano and buzz..."
+n44 = 1.0 mm (L1.7): "...l tops. In plan it covers the Nano and buzzer with at least 1.0 mm to spare, and throughout the slide it stays at least ..."
+n45 = 0.3 mm (L1.7): "...1.0 mm to spare, and throughout the slide it stays at least 0.3 mm clear of the Nano, the buzzer and the plug...."
+n46 = 0.5 (L1.8): "...middle above the sound port; the lid's underside should sit 0.5 to 1.5 mm over the top of the buzzer. The middle hole ha..."
+n47 = 1.5 mm (L1.8): "...above the sound port; the lid's underside should sit 0.5 to 1.5 mm over the top of the buzzer. The middle hole has a dia..."
+n48 = 2.0 (L1.8): "...er the top of the buzzer. The middle hole has a diameter of 2.0 to 3.5 mm. The ring holes are 1.5 to 2.5 mm, evenly spac..."
+n49 = 3.5 mm (L1.8): "...top of the buzzer. The middle hole has a diameter of 2.0 to 3.5 mm. The ring holes are 1.5 to 2.5 mm, evenly spaced on a..."
+n50 = 1.5 (L1.8): "...le hole has a diameter of 2.0 to 3.5 mm. The ring holes are 1.5 to 2.5 mm, evenly spaced on a 7.0 to 10.0 mm diameter ci..."
+n51 = 2.5 mm (L1.8): "...has a diameter of 2.0 to 3.5 mm. The ring holes are 1.5 to 2.5 mm, evenly spaced on a 7.0 to 10.0 mm diameter circle, le..."
+n52 = 7.0 (L1.8): "....5 mm. The ring holes are 1.5 to 2.5 mm, evenly spaced on a 7.0 to 10.0 mm diameter circle, leave at least 1.0 mm of mat..."
+n53 = 10.0 mm (L1.8): "...The ring holes are 1.5 to 2.5 mm, evenly spaced on a 7.0 to 10.0 mm diameter circle, leave at least 1.0 mm of material b..."
+n54 = 1.0 mm (L1.8): "...spaced on a 7.0 to 10.0 mm diameter circle, leave at least 1.0 mm of material between holes, and together give at least ..."
+n55 = 15 (L1.8): "....0 mm of material between holes, and together give at least 15 mm2 of open area...."
+n56 = 2.0 (L1.9): "...x has no openings, and its walls, floor and lid are between 2.0 and 4.0 mm thick...."
+n57 = 4.0 mm (L1.9): "...openings, and its walls, floor and lid are between 2.0 and 4.0 mm thick...."
+n58 = 80 (L1.11): "...The box, closed, needs to fit inside 80 x 40 x 30 mm and rest flat on a table without tipping over...."
+n59 = 40 (L1.11): "...The box, closed, needs to fit inside 80 x 40 x 30 mm and rest flat on a table without tipping over...."
+n60 = 30 mm (L1.11): "...The box, closed, needs to fit inside 80 x 40 x 30 mm and rest flat on a table without tipping over...."
+n61 = 0.2 mm (L1.12): "...to its pocket; neither should touch anything, with at least 0.2 mm of clearance around the Nano and 0.1 mm around the bu..."
+n62 = 0.1 mm (L1.12): "...hing, with at least 0.2 mm of clearance around the Nano and 0.1 mm around the buzzer...."
+n63 = 0.10 mm (L1.13): "...hich has to agree with an independent measurement to within 0.10 mm...."
+
+n1 (12 mm) states board_width, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_depth": "n2", "keepout_above": "n2", "keepout_below": "n2", "board_clearance": "n2", "headroom": "n2", "opening_oversize_max": "n2", "wall_min": "n2", "wall_max": "n2", "max_x": "n2", "max_y": "n2", "max_z": "n2"}

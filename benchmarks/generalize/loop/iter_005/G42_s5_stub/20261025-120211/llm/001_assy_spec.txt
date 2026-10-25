@@ -1,0 +1,79 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 16 mm (request): "...I need an adapter to connect a hose with a 16 mm inner diameter to a pipe that is 25 mm OD. On the hose side..."
+n2 = 25 mm (request): "...onnect a hose with a 16 mm inner diameter to a pipe that is 25 mm OD. On the hose side there is a barbed nozzle: a 16 mm..."
+n3 = 16 mm (request): "...t is 25 mm OD. On the hose side there is a barbed nozzle: a 16 mm body carrying three ribs, each 0.8 mm high. On the pip..."
+n4 = 0.8 mm (request): "...is a barbed nozzle: a 16 mm body carrying three ribs, each 0.8 mm high. On the pipe side there is a socket for the 25 mm..."
+n5 = 25 mm (request): "...ach 0.8 mm high. On the pipe side there is a socket for the 25 mm pipe, its bore 0.15 mm bigger than the pipe (so 0.15 m..."
+n6 = 0.15 mm (request): "...he pipe side there is a socket for the 25 mm pipe, its bore 0.15 mm bigger than the pipe (so 0.15 mm loose) and 20 mm de..."
+n7 = 0.15 mm (request): "...r the 25 mm pipe, its bore 0.15 mm bigger than the pipe (so 0.15 mm loose) and 20 mm deep, finishing in a shoulder the p..."
+n8 = 20 mm (request): "...ts bore 0.15 mm bigger than the pipe (so 0.15 mm loose) and 20 mm deep, finishing in a shoulder the pipe butts against. ..."
+n9 = 2 mm (request): "...finishing in a shoulder the pipe butts against. The wall is 2 mm all the way along. A bore runs right through for the fl..."
+n10 = 60 mm (request): "...A bore runs right through for the flow, the whole piece is 60 mm long, and going from one size to the other the profile ..."
+n11 = 45 degrees (request): "...m one size to the other the profile mustn't be steeper than 45 degrees. I print it standing up (axis vertical) on an FDM..."
+n12 = 16.0 mm (L1.1): "...The hose side has a nozzle with a 16.0 mm body and exactly three barb ribs of 0.8 mm height each. The..."
+n13 = 0.8 mm (L1.1): "...a nozzle with a 16.0 mm body and exactly three barb ribs of 0.8 mm height each. The retention flank runs 30 to 45 degree..."
+n14 = 30 (L1.1): "...e barb ribs of 0.8 mm height each. The retention flank runs 30 to 45 degrees and the lead-in flank 10 to 30 degrees from..."
+n15 = 45 degrees (L1.1): "...ribs of 0.8 mm height each. The retention flank runs 30 to 45 degrees and the lead-in flank 10 to 30 degrees from the ax..."
+n16 = 10 (L1.1): "...retention flank runs 30 to 45 degrees and the lead-in flank 10 to 30 degrees from the axis, so no retention flank is ste..."
+n17 = 30 degrees (L1.1): "...ion flank runs 30 to 45 degrees and the lead-in flank 10 to 30 degrees from the axis, so no retention flank is steeper t..."
+n18 = 45 degrees (L1.1): "...egrees from the axis, so no retention flank is steeper than 45 degrees. Crests are 5.0 mm or more apart, the first at le..."
+n19 = 5.0 mm (L1.1): "...o no retention flank is steeper than 45 degrees. Crests are 5.0 mm or more apart, the first at least 3.0 mm back from th..."
+n20 = 3.0 mm (L1.1): "...egrees. Crests are 5.0 mm or more apart, the first at least 3.0 mm back from the tip and the last at least 4.0 mm before..."
+n21 = 4.0 mm (L1.1): "...rst at least 3.0 mm back from the tip and the last at least 4.0 mm before where the straight part ends; a 16 mm hose the..."
+n22 = 16 mm (L1.1): "...last at least 4.0 mm before where the straight part ends; a 16 mm hose then pushes on and stays on...."
+n23 = 25 mm (L1.2): "...The nozzle's straight section must run at least 25 mm and the profile has to grow wider after it, so a pushed-on..."
+n24 = 25.0 (L1.2): "...nd something to stop against. The straight section finishes 25.0 to 33.0 mm from the tip, and within 5.0 mm beyond that ..."
+n25 = 33.0 mm (L1.2): "...hing to stop against. The straight section finishes 25.0 to 33.0 mm from the tip, and within 5.0 mm beyond that the oute..."
+n26 = 5.0 mm (L1.2): "...t section finishes 25.0 to 33.0 mm from the tip, and within 5.0 mm beyond that the outer radius reaches 11.0 mm (half of..."
+n27 = 11.0 mm (L1.2): "...tip, and within 5.0 mm beyond that the outer radius reaches 11.0 mm (half of a 22 mm hose outside diameter)...."
+n28 = 22 mm (L1.2): "...mm beyond that the outer radius reaches 11.0 mm (half of a 22 mm hose outside diameter)...."
+n29 = 20.0 mm (L1.3): "...The pipe side is a 20.0 mm deep socket whose bore, 25.15 mm, is 0.15 mm larger than th..."
+n30 = 25.15 mm (L1.3): "...The pipe side is a 20.0 mm deep socket whose bore, 25.15 mm, is 0.15 mm larger than the 25 mm pipe, and it ends in a fl..."
+n31 = 0.15 mm (L1.3): "...pipe side is a 20.0 mm deep socket whose bore, 25.15 mm, is 0.15 mm larger than the 25 mm pipe, and it ends in a flat sh..."
+n32 = 25 mm (L1.3): "...eep socket whose bore, 25.15 mm, is 0.15 mm larger than the 25 mm pipe, and it ends in a flat shoulder that stops the pi..."
+n33 = 1.0 (L1.3): "...h no step or rib. The shoulder is square to the axis within 1.0 degree, at least 3.0 mm wide in the radial direction and..."
+n34 = 3.0 mm (L1.3): "...shoulder is square to the axis within 1.0 degree, at least 3.0 mm wide in the radial direction and backed by 2.0 mm or m..."
+n35 = 2.0 mm (L1.3): "...at least 3.0 mm wide in the radial direction and backed by 2.0 mm or more of solid, and the 25 mm pipe seats with its en..."
+n36 = 25 mm (L1.3): "...al direction and backed by 2.0 mm or more of solid, and the 25 mm pipe seats with its end face within 0.10 mm of the sho..."
+n37 = 0.10 mm (L1.3): "...of solid, and the 25 mm pipe seats with its end face within 0.10 mm of the shoulder...."
+n38 = 2.0 (L1.4): "...Both the spigot wall and the socket wall measure 2.0 to 2.4 mm, and nowhere is any wall thinner than 2.0 mm...."
+n39 = 2.4 mm (L1.4): "...Both the spigot wall and the socket wall measure 2.0 to 2.4 mm, and nowhere is any wall thinner than 2.0 mm...."
+n40 = 2.0 mm (L1.4): "...measure 2.0 to 2.4 mm, and nowhere is any wall thinner than 2.0 mm...."
+n41 = 60.0 mm (L1.5): "...Total length is 60.0 mm, with a bore through its entire length. Every section share..."
+n42 = 0.10 mm (L1.5): "...s entire length. Every section shares one axis, each within 0.10 mm of it, and the bore never narrows below 11.2 mm...."
+n43 = 11.2 mm (L1.5): "...each within 0.10 mm of it, and the bore never narrows below 11.2 mm...."
+n44 = 16 mm (L1.6): "...On the outside, the shape changes from the 16 mm spigot to the socket in a single smooth transition: never s..."
+n45 = 45 degrees (L1.6): "...he socket in a single smooth transition: never steeper than 45 degrees from the axis, between 15 and 45 degrees from the..."
+n46 = 15 (L1.6): "...ition: never steeper than 45 degrees from the axis, between 15 and 45 degrees from the axis, never narrowing, and with n..."
+n47 = 45 degrees (L1.6): "...never steeper than 45 degrees from the axis, between 15 and 45 degrees from the axis, never narrowing, and with no step ..."
+n48 = 45 degrees (L1.7): "...the spigot end on the bed. No overhang may be steeper than 45 degrees from vertical; the bed contact is 80 mm2 or more, ..."
+n49 = 80 (L1.7): "...e steeper than 45 degrees from vertical; the bed contact is 80 mm2 or more, the height is no more than four times the di..."
+n50 = 0.8 mm (L1.7): "...s the diameter of the bed face, and nothing is thinner than 0.8 mm...."
+n51 = 0.10 mm (L1.10): "...own measurement report, with that report agreeing to within 0.10 mm of an independent measurement...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

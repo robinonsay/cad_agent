@@ -1,0 +1,77 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n2 = 20 (request): "...ring headers onto a Raspberry Pi Pico 2. It should keep two 20-pin male headers (2.54 mm pitch, 17.78 mm between the row..."
+n3 = 2.54 mm (request): "...aspberry Pi Pico 2. It should keep two 20-pin male headers (2.54 mm pitch, 17.78 mm between the rows) standing upright, ..."
+n4 = 17.78 mm (request): "...o 2. It should keep two 20-pin male headers (2.54 mm pitch, 17.78 mm between the rows) standing upright, long pin tails ..."
+n5 = 1.0 mm (request): "...ile I solder the Pico on. The holes that guide the pins are 1.0 mm, the plastic spacers of the headers stand on a flat s..."
+n6 = 70 (request): "...o it lifts off afterwards. Alongside, I want a holder for a 70 x 50 mm perfboard (1.6 mm thick): a recess the board sits..."
+n7 = 50 mm (request): "...lifts off afterwards. Alongside, I want a holder for a 70 x 50 mm perfboard (1.6 mm thick): a recess the board sits flat..."
+n8 = 1.6 mm (request): "...rds. Alongside, I want a holder for a 70 x 50 mm perfboard (1.6 mm thick): a recess the board sits flat in, with finger ..."
+n9 = 20 (L1.1): "...From the parts catalogue the design should put two 20-pin male headers (rows 17.78 mm apart), the Pico 2 on top o..."
+n10 = 17.78 mm (L1.1): "...talogue the design should put two 20-pin male headers (rows 17.78 mm apart), the Pico 2 on top of them and the 70 x 50 m..."
+n11 = 2 (L1.1): "...put two 20-pin male headers (rows 17.78 mm apart), the Pico 2 on top of them and the 70 x 50 mm perfboard in place. Head..."
+n12 = 70 (L1.1): "...rs (rows 17.78 mm apart), the Pico 2 on top of them and the 70 x 50 mm perfboard in place. Headers are vertical, the Pic..."
+n13 = 50 mm (L1.1): "...ows 17.78 mm apart), the Pico 2 on top of them and the 70 x 50 mm perfboard in place. Headers are vertical, the Pico lie..."
+n14 = 40 (L1.2): "...The jig has 40 pin guide holes of 1.0 mm diameter, laid out as two rows of..."
+n15 = 1.0 mm (L1.2): "...The jig has 40 pin guide holes of 1.0 mm diameter, laid out as two rows of 20 at 2.54 mm pitch with..."
+n16 = 20 (L1.2): "...pin guide holes of 1.0 mm diameter, laid out as two rows of 20 at 2.54 mm pitch with 17.78 mm between rows; each is 0.95..."
+n17 = 2.54 mm (L1.2): "...ide holes of 1.0 mm diameter, laid out as two rows of 20 at 2.54 mm pitch with 17.78 mm between rows; each is 0.95 to 1...."
+n18 = 17.78 mm (L1.2): "...diameter, laid out as two rows of 20 at 2.54 mm pitch with 17.78 mm between rows; each is 0.95 to 1.10 mm across, at lea..."
+n19 = 0.95 (L1.2): "...of 20 at 2.54 mm pitch with 17.78 mm between rows; each is 0.95 to 1.10 mm across, at least 6.5 mm deep, and coaxial wit..."
+n20 = 1.10 mm (L1.2): "...t 2.54 mm pitch with 17.78 mm between rows; each is 0.95 to 1.10 mm across, at least 6.5 mm deep, and coaxial with a hea..."
+n21 = 6.5 mm (L1.2): "...8 mm between rows; each is 0.95 to 1.10 mm across, at least 6.5 mm deep, and coaxial with a header pin...."
+n22 = 0.1 mm (L1.3): "...while its plastic spacers rest on a flat seat (flat within 0.1 mm, covering at least 90% of every spacer footprint), so ..."
+n23 = 90 (L1.3): "...rest on a flat seat (flat within 0.1 mm, covering at least 90% of every spacer footprint), so no header can lean over by..."
+n24 = 2 degrees (L1.3): "...spacer footprint), so no header can lean over by more than 2 degrees...."
+n25 = 2.5 mm (L1.4): "...A shelf carries the Pico, its top exactly 2.5 mm, the header spacer height, above the seat plane so that the..."
+n26 = 200 (L1.4): "...ne so that the standoff is right. The shelf covers at least 200 mm² and stays 0.3 mm from the spacers and 0.5 mm from ev..."
+n27 = 0.3 mm (L1.4): "...ndoff is right. The shelf covers at least 200 mm² and stays 0.3 mm from the spacers and 0.5 mm from every pin...."
+n28 = 0.5 mm (L1.4): "...vers at least 200 mm² and stays 0.3 mm from the spacers and 0.5 mm from every pin...."
+n29 = 0.15 (L1.5): "...Walls around the Pico's edges hold it sideways, with 0.15 to 0.5 mm of clearance per side and a top 0.4 to 0.9 mm abo..."
+n30 = 0.5 mm (L1.5): "...alls around the Pico's edges hold it sideways, with 0.15 to 0.5 mm of clearance per side and a top 0.4 to 0.9 mm above t..."
+n31 = 0.4 (L1.5): "...deways, with 0.15 to 0.5 mm of clearance per side and a top 0.4 to 0.9 mm above the Pico's underside, so it stays square..."
+n32 = 0.9 mm (L1.5): "...with 0.15 to 0.5 mm of clearance per side and a top 0.4 to 0.9 mm above the Pico's underside, so it stays square to the ..."
+n33 = 8 mm (L1.6): "...Within 8 mm of the Pico, nothing in the jig may stand higher than the P..."
+n34 = 70 (L1.7): "...The perfboard recess is 70 x 50 x 1.6 mm board plus about 0.3 mm on every side (0.2 to..."
+n35 = 50 (L1.7): "...The perfboard recess is 70 x 50 x 1.6 mm board plus about 0.3 mm on every side (0.2 to 0.4)..."
+n36 = 1.6 mm (L1.7): "...The perfboard recess is 70 x 50 x 1.6 mm board plus about 0.3 mm on every side (0.2 to 0.4), 2.5 to..."
+n37 = 0.3 mm (L1.7): "...The perfboard recess is 70 x 50 x 1.6 mm board plus about 0.3 mm on every side (0.2 to 0.4), 2.5 to 6.0 mm deep, with a ..."
+n38 = 0.2 (L1.7): "...is 70 x 50 x 1.6 mm board plus about 0.3 mm on every side (0.2 to 0.4), 2.5 to 6.0 mm deep, with a flat floor under the ..."
+n39 = 0.4 (L1.7): "...x 50 x 1.6 mm board plus about 0.3 mm on every side (0.2 to 0.4), 2.5 to 6.0 mm deep, with a flat floor under the board,..."
+n40 = 2.5 (L1.7): "...1.6 mm board plus about 0.3 mm on every side (0.2 to 0.4), 2.5 to 6.0 mm deep, with a flat floor under the board, and ha..."
+n41 = 6.0 mm (L1.7): "...board plus about 0.3 mm on every side (0.2 to 0.4), 2.5 to 6.0 mm deep, with a flat floor under the board, and has two o..."
+n42 = 10 mm (L1.7): "...r under the board, and has two or more finger notches, each 10 mm wide or wider, on opposite walls so the board can be l..."
+n43 = 3 mm (L1.8): "...or the Pico and one for the perfboard cradle, with at least 3 mm of material between them and at least 2 mm of material ..."
+n44 = 2 mm (L1.8): "...e, with at least 3 mm of material between them and at least 2 mm of material around the cradle...."
+n45 = 45 (L1.9): "...nt orientation the design states (overhangs no steeper than 45° from vertical, bridges no longer than 15 mm)...."
+n46 = 15 mm (L1.9): "...s no steeper than 45° from vertical, bridges no longer than 15 mm)...."
+n47 = 100 (L1.10): "...Overall it must not exceed 100 x 90 x 20 mm and has to sit flat on the bench...."
+n48 = 90 (L1.10): "...Overall it must not exceed 100 x 90 x 20 mm and has to sit flat on the bench...."
+n49 = 20 mm (L1.10): "...Overall it must not exceed 100 x 90 x 20 mm and has to sit flat on the bench...."
+
+n1 (2) states board_width, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_depth": "n2", "keepout_above": "n2", "keepout_below": "n2", "board_clearance": "n2", "headroom": "n2", "opening_oversize_max": "n2", "wall_min": "n2", "wall_max": "n2", "max_x": "n2", "max_y": "n2", "max_z": "n2"}

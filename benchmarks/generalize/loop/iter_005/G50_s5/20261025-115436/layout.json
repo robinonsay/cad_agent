@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": -1.0,
+        "span": [
+          -0.9,
+          30.0
+        ],
+        "length": 30.9,
+        "words": "the short (30.9 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 65.0,
+        "span": [
+          -0.9,
+          30.0
+        ],
+        "length": 30.9,
+        "words": "the short (30.9 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": -0.9,
+        "span": [
+          -1.0,
+          65.0
+        ],
+        "length": 66.0,
+        "words": "the long (66 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 30.0,
+        "span": [
+          -1.0,
+          65.0
+        ],
+        "length": 66.0,
+        "words": "the long (66 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "rpi_zero2w",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 65.0,
+    "board_depth": 30.0,
+    "keepout_above": 10.0,
+    "keepout_below": 3.0,
+    "board_clearance": 0.2,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 90.0,
+    "max_y": 70.0,
+    "max_z": 45.0
+  },
+  "board": {
+    "part": "rpi_zero2w",
+    "specimen": null,
+    "params": {
+      "pcb_length": 65.0,
+      "pcb_width": 30.0,
+      "pcb_thickness": 1.4,
+      "hole_diameter": 2.75,
+      "hole_inset": 3.5,
+      "hole_keepout": 6.0,
+      "hdmi_centre_x": 12.4,
+      "hdmi_width": 11.2,
+      "hdmi_depth": 7.5,
+      "hdmi_height": 3.2,
+      "hdmi_overhang": 0.5,
+      "usb_data_x": 41.4,
+      "usb_power_x": 54.0,
+      "usb_width": 7.5,
+      "usb_depth": 5.9,
+      "usb_height": 2.6,
+      "usb_overhang": 0.9,
+      "sd_centre_y": 16.9,
+      "sd_width": 12.0,
+      "sd_depth": 14.0,
+      "sd_height": 1.4,
+      "sd_overhang": 1.0,
+      "sd_card_protrusion": 2.5,
+      "pin_pitch": 2.54,
+      "pin_count": 20.0,
+      "gpio_row_inset": 3.5,
+      "top_parts_height": 3.2
+    },
+    "holes": [
+      [
+        3.5,
+        3.5,
+        0.0
+      ],
+      [
+        61.5,
+        3.5,
+        0.0
+      ],
+      [
+        3.5,
+        26.5,
+        0.0
+      ],
+      [
+        61.5,
+        26.5,
+        0.0
+      ]
+    ],
+    "hole_diameter": 2.75,
+    "hole_keepout_diameter": 6.0,
+    "grid": null,
+    "screw": "screw_m2p5_selftap"
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0,
+  "unplaced": [
+    {
+      "id": "display_1",
+      "part": "oled_ssd1306_096",
+      "quantity": 1,
+      "reason": "rpi_zero2w is not a carrier: no relation places it yet (GM2b)"
+    }
+  ]
+}

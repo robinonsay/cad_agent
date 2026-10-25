@@ -1,0 +1,219 @@
+{
+  "id": "bolt_m5_iso4762",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "m5 socket head screw",
+    "m5 socket head cap screw",
+    "m5 cap screw",
+    "iso 4762 m5",
+    "m5 hex socket screw",
+    "m5 socket screw",
+    "din 912 m5"
+  ],
+  "kind": "fastener",
+  "source": "ISO 4762 / DIN 912 M5 socket-head cap screw: head dk 8.5 mm, k 5.0 mm, hex key s 4.0 mm (the 4 mm key Shimano specifies for SPD cleat bolts); clearance hole 5.5 mm per ISO 273 medium; tap drill 4.2 mm per ISO 261.",
+  "frame": "fastener: axis along Z, origin on the head bearing face, shank toward -Z, head toward +Z",
+  "params": {
+    "thread_diameter": {
+      "default": 5.0,
+      "source": "nominal thread diameter (M5)"
+    },
+    "head_diameter": {
+      "default": 8.5,
+      "source": "ISO 4762 head diameter dk (max)"
+    },
+    "head_height": {
+      "default": 5.0,
+      "source": "ISO 4762 head height k"
+    },
+    "clearance_diameter": {
+      "default": 5.5,
+      "source": "ISO 273 medium-series through hole"
+    },
+    "counterbore_diameter": {
+      "default": 8.9,
+      "source": "ASSUMPTION: head diameter + 0.4 mm FDM print slack (uncertainty +/-0.2 mm); convention, not a standard"
+    },
+    "counterbore_depth": {
+      "default": 5.2,
+      "source": "ASSUMPTION: head height + 0.2 mm so the head sits flush or below the surface (uncertainty +/-0.2 mm)"
+    },
+    "tap_diameter": {
+      "default": 4.2,
+      "source": "ISO 261 / DIN 336 tap drill for M5 coarse thread (6H), used as the pilot for a threaded or heat-set hole"
+    },
+    "key_size": {
+      "default": 4.0,
+      "source": "ISO 4762 hex socket width s"
+    },
+    "tool_access_height": {
+      "default": 25.0,
+      "source": "ASSUMPTION: straight clearance above the head for a hex key or bit and driver (about 25 mm; uncertainty +/-10 mm; owner may override)"
+    },
+    "length": {
+      "default": null,
+      "from_request": true,
+      "source": "request text (nominal screw length l under the head; stock lengths are standard, so it is chosen per design)"
+    }
+  },
+  "gate_params": {
+    "length": 16.0,
+    "source": "sample length used only by the load-time validation gate; never a design value"
+  },
+  "datasheet_size": [
+    "head_diameter",
+    "head_diameter",
+    "length + head_height"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "shank",
+      "primitive": "cylinder",
+      "d": "thread_diameter",
+      "h": "length",
+      "at": [
+        0,
+        0,
+        "-length"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "head",
+      "primitive": "cylinder",
+      "d": "head_diameter",
+      "h": "head_height",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "tool_access",
+      "primitive": "cylinder",
+      "d": "head_diameter",
+      "h": "tool_access_height",
+      "at": [
+        0,
+        0,
+        "head_height"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "thread_diameter",
+      "keepout_diameter": "head_diameter"
+    },
+    "HEAD_BEARING": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "HEAD_TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "head_height"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "-length"
+      ]
+    }
+  },
+  "connectors": [],
+  "import_gate_notes": "R1: bounding box = head_diameter x head_diameter x (length + head_height), tolerance 0.2 mm; the head is modelled as a plain cylinder (cylinder head with hex socket drive socket and rounding omitted: envelope only). Datum directions are unit vectors. Designed contact (head on its bearing face, thread in its tapped or heat-set hole) is not interference. The tool_access keepout is a reserved volume above the head, not a solid.",
+  "self_checks": [
+    {
+      "name": "clearance hole passes the thread",
+      "expr": "clearance_diameter - thread_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "head larger than the clearance hole",
+      "expr": "head_diameter - clearance_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "tap drill below the thread",
+      "expr": "thread_diameter - tap_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "counterbore holds the head",
+      "expr": "counterbore_diameter - head_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "counterbore deep enough for the head",
+      "expr": "counterbore_depth - head_height",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hex key fits inside the head",
+      "expr": "head_diameter - key_size",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

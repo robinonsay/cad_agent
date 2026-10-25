@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          17.5
+        ],
+        "length": 17.5,
+        "words": "the short (17.5 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 26.5,
+        "span": [
+          0.0,
+          17.5
+        ],
+        "length": 17.5,
+        "words": "the short (17.5 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          26.5
+        ],
+        "length": 26.5,
+        "words": "the long (26.5 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 17.5,
+        "span": [
+          0.0,
+          26.5
+        ],
+        "length": 26.5,
+        "words": "the long (26.5 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "battery_9v_pp3",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "control_1_1",
+      "part": "toggle_mts102",
+      "params": {
+        "body_length": 13.0,
+        "body_width": 8.0,
+        "body_height": 10.0,
+        "bushing_diameter": 6.0,
+        "bushing_length": 8.0,
+        "max_panel_thickness": 4.0,
+        "nut_diameter": 9.0,
+        "lever_diameter": 3.0,
+        "lever_height": 12.0,
+        "lever_swing_radius": 4.0,
+        "pin_pitch": 4.7,
+        "lug_length": 4.0
+      },
+      "x": 6.85,
+      "y": 4.85,
+      "z": 60.89999999999999,
+      "rot_z": 0.0,
+      "item": "control_1",
+      "copy": 0,
+      "role": "panel",
+      "edge": "lid",
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "keepout_above": 10.0,
+    "keepout_below": 3.0,
+    "board_clearance": 0.2,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 90.0,
+    "max_y": 45.0,
+    "max_z": 30.0
+  },
+  "board": {
+    "part": "battery_9v_pp3",
+    "specimen": null,
+    "params": {
+      "batt_width": 26.5,
+      "batt_depth": 17.5,
+      "batt_length": 48.5,
+      "terminal_spacing": 12.7,
+      "stud_height": 1.5,
+      "clip_height": 10.0,
+      "clip_width": 17.5
+    },
+    "holes": null,
+    "hole_diameter": null,
+    "hole_keepout_diameter": null,
+    "grid": null,
+    "screw": null
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0,
+  "unplaced": [
+    {
+      "id": "connector_1",
+      "part": "dc_jack_pj002a",
+      "quantity": 1,
+      "reason": "battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+    },
+    {
+      "id": "mech_1",
+      "part": "dowel_pin_generic",
+      "quantity": 1,
+      "reason": "battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+    },
+    {
+      "id": "control_1",
+      "part": "toggle_mts102",
+      "quantity": 1,
+      "reason": "battery_9v_pp3 is not a carrier: no relation places it yet (GM2b)"
+    }
+  ]
+}

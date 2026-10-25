@@ -1,0 +1,407 @@
+{
+  "request": "I'm after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on one short end, there are two rows of 19 header pins pointing up (jumper wires go on those), and the PCB antenna is at the other end. Alongside it goes a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm holes, which should be visible through a window in the front, and two 6 mm tactile buttons placed next to that window, with each button axis no closer than 4 mm to the window edge and the two buttons no closer than 12 mm to each other. The window has to reveal the 21.7 x 10.9 mm active area with a margin of 1 mm or more all round, without clipping the 25 x 14 mm viewing area. Give each button a printed plunger that genuinely presses its switch and protrudes 1.5 to 3.5 mm above the lid. At the back, which is the end wall behind the board's USB end, the USB port has to stay reachable so a micro-USB plug seats fully with the lid fitted. Leave the antenna end open: no wall or lid within 8 mm of the board end above the board's top face, and nothing within 5 mm above the module there (low edge stops below the board top are fine). As the ESP32 has no holes, the housing must hold it by the underside and edges. It consists of a base, a removable lid with a locating lip fastened by four M3 screws, and two plungers, all printed on an FDM printer with no supports. Requirements: Using the parts catalogue, place the ESP32 board, the OLED module and both tactile switches so the USB port faces the back, the OLED faces the front and each switch's actuator points forward. Put the switches beside the window (axes no less than 4 mm from the window edge, and no less than 12 mm from each other), keep the parts from colliding, and declare the layout. Printed supports must carry the ESP32 under its underside, away from the pin tails; it must be held against sliding along either axis by more than 0.6 mm, and with the lid off it must lower straight onto them. With the lid on, the enclosure must keep out of the board's header-pin, top-component, pin-tail and antenna keep-out volumes (the antenna zone being 8 mm past the board end and 5 mm over the module, above the board's top face alone), and the board must sit inside the enclosure. Fasten the OLED module to the lid with at least two M2 x 7 screws in pilot holes at its mounting holes, and give its board at least three bearing contacts; no printed material may be within 0.2 mm of the glass. In the lid cut one rectangular window. It must contain the OLED's 25 x 14 mm viewing area, leave a margin of at least 1 mm around the 21.7 x 10.9 mm active area, exceed the viewing area by no more than 1.5 mm, and have nothing within 3 mm above the glass over that area. Every button gets a printed plunger, centred within 0.5 mm on its switch's actuator and sitting 0 to 0.5 mm above the plunger, running in a hole in the lid and held in by a flange. It protrudes 1.5 to 3.5 mm from the lid and has enough travel to click the switch while touching only the switch. When the lid is on, a micro-USB cable must plug right into the ESP32 via one opening in the back wall and not touch the enclosure, the opening being no more than 1.5 mm larger than the plug on any side. Build it as a base and a separate removable lid, which locates on the base by a lip and is held shut with four M3 screws. Closed, the enclosure has no openings but the USB opening, the window, the two plunger holes and the screw holes, and walls, floor and lid are 2 to 4 mm thick. The base, the lid and each plunger must be a single manifold body apiece, printable on an FDM printer without supports. Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's length, and stand flat on a desk without tipping. Deliver the base STL, the lid STL, two plunger STLs, the OpenSCAD source, the declared layout and the agent's own clearance report, which has to agree with an independent measurement.",
+  "base_request": "I'm after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on one short end, there are two rows of 19 header pins pointing up (jumper wires go on those), and the PCB antenna is at the other end. Alongside it goes a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm holes, which should be visible through a window in the front, and two 6 mm tactile buttons placed next to that window, with each button axis no closer than 4 mm to the window edge and the two buttons no closer than 12 mm to each other. The window has to reveal the 21.7 x 10.9 mm active area with a margin of 1 mm or more all round, without clipping the 25 x 14 mm viewing area. Give each button a printed plunger that genuinely presses its switch and protrudes 1.5 to 3.5 mm above the lid. At the back, which is the end wall behind the board's USB end, the USB port has to stay reachable so a micro-USB plug seats fully with the lid fitted. Leave the antenna end open: no wall or lid within 8 mm of the board end above the board's top face, and nothing within 5 mm above the module there (low edge stops below the board top are fine). As the ESP32 has no holes, the housing must hold it by the underside and edges. It consists of a base, a removable lid with a locating lip fastened by four M3 screws, and two plungers, all printed on an FDM printer with no supports.",
+  "seed": 5,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "Using the parts catalogue, place the ESP32 board, the OLED module and both tactile switches so the USB port faces the back, the OLED faces the front and each switch's actuator points forward. Put the switches beside the window (axes no less than 4 mm from the window edge, and no less than 12 mm from each other), keep the parts from colliding, and declare the layout.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "Printed supports must carry the ESP32 under its underside, away from the pin tails; it must be held against sliding along either axis by more than 0.6 mm, and with the lid off it must lower straight onto them.",
+      "method": "test"
+    },
+    {
+      "id": "L1.3",
+      "text": "With the lid on, the enclosure must keep out of the board's header-pin, top-component, pin-tail and antenna keep-out volumes (the antenna zone being 8 mm past the board end and 5 mm over the module, above the board's top face alone), and the board must sit inside the enclosure.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.4",
+      "text": "Fasten the OLED module to the lid with at least two M2 x 7 screws in pilot holes at its mounting holes, and give its board at least three bearing contacts; no printed material may be within 0.2 mm of the glass.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.5",
+      "text": "In the lid cut one rectangular window. It must contain the OLED's 25 x 14 mm viewing area, leave a margin of at least 1 mm around the 21.7 x 10.9 mm active area, exceed the viewing area by no more than 1.5 mm, and have nothing within 3 mm above the glass over that area.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.6",
+      "text": "Every button gets a printed plunger, centred within 0.5 mm on its switch's actuator and sitting 0 to 0.5 mm above the plunger, running in a hole in the lid and held in by a flange. It protrudes 1.5 to 3.5 mm from the lid and has enough travel to click the switch while touching only the switch.",
+      "method": "test"
+    },
+    {
+      "id": "L1.7",
+      "text": "When the lid is on, a micro-USB cable must plug right into the ESP32 via one opening in the back wall and not touch the enclosure, the opening being no more than 1.5 mm larger than the plug on any side.",
+      "method": "test"
+    },
+    {
+      "id": "L1.8",
+      "text": "Build it as a base and a separate removable lid, which locates on the base by a lip and is held shut with four M3 screws.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.9",
+      "text": "Closed, the enclosure has no openings but the USB opening, the window, the two plunger holes and the screw holes, and walls, floor and lid are 2 to 4 mm thick.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "The base, the lid and each plunger must be a single manifold body apiece, printable on an FDM printer without supports.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.11",
+      "text": "Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's length, and stand flat on a desk without tipping.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.12",
+      "text": "Deliver the base STL, the lid STL, two plunger STLs, the OpenSCAD source, the declared layout and the agent's own clearance report, which has to agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": "failed",
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [],
+    "all_verified": false
+  },
+  "notes": [],
+  "components": [],
+  "assembly": {
+    "stage": "arrange_contents",
+    "notes": [
+      "coverage: module_1.usb is closed although request names micro-usb plug (the controller decides after the first build)",
+      "hole columns: \u00d87 = max(board HOLE.keepout_diameter 7, screw_m2_selftap head + 2 x rules.driver_clearance 6) (rule:hole_column_d)",
+      "arrange: {} infeasible (no_room: module_1: no free spot on the board for esp32_devkitc_v4)",
+      "no feasible arrangement: {}: no_room: module_1: no free spot on the board for esp32_devkitc_v4"
+    ],
+    "parts_dir": "/Users/robinonsay/python/llm-bt/.claude/worktrees/agent-a0e0cb1c8fb79628a/benchmarks/generalize/parts:/Users/robinonsay/python/llm-bt/.claude/worktrees/agent-a0e0cb1c8fb79628a/benchmarks/enclosure/parts",
+    "parts_dirs": [
+      "/Users/robinonsay/python/llm-bt/.claude/worktrees/agent-a0e0cb1c8fb79628a/benchmarks/generalize/parts",
+      "/Users/robinonsay/python/llm-bt/.claude/worktrees/agent-a0e0cb1c8fb79628a/benchmarks/enclosure/parts"
+    ],
+    "rules_path": "/Users/robinonsay/python/llm-bt/.claude/worktrees/agent-a0e0cb1c8fb79628a/design_rules.json",
+    "with_models": false,
+    "catalog": [
+      "arduino_nano",
+      "arduino_uno_r3",
+      "battery_9v_pp3",
+      "bearing_608",
+      "bearing_623",
+      "bearing_625",
+      "bolt_m3_iso4762",
+      "bolt_m4_iso4762",
+      "bolt_m5_iso7380",
+      "button_tact_6mm",
+      "buzzer_12mm",
+      "camera_screw_1_4_20",
+      "card_microsd",
+      "cell_18650",
+      "dc_jack_pj002a",
+      "dowel_pin_generic",
+      "encoder_ec11",
+      "esp32_devkitc_v4",
+      "extrusion_2020",
+      "fan_40x40x10",
+      "fan_60x60x25",
+      "gear_spur_generic",
+      "generic_box",
+      "generic_cylinder",
+      "generic_tube",
+      "gt2_belt_6mm",
+      "gt2_pulley_20t",
+      "hc_sr04",
+      "header_female_2p54",
+      "header_male_2p54",
+      "heatset_m2p5",
+      "heatset_m3",
+      "jack_3p5_pj320a",
+      "lcd1602_hd44780",
+      "led_5mm",
+      "lipo_503450",
+      "lm8uu",
+      "magnet_disc_6x3",
+      "microswitch_kw12",
+      "n20_gearmotor",
+      "nema17_motor",
+      "nut_m3",
+      "nut_m4",
+      "oled_ssd1306_096",
+      "perfboard",
+      "plug_dc_barrel_5p5",
+      "plug_microusb_b",
+      "plug_minihdmi",
+      "plug_miniusb_b",
+      "plug_trs_3p5",
+      "plug_usb_b",
+      "plug_usbc",
+      "pot_rk09",
+      "rod_8mm",
+      "rpi_camera_v2",
+      "rpi_pico2",
+      "rpi_zero2w",
+      "screw_m2_selftap",
+      "screw_m2p5_selftap",
+      "screw_m3_selftap",
+      "servo_mg996r",
+      "servo_sg90",
+      "slide_sk12d",
+      "tnut_2020_m5",
+      "toggle_mts102",
+      "tp4056_usbc_module"
+    ],
+    "catalog_errors": [],
+    "rules": {
+      "sliding_fit_min": 0.15,
+      "sliding_fit_max": 0.35,
+      "sliding_fit": 0.25,
+      "board_to_wall": 0.5,
+      "plug_to_opening": 0.3,
+      "opening_oversize_max": 1.5,
+      "min_ligament": 1.5,
+      "wall_default": 2.4,
+      "floor_default": 2.4,
+      "min_feature": 0.8,
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0,
+      "round_hole_exempt_max": 12.0,
+      "bed_x": 200.0,
+      "bed_y": 200.0,
+      "bed_z": 200.0,
+      "layer_height": 0.2,
+      "fn": 64.0,
+      "standoff_wall_min": 1.6,
+      "component_height_default": 10.0,
+      "solder_side_default": 3.0,
+      "keepout_margin": 1.0,
+      "plug_travel": 40.0,
+      "driver_clearance": 1.0,
+      "driver_diameter": 6.0,
+      "driver_reach": 50.0,
+      "design_margin": 0.1,
+      "grid_search_step": 0.01,
+      "grid_residual_max": 0.15,
+      "overlap_max": 1.0,
+      "interference_max": 0.01,
+      "seat_gap_max": 0.1,
+      "seat_axis_residual_max": 0.25,
+      "lip_engagement": 2.0,
+      "lip_wall": 1.2,
+      "boss_wall_min": 1.6,
+      "cut_overrun": 1.0,
+      "screw_hole_clearance_min": 0.2,
+      "given_hole_clearance_min": 0.0,
+      "max_quantity": 8.0,
+      "part_to_wall": 0.2,
+      "measure_tol": 0.01,
+      "margin_scale": 1.0,
+      "lookup_k": 3.0,
+      "view_elevation_deg": 20.0,
+      "arrange_rank_max": 16.0,
+      "layout_step": 0.5,
+      "aperture_min_volume": 1.0,
+      "parity_volume_rel": 0.005,
+      "parity_bbox": 0.05,
+      "rebate_upstand": 1.5,
+      "vent_slot_width": 2.0,
+      "vent_slot_length": 10.0,
+      "controller_step_budget": 6.0,
+      "controller_trust_region": 0.05,
+      "controller_error_terms": 6.0,
+      "controller_menu_max": 8.0,
+      "support_ledge_width": 1.2,
+      "support_min_length": 3.0,
+      "retention_wall": 1.2,
+      "pocket_rim_height": 3.0,
+      "retention_play_max": 0.5,
+      "crush_rib_width": 1.0,
+      "crush_rib_pitch": 15.0,
+      "crush_rib_interference": 0.15,
+      "crush_rib_interference_min": 0.05,
+      "crush_rib_interference_max": 0.3,
+      "snap_arm_thickness": 1.5,
+      "snap_clip_width": 5.0,
+      "snap_overlap": 1.0,
+      "snap_overlap_min": 0.5,
+      "snap_hook_height": 1.5,
+      "snap_gap": 0.2,
+      "snap_slot": 0.5,
+      "snap_strain_max": 0.025
+    },
+    "spec": {
+      "board_width": 54.4,
+      "board_depth": 27.9,
+      "keepout_above": 10.0,
+      "keepout_below": 3.0,
+      "board_clearance": 0.5,
+      "headroom": 0.5,
+      "opening_oversize_max": 1.5,
+      "wall_min": 2.0,
+      "wall_max": 4.0,
+      "max_x": 75.0,
+      "max_y": 55.0,
+      "max_z": 30.0
+    },
+    "spec_provenance": {
+      "board_width": "request:\"I'm after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on\"",
+      "board_depth": "request:\"after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on one \"",
+      "keepout_above": "rules:component_height_default",
+      "keepout_below": "rules:solder_side_default",
+      "board_clearance": "rules:board_to_wall",
+      "headroom": "rules:board_to_wall",
+      "opening_oversize_max": "L1.7:\"and not touch the enclosure, the opening being no more than 1.5 mm larger than the plug on any side.\"",
+      "wall_min": "L1.9:\"ger holes and the screw holes, and walls, floor and lid are 2 to 4 mm thick.\"",
+      "wall_max": "L1.9:\"oles and the screw holes, and walls, floor and lid are 2 to 4 mm thick.\"",
+      "max_x": "L1.11:\"Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's lengt\"",
+      "max_y": "L1.11:\"Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's length, an\"",
+      "max_z": "L1.11:\"Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's length, and stand\"",
+      "board.hole_inset": "catalogue:perfboard family default",
+      "board.hole_diameter": "catalogue:perfboard family default"
+    },
+    "contents": [
+      {
+        "part": "perfboard",
+        "kind": "board",
+        "quantity": 1,
+        "exposed": false,
+        "name": "perfboard",
+        "exposed_connectors": [],
+        "id": "board",
+        "params": {
+          "width": 54.4,
+          "depth": 27.9
+        }
+      },
+      {
+        "part": "esp32_devkitc_v4",
+        "kind": "module",
+        "quantity": 1,
+        "exposed": false,
+        "name": "esp32 devkitc",
+        "exposed_connectors": [],
+        "exposed_votes": {
+          "no": 3
+        },
+        "id": "module_1",
+        "params": {}
+      },
+      {
+        "part": "oled_ssd1306_096",
+        "kind": "display",
+        "quantity": 1,
+        "exposed": false,
+        "name": "0.96 inch oled",
+        "exposed_connectors": [],
+        "id": "display_1",
+        "params": {}
+      },
+      {
+        "part": "button_tact_6mm",
+        "kind": "control",
+        "quantity": 2,
+        "exposed": false,
+        "name": "6mm tactile button",
+        "exposed_connectors": [],
+        "id": "control_1",
+        "params": {}
+      }
+    ],
+    "layout": {},
+    "arrange": {
+      "candidates": [
+        {
+          "assignment": {},
+          "outcome": "pruned",
+          "kind": "no_room",
+          "detail": "module_1: no free spot on the board for esp32_devkitc_v4"
+        }
+      ],
+      "classes": 0,
+      "truncated": 0,
+      "decision": null
+    },
+    "grid_report": {},
+    "conflicts": [],
+    "coverage": [
+      {
+        "item": "module_1",
+        "part": "esp32_devkitc_v4",
+        "connector": "usb",
+        "plug": "plug_microusb_b",
+        "evidence": [
+          {
+            "source": "request",
+            "quote": "At the back, which is the end wall behind the board's USB end, the USB port has to stay reachable so a micro-USB plug seats fully with the lid fitted."
+          },
+          {
+            "source": "L1.7",
+            "quote": "When the lid is on, a micro-USB cable must plug right into the ESP32 via one opening in the back wall and not touch the enclosure, the opening being no more than 1.5 mm larger than the plug on any side."
+          }
+        ],
+        "resolved": "open"
+      }
+    ],
+    "links": {},
+    "number_owner": {
+      "n1": "board_width",
+      "n2": "board_depth",
+      "n39": "opening_oversize_max",
+      "n40": "wall_min",
+      "n41": "wall_max",
+      "n42": "max_x",
+      "n43": "max_y",
+      "n44": "max_z"
+    },
+    "unplaced": [],
+    "relations": [],
+    "fasteners": {
+      "fastener.board.thread_diameter": 2.0,
+      "fastener.board.pilot_diameter": 1.7,
+      "fastener.board.pilot_min": 1.6,
+      "fastener.board.pilot_max": 1.8,
+      "fastener.board.clearance_diameter": 2.4,
+      "fastener.board.head_diameter": 4.0,
+      "fastener.board.head_height": 1.6,
+      "fastener.board.length": 6.0,
+      "fastener.board.min_engagement": 5.0,
+      "fastener.board.min_boss_od": 5.0
+    },
+    "choices": {
+      "primary": {
+        "value": "perfboard",
+        "by": "rule:primary_reference",
+        "reason": "carrier",
+        "interface": "mount"
+      },
+      "fastener[board]": {
+        "value": "screw_m2_selftap",
+        "by": "rule:smallest_thread_through_board_hole"
+      }
+    },
+    "assumptions": [
+      "keepout_above = 10 mm from rules:component_height_default (the text states no number for it)",
+      "keepout_below = 3 mm from rules:solder_side_default (the text states no number for it)",
+      "board_clearance = 0.5 mm from rules:board_to_wall (the text states no number for it)",
+      "headroom = 0.5 mm from rules:board_to_wall (the text states no number for it)",
+      "The request does not state the board's mounting-hole pattern; the catalogue family default is used: \u00d83 holes 2.5 mm from each edge.",
+      "fastener[board] = screw_m2_selftap: the text names no board screw and the perfboard datasheet gives no thread; the smallest catalogue screw that passes the board's mounting holes is used"
+    ],
+    "stl_source": {},
+    "components": [],
+    "results": [],
+    "results_manifold": [],
+    "files": [],
+    "deferred_gate_rules": {
+      "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
+      "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
+      "R10": "skipped: imported models are compared only in the --with-models arm (M14; numbered R9 before generalize delta 001, which gave R9 to the interface gate)"
+    },
+    "feature_graph": null
+  }
+}

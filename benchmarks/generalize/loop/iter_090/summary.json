@@ -1,0 +1,166 @@
+{
+  "iter": "090",
+  "generated": "2026-10-25T14:05:59",
+  "code_sha1": "8e86aab0fc6a918e99ddc91cc6bdef9c82ceebf2",
+  "runs_on_one_code_version": true,
+  "code_versions": [
+    "8e86aab0fc6a918e99ddc91cc6bdef9c82ceebf2"
+  ],
+  "counts": {
+    "regression": {
+      "runs": 1,
+      "rc": {
+        "0": 1
+      },
+      "no_output": 0,
+      "with_renders": 1,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 1
+    },
+    "target": {
+      "runs": 1,
+      "rc": {
+        "1": 1
+      },
+      "no_output": 1,
+      "with_renders": 0,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 0
+    }
+  },
+  "regression": "pending",
+  "paraphrase": null,
+  "stub_verified": 0,
+  "llm_dependent": [],
+  "stub": {
+    "runs": 0,
+    "verified": [],
+    "compared": 0,
+    "same_geometry": [],
+    "verified_share": null
+  },
+  "controller": {
+    "steps": 0,
+    "kept": 0,
+    "designs_with_kept_steps": 0,
+    "decisions": {},
+    "semantic_rule_decisions": 0,
+    "mean_llm_share": null
+  },
+  "to_judge": [
+    "E1-01_s31"
+  ],
+  "cached": [],
+  "runs": [
+    {
+      "name": "E1-01_s31",
+      "id": "E1-01",
+      "split": "regression",
+      "seed": 31,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 102.8,
+      "package": "benchmarks/generalize/loop/iter_090/E1-01_s31/20261025-140351",
+      "has_renders": true,
+      "geometry_sha1": "30ad054cee72f32ec9b70a24154eb57e7c88fa9c",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/enclosure.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "code_sha1": "8e86aab0fc6a918e99ddc91cc6bdef9c82ceebf2",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T14:05:34",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "semantic-rule": 6,
+          "llm": 5,
+          "plant": 1
+        },
+        "proposal": {
+          "llm_slots": 11,
+          "default_slots": 1,
+          "llm_contents_items": 3
+        },
+        "llm_share": 0.7037,
+        "semantic_rule_decisions": 6,
+        "unregistered": 0
+      },
+      "spec_sha1": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "T01_s31",
+      "id": "T01",
+      "split": "target",
+      "seed": 31,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 25.4,
+      "package": "benchmarks/generalize/loop/iter_090/T01_s31/20261025-140534",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/T01/requirements.md",
+        "benchmarks/generalize/designs/T01/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "416e408b3fdcf6a0570ca50ce4b4b17a98c7956a",
+      "code_sha1": "8e86aab0fc6a918e99ddc91cc6bdef9c82ceebf2",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T14:05:59",
+      "outcome": "failed",
+      "stage": "choose_archetype",
+      "last_note": "not implemented: archetype (primary cleat_shimano_sm_sh51; no shell evidence; candidates for GM5: plate / bracket / block / cradle)",
+      "spec_sha1": "416e408b3fdcf6a0570ca50ce4b4b17a98c7956a",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    }
+  ],
+  "code": {
+    "code_sha1": "8e86aab0fc6a918e99ddc91cc6bdef9c82ceebf2",
+    "files": 85,
+    "previous_iter": "iter_005",
+    "code_unchanged": false,
+    "changed_within_iteration": false
+  }
+}

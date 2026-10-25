@@ -1,0 +1,564 @@
+{
+"014860cb552464f70972a7ad0bee274b36df8617": {
+"action": "B"
+},
+"04720e6434541f3c570c557e5321a72464a276a8": {
+"action": "expose:board.dc",
+"reason": "The only remaining failure is that the DC barrel jack is closed while the specification names a DC plug that must fully enter through a separate opening in that same end wall, so opening the wall for the DC connector is exactly what the one"
+},
+"074f1713542566ea0954ef9be2f8c21d9f061f28": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must be pushable all the way in through a single end-wall opening with the lid shut, and the current design has board.usb closed, so exposing that connector is the only way"
+},
+"0785a2dcaf1513671a4a80cada287c4788bf2db5": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must reach the Pico through a single end-wall opening with the lid shut, and the current design has that connector closed, so exposing it is the only action that satisfies "
+},
+"0a321ec26daa57eadf94d469149ce2034c3d03f1": {
+"action": "set_closure:rebate",
+"reason": "The request's failing requirement closure_evidence (L1.8) explicitly names a rebate closure and requires the text to name that closure type, so switching from lip to rebate satisfies L1.8; the bbox requirement is already met (84.17 x 64.17,"
+},
+"0f0e9315f72e5a2477467583a1314846a79c9727": {
+"action": "expose:board.dc",
+"reason": "The request explicitly requires the DC barrel plug (with its moulded handle) to pass through the wall while the cover is on, so opening the enclosure for the DC connector is needed to satisfy the failing text_coverage requirement."
+},
+"10709608cda239515298eca83aa7c49f63f8795e": {
+"module_1": "+Y"
+},
+"115241481d2481346182e9349a2f7bb22cb9da76": {
+"action": "A"
+},
+"12bcd14bff706cf87864c2a3b67e8f08b05bfd8d": {
+"action": "expose:board.usb_data",
+"reason": "The text explicitly requires both micro-USB plugs (data and power) to seat fully through openings in the same long wall with the lid shut, and the design currently has usb_data closed while usb_power is already open, so exposing usb_data is"
+},
+"1cc45e45e3985460cb842f7d0e6f9685ffce431f": {
+"connector_1": "-X"
+},
+"1d3b6dc2c12c28b3c6e83b7931d31dd2d4e78961": {
+"action": "B"
+},
+"1e78de5812708d0e9de58402ff08a33ee3fb9e6b": {
+"action": "expose:board.usb_data",
+"reason": "Requirement 1 fails because both usb_data and usb_power openings are closed while the text explicitly names two micro-USB plugs that must seat through that long wall; exposing usb_data resolves the first failing requirement, and exposing it"
+},
+"1f545d838c00bc93c6787b059667e99cab69843d": {
+"action": "C"
+},
+"1fe3b875697e088b3cb4c6715381a097aabe9db0": {
+"action": "set_closure:rebate",
+"reason": "The request describes a lid that rises through a hole in the top plate and presses switches from above, so the lid is a flat plate that sits down in a rebate cut in the tops of the walls (matching L1.8's named closure), which set_closure:re"
+},
+"213b32c08264c6e7f96a5d9cd2e3e323d8ed7b26": {
+"action": "B"
+},
+"242ff6f5efaa079882ac8ea63f75287f7932f8cb": {
+"action": "A"
+},
+"24d09b9df7d87ea511ef3db6c8df8a02654f2954": {
+"action": "expose:connector_1.dc_in",
+"reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in opening must be cut into the wall (which this action does), and the vent rule is already satisfied by the exhaust slots on the opposite end, i"
+},
+"2909b9ac719dbd5e5f040b85217ec7ca0d4f72fb": {
+"connector_1": "-X",
+"module_1": "+X"
+},
+"2a3f0d0bfc10d6889802ca2f0985f2464044a9a0": {
+"action": "B"
+},
+"2b45f8f2fb806694891159a8daed64463fd716d5": {
+"action": "A"
+},
+"308ba7c3cdc65520e1ab5b240edaa657ab8c4016": {
+"action": "expose:board.dc",
+"reason": "The request explicitly requires the DC barrel plug (with its moulded handle) to pass through the wall while the cover is on, and text_coverage L1.6 fails because board.dc is closed; exposing board.dc opens that opening so the DC plug can be"
+},
+"30d0a05a093f601e1f25ff49917215f22c10851f": {
+"action": "B"
+},
+"322987e30b79939298d61990e75684434af29aab": {
+"action": "expose:board.usb",
+"reason": "The failing text_coverage checks require openings for both the USB-B and DC plugs, but only one action is allowed per step; exposing the USB-B connector first resolves the most prominent failure (L1.5) and is the natural first step before a"
+},
+"329249d0ac7dce8db7449a8c913a5da12aa3df50": {
+"action": "expose:board.usb_data",
+"reason": "The first failing requirement (text_coverage) is about usb_data being closed while the text explicitly names a micro-USB data plug that must seat through an opening; exposing usb_data directly resolves this top-priority failure, whereas usb"
+},
+"32f0406119cff51cec4b5b6d751a5ab7a7b0cabb": {
+"action": "expose:board.usb_data",
+"reason": "The failing requirement text_coverage explicitly names the data micro-USB plug (L1.6) as needing a fully-seating opening, and the measurement shows board.usb_data is closed while board.usb_power is already open, so exposing the data port is"
+},
+"3441088a80a55cb661c4af252477b0bd01ba7335": {
+"action": "expose:board.dc",
+"reason": "The request explicitly requires the DC barrel plug (with its moulded handle) to pass through the wall while the cover is on, and text_coverage L1.6 fails because board.dc is closed; exposing board.dc opens that opening so the DC plug can be"
+},
+"37296e3474f0bc447c5140458a49a8197dfbc24a": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5, L1.6) states that a micro-USB cable must plug fully into the Pico through an opening in the end wall with the lid closed, but the usb connector is currently closed; exposing it creates the needed"
+},
+"37786b9392f71d2ff233a29318839279667e9f09": {
+"action": "expose:board.usb_power",
+"reason": "The failing requirement text_coverage names the micro-USB power plug as the one that must seat fully through an opening in the long wall with the lid shut, so opening the wall for board.usb_power directly satisfies that stated requirement,"
+},
+"38ba835f9735a4e700a2f0dfac260261697a22e9": {
+"action": "set_closure:rebate",
+"reason": "The only failing requirement is closure_evidence (L1.8), which explicitly names a rebate closure; switching the lid from lip to rebate makes the named closure match the design, while the bbox requirement is already satisfied (84.17 x 64.17,"
+},
+"392e7b49c36b3d628722be48e2042d6fddc2afe1": {
+"action": "expose:connector_1.dc_in",
+"reason": "The request requires a 5.5\u00d72.1 mm DC plug to mate with the jack while the lid is on, but the dc_in opening is closed; exposing it creates the needed plug opening, and the vent slots are already placed so that requirement is satisfied."
+},
+"3d501dcd5e24fbcf3d56b1904563e1118990cb1d": {
+"action": "set_closure:rebate",
+"reason": "The request's lid closure is a flat plate that drops into a rebate in the top of the walls (matching L1.8), which the current lip closure does not satisfy; switching to rebate fixes closure_evidence, and the rebate's flush fit with the upst"
+},
+"3d949052da00309c041f3f9e8c832adbae6c0620": {
+"action": "set_closure:rebate",
+"reason": "The request describes a lid that rises through a hole in the top plate and presses switches from above, so the lid is a flat plate that sits down in a rebate cut in the tops of the walls (matching L1.8's named closure), which set_closure:rb"
+},
+"3dcdd032e5117e6cf8f748b614f483e906f7b1b2": {
+"action": "set_closure:rebate",
+"reason": "The only failing requirement is closure_evidence (L1.8), which explicitly names a rebate closure; switching the lid from lip to rebate makes the named closure match the design, while the bbox requirement is already satisfied (84.17 x 64.17,"
+},
+"3e9d6042e3c41e6a97872e11c16d426eb73ec59c": {
+"action": "C"
+},
+"42146740167a13616c9e34060d1f385dab9271d3": {
+"action": "expose:connector_1.dc_in",
+"reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in opening must be cut into the wall (which this action does), and the vent rule is already satisfied by the exhaust slots on the opposite end, i"
+},
+"42a0f1ce7691db7af8582b575bb27378784b5c39": {
+"action": "B"
+},
+"453bfc059ac08f2f6f6284cf779db21755deda4e": {
+"connector_1": "+Y"
+},
+"47941f0108350992184c7d7d0b344be6242f90fd": {
+"action": "B"
+},
+"487af0ebf6a44ab911e0e6da75fbae464d19db12": {
+"module_1": "+Y"
+},
+"487bfc4f0df0dea2c975ba1f57abc3647a363935": {
+"connector_1": "-Y"
+},
+"4bc0ac1aa6282065ce9487b78f552be604892f92": {
+"action": "expose:board.usb_data",
+"reason": "The failing text_coverage checks require openings for both micro-USB plugs (data and power) named in L1.6, and usb_data is currently closed while usb_power is already open, so exposing usb_data resolves the first and most severe failure."
+},
+"4e8eb11d07062292256b0d2cd080122b76d3fd5c": {
+"action": "C"
+},
+"507bca693a72c4a42848318757502cdbdf1b46be": {
+"connector_1": "+X",
+"module_1": "-X"
+},
+"542c93b6ec9de89c7aded37bd67e1a3e67a189ca": {
+"action": "D"
+},
+"54cd3fc3fa6b37c1f61176a7ca7738e6ccb9cd70": {
+"action": "expose:module_1.usb",
+"reason": "L1.5 requires both the micro-USB plug and the 3.5 mm plug to reach their connectors through separate openings in the same end wall with the lid closed; the jack already passes through, so opening the wall for the Pico's USB is what's needed"
+},
+"572959227142046be01a43c881bce08972d22fcb": {
+"action": "expose:board.usb",
+"reason": "The USB-B failure is listed first and is the more fundamental blocker (a single shared opening), while the DC failure is a separate opening that can be addressed independently; exposing the USB connector resolves the top-ranked requirement,"
+},
+"58374fc698ee1bc4e636e722af9dae463f5309bb": {
+"connector_1": "-X"
+},
+"61173b7f2c5219fa07e85df481da2528ac373582": {
+"action": "expose:board.dc",
+"reason": "The request explicitly names the DC barrel plug (5.5 mm) as needing to pass through the wall while the cover is on, and the only remaining failure is that board.dc is closed; exposing it opens that opening so the DC plug can plug in with a "
+},
+"627a716526bb5fdbf136dc87cc8710661f28d55b": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5, L1.6) states that with the lid closed a micro-USB cable must plug fully into the Pico through an opening in the end wall without touching the enclosure, but module_1.usb is currently closed; the "
+},
+"62d153cacb5532cf025a048a0e96a3d652e562c8": {
+"connector_1": "-X"
+},
+"63b3c68a381036bd91a7a31895f90cfbd31375df": {
+"action": "expose:board.usb",
+"reason": "The USB-B requirement (L1.5) is currently failing because the USB connector is closed, and since both failing checks are about connectors that are closed, opening the USB wall resolves the first failing requirement; the DC check remains the"
+},
+"63c79ad95f70d0e2d7de5a3dc92dc46cffcd971d": {
+"connector_1": "+X",
+"module_1": "-X"
+},
+"64ab8d5b12a72e3683830d999a2b7c83b274686c": {
+"module_1": "+X"
+},
+"694ab76dc0ece6bce09e7beefe2ae3a3be300308": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall, but the usb connector is currently closed; exposing it creates the required opening so the micro-USB,"
+},
+"6a3248b5bdfd8390182f29e1794f5f3ead626dd8": {
+"action": "B"
+},
+"6a54d2e1c0002e56724ac5eff9d71144d93518ca": {
+"action": "expose:board.usb_data",
+"reason": "The failing requirement text_coverage explicitly names the data micro-USB plug (L1.6) as needing a fully-seating opening, and the design currently has usb_data closed while usb_power is already open, so exposing usb_data resolves the named,"
+},
+"6a779f52d8e18330423c202a9a4bc81f237f8afa": {
+"action": "C"
+},
+"6cb8b23b76649b948bc4b1ad6aaacb468728dc55": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall, but the usb connector is currently closed; exposing it creates the required opening for the USB plug,"
+},
+"6cd5a33e97fcb327a689e472eb0131a30b83d7df": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 demands that both the micro-USB plug and the 3.5 mm plug reach their connectors through separate openings in the same end wall with the lid closed; the jack is already open, so opening the USB opening is what's "
+},
+"6db4dddcc5460b6226f4298bbc397ef328c801ad": {
+"action": "A"
+},
+"6e92115aae3783519ecdd87b245b7db9ee77dc6f": {
+"action": "expose:board.dc",
+"reason": "The request names both connectors, but the DC requirement is the one currently failing (2 failing checks \u2192 1), so exposing the DC connector resolves the remaining failure and satisfies the request's core need for a closed case with both USB"
+},
+"6fdf0b3bf6feffd4ce1f72c3b6dbdd5f100b6162": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; the current design has that USB opening closed, so exposing it is the only way\u2014"
+},
+"7079ad02be1d8140260f7772e0c9e1952d8d1cef": {
+"action": "expose:board.usb",
+"reason": "The USB-B requirement (L1.5) is currently failing because the USB connector is closed, and opening it for the arduino uno r3's USB connector lets the USB-B plug's shell and moulded handle pass through the end wall while the case stays shut."
+},
+"738c4d03e59ecc2963fa5a4483d030c3cd31dc2e": {
+"action": "expose:connector_1.dc_in",
+"reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in connector must be opened in the enclosure wall; this directly satisfies the failing text_coverage requirement, whereas the vent failure is a '"
+},
+"761da05deb52557365f44702d478736e5364fa89": {
+"action": "expose:board.usb",
+"reason": "The failing text_coverage checks require openings for both the USB-B plug (L1.5) and the DC plug (L1.6), but only one action per step is allowed; exposing the USB connector resolves the first failing check (L1.5) and is the more critical of"
+},
+"7b4d489b3c4c30c3429df07fb70bd0f11194cf03": {
+"connector_1": "+X",
+"module_1": "-X"
+},
+"7c281cc87910654fc44b0b0d0a8917c219e010d9": {
+"action": "expose:board.usb",
+"reason": "The USB-B requirement fails first and is the most fundamental connector access issue, so exposing the USB wall opening resolves the top-priority failure; the DC failure is a separate opening that this single action doesn't address, and the\u5507"
+},
+"7c299e129e7bf6a196a734885671f6ef91931b25": {
+"action": "B"
+},
+"7c2efe61cd78f2809059190814bcf002d4ddbd33": {
+"action": "expose:board.usb",
+"reason": "The USB-B failure is listed first and is the more fundamental blocker (a closed USB wall prevents the named USB-B plug from entering at all), so exposing the USB connector resolves the top-ranked requirement; the DC failure is a secondary, "
+},
+"80020b5cdd66617a1d8da25492a64e14c627982b": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must reach the Pico through a single end-wall opening with the lid shut, and the current design has the USB connector closed, so exposing it is the only action that adds an"
+},
+"81d3cdc3c2e5f0fb41daab2b936096e6e1dd2341": {
+"action": "B"
+},
+"866beea8764c0f13822117b0f1dd48adb29286cd": {
+"action": "B"
+},
+"87dbab15885ce92687c02eea868781ccd361bf4e": {
+"action": "expose:board.usb_power",
+"reason": "The failing requirement text_coverage names the power connector as a micro-USB plug that must seat fully through an opening in the long wall with the lid shut, but usb_power is currently closed; exposing it opens that wall so the micro-USB "
+},
+"89b2f662b406eb5cd4cd85f8ff8f859214360221": {
+"connector_1": "-X"
+},
+"8c08ea73a4ce10ccac55f1a1e13a3bcd7eb9b8df": {
+"action": "expose:board.usb_power",
+"reason": "The failing requirement text_coverage names a micro-USB plug (L1.6) that must seat fully through an opening in the long wall while the lid is shut, but usb_power is currently closed; opening the wall for usb_power provides the required gap,"
+},
+"8c6186bfa892a4f436c8e318d35e2bde7ab25c65": {
+"action": "B"
+},
+"8d0147e3d4dee39f7b51bee283e42343bb634958": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement (L1.5) demands that both the micro-USB plug and the 3.5 mm plug reach their connectors through separate openings in the same end wall with the lid closed; the jack is already open, so exposing the Pico's USB opening\u2014"
+},
+"8f2b9ffe3b63f992f357596a6914c4cd3d52d3d5": {
+"action": "expose:board.usb_power",
+"reason": "Requirement 1 explicitly names the micro-USB power plug (L1.6) and demands that it seat fully through an opening in the long wall with the lid shut, while requirement 2 only constrains the HDMI bridge span (which is already failing but is a"
+},
+"9255faa69246b28cd79d097254491b876520d0e9": {
+"connector_1": "+X",
+"module_1": "-X"
+},
+"9353d0109774828835a8fa428d095f54dc3c60f9": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 demands that both the micro-USB plug and the 3.5 mm plug plug fully through separate openings in the same end wall with the lid closed; the 3.5 mm jack is already open, so exposing the Pico's USB connector to a "
+},
+"93cb968c4414fc1dbcdff266e9a535e7439a34f9": {
+"module_1": "+X"
+},
+"95bbe9193dfb12fce178db271ad0451b6d98b9b0": {
+"action": "expose:connector_1.dc_in",
+"reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, but the dc_in connector is currently closed; opening the wall for dc_in creates the needed plug opening, directly resolving the failing text_coverage check"
+},
+"96663d00a7ac7a4344f26bcbcc1e337b1b891caa": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 demands a micro-USB opening in an end wall so a plug can reach the Pico with the lid shut, and exposing board.usb creates exactly that opening, which the current design lacks."
+},
+"98581879fac7cfe56769d752af1ba3a0a0432ab8": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; the current design has that opening closed, so exposing it is the only action ("
+},
+"9879a3cc0225898f733fc366d7375a658a4b6ebe": {
+"action": "C"
+},
+"9a3558b20e90708154326278086b60496f4d8149": {
+"connector_1": "+X"
+},
+"9aa178f938a43392c789e3a402446316d142a0b9": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 explicitly names a micro-USB plug and requires an opening for each connector whose mating plug the text names; exposing board.usb opens the end wall so the Pico's micro-USB connector is reachable with the lid on"
+},
+"9bbe49548b251abed153840a522f071f019f19cb": {
+"action": "B"
+},
+"9c2ad01d71a25453e51a144838ee0b3185fe61ac": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5) explicitly names a micro-USB plug that must plug fully into the Pico through an opening in the end wall with the lid closed, and the current design has module_1.usb closed, so exposing that wall\u2014"
+},
+"9c58aa6a69143526893bf24c74d88e00629db30b": {
+"action": "expose:connector_1.dc_in",
+"reason": "The request requires a 5.5\u00d72.1 mm DC plug to mate with the jack while the lid is on, but the dc_in opening is closed; exposing it creates the needed plug access, and the vent slots are already placed so that requirement is satisfied."
+},
+"a088781ee986890233be3465541a7ef6ae90a39a": {
+"action": "expose:board.usb",
+"reason": "The USB-B requirement (L1.5) is the remaining failing check, so opening the wall for the USB connector resolves the worst remaining failure, while the DC opening is already satisfied."
+},
+"a10ce0f211c30ed17d01146d0a0b7fdcc45a8000": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the Pico through an opening in the end wall with the lid closed; the current design has that opening closed, so exposing module_1.usb is the only step\u2014"
+},
+"a3ca8ce5e3fb8b55d11fb2e22cbcca6781a22b34": {
+"action": "expose:module_1.usb",
+"reason": "The request explicitly requires a micro-USB opening in the rear wall so the cable can plug in with the lid on, and this is the only failing requirement that names a specific closure type (text_coverage); the lid closure already matches the "
+},
+"a4551d3728f75f80ee645200c12598c74f3218f9": {
+"action": "set_closure:rebate",
+"reason": "The request's lid closure is a flat plate that drops into a rebate in the top of the walls (matching L1.8), and the current lip closure fails closure_evidence; switching to rebate fixes that check, and the outside size stays within the 95 x"
+},
+"a5e05e6aa6e6ed5886e9c1b0e65ecc52c2152f58": {
+"action": "expose:board.usb_data",
+"reason": "The failing requirements are text_coverage for usb_data and usb_power, where the text explicitly names two micro-USB plugs that must seat fully through two openings in the same long wall; usb_data is currently closed (a hard failure), while"
+},
+"a86fb9edf83d7bab7af129131d7b345de1145910": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully through an opening in the same end wall with the lid closed, and the current design has the Pico's USB connector closed while the jack is already open\u2014so I "
+},
+"a9ff01dea3189938c8236f8e4e31a003028c7917": {
+"action": "expose:module_1.usb",
+"reason": "The request explicitly requires a micro-USB opening in the rear wall so the cable can plug in with the lid on, which directly satisfies text_coverage (L1.5); the other failing requirements (closure_evidence and bbox) are addressed by the 'L"
+},
+"ab27e5392a1ffc78e874117deac8ec95b2c50fff": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5) explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; the current design has the USB connector closed, so exposing it"
+},
+"ac92916a5e2e927b3bfcc140dc0a0707df61fb3f": {
+"action": "A"
+},
+"ae7bf2b13bfef5bdc251f804f3f74c0d34cfe760": {
+"action": "A"
+},
+"aefbd9896c6858b3088fdd1e652bc98f5515f7c9": {
+"action": "expose:board.usb",
+"reason": "The USB-B requirement (L1.5) is the remaining failure, and exposing the USB connector on the short edge where the USB-B receptacle sits will open the wall so the USB-B plug and its moulded handle can pass through, resolving the last failing"
+},
+"b2fdfdf28ebe7128c71c876c0336191b41646be5": {
+"connector_1": "+X"
+},
+"b4fa3316e47b08657ded144f9cd2e8c34f627477": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement (L1.5) demands that both the micro-USB plug and the 3.5 mm plug reach their connectors through separate openings in the same end wall with the lid closed; the jack is already open, so exposing the Pico's USB opening\u2014"
+},
+"b5a049763bd5fa93c87f86bd535b32624b9c5fd4": {
+"action": "B"
+},
+"b5b692f6ff4701169a3038936802d0d380f11b80": {
+"action": "expose:board.usb_data",
+"reason": "The failing requirements are text_coverage for usb_data and usb_power, and bridge_board_hdmi_cut for the HDMI span; only exposing usb_data directly addresses a failing requirement, while usb_power is already open and the HDMI bridge span is"
+},
+"b9d679c2f1c240cf49a5c24aab64f555d1badb39": {
+"connector_1": "+X",
+"module_1": "-X"
+},
+"bff23350e2bf82a738be1874a51421b98a6d93c4": {
+"action": "expose:board.usb",
+"reason": "The request names a USB-B plug (L1.5) as the connector that must pass through the wall, so exposing the USB opening satisfies the currently failing text_coverage check, whereas the DC check only fails because the cover is closed and would, "
+},
+"c14dad47bee1e4aab32e3f2a554b6967c63da95c": {
+"action": "expose:board.dc",
+"reason": "The request names a 5.5 mm DC barrel jack that must be reachable with the cover on, so the DC opening must be opened (the USB was already correctly opened in step 2, leaving only the DC requirement failing)."
+},
+"c199d15fc0dfec59ebeb1419fff263a050cc126f": {
+"action": "expose:board.usb_power",
+"reason": "Requirement 1 explicitly names the micro-USB plug for usb_power and demands it seat fully through an opening in the closed lid, so exposing usb_power directly satisfies that stated requirement, whereas usb_data already passes and exposing a"
+},
+"c6ebccb71a29960c96c906e7a0b1bc4ff38c5826": {
+"action": "expose:board.usb",
+"reason": "The USB-B requirement (L1.5) is currently failing because the USB connector is closed, and opening it for the arduino uno r3's USB connector lets the USB-B plug's shell and moulded handle pass through the end wall while the case stays shut."
+},
+"c80b36226c95981fdacb1841970a9ff1d2cd0fbe": {
+"action": "expose:board.usb_data",
+"reason": "The text explicitly requires both micro-USB plugs (data and power) to seat fully through openings in the same long wall with the lid shut, and the design currently has usb_data closed while usb_power is already open, so exposing usb_data is"
+},
+"c898b173a62f1e48a5448cc426759ba6f3561119": {
+"action": "expose:board.usb",
+"reason": "The first failing requirement (L1.5) is about the USB-B plug needing an opening in the end wall, and exposing board.usb directly addresses that specific failing check, while board.dc is the second failing requirement and would be handled by"
+},
+"c8a7b6957264d34f637f3bcf22f13e2988727608": {
+"action": "expose:board.usb",
+"reason": "The first failing requirement is text_coverage for board.usb, which requires an opening for the USB-B plug through the end wall, and this action directly opens the enclosure wall for the USB connector."
+},
+"c8f8f2d8a1c73db32ac89eed65049a3a4bf556bc": {
+"action": "B"
+},
+"ca95b61f56af99fb8bf1b93f73c4f5ac6f8a9ce9": {
+"connector_1": "-Y"
+},
+"cabb97afbbdf17a83f3c31868c327d66475e9dd4": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5, L1.6) states that a micro-USB cable must plug fully into the Pico through an opening in the end wall with the lid closed, but module_1.usb is currently closed; exposing it creates the required un"
+},
+"cbbbb0c62b68b8cab7477645cb3d96ee58dd22e6": {
+"action": "B"
+},
+"cd78cc0d36e01893085fa41451be678a57d41646": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the Pico through an opening in the end wall with the lid closed; the current design has that opening closed, so exposing module_1.usb creates the named"
+},
+"d03f804436f313109ded51f1de1b8aa1030b171c": {
+"action": "expose:board.usb_power",
+"reason": "The failing requirement text_coverage names the power connector as a micro-USB plug that must seat fully through an opening in the long wall with the lid shut, but usb_power is currently closed; exposing it opens that wall so the micro-USB "
+},
+"d1eeed996e08baa28d486dcb0561f89dda98d3d6": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 needs an opening for the micro-USB connector so a plug can reach the Pico with the lid shut, and exposing board.usb creates exactly that opening."
+},
+"d2cc06ef65243bd7f03923ef5d322c83dcac5aad": {
+"action": "expose:board.usb_data",
+"reason": "The failing requirement text_coverage explicitly names the data micro-USB plug (L1.6) as needing a fully-seating opening, and the design currently has usb_data closed while usb_power is already open, so exposing usb_data resolves the named,"
+},
+"d310a829ba8d86c1eb6b1c47965e189d60dacf72": {
+"action": "B"
+},
+"d33be4ce58edf737e680a1eb482382cffe0b9862": {
+"action": "expose:board.dc",
+"reason": "The request names a 5.5 mm DC barrel jack that must be reachable with the cover on, so the DC opening must be opened (the USB was already correctly opened in step 2, leaving only the DC requirement failing)."
+},
+"d49076d2e89956b50f916634961f57477f016ba3": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5, L1.6) states that a micro-USB cable must plug fully into the Pico through an opening in the end wall with the lid closed, and the only closed connector is module_1.usb, so exposing it directly un"
+},
+"d88c8f2f3bed4722273fd5436ca11e64e5b9a009": {
+"connector_1": "+Y"
+},
+"d8ca90570e4b44eebbeb83adea95512122b1b915": {
+"action": "B"
+},
+"d90d77bc548b3d7f37b6b545355ca22ac3ebf9dd": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; the current design has that USB opening closed, so exposing it is the only way\u2014"
+},
+"d912e2ee11013bfbf1ab990ac646eac1c9089aa1": {
+"action": "expose:module_1.usb",
+"reason": "The failing text_coverage requirement (L1.5) names a micro-USB plug that must enter through a single hole in the rear end wall while the lid is on, and the current design has the USB connector closed, so exposing it opens the wall for the P"
+},
+"d9802985bdcad96776bbb2c1a4b6d1e55380c4a1": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully into the raised Pico through an opening in the end wall with the lid closed; exposing the usb connector creates that opening, while the jack is already open"
+},
+"d9e978e294cd3be0fdb0b5cdaf789c9fd4799e4a": {
+"action": "expose:board.usb",
+"reason": "The USB-B requirement (L1.5) is the worst-failing requirement and is currently closed, so exposing the USB connector is the single action that resolves the most critical failure and satisfies the request's need for an opening for the named,"
+},
+"da806bd24e48bc8f034c3834e51e6eb1eda78cb1": {
+"action": "B"
+},
+"db094b329145a740e0415bd13850cc81be0971bb": {
+"connector_1": "-X",
+"module_1": "-X"
+},
+"dc64ab4a5c1928db991b7a8b8bf8d38d106e68de": {
+"action": "C"
+},
+"dcb08fa7f8eb45a322d39db6237e4ba0a5f89d0f": {
+"action": "A"
+},
+"dce9ca6cfd58f3136cd3d6fa78c9efd5925712c9": {
+"action": "B"
+},
+"ddd6a642b6bea9ccc25997e1de814d874b326e14": {
+"action": "expose:board.usb_data",
+"reason": "Requirement 1 fails because both usb_data and usb_power openings are closed, but the text names plugs for both; exposing usb_data resolves one of the two failing checks, while exposing usb_power would only resolve the other, so either works"
+},
+"de43af61814f48ae7adb2aaf2e31522c3fefce2e": {
+"action": "expose:board.usb_power",
+"reason": "Requirement 1 fails because usb_power is closed while its named micro-USB plug must seat fully through an opening in the long wall with the lid shut; exposing usb_power opens that wall so the power plug can reach the board, whereas closing/"
+},
+"dea32e4286a04e3051a386bea1a31bb3b19dfc66": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 explicitly names a micro-USB plug that must be pushable all the way in through a single end-wall opening with the lid shut, and the current design has board.usb closed, so exposing that connector is the only way"
+},
+"df132c045d13603bb2ae8faa76af860eb66b4cd5": {
+"connector_1": "-X",
+"module_1": "-X"
+},
+"e26913dbc63c3bdeba9183eb94e27d046ee4af07": {
+"action": "set_closure:rebate",
+"reason": "The request's lid closure is a flat plate that drops into a rebate in the top of the walls (matching L1.8), and the current lip closure fails closure_evidence; switching to rebate fixes that check, and the outside size stays within the 95 x"
+},
+"e3067b3292baaa7e1feaa64562d140a6a19bb94b": {
+"action": "A"
+},
+"e39ab99b37cdd54da1379d110c17a3721e887f5c": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5, L1.6) states that a micro-USB cable must plug fully into the Pico through an opening in the end wall with the lid closed, and the only closed connector is module_1.usb, so exposing it directly un"
+},
+"e4311330234714d7dfefe013497d2b7f39cbd4ee": {
+"action": "expose:board.usb",
+"reason": "The failing requirement L1.7 needs an opening for the micro-USB connector so a plug can reach the Pico with the lid shut, and exposing board.usb creates exactly that opening."
+},
+"e9ac25cb880ac628d71e54d7ff4d47e8d7b38c55": {
+"action": "A"
+},
+"e9e00b1405a982d2be0ae412036a7a1f695a4f29": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement text_coverage (L1.5) demands an opening for the micro-USB plug so it can fully mate with the raised Pico through the end wall with the lid closed; exposing module_1.usb creates exactly that opening, while the jack is"
+},
+"ea8f04bfd14484c72004a475721928b1408f291a": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully through an opening in the same end wall with the lid closed, and the current design has the Pico's USB connector closed while the jack is already open\u2014so I "
+},
+"edf3f1a52dbe26e8ed5456fed6b221fab7c40966": {
+"action": "expose:board.usb",
+"reason": "The request names a USB-B plug (L1.5) as the connector that must pass through the wall, so exposing the USB opening satisfies the currently failing text_coverage check, whereas the DC check only fails because the cover is closed and would, "
+},
+"eea47ab776b728d8c738152d2edac9486ea84794": {
+"action": "A"
+},
+"eef522307873d0bcc4d788860bbee17d443d0ef3": {
+"connector_1": "-X"
+},
+"f3bc42064c1158a4a75db2d72d8d0b5af71a32d5": {
+"connector_1": "-Y"
+},
+"f81fc7616f322ac4d80424d6c0393e4de8196e1e": {
+"action": "expose:module_1.usb",
+"reason": "The failing requirement L1.5 explicitly names a micro-USB plug that must plug fully through an opening in the same end wall as the 3.5 mm jack, and the current design leaves module_1.usb closed, so exposing that USB connector creates the un"
+},
+"fb67e3919c945af5cdb0920b00091229cd400946": {
+"action": "A"
+},
+"fbe1bbaf28d2cbdcb2d175face2199f1d544c1f6": {
+"action": "expose:board.dc",
+"reason": "The request explicitly names the DC barrel plug (5.5 mm) as needing to pass through the wall while the cover is on, and the only remaining failure is that board.dc is closed; exposing it opens that opening so the DC plug can plug in with a "
+},
+"ffc95fd678fd741b61c8869ed22adefbddb3a28e": {
+"action": "expose:connector_1.dc_in",
+"reason": "The request explicitly requires a DC plug to mate with the jack while the lid is on, so the dc_in connector must be opened in the enclosure wall; this directly satisfies the failing text_coverage requirement, and the vent slots are already "
+}
+}

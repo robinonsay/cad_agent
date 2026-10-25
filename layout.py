@@ -420,7 +420,7 @@ class Placer:
         self.edges = board_edges(board.inst)
         self.columns = hole_columns(board.inst, column_d)
         self.column_h = column_h
-        self.top = float(world_datum(board, pt.mount_names(board.inst.part)[2]).at[2])
+        self.top = float(world_datum(board, pt.support_names(board.inst)[2]).at[2])   # R11: a seat top too
         self.seg = int(self.rules.get("fn", fg.DEFAULT_SEGMENTS))
         self.notes: List[str] = []
         self.grid = self._grid()

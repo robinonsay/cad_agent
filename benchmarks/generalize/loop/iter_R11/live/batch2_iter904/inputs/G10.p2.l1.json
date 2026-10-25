@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Choose the Nano, the EC11 encoder and the OLED module from the parts catalogue and declare a layout in which the Nano's mini-USB port points to the rear end, the encoder and the OLED sit next to each other on the top panel with a space between them, and nothing collides.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Four posts hold the Nano, each going through one of its four mounting holes, and they stay clear of the pin headers beneath the board.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The top panel is a flat 3 mm plate and serves as the removable lid. It is its own body, sits on the base with a sliding fit, and is kept closed by four M3 self-tapping screws (from the parts catalogue) threaded into bosses in the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "The encoder passes through a bushing hole in the panel, its body pressed against the underside of the panel. Its nut must be able to sit flat on the top face of the panel, and at least 0.5 mm of the bushing's thread must show past the nut.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The area over the panel must stay free around the encoder's shaft and nut, with no printed material touching either, and the OLED window must be at least 2 mm away from the nut.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "Mount the OLED behind a window in the panel, its display glass no more than 0.5 mm below the panel. The window must reveal the full 21.74 x 10.86 mm active area and the 25 x 14 mm viewing area unclipped, leave at least 1 mm of margin around the active area, and be no bigger than 26.2 x 15.2 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "With the lid on, a mini-USB cable should go all the way into the Nano through a single opening in the back end wall, not touching the housing, and the opening should be no more than 1.5 mm larger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "Inside the closed housing sit the Nano, the OLED and the encoder body, each at least 0.5 mm from any printed surface (0.2 mm for connectors and headers) and at least 0.5 mm from one another.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "Once closed, the housing should have no openings apart from the mini-USB opening, the encoder hole, the OLED window and the screw holes, and the walls and floor should be 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The base and the lid should each be a single manifold body, printable on an FDM printer with no supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed housing has to fit inside 80 x 60 x 40 mm, with its longest dimension along the Nano's 45 mm side, and sit flat on a desk without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "Take the lid off with the encoder and OLED still attached and it should come straight up off the base, after which the Nano should drop straight down onto its posts.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "Give me a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report; that report has to agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

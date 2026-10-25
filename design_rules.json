@@ -58,7 +58,32 @@
     "controller_step_budget": {"value": 6, "unit": "count", "source": "migration delta R01 (owner decision D1): the closed-loop controller's correction steps per run. A step is one voted question (3 samples) plus the re-run of the stages its action invalidates and one manifold build (seconds; an arrangement re-run asks its own questions), so 6 steps stay far inside the 20-minute run timeout and cover one correction per named mating connector of the largest train contents (4) plus a structural correction and a spare"},
     "controller_trust_region": {"value": 0.05, "unit": "mm", "source": "migration delta R01: a step that keeps the number of failing checks may raise their summed normalised violation by at most this much (half of design_margin) and still be kept; a step that adds a failing check is always undone"},
     "controller_error_terms": {"value": 6, "unit": "count", "source": "migration delta R01: failing checks shown to the controller per step, ranked actionable first then worst margin; a 9B model answers short enum questions best (benchmarks/reports/2026-10-23-voting.md)"},
-    "controller_menu_max": {"value": 8, "unit": "count", "source": "migration delta R01: actions offered per step (plus stop); a short lettered menu keeps the question a discrete choice"}
+    "controller_menu_max": {"value": 8, "unit": "count", "source": "migration delta R01: actions offered per step (plus stop); a short menu keeps the question a discrete choice (content-keyed since R02)"},
+    "menu_orderings": {"value": 3, "unit": "count", "source": "migration delta R02: every discrete LLM menu question is asked under this many seeded orderings of its options (permutation voting, menus.py); 3 keeps the call count of R01's 3-sample vote (benchmarks/generalize/loop/iter_R02/audit_before.json: the 9B picked the first lettered option in 11 of 12 logged menus but the first shuffled one in 36%, about chance, so order must vary between samples to be measured)"},
+    "menu_samples": {"value": 1, "unit": "count", "source": "migration delta R02: samples per ordering (the first greedy, later ones at temperature 0.7); 1 x 3 orderings = R01's 3 calls per question"},
+    "menu_consistency_min": {"value": 1.0, "unit": "ratio", "source": "migration delta R02: a menu choice is high-confidence only when this share of its valid answers across orderings agrees with the winner (1.0 = every ordering); below it the closed loop measures the alternatives instead of trusting the vote (Zheng et al. ICLR 2024; small-model verbalized confidence is near-constant, so agreement across permutations is the confidence signal)"},
+    "menu_min_valid": {"value": 2, "unit": "count", "source": "migration delta R02: valid answers needed before a menu choice can be high-confidence (one answer measures no consistency)"},
+    "controller_search_k": {"value": 3, "unit": "count", "source": "migration delta R02: verifier-guided best-of-N: at most this many surviving actions per controller step are applied on forks and measured (every voted action, plus the next-ranked ones when the vote is inconsistent); the R01 train menus held 2-4 entries, so 3 covers them"},
+    "controller_search_depth": {"value": 1, "unit": "count", "source": "migration delta R02: lookahead steps per candidate (1 = best-of-N on the immediate measured error; deeper beam lookahead is not implemented yet and is clipped to 1)"},
+    "controller_search_max_evals": {"value": 12, "unit": "count", "source": "migration delta R02: plant evaluations (fork, re-run, manifold build) the closed loop may spend per run, a hard cap (R02/R11 review fix 2: once spent the loop stops before asking; no step measures beyond it); 12 = step budget 6 x 2, a few seconds each, far inside the run timeout"},
+    "support_ledge_width": {"value": 1.2, "unit": "mm", "source": "migration delta R11 (cradle): the strip of a part's underside a printed ledge carries, inside the part's edge (three 0.4 mm lines)"},
+    "support_min_length": {"value": 3.0, "unit": "mm", "source": "migration delta R11 (cradle): the shortest ledge, rim or rib segment the plant prints (shorter pieces break off; about four min_feature widths)"},
+    "retention_wall": {"value": 1.2, "unit": "mm", "source": "migration delta R11 (cradle): wall of a locating rim round a part (three 0.4 mm perimeters, as lip_wall)"},
+    "pocket_rim_height": {"value": 3.0, "unit": "mm", "source": "migration delta R11 (cradle): the highest a locating rim rises above the part's seat; it never rises above the part's top plane"},
+    "retention_play_max": {"value": 0.5, "unit": "mm", "source": "migration delta R11 (cradle): the farthest a held part may move in any direction before it rattles (twice the middle of the sliding-fit band)"},
+    "crush_rib_width": {"value": 1.0, "unit": "mm", "source": "migration delta R11 (cradle): width of a vertical crush rib along the part's edge (two to three 0.4 mm lines)"},
+    "crush_rib_pitch": {"value": 15.0, "unit": "mm", "source": "migration delta R11 (cradle): one crush rib per this much free rim length, at least one per rim segment"},
+    "crush_rib_interference": {"value": 0.15, "unit": "mm", "source": "migration delta R11 (cradle): how far a crush rib reaches into the part outline (FDM crush-rib practice 0.1 to 0.3 mm; the rib deforms on insertion)"},
+    "crush_rib_interference_min": {"value": 0.05, "unit": "mm", "source": "migration delta R11 (cradle): below this a crush rib does not grip (within FDM dimensional scatter)"},
+    "crush_rib_interference_max": {"value": 0.3, "unit": "mm", "source": "migration delta R11 (cradle): above this a crush rib cracks or the part will not go in (FDM crush-rib practice)"},
+    "snap_arm_thickness": {"value": 1.5, "unit": "mm", "source": "migration delta R11 (cradle): thickness of a printed cantilever snap arm in its bending direction (about four perimeters)"},
+    "snap_clip_width": {"value": 5.0, "unit": "mm", "source": "migration delta R11 (cradle): width of a cantilever snap arm along the part's edge"},
+    "snap_overlap": {"value": 1.0, "unit": "mm", "source": "migration delta R11 (cradle): how far a snap hook reaches over the part's top face (snap-fit design guides: about half to one millimetre for small printed hooks)"},
+    "snap_overlap_min": {"value": 0.5, "unit": "mm", "source": "migration delta R11 (cradle): a hook that overlaps less releases under handling loads"},
+    "snap_hook_height": {"value": 1.5, "unit": "mm", "source": "migration delta R11 (cradle): height of a snap hook's head above the part's top face"},
+    "snap_gap": {"value": 0.2, "unit": "mm", "source": "migration delta R11 (cradle): vertical play between a part's top face and the underside of the snap hook (FDM layer scatter)"},
+    "snap_slot": {"value": 0.5, "unit": "mm", "source": "migration delta R11 (cradle): gap that frees a snap arm from the rim beside it so it can flex"},
+    "snap_strain_max": {"value": 0.025, "unit": "ratio", "source": "migration delta R11 (cradle): permissible bending strain of a printed PLA/PETG cantilever snap arm, used repeatedly (snap-fit design guides give 1.5-3 percent for brittle thermoplastics; strain = 1.5 t y / L^2)"}
   },
   "spec_slots": {
     "about": "Generic enclosure spec slots. The controller maps each slot onto one number occurrence that Python extracted from the request or L1 text (or 'none'); a 'none' slot takes its default_rule value and is flagged as an assumption. A slot whose default_rule is null must come from the text unless it says \"required\": false (the board size slots: a primary reference that is not request-sized needs no number, and a request-sized one takes its size from them when they are filled, else from the part-size question; generalize delta 001 D4). The required flag is never shown to the controller.",
@@ -110,6 +135,17 @@
   "fastener_roles": {
     "about": "Words that say a fastener named in the same clause of the request or an L1 holds the primary board (generalize delta 002 C1): the board screw is the largest such named catalogue screw that passes the board's holes, else the thread the board's mount_holes interface declares, else the smallest screw that passes. The primary's own part.json names count as role evidence too. Generic vocabulary only.",
     "board": {"evidence": ["board", "pcb", "standoff", "mounting hole"], "source": "words a requirement uses for the part held on standoffs at its mounting holes"}
+  },
+  "building_blocks": {
+    "about": "Migration delta R11: generic building blocks the controller selects among (Python enumerates the options the plant can build for the design, sizes them from part data and the rules above, and sensors measure them). No design names.",
+    "retention": {
+      "about": "How a part without mounting holes (no mount_holes interface; it rests on its seat plane) is held in a shell: a cradle of ledges under its edges and a locating rim round it, plus the option's retention feature. The default is the plant's proposal; the retention sensor reports the part's free travel, and the controller may choose another option with set_retention.",
+      "options": {
+        "pocket": {"default": true, "holds": ["-z", "x", "y"], "meaning": "a locating pocket: ledges under the part's edges and a rim round it with a sliding fit; nothing holds it down", "source": "plant default (reads no text): the minimal cradle"},
+        "crush_ribs": {"holds": ["-z", "x", "y", "+z"], "meaning": "the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction", "source": "FDM practice: crush ribs give a press fit that tolerates print scatter"},
+        "snap_clips": {"holds": ["-z", "x", "y", "+z"], "meaning": "the pocket with two cantilever snap clips whose hooks reach over the part's top face at opposite edges", "source": "snap-fit design guides (cantilever hook)"}
+      }
+    }
   },
   "print_orientation": {
     "base": {"orientation": "open_side_up", "source": "a tray prints on its floor without support"},

@@ -1,0 +1,534 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "27b97cd5f0a966ff",
+        "graph": "4679bd60f914f29b",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "arduino_nano",
+              1,
+              []
+            ],
+            [
+              "control_1",
+              "led_5mm",
+              3,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": "screw_m3_selftap"
+          },
+          "retention": "pocket"
+        }
+      },
+      "error": {
+        "hard_failures": 5,
+        "violation": 5.954012
+      },
+      "failing": [
+        "retention_board",
+        "content_placed_control_1",
+        "content_placed_generic_1",
+        "text_coverage",
+        "bbox"
+      ],
+      "terms": [
+        {
+          "check": "retention_board",
+          "type": "retention",
+          "requirement": [
+            "L1.1",
+            "L1.5"
+          ],
+          "where": "arduino nano held by pocket: free travel (mm) -z 0.00, +z 3.30, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 3.30 > 0.5; options the plant cannot build here:... at board (arduino nano) toward +z",
+          "deficit": 2.79,
+          "unit": "mm",
+          "direction": "decrease the free travel of the part in its worst direction",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -2.79,
+          "detail": "arduino nano held by pocket: free travel (mm) -z 0.00, +z 3.30, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 3.30 > 0.5; options the plant cannot build here:..."
+        },
+        {
+          "check": "content_placed_control_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.1",
+            "L1.6",
+            "L1.9",
+            "L1.11"
+          ],
+          "where": "control_1 (led_5mm) is not placed: arduino_nano is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "control_1 (led_5mm) is not placed: arduino_nano is not a carrier: no relation places it yet (GM2b)"
+        },
+        {
+          "check": "content_placed_generic_1",
+          "type": "content_placed",
+          "requirement": [],
+          "where": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ...",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ..."
+        },
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5"
+          ],
+          "where": "board.usb (arduino nano) is closed, but L1.5 names a mini-usb plug: \"With the lid shut, a mini-USB cable has to go all the way into the Nano via one opening in the \u2212X end wall, leaving at least 0.3 mm spare around the plug.\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "0 named plug connection(s) covered; uncovered: board.usb takes plug_miniusb_b named by L1.5"
+        },
+        {
+          "check": "bbox",
+          "type": "bbox_within",
+          "requirement": [
+            "L1.11"
+          ],
+          "where": "outside 57.87 x 30.17 x 16.70 mm, max 60 x 30 x 26 with X longest",
+          "deficit": 0.164,
+          "unit": "mm",
+          "direction": "decrease the outside size",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.164012,
+          "detail": "outside 57.87 x 30.17 x 16.70 mm, max 60 x 30 x 26 with X longest"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "27b97cd5f0a966ff",
+      "error_before": {
+        "hard_failures": 5,
+        "violation": 5.954012
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "set_panel",
+          "target": "control_1",
+          "value": "lid",
+          "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+          "targets": [
+            "content_placed_control_1"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_panel:control_1=lid",
+          "letter": "B"
+        },
+        {
+          "kind": "expose",
+          "target": "board.usb",
+          "value": true,
+          "words": "expose board.usb: open the enclosure wall for the arduino nano's usb connector so a mini-usb plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.5",
+              "quote": "With the lid shut, a mini-USB cable has to go all the way into the Nano via one opening in the \u2212X end wall, leaving at least 0.3 mm spare around the plug."
+            }
+          ],
+          "key": "expose:board.usb=True",
+          "letter": "C"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "D"
+        }
+      ],
+      "votes": {
+        "C": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "board.usb",
+        "value": true,
+        "words": "expose board.usb: open the enclosure wall for the arduino nano's usb connector so a mini-usb plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "L1.5",
+            "quote": "With the lid shut, a mini-USB cable has to go all the way into the Nano via one opening in the \u2212X end wall, leaving at least 0.3 mm spare around the plug."
+          }
+        ],
+        "key": "expose:board.usb=True"
+      },
+      "chosen": "C",
+      "accepted": true,
+      "reason": "fewer failing checks (5 -> 4)",
+      "error_after": {
+        "hard_failures": 4,
+        "violation": 5.704012
+      },
+      "state_after": "d4b0b46830b0fa88",
+      "failing_after": [
+        "content_placed_control_1",
+        "content_placed_generic_1",
+        "retention_board",
+        "bbox"
+      ],
+      "llm_calls": 3,
+      "secs": 4.17
+    },
+    {
+      "step": 2,
+      "state_before": "d4b0b46830b0fa88",
+      "error_before": {
+        "hard_failures": 4,
+        "violation": 5.704012
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "set_panel",
+          "target": "control_1",
+          "value": "lid",
+          "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+          "targets": [
+            "content_placed_control_1"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_panel:control_1=lid",
+          "letter": "B"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "C"
+        }
+      ],
+      "votes": {
+        "B": 3
+      },
+      "action": {
+        "kind": "set_panel",
+        "target": "control_1",
+        "value": "lid",
+        "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+        "targets": [
+          "content_placed_control_1"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_panel:control_1=lid"
+      },
+      "chosen": "B",
+      "accepted": true,
+      "reason": "fewer failing checks (4 -> 3)",
+      "error_after": {
+        "hard_failures": 3,
+        "violation": 5.154012
+      },
+      "state_after": "3402d77aa6704523",
+      "failing_after": [
+        "content_placed_generic_1",
+        "retention_board",
+        "bbox"
+      ],
+      "llm_calls": 3,
+      "secs": 4.23
+    },
+    {
+      "step": 3,
+      "state_before": "3402d77aa6704523",
+      "error_before": {
+        "hard_failures": 3,
+        "violation": 5.154012
+      },
+      "menu": [
+        {
+          "kind": "set_retention",
+          "target": "board",
+          "value": "crush_ribs",
+          "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+          "targets": [
+            "retention_board"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_retention:board=crush_ribs",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "set_retention",
+        "target": "board",
+        "value": "crush_ribs",
+        "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+        "targets": [
+          "retention_board"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_retention:board=crush_ribs"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (3 -> 2)",
+      "error_after": {
+        "hard_failures": 2,
+        "violation": 1.164012
+      },
+      "state_after": "0d2d73ac98d54787",
+      "failing_after": [
+        "content_placed_generic_1",
+        "bbox"
+      ],
+      "llm_calls": 3,
+      "secs": 4.06
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 3
+  },
+  "final": {
+    "state": {
+      "decisions": "0d2d73ac98d54787",
+      "graph": "ecc27b9fc05773b0",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "arduino_nano",
+            1,
+            [
+              "usb"
+            ]
+          ],
+          [
+            "control_1",
+            "led_5mm",
+            3,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {
+          "wall[board.usb]": "-X"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": "screw_m3_selftap"
+        },
+        "retention": "crush_ribs",
+        "panel": {
+          "control_1": "lid"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 2,
+      "violation": 1.164012
+    },
+    "failing": [
+      "content_placed_generic_1",
+      "bbox"
+    ],
+    "terms": [
+      {
+        "check": "content_placed_generic_1",
+        "type": "content_placed",
+        "requirement": [],
+        "where": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ...",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": true,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ..."
+      },
+      {
+        "check": "bbox",
+        "type": "bbox_within",
+        "requirement": [
+          "L1.11"
+        ],
+        "where": "outside 57.87 x 30.17 x 17.90 mm, max 60 x 30 x 26 with X longest",
+        "deficit": 0.164,
+        "unit": "mm",
+        "direction": "decrease the outside size",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.164012,
+        "detail": "outside 57.87 x 30.17 x 17.90 mm, max 60 x 30 x 26 with X longest"
+      }
+    ]
+  },
+  "secs": 12.73,
+  "authority": {
+    "decisions": {
+      "plant": 3,
+      "llm": 3,
+      "guardrail": 3,
+      "semantic-rule": 1
+    },
+    "proposal": {
+      "llm_slots": 11,
+      "default_slots": 2,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.64
+  },
+  "accepted": [
+    {
+      "kind": "expose",
+      "target": "board.usb",
+      "value": true,
+      "words": "expose board.usb: open the enclosure wall for the arduino nano's usb connector so a mini-usb plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "L1.5",
+          "quote": "With the lid shut, a mini-USB cable has to go all the way into the Nano via one opening in the \u2212X end wall, leaving at least 0.3 mm spare around the plug."
+        }
+      ],
+      "key": "expose:board.usb=True",
+      "step": 1
+    },
+    {
+      "kind": "set_panel",
+      "target": "control_1",
+      "value": "lid",
+      "words": "mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face",
+      "targets": [
+        "content_placed_control_1"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_panel:control_1=lid",
+      "step": 2
+    },
+    {
+      "kind": "set_retention",
+      "target": "board",
+      "value": "crush_ribs",
+      "words": "hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction",
+      "targets": [
+        "retention_board"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_retention:board=crush_ribs",
+      "step": 3
+    }
+  ]
+}

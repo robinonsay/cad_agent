@@ -1,0 +1,113 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 100 (request): "...without supports, which at its centre position fits within 100 x 100 x 80 mm. It uses two SG90 servos (22.5 x 12.2 x 22...."
+n2 = 100 (request): "...ut supports, which at its centre position fits within 100 x 100 x 80 mm. It uses two SG90 servos (22.5 x 12.2 x 22.7 mm ..."
+n3 = 80 mm (request): "...ports, which at its centre position fits within 100 x 100 x 80 mm. It uses two SG90 servos (22.5 x 12.2 x 22.7 mm body, ..."
+n4 = 22.5 (request): "...ion fits within 100 x 100 x 80 mm. It uses two SG90 servos (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes ..."
+n5 = 12.2 (request): "...s within 100 x 100 x 80 mm. It uses two SG90 servos (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm ..."
+n6 = 22.7 mm (request): "...n 100 x 100 x 80 mm. It uses two SG90 servos (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27..."
+n7 = 32.5 mm (request): ".... It uses two SG90 servos (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch), one r..."
+n8 = 2.0 mm (request): "...22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch), one rotating the other, and a Ra..."
+n9 = 27.5 mm (request): "...x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch), one rotating the other, and a Raspberry Pi c..."
+n10 = 25 (request): "...ne rotating the other, and a Raspberry Pi camera module v2 (25 x 24 mm board, lens 8 mm diameter, 9 mm overall height, f..."
+n11 = 24 mm (request): "...tating the other, and a Raspberry Pi camera module v2 (25 x 24 mm board, lens 8 mm diameter, 9 mm overall height, four 2..."
+n12 = 8 mm (request): "...and a Raspberry Pi camera module v2 (25 x 24 mm board, lens 8 mm diameter, 9 mm overall height, four 2.2 mm holes on a 2..."
+n13 = 9 mm (request): "...Pi camera module v2 (25 x 24 mm board, lens 8 mm diameter, 9 mm overall height, four 2.2 mm holes on a 21 x 12.5 mm patt..."
+n14 = 2.2 mm (request): "...24 mm board, lens 8 mm diameter, 9 mm overall height, four 2.2 mm holes on a 21 x 12.5 mm pattern, and a 21 mm wide flat..."
+n15 = 21 (request): "...8 mm diameter, 9 mm overall height, four 2.2 mm holes on a 21 x 12.5 mm pattern, and a 21 mm wide flat cable connector o..."
+n16 = 12.5 mm (request): "...diameter, 9 mm overall height, four 2.2 mm holes on a 21 x 12.5 mm pattern, and a 21 mm wide flat cable connector on the..."
+n17 = 21 mm (request): "...height, four 2.2 mm holes on a 21 x 12.5 mm pattern, and a 21 mm wide flat cable connector on the back). The pan servo l..."
+n18 = 10 mm (request): "...base with its shaft pointing up. A two-arm horn, trimmed to 10 mm reach and 7 mm wide, carries the yoke, which gets a so..."
+n19 = 7 mm (request): "...aft pointing up. A two-arm horn, trimmed to 10 mm reach and 7 mm wide, carries the yoke, which gets a socket 0.1 to 0.4 ..."
+n20 = 0.1 (request): "...reach and 7 mm wide, carries the yoke, which gets a socket 0.1 to 0.4 mm bigger than the horn all round and 2.0 to 2.4 m..."
+n21 = 0.4 mm (request): "...and 7 mm wide, carries the yoke, which gets a socket 0.1 to 0.4 mm bigger than the horn all round and 2.0 to 2.4 mm deep..."
+n22 = 2.0 (request): "...s a socket 0.1 to 0.4 mm bigger than the horn all round and 2.0 to 2.4 mm deep. The tilt servo goes in a vertical wall o..."
+n23 = 2.4 mm (request): "...ket 0.1 to 0.4 mm bigger than the horn all round and 2.0 to 2.4 mm deep. The tilt servo goes in a vertical wall of the y..."
+n24 = 0.1 (request): "...lf or wall face, with its body in the pocket or window with 0.1 to 0.35 mm clearance per side, and fasten it with two M2..."
+n25 = 0.35 mm (request): "...all face, with its body in the pocket or window with 0.1 to 0.35 mm clearance per side, and fasten it with two M2 x 8 se..."
+n26 = 8 (request): "...to 0.35 mm clearance per side, and fasten it with two M2 x 8 self-tapping screws through the tab holes. The camera sits..."
+n27 = 62.2 (request): "...a window in the cradle's front wall that does not clip its 62.2 x 48.8 degree field of view (62.2 along the 25 mm side, ..."
+n28 = 48.8 (request): "...ow in the cradle's front wall that does not clip its 62.2 x 48.8 degree field of view (62.2 along the 25 mm side, 48.8 a..."
+n29 = 62.2 (request): "...ll that does not clip its 62.2 x 48.8 degree field of view (62.2 along the 25 mm side, 48.8 along the 24 mm side). Pan a..."
+n30 = 25 mm (request): "...t clip its 62.2 x 48.8 degree field of view (62.2 along the 25 mm side, 48.8 along the 24 mm side). Pan and tilt each sw..."
+n31 = 48.8 (request): "...2.2 x 48.8 degree field of view (62.2 along the 25 mm side, 48.8 along the 24 mm side). Pan and tilt each swing +/- 60 d..."
+n32 = 24 mm (request): "...ee field of view (62.2 along the 25 mm side, 48.8 along the 24 mm side). Pan and tilt each swing +/- 60 degrees from the..."
+n33 = 60 degrees (request): "...de, 48.8 along the 24 mm side). Pan and tilt each swing +/- 60 degrees from the centre, keeping 0.5 mm clear of collisio..."
+n34 = 0.5 mm (request): "...and tilt each swing +/- 60 degrees from the centre, keeping 0.5 mm clear of collision at every combination (check -60, -..."
+n35 = 0 (request): "...mm clear of collision at every combination (check -60, -30, 0, 30 and 60 degrees on each axis); the pan and tilt axes me..."
+n36 = 30 (request): "...clear of collision at every combination (check -60, -30, 0, 30 and 60 degrees on each axis); the pan and tilt axes meet ..."
+n37 = 60 degrees (request): "...f collision at every combination (check -60, -30, 0, 30 and 60 degrees on each axis); the pan and tilt axes meet within ..."
+n38 = 5 mm (request): "...60 degrees on each axis); the pan and tilt axes meet within 5 mm and the lens axis passes within 5 mm of the tilt axis. ..."
+n39 = 5 mm (request): "...tilt axes meet within 5 mm and the lens axis passes within 5 mm of the tilt axis. For cabling, each servo's lead and the..."
+n40 = 3 mm (request): "...e run: the pan servo's slot in the base wall may be at most 3 mm bigger than the lead's exit volume on any side, and the..."
+n41 = 24 (request): "...nd the yoke platform gets one slot for the ribbon, at least 24 x 2 mm, within 15 mm of the pan axis...."
+n42 = 2 mm (request): "...e yoke platform gets one slot for the ribbon, at least 24 x 2 mm, within 15 mm of the pan axis...."
+n43 = 15 mm (request): "...rm gets one slot for the ribbon, at least 24 x 2 mm, within 15 mm of the pan axis...."
+n44 = 5 mm (L1.1): "...rpendicular to the tilt axis. Make the two axes meet within 5 mm, with the lens axis passing within 5 mm of the tilt axi..."
+n45 = 5 mm (L1.1): "...wo axes meet within 5 mm, with the lens axis passing within 5 mm of the tilt axis, and declare that layout...."
+n46 = 0.1 (L1.2): "...he base holds the pan servo in a pocket, shaft pointing up, 0.1 to 0.35 mm clearance on each side. Its tabs rest flat on..."
+n47 = 0.35 mm (L1.2): "...holds the pan servo in a pocket, shaft pointing up, 0.1 to 0.35 mm clearance on each side. Its tabs rest flat on a shelf..."
+n48 = 8 (L1.2): "...ce on each side. Its tabs rest flat on a shelf and two M2 x 8 screws go into pilot holes that still line up with the tab..."
+n49 = 0.1 (L1.3): "...the pan servo's horn in a socket on the pan axis, all round 0.1 to 0.4 mm bigger than the horn and 2.0 to 2.4 mm deep; i..."
+n50 = 0.4 mm (L1.3): "...servo's horn in a socket on the pan axis, all round 0.1 to 0.4 mm bigger than the horn and 2.0 to 2.4 mm deep; it has to..."
+n51 = 2.0 (L1.3): "...pan axis, all round 0.1 to 0.4 mm bigger than the horn and 2.0 to 2.4 mm deep; it has to stay clear of both the pan serv..."
+n52 = 2.4 mm (L1.3): "...is, all round 0.1 to 0.4 mm bigger than the horn and 2.0 to 2.4 mm deep; it has to stay clear of both the pan servo and ..."
+n53 = 0.1 (L1.4): "...dow in a vertical wall of the yoke for the tilt servo, with 0.1 to 0.35 mm clearance on each side; its tabs lie flat on ..."
+n54 = 0.35 mm (L1.4): "...a vertical wall of the yoke for the tilt servo, with 0.1 to 0.35 mm clearance on each side; its tabs lie flat on the fac..."
+n55 = 8 (L1.4): "...de; its tabs lie flat on the face of that wall and two M2 x 8 screws go into pilot holes that line up with the tab holes..."
+n56 = 150 (L1.5): "...ng holes, with three or more bearing contacts spread across 150 mm2 or more, and neither printed material nor a screw ma..."
+n57 = 3 mm (L1.6): "...t leave the entire field of view clear, and be no more than 3 mm larger than the field of view at the front face...."
+n58 = 60 degrees (L1.7): "...Swing the pan through +/- 60 degrees and check that the yoke, tilt servo, cradle and camera keep..."
+n59 = 0.5 mm (L1.7): "...and check that the yoke, tilt servo, cradle and camera keep 0.5 mm or more clearance from the base and the pan servo at ..."
+n60 = 0 (L1.7): "...angle and each pan and tilt combination, testing -60, -30, 0, 30 and 60 degrees on each axis...."
+n61 = 30 (L1.7): "...gle and each pan and tilt combination, testing -60, -30, 0, 30 and 60 degrees on each axis...."
+n62 = 60 degrees (L1.7): "...each pan and tilt combination, testing -60, -30, 0, 30 and 60 degrees on each axis...."
+n63 = 60 (L1.8): "...Through the full +/- 60 degree tilt, the cradle, camera and horn must keep 0.5 mm o..."
+n64 = 0.5 mm (L1.8): "...l +/- 60 degree tilt, the cradle, camera and horn must keep 0.5 mm or more away from the yoke, tilt servo, base and pan ..."
+n65 = 3 mm (L1.9): "...o that is a single slot through the base wall, no more than 3 mm larger than the volume on any side. Also cut one slot i..."
+n66 = 24 (L1.9): "...he yoke platform for the camera's flat cable and the leads, 24 x 2 mm or bigger and within 15 mm of the pan axis...."
+n67 = 2 mm (L1.9): "...ke platform for the camera's flat cable and the leads, 24 x 2 mm or bigger and within 15 mm of the pan axis...."
+n68 = 15 mm (L1.9): "...'s flat cable and the leads, 24 x 2 mm or bigger and within 15 mm of the pan axis...."
+n69 = 2 mm (L1.10): "...on an FDM printer with no supports, with pockets and walls 2 mm thick or more...."
+n70 = 100 (L1.11): "...The pod must fit within 100 x 100 x 80 mm at its centre position and sit flat on its ba..."
+n71 = 100 (L1.11): "...The pod must fit within 100 x 100 x 80 mm at its centre position and sit flat on its base, wi..."
+n72 = 80 mm (L1.11): "...The pod must fit within 100 x 100 x 80 mm at its centre position and sit flat on its base, with the c..."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "n46",
+  "board_depth": "n11",
+  "board_width": "n10",
+  "headroom": "n59",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n70",
+  "max_y": "n71",
+  "max_z": "n72",
+  "opening_oversize_max": "n20",
+  "wall_max": "none",
+  "wall_min": "n69"
+}

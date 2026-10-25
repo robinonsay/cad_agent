@@ -1,0 +1,21 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Looks like a robot-base bracket to me, all in one printed piece. The sensor, an HC-SR04 ultrasonic unit (45 x 20 mm board, with two 16 mm transducers at 26 mm pitch), faces forward and sits 40 mm forward of the shaft axis of the motor, which is an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) held in a clamp pocket. At the shaft end there is a 6 x 3 mm magnet pocket for an encoder. The whole bracket is fixed to the chassis with two M3 bolts. Print it on an FDM printer without supports, lying flat on its chassis face.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- hc_sr04: hc-sr04 (module)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"perfboard": {"quantity": 0}, "hc_sr04": {"quantity": 0}, "arduino_nano": {"quantity": 0, "exposed": "yes"}, "arduino_uno_r3": {"quantity": 0, "usb_exposed": "yes", "dc_exposed": "yes"}, "jack_3p5_pj320a": {"quantity": 0, "exposed": "yes"}, "dc_jack_pj002a": {"quantity": 0, "exposed": "yes"}}

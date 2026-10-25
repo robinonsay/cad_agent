@@ -1,0 +1,147 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "7a9641d475a31db8",
+        "graph": "8b92655a73358766",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "perfboard",
+              1,
+              []
+            ],
+            [
+              "module_1",
+              "rpi_pico2",
+              1,
+              [
+                "usb"
+              ]
+            ],
+            [
+              "connector_1",
+              "jack_3p5_pj320a",
+              2,
+              [
+                "jack"
+              ]
+            ]
+          ],
+          "stacks": {
+            "module_1": "header_male_2p54",
+            "connector_1": null
+          },
+          "faces": {
+            "edge[connector_1]": "+X",
+            "edge[module_1]": "-X"
+          },
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": "screw_m2_selftap",
+            "lid": "screw_m3_selftap"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 0,
+        "violation": 0
+      },
+      "failing": [],
+      "terms": []
+    }
+  ],
+  "stop": {
+    "reason": "every check passes",
+    "step": 0
+  },
+  "final": {
+    "state": {
+      "decisions": "7a9641d475a31db8",
+      "graph": "8b92655a73358766",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "perfboard",
+            1,
+            []
+          ],
+          [
+            "module_1",
+            "rpi_pico2",
+            1,
+            [
+              "usb"
+            ]
+          ],
+          [
+            "connector_1",
+            "jack_3p5_pj320a",
+            2,
+            [
+              "jack"
+            ]
+          ]
+        ],
+        "stacks": {
+          "module_1": "header_male_2p54",
+          "connector_1": null
+        },
+        "faces": {
+          "edge[connector_1]": "+X",
+          "edge[module_1]": "-X"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": "screw_m2_selftap",
+          "lid": "screw_m3_selftap"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 0,
+      "violation": 0
+    },
+    "failing": [],
+    "terms": []
+  },
+  "secs": 0.35,
+  "authority": {
+    "decisions": {
+      "plant": 6,
+      "llm": 3,
+      "semantic-rule": 1
+    },
+    "proposal": {
+      "llm_slots": 11,
+      "default_slots": 1,
+      "llm_contents_items": 3
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.68
+  },
+  "accepted": []
+}

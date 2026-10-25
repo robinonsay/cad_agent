@@ -19,8 +19,8 @@ Iteration 002 wires the walking skeleton (ARCHITECTURE.md 7.1 step 2, 7.4):
     │                      face_relation check); Python: mm placement (layout.py);
     │                      prescore: every feasible candidate through the downstream plant, only the ties at the
     │                      minimum controllable error go on (one survivor -> rule:prescore, 7.11);
-    │                      ConfirmArrangement: LLM ranks the feasible classes (p_yes) + vote; comparative pick
-    │                      on disagreement (board-symmetric layouts are one class; p_yes is never a gate)
+    │                      ConfirmArrangement: the error-tied board-symmetry classes as one content-keyed,
+    │                      permutation-voted menu, checked against the edge vote (R02: no p_yes, no lettered pick)
     ├── Vents              generalize delta 003 C3: vent sentences (design_rules.json vents) -> a named zone (lid row, rule),
     │                      else a unanimous voted relation to an exposed connector (wall row), else a typed note; then
     │                      one voted size mapping over the vent sentences' unowned numbers (nothing asked without vents)
@@ -76,7 +76,9 @@ import cad_checks as cc
 import cascade
 import feature_graph as fg
 import layout as lay
+import menus
 import parts as pt
+import building_blocks as bb   # migration delta R11: generic building blocks (circular: attributes read at call time)
 
 ca = cc._ca()  # cad_agent (the running script's module when cad_agent.py is __main__)
 
@@ -91,7 +93,6 @@ APERTURE_CUT_ROLES = ("port_cut", "pilot", "screw_hole", "vent_cut")   # cuts a 
 WALL_CUT_ROLES = ("port_cut", "vent_cut")   # openings through a vertical wall: counted per wall, bridge-checked (C3, C4)
 OPEN_BODY = BODIES[0]        # the body shown alone, lid off, in views/open_* (the tray: standoffs, rim, bosses)
 OPEN_VIEWS = ("iso", "top")  # cameras (cad_agent.VIEWS keys) rendered for the lid-off view
-EVEN_ODDS = 0.5              # p_yes below this is reported as low absolute confidence (a report, never a gate)
 COVERAGE_OPEN = "open"       # a text-coverage row the controller has not resolved (R01: the sensor never exposes)
 ELEVATION_VIEWS = ("front", "back", "left", "right")   # cad_agent.VIEWS keys tilted down in assembly renders (7.11)
 VIEW_ROTX = 3                # index of rotx in a cad_agent.VIEWS tuple (tx, ty, tz, rotx, roty, rotz, dist)
@@ -236,6 +237,20 @@ def tally(llm, prompt: str, schema: dict, label: str, allowed: Dict[str, Sequenc
                 v = v.get(part) if isinstance(v, dict) else None
             counts[key][v if v in ok else None] += 1
     return counts
+
+
+def menu_rules(st: "AssemblyState") -> Dict[str, float]:
+    """The permutation-vote parameters (migration delta R02, menus.vote_rules) from the loaded design rules."""
+    return menus.vote_rules(st.rules.values if st.rules is not None else {})
+
+
+def question_seed(llm, label: str, *parts: Any) -> str:
+    """Seed material for a proposal question's orderings (R02): its label, the run seed and what the question is about
+    (the request and the options), so a run is reproducible and another seed sees other orderings."""
+    return menus.material(label, menus.run_seed(llm), *parts)
+
+
+ID_ANSWER = "First give a one-sentence reason, then the option's id exactly as listed."
 
 
 def majority(c: Counter):
@@ -385,9 +400,12 @@ def primary_item(st: "AssemblyState") -> Optional[dict]:
     return next((i for i in st.contents if i.get("id") == PRIMARY), None)
 
 
-def primary_mount(st: "AssemblyState") -> Tuple[str, str, str]:
-    """(holes, seat, top) datum names of the placed primary's mount_holes interface: no datum name is literal here."""
-    return pt.mount_names(st.placed.get(PRIMARY).inst.part)
+def primary_mount(st: "AssemblyState") -> Tuple[Optional[str], str, str]:
+    """(holes, seat, top) datum names of the placed primary's mount_holes interface: no datum name is literal here.
+    Migration delta R11: a primary without one rests on its seat interface (parts.support_names): holes is None and a
+    cradle holds it (building_blocks.py); so does a primary whose holes no catalogue screw passes (support[board])."""
+    names = pt.support_names(st.placed.get(PRIMARY).inst)
+    return (None,) + tuple(names[1:]) if bb.cradle_support(st) else names
 
 
 def conn_key(p: lay.Placed, conn: dict) -> str:
@@ -485,18 +503,22 @@ def ask_slots(llm, numbers, slots, violation: str = "", label: Optional[str] = N
     return {k: (None if majority(c) in (None, "none") else majority(c)) for k, c in counts.items()}
 
 
-def owner_question(llm, ref: str, n: dict, names: Sequence[str], meaning: Mapping[str, dict]) -> Tuple[Optional[str], Counter]:
+def owner_question(llm, ref: str, n: dict, names: Sequence[str], meaning: Mapping[str, dict],
+                   rules: Optional[Mapping[str, Any]] = None) -> Tuple[Optional[str], Counter]:
     """Each number in the text states one quantity: one voted question gives number `ref` to one of `names` (spec slots
     or part sizes, each {meaning, unit}). Lifted from ParseSpec.resolve_shared (generalize delta 001 C3) so the same
-    question also runs across ParseSpec and Contents.ask_params. Returns (owner or None, the votes)."""
-    lines = "\n".join(f"- {k}: {meaning[k]['meaning']} ({meaning[k]['unit']})" for k in names)
-    prompt = (f"An enclosure is being designed from this request and its requirements.\n\n"
-              f'Number {ref} = {n["text"]} ({n["source"]}): "...{n["quote"]}..."\n\n'
-              f"Each number in the text states exactly one quantity. Which one of these quantities does "
-              f"{ref} state?\n{lines}")
-    counts = tally(llm, prompt, ca.obj_schema({"owner": {"type": "string", "enum": list(names)}}),
-                   "assy_spec_owner", {"owner": list(names)})
-    return majority(counts["owner"]), counts["owner"]
+    question also runs across ParseSpec and Contents.ask_params. Migration delta R02: the quantities are content-keyed
+    (slot names), listed in seeded orderings and permutation-voted (`rules`: design_rules values). Returns (owner or
+    None, the votes)."""
+    head = (f"An enclosure is being designed from this request and its requirements.\n\n"
+            f'Number {ref} = {n["text"]} ({n["source"]}): "...{n["quote"]}..."\n\n'
+            f"Each number in the text states exactly one quantity. Which one of these quantities does "
+            f"{ref} state?\n")
+    words = {k: f"- {k}: {meaning[k]['meaning']} ({meaning[k]['unit']})" for k in names}
+    vote = menus.perm_vote(llm, "assy_spec_owner", lambda order: head + "\n".join(words[k] for k in order),
+                           list(names), menus.vote_rules(rules), question_seed(llm, "assy_spec_owner", head, names),
+                           key="owner", reason=False)
+    return vote.pick, Counter(vote.votes)
 
 
 class ParseSpec(AssemblyStep):
@@ -555,7 +577,7 @@ class ParseSpec(AssemblyStep):
         st = self.state
         n = by_id[ref]
         meaning = {s["name"]: s for s in slots}
-        owner, votes = owner_question(self.llm, ref, n, names, meaning)
+        owner, votes = owner_question(self.llm, ref, n, names, meaning, self.state.rules.values)
         if owner is None:
             st.notes.append(f"parse_spec: no valid owner for {ref} among {', '.join(names)}; they fall back")
             for k in names:
@@ -700,6 +722,7 @@ class Contents(AssemblyStep):
     def __init__(self, design, llm):
         super().__init__("Contents", design, llm)
         self.param_stop: Optional[str] = None      # a typed stop from a final part-size re-ask (claim)
+        self.unsized: List[Tuple[dict, str]] = []  # R11: parts the answer named whose size the text does not state
 
     def candidates(self) -> List[str]:
         st = self.state
@@ -712,6 +735,7 @@ class Contents(AssemblyStep):
         named = named_parts(st)        # a contiguous alias run: stricter than token overlap
         out += [pid for pid in st.catalog.ids()
                 if pid in named and pid not in out and pt.mount_interface(st.catalog.get(pid)) is not None]
+        out += bb.admissible_named(st, out)   # R11: every other named catalogue part that is no accessory
         return out
 
     def update(self) -> Status:
@@ -736,15 +760,24 @@ class Contents(AssemblyStep):
                     p[exposure_key(c)] = {"type": "string", "enum": ["yes", "no"]}
                     allowed[f"{pid}.{exposure_key(c)}"] = ["yes", "no"]
             props[pid] = ca.obj_schema(p)
-        lines = "\n".join(f"- {pid}: {part_words(st.catalog.get(pid), st.catalog)}" for pid in cands)
-        prompt = (f"Request: {self.design.base_request or self.design.request}\n\n"
-                  f"Catalogue parts that may be in the request:\n{lines}\n\n"
-                  "For each part give how many the request puts inside the enclosure (0 if none), and for parts "
-                  "with a cable connector whether that connector must be reachable from outside (exposed).")
+        words = {pid: f"- {pid}: {part_words(st.catalog.get(pid), st.catalog)}" for pid in cands}
+        tail = ("For each part give how many the request puts inside the enclosure (0 if none), and for parts "
+                "with a cable connector whether that connector must be reachable from outside (exposed).")
         if multi:
-            prompt += (" A part with several cable connectors has one answer per connector (<connector>_exposed), "
-                       "because each one may or may not be exposed.")
-        counts = tally(self.llm, prompt, ca.obj_schema(props), "assy_contents", allowed)
+            tail += (" A part with several cable connectors has one answer per connector (<connector>_exposed), "
+                     "because each one may or may not be exposed.")
+        request = self.design.base_request or self.design.request
+
+        def render(orders: Dict[str, List[str]]) -> str:
+            lines = "\n".join(words[pid] for pid in orders["parts"])
+            return f"Request: {request}\n\nCatalogue parts that may be in the request:\n{lines}\n\n{tail}"
+
+        # migration delta R02: the candidate list is shown in seeded orderings (permutation voting), one call each
+        got = menus.perm_tally(self.llm, "assy_contents", render, {"parts": cands}, ca.obj_schema(props), allowed,
+                               menu_rules(st), question_seed(self.llm, "assy_contents", request, cands))
+        counts = got["counts"]
+        st.notes.append(f"contents: orderings {len(got['orders'])}, consistency "
+                        f"{min(got['consistency'].values()) if got['consistency'] else 0:.2f} (lowest key)")
         items = []
         for pid in cands:
             q = majority(counts[f"{pid}.quantity"])
@@ -768,13 +801,20 @@ class Contents(AssemblyStep):
             items.append(item)
         if not items:
             return self.fail("nothing to design around: the answer puts no catalogue part in the request")
+        self.unsized = []                    # R11: [(item, reason)] the text states no size for (bb.drop_unsized)
         primary, why = self.choose_primary(items)
         if primary is None:
             return Status.FAILURE
         part = st.catalog.get(primary["part"])
-        if pt.mount_interface(part) is None:
-            return self.fail(f"primary {primary['part']} has no {pt.MOUNT_HOLES} interface; its support (pocket / ribs "
-                             "/ bolt-through) is not implemented (GM3/GM6)")
+        support = pt.mount_interface(part)
+        if support is None:                  # R11: a part with a seat plane pair rests in a cradle (building_blocks)
+            try:
+                support = pt.seat_interface(st.catalog.instantiate(part.id, primary.get("params") or {}))
+            except (pt.PartError, fg.ExprError, fg.MissingRefError, KeyError, ValueError):
+                support = None
+        if support is None:
+            return self.fail(f"primary {primary['part']} has no {pt.MOUNT_HOLES} interface and no seat/top plane pair "
+                             "to rest on; its support is not implemented")
         if primary["quantity"] != 1:
             return self.fail(f"primary {primary['part']} has quantity {primary['quantity']}; one primary reference is "
                              "placed (several copies of it are GM2b)")
@@ -788,15 +828,20 @@ class Contents(AssemblyStep):
             if need:
                 got = self.ask_params(it, ipart, need)
                 if got is None:
-                    return self.fail(self.param_stop or f"{it['part']}: no number in the text for {', '.join(need)}")
+                    why_not = self.param_stop or f"{it['part']}: no number in the text for {', '.join(need)}"
+                    if it is primary:
+                        return self.fail(why_not)
+                    self.unsized.append((it, why_not))   # R11: an unsizable part is rejected and reported, not fatal
+                    self.param_stop = None               # review fix 5: the next part's reason is its own
+                    continue
                 it["params"].update(got)
+        items = [i for i in items if all(i is not u for u, _ in self.unsized)]
         if sized_by_slots:                    # a cross-stage owner question may have moved a size slot (C3)
             rp = part.request_params()
             if "board_width" not in st.spec or "board_depth" not in st.spec:
                 return self.fail(f"primary {part.id}: its size slots lost their numbers to other quantities")
             primary["params"].update({rp[0]: st.spec["board_width"], rp[1]: st.spec["board_depth"]})
-        choice(st, "primary", primary["part"], "rule:primary_reference", reason=why,
-               interface=pt.mount_interface(part).get("id"))
+        choice(st, "primary", primary["part"], "rule:primary_reference", reason=why, interface=support.get("id"))
         st.contents = items
         try:
             board_provenance(st, st.catalog.instantiate(part.id, primary["params"]))
@@ -812,6 +857,7 @@ class Contents(AssemblyStep):
                             "reason": f"{part.id} is not a carrier: no relation places it yet (GM2b)"} for i in others]
             for u in st.unplaced:
                 st.notes.append(f"contents: {u['id']} ({u['part']}) is unplaced: {u['reason']}")
+        bb.report_unsized(st, self.unsized)  # R11: each unsizable part the answer named fails its content_placed check
         self.logger.info(f"contents: {[(i['part'], i['quantity'], i['exposed']) for i in items]}")
         return Status.SUCCESS
 
@@ -833,13 +879,21 @@ class Contents(AssemblyStep):
             need = [p for p in ipart.request_params() if p not in it["params"]]
             if need:
                 got = self.ask_params(it, ipart, need)
-                if got is None:
-                    self.fail(self.param_stop or f"{it['part']}: no number in the text for {', '.join(need)}")
-                    return None, ""
+                if got is None:              # R11: rejected and reported (bb.report_unsized), unless nothing is left
+                    self.unsized.append((it, self.param_stop or f"{it['part']}: no number in the text for "
+                                                                 f"{', '.join(need)}"))
+                    self.param_stop = None
+                    continue
                 it["params"].update(got)
+        if self.unsized:
+            items[:] = [i for i in items if all(i is not u for u, _ in self.unsized)]
+            if not items:
+                self.fail(self.unsized[0][1])
+                return None, ""
         areas = {it["id"]: plan_footprint(st.catalog, it) for it in items}
-        best = items[0]
-        for it in items[1:]:
+        pool = [it for it in items if bb.supportable(st, it)] or items    # R11: a part the plant can hold, first
+        best = pool[0]
+        for it in pool[1:]:
             if areas[it["id"]] > areas[best["id"]] + st.rules.values["measure_tol"]:
                 best = it
         st.notes.append("contents: primary by the largest catalogue plan footprint: "
@@ -918,7 +972,7 @@ class Contents(AssemblyStep):
                    slot: {"meaning": f"the {param} of the {item['name']} ({part.params[param].get('source', param)})",
                           "unit": part.data.get("units", "mm")}}
         n = by_id[ref]
-        won, votes = owner_question(self.llm, ref, n, [owner, slot], meaning)
+        won, votes = owner_question(self.llm, ref, n, [owner, slot], meaning, self.state.rules.values)
         st.notes.append(f"contents: {ref} ({n['text']}) is claimed by spec slot {owner} and by {slot}; owner vote "
                         f"{dict(votes)}")
         if won == slot:
@@ -1149,20 +1203,26 @@ class ChooseStack(AssemblyStep):
                 st.assumptions.append(f"{name} = {pick}: the text names no mounting; catalogue default used")
                 choice(st, name, pick, "rule:catalogue_default", evidence=[])
             else:
-                words = [f"- {o}: {st.catalog.get(o).names[0]} (the {it.name} sits {heights[o]:g} mm above the board)"
-                         for o in backed]
-                prompt = (f"Request: {self.design.base_request or self.design.request}\n\n"
-                          f"How is the {it.name} mounted on the board? Options:\n" + "\n".join(words))
-                counts = tally(self.llm, prompt, ca.obj_schema({"stack": {"type": "string", "enum": backed}}),
-                               "assy_stack", {"stack": backed})
-                pick = majority(counts["stack"])
+                words = {o: f"- {o}: {st.catalog.get(o).names[0]} (the {it.name} sits {heights[o]:g} mm above the "
+                            "board)" for o in backed}
+                request = self.design.base_request or self.design.request
+
+                def render(order: List[str], it=it, words=words, request=request) -> str:
+                    return (f"Request: {request}\n\nHow is the {it.name} mounted on the board? Options:\n"
+                            + "\n".join(words[o] for o in order) + f"\n\n{ID_ANSWER}")
+
+                # migration delta R02: content-keyed (catalogue ids), shuffled, permutation-voted
+                vote = menus.perm_vote(self.llm, "assy_stack", render, backed, menu_rules(st),
+                                       question_seed(self.llm, "assy_stack", request, it.id, backed), key="stack")
+                pick = vote.pick
                 ev = [h for o in backed for h in evidence[o]]
                 if pick is None:
                     pick = backed[0]
                     st.assumptions.append(f"{name} = {pick}: no valid answer, first catalogue option with evidence used")
-                    choice(st, name, pick, "rule:first_option", evidence=ev)
+                    choice(st, name, pick, "rule:first_option[stack]", evidence=ev)
                 else:
-                    choice(st, name, pick, "llm", votes=dict(counts["stack"]), evidence=ev)
+                    choice(st, name, pick, "llm", votes=dict(vote.votes), consistency=vote.consistency,
+                           confident=vote.confident, evidence=ev)
             it.stack = pick
         return Status.SUCCESS
 
@@ -1321,6 +1381,7 @@ def fastener_values(use: str, part: pt.Part) -> Dict[str, float]:
 NOT_STATED = "not_stated"            # the face-relation enum value that constrains nothing (C0)
 NOT_STATED_MEANING = "the request does not say how these two connectors are placed relative to each other"
 RELATION_LABEL = "assy_relation"
+ARRANGE_LABEL = "assy_arrange"      # the permutation-voted menu over error-tied arrangement classes (R02)
 
 
 def relation_members(st: AssemblyState) -> List[dict]:
@@ -1413,10 +1474,10 @@ def add_relation_checks(st: AssemblyState, plan: ac.Plan) -> None:
 class ArrangeContents(AssemblyStep):
     """LLM: the board edge each exposed item faces (voted enum). Python: millimetre placement (layout.py).
 
-    ConfirmArrangement (ARCHITECTURE.md 7.6): Python enumerates the edge assignments in the LLM's vote
-    order, prunes the infeasible ones (placer.place), groups the feasible ones into board-symmetry classes
-    and asks p_yes once per class. p_yes is a ranking signal, never an absolute gate: when the vote
-    winner's class ranks top it is accepted; otherwise one voted A/B question decides between the two.
+    ConfirmArrangement (ARCHITECTURE.md 7.6, migration delta R02): Python enumerates the edge assignments in the
+    LLM's vote order, prunes the infeasible ones (placer.place), keeps the prescore ties and groups them into
+    board-symmetry classes; several classes are one content-keyed menu asked under seeded orderings (decide). No
+    LLM probability accepts or blocks an arrangement (until R02 a p_yes ranking and a lettered A/B pick did).
     The stage fails only when no feasible assignment exists, and then it lists every candidate.
 
     Pre-score (ARCHITECTURE.md 7.11, the M11 slice of the 4.1 middle loop): every feasible candidate is first run
@@ -1451,7 +1512,8 @@ class ArrangeContents(AssemblyStep):
         lines = "\n".join(f"- {k}: {pr['a']['name']} ({pr['a']['connector']} connector) and {pr['b']['name']} "
                           f"({pr['b']['connector']} connector)" for k, pr in zip(keys, pairs))
         used = [v for v in vocab if any(v in pr["values"] for pr in pairs)]
-        meanings = "\n".join([f"- {v}: {vocab[v]['meaning']}" for v in used] + [f"- {NOT_STATED}: {NOT_STATED_MEANING}"])
+        meaning = dict({v: f"- {v}: {vocab[v]['meaning']}" for v in used}, **{NOT_STATED: f"- {NOT_STATED}: "
+                                                                               f"{NOT_STATED_MEANING}"})
         these = "these two cable connectors" if len(pairs) == 1 else "the two cable connectors of each pair"
         quotes = []                          # the gating sentences, quoted (implementer's measured refinement, see LEDGER)
         for k, pr in zip(keys, pairs):
@@ -1460,13 +1522,19 @@ class ArrangeContents(AssemblyStep):
                 if e["quote"] not in seen:
                     seen.append(e["quote"])
                     quotes.append(f'- "{e["quote"]}"' if len(pairs) == 1 else f'- {k}: "{e["quote"]}"')
-        prompt = (f"Request: {self.request_text()}\n\n"
-                  f"Where the text relates them:\n" + "\n".join(quotes) + "\n\n"
-                  f"{'Pair' if len(pairs) == 1 else 'Pairs'} of cable connectors:\n{lines}\n\n"
-                  f"How does the request place {these} relative to each other?\n{meanings}")
+        head = (f"Request: {self.request_text()}\n\n"
+                f"Where the text relates them:\n" + "\n".join(quotes) + "\n\n"
+                f"{'Pair' if len(pairs) == 1 else 'Pairs'} of cable connectors:\n{lines}\n\n"
+                f"How does the request place {these} relative to each other?\n")
         enums = {k: pr["values"] + [NOT_STATED] for k, pr in zip(keys, pairs)}
         schema = ca.obj_schema({k: {"type": "string", "enum": e} for k, e in enums.items()})
-        counts = tally(self.llm, prompt, schema, RELATION_LABEL, enums)
+        # migration delta R02: the relation values (not_stated included) are listed in seeded orderings; a relation
+        # constrains only when every ordering's answer names it (the unanimity rule below, now across orderings)
+        got = menus.perm_tally(self.llm, RELATION_LABEL, lambda o: head + "\n".join(meaning[v] for v in o["values"]),
+                               {"values": used + [NOT_STATED]}, schema, enums, menu_rules(st),
+                               question_seed(self.llm, RELATION_LABEL, head))
+        counts = got["counts"]
+        record["orders"] = len(got["orders"])
         for k, pr in zip(keys, pairs):
             votes = {v: n for v, n in counts[k].items() if v is not None}
             value = next(iter(votes)) if len(votes) == 1 else None
@@ -1493,15 +1561,25 @@ class ArrangeContents(AssemblyStep):
         edges = placer.edges
         sides = list(edges)
         voted = False
+        edge_vote = None
         if exposed:
-            words = "\n".join(f"- {s}: {edges[s]['words']}" for s in sides)
             items = "\n".join(f"- {it.id}: {it.name} x{it.quantity} ({facing_connector(st, it)} connector)"
                               for it in exposed)
-            prompt = (f"Request: {self.request_text()}\n\n"
-                      f"The board edges:\n{words}\n\nWhich board edge does each part's connector face, so its "
-                      f"cable plugs in through that end or side of the enclosure?\n{items}")
+            request = self.request_text()
+
+            def render(orders: Dict[str, List[str]]) -> str:
+                words = "\n".join(f"- {s}: {edges[s]['words']}" for s in orders["edges"])
+                return (f"Request: {request}\n\n"
+                        f"The board edges:\n{words}\n\nWhich board edge does each part's connector face, so its "
+                        f"cable plugs in through that end or side of the enclosure?\n{items}")
+
             schema = ca.obj_schema({it.id: {"type": "string", "enum": sides} for it in exposed})
-            counts = tally(self.llm, prompt, schema, "assy_edge", {it.id: sides for it in exposed})
+            # migration delta R02: the board edges are listed in seeded orderings (permutation voting)
+            got_vote = menus.perm_tally(self.llm, "assy_edge", render, {"edges": sides}, schema,
+                                        {it.id: sides for it in exposed}, menu_rules(st),
+                                        question_seed(self.llm, "assy_edge", request, items))
+            counts = got_vote["counts"]
+            edge_vote = {"orders": len(got_vote["orders"]), "consistency": got_vote["consistency"]}
             first = {it.id: majority(counts[it.id]) or sides[0] for it in exposed}
             for it in exposed:
                 if majority(counts[it.id]) is None:
@@ -1527,7 +1605,7 @@ class ArrangeContents(AssemblyStep):
             cands.append({"assignment": dict(assign), "layout": result, "words": lay.describe(result, st.items),
                           "votes": sum(counts[i].get(v, 0) for i, v in assign.items())})
         return {"exposed": exposed, "counts": counts, "voted": voted, "cands": cands, "pruned": pruned,
-                "truncated": truncated, "cap": cap}
+                "truncated": truncated, "cap": cap, "edge_vote": edge_vote}
 
     def update(self) -> Status:
         st = self.state
@@ -1537,35 +1615,45 @@ class ArrangeContents(AssemblyStep):
         st.relations = []
         board_item = primary_item(st)
         board_inst = st.catalog.instantiate(board_item["part"], board_item["params"])
-        pick = board_screw_choice(st.catalog, board_inst, st.rules.values, st.texts, st.rules.fastener_roles)
-        for note in pick["notes"]:
-            st.notes.append(f"arrange: {note}")
-        screw = pick["part"]
-        if screw is None:
-            return self.fail(f"no catalogue screw passes the board's mounting holes (primary {board_item['part']})")
-        st.fasteners.update(fastener_values("board", screw))
-        choice(st, "fastener[board]", screw.id, pick["by"],
-               **({"evidence": [{"source": h["source"], "quote": h["quote"]} for h in pick["evidence"]]}
-                  if pick["evidence"] else {}))
-        if pick["by"] == "rule:smallest_thread_through_board_hole":
-            st.assumptions.append(f"fastener[board] = {screw.id}: the text names no board screw and the "
-                                  f"{board_item['part']} datasheet gives no thread; the smallest catalogue screw that "
-                                  "passes the board's mounting holes is used")
+        screw = None
+        if pt.mount_interface(board_inst.part) is not None:     # R11: a cradle primary has no holes and no screw
+            pick = board_screw_choice(st.catalog, board_inst, st.rules.values, st.texts, st.rules.fastener_roles)
+            for note in pick["notes"]:
+                st.notes.append(f"arrange: {note}")
+            screw = pick["part"]
+            if screw is None and not bb.cradle_instead_of_screws(st, board_inst):
+                return self.fail(f"no catalogue screw passes the board's mounting holes (primary {board_item['part']})")
+        if screw is not None:
+            st.fasteners.update(fastener_values("board", screw))
+            choice(st, "fastener[board]", screw.id, pick["by"],
+                   **({"evidence": [{"source": h["source"], "quote": h["quote"]} for h in pick["evidence"]]}
+                      if pick["evidence"] else {}))
+            if pick["by"] == "rule:smallest_thread_through_board_hole":
+                st.assumptions.append(f"fastener[board] = {screw.id}: the text names no board screw and the "
+                                      f"{board_item['part']} datasheet gives no thread; the smallest catalogue screw "
+                                      "that passes the board's mounting holes is used")
         board = lay.Placed(PRIMARY, board_item["part"], dict(board_item["params"]), 0.0, 0.0, 0.0, 0.0, "",
                            role="board", inst=board_inst)
         for c in board_inst.connectors:      # the primary's own connectors: the wall follows from the axis, no choice
             if c["name"] in board_item.get("exposed_connectors", []):
                 axis = pt.lookup_datum(board_inst.datums, c["axis"]).dir
                 choice(st, f"wall[{PRIMARY}.{c['name']}]", wall_facing(axis), "rule:fixed_by_primary")
-        terms = hole_column_terms(st, board_inst)
-        column_d = max(terms.values())
-        st.notes.append(f"hole columns: Ø{column_d:g} = max(board HOLE.keepout_diameter {terms['board_keepout']:g}, "
-                        f"{screw.id} head + 2 x rules.driver_clearance {terms['fastener']:g}) (rule:hole_column_d)")
+        if screw is not None:
+            terms = hole_column_terms(st, board_inst)
+            column_d = max(terms.values())
+            st.notes.append(f"hole columns: Ø{column_d:g} = max(board HOLE.keepout_diameter {terms['board_keepout']:g}, "
+                            f"{screw.id} head + 2 x rules.driver_clearance {terms['fastener']:g}) (rule:hole_column_d)")
+        else:
+            column_d = 0.0
+            st.notes.append(f"arrange: primary {board_item['part']} is not screwed down (no mounting holes, or no "
+                            "catalogue screw passes them); it rests on its seat plane in a cradle (building_blocks)")
         placer = lay.Placer(st.catalog, board, st.rules.values, column_d, st.spec["keepout_above"])
         got = self.candidates(st, placer)
         exposed, counts, voted = got["exposed"], got["counts"], got["voted"]
         cands, pruned, truncated, cap = got["cands"], got["pruned"], got["truncated"], got["cap"]
         st.arrange = {"candidates": [], "classes": 0, "truncated": truncated, "decision": None}
+        if got.get("edge_vote"):
+            st.arrange["edge_vote"] = got["edge_vote"]
         if self.relation_record and self.relation_record["asked"]:
             st.arrange["relations"] = self.relation_record
         if truncated:
@@ -1592,8 +1680,8 @@ class ArrangeContents(AssemblyStep):
         st.arrange.update(prescored=len(cands), filtered=filtered)
         if len(survivors) == 1:
             chosen, by = survivors[0], "rule:prescore"
-            confirmed = {"value": dict(chosen["assignment"]), "by": by, "p_yes": None, "rank": 1,
-                         "margin_to_next": None, "prescore": chosen["prescore"]["key"]}
+            confirmed = {"value": dict(chosen["assignment"]), "by": by, "class_id": None, "classes": 1,
+                         "prescore": chosen["prescore"]["key"]}
             n_classes, n_sym = 0, None
         else:
             notes: List[str] = []
@@ -1603,21 +1691,19 @@ class ArrangeContents(AssemblyStep):
             pick, by, extra = self.decide(survivors, classes, 0 if voted else None)
             by = prefix + by
             chosen = survivors[pick]
-            score = classes[chosen["class"]]["p_yes"]
-            ranked = sorted(range(len(classes)), key=lambda c: -classes[c]["p_yes"])
-            others = [classes[c]["p_yes"] for c in ranked if c != chosen["class"]]
-            margin = None if not others else score - others[0]
-            confirmed = dict({"value": dict(chosen["assignment"]), "by": by, "p_yes": score,
-                              "rank": ranked.index(chosen["class"]) + 1, "margin_to_next": margin,
+            confirmed = dict({"value": dict(chosen["assignment"]), "by": by,
+                              "class_id": classes[chosen["class"]]["id"], "classes": len(classes),
                               "prescore": chosen["prescore"]["key"]}, **extra)
-            if score < EVEN_ODDS:
-                nxt = f"{others[0]:.2f}" if others else "none"
-                st.assumptions.append(f"arrangement accepted by rank: the controller's absolute confidence was low "
-                                      f"(p_yes {score:.2f}; next class {nxt})")
+            cv = extra.get("class_vote")
+            if cv is not None and not cv["confident"]:
+                st.assumptions.append(f"arrangement: the controller's choice among {len(classes)} error-tied "
+                                      f"arrangement classes was not consistent across menu orderings (votes "
+                                      f"{cv['votes']}); {by} decided")
             n_classes, n_sym = len(classes), len(symmetries)
         for c in survivors:
             st.history.append(dict({"stage": "confirm_arrangement"}, **self.record(c, chosen=c is chosen)))
-        rows = sorted([self.record(c, chosen=c is chosen) for c in survivors], key=lambda r: -r["p_yes"])
+        rows = sorted([self.record(c, chosen=c is chosen) for c in survivors],
+                      key=lambda r: (not r["chosen"], -(r["class_votes"] or 0)))
         rows += [dict(self.record(c, chosen=False), outcome="filtered") for i, c in enumerate(cands) if i not in keep]
         st.arrange.update(candidates=rows + pruned, classes=n_classes, decision=by)
         if n_sym is not None:
@@ -1629,53 +1715,74 @@ class ArrangeContents(AssemblyStep):
     def record(c: dict, chosen: bool) -> dict:
         ps = c.get("prescore")
         return {"assignment": dict(c["assignment"]), "outcome": "scored", "class": c.get("class"),
-                "words": c["words"], "votes": c["votes"], "p_yes": c.get("p_yes", 0.0), "asked": c.get("asked", False),
-                "chosen": chosen, "prescore": None if ps is None else {k: ps[k] for k in ("key", "failing",
-                                                                                            "uncontrollable", "error")}}
+                "words": c["words"], "votes": c["votes"], "class_votes": c.get("class_votes"),
+                "asked": c.get("asked", False), "chosen": chosen,
+                "prescore": None if ps is None else {k: ps[k] for k in ("key", "failing", "uncontrollable", "error")}}
+
+    @staticmethod
+    def class_id(assignment: Mapping[str, str]) -> str:
+        """The content key of an arrangement class (R02): its representative's edge per item, `item=edge,...`."""
+        return ",".join(f"{k}={v}" for k, v in sorted(assignment.items()))
 
     def rank_candidates(self, cands: List[dict], symmetries) -> List[dict]:
-        """Group the feasible candidates (already in vote order) into board-symmetry classes; the first member
-        of a class (most votes, then fewest changes from the vote, then side order) represents it. p_yes is
-        asked once per representative, batched; every member carries its class's score."""
+        """Group the feasible candidates (already in vote order) into board-symmetry classes; the first member of a class
+        (most votes, then fewest changes from the vote, then side order) represents it and names it (class_id). Since
+        R02 no p_yes is asked: the classes are one content-keyed menu (ask_classes)."""
         keys: List[Tuple] = []
         classes: List[dict] = []
         for i, c in enumerate(cands):
             key = lay.canonical_class(c["assignment"], symmetries)
             if key not in keys:
                 keys.append(key)
-                classes.append({"key": key, "rep": i, "members": []})
+                classes.append({"key": key, "rep": i, "members": [], "id": self.class_id(c["assignment"])})
             c["class"] = keys.index(key)
             classes[c["class"]]["members"].append(i)
-        prompts = [f"Request: {self.request_text()}\n\n"
-                   f"Proposed arrangement on the board: {cands[k['rep']]['words']}.\n"
-                   "Does this arrangement match the request? Answer yes or no." for k in classes]
-        ask = getattr(self.llm, "p_yes_many", None)
-        scores = ask(prompts, "assy_confirm") if ask else [self.llm.p_yes(q, label="assy_confirm") for q in prompts]
-        for k, p in zip(classes, scores):
-            k["p_yes"] = float(p)
-            cands[k["rep"]]["asked"] = True
-            for i in k["members"]:
-                cands[i]["p_yes"] = float(p)
         return classes
 
+    def ask_classes(self, cands: List[dict], classes: List[dict]) -> "menus.MenuVote":
+        """One permutation-voted, content-keyed menu over the error-tied arrangement classes (ARRANGE_LABEL; replaces the
+        p_yes ranking and the lettered A/B pick of 7.6 in migration delta R02)."""
+        st = self.state
+        words = {k["id"]: cands[k["rep"]]["words"] for k in classes}
+        request = self.request_text()
+
+        def render(order: List[str]) -> str:
+            return (f"Request: {request}\n\nArrangements of the parts on the board (Python measured them equally "
+                    f"well):\n" + "\n".join(f"- {i}: {words[i]}" for i in order)
+                    + f"\n\nWhich arrangement matches the request? {ID_ANSWER}")
+
+        ids = [k["id"] for k in classes]
+        vote = menus.perm_vote(self.llm, ARRANGE_LABEL, render, ids, menu_rules(st),
+                               question_seed(self.llm, ARRANGE_LABEL, request, ids), key="arrangement")
+        for k in classes:
+            cands[k["rep"]]["asked"] = True
+            for i in k["members"]:
+                cands[i]["class_votes"] = vote.votes.get(k["id"], 0)
+        return vote
+
     def decide(self, cands: List[dict], classes: List[dict], voted: Optional[int]) -> Tuple[int, str, dict]:
-        """(candidate index, by, extra). No absolute threshold: the vote and the ranking either agree, or one
-        comparative A/B vote decides; with no valid edge vote the top class is taken."""
-        top = max(range(len(classes)), key=lambda c: classes[c]["p_yes"])     # a tie goes to the more voted
-        best = classes[top]["rep"]
-        if voted is None:
-            return best, "llm:rank", {}
-        vc = cands[voted]["class"]
-        if classes[vc]["p_yes"] >= classes[top]["p_yes"]:
-            return voted, "llm:vote+rank", {}
-        a, b = cands[voted]["words"], cands[best]["words"]
-        prompt = (f"Request: {self.request_text()}\n\nTwo arrangements of the parts on the board:\n"
-                  f"A: {a}.\nB: {b}.\n\nWhich arrangement matches the request?")
-        counts = tally(self.llm, prompt, ca.obj_schema({"pick": {"type": "string", "enum": ["A", "B"]}}),
-                       "assy_arrange_pick", {"pick": ["A", "B"]})
-        votes = counts["pick"]
-        pick = voted if votes.get("A", 0) > votes.get("B", 0) else best       # a tie goes to the higher ranked
-        return pick, "llm:pick", {"pick_votes": {k: v for k, v in votes.items() if k is not None}}
+        """(candidate index, by, extra) among the error-tied survivors (R02). One class: the survivors are one design up
+        to board symmetry (the voted one, else its representative: rule:symmetric_class, no meaning decided). Several:
+        the class menu (ask_classes, permutation-voted). The edge vote and the menu agree: llm:vote+menu. They disagree
+        or there is no valid edge vote: the menu's choice when it is consistent across orderings (llm:menu); an
+        inconsistent menu leaves the edge vote's class (llm:vote) or, with no valid edge vote, the menu's majority
+        (llm:menu, recorded low-confidence). No probability gates anything."""
+        if len(classes) == 1:
+            return (voted, "llm:vote", {}) if voted is not None else (classes[0]["rep"], "rule:symmetric_class", {})
+        vote = self.ask_classes(cands, classes)
+        extra = {"class_vote": {"votes": dict(vote.votes), "consistency": vote.consistency,
+                                "confident": vote.confident, "orders": len(vote.orders)}}
+        win = next((n for n, k in enumerate(classes) if k["id"] == vote.pick), None)
+        vc = cands[voted]["class"] if voted is not None else None
+        if win is not None and win == vc:
+            return voted, "llm:vote+menu", extra
+        if win is not None and vote.confident:
+            return classes[win]["rep"], "llm:menu", extra
+        if vc is not None:
+            return voted, "llm:vote", extra
+        if win is not None:
+            return classes[win]["rep"], "llm:menu", extra
+        return classes[0]["rep"], "rule:first_option[arrange]", extra
 
     def assignments(self, exposed, sides, counts, first) -> List[Dict[str, str]]:
         """Every edge assignment, ordered by the LLM's votes, then by how few items differ from its answer."""
@@ -1844,15 +1951,18 @@ class Vents(AssemblyStep):
         enum = options + [NOT_STATED]
         quoted = [s_ for s_ in sents if any(g["source"] == s_["source"] and g["clause"] in s_["quote"] for g in gates)]
         lines = "\n".join(f'- "{s_["quote"]}"' for s_ in quoted)
-        opts = "\n".join(f"- {m['key']}|{v}: the vents go in {vocab[v].get('wall_meaning', vocab[v]['meaning'])} "
-                         f"({m['name']}, {m['connector']} connector)" for m in members for v in values)
-        prompt = (f"Request: {self.design.base_request or self.design.request}\n\n"
-                  f"Where the text places the vents:\n{lines}\n\n"
-                  f"Which wall do the vents go in, relative to a cable connector's wall?\n{opts}\n"
-                  f"- {NOT_STATED}: the request does not relate the vents' wall to a cable connector")
-        counts = tally(self.llm, prompt, ca.obj_schema({"vents": {"type": "string", "enum": enum}}),
-                       VENT_RELATION_LABEL, {"vents": enum})
-        votes = {v: n for v, n in counts["vents"].items() if v is not None}
+        opts = {f"{m['key']}|{v}": f"- {m['key']}|{v}: the vents go in "
+                f"{vocab[v].get('wall_meaning', vocab[v]['meaning'])} ({m['name']}, {m['connector']} connector)"
+                for m in members for v in values}
+        opts[NOT_STATED] = f"- {NOT_STATED}: the request does not relate the vents' wall to a cable connector"
+        head = (f"Request: {self.design.base_request or self.design.request}\n\n"
+                f"Where the text places the vents:\n{lines}\n\n"
+                f"Which wall do the vents go in, relative to a cable connector's wall?\n")
+        # migration delta R02: content-keyed options in seeded orderings (not_stated no longer pinned last)
+        vote = menus.perm_vote(self.llm, VENT_RELATION_LABEL, lambda order: head + "\n".join(opts[o] for o in order),
+                               enum, menu_rules(st), question_seed(self.llm, VENT_RELATION_LABEL, head), key="vents",
+                               reason=False)
+        votes = dict(vote.votes)
         value = next(iter(votes)) if len(votes) == 1 else None
         vent["relation_question"] = {"enum": enum, "votes": votes, "gates": gates}
         if value in (None, NOT_STATED):
@@ -1959,10 +2069,10 @@ def build_envelopes(st: AssemblyState) -> Optional[str]:
     for n in pt.board_keepout(board.inst, board.pose, s["keepout_above"], s["keepout_below"], prefix="board"):
         st.graph.add(n)
     hole_name, seat_name, top_name = primary_mount(st)
-    holes = lay.world_datum(board, hole_name)
+    holes = lay.world_datum(board, hole_name) if hole_name else None    # R11: a cradle primary has no hole columns
     top, bottom = lay.world_datum(board, top_name).at[2], lay.world_datum(board, seat_name).at[2]
-    seat_d = hole_column_d(st, board.inst)
-    for i in range(len(holes.at)):
+    seat_d = hole_column_d(st, board.inst) if holes is not None else 0.0
+    for i in range(len(holes.at) if holes is not None else 0):
         anchor = f"{PRIMARY}.{hole_name}[{i}]"
         st.graph.add(pt.column(holes, i, seat_d, bottom - s["keepout_below"] - r["cut_overrun"],
                                top + r["cut_overrun"], "seat", prefix="seat", anchor=anchor))
@@ -2073,6 +2183,8 @@ def driver_columns(st: AssemblyState) -> List[fg.Node]:
     r = st.rules.values
     board = st.placed.get(PRIMARY)
     hole_name, _, top_name = primary_mount(st)
+    if hole_name is None:                # R11: a cradle primary has no screws to drive
+        return []
     holes = lay.world_datum(board, hole_name)
     top = lay.world_datum(board, top_name).at[2]
     return [pt.column(holes, i, r["driver_diameter"], top, "base.split + rules.driver_reach", "driver",
@@ -2088,7 +2200,7 @@ def archetype_gate(st: AssemblyState) -> Tuple[List[Tuple[str, str]], str]:
     archetypes.tray_lid.evidence (text_evidence), so a fixture or a mount never gets a box (generalize delta 001 C4)."""
     prim = primary_item(st)
     pid = prim["part"] if prim else None
-    if pid is None or pt.mount_interface(st.catalog.get(pid)) is None:
+    if pid is None or (pt.mount_interface(st.catalog.get(pid)) is None and not bb.is_cradle(st)):
         return [], f"not implemented: archetype (primary {pid}; no {pt.MOUNT_HOLES} interface)"
     words = list((st.rules.archetypes.get(SHELL[0]) or {}).get("evidence", []))
     hits = text_evidence(st.texts, words) if words else []
@@ -2113,7 +2225,7 @@ def choose_archetype_rule(st: AssemblyState) -> Optional[str]:
     if len(options) == 1:
         choice(st, "archetype", options[0], "rule:only_feasible")
     elif st.choices.get("archetype", {}).get("value") not in options:
-        choice(st, "archetype", options[0], "rule:first_option")
+        choice(st, "archetype", options[0], "rule:first_option[archetype]")
     return None
 
 
@@ -2130,10 +2242,17 @@ class ChooseArchetype(AssemblyStep):
             err = choose_archetype_rule(st)
             return self.fail(err) if err else Status.SUCCESS
         keys = ["+".join(o) for o in options]
-        counts = tally(self.llm, f"Request: {self.design.base_request}\n\nWhich enclosure type fits best?\n"
-                       + "\n".join(f"- {k}" for k in keys), ca.obj_schema({"archetype": {"type": "string", "enum": keys}}),
-                       "assy_archetype", {"archetype": keys})
-        choice(st, "archetype", majority(counts["archetype"]) or keys[0], "llm")
+        request = self.design.base_request
+        # migration delta R02: content-keyed, shuffled, permutation-voted
+        vote = menus.perm_vote(self.llm, "assy_archetype", lambda order: (
+            f"Request: {request}\n\nWhich enclosure type fits best?\n" + "\n".join(f"- {k}" for k in order)
+            + f"\n\n{ID_ANSWER}"), keys, menu_rules(st), question_seed(self.llm, "assy_archetype", request, keys),
+            key="archetype")
+        if vote.pick is None:
+            choice(st, "archetype", keys[0], "rule:first_option[archetype]")
+        else:
+            choice(st, "archetype", vote.pick, "llm", votes=dict(vote.votes), consistency=vote.consistency,
+                   confident=vote.confident)
         return Status.SUCCESS
 
 
@@ -2163,10 +2282,10 @@ def derive_cavity(st: AssemblyState, layout: str = "outside_corners") -> fg.Node
     refs = [n.id for n in st.graph.references()]
     axes = plan_axes(st)
     m = "rules.design_margin"
-    _, seat, top = primary_mount(st)
+    holes, seat, top = primary_mount(st)
     # the floor also holds every standoff's pilot over rules.min_feature of floor (generalize delta 002 C2, RC-B3):
     # pilot_depth_standoff_* (depth <= seat - z0 + floor - min_feature) then holds by construction
-    pilot = f"{PRIMARY}.{seat}.z - ({pilot_depth('board', st)}) - rules.min_feature + floor - {m}"
+    pilot = f"{PRIMARY}.{seat}.z - ({pilot_depth('board', st)}) - rules.min_feature + floor - {m}" if holes else None
 
     def bound(fn: str, axis: str, sign: str) -> str:
         terms = [f"{_fold(fn, [f'{r}.bbox.{fn}_{axis}' for r in refs])} {sign} spec.board_clearance {sign} {m}"]
@@ -2176,13 +2295,19 @@ def derive_cavity(st: AssemblyState, layout: str = "outside_corners") -> fg.Node
     p = {
         "x0": bound("min", "x", "-"), "x1": bound("max", "x", "+"),
         "y0": bound("min", "y", "-"), "y1": bound("max", "y", "+"),
-        "z0": f"min({PRIMARY}.{seat}.z - spec.keepout_below - {m}, {pilot})",
+        "z0": f"min({PRIMARY}.{seat}.z - spec.keepout_below - {m}, {pilot})" if pilot else
+              f"{PRIMARY}.{seat}.z - spec.keepout_below - {m}",       # R11: a cradle primary has no standoff pilots
         "z1": f"max({PRIMARY}.{top}.z + spec.keepout_above + {m}, "
               f"{_fold('max', [f'{r}.bbox.max_z' for r in refs])} + spec.headroom + {m})",
+    }
+    extra_z1 = bb.cavity_z1_terms(st)      # R11: parts hanging from the lid (panel decisions); none: unchanged
+    if extra_z1:
+        p["z1"] = _fold("max", [p["z1"]] + extra_z1)
+    p.update({
         "wall": "min(max(rules.wall_default, spec.wall_min), spec.wall_max)",
         "floor": "min(max(rules.floor_default, spec.wall_min), spec.wall_max)",
         "x": "x1 - x0", "y": "y1 - y0", "z": "z1 - z0", "cx": "(x0 + x1) / 2", "cy": "(y0 + y1) / 2",
-    }
+    })
     axis = INSIDE_LAYOUTS.get(layout)
     if axis is not None:
         p["boss_d"] = BOSS_D
@@ -2418,8 +2543,10 @@ def derive_features(st: AssemblyState, layout: str = "outside_corners", closure:
         g.add(n)
     hole_name, seat_name, _ = primary_mount(st)
     seat = f"{PRIMARY}.{seat_name}.z"
-    holes = lay.world_datum(st.placed.get(PRIMARY), hole_name)
-    for i in range(len(holes.at)):
+    holes = lay.world_datum(st.placed.get(PRIMARY), hole_name) if hole_name else None
+    if holes is None:                    # R11: a primary without mounting holes rests in a cradle (building_blocks)
+        bb.derive_cradle(st)
+    for i in range(len(holes.at) if holes is not None else 0):
         hole = f"{PRIMARY}.{hole_name}[{i}]"
         g.add(fg.Node(f"standoff_{i + 1}", "add", "cylinder", {
             "d": f"max(fastener.board.pilot_diameter + 2*rules.standoff_wall_min, "
@@ -2459,6 +2586,7 @@ def derive_features(st: AssemblyState, layout: str = "outside_corners", closure:
     else:
         add_corner_pilasters(st)
     add_vent_row(st)
+    bb.derive_panels(st)                 # R11: panel parts the controller mounted in the lid (set_panel)
     return [n.id for n in cuts]
 
 
@@ -3038,6 +3166,7 @@ def derive(st: AssemblyState) -> Optional[str]:
         clo = closure_choice(st)
         if not st.control.get("closure"):        # a controller decision keeps its own record (step, votes, evidence)
             choice(st, "closure", clo["value"], clo["by"])
+        bb.record_retention(st)                  # R11: the cradle's retention option (a cradle primary only)
         choose_boss_layout(st, clo["value"])
         st.resolved = resolve(st)
     except (ValueError, KeyError, fg.ExprError, pt.PartError) as e:
@@ -3488,7 +3617,8 @@ def add_fastener_checks(st: AssemblyState, plan: ac.Plan) -> None:
                  "screw's pilot range)", value=d, lo=lo, hi=hi, parts=[screw] if screw else [],
                  detail=f"pilot diameter {d:.3f} vs [{lo:g}, {hi:g}] ({screw or use + ' screw'})")
     board = st.placed.get(PRIMARY)
-    hole = lay.world_datum(board, primary_mount(st)[0]).diameter
+    hole_name = primary_mount(st)[0]
+    hole = lay.world_datum(board, hole_name).diameter if hole_name else None    # R11: no holes on a cradle primary
     if hole is not None and "fastener.board.thread_diameter" in f:
         thread = f["fastener.board.thread_diameter"]
         need = thread + 2 * r["given_hole_clearance_min"]
@@ -3729,7 +3859,8 @@ def build_plan(st: AssemblyState) -> ac.Plan:
     vols.setdefault("seats", ac.union([]))
     plan.sources.setdefault("seats", [])
     board_id = st.placed.get(PRIMARY).node_id
-    contents = [i for i in ref_solids if i != board_id]
+    panels = {n.id for n in bb.panel_refs(st)}    # R11: a panel part pokes through the lid; its own checks measure it
+    contents = [i for i in ref_solids if i != board_id and i not in panels]
     vols["board"] = ref_solids[board_id]
     vols["contents"] = ac.union([ref_solids[i] for i in contents])
     plan.sources["board"] = [board_id]
@@ -3747,7 +3878,8 @@ def build_plan(st: AssemblyState) -> ac.Plan:
         plan.add("inside_contents", "inside", "every part the board carries lies inside the closed enclosure, at least "
                  f"{r['part_to_wall']:g} mm from every printed surface and from the outside", volume="contents",
                  clearance=r["part_to_wall"], parts=content_parts)
-    for u in st.unplaced:                    # a sensor, so the package is honest about what it does not hold (C1)
+    for u in [x for x in st.unplaced if not bb.panel_placed(st, x["id"])]:   # R11: a set_panel placement places it
+        # a sensor, so the package is honest about what it does not hold (C1)
         plan.add(f"content_placed_{u['id']}", "content_placed", f"{u['id']} ({u['part']} x{u['quantity']}) is placed in "
                  "the design", item=u["id"], part=u["part"], reason=u["reason"], parts=[u["part"]])
     plan.add("clear_board", "clear_of", f"no printed surface within {bc:g} mm of the board, "
@@ -3810,16 +3942,19 @@ def build_plan(st: AssemblyState) -> ac.Plan:
     add_ligament_checks(st, plan)
     board = st.placed.get(PRIMARY)
     hole_name, seat_name, _ = primary_mount(st)
-    holes = lay.world_datum(board, hole_name)
-    bottom = lay.world_datum(board, seat_name).at[2]
-    standoffs = [n for n in g if n.role == "standoff"]
-    probe = min(res.params[f"{n.id}_pilot"]["depth"] for n in standoffs) / 2
-    search_d = min((res.params[f"{n.id}_pilot"]["d"] + res.params[n.id]["d"]) / 2 for n in standoffs)
-    plan.add("seated", "seated", f"the board rests on the standoff tops (gap <= {r['seat_gap_max']:g} mm) with every "
-             f"hole on a pilot axis (offset <= {r['seat_axis_residual_max']:g} mm)", body="base",
-             holes=[[float(v) for v in p[:2]] for p in holes.at], board_bottom=float(bottom),
-             search_d=float(search_d), z_lo=float(cav["z0"]), z_hi=float(bottom + r["cut_overrun"]), probe_depth=float(probe),
-             gap_max=r["seat_gap_max"], residual_max=r["seat_axis_residual_max"])
+    if hole_name is None:                    # R11: the cradle's sensors (supported, retention, ...) in place of seated
+        bb.add_cradle_checks(st, plan)
+    else:
+        holes = lay.world_datum(board, hole_name)
+        bottom = lay.world_datum(board, seat_name).at[2]
+        standoffs = [n for n in g if n.role == "standoff"]
+        probe = min(res.params[f"{n.id}_pilot"]["depth"] for n in standoffs) / 2
+        search_d = min((res.params[f"{n.id}_pilot"]["d"] + res.params[n.id]["d"]) / 2 for n in standoffs)
+        plan.add("seated", "seated", f"the board rests on the standoff tops (gap <= {r['seat_gap_max']:g} mm) with "
+                 f"every hole on a pilot axis (offset <= {r['seat_axis_residual_max']:g} mm)", body="base",
+                 holes=[[float(v) for v in p[:2]] for p in holes.at], board_bottom=float(bottom),
+                 search_d=float(search_d), z_lo=float(cav["z0"]), z_hi=float(bottom + r["cut_overrun"]),
+                 probe_depth=float(probe), gap_max=r["seat_gap_max"], residual_max=r["seat_axis_residual_max"])
     plan.add("bbox", "bbox_within", f"closed outside size within {s['max_x']:g} x {s['max_y']:g} x {s['max_z']:g} mm",
              max=[s["max_x"], s["max_y"], s["max_z"]], x_longest=s["max_x"] > s["max_y"],
              slots=("max_x", "max_y", "max_z"))
@@ -3848,6 +3983,7 @@ def build_plan(st: AssemblyState) -> ac.Plan:
     add_minimum_checks(st, plan)
     add_fastener_checks(st, plan)
     add_relation_checks(st, plan)
+    bb.add_panel_checks(st, plan)            # R11: the panel parts' sensors
     grid_check(st, plan)
     coverage_check(st, plan)
     closure_evidence_check(st, plan)

@@ -1,0 +1,22 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a jig for soldering headers onto a Raspberry Pi Pico 2. It should keep two 20-pin male headers (2.54 mm pitch, 17.78 mm between the rows) standing upright, long pin tails pointing down, while I solder the Pico on. The holes that guide the pins are 1.0 mm, the plastic spacers of the headers stand on a flat seat, and the Pico is lowered onto the pins from above until it rests on a ledge at the proper standoff height (the header spacer height), with a bit of slack so it lifts off afterwards. Alongside, I want a holder for a 70 x 50 mm perfboard (1.6 mm thick): a recess the board sits flat in, with finger cut-outs to pull it out. The whole thing is a single FDM-printed PLA piece with no supports, and I have to be able to reach every pin with an iron from the top.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"perfboard": {"quantity": 0}, "rpi_pico2": {"quantity": 0, "exposed": "yes"}, "rpi_zero2w": {"quantity": 0, "hdmi_exposed": "yes", "usb_data_exposed": "yes", "usb_power_exposed": "yes", "sd_exposed": "yes"}, "rpi_camera_v2": {"quantity": 0}, "jack_3p5_pj320a": {"quantity": 0, "exposed": "yes"}, "dc_jack_pj002a": {"quantity": 0, "exposed": "yes"}, "generic_cylinder": {"quantity": 0}}

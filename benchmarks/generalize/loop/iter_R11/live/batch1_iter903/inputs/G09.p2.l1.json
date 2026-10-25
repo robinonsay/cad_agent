@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "From the parts catalogue place the battery, the toggle switch, the DC jack and the hinge pin, declare the layout, and keep everything from colliding. The battery lies along the long axis of the box, the jack faces one short end, and the switch is on the top face of the lid.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The battery (26.5 x 17.5 x 48.5 mm) goes in a pocket that keeps at least 0.2 mm from all printed surfaces, other than where it rests on its floor, with a gap of no more than 0.5 mm on its two long sides and its top. The snap-clip zone at the terminal end must be inside the closed box.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "When the lid is shut the battery is held so that it shifts at most 1.0 mm in total across its width and thickness, and lengthwise no further than its clip zone plus 1.5 mm. There is a printed stop at the end away from the terminals.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "Pass the toggle switch through a hole in the lid plate (2 to 4 mm thick, hole 0.2 to 0.8 mm larger than the bushing) with the switch seated against the underside of the plate. Neither the mounting nut nor the swing of the lever may hit any printed surface, and the switch body and solder lugs must stay clear of the box.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the lid shut, a 5.5 x 2.1 mm DC plug with an 11 mm dia handle must slide fully into the jack through a single opening in the end wall and never touch the box. The opening may exceed the plug by at most 1.5 mm on any side, and the jack must be held in place.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "The lid pivots on a 3 mm steel dowel pin, 24 mm long, which stays captive in the hinge bores (a press fit in one part and a clearance fit in the other). The lid has to swing to 100 degrees without any part of the lid or the switch hitting the base, the battery or the jack.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "Keep the lid shut with a snap latch on the side across from the hinge, a cantilever hook with at least 8 mm free length, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap and strain of at most 2 percent. The lid is a flat plate with a locating lip that doesn't fuse to the base and leaves a seam of no more than 0.5 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The shut box has no openings except the switch hole, the jack opening, the hinge bores and the seam, and its walls, floor and lid plate measure 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The base and the lid must each be a single manifold body, printable on an FDM printer with no supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The shut box has to fit within 90 x 45 x 30 mm (leaving out the switch lever) and sit flat on a desk without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "With the lid swung open, the battery and its snap clip should drop straight down into the pocket and lift straight back out, without touching the lid, the switch, the jack or the base.",
+    "method": "test"
+  },
+  {
+    "id": "L1.12",
+    "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, where the report agrees with an independent measurement.",
+    "method": "inspection"
+  }
+]

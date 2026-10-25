@@ -1,0 +1,60 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I want a case for a Raspberry Pi Zero 2 W (65 x 30 mm, with four 2.75 mm holes on a 58 x 23 mm pattern) that works as a desktop console. It is a base and a lid that closes with snap latches, printed without supports on an FDM printer. The Pi's mini-HDMI and microSD slot are not used, but both micro-USB ports must be reachable through the rear wall for cables. In the front panel, a window shows a 0.96 inch SSD1306 OLED (27.3 x 27.8 mm, viewing area 25 x 14 mm), and an EC11 rotary encoder sits beside it on the same panel. Over the Pi goes a 40 x 40 x 10 mm fan, fixed on its 32 mm hole pitch and blowing down onto the board. The side walls carry vents, and the heat of the Pi must have a path out through them.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- oled_ssd1306_096: 0.96 inch oled (display)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "oled_ssd1306_096": {
+    "quantity": 1
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_zero2w": {
+    "hdmi_exposed": "no",
+    "quantity": 1,
+    "sd_exposed": "no",
+    "usb_data_exposed": "yes",
+    "usb_power_exposed": "yes"
+  }
+}

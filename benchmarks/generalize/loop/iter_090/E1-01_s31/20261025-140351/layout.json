@@ -1,0 +1,244 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          50.0
+        ],
+        "length": 50.0,
+        "words": "the short (50 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 70.0,
+        "span": [
+          0.0,
+          50.0
+        ],
+        "length": 50.0,
+        "words": "the short (50 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          70.0
+        ],
+        "length": 70.0,
+        "words": "the long (70 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 50.0,
+        "span": [
+          0.0,
+          70.0
+        ],
+        "length": 70.0,
+        "words": "the long (70 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "perfboard",
+      "params": {
+        "width": 70.0,
+        "depth": 50.0
+      },
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "module_1_1",
+      "part": "rpi_pico2",
+      "params": {},
+      "x": 65.58,
+      "y": 35.5,
+      "z": 2.5,
+      "rot_z": -180.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "content",
+      "edge": "+X",
+      "of": null
+    },
+    {
+      "id": "module_1_1_stack_1",
+      "part": "header_male_2p54",
+      "params": {
+        "pins": 20.0,
+        "pitch": 2.54
+      },
+      "x": 64.21,
+      "y": 33.89,
+      "z": 0.0,
+      "rot_z": 180.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "stack",
+      "edge": "+X",
+      "of": "module_1_1"
+    },
+    {
+      "id": "module_1_1_stack_2",
+      "part": "header_male_2p54",
+      "params": {
+        "pins": 20.0,
+        "pitch": 2.54
+      },
+      "x": 64.21,
+      "y": 16.11,
+      "z": 0.0,
+      "rot_z": 180.0,
+      "item": "module_1",
+      "copy": 0,
+      "role": "stack",
+      "edge": "+X",
+      "of": "module_1_1"
+    },
+    {
+      "id": "connector_1_1",
+      "part": "jack_3p5_pj320a",
+      "params": {},
+      "x": 12.0,
+      "y": 20.5,
+      "z": 0.0,
+      "rot_z": 180.0,
+      "item": "connector_1",
+      "copy": 0,
+      "role": "content",
+      "edge": "-X",
+      "of": null
+    },
+    {
+      "id": "connector_1_2",
+      "part": "jack_3p5_pj320a",
+      "params": {},
+      "x": 12.0,
+      "y": 35.5,
+      "z": 0.0,
+      "rot_z": 180.0,
+      "item": "connector_1",
+      "copy": 1,
+      "role": "content",
+      "edge": "-X",
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 70.0,
+    "board_depth": 50.0,
+    "keepout_above": 12.0,
+    "keepout_below": 4.0,
+    "board_clearance": 0.5,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 90.0,
+    "max_y": 70.0,
+    "max_z": 35.0
+  },
+  "board": {
+    "part": "perfboard",
+    "specimen": "photo_70x50",
+    "params": {
+      "width": 70.0,
+      "depth": 50.0,
+      "thickness": 1.6,
+      "hole_inset": 2.0,
+      "hole_diameter": 2.0,
+      "hole_keepout_diameter": 7.0,
+      "grid_pitch": 2.54,
+      "grid_margin_x": 4.74,
+      "grid_margin_y": 2.54
+    },
+    "holes": [
+      [
+        2.0,
+        2.0,
+        0.0
+      ],
+      [
+        68.0,
+        2.0,
+        0.0
+      ],
+      [
+        2.0,
+        48.0,
+        0.0
+      ],
+      [
+        68.0,
+        48.0,
+        0.0
+      ]
+    ],
+    "hole_diameter": 2.0,
+    "hole_keepout_diameter": 7.0,
+    "grid": {
+      "origin": [
+        5.79,
+        3.41,
+        0.0
+      ],
+      "pitch": 2.54,
+      "count": [
+        24,
+        18
+      ]
+    },
+    "screw": "screw_m2_selftap"
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [
+    "connector_1_1",
+    "connector_1_2"
+  ],
+  "grid_exempt_assumptions": {
+    "connector_1_1": "connector_1_1: mounted through enlarged holes; its pin pattern meets no grid position (best 0.540 mm), so it is exempt from grid conformance",
+    "connector_1_2": "connector_1_2: mounted through enlarged holes; its pin pattern meets no grid position (best 0.540 mm), so it is exempt from grid conformance"
+  },
+  "grid_residual_all_parts": 2.875865
+}

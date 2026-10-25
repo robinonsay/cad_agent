@@ -1,0 +1,23 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for a 90 x 45 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 lies along the board with its micro-USB port exposed through one short end, and three 3.5 mm jacks sit in a row along one long edge of the board, exposed through that long side of the enclosure. Cables must plug in with the lid on. The enclosure is a base and a removable lid, printed on an FDM printer.
+
+Where the text relates them:
+- "The design shall place the Pico 2 and three 3.5 mm jacks on the 90 x 45 mm board, from the parts catalogue, with the Pico's USB port facing one short (45 mm) end and all three jacks facing the same long (90 mm) side, at least 11 mm apart, without the parts colliding or covering the corner holes, and shall declare that layout."
+
+Pair of cable connectors:
+- pair_1: raspberry pi pico 2 (usb connector) and 3.5 mm jack (jack connector)
+
+How does the request place these two cable connectors relative to each other?
+- same: both connectors open through the same end or side of the enclosure
+- not_stated: the request does not say how these two connectors are placed relative to each other
+
+=== RESPONSE ===
+{
+  "pair_1": "not_stated"
+}

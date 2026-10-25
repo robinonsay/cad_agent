@@ -1,0 +1,62 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n2 = 42.3 mm (request): "...you design a flat plate to attach a NEMA 17 stepper motor (42.3 mm square, with a 31 mm bolt pattern and a 22 mm pilot) ..."
+n3 = 31 mm (request): "...e to attach a NEMA 17 stepper motor (42.3 mm square, with a 31 mm bolt pattern and a 22 mm pilot) to 2020 aluminium extr..."
+n4 = 22 mm (request): "...pper motor (42.3 mm square, with a 31 mm bolt pattern and a 22 mm pilot) to 2020 aluminium extrusion? It's fixed with tw..."
+n5 = 2020 (request): "...mm square, with a 31 mm bolt pattern and a 22 mm pilot) to 2020 aluminium extrusion? It's fixed with two M5 bolts that g..."
+n6 = 6 mm (request): "...just belt tension by sliding the plate, so the M5 holes are 6 mm slots, oriented across the extrusion in the direction o..."
+n7 = 5 mm (request): "...n in the direction of the belt. It's a single printed part, 5 mm thick, printed lying on its face on an FDM printer. Alo..."
+n8 = 20 (request): "...ce on an FDM printer. Along the extrusion the two bolts are 20 to 40 mm apart, with the motor shaft in between them; the..."
+n9 = 40 mm (request): "...an FDM printer. Along the extrusion the two bolts are 20 to 40 mm apart, with the motor shaft in between them; the motor..."
+n10 = 3.5 (request): "..., with the motor shaft in between them; the motor body sits 3.5 to 10 mm from the edge of the extrusion; and above the p..."
+n11 = 10 mm (request): "...the motor shaft in between them; the motor body sits 3.5 to 10 mm from the edge of the extrusion; and above the plate th..."
+n12 = 20 mm (request): "...extrusion; and above the plate the shaft needs a free zone 20 mm in diameter and up to 30 mm tall for the pulley and bel..."
+n13 = 30 mm (request): "...ate the shaft needs a free zone 20 mm in diameter and up to 30 mm tall for the pulley and belt...."
+n14 = 17 (L1.1): "...catalogue parts, the design builds one assembly of the NEMA 17 motor, the 2020 extrusion, two M5 T-nuts, two M5 bolts an..."
+n15 = 2020 (L1.1): "...s, the design builds one assembly of the NEMA 17 motor, the 2020 extrusion, two M5 T-nuts, two M5 bolts and four M3 scre..."
+n16 = 31 mm (L1.2): "...Four M3 screws on the 31 mm bolt pattern fasten the NEMA 17 to the plate, and a bore ce..."
+n17 = 17 (L1.2): "...Four M3 screws on the 31 mm bolt pattern fasten the NEMA 17 to the plate, and a bore centred on that pattern accepts th..."
+n18 = 22 mm (L1.2): "...o the plate, and a bore centred on that pattern accepts the 22 mm pilot...."
+n19 = 6 mm (L1.3): "...nder the plate, and pass through two slotted holes allowing 6 mm of movement across the extrusion. Space the bolts 20 to..."
+n20 = 20 (L1.3): "...wing 6 mm of movement across the extrusion. Space the bolts 20 to 40 mm apart along the extrusion, and have each one eng..."
+n21 = 40 mm (L1.3): "...mm of movement across the extrusion. Space the bolts 20 to 40 mm apart along the extrusion, and have each one engage at ..."
+n22 = 3 mm (L1.3): "...part along the extrusion, and have each one engage at least 3 mm of its T-nut while not touching the floor of the slot...."
+n23 = 6 mm (L1.4): "...As the plate slides through its 6 mm range, every bolt has to remain within its slot with the he..."
+n24 = 3.5 (L1.4): "...he plate, and the motor must not hit the extrusion: it sits 3.5 to 10 mm from the edge at the nominal position and still..."
+n25 = 10 mm (L1.4): "...e, and the motor must not hit the extrusion: it sits 3.5 to 10 mm from the edge at the nominal position and still at lea..."
+n26 = 0.5 mm (L1.4): "...mm from the edge at the nominal position and still at least 0.5 mm away at the far end of travel toward the extrusion. I..."
+n27 = 19 (L1.4): "...d of travel toward the extrusion. In any position, at least 19 mm² of plate must lie beneath each bolt head...."
+n28 = 5 mm (L1.5): "...The plate is a single flat piece 5 mm thick that lies on the face of the extrusion; it must not p..."
+n29 = 3 mm (L1.6): "...n must reach the two bolts through the plate, with at least 3 mm of material around each hole and edge and no section na..."
+n30 = 20 mm (L1.6): "...rial around each hole and edge and no section narrower than 20 mm...."
+n31 = 20 mm (L1.7): "...ft free above the plate so a pulley and belt fit, in a zone 20 mm in diameter running from the top of the plate to 30 mm..."
+n32 = 30 mm (L1.7): "...zone 20 mm in diameter running from the top of the plate to 30 mm above it, and make sure you can get a hex key onto eac..."
+n33 = 60 (L1.9): "...Overall size of the plate must not exceed 60 x 75 mm...."
+n34 = 75 mm (L1.9): "...Overall size of the plate must not exceed 60 x 75 mm...."
+
+n1 (17) states board_width, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_depth": "n2", "keepout_above": "n2", "keepout_below": "n2", "board_clearance": "n2", "headroom": "n2", "opening_oversize_max": "n2", "wall_min": "n2", "wall_max": "n2", "max_x": "n2", "max_y": "n2", "max_z": "n2"}

@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "From the parts catalogue, the design positions the Nano with its mini-USB port towards the open short end and the 12 mm buzzer alongside the far end of the Nano, no closer than 2.0 mm to it. The parts must not collide, and the layout must be declared.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Four standoffs, and no others, hold up the Nano, one beneath each of its mounting holes, and a pin passes through each hole to locate the board. The header pins and tails beneath the board need at least 0.3 mm of clearance from the base. Standoffs measure 3.0 to 4.0 mm across and 8.8 to 12.0 mm high, with tops level within 0.10 mm that touch the underside of the board; the pins are 1.4 to 1.6 mm in diameter and rise at least 3.0 mm over the board top, so the board can shift no more than 0.4 mm along X or Y.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The closed box has to contain the Nano with at least 0.5 mm of gap to all printed surfaces other than the standoffs, and at least 1.0 mm from the highest part of the Nano up to the lid. Between the long walls the inside width should be no less than 19.0 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "Seat the buzzer upright, sound port toward the lid, in a printed pocket with a diameter of 12.4 mm; it rests on a ring-shaped ledge that doesn't pinch the leads. Above the ledge the pocket is 2.5 to 4.0 mm deep, the inner diameter of the ledge ring is 8.0 to 10.0 mm, and the pocket is surrounded by at least 1.6 mm of material.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "Leave out the end wall where the mini-USB connector is, so a mini-USB plug can be driven all the way into the Nano without contacting the box, keeping at least 0.3 mm from the plug and its overmold on all sides, both with the lid seated and as it slides. The base should reach no more than 3.3 mm past the front of the receptacle, and the end of the lid should remain at least 0.3 mm away from the face of the overmold.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "A dovetail rail runs along the outer side of both long walls of the base, and the lid has a groove to match; flanks slope at 60 degrees from horizontal with 0.25 mm of fit clearance on each flank, which prevents the lid lifting off. Rails are at least 40.0 mm in length and 3.0 to 4.0 mm in height, and project at least 1.2 mm past the wall. Keep the flank angle within 5 degrees of 60 and the flank gap between 0.20 and 0.30 mm; any other gap between lid and base is at least 0.15 mm, and the lid skirt is at least 1.6 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "Make the lid its own body; it slides on and off lengthwise, rubbing on nothing except the surfaces it rests on, and it comes to a stop at the far end wall. Its end face ends up no more than 0.3 mm from that wall and its underside within 0.3 mm of the wall tops. In plan it covers the Nano and buzzer with at least 1.0 mm to spare, and throughout the slide it stays at least 0.3 mm clear of the Nano, the buzzer and the plug.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "In the lid, put a ring of at least six sound holes around the point above the buzzer, and one more hole in the middle above the sound port; the lid's underside should sit 0.5 to 1.5 mm over the top of the buzzer. The middle hole has a diameter of 2.0 to 3.5 mm. The ring holes are 1.5 to 2.5 mm, evenly spaced on a 7.0 to 10.0 mm diameter circle, leave at least 1.0 mm of material between holes, and together give at least 15 mm2 of open area.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "Apart from the open USB end, the sound holes and the sliding seam of the lid, the shut box has no openings, and its walls, floor and lid are between 2.0 and 4.0 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Both the base and the lid must be a single manifold body apiece, and print on an FDM printer without needing supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The box, closed, needs to fit inside 80 x 40 x 30 mm and rest flat on a table without tipping over.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "Take the lid off and lower the Nano vertically onto its standoffs and the buzzer into its pocket; neither should touch anything, with at least 0.2 mm of clearance around the Nano and 0.1 mm around the buzzer.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "Supply a base STL and a lid STL together with the OpenSCAD source, the layout declaration and the agent's own clearance report, which has to agree with an independent measurement to within 0.10 mm.",
+    "method": "inspection"
+  }
+]

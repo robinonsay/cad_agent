@@ -1,0 +1,79 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n2 = 40 (request): "...lease design a shroud that tapers down smoothly from a 40 x 40 x 10 mm axial fan (3.2 mm mounting holes, 32 mm pitch) to..."
+n3 = 10 mm (request): "...design a shroud that tapers down smoothly from a 40 x 40 x 10 mm axial fan (3.2 mm mounting holes, 32 mm pitch) to a rou..."
+n4 = 3.2 mm (request): "...that tapers down smoothly from a 40 x 40 x 10 mm axial fan (3.2 mm mounting holes, 32 mm pitch) to a round spigot with a..."
+n5 = 32 mm (request): "...ly from a 40 x 40 x 10 mm axial fan (3.2 mm mounting holes, 32 mm pitch) to a round spigot with a 25 mm outer diameter a..."
+n6 = 25 mm (request): "....2 mm mounting holes, 32 mm pitch) to a round spigot with a 25 mm outer diameter and 40 mm straight length; the fan atta..."
+n7 = 40 mm (request): "...mm pitch) to a round spigot with a 25 mm outer diameter and 40 mm straight length; the fan attaches on the blowing side...."
+n8 = 60 mm (request): "...the fan attaches on the blowing side. The duct is a simple 60 mm tube with a 25.4 mm inside diameter and 2 mm wall that ..."
+n9 = 25.4 mm (request): "...on the blowing side. The duct is a simple 60 mm tube with a 25.4 mm inside diameter and 2 mm wall that fits over the spi..."
+n10 = 2 mm (request): "...t is a simple 60 mm tube with a 25.4 mm inside diameter and 2 mm wall that fits over the spigot. To print without suppor..."
+n11 = 45 degrees (request): "...rts, flange side down, no part of the transition may exceed 45 degrees from the airflow axis, and walls must be at least..."
+n12 = 1.6 mm (request): "...5 degrees from the airflow axis, and walls must be at least 1.6 mm thick. The fan is held by four M3 socket-head bolts t..."
+n13 = 40 (L1.1): "...Declare a layout in which the 40 x 40 x 10 mm fan is on the blowing side of the shroud, its..."
+n14 = 40 (L1.1): "...Declare a layout in which the 40 x 40 x 10 mm fan is on the blowing side of the shroud, its airfl..."
+n15 = 10 mm (L1.1): "...Declare a layout in which the 40 x 40 x 10 mm fan is on the blowing side of the shroud, its airflow axis..."
+n16 = 25.4 mm (L1.1): "...t the flange underside, together with four M3 bolts and the 25.4 mm duct, none of the parts colliding...."
+n17 = 2.5 mm (L1.2): "...The shroud has just four blind pilot holes, each 2.5 mm in diameter and 6.3 to 7.0 mm deep with a closed floor of 0..."
+n18 = 6.3 (L1.2): "...as just four blind pilot holes, each 2.5 mm in diameter and 6.3 to 7.0 mm deep with a closed floor of 0.8 mm or more. Th..."
+n19 = 7.0 mm (L1.2): "...four blind pilot holes, each 2.5 mm in diameter and 6.3 to 7.0 mm deep with a closed floor of 0.8 mm or more. They open ..."
+n20 = 0.8 mm (L1.2): "...m in diameter and 6.3 to 7.0 mm deep with a closed floor of 0.8 mm or more. They open on the flange underside following ..."
+n21 = 32.0 (L1.2): "...more. They open on the flange underside following the fan's 32.0 x 32.0 mm hole pattern, and each sits in a corner boss,..."
+n22 = 32.0 mm (L1.2): "...hey open on the flange underside following the fan's 32.0 x 32.0 mm hole pattern, and each sits in a corner boss, fused ..."
+n23 = 6.0 (L1.2): "...and each sits in a corner boss, fused to the body, that is 6.0 to 8.0 mm across...."
+n24 = 8.0 mm (L1.2): "...ch sits in a corner boss, fused to the body, that is 6.0 to 8.0 mm across...."
+n25 = 6.0 mm (L1.3): "...ke side of the fan, passes through the fan's holes and goes 6.0 mm or more into a pilot. It must not hit bottom (stay 0...."
+n26 = 0.3 mm (L1.3): "...s 6.0 mm or more into a pilot. It must not hit bottom (stay 0.3 mm or more off the pilot floor) and must not break into ..."
+n27 = 0.8 mm (L1.3): "...the pilot floor) and must not break into the airflow path: 0.8 mm or more from the bore, with the tip 0.8 mm or more bel..."
+n28 = 0.8 mm (L1.3): "...he airflow path: 0.8 mm or more from the bore, with the tip 0.8 mm or more below the top of the boss...."
+n29 = 2.5 (L1.4): "...e underside lies flat against the fan's exhaust face. It is 2.5 to 4.0 mm thick and a square 39.0 to 40.0 mm, which keep..."
+n30 = 4.0 mm (L1.4): "...side lies flat against the fan's exhaust face. It is 2.5 to 4.0 mm thick and a square 39.0 to 40.0 mm, which keeps it in..."
+n31 = 39.0 (L1.4): "...fan's exhaust face. It is 2.5 to 4.0 mm thick and a square 39.0 to 40.0 mm, which keeps it inside the fan's 40 mm outlin..."
+n32 = 40.0 mm (L1.4): "...xhaust face. It is 2.5 to 4.0 mm thick and a square 39.0 to 40.0 mm, which keeps it inside the fan's 40 mm outline, and ..."
+n33 = 40 mm (L1.4): "...d a square 39.0 to 40.0 mm, which keeps it inside the fan's 40 mm outline, and it opens to a 34.0 to 36.8 mm diameter bo..."
+n34 = 34.0 (L1.4): "...keeps it inside the fan's 40 mm outline, and it opens to a 34.0 to 36.8 mm diameter bore, so the fan keeps its whole fac..."
+n35 = 36.8 mm (L1.4): "...t inside the fan's 40 mm outline, and it opens to a 34.0 to 36.8 mm diameter bore, so the fan keeps its whole face and b..."
+n36 = 7.5 (L1.5): "...igot bore the transition has to be smooth and axisymmetric, 7.5 to 17.5 mm in length, without any radial step greater th..."
+n37 = 17.5 mm (L1.5): "...re the transition has to be smooth and axisymmetric, 7.5 to 17.5 mm in length, without any radial step greater than 0.3 ..."
+n38 = 0.3 mm (L1.5): "...to 17.5 mm in length, without any radial step greater than 0.3 mm. Every point on its inner and outer surfaces must be 4..."
+n39 = 45 degrees (L1.5): "...0.3 mm. Every point on its inner and outer surfaces must be 45 degrees or less from the airflow axis. Ignore the four co..."
+n40 = 25.0 mm (L1.6): "...A round spigot finishes the shroud: 25.0 mm outside diameter, a straight run of 40.0 mm, on the same ax..."
+n41 = 40.0 mm (L1.6): "...hes the shroud: 25.0 mm outside diameter, a straight run of 40.0 mm, on the same axis as the fan, with a bore from 19.0 ..."
+n42 = 19.0 (L1.6): "...n of 40.0 mm, on the same axis as the fan, with a bore from 19.0 to 21.8 mm...."
+n43 = 21.8 mm (L1.6): "...0 mm, on the same axis as the fan, with a bore from 19.0 to 21.8 mm...."
+n44 = 1.6 mm (L1.7): "...measured perpendicular to the surface, must be no less than 1.6 mm...."
+n45 = 25.4 mm (L1.8): "...The 25.4 mm duct should slip over the spigot as far as a stop, moving f..."
+n46 = 0.2 mm (L1.8): "...slip over the spigot as far as a stop, moving freely with a 0.2 mm gap around it and overlapping by 35 mm or more...."
+n47 = 35 mm (L1.8): "...oving freely with a 0.2 mm gap around it and overlapping by 35 mm or more...."
+n48 = 283 (L1.9): "...ore from the flange to the open spigot end, with an area of 283 mm² or more; the shroud has no other opening into the bo..."
+n49 = 42 (L1.11): "...The shroud must stay within 42 x 42 x 60 mm and sit on its flange without tipping over...."
+n50 = 42 (L1.11): "...The shroud must stay within 42 x 42 x 60 mm and sit on its flange without tipping over...."
+n51 = 60 mm (L1.11): "...The shroud must stay within 42 x 42 x 60 mm and sit on its flange without tipping over...."
+
+n1 (40) states board_width, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{"board_depth": "n2", "keepout_above": "n2", "keepout_below": "n2", "board_clearance": "n2", "headroom": "n2", "opening_oversize_max": "n2", "wall_min": "n2", "wall_max": "n2", "max_x": "n2", "max_y": "n2", "max_z": "n2"}

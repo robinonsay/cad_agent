@@ -547,6 +547,57 @@ def mount_names(part: Part) -> Tuple[str, str, str]:
     return str(m["holes"]), str(m["seat"]), str(m["top"])
 
 
+SEAT = "seat"            # migration delta R11: the support interface a part without mount_holes offers (seat_interface)
+DOWN, UP = (0.0, 0.0, -1.0), (0.0, 0.0, 1.0)
+
+
+def _plane_names(inst: "PartInstance", normal: Sequence[float]) -> List[str]:
+    return [k for k, d in inst.datums.items() if isinstance(d, Plane)
+            and np.allclose(np.asarray(d.normal, dtype=float), normal, atol=UNIT_TOL)]
+
+
+def seat_interface(inst: "PartInstance", tol: float = 1e-6) -> Optional[dict]:
+    """The support interface of a part that offers no mount_holes interface (migration delta R11, a loader shim like
+    the connector one, ARCHITECTURE.md 3.1): {id, kind: seat, seat, top} read from its plane datums only. `seat` is the
+    plane with a -Z normal on which the largest plan area of the part's own geometry rests (the face it can stand on);
+    `top` is the lowest +Z plane above it (where its component keep-out starts, as a mount_holes `top`). None when the
+    part declares no such pair (it cannot rest in a cradle the plant derives)."""
+    downs = _plane_names(inst, DOWN)
+    if not downs:
+        return None
+
+    def area(name: str) -> float:
+        z = float(inst.datums[name].at[2])
+        out = 0.0
+        for g in inst.geometry:
+            lo, hi = g.bbox()
+            flat = g.primitive == "box" or (g.primitive == "cylinder" and g.dir is not None
+                                            and abs(abs(float(g.dir[2])) - 1.0) <= UNIT_TOL)
+            if flat and abs(float(lo[2]) - z) <= tol:   # a face, not a line (a lying cylinder would roll)
+                out += float((hi[0] - lo[0]) * (hi[1] - lo[1]))
+        return out
+
+    seat = max(downs, key=lambda n: (area(n), -downs.index(n)))
+    if area(seat) <= 0.0:
+        return None
+    z0 = float(inst.datums[seat].at[2])
+    ups = [(float(inst.datums[k].at[2]), k) for k in _plane_names(inst, UP) if float(inst.datums[k].at[2]) > z0 + tol]
+    if not ups:
+        return None
+    return {"id": SEAT, "kind": SEAT, "seat": seat, "top": min(ups)[1]}
+
+
+def support_names(inst: "PartInstance") -> Tuple[Optional[str], str, str]:
+    """(holes or None, seat, top) of the part's support: its mount_holes interface when it offers one (unchanged), else
+    its seat interface (no holes: a cradle holds it, building_blocks.py). PartError when it offers neither."""
+    if mount_interface(inst.part) is not None:
+        return mount_names(inst.part)
+    s = seat_interface(inst)
+    if s is None:
+        raise PartError(f"{inst.part.id}: no {MOUNT_HOLES} interface and no seat/top plane pair")
+    return None, s["seat"], s["top"]
+
+
 def is_carrier(part: Part) -> bool:
     """A carrier is a part other contents are placed on (generalize delta 001 D2): in this slice, a part with a `grid`
     block (a through-hole board). Read from part data by rule, never from a part id."""
@@ -864,6 +915,7 @@ class Rules:
     fastener_roles: Dict[str, dict] = field(default_factory=dict)   # fastener use -> {evidence: [words], source}
     closures: Dict[str, dict] = field(default_factory=dict)   # closure -> {default | evidence, meaning, source} (delta 003)
     vents: Dict[str, Any] = field(default_factory=dict)       # {evidence: [words], slots: [{name, meaning, unit}], source}
+    building_blocks: Dict[str, Any] = field(default_factory=dict)   # R11: building-block vocabularies (retention, ...)
 
     def slot(self, name: str) -> dict:
         return next(s for s in self.spec_slots if s["name"] == name)
@@ -937,8 +989,19 @@ def load_rules(path: Union[str, Path]) -> Rules:
             vslots.append({"name": str(slot["name"]), "meaning": str(slot["meaning"]), "unit": str(slot["unit"]),
                            "default_rule": None, "required": False})
         vents = {"evidence": list(words), "slots": vslots, "source": str(raw["source"])}
+    blocks = {}                                             # migration delta R11: building-block vocabularies
+    for key, entry in (data.get("building_blocks") or {}).items():
+        if key == "about":
+            continue
+        options = (entry or {}).get("options") if isinstance(entry, dict) else None
+        if not isinstance(options, dict) or not options or not all(
+                isinstance(o, dict) and o.get("meaning") and o.get("source") for o in options.values()):
+            raise PartError(f"{path}: building block {key!r} needs options, each with a meaning and a source")
+        if sum(bool(o.get("default")) for o in options.values()) != 1:
+            raise PartError(f"{path}: building block {key!r} needs exactly one default option")
+        blocks[key] = dict(entry)
     return Rules(values, sources, dict(data.get("print_orientation", {})), path, slots, archetypes,
-                 vocab["face_relations"], vocab["fastener_roles"], closures, vents)
+                 vocab["face_relations"], vocab["fastener_roles"], closures, vents, blocks)
 
 
 # ---------------------------------------------------------------------------
@@ -1016,7 +1079,7 @@ def board_keepout(board_inst: PartInstance, board_pose: np.ndarray, above: float
     """V-KO-TOP (the primary's footprint, its mount `top` plane up by `above`) and V-KO-BOT (footprint, its mount `seat`
     plane down by `below`). The seat columns are separate envelopes (`column`), which the checks subtract."""
     lo, hi = fg.instance_world_bbox(board_inst, board_pose)
-    _, seat_name, top_name = mount_names(board_inst.part)
+    _, seat_name, top_name = support_names(board_inst)          # R11: a seat interface too
     top = transform(lookup_datum(board_inst.datums, top_name), board_pose).at[2]
     bottom = transform(lookup_datum(board_inst.datums, seat_name), board_pose).at[2]
     cx, cy = float((lo[0] + hi[0]) / 2), float((lo[1] + hi[1]) / 2)

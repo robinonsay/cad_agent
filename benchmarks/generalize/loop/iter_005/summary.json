@@ -1,0 +1,3678 @@
+{
+  "iter": "005",
+  "generated": "2026-10-25T12:02:12",
+  "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+  "runs_on_one_code_version": true,
+  "code_versions": [
+    "46b9530eac795c1f272605e5724185fd6b217c91"
+  ],
+  "counts": {
+    "train": {
+      "runs": 40,
+      "rc": {
+        "1": 33,
+        "0": 2,
+        "3": 5
+      },
+      "no_output": 33,
+      "with_renders": 7,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 7
+    },
+    "regression": {
+      "runs": 4,
+      "rc": {
+        "0": 4
+      },
+      "no_output": 0,
+      "with_renders": 4,
+      "timed_out": 0,
+      "judged": 2,
+      "meets": 2,
+      "correct": 2,
+      "to_judge": 2
+    },
+    "train_stub": {
+      "runs": 40,
+      "rc": {
+        "1": 40
+      },
+      "no_output": 40,
+      "with_renders": 0,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 0
+    }
+  },
+  "regression": "pending",
+  "paraphrase": 2,
+  "stub_verified": 0,
+  "llm_dependent": [
+    "G02",
+    "G04",
+    "G06",
+    "G08",
+    "G11",
+    "G13",
+    "G50"
+  ],
+  "stub": {
+    "runs": 40,
+    "verified": [],
+    "compared": 40,
+    "same_geometry": [
+      "G01",
+      "G03",
+      "G05",
+      "G09",
+      "G10",
+      "G12",
+      "G14",
+      "G16",
+      "G17",
+      "G18",
+      "G20",
+      "G21",
+      "G22",
+      "G23",
+      "G24",
+      "G26",
+      "G27",
+      "G29",
+      "G30",
+      "G31",
+      "G32",
+      "G33",
+      "G35",
+      "G36",
+      "G37",
+      "G38",
+      "G40",
+      "G41",
+      "G42",
+      "G43",
+      "G45",
+      "G47",
+      "G49"
+    ],
+    "verified_share": 0.0
+  },
+  "controller": {
+    "steps": 9,
+    "kept": 9,
+    "designs_with_kept_steps": 5,
+    "decisions": {
+      "plant": 18,
+      "llm": 13,
+      "semantic-rule": 20,
+      "guardrail": 13
+    },
+    "semantic_rule_decisions": 20,
+    "mean_llm_share": 0.6023
+  },
+  "to_judge": [
+    "G02_s5",
+    "G04_s5",
+    "G06_s5",
+    "G08_s5",
+    "G11_s5",
+    "G13_s5",
+    "G50_s5",
+    "V1_s5",
+    "V3_s5"
+  ],
+  "cached": [
+    {
+      "name": "E1-01_s5",
+      "id": "E1-01",
+      "verdict": {
+        "meets": true,
+        "class": "CORRECT",
+        "score": 1,
+        "defects": [],
+        "summary": "MEETS. All gates and all applicable non-physical L3 pass, measured on base.stl and lid.stl. Board clearance 1.448 mm (needs 0.5). Standoffs: 4 at pitch 66.0 x 46.0, OD 5.1, pilot D1.70, depth 5.1. Keep-outs: top 0.18 mm, bottom 0.10 mm. USB plug clearance 0.400 mm and jack plug clearance 0.405 mm each. Openings: 1 in the -X wall (10.8 x 7.8), 2 in the +X wall (D8.81), 0 unlisted. Lid: lip fit 0.25 mm per side, engagement 2.1 mm, plate 2.4 mm. Walls, floor and lid are all 2.4 mm. Overhang patches 0 after the bridge and round-hole exemptions. Closed envelope 84.17 x 64.17 x 24.7. The agent's self-report matches my numbers within 0.005 mm. Smallest weight-3 margins are 0.10 mm (normalised 0.2). claude-context failed to connect, so I used direct file reads and targeted shell commands instead. judge_1.json written in the package folder.",
+        "verdict": "MEETS",
+        "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+      }
+    },
+    {
+      "name": "V2_s5",
+      "id": "V2",
+      "verdict": {
+        "meets": true,
+        "class": "CORRECT",
+        "score": 1,
+        "defects": [],
+        "summary": "MEETS. Board 90 x 45, standoff pitch 85.0 x 40.0. The delivered layout puts the three jacks on the -Y wall; I normalised by mirroring Y (allowed by the rubric), which puts the jack mouths at Y=45.0 on +Y (window 44.5 to 46.0). USB is on -X with mouth X=2.96 (window 2.46 to 3.46). Openings: 1 in the -X wall, 3 in the jack side wall (axis spacing 21.0, D8.81 each), 0 in +X, 0 unlisted. Plug clearances 0.400 and 0.405 mm. The side openings clear the seam (7.3 mm) and the corner bosses by more than 1.5 mm. Closed envelope 103.17 x 58.17 x 24.7 (limit 110 x 65 x 35). Observation only: the jack bodies abut the Pico PCB edge at Y=12.0 with zero intersection volume. No defects. judge_1.json written in the package folder.",
+        "verdict": "MEETS",
+        "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "name": "G01_s5",
+      "id": "G01",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 50.7,
+      "package": "benchmarks/generalize/loop/iter_005/G01_s5/20261025-112614",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G01/requirements.md",
+        "benchmarks/generalize/designs/G01/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "61962a20be3e8a256a6c2b9ea7ead24c7a0b957d",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:27:04",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "generic_box: no number in the text for size_x, size_y, size_z",
+      "spec_sha1": "61962a20be3e8a256a6c2b9ea7ead24c7a0b957d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G02_s5",
+      "id": "G02",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 99.1,
+      "package": "benchmarks/generalize/loop/iter_005/G02_s5/20261025-112704",
+      "has_renders": true,
+      "geometry_sha1": "06dec5185e5e3da84ce46bbed3b7dfcb7c21aeaf",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G02/requirements.md",
+        "benchmarks/generalize/designs/G02/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "a35cef3324eaa32615cdd596befb6509784a5744",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:28:43",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "controller: 3 step(s), 3 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 3,
+        "kept": 3,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 1,
+          "llm": 3,
+          "semantic-rule": 4,
+          "guardrail": 3
+        },
+        "proposal": {
+          "llm_slots": 13,
+          "default_slots": 1,
+          "llm_contents_items": 1
+        },
+        "llm_share": 0.6538,
+        "semantic_rule_decisions": 4,
+        "unregistered": 0
+      },
+      "spec_sha1": "a35cef3324eaa32615cdd596befb6509784a5744",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G03_s5",
+      "id": "G03",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 60.2,
+      "package": "benchmarks/generalize/loop/iter_005/G03_s5/20261025-112844",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G03/requirements.md",
+        "benchmarks/generalize/designs/G03/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "f08a0b4e0426e1482c3e1176b7c8c606f86d6a7c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:29:44",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "primary esp32_devkitc_v4 has no mount_holes interface; its support (pocket / ribs / bolt-through) is not implemented (GM3/GM6)",
+      "spec_sha1": "f08a0b4e0426e1482c3e1176b7c8c606f86d6a7c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G04_s5",
+      "id": "G04",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 66.2,
+      "package": "benchmarks/generalize/loop/iter_005/G04_s5/20261025-112944",
+      "has_renders": true,
+      "geometry_sha1": "65413c87aae802335a3b3438fa5f96f241889d15",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G04/requirements.md",
+        "benchmarks/generalize/designs/G04/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0ddc3d96f7d4ddc78f61b693c5d971178dbeb1a3",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:30:50",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "controller: 2 step(s), 2 kept; stop: no failing check has an action",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 2,
+        "kept": 2,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 2,
+          "llm": 2,
+          "semantic-rule": 3,
+          "guardrail": 5
+        },
+        "proposal": {
+          "llm_slots": 11,
+          "default_slots": 1,
+          "llm_contents_items": 1
+        },
+        "llm_share": 0.56,
+        "semantic_rule_decisions": 3,
+        "unregistered": 0
+      },
+      "spec_sha1": "0ddc3d96f7d4ddc78f61b693c5d971178dbeb1a3",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G05_s5",
+      "id": "G05",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 34.9,
+      "package": "benchmarks/generalize/loop/iter_005/G05_s5/20261025-113050",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G05/requirements.md",
+        "benchmarks/generalize/designs/G05/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "24eb74b45ee1218b3a8198d72ed29972dcff1bed",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:31:25",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "primary esp32_devkitc_v4 has no mount_holes interface; its support (pocket / ribs / bolt-through) is not implemented (GM3/GM6)",
+      "spec_sha1": "24eb74b45ee1218b3a8198d72ed29972dcff1bed",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G06_s5",
+      "id": "G06",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 63.6,
+      "package": "benchmarks/generalize/loop/iter_005/G06_s5/20261025-113125",
+      "has_renders": true,
+      "geometry_sha1": "669e3389876998c0606d0be0dc67ec0495c93ae1",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G06/requirements.md",
+        "benchmarks/generalize/designs/G06/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "47771895910ab10576f473b3c6d3da16bf860657",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:32:28",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "controller: 0 step(s), 0 kept; stop: no failing check has an action",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 0,
+        "kept": 0,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 3,
+          "semantic-rule": 2,
+          "guardrail": 1
+        },
+        "proposal": {
+          "llm_slots": 9,
+          "default_slots": 3,
+          "llm_contents_items": 2
+        },
+        "llm_share": 0.55,
+        "semantic_rule_decisions": 2,
+        "unregistered": 0
+      },
+      "spec_sha1": "47771895910ab10576f473b3c6d3da16bf860657",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G08_s5",
+      "id": "G08",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 90.0,
+      "package": "benchmarks/generalize/loop/iter_005/G08_s5/20261025-113229",
+      "has_renders": true,
+      "geometry_sha1": "06719255ad7df2e564cd5578b4ac0c3d5f05b95f",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G08/requirements.md",
+        "benchmarks/generalize/designs/G08/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "54c6a800baef4c1bd062149d13bae4f2ac4d02d5",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:33:58",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 4,
+          "llm": 1,
+          "guardrail": 1,
+          "semantic-rule": 2
+        },
+        "proposal": {
+          "llm_slots": 10,
+          "default_slots": 0,
+          "llm_contents_items": 1
+        },
+        "llm_share": 0.6316,
+        "semantic_rule_decisions": 2,
+        "unregistered": 0
+      },
+      "spec_sha1": "54c6a800baef4c1bd062149d13bae4f2ac4d02d5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G09_s5",
+      "id": "G09",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 32.7,
+      "package": "benchmarks/generalize/loop/iter_005/G09_s5/20261025-113359",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G09/requirements.md",
+        "benchmarks/generalize/designs/G09/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "114513621dd5a85d4d1afcf7e3d0530bafee6528",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:34:31",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "primary dc_jack_pj002a has no mount_holes interface; its support (pocket / ribs / bolt-through) is not implemented (GM3/GM6)",
+      "spec_sha1": "114513621dd5a85d4d1afcf7e3d0530bafee6528",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G10_s5",
+      "id": "G10",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 36.6,
+      "package": "benchmarks/generalize/loop/iter_005/G10_s5/20261025-113431",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G10/requirements.md",
+        "benchmarks/generalize/designs/G10/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "43bce31526bb6d3e75d3b1dec7ec421721ecd887",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:35:08",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "perfboard: no number in the text for width, depth",
+      "spec_sha1": "43bce31526bb6d3e75d3b1dec7ec421721ecd887",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G11_s5",
+      "id": "G11",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 97.8,
+      "package": "benchmarks/generalize/loop/iter_005/G11_s5/20261025-113508",
+      "has_renders": true,
+      "geometry_sha1": "b0ec9a11e682f36a7ef0a666623cf979bc80da41",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G11/requirements.md",
+        "benchmarks/generalize/designs/G11/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "e40e0acaec9ce9255ba094de4ce4ede0d7ad36ab",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:36:46",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: no failing check has an action",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 3,
+          "llm": 3,
+          "semantic-rule": 3
+        },
+        "proposal": {
+          "llm_slots": 11,
+          "default_slots": 3,
+          "llm_contents_items": 3
+        },
+        "llm_share": 0.6538,
+        "semantic_rule_decisions": 3,
+        "unregistered": 0
+      },
+      "spec_sha1": "e40e0acaec9ce9255ba094de4ce4ede0d7ad36ab",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G12_s5",
+      "id": "G12",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 72.6,
+      "package": "benchmarks/generalize/loop/iter_005/G12_s5/20261025-113646",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G12/requirements.md",
+        "benchmarks/generalize/designs/G12/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "b3056723bee67008db06bc96e10ef4d276d6d92b",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:37:58",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "generic_box: no number in the text for size_x, size_y, size_z",
+      "spec_sha1": "b3056723bee67008db06bc96e10ef4d276d6d92b",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G13_s5",
+      "id": "G13",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 96.1,
+      "package": "benchmarks/generalize/loop/iter_005/G13_s5/20261025-113758",
+      "has_renders": true,
+      "geometry_sha1": "4d0d5bcd9fad7d037967aeccc9f76225d3ec4eb7",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G13/requirements.md",
+        "benchmarks/generalize/designs/G13/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2e662ec845345b473909ac7a9abf6fdc07c3456b",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:39:34",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "controller: 2 step(s), 2 kept; stop: no failing check has an action",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 2,
+        "kept": 2,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 1,
+          "semantic-rule": 4,
+          "llm": 4,
+          "guardrail": 1
+        },
+        "proposal": {
+          "llm_slots": 10,
+          "default_slots": 2,
+          "llm_contents_items": 2
+        },
+        "llm_share": 0.6667,
+        "semantic_rule_decisions": 4,
+        "unregistered": 0
+      },
+      "spec_sha1": "2e662ec845345b473909ac7a9abf6fdc07c3456b",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G14_s5",
+      "id": "G14",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 49.0,
+      "package": "benchmarks/generalize/loop/iter_005/G14_s5/20261025-113934",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G14/requirements.md",
+        "benchmarks/generalize/designs/G14/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "d97d5df3e4aedabccf9dcfad683e70554eba09b9",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:40:23",
+      "outcome": "failed",
+      "stage": "arrange_contents",
+      "last_note": "no catalogue screw passes the board's mounting holes (primary arduino_nano)",
+      "spec_sha1": "d97d5df3e4aedabccf9dcfad683e70554eba09b9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G16_s5",
+      "id": "G16",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 22.0,
+      "package": "benchmarks/generalize/loop/iter_005/G16_s5/20261025-114023",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G16/requirements.md",
+        "benchmarks/generalize/designs/G16/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:40:45",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G17_s5",
+      "id": "G17",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 30.6,
+      "package": "benchmarks/generalize/loop/iter_005/G17_s5/20261025-114046",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G17/requirements.md",
+        "benchmarks/generalize/designs/G17/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "bb39b92189cd48a9a79fb6065230a21c212edef9",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:41:16",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "bb39b92189cd48a9a79fb6065230a21c212edef9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G18_s5",
+      "id": "G18",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 30.5,
+      "package": "benchmarks/generalize/loop/iter_005/G18_s5/20261025-114116",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G18/requirements.md",
+        "benchmarks/generalize/designs/G18/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0b625c3d6e3d68eea2439d5c554ce163f92aa81c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:41:47",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "0b625c3d6e3d68eea2439d5c554ce163f92aa81c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G20_s5",
+      "id": "G20",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 32.1,
+      "package": "benchmarks/generalize/loop/iter_005/G20_s5/20261025-114147",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G20/requirements.md",
+        "benchmarks/generalize/designs/G20/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "3c5e1b5f08a91d098895a7695886a9e5adf20dd4",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:42:19",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "3c5e1b5f08a91d098895a7695886a9e5adf20dd4",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G21_s5",
+      "id": "G21",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.3,
+      "package": "benchmarks/generalize/loop/iter_005/G21_s5/20261025-114219",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G21/requirements.md",
+        "benchmarks/generalize/designs/G21/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "f80ca66ab36594f4951c561e30cfa88f3bcdcf7c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:42:50",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "f80ca66ab36594f4951c561e30cfa88f3bcdcf7c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G22_s5",
+      "id": "G22",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 25.5,
+      "package": "benchmarks/generalize/loop/iter_005/G22_s5/20261025-114250",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G22/requirements.md",
+        "benchmarks/generalize/designs/G22/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "d31e04b2f284c1e4072eb70041850b00d5018cdc",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:43:15",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "d31e04b2f284c1e4072eb70041850b00d5018cdc",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G23_s5",
+      "id": "G23",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 40.6,
+      "package": "benchmarks/generalize/loop/iter_005/G23_s5/20261025-114316",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G23/requirements.md",
+        "benchmarks/generalize/designs/G23/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "83b1d744c8de210ae19e4fc6b147847d3070eb11",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:43:56",
+      "outcome": "failed",
+      "stage": "choose_archetype",
+      "last_note": "not implemented: archetype (primary rpi_camera_v2; no shell evidence; candidates for GM5: plate / bracket / block / cradle)",
+      "spec_sha1": "83b1d744c8de210ae19e4fc6b147847d3070eb11",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G24_s5",
+      "id": "G24",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 32.9,
+      "package": "benchmarks/generalize/loop/iter_005/G24_s5/20261025-114356",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G24/requirements.md",
+        "benchmarks/generalize/designs/G24/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "9d75d7cabd8b65fe04d6111ed3b0dca4ce884024",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:44:29",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "9d75d7cabd8b65fe04d6111ed3b0dca4ce884024",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G26_s5",
+      "id": "G26",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 38.2,
+      "package": "benchmarks/generalize/loop/iter_005/G26_s5/20261025-114429",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G26/requirements.md",
+        "benchmarks/generalize/designs/G26/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "468a7e53f8fe07e146f42f5f8e729adf85073347",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:45:07",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "generic_tube: no number in the text for outer_diameter, inner_diameter, length",
+      "spec_sha1": "468a7e53f8fe07e146f42f5f8e729adf85073347",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G27_s5",
+      "id": "G27",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 33.5,
+      "package": "benchmarks/generalize/loop/iter_005/G27_s5/20261025-114507",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G27/requirements.md",
+        "benchmarks/generalize/designs/G27/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "841e9079298a1e5848e70854394b7f2513001e30",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:45:41",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "841e9079298a1e5848e70854394b7f2513001e30",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G29_s5",
+      "id": "G29",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 33.8,
+      "package": "benchmarks/generalize/loop/iter_005/G29_s5/20261025-114541",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G29/requirements.md",
+        "benchmarks/generalize/designs/G29/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "31669fa0b61faaf9eb3292c74a65cf916410ace5",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:46:14",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "31669fa0b61faaf9eb3292c74a65cf916410ace5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G30_s5",
+      "id": "G30",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 28.2,
+      "package": "benchmarks/generalize/loop/iter_005/G30_s5/20261025-114615",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G30/requirements.md",
+        "benchmarks/generalize/designs/G30/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0e5b95a47d8beb02be66b402b7ff87491df329c9",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:46:43",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "0e5b95a47d8beb02be66b402b7ff87491df329c9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G31_s5",
+      "id": "G31",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 36.5,
+      "package": "benchmarks/generalize/loop/iter_005/G31_s5/20261025-114643",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G31/requirements.md",
+        "benchmarks/generalize/designs/G31/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2e75155870dff30f887490af3d69c9b2af5be58c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:47:19",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "2e75155870dff30f887490af3d69c9b2af5be58c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G32_s5",
+      "id": "G32",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.0,
+      "package": "benchmarks/generalize/loop/iter_005/G32_s5/20261025-114719",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G32/requirements.md",
+        "benchmarks/generalize/designs/G32/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "dfdf81c5660fbf86007bb6f552712a1616ac4024",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:47:50",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "dfdf81c5660fbf86007bb6f552712a1616ac4024",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G33_s5",
+      "id": "G33",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 34.9,
+      "package": "benchmarks/generalize/loop/iter_005/G33_s5/20261025-114750",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G33/requirements.md",
+        "benchmarks/generalize/designs/G33/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "94eb067b2e53833f2eab98cae91ff3ff47151e3e",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:48:25",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "94eb067b2e53833f2eab98cae91ff3ff47151e3e",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G35_s5",
+      "id": "G35",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 23.7,
+      "package": "benchmarks/generalize/loop/iter_005/G35_s5/20261025-114825",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G35/requirements.md",
+        "benchmarks/generalize/designs/G35/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "3e0d26cd42ea5148f700fa9c5c10fcf2c4a31955",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:48:49",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "3e0d26cd42ea5148f700fa9c5c10fcf2c4a31955",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G36_s5",
+      "id": "G36",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 25.7,
+      "package": "benchmarks/generalize/loop/iter_005/G36_s5/20261025-114849",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G36/requirements.md",
+        "benchmarks/generalize/designs/G36/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "42219e06c302c5612c7b737fed3de366db8e9fe1",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:49:14",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "42219e06c302c5612c7b737fed3de366db8e9fe1",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G37_s5",
+      "id": "G37",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 43.3,
+      "package": "benchmarks/generalize/loop/iter_005/G37_s5/20261025-114915",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G37/requirements.md",
+        "benchmarks/generalize/designs/G37/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "a23b6442307ef5de2f8a43026a5f019b39919297",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:49:58",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "gear_spur_generic: no number in the text for module, teeth, face_width",
+      "spec_sha1": "a23b6442307ef5de2f8a43026a5f019b39919297",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G38_s5",
+      "id": "G38",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.5,
+      "package": "benchmarks/generalize/loop/iter_005/G38_s5/20261025-114958",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G38/requirements.md",
+        "benchmarks/generalize/designs/G38/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "df1171119e4cdf75e94fe9d9fc6326d6e191fb82",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:50:29",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "df1171119e4cdf75e94fe9d9fc6326d6e191fb82",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G40_s5",
+      "id": "G40",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 33.3,
+      "package": "benchmarks/generalize/loop/iter_005/G40_s5/20261025-115029",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G40/requirements.md",
+        "benchmarks/generalize/designs/G40/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "412f7b1bfa71dd35a3535a2c174b11fd5bc278bd",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:51:03",
+      "outcome": "failed",
+      "stage": "choose_archetype",
+      "last_note": "not implemented: archetype (primary rpi_pico2; no shell evidence; candidates for GM5: plate / bracket / block / cradle)",
+      "spec_sha1": "412f7b1bfa71dd35a3535a2c174b11fd5bc278bd",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G41_s5",
+      "id": "G41",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 36.8,
+      "package": "benchmarks/generalize/loop/iter_005/G41_s5/20261025-115103",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G41/requirements.md",
+        "benchmarks/generalize/designs/G41/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "5720a57a5d0379517a5f395da92eac0ed81ae56a",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:51:39",
+      "outcome": "failed",
+      "stage": "choose_archetype",
+      "last_note": "not implemented: archetype (primary perfboard; no shell evidence; candidates for GM5: plate / bracket / block / cradle)",
+      "spec_sha1": "5720a57a5d0379517a5f395da92eac0ed81ae56a",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G42_s5",
+      "id": "G42",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 32.8,
+      "package": "benchmarks/generalize/loop/iter_005/G42_s5/20261025-115140",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G42/requirements.md",
+        "benchmarks/generalize/designs/G42/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "fcca2c7b9251a68d190b5e28fe3732ddfee61eaf",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:52:12",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "fcca2c7b9251a68d190b5e28fe3732ddfee61eaf",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G43_s5",
+      "id": "G43",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 38.0,
+      "package": "benchmarks/generalize/loop/iter_005/G43_s5/20261025-115212",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G43/requirements.md",
+        "benchmarks/generalize/designs/G43/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "932a3dfdea0b83cfb2c51fbcae2bebeff055761f",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:52:50",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "generic_tube: no number in the text for outer_diameter, inner_diameter, length",
+      "spec_sha1": "932a3dfdea0b83cfb2c51fbcae2bebeff055761f",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G45_s5",
+      "id": "G45",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 35.2,
+      "package": "benchmarks/generalize/loop/iter_005/G45_s5/20261025-115250",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G45/requirements.md",
+        "benchmarks/generalize/designs/G45/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "43a51bc4e14cffba4275e449df7f48b123dfc781",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:53:25",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "43a51bc4e14cffba4275e449df7f48b123dfc781",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G47_s5",
+      "id": "G47",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 30.6,
+      "package": "benchmarks/generalize/loop/iter_005/G47_s5/20261025-115326",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G47/requirements.md",
+        "benchmarks/generalize/designs/G47/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2f559294de062a5d6ad04c8ffa20b51b8714cef8",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:53:56",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "primary hc_sr04 has no mount_holes interface; its support (pocket / ribs / bolt-through) is not implemented (GM3/GM6)",
+      "spec_sha1": "2f559294de062a5d6ad04c8ffa20b51b8714cef8",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G49_s5",
+      "id": "G49",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 40.1,
+      "package": "benchmarks/generalize/loop/iter_005/G49_s5/20261025-115356",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G49/requirements.md",
+        "benchmarks/generalize/designs/G49/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "aa8ea356fa0342ff910e8c7a15b420fced44fcc2",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:54:36",
+      "outcome": "failed",
+      "stage": "choose_archetype",
+      "last_note": "not implemented: archetype (primary rpi_camera_v2; no shell evidence; candidates for GM5: plate / bracket / block / cradle)",
+      "spec_sha1": "aa8ea356fa0342ff910e8c7a15b420fced44fcc2",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G50_s5",
+      "id": "G50",
+      "split": "train",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 2,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 67.1,
+      "package": "benchmarks/generalize/loop/iter_005/G50_s5/20261025-115436",
+      "has_renders": true,
+      "geometry_sha1": "ae398558899002516ab3070cc0d0950ef880c650",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G50/requirements.md",
+        "benchmarks/generalize/designs/G50/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "34da2022cb5fe549c2013849cb9feda8687f3fb5",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:55:43",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "controller: 0 step(s), 0 kept; stop: no failing check has an action",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 0,
+        "kept": 0,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 4,
+          "guardrail": 2,
+          "semantic-rule": 2
+        },
+        "proposal": {
+          "llm_slots": 9,
+          "default_slots": 3,
+          "llm_contents_items": 2
+        },
+        "llm_share": 0.5,
+        "semantic_rule_decisions": 2,
+        "unregistered": 0
+      },
+      "spec_sha1": "34da2022cb5fe549c2013849cb9feda8687f3fb5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "E1-01_s5",
+      "id": "E1-01",
+      "split": "regression",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 85.8,
+      "package": "benchmarks/generalize/loop/iter_005/E1-01_s5/20261025-115543",
+      "has_renders": true,
+      "geometry_sha1": "a93f14f30874a9af7376b015cad887e4c7852494",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/enclosure.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:57:09",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "controller: 0 step(s), 0 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 0,
+        "kept": 0,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 6,
+          "llm": 3,
+          "semantic-rule": 1
+        },
+        "proposal": {
+          "llm_slots": 11,
+          "default_slots": 1,
+          "llm_contents_items": 3
+        },
+        "llm_share": 0.68,
+        "semantic_rule_decisions": 1,
+        "unregistered": 0
+      },
+      "spec_sha1": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "spec_changed_since_run": false,
+      "verdict": {
+        "meets": true,
+        "class": "CORRECT",
+        "score": 1,
+        "defects": [],
+        "summary": "MEETS. All gates and all applicable non-physical L3 pass, measured on base.stl and lid.stl. Board clearance 1.448 mm (needs 0.5). Standoffs: 4 at pitch 66.0 x 46.0, OD 5.1, pilot D1.70, depth 5.1. Keep-outs: top 0.18 mm, bottom 0.10 mm. USB plug clearance 0.400 mm and jack plug clearance 0.405 mm each. Openings: 1 in the -X wall (10.8 x 7.8), 2 in the +X wall (D8.81), 0 unlisted. Lid: lip fit 0.25 mm per side, engagement 2.1 mm, plate 2.4 mm. Walls, floor and lid are all 2.4 mm. Overhang patches 0 after the bridge and round-hole exemptions. Closed envelope 84.17 x 64.17 x 24.7. The agent's self-report matches my numbers within 0.005 mm. Smallest weight-3 margins are 0.10 mm (normalised 0.2). claude-context failed to connect, so I used direct file reads and targeted shell commands instead. judge_1.json written in the package folder.",
+        "verdict": "MEETS",
+        "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+      },
+      "cache": "hit"
+    },
+    {
+      "name": "V1_s5",
+      "id": "V1",
+      "split": "regression",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 97.7,
+      "package": "benchmarks/generalize/loop/iter_005/V1_s5/20261025-115709",
+      "has_renders": true,
+      "geometry_sha1": "f1f51b64530150bf1db5f02a2770a8a2f0ce134e",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/variants.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T11:58:47",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 6,
+          "llm": 5,
+          "semantic-rule": 1
+        },
+        "proposal": {
+          "llm_slots": 11,
+          "default_slots": 1,
+          "llm_contents_items": 3
+        },
+        "llm_share": 0.7037,
+        "semantic_rule_decisions": 1,
+        "unregistered": 0
+      },
+      "spec_sha1": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "V2_s5",
+      "id": "V2",
+      "split": "regression",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 97.6,
+      "package": "benchmarks/generalize/loop/iter_005/V2_s5/20261025-115847",
+      "has_renders": true,
+      "geometry_sha1": "39b5eb4c1d91eb3f3bb3440094641ed5b6cc5d3d",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/variants.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:00:25",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 6,
+          "llm": 4,
+          "semantic-rule": 1
+        },
+        "proposal": {
+          "llm_slots": 11,
+          "default_slots": 1,
+          "llm_contents_items": 3
+        },
+        "llm_share": 0.6923,
+        "semantic_rule_decisions": 1,
+        "unregistered": 0
+      },
+      "spec_sha1": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "spec_changed_since_run": false,
+      "verdict": {
+        "meets": true,
+        "class": "CORRECT",
+        "score": 1,
+        "defects": [],
+        "summary": "MEETS. Board 90 x 45, standoff pitch 85.0 x 40.0. The delivered layout puts the three jacks on the -Y wall; I normalised by mirroring Y (allowed by the rubric), which puts the jack mouths at Y=45.0 on +Y (window 44.5 to 46.0). USB is on -X with mouth X=2.96 (window 2.46 to 3.46). Openings: 1 in the -X wall, 3 in the jack side wall (axis spacing 21.0, D8.81 each), 0 in +X, 0 unlisted. Plug clearances 0.400 and 0.405 mm. The side openings clear the seam (7.3 mm) and the corner bosses by more than 1.5 mm. Closed envelope 103.17 x 58.17 x 24.7 (limit 110 x 65 x 35). Observation only: the jack bodies abut the Pico PCB edge at Y=12.0 with zero intersection volume. No defects. judge_1.json written in the package folder.",
+        "verdict": "MEETS",
+        "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+      },
+      "cache": "hit"
+    },
+    {
+      "name": "V3_s5",
+      "id": "V3",
+      "split": "regression",
+      "seed": 5,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 98.6,
+      "package": "benchmarks/generalize/loop/iter_005/V3_s5/20261025-120025",
+      "has_renders": true,
+      "geometry_sha1": "845c0e0422983c61cbb113295d8f0292c9d30d21",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/variants.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:03",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "plant": 5,
+          "semantic-rule": 2,
+          "llm": 5
+        },
+        "proposal": {
+          "llm_slots": 14,
+          "default_slots": 0,
+          "llm_contents_items": 4
+        },
+        "llm_share": 0.7667,
+        "semantic_rule_decisions": 2,
+        "unregistered": 0
+      },
+      "spec_sha1": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G01_s5_stub",
+      "id": "G01",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.3,
+      "package": "benchmarks/generalize/loop/iter_005/G01_s5_stub/20261025-120203",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G01/requirements.md",
+        "benchmarks/generalize/designs/G01/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "61962a20be3e8a256a6c2b9ea7ead24c7a0b957d",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:04",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "61962a20be3e8a256a6c2b9ea7ead24c7a0b957d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G02_s5_stub",
+      "id": "G02",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G02_s5_stub/20261025-120204",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G02/requirements.md",
+        "benchmarks/generalize/designs/G02/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "a35cef3324eaa32615cdd596befb6509784a5744",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:04",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "a35cef3324eaa32615cdd596befb6509784a5744",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G03_s5_stub",
+      "id": "G03",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G03_s5_stub/20261025-120204",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G03/requirements.md",
+        "benchmarks/generalize/designs/G03/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "f08a0b4e0426e1482c3e1176b7c8c606f86d6a7c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:04",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "f08a0b4e0426e1482c3e1176b7c8c606f86d6a7c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G04_s5_stub",
+      "id": "G04",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G04_s5_stub/20261025-120204",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G04/requirements.md",
+        "benchmarks/generalize/designs/G04/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0ddc3d96f7d4ddc78f61b693c5d971178dbeb1a3",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:04",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "0ddc3d96f7d4ddc78f61b693c5d971178dbeb1a3",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G05_s5_stub",
+      "id": "G05",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G05_s5_stub/20261025-120204",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G05/requirements.md",
+        "benchmarks/generalize/designs/G05/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "24eb74b45ee1218b3a8198d72ed29972dcff1bed",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:04",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "24eb74b45ee1218b3a8198d72ed29972dcff1bed",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G06_s5_stub",
+      "id": "G06",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G06_s5_stub/20261025-120205",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G06/requirements.md",
+        "benchmarks/generalize/designs/G06/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "47771895910ab10576f473b3c6d3da16bf860657",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:05",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "47771895910ab10576f473b3c6d3da16bf860657",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G08_s5_stub",
+      "id": "G08",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G08_s5_stub/20261025-120205",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G08/requirements.md",
+        "benchmarks/generalize/designs/G08/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "54c6a800baef4c1bd062149d13bae4f2ac4d02d5",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:05",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "54c6a800baef4c1bd062149d13bae4f2ac4d02d5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G09_s5_stub",
+      "id": "G09",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G09_s5_stub/20261025-120205",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G09/requirements.md",
+        "benchmarks/generalize/designs/G09/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "114513621dd5a85d4d1afcf7e3d0530bafee6528",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:05",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "114513621dd5a85d4d1afcf7e3d0530bafee6528",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G10_s5_stub",
+      "id": "G10",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G10_s5_stub/20261025-120205",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G10/requirements.md",
+        "benchmarks/generalize/designs/G10/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "43bce31526bb6d3e75d3b1dec7ec421721ecd887",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:05",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "43bce31526bb6d3e75d3b1dec7ec421721ecd887",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G11_s5_stub",
+      "id": "G11",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G11_s5_stub/20261025-120205",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G11/requirements.md",
+        "benchmarks/generalize/designs/G11/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "e40e0acaec9ce9255ba094de4ce4ede0d7ad36ab",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:05",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "e40e0acaec9ce9255ba094de4ce4ede0d7ad36ab",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G12_s5_stub",
+      "id": "G12",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G12_s5_stub/20261025-120206",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G12/requirements.md",
+        "benchmarks/generalize/designs/G12/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "b3056723bee67008db06bc96e10ef4d276d6d92b",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:06",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "b3056723bee67008db06bc96e10ef4d276d6d92b",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G13_s5_stub",
+      "id": "G13",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G13_s5_stub/20261025-120206",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G13/requirements.md",
+        "benchmarks/generalize/designs/G13/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2e662ec845345b473909ac7a9abf6fdc07c3456b",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:06",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "2e662ec845345b473909ac7a9abf6fdc07c3456b",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G14_s5_stub",
+      "id": "G14",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G14_s5_stub/20261025-120206",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G14/requirements.md",
+        "benchmarks/generalize/designs/G14/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "d97d5df3e4aedabccf9dcfad683e70554eba09b9",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:06",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "d97d5df3e4aedabccf9dcfad683e70554eba09b9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G16_s5_stub",
+      "id": "G16",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G16_s5_stub/20261025-120206",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G16/requirements.md",
+        "benchmarks/generalize/designs/G16/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:06",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G17_s5_stub",
+      "id": "G17",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G17_s5_stub/20261025-120206",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G17/requirements.md",
+        "benchmarks/generalize/designs/G17/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "bb39b92189cd48a9a79fb6065230a21c212edef9",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:06",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "bb39b92189cd48a9a79fb6065230a21c212edef9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G18_s5_stub",
+      "id": "G18",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G18_s5_stub/20261025-120207",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G18/requirements.md",
+        "benchmarks/generalize/designs/G18/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0b625c3d6e3d68eea2439d5c554ce163f92aa81c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:07",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "0b625c3d6e3d68eea2439d5c554ce163f92aa81c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G20_s5_stub",
+      "id": "G20",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G20_s5_stub/20261025-120207",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G20/requirements.md",
+        "benchmarks/generalize/designs/G20/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "3c5e1b5f08a91d098895a7695886a9e5adf20dd4",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:07",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "3c5e1b5f08a91d098895a7695886a9e5adf20dd4",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G21_s5_stub",
+      "id": "G21",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G21_s5_stub/20261025-120207",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G21/requirements.md",
+        "benchmarks/generalize/designs/G21/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "f80ca66ab36594f4951c561e30cfa88f3bcdcf7c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:07",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "f80ca66ab36594f4951c561e30cfa88f3bcdcf7c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G22_s5_stub",
+      "id": "G22",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G22_s5_stub/20261025-120207",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G22/requirements.md",
+        "benchmarks/generalize/designs/G22/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "d31e04b2f284c1e4072eb70041850b00d5018cdc",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:07",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "d31e04b2f284c1e4072eb70041850b00d5018cdc",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G23_s5_stub",
+      "id": "G23",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G23_s5_stub/20261025-120207",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G23/requirements.md",
+        "benchmarks/generalize/designs/G23/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "83b1d744c8de210ae19e4fc6b147847d3070eb11",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:07",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "83b1d744c8de210ae19e4fc6b147847d3070eb11",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G24_s5_stub",
+      "id": "G24",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G24_s5_stub/20261025-120208",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G24/requirements.md",
+        "benchmarks/generalize/designs/G24/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "9d75d7cabd8b65fe04d6111ed3b0dca4ce884024",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:08",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "9d75d7cabd8b65fe04d6111ed3b0dca4ce884024",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G26_s5_stub",
+      "id": "G26",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G26_s5_stub/20261025-120208",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G26/requirements.md",
+        "benchmarks/generalize/designs/G26/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "468a7e53f8fe07e146f42f5f8e729adf85073347",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:08",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "468a7e53f8fe07e146f42f5f8e729adf85073347",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G27_s5_stub",
+      "id": "G27",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G27_s5_stub/20261025-120208",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G27/requirements.md",
+        "benchmarks/generalize/designs/G27/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "841e9079298a1e5848e70854394b7f2513001e30",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:08",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "841e9079298a1e5848e70854394b7f2513001e30",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G29_s5_stub",
+      "id": "G29",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G29_s5_stub/20261025-120208",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G29/requirements.md",
+        "benchmarks/generalize/designs/G29/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "31669fa0b61faaf9eb3292c74a65cf916410ace5",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:08",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "31669fa0b61faaf9eb3292c74a65cf916410ace5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G30_s5_stub",
+      "id": "G30",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G30_s5_stub/20261025-120208",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G30/requirements.md",
+        "benchmarks/generalize/designs/G30/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0e5b95a47d8beb02be66b402b7ff87491df329c9",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:09",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "0e5b95a47d8beb02be66b402b7ff87491df329c9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G31_s5_stub",
+      "id": "G31",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.3,
+      "package": "benchmarks/generalize/loop/iter_005/G31_s5_stub/20261025-120209",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G31/requirements.md",
+        "benchmarks/generalize/designs/G31/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2e75155870dff30f887490af3d69c9b2af5be58c",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:09",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "2e75155870dff30f887490af3d69c9b2af5be58c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G32_s5_stub",
+      "id": "G32",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G32_s5_stub/20261025-120209",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G32/requirements.md",
+        "benchmarks/generalize/designs/G32/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "dfdf81c5660fbf86007bb6f552712a1616ac4024",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:09",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "dfdf81c5660fbf86007bb6f552712a1616ac4024",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G33_s5_stub",
+      "id": "G33",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G33_s5_stub/20261025-120209",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G33/requirements.md",
+        "benchmarks/generalize/designs/G33/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "94eb067b2e53833f2eab98cae91ff3ff47151e3e",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:09",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "94eb067b2e53833f2eab98cae91ff3ff47151e3e",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G35_s5_stub",
+      "id": "G35",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G35_s5_stub/20261025-120209",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G35/requirements.md",
+        "benchmarks/generalize/designs/G35/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "3e0d26cd42ea5148f700fa9c5c10fcf2c4a31955",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:09",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "3e0d26cd42ea5148f700fa9c5c10fcf2c4a31955",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G36_s5_stub",
+      "id": "G36",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G36_s5_stub/20261025-120210",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G36/requirements.md",
+        "benchmarks/generalize/designs/G36/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "42219e06c302c5612c7b737fed3de366db8e9fe1",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:10",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "42219e06c302c5612c7b737fed3de366db8e9fe1",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G37_s5_stub",
+      "id": "G37",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G37_s5_stub/20261025-120210",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G37/requirements.md",
+        "benchmarks/generalize/designs/G37/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "a23b6442307ef5de2f8a43026a5f019b39919297",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:10",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "a23b6442307ef5de2f8a43026a5f019b39919297",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G38_s5_stub",
+      "id": "G38",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G38_s5_stub/20261025-120210",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G38/requirements.md",
+        "benchmarks/generalize/designs/G38/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "df1171119e4cdf75e94fe9d9fc6326d6e191fb82",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:10",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "df1171119e4cdf75e94fe9d9fc6326d6e191fb82",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G40_s5_stub",
+      "id": "G40",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G40_s5_stub/20261025-120210",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G40/requirements.md",
+        "benchmarks/generalize/designs/G40/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "412f7b1bfa71dd35a3535a2c174b11fd5bc278bd",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:10",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "412f7b1bfa71dd35a3535a2c174b11fd5bc278bd",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G41_s5_stub",
+      "id": "G41",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G41_s5_stub/20261025-120210",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G41/requirements.md",
+        "benchmarks/generalize/designs/G41/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "5720a57a5d0379517a5f395da92eac0ed81ae56a",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:10",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "5720a57a5d0379517a5f395da92eac0ed81ae56a",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G42_s5_stub",
+      "id": "G42",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G42_s5_stub/20261025-120211",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G42/requirements.md",
+        "benchmarks/generalize/designs/G42/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "fcca2c7b9251a68d190b5e28fe3732ddfee61eaf",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:11",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "fcca2c7b9251a68d190b5e28fe3732ddfee61eaf",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G43_s5_stub",
+      "id": "G43",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G43_s5_stub/20261025-120211",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G43/requirements.md",
+        "benchmarks/generalize/designs/G43/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "932a3dfdea0b83cfb2c51fbcae2bebeff055761f",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:11",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "932a3dfdea0b83cfb2c51fbcae2bebeff055761f",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G45_s5_stub",
+      "id": "G45",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G45_s5_stub/20261025-120211",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G45/requirements.md",
+        "benchmarks/generalize/designs/G45/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "43a51bc4e14cffba4275e449df7f48b123dfc781",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:11",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "43a51bc4e14cffba4275e449df7f48b123dfc781",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G47_s5_stub",
+      "id": "G47",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G47_s5_stub/20261025-120211",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G47/requirements.md",
+        "benchmarks/generalize/designs/G47/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2f559294de062a5d6ad04c8ffa20b51b8714cef8",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:11",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "2f559294de062a5d6ad04c8ffa20b51b8714cef8",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G49_s5_stub",
+      "id": "G49",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G49_s5_stub/20261025-120211",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G49/requirements.md",
+        "benchmarks/generalize/designs/G49/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "aa8ea356fa0342ff910e8c7a15b420fced44fcc2",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:11",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "aa8ea356fa0342ff910e8c7a15b420fced44fcc2",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    },
+    {
+      "name": "G50_s5_stub",
+      "id": "G50",
+      "split": "train",
+      "seed": 5,
+      "controller": "stub",
+      "paraphrase": 2,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 0.2,
+      "package": "benchmarks/generalize/loop/iter_005/G50_s5_stub/20261025-120212",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G50/requirements.md",
+        "benchmarks/generalize/designs/G50/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "34da2022cb5fe549c2013849cb9feda8687f3fb5",
+      "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T12:02:12",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "nothing to design around: the answer puts no catalogue part in the request",
+      "spec_sha1": "34da2022cb5fe549c2013849cb9feda8687f3fb5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "stub"
+    }
+  ],
+  "code": {
+    "code_sha1": "46b9530eac795c1f272605e5724185fd6b217c91",
+    "files": 78,
+    "previous_iter": "iter_004",
+    "code_unchanged": false,
+    "changed_within_iteration": false
+  }
+}

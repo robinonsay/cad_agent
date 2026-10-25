@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": -1.0,
+        "span": [
+          -0.020000000000000018,
+          27.919999999999998
+        ],
+        "length": 27.939999999999998,
+        "words": "the short (27.94 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 54.4,
+        "span": [
+          -0.020000000000000018,
+          27.919999999999998
+        ],
+        "length": 27.939999999999998,
+        "words": "the short (27.94 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": -0.020000000000000018,
+        "span": [
+          -1.0,
+          54.4
+        ],
+        "length": 55.4,
+        "words": "the long (55.4 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 27.919999999999998,
+        "span": [
+          -1.0,
+          54.4
+        ],
+        "length": 55.4,
+        "words": "the long (55.4 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "esp32_devkitc_v4",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "control_1_1",
+      "part": "led_5mm",
+      "params": {
+        "lens_diameter": 5.0,
+        "flange_diameter": 5.8,
+        "flange_height": 1.0,
+        "height": 8.6,
+        "lead_pitch": 2.54,
+        "lead_length": 3.0,
+        "view_clear_height": 2.0
+      },
+      "x": 26.55,
+      "y": 14.03,
+      "z": 13.999999999999998,
+      "rot_z": 0.0,
+      "item": "control_1",
+      "copy": 0,
+      "role": "panel",
+      "edge": "lid",
+      "of": null
+    },
+    {
+      "id": "control_1_2",
+      "part": "led_5mm",
+      "params": {
+        "lens_diameter": 5.0,
+        "flange_diameter": 5.8,
+        "flange_height": 1.0,
+        "height": 8.6,
+        "lead_pitch": 2.54,
+        "lead_length": 3.0,
+        "view_clear_height": 2.0
+      },
+      "x": 32.55,
+      "y": 14.03,
+      "z": 13.999999999999998,
+      "rot_z": 0.0,
+      "item": "control_1",
+      "copy": 1,
+      "role": "panel",
+      "edge": "lid",
+      "of": null
+    },
+    {
+      "id": "control_1_3",
+      "part": "led_5mm",
+      "params": {
+        "lens_diameter": 5.0,
+        "flange_diameter": 5.8,
+        "flange_height": 1.0,
+        "height": 8.6,
+        "lead_pitch": 2.54,
+        "lead_length": 3.0,
+        "view_clear_height": 2.0
+      },
+      "x": 26.55,
+      "y": 8.03,
+      "z": 13.999999999999998,
+      "rot_z": 0.0,
+      "item": "control_1",
+      "copy": 2,
+      "role": "panel",
+      "edge": "lid",
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 54.4,
+    "board_depth": 27.9,
+    "keepout_above": 10.0,
+    "keepout_below": 3.0,
+    "board_clearance": 3.0,
+    "headroom": 8.0,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 125.0,
+    "max_y": 50.0,
+    "max_z": 26.0
+  },
+  "board": {
+    "part": "esp32_devkitc_v4",
+    "specimen": null,
+    "params": {
+      "pcb_length": 54.4,
+      "pcb_width": 27.9,
+      "pcb_thickness": 1.6,
+      "usb_width": 7.5,
+      "usb_depth": 5.9,
+      "usb_height": 2.9,
+      "usb_overhang": 1.0,
+      "pin_pitch": 2.54,
+      "pin_row_spacing": 25.4,
+      "pin_count": 19.0,
+      "header_body_height": 2.5,
+      "pin_height_above": 8.5,
+      "pin_tail_length": 3.0,
+      "module_length": 25.5,
+      "module_width": 18.0,
+      "module_height": 3.1,
+      "antenna_zone_length": 6.0,
+      "antenna_clear_beyond": 8.0,
+      "antenna_clear_above": 5.0,
+      "top_parts_height": 3.6
+    },
+    "holes": null,
+    "hole_diameter": null,
+    "hole_keepout_diameter": null,
+    "grid": null,
+    "screw": null
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0,
+  "unplaced": [
+    {
+      "id": "control_1",
+      "part": "led_5mm",
+      "quantity": 3,
+      "reason": "esp32_devkitc_v4 is not a carrier: no relation places it yet (GM2b)"
+    },
+    {
+      "id": "generic_1",
+      "part": "generic_box",
+      "quantity": 1,
+      "reason": "generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does not state"
+    }
+  ]
+}

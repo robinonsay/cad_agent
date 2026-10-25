@@ -16,6 +16,10 @@ Splits:
                    loop/holdout_results/judge_cache.json, never loop/judge_cache.json)
   regression       benchmarks/enclosure E1-01, V1, V2, V3 as in benchmarks/enclosure/loop/RUN.md
                    -> loop/iter_NNN/<id>_sS (``--regression`` is the same as ``--split regression``)
+  target           the owner's own real designs (TARGET_IDS, e.g. T01 the SPD flat-pedal adapter), kept in
+                   benchmarks/generalize/designs/<id>/ like a train design but never run as one: run every iteration
+                   like the regression set, never counted as train or held-out
+                   -> loop/iter_NNN/<id>_sS (``--target`` is the same as ``--split target``)
 
 Every invocation also writes ``code_sha1.txt`` (shasum format, paths relative to the repo) over the agent
 modules (every top-level ``*.py`` except tests), ``design_rules.json``, ``controller_rules.json`` and every
@@ -63,7 +67,8 @@ DEFAULT_TIMEOUT_S = 20 * 60             # per run
 KILL_GRACE_S = 30                       # SIGTERM -> SIGKILL
 TIMEOUT_RC = 124                        # rc recorded for a run killed by the timeout
 REGRESSION_IDS = ("E1-01", "V1", "V2", "V3")
-SPLITS = ("train", "holdout", "regression")
+TARGET_IDS = ("T01",)                    # target designs: in designs/<id>/ but not train (run with --target)
+SPLITS = ("train", "holdout", "regression", "target")
 CONTROLLERS = ("llm", "stub")           # cad_agent.py --controller (D1: the stub is the authority probe)
 STUB_SUFFIX = "_stub"                   # run-name suffix of a stub-controller run (<id>_sS_stub)
 PARAPHRASES = "paraphrases.json"        # next to a design's design.json: {"paraphrases": [entry 1, entry 2, ...]}
@@ -72,7 +77,8 @@ CACHE_SCHEMA = 1
 # "*.stl" means at least one STL file).
 PACKAGE_NEED = {"regression": ("base.stl", "lid.stl", "layout.json", "self_report.json"),
                 "train": ("design.json", "layout.json", "self_report.json", "*.stl"),
-                "holdout": ("design.json", "layout.json", "self_report.json", "*.stl")}
+                "holdout": ("design.json", "layout.json", "self_report.json", "*.stl"),
+                "target": ("design.json", "layout.json", "self_report.json", "*.stl")}
 MISSING = b"<missing>"
 
 
@@ -186,7 +192,7 @@ def _request_entry(data: Mapping[str, Any], cid: str, source: Path) -> Mapping[s
 
 
 def design_ids(root: Path) -> List[str]:
-    """Every <root>/<id>/ that holds a design.json, sorted."""
+    """Every <root>/<id>/ that holds a design.json, sorted (target designs included: load_cases splits them off)."""
     if not root.is_dir():
         return []
     return sorted(p.name for p in root.iterdir() if (p / "design.json").is_file())
@@ -222,8 +228,8 @@ def load_cases(paths: Paths, split: str, ids: Sequence[str] = (), paraphrase: in
         if unknown:
             raise ValueError(f"not in the regression set: {', '.join(unknown)}")
         return [cases[i] for i in want]
-    root = paths.designs if split == "train" else paths.holdout
-    available = design_ids(root)
+    root = paths.holdout if split == "holdout" else paths.designs
+    available = [i for i in design_ids(root) if (i in TARGET_IDS) == (split == "target")]
     want = list(ids) or available
     unknown = [i for i in want if i not in available]
     if unknown:
@@ -237,7 +243,7 @@ def load_cases(paths: Paths, split: str, ids: Sequence[str] = (), paraphrase: in
             entry = paraphrase_entry(root / cid, paraphrase)
             if entry is not None:
                 case.request, case.l1, case.paraphrase = entry["request"], list(entry["l1"]), paraphrase
-            elif split == "train":
+            elif split in ("train", "target"):
                 raise ValueError(f"{cid}: no paraphrase {paraphrase} in {root / cid / PARAPHRASES}")
             else:
                 case.paraphrase_requested = paraphrase
@@ -781,6 +787,7 @@ def build_parser() -> argparse.ArgumentParser:
     ap.add_argument("--seed", type=int, default=None, help="seed S for every run (required unless --summarize)")
     ap.add_argument("--split", choices=SPLITS, default="train")
     ap.add_argument("--regression", action="store_true", help="same as --split regression")
+    ap.add_argument("--target", action="store_true", help="same as --split target (the owner's own designs, T01)")
     ap.add_argument("--timeout", type=float, default=DEFAULT_TIMEOUT_S, help="seconds per run (default 1200)")
     ap.add_argument("--parts", type=Path, action="append", default=None,
                     help="override the catalogue folders (repeatable; default: both catalogues, or the enclosure "
@@ -802,7 +809,7 @@ def main(argv: Optional[Sequence[str]] = None, paths: Optional[Paths] = None) ->
     paths = paths or Paths()
     ap = build_parser()
     args = ap.parse_args(argv)
-    split = "regression" if args.regression else args.split
+    split = "regression" if args.regression else "target" if args.target else args.split
     nnn = iter_label(args.iter)
     quiet = split == "holdout"            # held-out isolation: aggregate output only
 

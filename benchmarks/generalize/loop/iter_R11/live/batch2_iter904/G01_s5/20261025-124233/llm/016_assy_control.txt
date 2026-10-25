@@ -1,0 +1,34 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a little housing for an Arduino Nano, whose board is 45 x 18 mm, to sit on a shelf. It should be possible to get a cable into the Nano's mini-USB port through one of the short ends even with the lid fitted. The lid goes on with snaps rather than screws, so the housing has no fasteners whatsoever, and it carries three 5 mm status LEDs in its top face; they're separate parts wired to the Nano and have to be visible from outside. Because the Nano's header pins point downward and poke out below the board, the board must be held up off the floor. Print the base flat on the bed in PLA without supports.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. retention_board (L1.1, L1.5): arduino nano held by pocket: free travel (mm) -z 0.00, +z 3.30, -X 0.25, +X 0.25, -Y 0.25, +Y 0.25; worst +z 3.30 > 0.5; options the plant cannot build here:... at board (arduino nano) toward +z; off by 2.79 mm; needs: decrease the free travel of the part in its worst direction
+2. content_placed_control_1 (L1.1, L1.6, L1.9, L1.11): control_1 (led_5mm) is not placed: arduino_nano is not a carrier: no relation places it yet (GM2b); needs: every content part placed
+3. content_placed_generic_1 (a generic rule): generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does ...; needs: every content part placed
+4. text_coverage (L1.5): board.usb (arduino nano) is closed, but L1.5 names a mini-usb plug: "With the lid shut, a mini-USB cable has to go all the way into the Nano via one opening in the −X end wall, leaving at least 0.3 mm spare around the plug."; needs: an opening for each connector whose mating plug the text names
+5. bbox (L1.11): outside 57.87 x 30.17 x 16.70 mm, max 60 x 30 x 26 with X longest; off by 0.164 mm; needs: decrease the outside size
+
+The design now:
+- board (primary): arduino nano x1; connectors: usb closed
+- control_1: 5mm led x3
+- lid closure: lip; lid bosses: outside_corners
+- board retention: pocket
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- A: hold the arduino nano with crush_ribs: the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction
+- B: mount control_1 (5mm led x3) through the lid (the closed enclosure's top panel), the part hanging below it: its bushing or lens passes through a hole, its body stops against the inside face
+- C: expose board.usb: open the enclosure wall for the arduino nano's usb connector so a mini-usb plug plugs in with the enclosure closed
+- D: stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? Answer with its letter.
+
+=== RESPONSE ===
+{
+  "action": "C"
+}

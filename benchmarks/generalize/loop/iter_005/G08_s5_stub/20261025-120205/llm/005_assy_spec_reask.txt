@@ -1,0 +1,87 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 2 (request): "...d the seam around the door. Inside goes a Raspberry Pi Pico 2 and one 18650 Li-ion cell (18.6 mm across, 65.2 mm long). ..."
+n2 = 18650 (request): "...around the door. Inside goes a Raspberry Pi Pico 2 and one 18650 Li-ion cell (18.6 mm across, 65.2 mm long). The cell li..."
+n3 = 18.6 mm (request): "...nside goes a Raspberry Pi Pico 2 and one 18650 Li-ion cell (18.6 mm across, 65.2 mm long). The cell lies in a printed cr..."
+n4 = 65.2 mm (request): "...pberry Pi Pico 2 and one 18650 Li-ion cell (18.6 mm across, 65.2 mm long). The cell lies in a printed cradle along the b..."
+n5 = 0.3 mm (request): "...le through an end wall while the lid is on. Aim for roughly 0.3 mm of clearance per side on the door. Everything is FDM ..."
+n6 = 2 (L1.1): "...Take the Pico 2, the 18650 cell and the slide switch from the parts catalog..."
+n7 = 18650 (L1.1): "...Take the Pico 2, the 18650 cell and the slide switch from the parts catalogue and set..."
+n8 = 18.6 (L1.2): "...Inside the closed enclosure the 18.6 x 65.2 mm cell sits in a cradle and does not cut into any p..."
+n9 = 65.2 mm (L1.2): "...Inside the closed enclosure the 18.6 x 65.2 mm cell sits in a cradle and does not cut into any printed sur..."
+n10 = 3.0 mm (L1.2): "...cradle and does not cut into any printed surface. It needs 3.0 mm of free room at both ends for the contacts and between..."
+n11 = 0.3 (L1.2): "...0 mm of free room at both ends for the contacts and between 0.3 and 1.0 mm of side clearance where it is widest...."
+n12 = 1.0 mm (L1.2): "...free room at both ends for the contacts and between 0.3 and 1.0 mm of side clearance where it is widest...."
+n13 = 1.0 mm (L1.3): "...With the door shut, the cell may shift no more than 1.0 mm to the side or upward, and no more than 4.0 mm along its ax..."
+n14 = 4.0 mm (L1.3): "...no more than 1.0 mm to the side or upward, and no more than 4.0 mm along its axis. It sits on the door, within 0.3 mm of..."
+n15 = 0.3 mm (L1.3): "...ore than 4.0 mm along its axis. It sits on the door, within 0.3 mm of the door's upper face...."
+n16 = 2.0 (L1.4): "...The door is its own body on the bottom of the enclosure, 2.0 to 3.0 mm thick, and it slides along the cell axis, 0.25 to..."
+n17 = 3.0 mm (L1.4): "...door is its own body on the bottom of the enclosure, 2.0 to 3.0 mm thick, and it slides along the cell axis, 0.25 to 0.3..."
+n18 = 0.25 (L1.4): "...re, 2.0 to 3.0 mm thick, and it slides along the cell axis, 0.25 to 0.35 mm of clearance on each side, coming out at the..."
+n19 = 0.35 mm (L1.4): "...to 3.0 mm thick, and it slides along the cell axis, 0.25 to 0.35 mm of clearance on each side, coming out at the end awa..."
+n20 = 0.3 (L1.4): "...ch side, coming out at the end away from the USB. A detent (0.3 to 0.8 mm deep) and an end stop hold it shut, and a grip..."
+n21 = 0.8 mm (L1.4): "..., coming out at the end away from the USB. A detent (0.3 to 0.8 mm deep) and an end stop hold it shut, and a grip sticks..."
+n22 = 1.0 (L1.4): "...m deep) and an end stop hold it shut, and a grip sticks out 1.0 to 5.0 mm beyond the end wall. Along at least 60 percent..."
+n23 = 5.0 mm (L1.4): "...and an end stop hold it shut, and a grip sticks out 1.0 to 5.0 mm beyond the end wall. Along at least 60 percent of its ..."
+n24 = 60 (L1.4): "...ticks out 1.0 to 5.0 mm beyond the end wall. Along at least 60 percent of its length the door must overlap each side wal..."
+n25 = 1.0 mm (L1.4): "...rcent of its length the door must overlap each side wall by 1.0 mm or more, and its outer face lies 0.3 to 3.0 mm above ..."
+n26 = 0.3 (L1.4): "...p each side wall by 1.0 mm or more, and its outer face lies 0.3 to 3.0 mm above the bottom plane of the base...."
+n27 = 3.0 mm (L1.4): "...side wall by 1.0 mm or more, and its outer face lies 0.3 to 3.0 mm above the bottom plane of the base...."
+n28 = 0.3 mm (L1.5): "...ng anything. The opening is wider than the cell by at least 0.3 mm on each side...."
+n29 = 4.0 mm (L1.6): "...-tapping screw. Above the Pico's top surface leave at least 4.0 mm of free space, below its underside 2.0 mm, and keep i..."
+n30 = 2.0 mm (L1.6): "...ce leave at least 4.0 mm of free space, below its underside 2.0 mm, and keep it at least 0.3 mm from every wall. At each..."
+n31 = 0.3 mm (L1.6): "...ree space, below its underside 2.0 mm, and keep it at least 0.3 mm from every wall. At each end of the cell there must b..."
+n32 = 4.0 mm (L1.6): "...there must be a passage for the cell wires, a hole at least 4.0 mm across through the shelf which does not open to the o..."
+n33 = 0.3 mm (L1.7): "...the Pico via a single opening in an end wall, with at least 0.3 mm between the cable and the plug's envelope. No side of..."
+n34 = 1.5 mm (L1.7): "...e. No side of that opening may exceed the plug by more than 1.5 mm...."
+n35 = 1.0 mm (L1.8): "...Keep the slide switch captive, within 1.0 mm in every direction other than toward its wire side, and lea..."
+n36 = 5.0 mm (L1.8): "...every direction other than toward its wire side, and leave 5.0 mm of free room behind its terminals. The handle comes ou..."
+n37 = 3.5 mm (L1.8): "...t through a slot in a side wall and moves through its whole 3.5 mm throw while staying at least 0.25 mm from the slot. T..."
+n38 = 0.25 mm (L1.8): "...moves through its whole 3.5 mm throw while staying at least 0.25 mm from the slot. The slot may be at most 1.0 mm larger..."
+n39 = 1.0 mm (L1.8): "...ing at least 0.25 mm from the slot. The slot may be at most 1.0 mm larger than the area the handle sweeps, and the handl..."
+n40 = 1.0 (L1.8): "...the area the handle sweeps, and the handle should stick out 1.0 to 3.0 mm past the wall...."
+n41 = 3.0 mm (L1.8): "...a the handle sweeps, and the handle should stick out 1.0 to 3.0 mm past the wall...."
+n42 = 0.15 (L1.9): "...and is secured by two M3 screws into bosses: lip clearance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3..."
+n43 = 0.35 mm (L1.9): "...secured by two M3 screws into bosses: lip clearance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, ..."
+n44 = 2.0 (L1.9): "...rews into bosses: lip clearance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, and a total lid heig..."
+n45 = 3.0 mm (L1.9): "...to bosses: lip clearance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, and a total lid height of a..."
+n46 = 2.0 (L1.9): "...arance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, and a total lid height of at most 6.0 mm. Wit..."
+n47 = 3.0 mm (L1.9): "...0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, and a total lid height of at most 6.0 mm. With the l..."
+n48 = 6.0 mm (L1.9): "...lid plate 2.0 to 3.0 mm, and a total lid height of at most 6.0 mm. With the lid removed, the Pico and the switch go in a..."
+n49 = 0.4 mm (L1.10): "...ning, the switch slot, the door seam (a gap of no more than 0.4 mm) and the screw holes, and at least 1.0 mm of material..."
+n50 = 1.0 mm (L1.10): "...p of no more than 0.4 mm) and the screw holes, and at least 1.0 mm of material must surround every opening. Walls, shelf..."
+n51 = 2.0 (L1.10): "...erial must surround every opening. Walls, shelf and lid are 2.0 to 4.0 mm thick...."
+n52 = 4.0 mm (L1.10): "...ust surround every opening. Walls, shelf and lid are 2.0 to 4.0 mm thick...."
+n53 = 25 (L1.11): "...M printer with no supports. On the bed, that means at least 25 percent of the base's plan bounding box and 50 percent of..."
+n54 = 50 (L1.11): "...ans at least 25 percent of the base's plan bounding box and 50 percent of the lid's and the door's...."
+n55 = 85 (L1.12): "...The closed enclosure must fit in 85 x 40 x 40 mm, with the long direction along the cell axis,..."
+n56 = 40 (L1.12): "...The closed enclosure must fit in 85 x 40 x 40 mm, with the long direction along the cell axis, and i..."
+n57 = 40 mm (L1.12): "...The closed enclosure must fit in 85 x 40 x 40 mm, with the long direction along the cell axis, and it has to..."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+Your previous answer broke these rules: board_width and board_depth and keepout_above and keepout_below and board_clearance and headroom and opening_oversize_max and wall_min and wall_max and max_x and max_y and max_z all use n1 (2, 'd the seam around the door. Inside goes a Raspberry Pi Pico 2 and one 18650 Li-ion cell (18.6 mm across, 65.2 mm long). '); each number in the text states one quantity. Answer again and fix that.
+
+
+=== RESPONSE ===
+{"board_width": "n1", "board_depth": "n1", "keepout_above": "n1", "keepout_below": "n1", "board_clearance": "n1", "headroom": "n1", "opening_oversize_max": "n1", "wall_min": "n1", "wall_max": "n1", "max_x": "n1", "max_y": "n1", "max_z": "n1"}

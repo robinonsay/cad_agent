@@ -1,0 +1,43 @@
+// body base
+difference() {
+  union() {
+    // body base (tray)
+    multmatrix([[1, 0, 0, 32], [0, 1, 0, 14.55], [0, 0, 1, -7.6], [0, 0, 0, 1]]) difference() { translate([-35.7, -18.15, 0]) cube([71.4, 36.3, 21.2]); translate([0, 0, 2.4]) translate([-33.3, -15.75, 0]) cube([66.6, 31.5, 19.8]); }
+    // add standoff_1 (standoff)
+    multmatrix([[1, 0, 0, 3.5], [0, 1, 0, 3.5], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=7.6, d=5.3, $fn=64);
+    // add standoff_2 (standoff)
+    multmatrix([[1, 0, 0, 61.5], [0, 1, 0, 3.5], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=7.6, d=5.3, $fn=64);
+    // add standoff_3 (standoff)
+    multmatrix([[1, 0, 0, 3.5], [0, 1, 0, 26.5], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=7.6, d=5.3, $fn=64);
+    // add standoff_4 (standoff)
+    multmatrix([[1, 0, 0, 61.5], [0, 1, 0, 26.5], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=7.6, d=5.3, $fn=64);
+    // add boss_1 (boss)
+    multmatrix([[1, 0, 0, -3.22132], [0, 1, 0, -3.12132], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=21.2, d=5.6, $fn=64);
+    // add boss_2 (boss)
+    multmatrix([[1, 0, 0, 67.22132], [0, 1, 0, -3.12132], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=21.2, d=5.6, $fn=64);
+    // add boss_3 (boss)
+    multmatrix([[1, 0, 0, -3.22132], [0, 1, 0, 32.22132], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=21.2, d=5.6, $fn=64);
+    // add boss_4 (boss)
+    multmatrix([[1, 0, 0, 67.22132], [0, 1, 0, 32.22132], [0, 0, 1, -7.6], [0, 0, 0, 1]]) cylinder(h=21.2, d=5.6, $fn=64);
+  }
+  // cut board_usb_data_cut (port_cut)
+  multmatrix([[0, 1, 0, 41.4], [-1, 0, 0, -2.4], [0, 0, 1, -1.2], [0, 0, 0, 1]]) translate([-2.2, -5.4, 0]) cube([4.4, 10.8, 7.8]);
+  // cut board_usb_power_cut (port_cut)
+  multmatrix([[0, 1, 0, 54], [-1, 0, 0, -2.4], [0, 0, 1, -1.2], [0, 0, 0, 1]]) translate([-2.2, -5.4, 0]) cube([4.4, 10.8, 7.8]);
+  // cut standoff_1_pilot (pilot)
+  multmatrix([[1, 0, 0, 3.5], [0, 1, 0, 3.5], [0, 0, 1, -6.7], [0, 0, 0, 1]]) cylinder(h=7.7, d=2.102533, $fn=64);
+  // cut standoff_2_pilot (pilot)
+  multmatrix([[1, 0, 0, 61.5], [0, 1, 0, 3.5], [0, 0, 1, -6.7], [0, 0, 0, 1]]) cylinder(h=7.7, d=2.102533, $fn=64);
+  // cut standoff_3_pilot (pilot)
+  multmatrix([[1, 0, 0, 3.5], [0, 1, 0, 26.5], [0, 0, 1, -6.7], [0, 0, 0, 1]]) cylinder(h=7.7, d=2.102533, $fn=64);
+  // cut standoff_4_pilot (pilot)
+  multmatrix([[1, 0, 0, 61.5], [0, 1, 0, 26.5], [0, 0, 1, -6.7], [0, 0, 0, 1]]) cylinder(h=7.7, d=2.102533, $fn=64);
+  // cut boss_1_pilot (pilot)
+  multmatrix([[1, 0, 0, -3.22132], [0, 1, 0, -3.12132], [0, 0, 1, 8.5], [0, 0, 0, 1]]) cylinder(h=6.1, d=1.70205, $fn=64);
+  // cut boss_2_pilot (pilot)
+  multmatrix([[1, 0, 0, 67.22132], [0, 1, 0, -3.12132], [0, 0, 1, 8.5], [0, 0, 0, 1]]) cylinder(h=6.1, d=1.70205, $fn=64);
+  // cut boss_3_pilot (pilot)
+  multmatrix([[1, 0, 0, -3.22132], [0, 1, 0, 32.22132], [0, 0, 1, 8.5], [0, 0, 0, 1]]) cylinder(h=6.1, d=1.70205, $fn=64);
+  // cut boss_4_pilot (pilot)
+  multmatrix([[1, 0, 0, 67.22132], [0, 1, 0, 32.22132], [0, 0, 1, 8.5], [0, 0, 0, 1]]) cylinder(h=6.1, d=1.70205, $fn=64);
+}

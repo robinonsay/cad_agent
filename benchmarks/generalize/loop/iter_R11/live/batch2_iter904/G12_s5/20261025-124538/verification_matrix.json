@@ -1,0 +1,979 @@
+[
+  {
+    "l1_id": "L1.1",
+    "text": "Using the catalogue, the design positions the ESP32 DevKitC V4 so the micro-USB port faces the short end at \u2212X and the antenna points toward +X; it also puts three 5 mm LEDs in the lid. Nothing may collide, and the layout has to be declared.",
+    "method": "inspection",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.01,
+    "checks": [
+      {
+        "id": "inside_board",
+        "type": "inside",
+        "text": "the board (minus the seat columns grown by the clearance) lies inside the closed enclosure with 3 mm clearance",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "board: 3.0000 mm from the enclosure (need >= 3)"
+      },
+      {
+        "id": "clear_board",
+        "type": "clear_of",
+        "text": "no printed surface within 3 mm of the board, except the standoff tops in the seat columns grown by the clearance",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "min gap to board 3.0000 mm (need >= 3)"
+      },
+      {
+        "id": "plug_refs_board_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in board at full mate and its withdrawal path (outside its mouth) clear every other reference part (the board, the other contents)",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to refs_board_plug \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "retention_board",
+        "type": "retention",
+        "text": "the esp32 devkitc is held in every direction: free travel at most 0.5 mm (ledges, rim and the crush_ribs retention)",
+        "passed": true,
+        "margin": 0.51,
+        "evidence": "esp32 devkitc held by crush_ribs: free travel (mm) -z 0.00, +z 0.00, -X 0.00, +X 0.00, -Y 0.00, +Y 0.00; options the plant cannot build here: snap_clips (no pair of opposite sides takes a snap clip: -Y: the hook or arm meets header_a, keepout component_side, keepout header_pins_a; -X: the hook or arm meets keepout component_side, usb)"
+      },
+      {
+        "id": "supported",
+        "type": "supported",
+        "text": "the esp32 devkitc rests on printed ledges at its seat plane (gap <= 0.1 mm under every ledge) that hold its plan centre between them",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "worst ledge gap 0.0000 mm (max 0.1) over 6 ledge(s)"
+      },
+      {
+        "id": "panel_keepouts_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_1_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_1_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_1",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_1",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      },
+      {
+        "id": "panel_keepouts_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_2_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_2_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_2",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_2",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      },
+      {
+        "id": "panel_keepouts_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_3_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_3_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_3",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_3",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.2",
+    "text": "Support the board on four pads beneath its two end regions, away from the header footprint, every pad no smaller than 10 mm\u00b2. The walls plus two stops at the antenna end hold it in place, the stops being 0.2 to 1.0 mm away from the board and under its top face. None of the printed box may intrude on the board's keep-out volumes (header pins, tails, component side).",
+    "method": "analysis",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.3",
+    "text": "The antenna keep-out must stay empty of walls and lid. Per the part's data it covers the final 6.0 mm of the board and the 8.0 mm past its end, spanning the board's full width and reaching up to 5.0 mm over the top of the module; the cavity must run at least 8.0 mm beyond the antenna end.",
+    "method": "analysis",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.4",
+    "text": "It must be possible to push a micro-USB cable all the way into the board, lid on, through one hole in the end wall at \u2212X. The hole gives the plug at least 0.3 mm of room all the way round, but is no more than 1.5 mm larger than the plug on any side, and at least 1.5 mm of wall remains around it.",
+    "method": "test",
+    "status": "PASS",
+    "passed": true,
+    "margin": -0.0,
+    "checks": [
+      {
+        "id": "clear_board_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in board at full mate and its withdrawal path stay 0.3 mm from the enclosure",
+        "passed": true,
+        "margin": 0.109999,
+        "evidence": "min gap to board_plug 0.4000 mm (need >= 0.3)"
+      },
+      {
+        "id": "plug_refs_board_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in board at full mate and its withdrawal path (outside its mouth) clear every other reference part (the board, the other contents)",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to refs_board_plug \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "oversize_board_cut",
+        "type": "aperture_oversize",
+        "text": "the opening of board_cut is at most 1.5 mm bigger than its plug per side",
+        "passed": true,
+        "margin": 1.11,
+        "evidence": "opening 10.800 x 7.800 vs plug 10.000 x 7.000: 0.400 mm per side (max 1.5)"
+      },
+      {
+        "id": "text_coverage",
+        "type": "coverage",
+        "text": "every content connector whose mating plug the request or an L1 names is exposed (it has its plug check)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "1 named plug connection(s) covered"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.5",
+    "text": "In the lid, each of three 5 mm LEDs goes into a collar so its dome is level with the outer surface and its flange is caught by a shoulder with a snap lip behind, which keeps the LED from dropping out. The collar holes measure 5.2 to 5.4 mm across, the flange overlaps by at least 0.2 mm each side, the dome is within 0.3 mm of flush, and the snap-lip opening is 5.3 to 5.6 mm with at least two slits. Arrange the LEDs in a line with at least 10.0 mm between them, and keep every LED axis at least 4.5 mm (in plan) from the board's header-pin and antenna keep-outs.",
+    "method": "inspection",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.11,
+    "checks": [
+      {
+        "id": "plug_refs_board_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in board at full mate and its withdrawal path (outside its mouth) clear every other reference part (the board, the other contents)",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to refs_board_plug \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_keepouts_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_1_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_1_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_1",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_1",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      },
+      {
+        "id": "panel_keepouts_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_2_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_2_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_2",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_2",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      },
+      {
+        "id": "panel_keepouts_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_3_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_3_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_3",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_3",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.6",
+    "text": "The box gets a pair of ears, and each carries a countersunk slot sized for a 4.2 mm wood screw. The centres of the two slots are 100.0 mm from each other, and the countersink outline of each slot stays at least 3.0 mm away from its ear's edge and from the box. Every slot is a stadium 4.5 mm wide with 4.0 mm between the centres of its ends (so you can adjust), beneath a 90 degree countersink that is 8.4 mm across. Make the ears 3.5 to 5.0 mm thick, with the slot centres symmetric about the centre of the box to within 0.5 mm.",
+    "method": "inspection",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.7",
+    "text": "So the box can lie flat on the wall, its back should be a flat face and the ears must be coplanar with it, within 0.3 mm.",
+    "method": "inspection",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.8",
+    "text": "Make the lid a separate piece that sits on the base via a sliding lip and is secured by four M3 self-tapping screws that go into tabs outside the cavity. The screw axes lie 3.5 to 5.0 mm outside the wall's outer face, the pilot holes are 2.4 to 2.6 mm across and at least 6.0 mm deep, and the lid's holes are 3.4 mm. The lip should be at least 2.0 mm deep, with 0.15 to 0.35 mm of clearance on each side.",
+    "method": "inspection",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.11,
+    "checks": [
+      {
+        "id": "pilot_band_boss_1",
+        "type": "pilot_band",
+        "text": "the pilot in boss_1 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      {
+        "id": "pilot_band_boss_2",
+        "type": "pilot_band",
+        "text": "the pilot in boss_2 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      {
+        "id": "pilot_band_boss_3",
+        "type": "pilot_band",
+        "text": "the pilot in boss_3 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      {
+        "id": "pilot_band_boss_4",
+        "type": "pilot_band",
+        "text": "the pilot in boss_4 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.9",
+    "text": "Once closed, the box may be open only at the USB port, the three LED holes, the screw holes for the lid and the two slots in the ears. Wall, floor and lid thickness should fall between 2.0 and 4.0 mm, and every opening needs at least 1.5 mm of surrounding material.",
+    "method": "analysis",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.11,
+    "checks": [
+      {
+        "id": "plug_refs_board_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in board at full mate and its withdrawal path (outside its mouth) clear every other reference part (the board, the other contents)",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to refs_board_plug \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_keepouts_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_1_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_1_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_1",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_1",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_1",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      },
+      {
+        "id": "panel_keepouts_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_2_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_2_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_2",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_2",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_2",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      },
+      {
+        "id": "panel_keepouts_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led's keep-outs above the panel (view_zone) are clear of every printed body",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to control_1_3_keepouts \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "panel_clear_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from every printed body except its body's face on the lid and its through part in the hole",
+        "passed": true,
+        "margin": 0.21,
+        "evidence": "min gap to control_1_3_ref 0.4000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_board_control_1_3",
+        "type": "clear_of",
+        "text": "the 5mm led is at least 0.2 mm from the primary part",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to board \u2265 5.2000 mm (need >= 0.2)"
+      },
+      {
+        "id": "panel_seated_control_1_3",
+        "type": "panel_seated",
+        "text": "the 5mm led's body stops against the lid's inner face (gap <= 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lid underside 15.000 vs contact plane 15.000 (gap 0.0000, max 0.1)"
+      },
+      {
+        "id": "panel_hole_control_1_3",
+        "type": "panel_hole",
+        "text": "the hole for the 5mm led is 0.15-0.35 mm bigger than its through part per side",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "hole \u00d85.500 for \u00d85 (0.250 per side)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.10",
+    "text": "Each part must be one manifold body that prints without supports: the base resting on its back face and the lid on its outer face.",
+    "method": "analysis",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.11",
+    "text": "Overall, counting ears and tabs, the shut box must fit within 125 x 50 x 26 mm, with the long direction running along the 54.4 mm side of the board.",
+    "method": "inspection",
+    "status": "PASS",
+    "passed": true,
+    "margin": 3.11,
+    "checks": [
+      {
+        "id": "bbox",
+        "type": "bbox_within",
+        "text": "closed outside size within 125 x 50 x 26 mm",
+        "passed": true,
+        "margin": 3.11,
+        "evidence": "outside 71.11 x 43.65 x 22.90 mm, max 125 x 50 x 26 with X longest"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.12",
+    "text": "What comes back is a base STL and a lid STL, the OpenSCAD source, the layout declaration, and the agent's own clearance report, whose figures have to agree with an independent measurement.",
+    "method": "inspection",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "rules",
+    "text": "rule-derived checks with no L1 link (generic consequences of the contents, the spec and printing)",
+    "method": "analysis",
+    "status": "FAIL",
+    "passed": false,
+    "margin": -2.0,
+    "checks": [
+      {
+        "id": "separable",
+        "type": "separable",
+        "text": "base and lid are each one shell and overlap by at most 1 mm3 when closed",
+        "passed": true,
+        "margin": 1.0,
+        "evidence": "shells {'base': 1, 'lid': 1}, worst overlap 4.055e-15 mm3 (max 1)"
+      },
+      {
+        "id": "content_placed_generic_1",
+        "type": "content_placed",
+        "text": "generic_1 (generic_box x1) is placed in the design",
+        "passed": false,
+        "margin": -1.0,
+        "evidence": "generic_1 (generic_box) is not placed: generic_box: no number in the text for size_x, size_y, size_z; the plant cannot build a part whose size the text does not state"
+      },
+      {
+        "id": "clear_keepout_top",
+        "type": "clear_of",
+        "text": "nothing printed inside the component keep-out above the board, except the cradle's contacts with the part (rim, rib tops, snap hooks)",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "min gap to board_ko_top 0.0000 mm (need >= 0)"
+      },
+      {
+        "id": "clear_keepout_bottom",
+        "type": "clear_of",
+        "text": "nothing printed inside the solder-side keep-out, except standoffs in the seat columns",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "min gap to board_ko_bot 0.0000 mm (need >= 0)"
+      },
+      {
+        "id": "apertures_-X",
+        "type": "aperture_count",
+        "text": "wall -X has exactly 1 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": false,
+        "margin": -2.0,
+        "evidence": "wall -X: 3 through opening(s), expected 1; 0 blind region(s)"
+      },
+      {
+        "id": "apertures_+X",
+        "type": "aperture_count",
+        "text": "wall +X has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": false,
+        "margin": -2.0,
+        "evidence": "wall +X: 2 through opening(s), expected 0; 0 blind region(s)"
+      },
+      {
+        "id": "apertures_-Y",
+        "type": "aperture_count",
+        "text": "wall -Y has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": false,
+        "margin": -2.0,
+        "evidence": "wall -Y: 2 through opening(s), expected 0; 0 blind region(s)"
+      },
+      {
+        "id": "apertures_+Y",
+        "type": "aperture_count",
+        "text": "wall +Y has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": false,
+        "margin": -2.0,
+        "evidence": "wall +Y: 2 through opening(s), expected 0; 0 blind region(s)"
+      },
+      {
+        "id": "ligament_board_cut_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round board_cut in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.76,
+        "evidence": "2.2500 mm of material round board_cut toward floor_top at x = -5.300 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_1_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_1_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.556021,
+        "evidence": "2.0460 mm of material round boss_1_pilot toward outer at z = 11.145 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_1_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_1_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.10602,
+        "evidence": "1.5960 mm of material round boss_1_lid_hole toward outer at z = 16.200 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_2_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_2_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.555996,
+        "evidence": "2.0460 mm of material round boss_2_pilot toward outer at z = 11.145 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_2_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_2_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.105995,
+        "evidence": "1.5960 mm of material round boss_2_lid_hole toward outer at z = 16.200 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_3_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_3_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.555996,
+        "evidence": "2.0460 mm of material round boss_3_pilot toward outer at z = 11.145 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_3_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_3_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.105996,
+        "evidence": "1.5960 mm of material round boss_3_lid_hole toward outer at z = 16.200 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_4_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_4_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.555989,
+        "evidence": "2.0460 mm of material round boss_4_pilot toward outer at z = 11.145 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_4_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_4_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.105989,
+        "evidence": "1.5960 mm of material round boss_4_lid_hole toward outer at z = 16.200 (need >= 1.5)"
+      },
+      {
+        "id": "rib_interference_cradle_rib_xm_1",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_xm_1 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "rib_interference_cradle_rib_xp_1",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_xp_1 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "rib_interference_cradle_rib_ym_1",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_ym_1 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "rib_interference_cradle_rib_ym_2",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_ym_2 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "rib_interference_cradle_rib_ym_3",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_ym_3 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "rib_interference_cradle_rib_yp_1",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_yp_1 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "rib_interference_cradle_rib_yp_2",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_yp_2 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "rib_interference_cradle_rib_yp_3",
+        "type": "rib_interference",
+        "text": "crush rib cradle_rib_yp_3 reaches 0.05-0.3 mm into the part outline",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "rib depth in the part 0.150 mm (designed 0.15) vs [0.05, 0.3]"
+      },
+      {
+        "id": "below_split_board_cut",
+        "type": "port_below_split",
+        "text": "board_cut top plus the minimum ligament stays below the split plane",
+        "passed": true,
+        "margin": 6.56,
+        "evidence": "board_cut top 6.950 + ligament 1.5 vs split 15.000"
+      },
+      {
+        "id": "bridge_board_cut",
+        "type": "bridge",
+        "text": "the opening board_cut in wall -X bridges at most 15 mm (no flat roof wider than the bridge limit)",
+        "passed": true,
+        "margin": 4.21,
+        "evidence": "board_cut: flat roof span 10.800 vs bridge limit 15"
+      },
+      {
+        "id": "pilot_depth_boss_1",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_1 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 12.01,
+        "evidence": "pilot depth 7.7 vs boss height 20.500 (floor included) - 0.8"
+      },
+      {
+        "id": "pilot_depth_boss_2",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_2 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 12.01,
+        "evidence": "pilot depth 7.7 vs boss height 20.500 (floor included) - 0.8"
+      },
+      {
+        "id": "pilot_depth_boss_3",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_3 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 12.01,
+        "evidence": "pilot depth 7.7 vs boss height 20.500 (floor included) - 0.8"
+      },
+      {
+        "id": "pilot_depth_boss_4",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_4 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 12.01,
+        "evidence": "pilot depth 7.7 vs boss height 20.500 (floor included) - 0.8"
+      },
+      {
+        "id": "pilot_engagement_boss_1",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_1 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_1",
+        "type": "boss_od",
+        "text": "boss_1 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_1",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_1 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      {
+        "id": "pilot_engagement_boss_2",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_2 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_2",
+        "type": "boss_od",
+        "text": "boss_2 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_2",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_2 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      {
+        "id": "pilot_engagement_boss_3",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_3 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_3",
+        "type": "boss_od",
+        "text": "boss_3 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_3",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_3 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      {
+        "id": "pilot_engagement_boss_4",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_4 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_4",
+        "type": "boss_od",
+        "text": "boss_4 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_4",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_4 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      {
+        "id": "lip_engagement",
+        "type": "lip_engagement",
+        "text": "the lid lip reaches at least 2 mm below the split plane",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "lip engagement 2.100 vs 2"
+      }
+    ],
+    "note": ""
+  }
+]

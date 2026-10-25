@@ -1,0 +1,22 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a hinge, built from two printed leaves held together by a steel pin 3 mm thick and 40 mm long. The leaves are each 25 mm by 40 mm seen from above, with the 40 mm edge running along the pin, and each gets a pair of M3 heat-set inserts so it can be bolted onto something. It has to open from 0 degrees, closed with the leaves facing each other, through to 180 degrees, lying flat, and the two leaves can't hit each other at any angle on the way. Leave 0.3 mm between knuckles that sit next to each other, and make the hole in the leaf that rotates 0.2 mm larger than the pin. Print on FDM with no supports.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- gear_spur_generic: spur gear (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"arduino_nano": {"quantity": 0, "exposed": "yes"}, "arduino_uno_r3": {"quantity": 0, "usb_exposed": "yes", "dc_exposed": "yes"}, "jack_3p5_pj320a": {"quantity": 0, "exposed": "yes"}, "dc_jack_pj002a": {"quantity": 0, "exposed": "yes"}, "gear_spur_generic": {"quantity": 0}, "generic_box": {"quantity": 0}, "generic_cylinder": {"quantity": 0}}

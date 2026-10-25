@@ -1,0 +1,24 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a little clock for my desk, and the housing is built around a 1602 LCD module (the PCB is 80 x 36 mm, the viewport 64.5 x 14 mm, and it has four 2.5 mm mounting holes) plus a Raspberry Pi Pico 2. The housing is printed on an FDM printer with no supports and sits on a desk. It comes in two pieces, a base and a lid-like sloped front panel you can take off. The LCD leans back 30 degrees from the table, so the front of the housing is a slanted face with a cutout for the display, and the module is held by its four mounting holes. Down at the back and underneath the LCD, partly tucked beneath it, goes the Pico 2, and its micro-USB port has to come out through the rear wall so I can plug a cable in while the housing is shut.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_cylinder: capacitor (generic)
+- gear_spur_generic: spur gear (generic)
+- lcd1602_hd44780: 1602 lcd (display)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"rpi_pico2": {"quantity": 0, "exposed": "yes"}, "rpi_camera_v2": {"quantity": 0}, "rpi_zero2w": {"quantity": 0, "hdmi_exposed": "yes", "usb_data_exposed": "yes", "usb_power_exposed": "yes", "sd_exposed": "yes"}, "jack_3p5_pj320a": {"quantity": 0, "exposed": "yes"}, "dc_jack_pj002a": {"quantity": 0, "exposed": "yes"}, "generic_tube": {"quantity": 0}, "generic_cylinder": {"quantity": 0}, "gear_spur_generic": {"quantity": 0}, "lcd1602_hd44780": {"quantity": 0}}

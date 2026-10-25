@@ -1,0 +1,21 @@
+MODEL: STUB (first offered option; no LLM call)
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Please design a sturdy mount for an MG996R servo, which sits on the top of a piece of 2020 aluminium extrusion that is at least 300 mm long. The servo itself is 40.7 x 19.7 x 42.9 mm, its mounting ears span 53.6 mm with the holes 49.5 mm apart, and the output shaft points upward. It goes straight down into a pocket in a printed block with 0.3 mm to spare on each side, and the ears sit on the upper surface of the block. Four M4 socket-head bolts secure it through the ear holes, two in each ear, 49.5 mm apart along the ear and 10 mm apart across it. The block is mounted on a flange, and that flange is fastened in the extrusion's T-slot with two M5 bolts and T-nuts. Add two gussets so the block can take a servo torque reaction of 1.5 N m, and lay out the load path running from the servo down to the extrusion bolts. Print in PLA on an FDM machine without supports.
+
+Catalogue parts that may be in the request:
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"arduino_uno_r3": {"quantity": 0, "usb_exposed": "yes", "dc_exposed": "yes"}, "esp32_devkitc_v4": {"quantity": 0, "exposed": "yes"}, "jack_3p5_pj320a": {"quantity": 0, "exposed": "yes"}, "dc_jack_pj002a": {"quantity": 0, "exposed": "yes"}, "generic_box": {"quantity": 0}, "generic_cylinder": {"quantity": 0}}

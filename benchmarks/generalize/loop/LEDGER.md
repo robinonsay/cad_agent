@@ -1293,3 +1293,95 @@ Non-blocking findings (for the next gap analyst; none is a defect against delta.
 - **F5: the loop's exception set is narrow.** It catches ValueError, KeyError, ExprError and PartError. Any other
   exception from a re-run stage or the manifold build would propagate, although the docstring says the loop "never
   fails the tree". Consider catching broadly and typing the action as infeasible.
+
+## R02 (2026-10-25): option-ID bias out of the controller's menus (migration delta R02, owner decision D1)
+
+After the D1 re-architecture (R01) and iteration 005's Run. **Delta:** `iter_R02/delta.md`. **Revert:** `git checkout
+4c7d496 -- assembly.py controller.py controller_rules.json design_rules.json test_assembly.py test_controller.py
+test_controller_authority.py test_no_hardcoding.py benchmarks/generalize/loop/ARCHITECTURE.md`, delete `menus.py`,
+`test_menus.py`, `benchmarks/generalize/audit_controller.py` and `loop/iter_R02/`, remove ` test_menus` from RUN.md
+section 2 and this entry (RUN.md was also edited by another agent during R02, so it is not checked out). claude-context failed to
+connect; targeted reads and grep were used. Nothing under `../holdout/` or `holdout_results/` was opened; no commit.
+
+### Why
+R01's controller took the first menu option in 38 of 39 votes, with the correction always first and `stop` always last
+(reviewer F2): agreement could not be told from option-ID / position bias.
+
+### What changed (classified in delta.md section 3)
+- **Bias audit** (`benchmarks/generalize/audit_controller.py`, tooling): replays the 12 logged controller decisions of
+  iteration 005 (and iteration 012's edge vote) against the live 9B in the original lettered order, 3 shuffles, a
+  content-keyed format and with a planted sensor-refuted action. `iter_R02/audit_before.json` (taken before any agent
+  code changed) and `audit_after.json`.
+- **Content-keyed, shuffled menus** (`menus.py`, controller-information): answers are option ids (action ids such as
+  `expose:module_1.usb`, catalogue ids, edges, class ids), a one-sentence reason first; options shown in seeded
+  Latin-square orderings (no option pinned first or last; the stub keeps Python's first option). Applied to the
+  controller and to Contents, stack, edge vote, face relation, arrangement classes, vent relation, archetype and the
+  spec owner question; not to the number-id mappings.
+- **Permutation voting** (controller-information): one greedy call per ordering (3; 2 for two options); confident only
+  when every valid ordering agrees (`menu_*` values in design_rules.json); consistency in the trace and the choices.
+- **No probability gate** (controller-information): the p_yes ranking + lettered A/B pick of the arrangement became a
+  permutation-voted class menu checked against the edge vote; `EVEN_ODDS` removed; no p_yes call left in assembly mode.
+- **Verifier-guided search** (guardrail + plant): every voted action, plus the next-ranked ones when the vote is
+  inconsistent (k 3, 12 plant evaluations per run), is applied on a fork and measured; the lowest controllable error
+  wins and the vote only breaks ties. Trace schema 2 logs every candidate (training data). F5: any exception in a
+  re-run is an infeasible action.
+- **Registry re-audit**: `rule:first_option` split per site; `catalogue_default`, `default_closure`,
+  `largest_complete_screw`, `smallest_thread_through_board_hole`, `primary_reference` and the `first_option` sites
+  reclassified plant → semantic-rule (pending R03 / R05 / R06 / R07); `no_exposed_connector` checked and kept plant;
+  `rule:symmetric_class` new (plant); the stack conversion moved from R02 to R05 in ARCHITECTURE.md 10.8. 32 names in the
+  code: 15 plant, 4 guardrail, 13 semantic pending, 5 retired.
+
+### Measured
+- Audit, 12 controller decisions: first-position rate 0.917 in the logged lettered order vs 0.438 chance; 0.361 under
+  3 lettered shuffles and 0.417 content-keyed (about chance); content-keyed consistency 1.000 across orderings (lettered
+  0.944); the planted wrong action was picked 0 of 10 times at A and 0 of 30 content-keyed. The same action was picked in
+  every lettered order in 10 of 12 decisions. So R01's 38/39 was agreement with the sensor, not position bias. The R02
+  vote itself: 11 of 12 confident, 12 of 12 a sensor correction, 0 of 10 planted (G02 step 2, two valid corrections,
+  split 2 : 1 and goes to search). Edge votes are order-sensitive (consistency 0.625 over 4 orders).
+- Live E1-01, seed 21 (`iter_R02/live/E1-01_s21/20261025-130053/`): rc 0, verified, 94/94 checks; one controller step
+  (`expose:module_1.usb` in both orderings, confident, 1 → 0 failing, kept); canonical STLs, feature graph and layout
+  identical to iteration 005's E1-01_s5.
+- Tests: the full RUN.md section 2 suite (now with test_menus) ran 510 tests in 1759 s: 509 pass, 1 error in test_generalize_suite.TestLaunchConfig, caused by another agent editing launch_config.json / run_suite.py / test_generalize_suite.py (the T01 target set) while the suite ran; test_generalize_suite re-run alone afterwards: 35 tests, OK. Every R02-touched module passed in that run (test_assembly 134, test_controller 18, test_menus 18, test_controller_authority 8, test_no_hardcoding 3).
+
+### Notes for the next gap analyst / Robin
+- The next Run's train packages may differ from iteration 005 on the same seed (the proposal prompts are shuffled now);
+  regression geometry is expected unchanged when the controller exposes the USB (E1-01 at seed 21 was identical).
+- Owner questions: none. Assumptions (delta.md section 3): 3 orderings, 1 sample each, unanimity for confidence, 2 valid
+  answers minimum, k 3, depth 1, 12 evaluations per run.
+
+## Merge R02 + building blocks (2026-10-25): delta R11 (generic building blocks) on top of R02
+
+The building-blocks delta, developed in the worktree `agent-a0e0cb1c8fb79628a` as "R03 (building blocks)", is merged
+into the main tree (R02 + the T01 target set, uncommitted on `4c7d496`) and **renumbered R11**: R03 in ARCHITECTURE.md
+10.8 is the `set_fastener` conversion and R04–R10 are planned, so R11 is the next free id (folder `iter_R11/`,
+ARCHITECTURE.md 10.8 row + two actuator rows, registry justifications, code comments). Details: `iter_R11/delta.md`
+section 10.
+
+- **What R11 adds** (unchanged from the worktree): Contents admission of every named non-accessory catalogue part;
+  cradle retention (ledges, rim, crush ribs / snap clips) for a primary without usable mounting holes, with
+  `set_retention` and the retention / supported / rib / snap sensors; an unsizable part rejected and reported, not fatal;
+  panel mount through the lid with `set_panel` and the panel sensors. Registry: `rule:default_retention`, `rule:cradle`,
+  `rule:panel_mount` (plant), `rule:no_screw_fits` (guardrail). No semantic rule.
+- **Merge**: 3-way per file; conflicts in controller.py (`apply_action`), design_rules.json, controller_rules.json
+  (about), RUN.md, test_controller_authority.py, test_no_hardcoding.py, one test_assembly test. The block actions plug
+  into R02's `APPLIERS` table (appliers take R02's `by`), so they go through the content-keyed shuffled menu, the
+  permutation vote and the verifier search; admitted Contents candidates go through R02's shuffled Contents menu.
+  `Action` construction switched to keywords and the words lead with `<kind> <target>=<value>: ` so R02's `desc` keeps
+  the part name. Two letter answers in test_building_blocks and one count in test_assembly updated (marked).
+- **Measured**: full RUN.md section 2 suite (15 modules, with test_menus and test_building_blocks): **535 tests, OK
+  (1739 s)**. Offline regression E1-01 / V1 / V2 / V3 (fn 24, closed USB + scripted expose, and exposed USB): feature
+  graph, layout.json and canonical STL hashes identical to the pre-merge R02 tree and to R01's documented values; E1-01
+  at the default fn equals `iter_R02/live/E1-01_s21` (graph 8b92655a7335, base 90c88b8e1c90, lid a35daa99c30a).
+- **Not done**: no live run after the merge (the `iter_R11/live/` batches ran on the pre-merge, lettered-menu code);
+  nothing committed; the worktree is left in place for review.
+
+## Review fixes on R02 + R11 (2026-10-25)
+
+Adversarial review findings fixed (details: `iter_R02/delta.md` and `iter_R11/delta.md`, section "Review fixes"):
+B1 (blocking: a candidate's infeasibility re-typed later forks' sensors within one step; forks now start from a pre-step
+snapshot and everything is re-measured under the merged typing), max_evals a hard cap and confident stop final,
+panel_hole measured on the lid and retention / snap / panel-thickness relabelled design checks, the menu tie rule
+documented and None never wins a perm_tally tie, stale param_stop reset, `search:controller` registered, R11's
+largest-supportable primary documented as extending `rule:primary_reference` (R05), a replay test whose arrangement
+menu overrides the edge vote. Full suite 544 tests OK (1714 s); offline regression E1-01 / V1-V3 hashes identical.
+Nothing committed.
