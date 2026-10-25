@@ -1,0 +1,174 @@
+{
+ "paraphrases": [
+  {
+   "id": "G14",
+   "tier": 4,
+   "title": "Nano buzzer box with dovetail slide lid",
+   "request": "Alarm box for an Arduino Nano and a 12 mm piezo buzzer. The Nano is seated in the base on its four mounting holes, mini-USB port at one short end. That end is left open so a mini-USB plug goes in, and the lid can slide off with the cable still attached. Dovetail rail on each long wall of the base; the lid slides on along the long axis, 0.25 mm fit clearance, and stops at the far end wall. Ring of sound holes in the lid over the buzzer, without covering the buzzer's own sound port. FDM, PLA, no supports. Closed box 80 x 40 x 30 mm at most.",
+   "request_verbatim": "An alarm box with an Arduino Nano and a 12 mm piezo buzzer in a base with a dovetail rail; the lid slides on along the long axis with 0.25 mm fit clearance. A ring of sound holes on the lid sits over the buzzer. The mini-USB end stays open.",
+   "request_notes": "Added to the brief, all from requirements.md section 3: 'stays open' = no end wall at the USB end, the lid slides off along that end (A2, F1); the Nano is located by pins through its four holes and rests on four standoffs (A1, F2); the header pins and tails under the board are a keep-out (A3); dovetail flank angle 60 degrees from horizontal, rails on the outside of the long walls (F3); central hole in the lid over the buzzer port (F5); FDM/PLA, no supports (A8); size limit (A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the catalogue Nano and 12 mm buzzer: Nano's mini-USB port toward the open short end, buzzer next to the Nano's far end and 2.0 mm or more from it. No collisions. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Exactly four standoffs support the Nano, one under each mounting hole, with a locating pin through each hole. Header pins and tails below the board stay at least 0.3 mm off the base. Standoffs: 3.0 to 4.0 mm diameter, 8.8 to 12.0 mm tall, tops level to 0.10 mm and touching the board's underside. Pins: 1.4 to 1.6 mm diameter, at least 3.0 mm above the board top, so play along X or Y is 0.4 mm max.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Inside the closed box the Nano is 0.5 mm or more from every printed surface except its standoffs, 1.0 mm or more between its tallest part and the lid. Inner width between the long walls: 19.0 mm minimum.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Buzzer stands upright in a printed pocket 12.4 mm in diameter, on a ring ledge that leaves its leads free, sound port toward the lid. Pocket depth above the ledge 2.5 to 4.0 mm; ledge ring inner diameter 8.0 to 10.0 mm; 1.6 mm or more of material around the pocket.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "No end wall at the mini-USB end. A mini-USB plug pushes fully into the Nano without touching the box, 0.3 mm or more clear of plug and overmold on every side, with the lid on and while the lid slides. Base ends at most 3.3 mm past the receptacle front; lid end stays 0.3 mm or more from the overmold face.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Dovetail rail on the outside of each long wall of the base, matching groove in the lid. Flank faces at 60 degrees from horizontal, 0.25 mm fit clearance per flank, so the lid cannot lift off. Each rail: 40.0 mm long or more, 3.0 to 4.0 mm tall, overhanging the wall by 1.2 mm or more. Flank angle within 5 degrees of 60; flank gap 0.20 to 0.30 mm; all other lid-to-base gaps 0.15 mm or more; lid skirt 1.6 mm thick or more.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Lid is a separate body sliding on and off along the long axis, touching the base only where it rests on it, and stopping against the far end wall. End face within 0.3 mm of that wall; underside within 0.3 mm of the wall tops; covers Nano and buzzer with 1.0 mm or more margin in plan; stays 0.3 mm or more clear of Nano, buzzer and plug all the way off.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Lid has a ring of six or more sound holes centred on the buzzer plus one central hole over the sound port; lid underside 0.5 to 1.5 mm above the buzzer top. Central hole 2.0 to 3.5 mm diameter. Ring holes 1.5 to 2.5 mm, equally spaced on a circle 7.0 to 10.0 mm in diameter. 1.0 mm or more of material between holes; open area at least 15 mm2 in total.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed box: only openings are the open USB end, the sound holes and the lid's sliding seam. Walls, floor and lid 2.0 to 4.0 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base and lid are each a single manifold body, printable on FDM with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed box: 80 x 40 x 30 mm maximum; stands flat on a table, no tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Lid off, the Nano drops straight onto its standoffs and the buzzer into its pocket without touching anything: 0.2 mm or more clear for the Nano, 0.1 mm for the buzzer.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliver base STL, lid STL, OpenSCAD source, declared layout and the agent's clearance report; the report must match an independent measurement within 0.10 mm.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a buzzer pocket with a ledge ring and lead void, sound holes through the lid, dovetail grooves in the lid skirts, pilot pins through board holes",
+    "interior placement: standoffs and locator pins at the catalogue HOLE datums, the buzzer at a declared position beside the Nano",
+    "a dovetail profile (trapezoid rail and matching groove with a horizontal offset) extruded along the long axis, on two walls, printable at 60 degrees",
+    "a polar hole pattern (ring of N holes plus a centre hole) positioned from a part datum (SOUND_PORT)",
+    "two printable bodies (base and lid) with their own print orientation",
+    "parts catalogue: load part.json models (arduino_nano, buzzer_12mm, plug_miniusb_b) and read datums HOLE, USB_MOUTH, USB_AXIS, SOUND_PORT, PINS and the header and pin-tail keep-outs",
+    "envelope generation: pin-tail keep-out, plug sweep, lid slide sweep, board install sweep, lead zones, acoustic gap",
+    "interference checks against external solids: clear_of, inside, aperture finding, sweep along an axis"
+   ]
+  },
+  {
+   "id": "G14",
+   "tier": 4,
+   "title": "Nano buzzer box with dovetail slide lid",
+   "request": "I want a buzzer alarm housing containing an Arduino Nano and a 12 mm piezo buzzer. In the base, the Nano rests on its four mounting holes with the mini-USB port at one of the short ends; leave that end open, so a mini-USB plug can be inserted and the lid can still be slid off while the cable is attached. Each long wall of the base carries a dovetail rail, and the lid slides onto them along the long axis with 0.25 mm of fit clearance until it butts against the far end wall. Over the buzzer the lid has a ring of sound holes, but the buzzer's own sound port mustn't be blocked. Print in PLA on an FDM printer, no supports; the closed box must stay within 80 x 40 x 30 mm.",
+   "request_verbatim": "An alarm box with an Arduino Nano and a 12 mm piezo buzzer in a base with a dovetail rail; the lid slides on along the long axis with 0.25 mm fit clearance. A ring of sound holes on the lid sits over the buzzer. The mini-USB end stays open.",
+   "request_notes": "Added to the brief, all from requirements.md section 3: 'stays open' = no end wall at the USB end, the lid slides off along that end (A2, F1); the Nano is located by pins through its four holes and rests on four standoffs (A1, F2); the header pins and tails under the board are a keep-out (A3); dovetail flank angle 60 degrees from horizontal, rails on the outside of the long walls (F3); central hole in the lid over the buzzer port (F5); FDM/PLA, no supports (A8); size limit (A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "From the parts catalogue, the design positions the Nano with its mini-USB port towards the open short end and the 12 mm buzzer alongside the far end of the Nano, no closer than 2.0 mm to it. The parts must not collide, and the layout must be declared.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Four standoffs, and no others, hold up the Nano, one beneath each of its mounting holes, and a pin passes through each hole to locate the board. The header pins and tails beneath the board need at least 0.3 mm of clearance from the base. Standoffs measure 3.0 to 4.0 mm across and 8.8 to 12.0 mm high, with tops level within 0.10 mm that touch the underside of the board; the pins are 1.4 to 1.6 mm in diameter and rise at least 3.0 mm over the board top, so the board can shift no more than 0.4 mm along X or Y.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The closed box has to contain the Nano with at least 0.5 mm of gap to all printed surfaces other than the standoffs, and at least 1.0 mm from the highest part of the Nano up to the lid. Between the long walls the inside width should be no less than 19.0 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Seat the buzzer upright, sound port toward the lid, in a printed pocket with a diameter of 12.4 mm; it rests on a ring-shaped ledge that doesn't pinch the leads. Above the ledge the pocket is 2.5 to 4.0 mm deep, the inner diameter of the ledge ring is 8.0 to 10.0 mm, and the pocket is surrounded by at least 1.6 mm of material.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "Leave out the end wall where the mini-USB connector is, so a mini-USB plug can be driven all the way into the Nano without contacting the box, keeping at least 0.3 mm from the plug and its overmold on all sides, both with the lid seated and as it slides. The base should reach no more than 3.3 mm past the front of the receptacle, and the end of the lid should remain at least 0.3 mm away from the face of the overmold.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "A dovetail rail runs along the outer side of both long walls of the base, and the lid has a groove to match; flanks slope at 60 degrees from horizontal with 0.25 mm of fit clearance on each flank, which prevents the lid lifting off. Rails are at least 40.0 mm in length and 3.0 to 4.0 mm in height, and project at least 1.2 mm past the wall. Keep the flank angle within 5 degrees of 60 and the flank gap between 0.20 and 0.30 mm; any other gap between lid and base is at least 0.15 mm, and the lid skirt is at least 1.6 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Make the lid its own body; it slides on and off lengthwise, rubbing on nothing except the surfaces it rests on, and it comes to a stop at the far end wall. Its end face ends up no more than 0.3 mm from that wall and its underside within 0.3 mm of the wall tops. In plan it covers the Nano and buzzer with at least 1.0 mm to spare, and throughout the slide it stays at least 0.3 mm clear of the Nano, the buzzer and the plug.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "In the lid, put a ring of at least six sound holes around the point above the buzzer, and one more hole in the middle above the sound port; the lid's underside should sit 0.5 to 1.5 mm over the top of the buzzer. The middle hole has a diameter of 2.0 to 3.5 mm. The ring holes are 1.5 to 2.5 mm, evenly spaced on a 7.0 to 10.0 mm diameter circle, leave at least 1.0 mm of material between holes, and together give at least 15 mm2 of open area.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Apart from the open USB end, the sound holes and the sliding seam of the lid, the shut box has no openings, and its walls, floor and lid are between 2.0 and 4.0 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Both the base and the lid must be a single manifold body apiece, and print on an FDM printer without needing supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "The box, closed, needs to fit inside 80 x 40 x 30 mm and rest flat on a table without tipping over.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Take the lid off and lower the Nano vertically onto its standoffs and the buzzer into its pocket; neither should touch anything, with at least 0.2 mm of clearance around the Nano and 0.1 mm around the buzzer.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Supply a base STL and a lid STL together with the OpenSCAD source, the layout declaration and the agent's own clearance report, which has to agree with an independent measurement to within 0.10 mm.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a buzzer pocket with a ledge ring and lead void, sound holes through the lid, dovetail grooves in the lid skirts, pilot pins through board holes",
+    "interior placement: standoffs and locator pins at the catalogue HOLE datums, the buzzer at a declared position beside the Nano",
+    "a dovetail profile (trapezoid rail and matching groove with a horizontal offset) extruded along the long axis, on two walls, printable at 60 degrees",
+    "a polar hole pattern (ring of N holes plus a centre hole) positioned from a part datum (SOUND_PORT)",
+    "two printable bodies (base and lid) with their own print orientation",
+    "parts catalogue: load part.json models (arduino_nano, buzzer_12mm, plug_miniusb_b) and read datums HOLE, USB_MOUTH, USB_AXIS, SOUND_PORT, PINS and the header and pin-tail keep-outs",
+    "envelope generation: pin-tail keep-out, plug sweep, lid slide sweep, board install sweep, lead zones, acoustic gap",
+    "interference checks against external solids: clear_of, inside, aperture finding, sweep along an axis"
+   ]
+  }
+ ]
+}

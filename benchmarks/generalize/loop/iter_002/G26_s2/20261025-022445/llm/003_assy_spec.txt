@@ -1,0 +1,68 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 12 mm (request): "...A C-shaped snap clip for a 12 mm round tube (a solid rod or a pipe, 12 mm outside diameter)...."
+n2 = 12 mm (request): "...ed snap clip for a 12 mm round tube (a solid rod or a pipe, 12 mm outside diameter). The clip mounts to a wall with two ..."
+n3 = 30 mm (request): "...). The clip mounts to a wall with two M3 countersunk screws 30 mm apart, side by side across the clip. The mouth opening..."
+n4 = 10.5 mm (request): "...m apart, side by side across the clip. The mouth opening is 10.5 mm, so the tube pushes in sideways and snaps into place..."
+n5 = 2.2 mm (request): "...shes in sideways and snaps into place; the arm thickness is 2.2 mm. The clip is 12 to 30 mm wide along the tube and is a..."
+n6 = 12 (request): "...snaps into place; the arm thickness is 2.2 mm. The clip is 12 to 30 mm wide along the tube and is a single FDM printed p..."
+n7 = 30 mm (request): "...into place; the arm thickness is 2.2 mm. The clip is 12 to 30 mm wide along the tube and is a single FDM printed part. P..."
+n8 = 12 mm (L1.1): "...The design shall place the 12 mm tube from the parts catalogue seated in the clip's round bo..."
+n9 = 12 mm (L1.2): "...The clip shall hold the 12 mm tube in a round bore with a small clearance all round (0.05..."
+n10 = 0.05 (L1.2): "...2 mm tube in a round bore with a small clearance all round (0.05 to 0.15 mm per side) and wrap more than half of the tub..."
+n11 = 0.15 mm (L1.2): "...e in a round bore with a small clearance all round (0.05 to 0.15 mm per side) and wrap more than half of the tube, so th..."
+n12 = 10.5 mm (L1.3): "...The mouth opening shall be 10.5 mm, and the tube shall push in through it along the mouth dire..."
+n13 = 20 (L1.3): "...with a lead-in that guides it (the lips' end faces sloping 20 to 60 degrees from horizontal)...."
+n14 = 60 degrees (L1.3): "...a lead-in that guides it (the lips' end faces sloping 20 to 60 degrees from horizontal)...."
+n15 = 2.2 mm (L1.4): "...The two arms shall be 2.2 mm thick, long enough to open by the 0.75 mm per side that the..."
+n16 = 0.75 mm (L1.4): "...two arms shall be 2.2 mm thick, long enough to open by the 0.75 mm per side that the tube needs without exceeding 3 % be..."
+n17 = 3 (L1.4): "...the 0.75 mm per side that the tube needs without exceeding 3 % bending strain (also with the worst-case tolerances: a 12..."
+n18 = 12.1 mm (L1.4): "...3 % bending strain (also with the worst-case tolerances: a 12.1 mm tube and a mouth 0.1 mm smaller, within 3.5 %), and f..."
+n19 = 0.1 mm (L1.4): "...with the worst-case tolerances: a 12.1 mm tube and a mouth 0.1 mm smaller, within 3.5 %), and free to flex...."
+n20 = 3.5 (L1.4): "...lerances: a 12.1 mm tube and a mouth 0.1 mm smaller, within 3.5 %), and free to flex...."
+n21 = 30 mm (L1.5): "...shall mount to a wall by two M3 countersunk screws exactly 30 mm apart, through countersunk holes that leave each screw ..."
+n22 = 1.5 mm (L1.5): "...screw head at or below the clip's surface and keep at least 1.5 mm of material around every hole on a flange 3 to 4 mm t..."
+n23 = 3 (L1.5): "...p at least 1.5 mm of material around every hole on a flange 3 to 4 mm thick...."
+n24 = 4 mm (L1.5): "...least 1.5 mm of material around every hole on a flange 3 to 4 mm thick...."
+n25 = 50 (L1.8): "...The clip shall be no larger than 50 x 30 x 20 mm...."
+n26 = 30 (L1.8): "...The clip shall be no larger than 50 x 30 x 20 mm...."
+n27 = 20 mm (L1.8): "...The clip shall be no larger than 50 x 30 x 20 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n27",
+  "max_y": "n26",
+  "max_z": "n25",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "none"
+}

@@ -1,0 +1,32 @@
+{
+ "id": "V2_s1",
+ "judge": 2,
+ "meets": true,
+ "class": "CORRECT",
+ "score": 1.0,
+ "defects": [],
+ "summary": "All gates (G0-G5) and every applicable non-physical L3 pass on independent re-measurement. 103.17 x 58.17 x 24.70 (limit 110x65x35); opening 10.8 x 7.8 centred (y22.5,z4.9) in -X wall, plug d 0.400, 0.4/side; 3 x D8.81 in the -Y wall at x=24/45/66, y0, z2.5, plug d 0.405 each, 0.405/side; axis spacing 21.0; ligament between openings 12.18; no +X opening.",
+ "observations": [
+  "Jack bodies 2 and 3 (x 21-27, 42-48, y 0-12) touch the Pico PCB long edge at y=12.0 over their full 6 mm width: 0.0 mm clearance between parts, intersection volume 0 so R7 passes, and the jack body to header spacer gap is 0.36 mm. Layout is tight; not an L3 failure.",
+  "The catalogue plug shaft (13 mm inserted) overshoots the 12 mm jack body by 1 mm and so would touch the Pico PCB edge (extra 6.4 mm3 for jacks at x=24 and x=45); catalogue artefact, not a graded check.",
+  "Jacks are on the -Y side, mirror of the +Y in the variant delta; grading normalises mirrors."
+ ],
+ "measured": {
+  "envelope": "103.17 x 58.17 x 24.70 (limit 110x65x35)",
+  "ports": "USB mouth (2.96,22.5,4.9) axis -X; jack mouths (24/45/66,0.0,2.5) axis -Y (mirror of +Y, normalised)",
+  "usb": "opening 10.8 x 7.8 centred (y22.5,z4.9) in -X wall, plug d 0.400, 0.4/side",
+  "jacks": "3 x D8.81 in the -Y wall at x=24/45/66, y0, z2.5, plug d 0.405 each, 0.405/side; axis spacing 21.0; ligament between openings 12.18; no +X opening",
+  "inner_length": "inner X -1.1..91.1 = 92.2",
+  "board_and_parts": "board clearance 1.100; Pico+hdr inside 4.295; jacks 1.208",
+  "standoffs": "standoffs (2.5,2.5),(87.5,2.5),(2.5,42.5),(87.5,42.5) pitch 85x40; OD 5.10; pilot D1.70 depth 5.1 coaxial 0.0; tops z -1.6 (spread 0); standoff height above floor top 4.1; floor top z -5.7, floor 2.4",
+  "walls_floor_lid": "walls 2.4 (range 0) on all four sides, floor 2.4, lid plate 2.4",
+  "lid": "lip 0.25 per side all four sides, lip engagement 2.1, lip thickness 1.2, total lid height 4.5, lid outline == base outline (0.0 offset), 4 bosses OD 6.6 pilot D2.50 depth 6.1, lid holes D3.40 coaxial 0.0",
+  "keepouts": "top ko d=0.1, bottom ko d=0.1, hole columns d=0.1 each, driver columns d=0.6, install sweep d=0.949",
+  "gates": "shells base 1 / lid 1, manifold NoError, base^lid overlap 0 mm3; board clear d>=0.5 pass; usb/jack plug d>=0.3 pass; 4 standoffs with D1.70 pilots",
+  "openings": "through-openings only the listed USB and jack openings; lid holes and boss pilots are the only screw holes; 0 unlisted paths (slab scan of 4 walls, floor, lid plate)",
+  "printability": "overhang patches only USB opening ceiling (bridge 10.8 <= 15) and round jack-hole crowns (D8.81 <= 12): exempt; bed contact base 0.856 lid 0.85",
+  "stability": "5 deg tilt margin 27.98 mm; port tipping margins (N*mm) [39.3, 20.6, 20.6, 20.6]",
+  "self_report_agreement": "every clear_of/inside d in self_report.json within 0.01 mm of judge value (max diff 0.004 on hole columns)"
+ },
+ "note": "Judge 2, iteration 001. claude-context MCP failed to connect (server not available), so targeted grep/ls/cat fallback was used. No per-design requirements.md exists under generalize/designs/ for this id; graded against benchmarks/enclosure/requirements.md + rubric.md with variants.json grading_deltas. All numbers re-measured from base.stl/lid.stl with manifold3d/trimesh against references built independently from layout.json poses and catalogue part.json data."
+}

@@ -1,0 +1,162 @@
+{
+  "paraphrases": [
+    {
+      "id": "G09",
+      "tier": 4,
+      "title": "9V battery box with hinged lid and toggle",
+      "request": "Pocket box for a 9 V PP3 battery measuring 26.5 x 17.5 x 48.5 mm, snap terminals on one end. A mini toggle switch (MTS-102 class: 6.0 mm bushing, lever 12 mm above the panel, panel up to 4 mm thick) goes on top of the box in a hole 0.2 to 0.8 mm bigger than the bushing. A panel DC jack (PJ-002A class: 14 x 9 x 11 mm body, for a 5.5 x 2.1 mm barrel plug) goes on one end. Two parts, base and lid. The lid hinges on a 3 mm steel dowel pin, 24 mm long, and closes with a snap latch on the opposite long side (printed cantilever hook: free length at least 8 mm, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap, bending strain at most 2 percent). The lid opens to 100 degrees. The battery pocket is 0.2 to 0.5 mm bigger than the battery on each free face; the battery cannot rattle, and there is room for its snap clip at the terminal end. The DC plug (5.5 mm barrel, 11 mm dia handle) must fit through the end wall when the jack is used. Walls, floor and lid plate are 2 to 4 mm thick. FDM printed, no supports. Closed box at most 90 x 45 x 30 mm, switch lever excluded.",
+      "request_verbatim": "A pocket box for a 9V PP3 battery (26.5 x 17.5 x 48.5 mm) with a toggle switch on top and a panel DC jack on one end. The lid is hinged with a 3 mm steel pin and closes with a snap latch. The battery must be retained, and the DC plug body has to fit when the jack is used.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3 or the catalogue datasheets: switch = MTS-102 class (A4); jack = PJ-002A class and plug sizes (A5); pin length 24 mm (A6); wall band 2 to 4 mm and size limit 90 x 45 x 30 (A9, A10); FDM, no supports (A8); the 'top' of the box is the lid and the switch is mounted in it (FD2). Audit additions, all from requirements.md sections 3 and 4: pocket gap band 0.2 to 0.5 (L2.2.2), switch hole 0.2 to 0.8 over the 6.0 bushing (L2.4.1), latch limits (A11, L2.7.2), open angle 100 (A14).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Place the battery, toggle switch, DC jack and hinge pin from the parts catalogue and declare the layout: no collisions, battery along the box's long axis, jack facing one short end, switch on the lid's top face.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The 26.5 x 17.5 x 48.5 mm battery sits in a pocket with at least 0.2 mm clearance to every printed surface except where it rests on the floor, and at most 0.5 mm of gap on each long side and on top. Its snap-clip zone at the terminal end lies inside the closed box.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "Lid closed: the battery can move at most 1.0 mm in total across width and thickness, and along its length no more than its clip zone plus 1.5 mm. A printed stop sits at the end opposite the terminals.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The toggle switch passes through a hole in the lid plate (2 to 4 mm thick; hole 0.2 to 0.8 mm bigger than the bushing) and seats against the plate's underside. Its mounting nut and lever swing touch no printed surface, and its body and solder lugs stay clear of the box.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "Lid closed: a 5.5 x 2.1 mm DC plug with an 11 mm dia handle plugs fully into the jack via a single end wall opening and touches nothing of the box. The opening is at most 1.5 mm bigger than the plug on any side, and the jack is held in place.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "The lid hinges on a 3 mm steel dowel pin, 24 mm long, held captive in the hinge bores (press fit in one part, clearance fit in the other). The lid opens to 100 degrees with no part of the lid or switch hitting the base, battery or jack.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Latch the lid on the side opposite the hinge with a cantilever snap hook (free length at least 8 mm, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap, strain at most 2 percent). The lid is a flat plate with a locating lip that does not fuse to the base, leaving a seam of at most 0.5 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.8",
+          "text": "Closed box openings: only the switch hole, the jack opening, the hinge bores and the seam. Walls, floor and lid plate are 2 to 4 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "Base and lid are each one manifold body that prints on an FDM printer without supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "Closed box at most 90 x 45 x 30 mm, switch lever excluded, standing flat on a desk without tipping.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "Lid open: the battery, snap clip included, drops straight into the pocket and lifts straight out, touching neither the lid, the switch, the jack nor the base.",
+          "method": "test"
+        },
+        {
+          "id": "L1.12",
+          "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report. The report must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: a through hole for the toggle bushing, a stepped opening through the end wall for the plug, hinge bores, a pocket recess for the jack",
+        "a hinge: knuckles on two bodies with a shared axis, a catalogue pin placed in the bores, a swept-motion check of the lid about that axis",
+        "a snap latch: a cantilever hook with a catch, sized by an elastic strain limit",
+        "interior placement and retention features: a stop rib, a jack platform, a lid hold-down rib, all derived from catalogue datums and travel limits",
+        "parts catalogue: load part.json models (battery, toggle, jack, plug, dowel pin) and place them by datums",
+        "envelope generation: clip zone, lever swing, nut zone, plug sweep, battery install sweep, lid swing sweeps",
+        "interference checks against external solids: clear_of, inside, aperture finding, free-travel measurement, swept-rotation interference"
+      ]
+    },
+    {
+      "id": "G09",
+      "tier": 4,
+      "title": "9V battery box with hinged lid and toggle",
+      "request": "I want a small holder box for a 9 V PP3 battery (26.5 x 17.5 x 48.5 mm, with the snap terminals at one end). It's two printed pieces, a base and a lid, and both go on an FDM printer without supports. The box closed should be no bigger than 90 x 45 x 30 mm, not counting the switch lever, and the walls, floor and lid plate should be 2 to 4 mm thick. On the top sits a mini toggle switch of the MTS-102 kind (6.0 mm bushing, a lever 12 mm above the panel, panel up to 4 mm thick), poking through a hole that is 0.2 to 0.8 mm larger than the bushing. On one end I want a panel DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug). The lid turns on a 3 mm steel dowel pin that is 24 mm long, opens up to 100 degrees, and shuts with a snap latch on the other long side: a printed cantilever hook whose free length is at least 8 mm, thickness 1.2 to 2.5 mm, catch overlap 0.4 to 1.2 mm, with bending strain no higher than 2 percent. The battery lies in a pocket that is 0.2 to 0.5 mm oversize on each free face, mustn't rattle, and there has to be room for its snap clip at the terminal end. The DC plug (5.5 mm barrel, 11 mm dia handle) has to be able to go through the end wall when the jack is in use.",
+      "request_verbatim": "A pocket box for a 9V PP3 battery (26.5 x 17.5 x 48.5 mm) with a toggle switch on top and a panel DC jack on one end. The lid is hinged with a 3 mm steel pin and closes with a snap latch. The battery must be retained, and the DC plug body has to fit when the jack is used.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3 or the catalogue datasheets: switch = MTS-102 class (A4); jack = PJ-002A class and plug sizes (A5); pin length 24 mm (A6); wall band 2 to 4 mm and size limit 90 x 45 x 30 (A9, A10); FDM, no supports (A8); the 'top' of the box is the lid and the switch is mounted in it (FD2). Audit additions, all from requirements.md sections 3 and 4: pocket gap band 0.2 to 0.5 (L2.2.2), switch hole 0.2 to 0.8 over the 6.0 bushing (L2.4.1), latch limits (A11, L2.7.2), open angle 100 (A14).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "From the parts catalogue place the battery, the toggle switch, the DC jack and the hinge pin, declare the layout, and keep everything from colliding. The battery lies along the long axis of the box, the jack faces one short end, and the switch is on the top face of the lid.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The battery (26.5 x 17.5 x 48.5 mm) goes in a pocket that keeps at least 0.2 mm from all printed surfaces, other than where it rests on its floor, with a gap of no more than 0.5 mm on its two long sides and its top. The snap-clip zone at the terminal end must be inside the closed box.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "When the lid is shut the battery is held so that it shifts at most 1.0 mm in total across its width and thickness, and lengthwise no further than its clip zone plus 1.5 mm. There is a printed stop at the end away from the terminals.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "Pass the toggle switch through a hole in the lid plate (2 to 4 mm thick, hole 0.2 to 0.8 mm larger than the bushing) with the switch seated against the underside of the plate. Neither the mounting nut nor the swing of the lever may hit any printed surface, and the switch body and solder lugs must stay clear of the box.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "With the lid shut, a 5.5 x 2.1 mm DC plug with an 11 mm dia handle must slide fully into the jack through a single opening in the end wall and never touch the box. The opening may exceed the plug by at most 1.5 mm on any side, and the jack must be held in place.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "The lid pivots on a 3 mm steel dowel pin, 24 mm long, which stays captive in the hinge bores (a press fit in one part and a clearance fit in the other). The lid has to swing to 100 degrees without any part of the lid or the switch hitting the base, the battery or the jack.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Keep the lid shut with a snap latch on the side across from the hinge, a cantilever hook with at least 8 mm free length, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap and strain of at most 2 percent. The lid is a flat plate with a locating lip that doesn't fuse to the base and leaves a seam of no more than 0.5 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.8",
+          "text": "The shut box has no openings except the switch hole, the jack opening, the hinge bores and the seam, and its walls, floor and lid plate measure 2 to 4 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The base and the lid must each be a single manifold body, printable on an FDM printer with no supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The shut box has to fit within 90 x 45 x 30 mm (leaving out the switch lever) and sit flat on a desk without tipping.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "With the lid swung open, the battery and its snap clip should drop straight down into the pocket and lift straight back out, without touching the lid, the switch, the jack or the base.",
+          "method": "test"
+        },
+        {
+          "id": "L1.12",
+          "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, where the report agrees with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: a through hole for the toggle bushing, a stepped opening through the end wall for the plug, hinge bores, a pocket recess for the jack",
+        "a hinge: knuckles on two bodies with a shared axis, a catalogue pin placed in the bores, a swept-motion check of the lid about that axis",
+        "a snap latch: a cantilever hook with a catch, sized by an elastic strain limit",
+        "interior placement and retention features: a stop rib, a jack platform, a lid hold-down rib, all derived from catalogue datums and travel limits",
+        "parts catalogue: load part.json models (battery, toggle, jack, plug, dowel pin) and place them by datums",
+        "envelope generation: clip zone, lever swing, nut zone, plug sweep, battery install sweep, lid swing sweeps",
+        "interference checks against external solids: clear_of, inside, aperture finding, free-travel measurement, swept-rotation interference"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+ "id": "gear_spur_generic",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "spur gear",
+  "involute spur gear",
+  "gear",
+  "module spur gear",
+  "pinion",
+  "spur pinion",
+  "idler gear",
+  "gear pair"
+ ],
+ "kind": "generic",
+ "source": "Involute spur gear per ISO 54 (module series) and ISO 53 (standard rack: addendum 1.0 m, dedendum 1.25 m, pressure angle 20 degrees): pitch diameter = m*z, tip diameter = m*(z+2), root diameter = m*(z-2.5). Module, tooth count and face width come from the request. The tooth profile is not modelled; the body is the tip-diameter blank, which is the envelope that a housing must clear. Mesh centre distance of a pair is (m*z1 + m*z2)/2 plus any backlash allowance given in the request (not computed here). Bore and hub are not modelled; add via the request. Profile shift 0 assumed (uncertainty: none for z >= 17).",
+ "frame": "gear: axis along Z, origin at the centre of the start face, face toward +Z",
+ "params": {
+  "module": {
+   "default": null,
+   "from_request": true,
+   "source": "request text (ISO 54 module)"
+  },
+  "teeth": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  },
+  "face_width": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  },
+  "pressure_angle": {
+   "default": 20.0,
+   "source": "ISO 53 standard pressure angle (degrees); override only from the request"
+  },
+  "addendum_coeff": {
+   "default": 1.0,
+   "source": "ISO 53 standard rack: addendum = 1.0 m"
+  },
+  "dedendum_coeff": {
+   "default": 1.25,
+   "source": "ISO 53 standard rack: dedendum = 1.25 m"
+  }
+ },
+ "gate_params": {
+  "module": 1.0,
+  "teeth": 20,
+  "face_width": 6.0,
+  "source": "sample size used only by the load-time validation gate; never a design value"
+ },
+ "datasheet_size": [
+  "module * (teeth + 2 * addendum_coeff)",
+  "module * (teeth + 2 * addendum_coeff)",
+  "face_width"
+ ],
+ "size_tolerance": 0.05,
+ "geometry": [
+  {
+   "id": "blank",
+   "primitive": "cylinder",
+   "d": "module * (teeth + 2 * addendum_coeff)",
+   "h": "face_width",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "rotation_envelope",
+   "primitive": "cylinder",
+   "d": "module * (teeth + 2 * addendum_coeff)",
+   "h": "face_width",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "module * teeth",
+   "keepout_diameter": "module * (teeth + 2 * addendum_coeff)"
+  },
+  "PITCH_CIRCLE": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    "face_width / 2"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "module * teeth"
+  },
+  "TIP_CIRCLE": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    "face_width / 2"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "module * (teeth + 2 * addendum_coeff)"
+  },
+  "ROOT_CIRCLE": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    "face_width / 2"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "module * (teeth - 2 * dedendum_coeff)"
+  },
+  "FACE_START": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "FACE_END": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "face_width"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  }
+ },
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "pitch diameter below the tip diameter",
+   "expr": "TIP_CIRCLE.diameter - PITCH_CIRCLE.diameter",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "root diameter below the pitch diameter",
+   "expr": "PITCH_CIRCLE.diameter - ROOT_CIRCLE.diameter",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "no undercut tooth count",
+   "expr": "teeth",
+   "op": "ge",
+   "value": 17,
+   "tol": 0
+  },
+  {
+   "name": "face width positive",
+   "expr": "FACE_END.z - FACE_START.z",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

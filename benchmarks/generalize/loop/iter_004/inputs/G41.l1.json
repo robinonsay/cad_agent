@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place two 20-pin male headers (rows 17.78 mm apart), the Pico 2 on them and the 70 x 50 mm perfboard, from the parts catalogue, with the headers vertical and the Pico lying along X, without parts colliding, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The jig shall have 40 pin guide holes of 1.0 mm diameter, two rows of 20 at 2.54 mm pitch and 17.78 mm apart, each (0.95 to 1.10 mm across, at least 6.5 mm deep) coaxial with a header pin.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The headers shall stand vertical, held by the guide holes with their plastic spacers resting on a flat seat (flat within 0.1 mm, covering at least 90% of each spacer footprint), so that a header cannot lean more than 2 degrees.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The Pico shall rest on a shelf whose top is exactly the header spacer height, 2.5 mm, above the seat plane, so that it sits at the right standoff height; the shelf shall be at least 200 mm\u00b2, 0.3 mm from the spacers and 0.5 mm from every pin.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "The Pico shall be located sideways by walls round its edges with 0.15 to 0.5 mm clearance per side, topping out 0.4 to 0.9 mm above the Pico's underside, so it stays square to the headers, and shall drop on and lift off straight up without touching the jig except at its seat.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "Nothing in the jig shall stand above the Pico's top surface anywhere within 8 mm of the Pico, so an iron can reach every pin from above.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "The jig shall have a pocket for the 70 x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side (0.2 to 0.4) and 2.5 to 6.0 mm deep, with a flat floor the board lies on and at least two finger notches, 10 mm wide or more, on opposite walls so the board can be lifted out.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The Pico zone and the perfboard cradle shall be separate zones of one jig, at least 3 mm of material apart, with at least 2 mm of material round the cradle.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The jig shall be one manifold body that prints on an FDM printer without supports, in the print orientation the design states (no overhang steeper than 45\u00b0 from vertical, no bridge over 15 mm).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The jig shall be no larger than 100 x 90 x 20 mm and shall stand flat on the bench.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.11",
+    "text": "The standoff height built into the jig shall equal the header spacer height in the catalogue, so a change of header is a change of one number.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "The design shall be delivered as a jig STL, the OpenSCAD source, the declared layout, the print orientation and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

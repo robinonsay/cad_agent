@@ -1,0 +1,49 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Numbers found in the text:
+n1 = 80 (request): "...An enclosure for an 80 x 40 mm perfboard with a mounting hole in each corner. A Ra..."
+n2 = 40 mm (request): "...An enclosure for an 80 x 40 mm perfboard with a mounting hole in each corner. A Raspberry..."
+n3 = 2 (request): "...rd with a mounting hole in each corner. A Raspberry Pi Pico 2 is plugged into female header sockets, so its underside si..."
+n4 = 8.5 mm (request): "...s plugged into female header sockets, so its underside sits 8.5 mm above the board, with its micro-USB port exposed thro..."
+n5 = 3.5 mm (request): "...SB port exposed through one short end of the enclosure. One 3.5 mm jack is exposed through the other short end, and a 10..."
+n6 = 10 mm (request): "...e 3.5 mm jack is exposed through the other short end, and a 10 mm diameter, 20 mm tall capacitor stands upright on the b..."
+n7 = 20 mm (request): "...exposed through the other short end, and a 10 mm diameter, 20 mm tall capacitor stands upright on the board. Leave at le..."
+n8 = 3 mm (request): "...tall capacitor stands upright on the board. Leave at least 3 mm of space above the tallest part. The enclosure is a base..."
+n9 = 2 (L1.1): "...The design shall place the Pico 2 on 8.5 mm female header sockets, one 3.5 mm jack and a 10 m..."
+n10 = 8.5 mm (L1.1): "...The design shall place the Pico 2 on 8.5 mm female header sockets, one 3.5 mm jack and a 10 mm diameter..."
+n11 = 3.5 mm (L1.1): "...shall place the Pico 2 on 8.5 mm female header sockets, one 3.5 mm jack and a 10 mm diameter, 20 mm tall upright capacit..."
+n12 = 10 mm (L1.1): "...co 2 on 8.5 mm female header sockets, one 3.5 mm jack and a 10 mm diameter, 20 mm tall upright capacitor on the 80 x 40 ..."
+n13 = 20 mm (L1.1): "...emale header sockets, one 3.5 mm jack and a 10 mm diameter, 20 mm tall upright capacitor on the 80 x 40 mm board, with t..."
+n14 = 80 (L1.1): "...k and a 10 mm diameter, 20 mm tall upright capacitor on the 80 x 40 mm board, with the Pico's USB port facing one short ..."
+n15 = 40 mm (L1.1): "...a 10 mm diameter, 20 mm tall upright capacitor on the 80 x 40 mm board, with the Pico's USB port facing one short (40 mm..."
+n16 = 40 mm (L1.1): "...0 x 40 mm board, with the Pico's USB port facing one short (40 mm) end and the jack facing the other short end, without ..."
+n17 = 80 (L1.2): "...The 80 x 40 x 1.6 mm board shall fit inside the closed enclosure w..."
+n18 = 40 (L1.2): "...The 80 x 40 x 1.6 mm board shall fit inside the closed enclosure with a..."
+n19 = 1.6 mm (L1.2): "...The 80 x 40 x 1.6 mm board shall fit inside the closed enclosure with at least 0..."
+n20 = 0.5 mm (L1.2): "...m board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where ..."
+n21 = 23 mm (L1.4): "...the lid closed, no part of the enclosure shall come within 23 mm above the board's top surface or 4 mm below its undersi..."
+n22 = 4 mm (L1.4): "...re shall come within 23 mm above the board's top surface or 4 mm below its underside, except the standoffs under the hol..."
+n23 = 1.5 mm (L1.5): "...ching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n24 = 3.5 mm (L1.6): "...With the lid closed, a 3.5 mm plug shall plug fully into the jack through one opening in..."
+n25 = 1.5 mm (L1.6): "...ching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n26 = 2 (L1.8): "...ning and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n27 = 4 mm (L1.8): "...and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n28 = 100 (L1.10): "...The closed enclosure shall be no larger than 100 x 60 x 45 mm, longest along the board's 80 mm side, and sha..."
+n29 = 60 (L1.10): "...The closed enclosure shall be no larger than 100 x 60 x 45 mm, longest along the board's 80 mm side, and shall st..."
+n30 = 45 mm (L1.10): "...The closed enclosure shall be no larger than 100 x 60 x 45 mm, longest along the board's 80 mm side, and shall stand fla..."
+n31 = 80 mm (L1.10): "...no larger than 100 x 60 x 45 mm, longest along the board's 80 mm side, and shall stand flat on a desk without tipping...."
+
+The request includes a capacitor. For each of its sizes below give the id of the number that states it, or "none".
+- diameter: request text
+- height: request text
+
+=== RESPONSE ===
+{
+  "diameter": "n6",
+  "height": "n7"
+}

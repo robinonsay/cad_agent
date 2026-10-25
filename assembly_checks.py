@@ -279,12 +279,19 @@ def aperture_count(bodies, slab, n: int, tol: Tol, check_id: str = "aperture_cou
 
 
 def aperture_oversize(aperture, normal_axis: int, env_w: float, env_h: float, max_excess: float, tol: Tol,
-                      check_id: str = "aperture_oversize") -> cc.CheckResult:
-    """Per-side excess of an aperture's cross-section bbox over the plug envelope's cross-section."""
+                      check_id: str = "aperture_oversize", center: Optional[Sequence[float]] = None) -> cc.CheckResult:
+    """Per-side excess of an aperture's cross-section bbox over the plug envelope's cross-section. With `center` (the
+    envelope section's centre, (along the wall, Z); generalize delta 003 C4: a roofed opening is not symmetric) each of
+    the four sides is measured from the envelope's own edge; without it the excess is half the size difference."""
     lo, hi = np.asarray(aperture.bounding_box()[:3]), np.asarray(aperture.bounding_box()[3:])
     across = 1 - normal_axis if normal_axis < 2 else 0
     w, h = float(hi[across] - lo[across]), float(hi[2] - lo[2])
-    excess = max((w - env_w) / 2, (h - env_h) / 2)
+    if center is None:
+        excess = max((w - env_w) / 2, (h - env_h) / 2)
+    else:
+        ct, cz = float(center[0]), float(center[1])
+        excess = max(ct - env_w / 2 - float(lo[across]), float(hi[across]) - ct - env_w / 2,
+                     cz - env_h / 2 - float(lo[2]), float(hi[2]) - cz - env_h / 2)
     passed = excess <= max_excess + tol.measure
     return _result(check_id, "aperture_oversize", passed, (max_excess - excess + tol.measure) / tol.scale, "mm",
                    {"opening": [round(w, 4), round(h, 4)], "envelope": [round(env_w, 4), round(env_h, 4)],
@@ -478,6 +485,55 @@ def text_coverage(check_id: str, uncovered: Sequence[dict], covered: Sequence[di
                    dict(evidence, uncovered=uncovered, covered=covered, detail=detail))
 
 
+# How each face relation reads two walls ("-X", "+Y", ...; generalize delta 002 C0). The relation words that gate a pair
+# live in design_rules.json face_relations; a relation without a row here is never offered to the controller.
+FACE_RELATIONS = {
+    "same": lambda a, b: a == b,                                  # one wall
+    "opposite": lambda a, b: a[1:] == b[1:] and a[:1] != b[:1],   # one axis, opposite signs
+}
+
+
+def face_relation(check_id: str, relation: str, walls: Sequence[str], members: Sequence[str],
+                  evidence: Mapping[str, Any]) -> cc.CheckResult:
+    """A stated face relation between two exposed connectors (generalize delta 002 C0), from the walls their axes face in
+    the layout: value 0 when it holds, 1 when it is broken; limit 0, margin -value. A graph-data check: the same on the
+    solids and on the STLs. No `conflict` key: it is a controllable failure, so prescore removes the arrangements that
+    break it."""
+    if relation not in FACE_RELATIONS:
+        raise ValueError(f"{check_id}: no rule for face relation {relation!r}")
+    a, b = walls
+    holds = bool(FACE_RELATIONS[relation](a, b))
+    value = 0.0 if holds else 1.0
+    quotes = evidence.get("quotes") or []
+    q = f"; {quotes[0]['source']}: \"{quotes[0]['quote']}\"" if quotes else ""
+    detail = (f"{members[0]} faces {a}, {members[1]} faces {b}: '{relation}' "
+              f"{'holds' if holds else 'is broken'} (votes {evidence.get('votes', {})}{q})")
+    return _result(check_id, "face_relation", holds, -value, "count",
+                   dict(evidence, relation=relation, walls=list(walls), members=list(members), value=value, limit=0.0,
+                        detail=detail))
+
+
+def closure_evidence(check_id: str, current: str, expected: Sequence[str], evidence: Mapping[str, Any]) -> cc.CheckResult:
+    """The lid closure a text names (migration delta R01, owner decision D1: was the rule rule:text_evidence[closure]):
+    value 0 when the derived closure is one of the closures a lid sentence names, 1 otherwise; margin -value. A
+    graph-data check (the same on the solids and the STLs) with no `conflict` key: a controllable failure the closed-loop
+    controller corrects with set_closure."""
+    holds = current in set(expected)
+    quotes = evidence.get("quotes") or []
+    q = f"; {quotes[0]['source']}: \"{quotes[0]['quote']}\"" if quotes else ""
+    detail = f"closure {current}; the text names {' or '.join(expected)} ({'holds' if holds else 'broken'}{q})"
+    return _result(check_id, "closure_evidence", holds, 0.0 if holds else -1.0, "count",
+                   dict(evidence, current=current, expected=list(expected), value=0.0 if holds else 1.0, limit=0.0,
+                        detail=detail))
+
+
+def content_placed(check_id: str, item: str, part: str, reason: str) -> cc.CheckResult:
+    """A content item the design does not place (generalize delta 001 C1: a non-carrier primary carries no other
+    contents until GM2b relations exist). Always fails, margin -1: the package says what it does not hold."""
+    return _result(check_id, "content_placed", False, -1.0, "count",
+                   {"item": item, "part": part, "reason": reason, "detail": f"{item} ({part}) is not placed: {reason}"})
+
+
 # ---------------------------------------------------------------------------
 # Mesh measurements used by `seated` (work on any manifold: graph-built or loaded from STL)
 # ---------------------------------------------------------------------------
@@ -559,7 +615,33 @@ def _jsonable(v):
     return v
 
 
-MINIMUM_TYPES = ("pilot_engagement", "boss_od", "lip_engagement")
+MINIMUM_TYPES = ("pilot_engagement", "boss_od", "lip_engagement", "pilot_bottoming")   # value >= limit
+# Generalize delta 003: graph-data checks on resolved numbers -> how they compare. at_most / at_least read value + limit;
+# band reads value + lo / hi, where a missing end (None) is not checked (a band the text states at one end only). An
+# `evidence` dict in the args (a typed conflict) is merged into the result.
+VALUE_CHECKS = {"bridge": "at_most", "lid_flush": "at_most", "boss_top_plane": "at_most", "vent_zone": "at_most",
+                "rebate_upstand": "at_least", "vent_area": "at_least", "lid_fit": "band", "vent_count": "band",
+                "vent_width": "band", "vent_length": "band", "vent_pitch": "band"}
+
+
+def value_check(check_id: str, typ: str, a: Mapping[str, Any], tol: Tol) -> cc.CheckResult:
+    """One VALUE_CHECKS check (generalize delta 003)."""
+    kind, detail = VALUE_CHECKS[typ], a.get("detail", "")
+    if kind == "at_most":
+        r = value_at_most(check_id, typ, a["value"], a["limit"], tol, detail)
+    elif kind == "at_least":
+        r = value_at_least(check_id, typ, a["value"], a["limit"], tol, detail)
+    elif a.get("lo") is None:
+        r = value_at_most(check_id, typ, a["value"], a["hi"], tol, detail)
+    elif a.get("hi") is None:
+        r = value_at_least(check_id, typ, a["value"], a["lo"], tol, detail)
+    else:
+        r = value_in_band(check_id, typ, a["value"], a["lo"], a["hi"], tol, detail)
+    if a.get("evidence"):
+        r.evidence.update({k: v for k, v in a["evidence"].items() if k != "detail"})
+        if r.evidence.get("conflict") and not r.passed:
+            r.evidence["detail"] = f"{detail}; conflict: {r.evidence['conflict']}"
+    return r
 
 
 def run_plan(plan: Plan, bodies: Mapping[str, Any]) -> List[cc.CheckResult]:
@@ -596,7 +678,8 @@ def run_plan(plan: Plan, bodies: Mapping[str, Any]) -> List[cc.CheckResult]:
                 out.append(_result(cid, "aperture_oversize", False, -1.0, "mm",
                                    {"detail": f"no opening on {a['wall']} at the port axis {a['point']}"}))
             else:
-                out.append(aperture_oversize(hit, a["normal_axis"], a["env_w"], a["env_h"], a["max"], plan.tol, cid))
+                out.append(aperture_oversize(hit, a["normal_axis"], a["env_w"], a["env_h"], a["max"], plan.tol, cid,
+                                             a.get("center")))
         elif typ == "seated":
             base = bodies[a["body"]]
             tops = [standoff_top(base, h, a["search_d"], a["z_lo"], a["z_hi"], plan.seg) for h in a["holes"]]
@@ -616,6 +699,18 @@ def run_plan(plan: Plan, bodies: Mapping[str, Any]) -> List[cc.CheckResult]:
             out.append(grid_conformance(cid, a["value"], a["limit"], a["no_pin_data"], plan.tol, a["evidence"]))
         elif typ == "coverage":
             out.append(text_coverage(cid, a["uncovered"], a["covered"], a["evidence"]))
+        elif typ == "content_placed":
+            out.append(content_placed(cid, a["item"], a["part"], a["reason"]))
+        elif typ == "face_relation":
+            out.append(face_relation(cid, a["relation"], a["walls"], a["members"], a["evidence"]))
+        elif typ == "closure_evidence":
+            out.append(closure_evidence(cid, a["current"], a["expected"], a.get("evidence") or {}))
+        elif typ in VALUE_CHECKS:
+            out.append(value_check(cid, typ, a, plan.tol))
+        elif typ == "vent_placed":
+            out.append(_result(cid, "vent_placed", False, -1.0, "count", dict(
+                a.get("evidence") or {}, reason=a.get("reason", ""),
+                detail=f"no vent slot placed: {(a.get('evidence') or {}).get('conflict', a.get('reason', ''))}")))
         elif typ == "ligament":
             out.append(ligament(bodies[a["body"]], vols[a["cut"]], a["axis"], a["plane"], a["min"], plan.tol, cid,
                                 a.get("floor_z"), {c: vols[c] for c in a.get("neighbours", [])}, a["cut"]))

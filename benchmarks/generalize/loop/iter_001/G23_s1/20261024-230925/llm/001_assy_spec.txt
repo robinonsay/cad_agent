@@ -1,0 +1,104 @@
+MODEL: ornith-1.5:9b T=0.3 seed=1000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 25 (request): "...A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm hol..."
+n2 = 24 mm (request): "...A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm holes on a..."
+n3 = 9 mm (request): "...A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm holes on a 21 x ..."
+n4 = 2.2 mm (request): "...board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm holes on a 21 x 12.5 mm pattern and a ribbon connector..."
+n5 = 21 (request): "..., 9 mm tall including the lens, with four 2.2 mm holes on a 21 x 12.5 mm pattern and a ribbon connector on the back. The..."
+n6 = 12.5 mm (request): "...m tall including the lens, with four 2.2 mm holes on a 21 x 12.5 mm pattern and a ribbon connector on the back. The boar..."
+n7 = 0.6 (request): "...s in a pocket and is held without screws by lips that reach 0.6 to 1.15 mm over its front face. The 8 mm lens looks out ..."
+n8 = 1.15 mm (request): "...pocket and is held without screws by lips that reach 0.6 to 1.15 mm over its front face. The 8 mm lens looks out through..."
+n9 = 8 mm (request): "...by lips that reach 0.6 to 1.15 mm over its front face. The 8 mm lens looks out through a window that is clear of any wal..."
+n10 = 0.5 mm (request): "...through a window that is clear of any wall (no wall within 0.5 mm of the lens barrel, and nothing in the camera's 62 x 4..."
+n11 = 62 (request): "...thin 0.5 mm of the lens barrel, and nothing in the camera's 62 x 49 degree field of view; the board's orientation to the..."
+n12 = 49 (request): "...0.5 mm of the lens barrel, and nothing in the camera's 62 x 49 degree field of view; the board's orientation to the sens..."
+n13 = 62 (request): "...d's orientation to the sensor axes is not known, so use the 62 degree angle on both axes). The 16 mm wide ribbon cable l..."
+n14 = 16 mm (request): "...is not known, so use the 62 degree angle on both axes). The 16 mm wide ribbon cable leaves through the back of the holde..."
+n15 = 17 mm (request): "...cable leaves through the back of the holder through a slot 17 mm wide and no more than 10 mm long. The base of the holde..."
+n16 = 10 mm (request): "...ck of the holder through a slot 17 mm wide and no more than 10 mm long. The base of the holder has a hex pocket for a 1/..."
+n17 = 1 (request): "...n 10 mm long. The base of the holder has a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick, held in a he..."
+n18 = 4 (request): "...10 mm long. The base of the holder has a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick, held in a hex ..."
+n19 = 11.1 mm (request): ".... The base of the holder has a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick, held in a hex pocket 0.1..."
+n20 = 5.6 mm (request): "...er has a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick, held in a hex pocket 0.1 to 0.3 mm bigger than..."
+n21 = 0.1 (request): "...t (11.1 mm across flats, 5.6 mm thick, held in a hex pocket 0.1 to 0.3 mm bigger than the nut on each flat, with a stud ..."
+n22 = 0.3 mm (request): "...mm across flats, 5.6 mm thick, held in a hex pocket 0.1 to 0.3 mm bigger than the nut on each flat, with a stud hole 6.4..."
+n23 = 6.4 (request): "...o 0.3 mm bigger than the nut on each flat, with a stud hole 6.4 to 6.8 mm in diameter and a seat 2.0 to 3.65 mm thick) s..."
+n24 = 6.8 mm (request): "...m bigger than the nut on each flat, with a stud hole 6.4 to 6.8 mm in diameter and a seat 2.0 to 3.65 mm thick) so it sc..."
+n25 = 2.0 (request): "...flat, with a stud hole 6.4 to 6.8 mm in diameter and a seat 2.0 to 3.65 mm thick) so it screws onto a tripod stud 10 mm ..."
+n26 = 3.65 mm (request): "...ith a stud hole 6.4 to 6.8 mm in diameter and a seat 2.0 to 3.65 mm thick) so it screws onto a tripod stud 10 mm long. P..."
+n27 = 10 mm (request): "...seat 2.0 to 3.65 mm thick) so it screws onto a tripod stud 10 mm long. Print it in one piece on an FDM printer without s..."
+n28 = 45 (request): "...upports, in the orientation you state. It is no larger than 45 x 45 x 30 mm...."
+n29 = 45 (request): "...ts, in the orientation you state. It is no larger than 45 x 45 x 30 mm...."
+n30 = 30 mm (request): "...n the orientation you state. It is no larger than 45 x 45 x 30 mm...."
+n31 = 25 (L1.2): "...The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm cl..."
+n32 = 24 mm (L1.2): "...The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm clearance..."
+n33 = 0.15 (L1.2): "...The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm clearance on each edge, resting on printed suppo..."
+n34 = 0.35 mm (L1.2): "...The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm clearance on each edge, resting on printed supports unde..."
+n35 = 0.8 mm (L1.3): "...be held in the pocket without screws: it shall move at most 0.8 mm sideways and 1.0 mm out of the pocket, with at least ..."
+n36 = 1.0 mm (L1.3): "...t without screws: it shall move at most 0.8 mm sideways and 1.0 mm out of the pocket, with at least two retaining lips o..."
+n37 = 0.6 (L1.3): "...g lips on opposite sides over its front face, each reaching 0.6 to 1.15 mm over the board...."
+n38 = 1.15 mm (L1.3): "...on opposite sides over its front face, each reaching 0.6 to 1.15 mm over the board...."
+n39 = 8 mm (L1.4): "...The 8 mm lens window shall be clear: no printed surface within 0.5 m..."
+n40 = 0.5 mm (L1.4): "...8 mm lens window shall be clear: no printed surface within 0.5 mm of the lens barrel, and nothing inside the lens's keep..."
+n41 = 62 (L1.4): "...side the lens's keep-out cylinder or its field of view (the 62 degree angle taken on both axes, the sensor orientation b..."
+n42 = 16 mm (L1.5): "...The 16 mm wide ribbon cable shall leave through the back of the holde..."
+n43 = 17 mm (L1.5): "...e shall leave through the back of the holder through a slot 17 mm wide and at most 10 mm long, with its straight path of..."
+n44 = 10 mm (L1.5): "...he back of the holder through a slot 17 mm wide and at most 10 mm long, with its straight path of 20 mm behind the conne..."
+n45 = 20 mm (L1.5): "...7 mm wide and at most 10 mm long, with its straight path of 20 mm behind the connector clear of the holder by at least 0..."
+n46 = 0.4 mm (L1.5): "...20 mm behind the connector clear of the holder by at least 0.4 mm...."
+n47 = 1 (L1.6): "...The base shall hold a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex..."
+n48 = 4 (L1.6): "...The base shall hold a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex po..."
+n49 = 11.1 mm (L1.6): "...The base shall hold a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex pocket that stops it t..."
+n50 = 5.6 mm (L1.6): "...The base shall hold a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex pocket that stops it turning (0.1 to ..."
+n51 = 0.1 (L1.6): "...flats, 5.6 mm thick) in a hex pocket that stops it turning (0.1 to 0.3 mm over the nut on each flat), with a 6.4 to 6.8 ..."
+n52 = 0.3 mm (L1.6): "...5.6 mm thick) in a hex pocket that stops it turning (0.1 to 0.3 mm over the nut on each flat), with a 6.4 to 6.8 mm stud..."
+n53 = 6.4 (L1.6): "...t turning (0.1 to 0.3 mm over the nut on each flat), with a 6.4 to 6.8 mm stud hole, a seat 2.0 to 3.65 mm thick and roo..."
+n54 = 6.8 mm (L1.6): "...ng (0.1 to 0.3 mm over the nut on each flat), with a 6.4 to 6.8 mm stud hole, a seat 2.0 to 3.65 mm thick and room for a..."
+n55 = 2.0 (L1.6): "...e nut on each flat), with a 6.4 to 6.8 mm stud hole, a seat 2.0 to 3.65 mm thick and room for a 10 mm stud to pass throu..."
+n56 = 3.65 mm (L1.6): "...n each flat), with a 6.4 to 6.8 mm stud hole, a seat 2.0 to 3.65 mm thick and room for a 10 mm stud to pass through the ..."
+n57 = 10 mm (L1.6): "....8 mm stud hole, a seat 2.0 to 3.65 mm thick and room for a 10 mm stud to pass through the nut, so the holder screws ont..."
+n58 = 20 mm (L1.7): "...entred across the board, entering a flat base face at least 20 mm across...."
+n59 = 2 (L1.9): "...nter without supports in its stated orientation, with walls 2 to 4 mm thick...."
+n60 = 4 mm (L1.9): "...without supports in its stated orientation, with walls 2 to 4 mm thick...."
+n61 = 45 (L1.10): "...The holder shall be no larger than 45 x 45 x 30 mm...."
+n62 = 45 (L1.10): "...The holder shall be no larger than 45 x 45 x 30 mm...."
+n63 = 30 mm (L1.10): "...The holder shall be no larger than 45 x 45 x 30 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "n33",
+  "board_depth": "n2",
+  "board_width": "n1",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n28",
+  "max_y": "n29",
+  "max_z": "n30",
+  "opening_oversize_max": "n21",
+  "wall_max": "n60",
+  "wall_min": "n59"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "card_microsd",
+  "schema": 1,
+  "units": "mm",
+  "names": ["microsd card", "micro sd card", "micro-sd card", "tf card"],
+  "kind": "plug",
+  "source": "generalize delta 002 D1. Card: SD Association microSD physical specification, 11.0 x 15.0 x 1.0 mm. Seated protrusion 2.5 mm beyond the slot mouth: the rpi_zero2w catalogue assumption (sd_card_protrusion, push-push slot). ASSUMED, uncertainty medium: the access zone outside the seated card (the 'overmold' role of a plug: card plus fingertip) is 12.0 wide x 5.4 high with its centre 1.0 above the card axis, from the seat outward 8.5 mm (protrusion + a 6.0 mm fingertip); these are the numbers of the rpi_zero2w sd_card_zone keep-out (sd_width x sd_height + 4.0, from pcb_thickness - 1.0), the zone a microSD opening must clear. The name is the card, never the slot: a slot is the receptacle.",
+  "frame": "plug: origin at the card tip (the end inserted first), centred in Y and Z on the card; the card runs along +X; it is inserted by moving along -X (mating direction = -PLUG_AXIS)",
+  "params": {
+    "card_length": {"default": 15.0, "source": "SD Association microSD physical spec: 15.0 mm long"},
+    "card_width": {"default": 11.0, "source": "SD Association microSD physical spec: 11.0 mm wide"},
+    "card_thickness": {"default": 1.0, "source": "SD Association microSD physical spec: 1.0 mm thick"},
+    "seated_protrusion": {"default": 2.5, "source": "assumed: a seated card stands 2.5 mm out of a push-push slot mouth (rpi_zero2w sd_card_protrusion)"},
+    "zone_length": {"default": 8.5, "source": "assumed: the exposed card (2.5) plus a 6.0 mm fingertip, from the seat outward"},
+    "zone_width": {"default": 12.0, "source": "assumed: fingertip access width, the slot cage width (rpi_zero2w sd_width)"},
+    "zone_height": {"default": 5.4, "source": "assumed: fingertip access height (rpi_zero2w sd_height + 4.0)"},
+    "zone_offset": {"default": 1.0, "source": "assumed: the access zone's centre sits 1.0 above the card axis (a fingertip pushes from above the board side; rpi_zero2w sd_card_zone)"}
+  },
+  "datasheet_size": ["card_length - seated_protrusion + zone_length", "zone_width", "zone_height"],
+  "size_tolerance": 0.1,
+  "geometry": [
+    {"id": "card", "primitive": "box", "size": ["card_length", "card_width", "card_thickness"],
+     "at": [0, "-card_width / 2", "-card_thickness / 2"]},
+    {"id": "access", "primitive": "box", "size": ["zone_length", "zone_width", "zone_height"],
+     "at": ["card_length - seated_protrusion", "-zone_width / 2", "zone_offset - zone_height / 2"]}
+  ],
+  "datums": {
+    "PLUG_TIP": {"kind": "point", "at": [0, 0, 0]},
+    "PLUG_AXIS": {"kind": "axis", "at": [0, 0, 0], "dir": [1, 0, 0]},
+    "SEAT": {"kind": "point", "at": ["card_length - seated_protrusion", 0, 0]},
+    "OVERMOLD_FACE": {"kind": "plane", "at": ["card_length - seated_protrusion", 0, 0], "normal": [-1, 0, 0]}
+  },
+  "connectors": [],
+  "self_checks": [
+    {"name": "card width", "expr": "card.size_y", "value": 11.0, "tol": 0.05},
+    {"name": "card length", "expr": "card.size_x", "value": 15.0, "tol": 0.05},
+    {"name": "card thickness", "expr": "card.size_z", "value": 1.0, "tol": 0.05},
+    {"name": "access zone section width", "expr": "access.size_y", "value": 12.0, "tol": 0.05},
+    {"name": "access zone section height", "expr": "access.size_z", "value": 5.4, "tol": 0.05},
+    {"name": "access zone centre above the card axis", "expr": "(access.min_z + access.max_z) / 2", "value": 1.0, "tol": 0.05},
+    {"name": "access zone holds the card's section", "expr": "access.max_z - card.max_z", "op": "ge", "value": 0, "tol": 0},
+    {"name": "overmold face beyond the seat", "expr": "OVERMOLD_FACE.x - SEAT.x", "op": "ge", "value": 0, "tol": 0}
+  ]
+}

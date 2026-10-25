@@ -1,0 +1,981 @@
+{
+  "request": "A soldering jig for a Raspberry Pi Pico 2. It holds two 20-pin male headers (2.54 mm pitch, 17.78 mm between the rows) vertical, long pin tails down, while I solder the Pico onto them: the pin guide holes are 1.0 mm, the headers' plastic spacers sit on a flat seat, and the Pico drops on from above onto the pins and rests on a shelf at the right standoff height (the height of the header spacer) with a little room to lift it off afterwards. The jig also has a cradle for a 70 x 50 mm perfboard (1.6 mm thick), a pocket where the board lies flat, with finger notches to lift it out. The jig is one piece printed on an FDM printer in PLA without supports, and I must be able to get a soldering iron to every pin from above. Requirements: The design shall place two 20-pin male headers (rows 17.78 mm apart), the Pico 2 on them and the 70 x 50 mm perfboard, from the parts catalogue, with the headers vertical and the Pico lying along X, without parts colliding, and shall declare that layout. The jig shall have 40 pin guide holes of 1.0 mm diameter, two rows of 20 at 2.54 mm pitch and 17.78 mm apart, each (0.95 to 1.10 mm across, at least 6.5 mm deep) coaxial with a header pin. The headers shall stand vertical, held by the guide holes with their plastic spacers resting on a flat seat (flat within 0.1 mm, covering at least 90% of each spacer footprint), so that a header cannot lean more than 2 degrees. The Pico shall rest on a shelf whose top is exactly the header spacer height, 2.5 mm, above the seat plane, so that it sits at the right standoff height; the shelf shall be at least 200 mm\u00b2, 0.3 mm from the spacers and 0.5 mm from every pin. The Pico shall be located sideways by walls round its edges with 0.15 to 0.5 mm clearance per side, topping out 0.4 to 0.9 mm above the Pico's underside, so it stays square to the headers, and shall drop on and lift off straight up without touching the jig except at its seat. Nothing in the jig shall stand above the Pico's top surface anywhere within 8 mm of the Pico, so an iron can reach every pin from above. The jig shall have a pocket for the 70 x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side (0.2 to 0.4) and 2.5 to 6.0 mm deep, with a flat floor the board lies on and at least two finger notches, 10 mm wide or more, on opposite walls so the board can be lifted out. The Pico zone and the perfboard cradle shall be separate zones of one jig, at least 3 mm of material apart, with at least 2 mm of material round the cradle. The jig shall be one manifold body that prints on an FDM printer without supports, in the print orientation the design states (no overhang steeper than 45\u00b0 from vertical, no bridge over 15 mm). The jig shall be no larger than 100 x 90 x 20 mm and shall stand flat on the bench. The standoff height built into the jig shall equal the header spacer height in the catalogue, so a change of header is a change of one number. The design shall be delivered as a jig STL, the OpenSCAD source, the declared layout, the print orientation and the agent's own clearance report, and that report shall agree with an independent measurement.",
+  "base_request": "A soldering jig for a Raspberry Pi Pico 2. It holds two 20-pin male headers (2.54 mm pitch, 17.78 mm between the rows) vertical, long pin tails down, while I solder the Pico onto them: the pin guide holes are 1.0 mm, the headers' plastic spacers sit on a flat seat, and the Pico drops on from above onto the pins and rests on a shelf at the right standoff height (the height of the header spacer) with a little room to lift it off afterwards. The jig also has a cradle for a 70 x 50 mm perfboard (1.6 mm thick), a pocket where the board lies flat, with finger notches to lift it out. The jig is one piece printed on an FDM printer in PLA without supports, and I must be able to get a soldering iron to every pin from above.",
+  "seed": 3,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "The design shall place two 20-pin male headers (rows 17.78 mm apart), the Pico 2 on them and the 70 x 50 mm perfboard, from the parts catalogue, with the headers vertical and the Pico lying along X, without parts colliding, and shall declare that layout.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "The jig shall have 40 pin guide holes of 1.0 mm diameter, two rows of 20 at 2.54 mm pitch and 17.78 mm apart, each (0.95 to 1.10 mm across, at least 6.5 mm deep) coaxial with a header pin.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.3",
+      "text": "The headers shall stand vertical, held by the guide holes with their plastic spacers resting on a flat seat (flat within 0.1 mm, covering at least 90% of each spacer footprint), so that a header cannot lean more than 2 degrees.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.4",
+      "text": "The Pico shall rest on a shelf whose top is exactly the header spacer height, 2.5 mm, above the seat plane, so that it sits at the right standoff height; the shelf shall be at least 200 mm\u00b2, 0.3 mm from the spacers and 0.5 mm from every pin.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.5",
+      "text": "The Pico shall be located sideways by walls round its edges with 0.15 to 0.5 mm clearance per side, topping out 0.4 to 0.9 mm above the Pico's underside, so it stays square to the headers, and shall drop on and lift off straight up without touching the jig except at its seat.",
+      "method": "test"
+    },
+    {
+      "id": "L1.6",
+      "text": "Nothing in the jig shall stand above the Pico's top surface anywhere within 8 mm of the Pico, so an iron can reach every pin from above.",
+      "method": "test"
+    },
+    {
+      "id": "L1.7",
+      "text": "The jig shall have a pocket for the 70 x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side (0.2 to 0.4) and 2.5 to 6.0 mm deep, with a flat floor the board lies on and at least two finger notches, 10 mm wide or more, on opposite walls so the board can be lifted out.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.8",
+      "text": "The Pico zone and the perfboard cradle shall be separate zones of one jig, at least 3 mm of material apart, with at least 2 mm of material round the cradle.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.9",
+      "text": "The jig shall be one manifold body that prints on an FDM printer without supports, in the print orientation the design states (no overhang steeper than 45\u00b0 from vertical, no bridge over 15 mm).",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "The jig shall be no larger than 100 x 90 x 20 mm and shall stand flat on the bench.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.11",
+      "text": "The standoff height built into the jig shall equal the header spacer height in the catalogue, so a change of header is a change of one number.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.12",
+      "text": "The design shall be delivered as a jig STL, the OpenSCAD source, the declared layout, the print orientation and the agent's own clearance report, and that report shall agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": "failed",
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [],
+    "all_verified": false
+  },
+  "notes": [],
+  "components": [],
+  "assembly": {
+    "stage": "choose_archetype",
+    "notes": [
+      "contents: board matches catalogue specimen photo_70x50",
+      "hole columns: \u00d87 = max(board HOLE.keepout_diameter 7, screw_m2_selftap head + 2 x rules.driver_clearance 6) (rule:hole_column_d)",
+      "arrange: module_1_1: moved (-0.8, 0) mm to put every pin on a grid hole",
+      "not implemented: archetype (primary perfboard; no shell evidence; candidates for GM5: plate / bracket / block / cradle)"
+    ],
+    "parts_dir": "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts:/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts",
+    "parts_dirs": [
+      "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts",
+      "/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts"
+    ],
+    "rules_path": "/Users/robinonsay/python/llm-bt/design_rules.json",
+    "with_models": false,
+    "catalog": [
+      "arduino_nano",
+      "arduino_uno_r3",
+      "battery_9v_pp3",
+      "bearing_608",
+      "bearing_623",
+      "bearing_625",
+      "bolt_m3_iso4762",
+      "bolt_m4_iso4762",
+      "bolt_m5_iso7380",
+      "button_tact_6mm",
+      "buzzer_12mm",
+      "camera_screw_1_4_20",
+      "card_microsd",
+      "cell_18650",
+      "dc_jack_pj002a",
+      "dowel_pin_generic",
+      "encoder_ec11",
+      "esp32_devkitc_v4",
+      "extrusion_2020",
+      "fan_40x40x10",
+      "fan_60x60x25",
+      "gear_spur_generic",
+      "generic_box",
+      "generic_cylinder",
+      "generic_tube",
+      "gt2_belt_6mm",
+      "gt2_pulley_20t",
+      "hc_sr04",
+      "header_female_2p54",
+      "header_male_2p54",
+      "heatset_m2p5",
+      "heatset_m3",
+      "jack_3p5_pj320a",
+      "lcd1602_hd44780",
+      "led_5mm",
+      "lipo_503450",
+      "lm8uu",
+      "magnet_disc_6x3",
+      "microswitch_kw12",
+      "n20_gearmotor",
+      "nema17_motor",
+      "nut_m3",
+      "nut_m4",
+      "oled_ssd1306_096",
+      "perfboard",
+      "plug_dc_barrel_5p5",
+      "plug_microusb_b",
+      "plug_minihdmi",
+      "plug_miniusb_b",
+      "plug_trs_3p5",
+      "plug_usb_b",
+      "plug_usbc",
+      "pot_rk09",
+      "rod_8mm",
+      "rpi_camera_v2",
+      "rpi_pico2",
+      "rpi_zero2w",
+      "screw_m2_selftap",
+      "screw_m2p5_selftap",
+      "screw_m3_selftap",
+      "servo_mg996r",
+      "servo_sg90",
+      "slide_sk12d",
+      "tnut_2020_m5",
+      "toggle_mts102",
+      "tp4056_usbc_module"
+    ],
+    "catalog_errors": [],
+    "rules": {
+      "sliding_fit_min": 0.15,
+      "sliding_fit_max": 0.35,
+      "sliding_fit": 0.25,
+      "board_to_wall": 0.5,
+      "plug_to_opening": 0.3,
+      "opening_oversize_max": 1.5,
+      "min_ligament": 1.5,
+      "wall_default": 2.4,
+      "floor_default": 2.4,
+      "min_feature": 0.8,
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0,
+      "round_hole_exempt_max": 12.0,
+      "bed_x": 200.0,
+      "bed_y": 200.0,
+      "bed_z": 200.0,
+      "layer_height": 0.2,
+      "fn": 64.0,
+      "standoff_wall_min": 1.6,
+      "component_height_default": 10.0,
+      "solder_side_default": 3.0,
+      "keepout_margin": 1.0,
+      "plug_travel": 40.0,
+      "driver_clearance": 1.0,
+      "driver_diameter": 6.0,
+      "driver_reach": 50.0,
+      "design_margin": 0.1,
+      "grid_search_step": 0.01,
+      "grid_residual_max": 0.15,
+      "overlap_max": 1.0,
+      "interference_max": 0.01,
+      "seat_gap_max": 0.1,
+      "seat_axis_residual_max": 0.25,
+      "lip_engagement": 2.0,
+      "lip_wall": 1.2,
+      "boss_wall_min": 1.6,
+      "cut_overrun": 1.0,
+      "screw_hole_clearance_min": 0.2,
+      "given_hole_clearance_min": 0.0,
+      "max_quantity": 8.0,
+      "part_to_wall": 0.2,
+      "measure_tol": 0.01,
+      "margin_scale": 1.0,
+      "lookup_k": 3.0,
+      "view_elevation_deg": 20.0,
+      "arrange_rank_max": 16.0,
+      "layout_step": 0.5,
+      "aperture_min_volume": 1.0,
+      "parity_volume_rel": 0.005,
+      "parity_bbox": 0.05
+    },
+    "spec": {
+      "board_width": 70.0,
+      "board_depth": 50.0,
+      "keepout_above": 10.0,
+      "keepout_below": 3.0,
+      "board_clearance": 0.3,
+      "headroom": 8.0,
+      "opening_oversize_max": 0.2,
+      "wall_min": 2.4,
+      "wall_max": 2.4,
+      "max_x": 100.0,
+      "max_y": 90.0,
+      "max_z": 20.0
+    },
+    "spec_provenance": {
+      "board_width": "L1.7:\"The jig shall have a pocket for the 70 x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side\"",
+      "board_depth": "L1.7:\"The jig shall have a pocket for the 70 x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side (0.2\"",
+      "keepout_above": "rules:component_height_default",
+      "keepout_below": "rules:solder_side_default",
+      "board_clearance": "L1.7:\"all have a pocket for the 70 x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side (0.2 to 0.4) and 2.5 to 6.0 mm d\"",
+      "headroom": "L1.6:\"ig shall stand above the Pico's top surface anywhere within 8 mm of the Pico, so an iron can reach every pin from above.\"",
+      "opening_oversize_max": "L1.7:\"x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side (0.2 to 0.4) and 2.5 to 6.0 mm deep, with a flat floor the bo\"",
+      "wall_min": "rules:wall_default",
+      "wall_max": "rules:wall_default",
+      "max_x": "L1.10:\"The jig shall be no larger than 100 x 90 x 20 mm and shall stand flat on the bench.\"",
+      "max_y": "L1.10:\"The jig shall be no larger than 100 x 90 x 20 mm and shall stand flat on the bench.\"",
+      "max_z": "L1.10:\"The jig shall be no larger than 100 x 90 x 20 mm and shall stand flat on the bench.\"",
+      "board.hole_inset": "catalogue:perfboard specimen photo_70x50 (requirements.md A7: the owner's photographed board (2026-10-24), corner holes 2.0 in from each edge, \u00d82.0 (hole + plated ring ~2.1); pitch 66.0 x 46.0 on 70 x 50)",
+      "board.hole_diameter": "catalogue:perfboard specimen photo_70x50 (requirements.md A7: the owner's photographed board (2026-10-24), corner holes 2.0 in from each edge, \u00d82.0 (hole + plated ring ~2.1); pitch 66.0 x 46.0 on 70 x 50)"
+    },
+    "contents": [
+      {
+        "part": "perfboard",
+        "kind": "board",
+        "quantity": 1,
+        "exposed": false,
+        "name": "perfboard",
+        "exposed_connectors": [],
+        "id": "board",
+        "params": {
+          "width": 70.0,
+          "depth": 50.0
+        }
+      },
+      {
+        "part": "rpi_pico2",
+        "kind": "module",
+        "quantity": 1,
+        "exposed": false,
+        "name": "raspberry pi pico 2",
+        "exposed_connectors": [],
+        "exposed_votes": {
+          "no": 3
+        },
+        "id": "module_1",
+        "params": {}
+      }
+    ],
+    "layout": {
+      "board": {
+        "part": "perfboard",
+        "params": {
+          "width": 70.0,
+          "depth": 50.0
+        },
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "",
+        "copy": 0,
+        "role": "board",
+        "edge": null,
+        "of": null
+      },
+      "module_1_1": {
+        "part": "rpi_pico2",
+        "params": {},
+        "x": 9.5,
+        "y": 14.5,
+        "z": 2.5,
+        "rot_z": 0.0,
+        "item": "module_1",
+        "copy": 0,
+        "role": "content",
+        "edge": null,
+        "of": null
+      },
+      "module_1_1_stack_1": {
+        "part": "header_male_2p54",
+        "params": {
+          "pins": 20.0,
+          "pitch": 2.54
+        },
+        "x": 10.870000000000001,
+        "y": 16.11,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "module_1",
+        "copy": 0,
+        "role": "stack",
+        "edge": null,
+        "of": "module_1_1"
+      },
+      "module_1_1_stack_2": {
+        "part": "header_male_2p54",
+        "params": {
+          "pins": 20.0,
+          "pitch": 2.54
+        },
+        "x": 10.870000000000001,
+        "y": 33.89,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "module_1",
+        "copy": 0,
+        "role": "stack",
+        "edge": null,
+        "of": "module_1_1"
+      }
+    },
+    "arrange": {
+      "candidates": [
+        {
+          "assignment": {},
+          "outcome": "scored",
+          "class": null,
+          "words": "",
+          "votes": 0,
+          "p_yes": 0.0,
+          "asked": false,
+          "chosen": true,
+          "prescore": null
+        }
+      ],
+      "classes": 0,
+      "truncated": 0,
+      "decision": "rule:no_exposed_connector"
+    },
+    "grid_report": {
+      "grid": true,
+      "soft": false,
+      "finite": true,
+      "max": 7.105427357601002e-15,
+      "worst": "module_1_1",
+      "parts": {
+        "module_1_1": {
+          "residual": 7.105427357601002e-15,
+          "edge": null,
+          "best_any": 5.924889052322839e-15,
+          "best_free": 5.924889052322839e-15,
+          "positions": 55,
+          "snap": "snapped",
+          "kind": "ok"
+        }
+      },
+      "no_pin_data": [],
+      "exempt": []
+    },
+    "conflicts": [],
+    "coverage": [],
+    "links": {},
+    "number_owner": {
+      "n34": "board_width",
+      "n35": "board_depth",
+      "n37": "board_clearance",
+      "n33": "headroom",
+      "n38": "opening_oversize_max",
+      "n47": "max_x",
+      "n48": "max_y",
+      "n49": "max_z"
+    },
+    "unplaced": [],
+    "relations": [],
+    "fasteners": {
+      "fastener.board.thread_diameter": 2.0,
+      "fastener.board.pilot_diameter": 1.7,
+      "fastener.board.pilot_min": 1.6,
+      "fastener.board.pilot_max": 1.8,
+      "fastener.board.clearance_diameter": 2.4,
+      "fastener.board.head_diameter": 4.0,
+      "fastener.board.head_height": 1.6,
+      "fastener.board.length": 6.0,
+      "fastener.board.min_engagement": 5.0,
+      "fastener.board.min_boss_od": 5.0
+    },
+    "choices": {
+      "primary": {
+        "value": "perfboard",
+        "by": "rule:primary_reference",
+        "reason": "carrier",
+        "interface": "mount"
+      },
+      "stack[module_1]": {
+        "value": "header_male_2p54",
+        "by": "rule:text_evidence",
+        "evidence": [
+          {
+            "source": "request",
+            "quote": "It holds two 20-pin male headers (2.54 mm pitch, 17.78 mm between the rows) vertical, long pin tails down, while I solder the Pico onto them: the pin guide holes are 1.0 mm, the headers' plastic spacers sit on a flat seat, and the Pico drops on from above onto the pins and rests on a shelf at the right standoff height (the height of the header spacer) with a little room to lift it off afterwards.",
+            "match": "male header",
+            "kind": "alias",
+            "option": "header_male_2p54"
+          },
+          {
+            "source": "L1.1",
+            "quote": "The design shall place two 20-pin male headers (rows 17.78 mm apart), the Pico 2 on them and the 70 x 50 mm perfboard, from the parts catalogue, with the headers vertical and the Pico lying along X, without parts colliding, and shall declare that layout.",
+            "match": "male header",
+            "kind": "alias",
+            "option": "header_male_2p54"
+          },
+          {
+            "source": "L1.2",
+            "quote": "The jig shall have 40 pin guide holes of 1.0 mm diameter, two rows of 20 at 2.54 mm pitch and 17.78 mm apart, each (0.95 to 1.10 mm across, at least 6.5 mm deep) coaxial with a header pin.",
+            "match": "header pins",
+            "kind": "alias",
+            "option": "header_male_2p54"
+          },
+          {
+            "source": "L1.4",
+            "quote": "The Pico shall rest on a shelf whose top is exactly the header spacer height, 2.5 mm, above the seat plane, so that it sits at the right standoff height;",
+            "match": "2.5 mm",
+            "kind": "number",
+            "option": "header_male_2p54"
+          },
+          {
+            "source": "L1.7",
+            "quote": "The jig shall have a pocket for the 70 x 50 x 1.6 mm perfboard, about 0.3 mm bigger on every side (0.2 to 0.4) and 2.5 to 6.0 mm deep, with a flat floor the board lies on and at least two finger notches, 10 mm wide or more, on opposite walls so the board can be lifted out.",
+            "match": "2.5",
+            "kind": "number",
+            "option": "header_male_2p54"
+          }
+        ]
+      },
+      "fastener[board]": {
+        "value": "screw_m2_selftap",
+        "by": "rule:smallest_thread_through_board_hole"
+      }
+    },
+    "assumptions": [
+      "keepout_above = 10 mm from rules:component_height_default (the text states no number for it)",
+      "keepout_below = 3 mm from rules:solder_side_default (the text states no number for it)",
+      "wall_min = 2.4 mm from rules:wall_default (the text states no number for it)",
+      "wall_max = 2.4 mm from rules:wall_default (the text states no number for it)",
+      "fastener[board] = screw_m2_selftap: the text names no board screw and the perfboard datasheet gives no thread; the smallest catalogue screw that passes the board's mounting holes is used"
+    ],
+    "stl_source": {},
+    "components": [],
+    "results": [],
+    "results_manifold": [],
+    "files": [],
+    "deferred_gate_rules": {
+      "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
+      "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
+      "R10": "skipped: imported models are compared only in the --with-models arm (M14; numbered R9 before generalize delta 001, which gave R9 to the interface gate)"
+    },
+    "feature_graph": {
+      "schema": 1,
+      "nodes": [
+        {
+          "id": "board",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "width": 70.0,
+            "depth": 50.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "perfboard",
+          "source": "layout:board",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "module_1_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {},
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              9.5,
+              14.5,
+              2.5
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "rpi_pico2",
+          "source": "layout:content",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "module_1_1_stack_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "pins": 20.0,
+            "pitch": 2.54
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              10.870000000000001,
+              16.11,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "header_male_2p54",
+          "source": "layout:stack",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "module_1_1_stack_2",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "pins": 20.0,
+            "pitch": 2.54
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              10.870000000000001,
+              33.89,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "header_male_2p54",
+          "source": "layout:stack",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "board_ko_top",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 70.0,
+            "y": 50.0,
+            "z": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              35.0,
+              25.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "keepout_top",
+          "part": null,
+          "source": "rule:board_keepout",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "board_ko_bot",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 70.0,
+            "y": 50.0,
+            "z": 3.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              35.0,
+              25.0,
+              -4.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "keepout_bottom",
+          "part": null,
+          "source": "rule:board_keepout",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_0",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 6.6
+          },
+          "pose": {
+            "at": "board.HOLE[0]",
+            "offset": [
+              0,
+              0,
+              -5.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_0",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[0]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_1",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 6.6
+          },
+          "pose": {
+            "at": "board.HOLE[1]",
+            "offset": [
+              0,
+              0,
+              -5.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_1",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[1]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_2",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 6.6
+          },
+          "pose": {
+            "at": "board.HOLE[2]",
+            "offset": [
+              0,
+              0,
+              -5.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_2",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[2]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_3",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 6.6
+          },
+          "pose": {
+            "at": "board.HOLE[3]",
+            "offset": [
+              0,
+              0,
+              -5.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_3",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[3]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "module_1_1_envelope_0",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 51.0,
+            "y": 21.0,
+            "z": 1.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              35.0,
+              25.0,
+              2.5
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "module_envelope",
+          "part": "rpi_pico2",
+          "source": "rule:content_envelope(rpi_pico2)",
+          "free": [],
+          "color": null,
+          "group": "module_1_1_envelope"
+        },
+        {
+          "id": "module_1_1_envelope_1",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 5.5,
+            "y": 8.0,
+            "z": 2.8
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              10.95,
+              25.0,
+              3.5
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "module_envelope",
+          "part": "rpi_pico2",
+          "source": "rule:content_envelope(rpi_pico2)",
+          "free": [],
+          "color": null,
+          "group": "module_1_1_envelope"
+        },
+        {
+          "id": "module_1_1_envelope_2",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 50.8,
+            "y": 2.5,
+            "z": 2.5
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              35.0,
+              16.11,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "module_envelope",
+          "part": "header_male_2p54",
+          "source": "rule:content_envelope(header_male_2p54)",
+          "free": [],
+          "color": null,
+          "group": "module_1_1_envelope"
+        },
+        {
+          "id": "module_1_1_envelope_3",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 50.8,
+            "y": 2.5,
+            "z": 2.5
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              35.0,
+              33.89,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "module_envelope",
+          "part": "header_male_2p54",
+          "source": "rule:content_envelope(header_male_2p54)",
+          "free": [],
+          "color": null,
+          "group": "module_1_1_envelope"
+        }
+      ]
+    }
+  }
+}

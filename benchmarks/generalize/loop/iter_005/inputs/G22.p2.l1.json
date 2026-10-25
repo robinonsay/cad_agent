@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The bracket is one printed piece. Its arms sit flat without cutting into the top face of the horizontal extrusion and the side face of the vertical extrusion; the two seating faces are 90 degrees apart, and each touches its extrusion over at least 400 square mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.2",
+    "text": "Each arm has a single M5 bolt axis lying on the centreline of its extrusion's T-slot, within 1 degree of square to the arm, between 15 and 30 mm from the corner. The two distances differ by no more than 0.5 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "A clearance hole of 5.5 to 5.9 mm takes each bolt, opening into a counterbore 9.9 to 10.6 mm wide and 2.95 to 3.4 mm deep so the button head ends up below the arm's face. Bolt length must grip the T-nut by at least 3.0 mm and stop short of the slot floor.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "Each arm locates in its T-slot with a pair of tongues 5.7 to 6.0 mm wide, reaching 3.5 to 5.6 mm below the seating face, with at least 0.1 mm of clearance inside the slot. Nothing else of the bracket may go into a slot.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The tongues of each arm trap the T-nut, leaving a 0.2 to 0.5 mm gap on each side along the slot, with the nut centred on the bolt axis to within 0.3 mm.",
+    "method": "demonstration"
+  },
+  {
+    "id": "L1.6",
+    "text": "Once the T-nuts are in their slots, each bolt must be fitted and tightened from outside, along its axis, with a hex key that never touches the bracket.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "The two arms are tied by a gusset (at least one) no thinner than 4.0 mm, extending at least 10 mm from the corner along each arm, and it must leave both bolts unblocked.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "Arms are 5.0 to 8.0 mm thick; the corner section has at least 150 square mm of material, and there are 3.0 mm or more of material around each bolt hole.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The stated print orientation must put both bolt axes at least 75 degrees away from the build direction, so the bolt tension goes along the layers.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "It must be a single manifold body that prints on FDM in the stated orientation without supports, with at least 20 percent of its plan bounding box on the bed and no feature under 0.8 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The bracket is 19 to 21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at least 0.5 mm away from the openings of the extrusions' unused slots.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.12",
+    "text": "The deliverables are the bracket STL, the OpenSCAD source, the declared bolt axes (to within 0.2 mm and 1 degree of the model), bolt length, nut positions and print orientation, and the agent's own clearance report. That report has to agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

@@ -1,0 +1,77 @@
+MODEL: ornith-1.5:9b T=0.3 seed=1000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 22.5 (request): "...A bracket that holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0..."
+n2 = 12.2 (request): "...A bracket that holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a..."
+n3 = 22.7 mm (request): "...A bracket that holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 m..."
+n4 = 32.5 mm (request): "...holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch, shaft ..."
+n5 = 2.0 mm (request): "...22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch, shaft up) in a pocket. The servo ..."
+n6 = 27.5 mm (request): "...x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch, shaft up) in a pocket. The servo drops into t..."
+n7 = 0.2 mm (request): "...from above with its tabs resting on a shelf, snug at about 0.2 mm per side with 0.3 to 1.5 mm between its bottom and the..."
+n8 = 0.3 (request): "...tabs resting on a shelf, snug at about 0.2 mm per side with 0.3 to 1.5 mm between its bottom and the pocket floor, and i..."
+n9 = 1.5 mm (request): "...sting on a shelf, snug at about 0.2 mm per side with 0.3 to 1.5 mm between its bottom and the pocket floor, and is held ..."
+n10 = 8 (request): "...en its bottom and the pocket floor, and is held by two M2 x 8 self-tapping screws through the tab holes into pilot holes..."
+n11 = 3 mm (request): "...rough that end wall for the lead and its bend, no more than 3 mm bigger than the cable's exit volume on any side. The ou..."
+n12 = 5 mm (request): "...on any side. The output shaft must be unobstructed within a 5 mm radius. The bracket's mounting base is 40 x 25 mm and 2..."
+n13 = 40 (request): "...ructed within a 5 mm radius. The bracket's mounting base is 40 x 25 mm and 2.5 to 4 mm thick at two M3 clearance holes 3..."
+n14 = 25 mm (request): "...d within a 5 mm radius. The bracket's mounting base is 40 x 25 mm and 2.5 to 4 mm thick at two M3 clearance holes 30 mm ..."
+n15 = 2.5 (request): "...5 mm radius. The bracket's mounting base is 40 x 25 mm and 2.5 to 4 mm thick at two M3 clearance holes 30 mm apart (cent..."
+n16 = 4 mm (request): "...adius. The bracket's mounting base is 40 x 25 mm and 2.5 to 4 mm thick at two M3 clearance holes 30 mm apart (centres at..."
+n17 = 30 mm (request): "...40 x 25 mm and 2.5 to 4 mm thick at two M3 clearance holes 30 mm apart (centres at least 3.2 mm from the edge), each wit..."
+n18 = 3.2 mm (request): "...ick at two M3 clearance holes 30 mm apart (centres at least 3.2 mm from the edge), each with room for a screw head and a..."
+n19 = 2 mm (request): "...t for an FDM printer, no supports, walls and floor at least 2 mm, no taller than 25 mm, and it must stay upright when ti..."
+n20 = 25 mm (request): "...no supports, walls and floor at least 2 mm, no taller than 25 mm, and it must stay upright when tipped 5 degrees with th..."
+n21 = 5 degrees (request): "...no taller than 25 mm, and it must stay upright when tipped 5 degrees with the servo seated...."
+n22 = 0.2 mm (L1.2): "...The pocket shall hold the servo body snugly, with about 0.2 mm clearance per side, and shall leave a gap of 0.3 to 1.5 m..."
+n23 = 0.3 (L1.2): "...h about 0.2 mm clearance per side, and shall leave a gap of 0.3 to 1.5 mm between the servo's bottom and the pocket floo..."
+n24 = 1.5 mm (L1.2): "...0.2 mm clearance per side, and shall leave a gap of 0.3 to 1.5 mm between the servo's bottom and the pocket floor...."
+n25 = 8 (L1.3): "...Two M2 x 8 self-tapping screws shall go through the two tab holes into..."
+n26 = 5 mm (L1.4): "...The output shaft shall be unobstructed within a 5 mm radius above the tabs, and the screw heads shall not enter..."
+n27 = 3 mm (L1.5): "...h one slot in the end wall opposite the shaft, no more than 3 mm bigger than the cable's exit and bend volume on any sid..."
+n28 = 40 (L1.6): "...The bracket's mounting base shall be 40 x 25 mm in plan with two M3 clearance holes 30 mm apart (ce..."
+n29 = 25 mm (L1.6): "...The bracket's mounting base shall be 40 x 25 mm in plan with two M3 clearance holes 30 mm apart (centres at..."
+n30 = 30 mm (L1.6): "...ase shall be 40 x 25 mm in plan with two M3 clearance holes 30 mm apart (centres at least 3.2 mm from the edge), the pla..."
+n31 = 3.2 mm (L1.6): "...n with two M3 clearance holes 30 mm apart (centres at least 3.2 mm from the edge), the plate 2.5 to 4 mm thick at the ho..."
+n32 = 2.5 (L1.6): "...mm apart (centres at least 3.2 mm from the edge), the plate 2.5 to 4 mm thick at the holes, and each M3 screw head and h..."
+n33 = 4 mm (L1.6): "...t (centres at least 3.2 mm from the edge), the plate 2.5 to 4 mm thick at the holes, and each M3 screw head and hex key ..."
+n34 = 2 mm (L1.8): "...FDM printer without supports, with walls and floor at least 2 mm thick...."
+n35 = 25 mm (L1.9): "...The bracket shall be no taller than 25 mm and shall stand flat on its base and stay upright when tipp..."
+n36 = 5 degrees (L1.9): "...d shall stand flat on its base and stay upright when tipped 5 degrees with the servo seated...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "none",
+  "max_y": "none",
+  "max_z": "none",
+  "opening_oversize_max": "n11",
+  "wall_max": "n15",
+  "wall_min": "n19"
+}

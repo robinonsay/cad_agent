@@ -1,0 +1,81 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 2 (request): "...I need a flat guide for drilling the Raspberry Pi Pico 2 mounting-hole pattern into a panel. The Pico 2's four mount..."
+n2 = 2 (request): "...erry Pi Pico 2 mounting-hole pattern into a panel. The Pico 2's four mounting holes are 2.1 mm and sit on a 47.0 x 11.4 ..."
+n3 = 2.1 mm (request): "...pattern into a panel. The Pico 2's four mounting holes are 2.1 mm and sit on a 47.0 x 11.4 mm pattern (47.0 mm apart alo..."
+n4 = 47.0 (request): "...l. The Pico 2's four mounting holes are 2.1 mm and sit on a 47.0 x 11.4 mm pattern (47.0 mm apart along the long side, 1..."
+n5 = 11.4 mm (request): "...Pico 2's four mounting holes are 2.1 mm and sit on a 47.0 x 11.4 mm pattern (47.0 mm apart along the long side, 11.4 mm ..."
+n6 = 47.0 mm (request): "...nting holes are 2.1 mm and sit on a 47.0 x 11.4 mm pattern (47.0 mm apart along the long side, 11.4 mm across). The guid..."
+n7 = 11.4 mm (request): "...47.0 x 11.4 mm pattern (47.0 mm apart along the long side, 11.4 mm across). The guide has a 2.3 mm guide hole for each o..."
+n8 = 2.3 mm (request): "...apart along the long side, 11.4 mm across). The guide has a 2.3 mm guide hole for each of the four, so a 2.1 mm drill pa..."
+n9 = 2.1 mm (request): "...he guide has a 2.3 mm guide hole for each of the four, so a 2.1 mm drill passes through with a little play. It must loca..."
+n10 = 3 mm (request): "...guide against the edge of the panel, which is a flat sheet 3 mm thick, and drill through it. The nearest row of holes mu..."
+n11 = 10 mm (request): "...ick, and drill through it. The nearest row of holes must be 10 mm from that edge; I set the position along the edge by e..."
+n12 = 0.1 mm (request): "...re I drill. The hole centres must hit the pattern to within 0.1 mm. It is printed on an FDM printer in PLA...."
+n13 = 2 (L1.1): "...uide shall have four guide holes whose axes lie on the Pico 2's 47.0 x 11.4 mm mounting-hole rectangle, each within 0.1 ..."
+n14 = 47.0 (L1.1): "...shall have four guide holes whose axes lie on the Pico 2's 47.0 x 11.4 mm mounting-hole rectangle, each within 0.1 mm of..."
+n15 = 11.4 mm (L1.1): "...have four guide holes whose axes lie on the Pico 2's 47.0 x 11.4 mm mounting-hole rectangle, each within 0.1 mm of its i..."
+n16 = 0.1 mm (L1.1): "...ico 2's 47.0 x 11.4 mm mounting-hole rectangle, each within 0.1 mm of its ideal position, with the pattern rows parallel..."
+n17 = 0.1 degrees (L1.1): "...with the pattern rows parallel to the locating edge (within 0.1 degrees), and the layout shall be declared; the pattern'..."
+n18 = 0.1 mm (L1.1): "...ared; the pattern's position along the edge is free, so the 0.1 mm is measured after the best shift along the edge...."
+n19 = 2.3 mm (L1.2): "...Each guide hole shall be 2.3 mm in diameter, through the whole guide plate, and long enough..."
+n20 = 2.1 mm (L1.2): "...r, through the whole guide plate, and long enough to hold a 2.1 mm drill square to the panel (2.0 to 4.0 mm of guide len..."
+n21 = 2.0 (L1.2): "...and long enough to hold a 2.1 mm drill square to the panel (2.0 to 4.0 mm of guide length from the recess floor to the u..."
+n22 = 4.0 mm (L1.2): "...g enough to hold a 2.1 mm drill square to the panel (2.0 to 4.0 mm of guide length from the recess floor to the undersid..."
+n23 = 0.1 mm (L1.2): "...th from the recess floor to the underside), round to within 0.1 mm...."
+n24 = 3.0 mm (L1.3): "...a fence whose flat inner face butts the straight edge of a 3.0 mm panel while the plate rests on the panel's top face, w..."
+n25 = 10.0 mm (L1.3): "...te rests on the panel's top face, with the nearest hole row 10.0 mm (within 0.1 mm) from the fence face; the fence is at..."
+n26 = 0.1 mm (L1.3): "...panel's top face, with the nearest hole row 10.0 mm (within 0.1 mm) from the fence face; the fence is at least 2.0 mm th..."
+n27 = 2.0 mm (L1.3): "...(within 0.1 mm) from the fence face; the fence is at least 2.0 mm thick, at least 40 mm long and reaches 3.0 to 6.0 mm b..."
+n28 = 40 mm (L1.3): "...he fence face; the fence is at least 2.0 mm thick, at least 40 mm long and reaches 3.0 to 6.0 mm below the plate...."
+n29 = 3.0 (L1.3): "...e is at least 2.0 mm thick, at least 40 mm long and reaches 3.0 to 6.0 mm below the plate...."
+n30 = 6.0 mm (L1.3): "...least 2.0 mm thick, at least 40 mm long and reaches 3.0 to 6.0 mm below the plate...."
+n31 = 2 (L1.4): "...The top face shall have a recess that takes the Pico 2's outline with 0.2 mm clearance per side (corners rounded n..."
+n32 = 0.2 mm (L1.4): "...ce shall have a recess that takes the Pico 2's outline with 0.2 mm clearance per side (corners rounded no more than 0.6 ..."
+n33 = 0.6 mm (L1.4): "...ith 0.2 mm clearance per side (corners rounded no more than 0.6 mm) and 0.8 mm depth, centred on the hole pattern, so a ..."
+n34 = 0.8 mm (L1.4): "...learance per side (corners rounded no more than 0.6 mm) and 0.8 mm depth, centred on the hole pattern, so a Pico laid in..."
+n35 = 4.0 mm (L1.5): "...The plate shall be 4.0 mm thick with a flat underside, and every hole and the recess..."
+n36 = 3.0 mm (L1.5): "...nderside, and every hole and the recess shall have at least 3.0 mm of material to the plate's free edges...."
+n37 = 70 (L1.7): "...The guide shall be no larger than 70 x 40 x 10 mm (X x Y x Z, closed assembly pose with the fenc..."
+n38 = 40 (L1.7): "...The guide shall be no larger than 70 x 40 x 10 mm (X x Y x Z, closed assembly pose with the fence) an..."
+n39 = 10 mm (L1.7): "...The guide shall be no larger than 70 x 40 x 10 mm (X x Y x Z, closed assembly pose with the fence) and shall..."
+n40 = 2.1 mm (L1.8): "...A 2.1 mm drill shall reach each guide hole from above and the chuck..."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "n5",
+  "board_width": "n4",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n37",
+  "max_y": "n38",
+  "max_z": "n39",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "n36"
+}

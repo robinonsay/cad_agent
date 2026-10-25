@@ -1,0 +1,74 @@
+MODEL: ornith-1.5:9b T=0.3 seed=1000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 20 (request): "...A guard housing over a 20-tooth GT2 pulley (tooth OD 16 mm, flanges 18 mm) on the 5 m..."
+n2 = 16 mm (request): "...A guard housing over a 20-tooth GT2 pulley (tooth OD 16 mm, flanges 18 mm) on the 5 mm shaft of a NEMA 17 motor (42.3..."
+n3 = 18 mm (request): "...housing over a 20-tooth GT2 pulley (tooth OD 16 mm, flanges 18 mm) on the 5 mm shaft of a NEMA 17 motor (42.3 mm square,..."
+n4 = 5 mm (request): "...20-tooth GT2 pulley (tooth OD 16 mm, flanges 18 mm) on the 5 mm shaft of a NEMA 17 motor (42.3 mm square, M3 holes on a ..."
+n5 = 17 (request): "...(tooth OD 16 mm, flanges 18 mm) on the 5 mm shaft of a NEMA 17 motor (42.3 mm square, M3 holes on a 31 mm square pattern..."
+n6 = 42.3 mm (request): "...16 mm, flanges 18 mm) on the 5 mm shaft of a NEMA 17 motor (42.3 mm square, M3 holes on a 31 mm square pattern, 22 mm pi..."
+n7 = 31 mm (request): "...mm shaft of a NEMA 17 motor (42.3 mm square, M3 holes on a 31 mm square pattern, 22 mm pilot). The pulley hub sits 3 mm ..."
+n8 = 22 mm (request): "...motor (42.3 mm square, M3 holes on a 31 mm square pattern, 22 mm pilot). The pulley hub sits 3 mm above the motor face a..."
+n9 = 3 mm (request): "...n a 31 mm square pattern, 22 mm pilot). The pulley hub sits 3 mm above the motor face and the shaft sticks out 24 mm fro..."
+n10 = 24 mm (request): "...hub sits 3 mm above the motor face and the shaft sticks out 24 mm from the face. The guard must clear the pulley and the..."
+n11 = 2 mm (request): "...the face. The guard must clear the pulley and the shaft by 2 mm all around while leaving one slot on one side for the 6 ..."
+n12 = 6 mm (request): "...2 mm all around while leaving one slot on one side for the 6 mm GT2 belt, which runs off straight along that side to a s..."
+n13 = 100 mm (request): "...which runs off straight along that side to a second pulley 100 mm away. It is fastened to the motor with M3 bolts in two..."
+n14 = 17 (L1.1): "...The design shall place the NEMA 17 motor, the GT2 pulley, the belt and the two M3 bolts from t..."
+n15 = 3 mm (L1.1): "...two M3 bolts from the parts catalogue, with the pulley hub 3 mm above the motor face, and shall declare that layout...."
+n16 = 2 mm (L1.2): "...d shall clear the rotating pulley and the shaft by at least 2 mm all around, on the sides, over the pulley and over the ..."
+n17 = 3 mm (L1.2): "...sides, over the pulley and over the shaft tip (no more than 3 mm radially and 3.5 mm over the shaft tip, so the guard is..."
+n18 = 3.5 mm (L1.2): "...lley and over the shaft tip (no more than 3 mm radially and 3.5 mm over the shaft tip, so the guard is not oversized), a..."
+n19 = 0.5 mm (L1.2): "...ip, so the guard is not oversized), and shall keep at least 0.5 mm from the belt where it wraps the pulley. Take the wra..."
+n20 = 6 mm (L1.2): "...ness minus the belt tooth height (both from the catalogue), 6 mm tall on the pulley's belt plane...."
+n21 = 0.5 mm (L1.3): "...belt runs leave the guard without touching it with at least 0.5 mm clearance to each run (the runs leave tangentially, s..."
+n22 = 3 mm (L1.3): "...each side of the pulley) and is not oversized (no more than 3 mm wider or taller than the two runs together)...."
+n23 = 22 mm (L1.5): "...ard shall sit flat on the motor face, locate on the motor's 22 mm pilot with a sliding fit (0.15 to 0.35 mm per side), a..."
+n24 = 0.15 (L1.5): "...face, locate on the motor's 22 mm pilot with a sliding fit (0.15 to 0.35 mm per side), and stay inside the 42.3 mm squar..."
+n25 = 0.35 mm (L1.5): "...cate on the motor's 22 mm pilot with a sliding fit (0.15 to 0.35 mm per side), and stay inside the 42.3 mm square outlin..."
+n26 = 42.3 mm (L1.5): "...sliding fit (0.15 to 0.35 mm per side), and stay inside the 42.3 mm square outline of the motor face...."
+n27 = 2 (L1.6): "...belt slot and the two bolt holes, with walls, cap and ears 2 to 4 mm thick (ears up to 5 mm)...."
+n28 = 4 mm (L1.6): "...slot and the two bolt holes, with walls, cap and ears 2 to 4 mm thick (ears up to 5 mm)...."
+n29 = 5 mm (L1.6): "...holes, with walls, cap and ears 2 to 4 mm thick (ears up to 5 mm)...."
+n30 = 40 (L1.8): "...at prints on an FDM printer without supports, with at least 40 percent of its plan bounding box in contact with the prin..."
+n31 = 45 (L1.9): "...The guard shall be no larger than 45 x 45 x 35 mm...."
+n32 = 45 (L1.9): "...The guard shall be no larger than 45 x 45 x 35 mm...."
+n33 = 35 mm (L1.9): "...The guard shall be no larger than 45 x 45 x 35 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n32",
+  "max_y": "n31",
+  "max_z": "n33",
+  "opening_oversize_max": "n17",
+  "wall_max": "n29",
+  "wall_min": "n27"
+}

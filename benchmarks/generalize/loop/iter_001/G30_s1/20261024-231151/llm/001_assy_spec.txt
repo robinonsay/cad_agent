@@ -1,0 +1,100 @@
+MODEL: ornith-1.5:9b T=0.3 seed=1000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 60 (request): "...A duct that connects a 60 x 60 x 25 mm fan (mounting holes on a 50 mm square pitch) t..."
+n2 = 60 (request): "...A duct that connects a 60 x 60 x 25 mm fan (mounting holes on a 50 mm square pitch) to a 5..."
+n3 = 25 mm (request): "...A duct that connects a 60 x 60 x 25 mm fan (mounting holes on a 50 mm square pitch) to a 50 x 20 m..."
+n4 = 50 mm (request): "...ct that connects a 60 x 60 x 25 mm fan (mounting holes on a 50 mm square pitch) to a 50 x 20 mm heatsink that is 30 mm t..."
+n5 = 50 (request): "...0 x 25 mm fan (mounting holes on a 50 mm square pitch) to a 50 x 20 mm heatsink that is 30 mm tall. The fan sits on top ..."
+n6 = 20 mm (request): "...5 mm fan (mounting holes on a 50 mm square pitch) to a 50 x 20 mm heatsink that is 30 mm tall. The fan sits on top and b..."
+n7 = 30 mm (request): "...s on a 50 mm square pitch) to a 50 x 20 mm heatsink that is 30 mm tall. The fan sits on top and blows straight down; the..."
+n8 = 50 (request): "...s running vertically, so the heatsink's leading face is its 50 x 20 mm top face and the duct meets it there. The air goe..."
+n9 = 20 mm (request): "...ning vertically, so the heatsink's leading face is its 50 x 20 mm top face and the duct meets it there. The air goes thr..."
+n10 = 1 mm (request): "...fan to the heatsink and enters the fins with side seals of 1 mm at most (the duct's outlet slips over the top of the hea..."
+n11 = 0.2 (request): "...top of the heatsink and the gap to its sides stays between 0.2 and 1 mm). Four M4 socket-head bolts hold the fan, throug..."
+n12 = 1 mm (request): "...the heatsink and the gap to its sides stays between 0.2 and 1 mm). Four M4 socket-head bolts hold the fan, through the f..."
+n13 = 1.6 mm (request): "...ct on an FDM printer in PLA without supports, wall at least 1.6 mm...."
+n14 = 60 (L1.1): "...The design shall place the 60 x 60 x 25 mm fan with its airflow straight down, the 50 x 2..."
+n15 = 60 (L1.1): "...The design shall place the 60 x 60 x 25 mm fan with its airflow straight down, the 50 x 20 x 3..."
+n16 = 25 mm (L1.1): "...The design shall place the 60 x 60 x 25 mm fan with its airflow straight down, the 50 x 20 x 30 mm hea..."
+n17 = 50 (L1.1): "...the 60 x 60 x 25 mm fan with its airflow straight down, the 50 x 20 x 30 mm heatsink below it with its 50 x 20 mm top fa..."
+n18 = 20 (L1.1): "...0 x 60 x 25 mm fan with its airflow straight down, the 50 x 20 x 30 mm heatsink below it with its 50 x 20 mm top face as..."
+n19 = 30 mm (L1.1): "...0 x 25 mm fan with its airflow straight down, the 50 x 20 x 30 mm heatsink below it with its 50 x 20 mm top face as the ..."
+n20 = 50 (L1.1): "...raight down, the 50 x 20 x 30 mm heatsink below it with its 50 x 20 mm top face as the leading face, and four M4 bolts, ..."
+n21 = 20 mm (L1.1): "...t down, the 50 x 20 x 30 mm heatsink below it with its 50 x 20 mm top face as the leading face, and four M4 bolts, from ..."
+n22 = 1.0 mm (L1.1): "...4 bolts, from the parts catalogue, with the fan axis within 1.0 mm of the heatsink face centre, without parts colliding,..."
+n23 = 60 (L1.2): "...all have a flange that sits flat on the fan's exhaust face (60 x 60 mm outline within 1 mm, at least 800 mm² of contact)..."
+n24 = 60 mm (L1.2): "...ave a flange that sits flat on the fan's exhaust face (60 x 60 mm outline within 1 mm, at least 800 mm² of contact) with..."
+n25 = 1 mm (L1.2): "...s flat on the fan's exhaust face (60 x 60 mm outline within 1 mm, at least 800 mm² of contact) with four screw pilots on..."
+n26 = 800 (L1.2): "...an's exhaust face (60 x 60 mm outline within 1 mm, at least 800 mm² of contact) with four screw pilots on the fan's 50 m..."
+n27 = 50 mm (L1.2): "...ast 800 mm² of contact) with four screw pilots on the fan's 50 mm square hole pattern...."
+n28 = 54 mm (L1.3): "...big as the fan's air bore: an inscribed circle of at least 54 mm and an area of at least 85% of the bore (and no bigger ..."
+n29 = 85 (L1.3): "...inscribed circle of at least 54 mm and an area of at least 85% of the bore (and no bigger than the bore plus 1 mm)...."
+n30 = 1 mm (L1.3): "...at least 85% of the bore (and no bigger than the bore plus 1 mm)...."
+n31 = 45 degrees (L1.4): "...ly with no steps, and its walls shall slope by no more than 45 degrees from the air direction, the cross-section area sh..."
+n32 = 10 (L1.4): "...ection, the cross-section area shall change by no more than 10% per millimetre of height and never fall below 950 mm², a..."
+n33 = 950 (L1.4): "...more than 10% per millimetre of height and never fall below 950 mm², and the transition shall be 18 to 34 mm long...."
+n34 = 18 (L1.4): "...t and never fall below 950 mm², and the transition shall be 18 to 34 mm long...."
+n35 = 34 mm (L1.4): "...never fall below 950 mm², and the transition shall be 18 to 34 mm long...."
+n36 = 50 (L1.5): "...s leading face and its outlet opening shall cover the whole 50 x 20 mm face, so that all the air enters the fins, withou..."
+n37 = 20 mm (L1.5): "...ding face and its outlet opening shall cover the whole 50 x 20 mm face, so that all the air enters the fins, without bei..."
+n38 = 52 (L1.5): "...o that all the air enters the fins, without being more than 52 x 22 mm...."
+n39 = 22 mm (L1.5): "...t all the air enters the fins, without being more than 52 x 22 mm...."
+n40 = 0.2 (L1.6): "...top of the heatsink as a sleeve, leaving a gap of at least 0.2 and at most 1.0 mm to each of the heatsink's four sides o..."
+n41 = 1.0 mm (L1.6): "...sink as a sleeve, leaving a gap of at least 0.2 and at most 1.0 mm to each of the heatsink's four sides over at least 5 ..."
+n42 = 5 mm (L1.6): "...t 1.0 mm to each of the heatsink's four sides over at least 5 mm of overlap...."
+n43 = 58 mm (L1.7): "...the heatsink, and nothing shall block the fan's intake: the 58 mm bore column above the intake face shall be free for 15..."
+n44 = 15 mm (L1.7): "...e 58 mm bore column above the intake face shall be free for 15 mm...."
+n45 = 3.1 (L1.8): "...d the fan through its holes into pilot holes in the flange (3.1 to 3.5 mm diameter, at least 6 mm deep), each engaging a..."
+n46 = 3.5 mm (L1.8): "...an through its holes into pilot holes in the flange (3.1 to 3.5 mm diameter, at least 6 mm deep), each engaging at least..."
+n47 = 6 mm (L1.8): "...pilot holes in the flange (3.1 to 3.5 mm diameter, at least 6 mm deep), each engaging at least 5 mm and stopping clear o..."
+n48 = 5 mm (L1.8): "....5 mm diameter, at least 6 mm deep), each engaging at least 5 mm and stopping clear of the pilot's end...."
+n49 = 6 mm (L1.9): "...n screw head from straight above with nothing in the way: a 6 mm column 25 mm long along each bolt axis shall be clear...."
+n50 = 25 mm (L1.9): "...from straight above with nothing in the way: a 6 mm column 25 mm long along each bolt axis shall be clear...."
+n51 = 1.6 mm (L1.10): "...m its inlet and its outlet, and its walls shall be at least 1.6 mm thick...."
+n52 = 45 (L1.11): "...int orientation the design states (no overhang steeper than 45° from vertical, no bridge over 15 mm, at least 25% and 80..."
+n53 = 15 mm (L1.11): "...(no overhang steeper than 45° from vertical, no bridge over 15 mm, at least 25% and 800 mm² on the bed)...."
+n54 = 25 (L1.11): "...eper than 45° from vertical, no bridge over 15 mm, at least 25% and 800 mm² on the bed)...."
+n55 = 800 (L1.11): "...n 45° from vertical, no bridge over 15 mm, at least 25% and 800 mm² on the bed)...."
+n56 = 64 (L1.12): "...The printed duct shall be no larger than 64 x 64 x 45 mm and symmetric about the fan axis within 1 mm...."
+n57 = 64 (L1.12): "...The printed duct shall be no larger than 64 x 64 x 45 mm and symmetric about the fan axis within 1 mm...."
+n58 = 45 mm (L1.12): "...The printed duct shall be no larger than 64 x 64 x 45 mm and symmetric about the fan axis within 1 mm...."
+n59 = 1 mm (L1.12): "...han 64 x 64 x 45 mm and symmetric about the fan axis within 1 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n56",
+  "max_y": "n57",
+  "max_z": "n58",
+  "opening_oversize_max": "n38",
+  "wall_max": "n11",
+  "wall_min": "n10"
+}

@@ -1,0 +1,152 @@
+{
+ "paraphrases": [
+  {
+   "id": "G02",
+   "tier": 4,
+   "title": "Arduino Uno R3 case with vented screw lid",
+   "request": "Case for an Arduino Uno R3 (68.6 x 53.3 mm, four 3.2 mm mounting holes), board on four standoffs at its own mounting holes. USB-B receptacle and 5.5 mm barrel jack share one short board edge; both must be usable with the lid on and cables attached, so every plug body (moulded handle and metal) must pass through the wall. Lid gets a row of vent slots over the ATmega328P and is fixed with four M3 self-tapping screws. Two parts, base and removable lid, FDM printed in PLA with no supports; the board must be removable for service.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: plug bodies with cables attached (A4); board screws M3 self-tapping into the standoffs (A5); lid is a flat plate in a rebate with four corner-free bosses (F2); FDM, PLA, no supports (A9); board removable (A12).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the catalogue Arduino Uno R3, declare its pose, and put the USB-B receptacle and DC jack (same short board edge) at the same short end of the case.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The 68.6 x 53.3 x 1.6 mm board fits in the closed case with 0.5 mm or more clearance to all printed surfaces except where it sits on its standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Exactly four standoffs support the board, one under each of its four mounting holes, 5 to 7 mm outside diameter, top planes within 0.1 mm of each other, each with a pilot hole deep enough to seat a 10 mm M3 self-tapping screw (through the 1.6 mm board).",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Lid closed: nothing within 12 mm over the board's top face or within 4 mm under its underside, except the standoffs under the holes.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Lid closed: a USB-B plug (metal shell plus moulded handle) goes fully into the receptacle through a single end-wall opening, clear of the case by 0.3 mm or more all round; the opening is at most 1.5 mm oversize per side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Lid closed: a 5.5 x 2.1 mm DC barrel plug (barrel plus moulded handle) goes fully into the jack through its own opening in the same end wall, simultaneously with the USB plug, 0.3 mm or more clear of the case all round; the opening is at most 1.5 mm oversize per side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Lid has a straight row of 5 to 9 vent slots directly above the ATmega328P: 1.5 to 3.0 mm wide, 8 to 12 mm long, 3.5 to 6.5 mm pitch, total open area 100 mm² or more.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Base plus separate removable lid: the lid is a flat plate dropping into a rebate at the top of the walls (plate 2 to 3 mm thick, 0.15 to 0.35 mm fit gap per side, upstand 1 mm or more), fixed with four M3 self-tapping screws into four bosses in the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed case has only the USB opening, DC opening, vent slots and screw holes; walls, floor and lid 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base and lid are each a single manifold body, FDM printable with no supports (no overhang steeper than 45° from vertical, no bridge over 15 mm).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed case fits within 100 x 70 x 35 mm, longest along the 68.6 mm board side, and stands flat on a desk without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Lid off: the populated board drops straight down onto the standoffs and a screwdriver reaches every board screw. Lid screws and board screws are separate screws.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliver base STL, lid STL, OpenSCAD source, declared board pose and the agent's own clearance report, which must match an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  },
+  {
+   "id": "G02",
+   "tier": 4,
+   "title": "Arduino Uno R3 case with vented screw lid",
+   "request": "I want a housing for an Arduino Uno R3 board — 68.6 x 53.3 mm with four 3.2 mm mounting holes — which rests on four standoffs located at the board's mounting holes. The board has a USB-B port and a 5.5 mm barrel jack along the same short edge, and I need to be able to plug both in while the cover is on and the cables are attached, meaning the moulded handle of each plug as well as the metal has to pass through the wall. Cut a line of ventilation slots into the cover above the ATmega328P, and fix the cover down with four M3 self-tapping screws. It's a base and a detachable cover, printed in PLA on an FDM machine with no supports, and I must be able to take the board out for servicing.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: plug bodies with cables attached (A4); board screws M3 self-tapping into the standoffs (A5); lid is a flat plate in a rebate with four corner-free bosses (F2); FDM, PLA, no supports (A9); board removable (A12).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Pick the Arduino Uno R3 from the parts catalogue, state its pose, and locate its USB-B receptacle and DC jack — both on one short edge of the board — at one and the same short end of the case.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "With the case shut, the 68.6 x 53.3 x 1.6 mm board must have at least 0.5 mm of space to every printed surface, other than at its standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Support the board on four standoffs, neither more nor fewer, one at each of its four mounting holes. Outside diameter is 5 to 7 mm, their top planes agree within 0.1 mm, and each carries a pilot hole deep enough for a 10 mm M3 self-tapping screw to seat (the 1.6 mm board counted).",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Case closed, nothing may be closer than 12 mm above the board's top surface or 4 mm beneath its underside; the standoffs at the holes are the only exception.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Fit the lid with a straight line of 5 to 9 vent slots right above the ATmega328P. Each is 1.5 to 3.0 mm wide and 8 to 12 mm long on a 3.5 to 6.5 mm pitch, and the open area adds up to at least 100 mm².",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held by four M3 self-tapping screws that go into four bosses in the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "When closed the case has no holes except for the USB opening, the DC opening, the vent slots and the screw holes, and the walls, floor and lid are 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Each of base and lid is a single manifold body for FDM printing with no supports: overhangs no steeper than 45° from vertical and bridges no longer than 15 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Overall the closed case is limited to 100 x 70 x 35 mm, with the longest dimension along the board's 68.6 mm side, and it should sit flat on a desk without tipping over.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "With the lid removed, the populated board must lower straight onto the standoffs, a screwdriver must reach every board screw, and the screws for the lid must be distinct from those for the board.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliver the base STL, the lid STL, the OpenSCAD source, the declared board pose and the agent's own clearance report; the report has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  }
+ ]
+}

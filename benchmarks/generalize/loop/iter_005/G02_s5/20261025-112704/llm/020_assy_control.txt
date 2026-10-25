@@ -1,0 +1,30 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I want a housing for an Arduino Uno R3 board — 68.6 x 53.3 mm with four 3.2 mm mounting holes — which rests on four standoffs located at the board's mounting holes. The board has a USB-B port and a 5.5 mm barrel jack along the same short edge, and I need to be able to plug both in while the cover is on and the cables are attached, meaning the moulded handle of each plug as well as the metal has to pass through the wall. Cut a line of ventilation slots into the cover above the ATmega328P, and fix the cover down with four M3 self-tapping screws. It's a base and a detachable cover, printed in PLA on an FDM machine with no supports, and I must be able to take the board out for servicing.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. text_coverage (L1.5, L1.6): board.usb (arduino uno r3) is closed, but L1.5 names a usb-b plug: "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more betw..."; board.dc (arduino uno r3) is closed, but L1.6 names a dc plug: "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the US..."; needs: an opening for each connector whose mating plug the text names
+
+The design now:
+- board (primary): arduino uno r3 x1; connectors: usb closed, dc closed
+- lid closure: rebate; lid bosses: inside_band_x
+
+Earlier steps:
+- step 1: C (set_closure closure) was kept: fewer failing checks (2 -> 1)
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- A: expose board.usb: open the enclosure wall for the arduino uno r3's usb connector so a usb-b plug plugs in with the enclosure closed
+- B: expose board.dc: open the enclosure wall for the arduino uno r3's dc connector so a dc plug plugs in with the enclosure closed
+- C: stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? Answer with its letter.
+
+=== RESPONSE ===
+{
+  "action": "A"
+}

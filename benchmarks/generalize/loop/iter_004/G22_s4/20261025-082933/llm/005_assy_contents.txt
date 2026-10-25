@@ -1,0 +1,35 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a 90 degree corner bracket for 2020 aluminium T-slot extrusion (20 x 20 mm, slot opening 6.2 mm). It joins the end of a horizontal extrusion to the side of a vertical one. One leg of the bracket lies on the top face of the horizontal extrusion and the other lies on the side face of the vertical one, and gussets at least 4 mm thick tie the legs together. Each leg is held by one M5 button-head bolt that goes into that extrusion's T-slot and screws into an M5 T-nut sitting in the slot. The bracket has pockets that keep each nut captive, so I can assemble the corner from the outside without sliding anything in from the ends of the extrusions. The bolts pull the legs away from the extrusions, so print the bracket in an orientation where that tension is not across the layers. It is printed on an FDM printer in PLA or PETG, without supports.
+
+Catalogue parts that may be in the request:
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

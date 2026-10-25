@@ -1,0 +1,45 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A robot-base bracket, printed in one piece, that holds an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) in a clamp pocket and an HC-SR04 ultrasonic sensor (45 x 20 mm board, two 16 mm transducers at 26 mm pitch) facing forward, 40 mm forward of the motor's shaft axis. A 6 x 3 mm magnet pocket sits at the shaft end for an encoder. Two M3 bolts fix the whole bracket to the chassis. It is printed on an FDM printer without supports, flat on its chassis face.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- hc_sr04: hc-sr04 (module)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "hc_sr04": {
+    "quantity": 1
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  }
+}

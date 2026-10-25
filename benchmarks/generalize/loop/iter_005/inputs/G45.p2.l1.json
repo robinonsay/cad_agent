@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Using the sizes in the request and the parts catalogue, lay out a tray for six hex nozzles (7 mm across flats, 12 mm tall), a single 120 x 14 x 4 mm wrench and four 6 x 3 mm magnets; declare the layout along with the print orientation.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Each of the six nozzle pockets should let its nozzle stand on the pocket floor, 6 to 10 mm deep, with the nozzle poking out of the tray by 2 mm or more. Clearance round it must be 0.3 mm or more on every side and 0.45 mm or less at the nearest point.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "Arrange the six nozzle pockets as a regular row or grid at equal pitch, centres no more than 0.1 mm off the lattice. Neighbouring pockets need 1.6 mm or more of material between them and 3.0 mm or more of finger room.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The pocket for the 120 x 14 x 4 mm wrench should leave 0.3 mm minimum and 0.45 mm maximum clearance on each side, and be 2.5 to 4.0 mm deep, shallow enough to lift the wrench out.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "From the underside, cut four magnet pockets, 6.1 to 6.3 mm across and 3.4 to 3.6 mm deep, so that every magnet face ends up 0.5 mm inside the underside. Keep 1.2 mm or more of material between a magnet and every other pocket as well as the top face. Put one magnet in each quarter of the tray, with the four covering at least half its length and a quarter of its width.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "Give the tray a flat underside to sit on a steel surface. Loaded with the six nozzles and the wrench (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each), its centre of mass must fall inside the four magnets with a margin of 2 mm or more.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "Pockets must keep 1.6 mm or more of material from each other pocket and 2.0 mm or more from the outer edge of the tray; under the nozzle and wrench pockets leave a floor of at least 1.2 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The tray is a single manifold piece that prints flat on an FDM printer and needs no supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "Keep the tray within 140 x 40 x 15 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "Deliverables are the STL, OpenSCAD source, declared layout and the agent's own clearance report, which has to match an independent measurement.",
+    "method": "inspection"
+  }
+]

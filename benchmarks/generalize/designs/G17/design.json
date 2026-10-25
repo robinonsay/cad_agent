@@ -1,0 +1,85 @@
+{
+  "about": "The NEMA17 L-bracket with pilot register design of the generalisation set (family and capabilities in benchmarks/generalize/plan.json), in dev.json format. Tier 4 = a real product: bought-in parts placed from a parts catalogue, openings and holes, printed bodies, and fit and access requirements judged as interference and clearance checks against reference models and keep-out volumes. L1 ids match requirements.md next to this file, which holds the L2/L3 tree, the reference models, the assumptions with their uncertainty, the fixed decisions, the feasibility sketch and the traceability. Numbers that are not in the brief come from requirements.md sections 3 and 4. Never put any of these numbers in agent logic: they belong in the request text and in the parts' part.json.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G17",
+      "tier": 4,
+      "title": "NEMA17 L-bracket with pilot register",
+      "request": "An L-shaped bracket for a NEMA 17 stepper motor (42.3 mm square body, 40 mm long, 5 mm shaft). The vertical face takes the motor on its 31 mm bolt pattern, with a 22.5 mm pilot register, and the shaft end passes through the face toward the side the flange is on. The horizontal flange has two M4 holes 40 mm apart on a line parallel to the bend. The motor weighs 0.35 kg and the bracket should survive about 20 N at the shaft. All screws are ISO 4762 socket-head cap screws, M3 for the motor and M4 for the flange, which I have in the stock lengths 6, 8, 10, 12, 16, 20 and 25 mm. Print it in PLA on an FDM printer, one piece, oriented so the layers do not split at the bend.",
+      "request_verbatim": "An L-shaped NEMA 17 motor bracket: vertical face takes the motor on the 31 mm pattern with a 22.5 mm pilot register, horizontal flange has two M4 holes 40 mm apart. The motor shaft end passes through the face, and the bracket should survive about 20 N at the shaft. Orient it so layers do not split at the bend.",
+      "request_notes": "Added to the brief, from requirements.md sections 3 and 4: motor size from the catalogue (A1); flange on the shaft side (F1); one piece (F3); PLA/FDM (A6). Audit 2026-10-24: motor mass (A2) and stock screw lengths (F7) added to the request, hole line parallel to the bend (A8), and the judge's numbers for recess, thicknesses, bolt tension, bed contact and plate height moved into L1.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall declare the motor's pose against the bracket, with the shaft pointing through the face toward the flange side, the motor body on the other side of the plate with its square faces parallel and perpendicular to the flange, and the screw lengths and print orientation it uses.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The vertical face shall take the motor flat: the motor face seats on it within 0.1 mm, the bracket does not enter the motor, and every motor hole has at least 2.0 mm of material round it.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "A register hole of 22.5 mm diameter shall locate the motor's 22 mm pilot, coaxial with the hole pattern, with the pilot fully inside it and the shaft passing through with at least 3.0 mm of clearance.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.4",
+          "text": "Four M3 holes shall lie on the motor's 31 mm square pattern, counterbored from the shaft side so the screw heads sit 0.2 to 1.0 mm below the face, with the declared screws biting 3.0 to 4.5 mm into the motor.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.5",
+          "text": "The shaft shall pass through the face and stand at least 15 mm proud of it, with nothing printed within 3.0 mm of it, and the motor shall install from behind without hitting the bracket.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "The horizontal flange shall have two M4 holes 40.0 mm apart (plus or minus 0.2), counterbored from the top face, on a line parallel to the bend axis, symmetric about the motor axis, with a flat underside to mount on.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "The bracket shall survive about 20 N at the shaft tip in any radial direction plus the motor's weight, with a bending stress at the bend's root of no more than 5.0 MPa, the bend shall have an inside radius of at least 2.0 mm, the plate and the flange shall each be 5 to 10 mm thick, and each M4 bolt shall carry no more than 200 N of tension.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "The bracket shall be printable with its layers parallel to the bend: the bed normal within 5 degrees of the bend axis, no unsupported overhang, and a base large enough to stand on (at least 300 mm2 and 30 percent of its footprint box).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The bracket shall be one manifold body in one shell with no stray fragments and no feature beyond the plate, flange, fillet, holes and counterbores.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The bracket shall be no larger than 40 x 70 x 70 mm and its plate shall be tall enough to hold all four screws with 2 mm of edge material but no taller than the motor body plus 10 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.11",
+          "text": "The design shall be delivered as a bracket STL, the OpenSCAD source, the declared pose and the agent's own report, and that report shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: a through register hole (with a pointed top so it prints without support), counterbored through holes in a plate and a flange",
+        "a fillet at the inside bend",
+        "datum placement: the motor's face, pilot, hole and shaft datums mapped onto printed holes",
+        "a load-path calculation from the measured section (section modulus of a slice) against a stated allowable",
+        "print orientation chosen from the load path and checked by an overhang scan",
+        "interference checks against external solids: clear_of, gap, hole finding"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 2020 (request): "...A clamp that grips a 2020 aluminium extrusion with one M5 button-head bolt into a dro..."
+n2 = 1 (request): "...button-head bolt into a drop-in T-nut, and that presents a 1/4-20 tripod stud on top for a small camera whose base is ab..."
+n3 = 4 (request): "...utton-head bolt into a drop-in T-nut, and that presents a 1/4-20 tripod stud on top for a small camera whose base is abo..."
+n4 = 28 mm (request): "...0 tripod stud on top for a small camera whose base is about 28 mm across. The clamp has a tongue that runs in the extrus..."
+n5 = 1 (request): "...o it slides along the slot until the bolt is tightened. The 1/4-20 stud has a hex head held captive in a pocket so it ca..."
+n6 = 4 (request): "...it slides along the slot until the bolt is tightened. The 1/4-20 stud has a hex head held captive in a pocket so it cann..."
+n7 = 5.5 (request): "...a hex head held captive in a pocket so it cannot turn, with 5.5 to 8 mm of thread standing proud of the top. The stud bo..."
+n8 = 8 mm (request): "...ead held captive in a pocket so it cannot turn, with 5.5 to 8 mm of thread standing proud of the top. The stud boss must..."
+n9 = 3 (request): "...hread standing proud of the top. The stud boss must carry a 3 N m torque without cracking, and the clamp must not twist ..."
+n10 = 60 (request): "...is one printed part in PLA without supports, no larger than 60 x 30 x 30 mm...."
+n11 = 30 (request): "...e printed part in PLA without supports, no larger than 60 x 30 x 30 mm...."
+n12 = 30 mm (request): "...nted part in PLA without supports, no larger than 60 x 30 x 30 mm...."
+n13 = 2020 (L1.1): "...The design shall place the 2020 extrusion, the M5 T-nut, the M5 button-head bolt and the 1/..."
+n14 = 1 (L1.1): "...20 extrusion, the M5 T-nut, the M5 button-head bolt and the 1/4-20 stud from the parts catalogue relative to the clamp, ..."
+n15 = 4 (L1.1): "...extrusion, the M5 T-nut, the M5 button-head bolt and the 1/4-20 stud from the parts catalogue relative to the clamp, wit..."
+n16 = 14.0 mm (L1.1): "...the bolt axis and the stud axis in the slot plane at least 14.0 mm apart, and shall declare that layout...."
+n17 = 0.2 mm (L1.2): "...A tongue on the clamp shall run in the T-slot opening with 0.2 mm clearance per side, stand clear of the T-nut, and be a..."
+n18 = 20 mm (L1.2): "...earance per side, stand clear of the T-nut, and be at least 20 mm long in total (the 0.2 mm per side clearance in the 6...."
+n19 = 0.2 mm (L1.2): "...lear of the T-nut, and be at least 20 mm long in total (the 0.2 mm per side clearance in the 6.2 mm opening means a tong..."
+n20 = 6.2 mm (L1.2): "...t 20 mm long in total (the 0.2 mm per side clearance in the 6.2 mm opening means a tongue about 5.8 mm wide; it stands 1..."
+n21 = 5.8 mm (L1.2): "...r side clearance in the 6.2 mm opening means a tongue about 5.8 mm wide; it stands 1.2 to 1.7 mm proud of the seat, at l..."
+n22 = 1.2 (L1.2): "...6.2 mm opening means a tongue about 5.8 mm wide; it stands 1.2 to 1.7 mm proud of the seat, at least 0.1 mm clear of the..."
+n23 = 1.7 mm (L1.2): "...opening means a tongue about 5.8 mm wide; it stands 1.2 to 1.7 mm proud of the seat, at least 0.1 mm clear of the T-nut)..."
+n24 = 0.1 mm (L1.2): "...m wide; it stands 1.2 to 1.7 mm proud of the seat, at least 0.1 mm clear of the T-nut), made of segments that leave a wi..."
+n25 = 8.0 mm (L1.2): "...f the T-nut), made of segments that leave a window at least 8.0 mm long around the bolt axis and at least 12.8 mm long a..."
+n26 = 12.8 mm (L1.2): "...ndow at least 8.0 mm long around the bolt axis and at least 12.8 mm long around the stud axis so the bolt and the stud's..."
+n27 = 5.5 mm (L1.3): "...One M5 bolt shall pass through a 5.5 mm clearance hole with a counterbore for its head into the T-n..."
+n28 = 3.0 mm (L1.3): "...ith a counterbore for its head into the T-nut with at least 3.0 mm of thread engagement, its tip stopping at least 0.5 m..."
+n29 = 0.5 mm (L1.3): "...east 3.0 mm of thread engagement, its tip stopping at least 0.5 mm short of the slot floor and no more than 0.6 mm beyon..."
+n30 = 0.6 mm (L1.3): "...ng at least 0.5 mm short of the slot floor and no more than 0.6 mm beyond the back of the T-nut...."
+n31 = 300 (L1.4): "...he clamp shall sit flat on the extrusion face with at least 300 mm2 of contact (seat flat within 0.2 mm) and shall not p..."
+n32 = 0.2 mm (L1.4): "...ion face with at least 300 mm2 of contact (seat flat within 0.2 mm) and shall not penetrate the extrusion anywhere...."
+n33 = 1 (L1.5): "...The 1/4-20 stud shall stand perpendicular to the extrusion face,..."
+n34 = 4 (L1.5): "...The 1/4-20 stud shall stand perpendicular to the extrusion face, wi..."
+n35 = 5.5 (L1.5): "...head captive in a pocket that holds it against turning, and 5.5 to 8.0 mm of thread proud of the top face. The hex head ..."
+n36 = 8.0 mm (L1.5): "...ptive in a pocket that holds it against turning, and 5.5 to 8.0 mm of thread proud of the top face. The hex head is 11.1..."
+n37 = 11.1 mm (L1.5): "...to 8.0 mm of thread proud of the top face. The hex head is 11.1 mm across flats and 5.6 mm thick (the catalogue nut size..."
+n38 = 5.6 mm (L1.5): "...d of the top face. The hex head is 11.1 mm across flats and 5.6 mm thick (the catalogue nut size); the pocket shall meas..."
+n39 = 11.25 (L1.5): "...mm thick (the catalogue nut size); the pocket shall measure 11.25 to 11.55 mm across flats and 5.7 to 6.2 mm deep, the s..."
+n40 = 11.55 mm (L1.5): "...(the catalogue nut size); the pocket shall measure 11.25 to 11.55 mm across flats and 5.7 to 6.2 mm deep, the stud hole ..."
+n41 = 5.7 (L1.5): "...the pocket shall measure 11.25 to 11.55 mm across flats and 5.7 to 6.2 mm deep, the stud hole 6.45 to 6.75 mm in diamete..."
+n42 = 6.2 mm (L1.5): "...ket shall measure 11.25 to 11.55 mm across flats and 5.7 to 6.2 mm deep, the stud hole 6.45 to 6.75 mm in diameter, at l..."
+n43 = 6.45 (L1.5): "...11.55 mm across flats and 5.7 to 6.2 mm deep, the stud hole 6.45 to 6.75 mm in diameter, at least 6.35 mm of material sh..."
+n44 = 6.75 mm (L1.5): "...across flats and 5.7 to 6.2 mm deep, the stud hole 6.45 to 6.75 mm in diameter, at least 6.35 mm of material shall lie b..."
+n45 = 6.35 mm (L1.5): "...m deep, the stud hole 6.45 to 6.75 mm in diameter, at least 6.35 mm of material shall lie between the pocket ceiling and..."
+n46 = 1.0 (L1.5): "...p face, and the top face shall be square to the stud within 1.0 degree...."
+n47 = 3 (L1.6): "...The stud boss shall carry a 3 N m torque: the material round the hex pocket shall be at l..."
+n48 = 4.0 mm (L1.6): "...torque: the material round the hex pocket shall be at least 4.0 mm thick and the wall shear and flat bearing stress at 3..."
+n49 = 3 (L1.6): "...4.0 mm thick and the wall shear and flat bearing stress at 3 N m shall stay within 12 and 20 MPa. With T = 3000 N mm, AF..."
+n50 = 12 (L1.6): "...ll shear and flat bearing stress at 3 N m shall stay within 12 and 20 MPa. With T = 3000 N mm, AF the pocket across flat..."
+n51 = 20 (L1.6): "...r and flat bearing stress at 3 N m shall stay within 12 and 20 MPa. With T = 3000 N mm, AF the pocket across flats, d_p ..."
+n52 = 3000 (L1.6): "...g stress at 3 N m shall stay within 12 and 20 MPa. With T = 3000 N mm, AF the pocket across flats, d_p its depth and t_w..."
+n53 = 2 (L1.6): "...le that continues from its ceiling excluded): F = T / (AF / 2); wall shear = F / (2 t_w d_p); flat bearing stress = F / ..."
+n54 = 2 (L1.6): "...its ceiling excluded): F = T / (AF / 2); wall shear = F / (2 t_w d_p); flat bearing stress = F / (2 (AF / sqrt 3) d_p)...."
+n55 = 2 (L1.6): "...); wall shear = F / (2 t_w d_p); flat bearing stress = F / (2 (AF / sqrt 3) d_p). The boss shall extend at least 6.35 mm..."
+n56 = 3 (L1.6): "...= F / (2 t_w d_p); flat bearing stress = F / (2 (AF / sqrt 3) d_p). The boss shall extend at least 6.35 mm from the stud..."
+n57 = 6.35 mm (L1.6): "...= F / (2 (AF / sqrt 3) d_p). The boss shall extend at least 6.35 mm from the stud axis to every outer surface, and the p..."
+n58 = 5 degrees (L1.6): "...ith its layers across the stud axis (build direction within 5 degrees of it)...."
+n59 = 3 (L1.7): "...The clamp shall not twist on the extrusion at 3 N m: the slot tongue shall have a key capacity of at least..."
+n60 = 4.5 (L1.7): "...N m: the slot tongue shall have a key capacity of at least 4.5 N m, computed as 15 MPa x tongue height x l_min x (S - l_..."
+n61 = 15 (L1.7): "...shall have a key capacity of at least 4.5 N m, computed as 15 MPa x tongue height x l_min x (S - l_min) with S the overa..."
+n62 = 30.0 mm (L1.7): "...shorter of the two end segments; the span shall be at least 30.0 mm and every segment at least 4.0 mm long...."
+n63 = 4.0 mm (L1.7): "...e span shall be at least 30.0 mm and every segment at least 4.0 mm long...."
+n64 = 56 mm (L1.8): "...the clamp with its T-nut shall slide along the slot over a 56 mm travel on a 100 mm extrusion without touching the extru..."
+n65 = 100 mm (L1.8): "...s T-nut shall slide along the slot over a 56 mm travel on a 100 mm extrusion without touching the extrusion except on it..."
+n66 = 0.15 mm (L1.8): "...on its seat and without the T-nut binding (tongue at least 0.15 mm from the lips throughout; T-nut at least 0.3 mm from ..."
+n67 = 0.3 mm (L1.8): "...e at least 0.15 mm from the lips throughout; T-nut at least 0.3 mm from the slot side walls and 0.5 mm from the slot flo..."
+n68 = 0.5 mm (L1.8): "...oughout; T-nut at least 0.3 mm from the slot side walls and 0.5 mm from the slot floor)...."
+n69 = 28 mm (L1.9): "...ach the M5 bolt head from above, and a camera base of about 28 mm diameter shall sit on the top face with nothing printe..."
+n70 = 0.2 mm (L1.9): "...with nothing printed above it; the top face is flat within 0.2 mm over at least a 6.0 mm radius round the stud axis...."
+n71 = 6.0 mm (L1.9): "...bove it; the top face is flat within 0.2 mm over at least a 6.0 mm radius round the stud axis...."
+n72 = 60 (L1.11): "...The clamp shall be no larger than 60 x 30 x 30 mm...."
+n73 = 30 (L1.11): "...The clamp shall be no larger than 60 x 30 x 30 mm...."
+n74 = 30 mm (L1.11): "...The clamp shall be no larger than 60 x 30 x 30 mm...."
+n75 = 0.10 mm (L1.12): "...eport shall agree with an independent measurement to within 0.10 mm (stresses within 5 percent)...."
+n76 = 5 (L1.12): "...independent measurement to within 0.10 mm (stresses within 5 percent)...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "none",
+  "max_y": "none",
+  "max_z": "none",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "none"
+}

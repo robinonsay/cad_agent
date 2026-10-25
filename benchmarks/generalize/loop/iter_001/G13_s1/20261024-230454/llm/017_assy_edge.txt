@@ -1,0 +1,22 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A 2 x 2 macro pad. Four 6 mm tactile switches sit on a 70 x 50 mm perfboard (a mounting hole in each corner) at 19.05 mm pitch in both directions, with a Raspberry Pi Pico 2 plugged into female sockets on the same board behind them. Each switch is pressed by a printed plunger that comes up through a hole in the top plate with 0.4 mm clearance all round, and the plunger has 1.5 mm of travel before it bottoms out. The Pico's micro-USB port opens through the rear end wall, so the cable plugs in with the lid on. The enclosure is a base and a removable top plate (the plate is the lid), printed on an FDM printer without supports.
+
+The board edges:
+- -X: the short (50 mm) end at -X
+- +X: the short (50 mm) end at +X
+- -Y: the long (70 mm) side at -Y
+- +Y: the long (70 mm) side at +Y
+
+Which board edge does each part's connector face, so its cable plugs in through that end or side of the enclosure?
+- module_1: raspberry pi pico 2 x1 (usb connector)
+
+=== RESPONSE ===
+{
+  "module_1": "-X"
+}

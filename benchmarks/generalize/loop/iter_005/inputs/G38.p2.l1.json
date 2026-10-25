@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The board (70 x 50 x 1.6 mm) is carried component side down on four corner pins of 2.7 to 2.9 mm diameter that stand 1 to 3 mm above the solder side. One pin goes in each 3 mm corner hole and four seats around the pins support the underside of the board. The design should state the board's pose.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Under the board, within its outline, no printed body may approach closer than 10 mm to the underside, with the exception of the four seats beneath the holes, for every tilt between 0 and 20 degrees.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The board should lower straight onto the pins, stay at least 0.5 mm away from every printed surface other than its seats, and leave the solder side open, meaning nothing printed rises above the board's top surface within its outline.",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "The cradle swings freely around a horizontal axis running through two M3 pivot bolts, by at least 20 degrees in each direction, and never touches the base: at least 0.5 mm of clearance at all angles.",
+    "method": "test"
+  },
+  {
+    "id": "L1.5",
+    "text": "Two coaxial M3 bolts form the pivot. Each one runs through a clearance hole in a base upright and into a pilot hole in the cradle, engaging 5.0 mm or more of thread, and the column above each head stays free for a hex key.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "The holder must not tip over. At 0 and at 20 degrees either way the centre of mass sits at least 5.0 mm within the base's footprint, a sideways push of 0.5 N at the board's highest edge point leaves it standing, and the base weighs at least half the total (mass = printed volume x 0.45 g/cm3, plus 30 g for the populated board, plus 1 g for each bolt).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The base is printed flat on its largest face with at least 50% of it on the bed, and the cradle gets a stated print orientation that puts at least 25% on the bed.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "There are two separate printed bodies, the base and the cradle, each one manifold body, and the only other parts are the pivot bolts.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "Every wall, bar, post and ligament has to be sturdy: no printed feature under 2.0 mm thick apart from the pins, posts at least 5.0 mm across, and at least 2.0 mm of material surrounding each bolt and pilot hole.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "Each body must print on an FDM printer, in the orientation stated for it, without any supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "With zero tilt, the whole holder must come in at no more than 120 x 100 x 50 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "What gets delivered: a base STL, a cradle STL (zero-tilt pose, mm), the OpenSCAD source, the declared board and pivot layout and the agent's own clearance report, which has to agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

@@ -1,0 +1,30 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a holder for an SG90 micro servo. The servo is 22.5 x 12.2 x 22.7 mm in the body; across its ears it measures 32.5 mm, with 2.0 mm holes in the ears spaced 27.5 mm apart, and the shaft should point up. It should drop into a pocket from above and rest on a ledge by its ears. The pocket is a snug fit, roughly 0.2 mm each side, leaving between 0.3 and 1.5 mm below the servo. Two self-tapping M2 x 8 screws go through the ear holes into pilot holes in the ledge. The wire comes out the end of the servo that faces away from the shaft, so that end wall needs a single slot for the wire and its bend, and the slot may exceed the wire's exit volume by no more than 3 mm on any side. Nothing may block the output shaft within 5 mm of it. The base plate of the holder is 40 x 25 mm and between 2.5 and 4 mm thick where the two M3 clearance holes are, 30 mm apart, with centres at least 3.2 mm from the edge and room for a screw head and hex key at each. It is one FDM-printed piece with no supports, walls and floor of at least 2 mm, and a height of at most 25 mm, and it has to stay upright if tilted 5 degrees with the servo in.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {"exposed": "no", "quantity": 0},
+  "arduino_uno_r3": {"dc_exposed": "no", "quantity": 0, "usb_exposed": "no"},
+  "dc_jack_pj002a": {"exposed": "no", "quantity": 0},
+  "generic_box": {"quantity": 0},
+  "generic_cylinder": {"quantity": 0},
+  "jack_3p5_pj320a": {"exposed": "no", "quantity": 0},
+  "rpi_pico2": {"exposed": "no", "quantity": 0}
+}

@@ -1,0 +1,101 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 3 mm (request): "...built from two printed leaves held together by a steel pin 3 mm thick and 40 mm long. The leaves are each 25 mm by 40 mm..."
+n2 = 40 mm (request): "...printed leaves held together by a steel pin 3 mm thick and 40 mm long. The leaves are each 25 mm by 40 mm seen from abov..."
+n3 = 25 mm (request): "...a steel pin 3 mm thick and 40 mm long. The leaves are each 25 mm by 40 mm seen from above, with the 40 mm edge running a..."
+n4 = 40 mm (request): "...pin 3 mm thick and 40 mm long. The leaves are each 25 mm by 40 mm seen from above, with the 40 mm edge running along the..."
+n5 = 40 mm (request): "...he leaves are each 25 mm by 40 mm seen from above, with the 40 mm edge running along the pin, and each gets a pair of M3..."
+n6 = 0 degrees (request): "...rts so it can be bolted onto something. It has to open from 0 degrees, closed with the leaves facing each other, through..."
+n7 = 180 degrees (request): "...grees, closed with the leaves facing each other, through to 180 degrees, lying flat, and the two leaves can't hit each o..."
+n8 = 0.3 mm (request): "...leaves can't hit each other at any angle on the way. Leave 0.3 mm between knuckles that sit next to each other, and make..."
+n9 = 0.2 mm (request): "...t to each other, and make the hole in the leaf that rotates 0.2 mm larger than the pin. Print on FDM with no supports...."
+n10 = 25.0 mm (L1.1): "...Make two printed leaves, each one manifold body measuring 25.0 mm (plus or minus 0.3) by 40.0 mm (plus or minus 0.2) in ..."
+n11 = 0.3 (L1.1): "...es, each one manifold body measuring 25.0 mm (plus or minus 0.3) by 40.0 mm (plus or minus 0.2) in plan and between 8.4 ..."
+n12 = 40.0 mm (L1.1): "...one manifold body measuring 25.0 mm (plus or minus 0.3) by 40.0 mm (plus or minus 0.2) in plan and between 8.4 and 10.0 ..."
+n13 = 0.2 (L1.1): "...uring 25.0 mm (plus or minus 0.3) by 40.0 mm (plus or minus 0.2) in plan and between 8.4 and 10.0 mm thick; the mounting..."
+n14 = 8.4 (L1.1): "...nus 0.3) by 40.0 mm (plus or minus 0.2) in plan and between 8.4 and 10.0 mm thick; the mounting face is flat to 0.2 mm...."
+n15 = 10.0 mm (L1.1): "...by 40.0 mm (plus or minus 0.2) in plan and between 8.4 and 10.0 mm thick; the mounting face is flat to 0.2 mm...."
+n16 = 0.2 mm (L1.1): "...between 8.4 and 10.0 mm thick; the mounting face is flat to 0.2 mm...."
+n17 = 40 mm (L1.2): "...Along the 40 mm pin axis the leaves take turns carrying knuckles: odd numbe..."
+n18 = 3 (L1.2): "...e leaves take turns carrying knuckles: odd number, at least 3, each 5.0 mm or longer, a gap of 0.30 to 0.40 mm between n..."
+n19 = 5.0 mm (L1.2): "...take turns carrying knuckles: odd number, at least 3, each 5.0 mm or longer, a gap of 0.30 to 0.40 mm between neighbouri..."
+n20 = 0.30 (L1.2): "...es: odd number, at least 3, each 5.0 mm or longer, a gap of 0.30 to 0.40 mm between neighbouring faces, and the two end ..."
+n21 = 0.40 mm (L1.2): "...number, at least 3, each 5.0 mm or longer, a gap of 0.30 to 0.40 mm between neighbouring faces, and the two end knuckles..."
+n22 = 40 mm (L1.2): "...neighbouring faces, and the two end knuckles flush with the 40 mm ends...."
+n23 = 3 mm (L1.3): "...The pin, 3 mm, runs through each knuckle on a shared axis (within 0.10 mm..."
+n24 = 0.10 mm (L1.3): "...n, 3 mm, runs through each knuckle on a shared axis (within 0.10 mm). Holes in the turning leaf are 0.20 mm larger than ..."
+n25 = 0.20 mm (L1.3): "...shared axis (within 0.10 mm). Holes in the turning leaf are 0.20 mm larger than the pin (3.15 to 3.30 mm) and every knuc..."
+n26 = 3.15 (L1.3): "...Holes in the turning leaf are 0.20 mm larger than the pin (3.15 to 3.30 mm) and every knuckle keeps 2.0 mm or more of wa..."
+n27 = 3.30 mm (L1.3): "...n the turning leaf are 0.20 mm larger than the pin (3.15 to 3.30 mm) and every knuckle keeps 2.0 mm or more of wall arou..."
+n28 = 2.0 mm (L1.3): "...rger than the pin (3.15 to 3.30 mm) and every knuckle keeps 2.0 mm or more of wall around its hole...."
+n29 = 2.95 (L1.4): "...In the other leaf, the pin is gripped by a press fit (hole 2.95 to 3.05 mm) in the outer knuckles, engaging 14.0 mm or m..."
+n30 = 3.05 mm (L1.4): "...other leaf, the pin is gripped by a press fit (hole 2.95 to 3.05 mm) in the outer knuckles, engaging 14.0 mm or more; bo..."
+n31 = 14.0 mm (L1.4): "...fit (hole 2.95 to 3.05 mm) in the outer knuckles, engaging 14.0 mm or more; both pin ends sit within 0.3 mm of the 40 mm..."
+n32 = 0.3 mm (L1.4): "...nuckles, engaging 14.0 mm or more; both pin ends sit within 0.3 mm of the 40 mm ends...."
+n33 = 40 mm (L1.4): "...ing 14.0 mm or more; both pin ends sit within 0.3 mm of the 40 mm ends...."
+n34 = 3.9 (L1.5): "...On each leaf, two M3 heat-set insert holes of 3.9 to 4.1 mm diameter, 7.2 mm or deeper with a floor of at lea..."
+n35 = 4.1 mm (L1.5): "...On each leaf, two M3 heat-set insert holes of 3.9 to 4.1 mm diameter, 7.2 mm or deeper with a floor of at least 1.0 mm,..."
+n36 = 7.2 mm (L1.5): "...af, two M3 heat-set insert holes of 3.9 to 4.1 mm diameter, 7.2 mm or deeper with a floor of at least 1.0 mm, square to ..."
+n37 = 1.0 mm (L1.5): "...4.1 mm diameter, 7.2 mm or deeper with a floor of at least 1.0 mm, square to the mounting face within 1 degree, 3.0 mm o..."
+n38 = 1 (L1.5): "...loor of at least 1.0 mm, square to the mounting face within 1 degree, 3.0 mm or more from any edge or feature, 15.0 mm o..."
+n39 = 3.0 mm (L1.5): "...least 1.0 mm, square to the mounting face within 1 degree, 3.0 mm or more from any edge or feature, 15.0 mm or more apar..."
+n40 = 15.0 mm (L1.5): "...e within 1 degree, 3.0 mm or more from any edge or feature, 15.0 mm or more apart, and symmetric about the mid-length of..."
+n41 = 0.5 mm (L1.5): "...t, and symmetric about the mid-length of the leaf to within 0.5 mm...."
+n42 = 0 (L1.6): "...Sweeping from 0 to 180 degrees in 5 degree steps, the leaves must never int..."
+n43 = 180 degrees (L1.6): "...Sweeping from 0 to 180 degrees in 5 degree steps, the leaves must never intersect and must..."
+n44 = 5 (L1.6): "...Sweeping from 0 to 180 degrees in 5 degree steps, the leaves must never intersect and must rema..."
+n45 = 0.30 mm (L1.6): "...gree steps, the leaves must never intersect and must remain 0.30 mm or more apart, with the turning leaf's pin holes at ..."
+n46 = 0.05 mm (L1.6): "...m or more apart, with the turning leaf's pin holes at least 0.05 mm clear of the pin...."
+n47 = 180 degrees (L1.7): "...Open to 180 degrees, the mounting faces lie in one plane within 0.2 mm. At 0 de..."
+n48 = 0.2 mm (L1.7): "...to 180 degrees, the mounting faces lie in one plane within 0.2 mm. At 0 degrees they are parallel within 1 degree, and t..."
+n49 = 0 degrees (L1.7): "...rees, the mounting faces lie in one plane within 0.2 mm. At 0 degrees they are parallel within 1 degree, and the leaves ..."
+n50 = 1 (L1.7): "...plane within 0.2 mm. At 0 degrees they are parallel within 1 degree, and the leaves fold face to face with 0.30 to 0.60..."
+n51 = 0.30 (L1.7): "...llel within 1 degree, and the leaves fold face to face with 0.30 to 0.60 mm between the plates...."
+n52 = 0.60 mm (L1.7): "...hin 1 degree, and the leaves fold face to face with 0.30 to 0.60 mm between the plates...."
+n53 = 30 (L1.8): "...Closed, it fits inside 30 x 41 x 20 mm; flat, inside 45 x 41 x 15 mm...."
+n54 = 41 (L1.8): "...Closed, it fits inside 30 x 41 x 20 mm; flat, inside 45 x 41 x 15 mm...."
+n55 = 20 mm (L1.8): "...Closed, it fits inside 30 x 41 x 20 mm; flat, inside 45 x 41 x 15 mm...."
+n56 = 45 (L1.8): "...Closed, it fits inside 30 x 41 x 20 mm; flat, inside 45 x 41 x 15 mm...."
+n57 = 41 (L1.8): "...Closed, it fits inside 30 x 41 x 20 mm; flat, inside 45 x 41 x 15 mm...."
+n58 = 15 mm (L1.8): "...sed, it fits inside 30 x 41 x 20 mm; flat, inside 45 x 41 x 15 mm...."
+n59 = 50 (L1.9): "...nts with no supports in a stated orientation, with at least 50 percent of its plan footprint on the bed and no feature u..."
+n60 = 0.8 mm (L1.9): "...rcent of its plan footprint on the bed and no feature under 0.8 mm thick...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "n3",
+  "board_width": "n4",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n56",
+  "max_y": "n54",
+  "max_z": "n58",
+  "opening_oversize_max": "n25",
+  "wall_max": "n15",
+  "wall_min": "n14"
+}

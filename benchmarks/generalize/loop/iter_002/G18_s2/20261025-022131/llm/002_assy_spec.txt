@@ -1,0 +1,65 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 608 (request): "...A two-piece pillow block for a 608 bearing (8 x 22 x 7 mm) that is clamped, not glued. The blo..."
+n2 = 8 (request): "...A two-piece pillow block for a 608 bearing (8 x 22 x 7 mm) that is clamped, not glued. The block is split..."
+n3 = 22 (request): "...A two-piece pillow block for a 608 bearing (8 x 22 x 7 mm) that is clamped, not glued. The block is split alon..."
+n4 = 7 mm (request): "...A two-piece pillow block for a 608 bearing (8 x 22 x 7 mm) that is clamped, not glued. The block is split along the b..."
+n5 = 0.1 mm (request): "...s pull the halves together, and the bearing pocket is about 0.1 mm under 22 mm across when the halves are closed, so the..."
+n6 = 22 mm (request): "...lves together, and the bearing pocket is about 0.1 mm under 22 mm across when the halves are closed, so the clamp holds ..."
+n7 = 40 mm (request): "...clamp holds the bearing. The base has two M4 mounting holes 40 mm apart. It is printed on an FDM printer without support..."
+n8 = 21.9 mm (L1.2): "...With the halves closed, the bearing pocket shall be 21.9 mm across (21.85 to 21.95 mm), round, and centred on the beari..."
+n9 = 21.85 (L1.2): "...halves closed, the bearing pocket shall be 21.9 mm across (21.85 to 21.95 mm), round, and centred on the bearing axis, s..."
+n10 = 21.95 mm (L1.2): "...losed, the bearing pocket shall be 21.9 mm across (21.85 to 21.95 mm), round, and centred on the bearing axis, so that t..."
+n11 = 22 mm (L1.2): "...95 mm), round, and centred on the bearing axis, so that the 22 mm bearing is squeezed by about 0.1 mm...."
+n12 = 0.1 mm (L1.2): "...earing axis, so that the 22 mm bearing is squeezed by about 0.1 mm...."
+n13 = 7 mm (L1.3): "...The pocket shall hold the 7 mm wide bearing axially between two lips on the outer ring, an..."
+n14 = 0.05 mm (L1.4): "...e closed halves shall touch on the split plane (gap at most 0.05 mm) over a real area (at least 100 mm2), so the bolts c..."
+n15 = 100 (L1.4): "...plit plane (gap at most 0.05 mm) over a real area (at least 100 mm2), so the bolts clamp the halves onto the bearing and..."
+n16 = 40.0 mm (L1.7): "...The base shall have two M4 mounting holes 40.0 mm apart with room for the heads and a hex key...."
+n17 = 2.5 mm (L1.9): "...l reach the mounting holes through solid material: at least 2.5 mm of wall between the bearing pocket and any outer surf..."
+n18 = 2.0 mm (L1.9): "...between the bearing pocket and any outer surface, at least 2.0 mm round every hole, counterbore and nut pocket, at least..."
+n19 = 100 (L1.9): "...0 mm round every hole, counterbore and nut pocket, at least 100 mm2 of base cross-section on every plane between the blo..."
+n20 = 10 (L1.9): "...plane between the block and each M4 hole, and no more than 10 MPa bending stress in the base for a 100 N pull on the bea..."
+n21 = 100 (L1.9): "...e, and no more than 10 MPa bending stress in the base for a 100 N pull on the bearing; the base shall be one connected b..."
+n22 = 60 (L1.11): "...The closed block shall be no larger than 60 x 60 x 32 mm and shall stand flat on its mounting face with..."
+n23 = 60 (L1.11): "...The closed block shall be no larger than 60 x 60 x 32 mm and shall stand flat on its mounting face without t..."
+n24 = 32 mm (L1.11): "...The closed block shall be no larger than 60 x 60 x 32 mm and shall stand flat on its mounting face without tipping...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n22",
+  "max_y": "n23",
+  "max_z": "n24",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "n17"
+}

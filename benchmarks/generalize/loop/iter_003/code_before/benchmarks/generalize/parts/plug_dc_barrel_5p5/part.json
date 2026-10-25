@@ -1,0 +1,160 @@
+{
+  "id": "plug_dc_barrel_5p5",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "dc plug",
+    "dc barrel plug",
+    "barrel plug",
+    "5.5 mm barrel plug",
+    "5.5 x 2.1 plug",
+    "power plug",
+    "dc power plug",
+    "dc cable plug",
+    "2.1 mm dc plug",
+    "power adapter plug"
+  ],
+  "kind": "plug",
+  "source": "Standard 5.5 x 2.1 mm DC barrel plug (EIAJ RC-5320A): barrel 5.5 mm outside diameter, 2.1 mm centre pin hole, barrel length 14 mm (typical 9 to 14), overmold handle about 11 mm dia, total 30 mm per plan note. Overmold dimensions vary by cable; measure the owner's adapter.",
+  "frame": "plug: origin at the tip, axis along +X toward the cable; it is inserted by moving along -X (mating direction = -PLUG_AXIS)",
+  "params": {
+    "barrel_diameter": {
+      "default": 5.5,
+      "source": "EIAJ RC-5320A: barrel outside diameter"
+    },
+    "centre_pin_diameter": {
+      "default": 2.1,
+      "source": "EIAJ RC-5320A: centre pin hole diameter"
+    },
+    "barrel_length": {
+      "default": 14.0,
+      "source": "plan datasheet note: barrel length"
+    },
+    "overmold_diameter": {
+      "default": 11.0,
+      "source": "plan datasheet note: handle diameter, typical"
+    },
+    "overmold_length": {
+      "default": 16.0,
+      "source": "30 mm total minus the 14 mm barrel (plan datasheet note)"
+    },
+    "stop_gap": {
+      "default": 1.0,
+      "source": "assumed maximum overmold-to-mouth gap at full mate, as for plug_trs_3p5"
+    }
+  },
+  "datasheet_size": [
+    "barrel_length + overmold_length",
+    "overmold_diameter",
+    "overmold_diameter"
+  ],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {
+      "id": "barrel",
+      "primitive": "cylinder",
+      "d": "barrel_diameter",
+      "h": "barrel_length",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "overmold",
+      "primitive": "cylinder",
+      "d": "overmold_diameter",
+      "h": "overmold_length",
+      "at": [
+        "barrel_length",
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "datums": {
+    "PLUG_TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        0
+      ]
+    },
+    "PLUG_AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ],
+      "diameter": "barrel_diameter"
+    },
+    "SEAT": {
+      "kind": "point",
+      "at": [
+        "barrel_length - stop_gap",
+        0,
+        0
+      ]
+    },
+    "OVERMOLD_FACE": {
+      "kind": "plane",
+      "at": [
+        "barrel_length",
+        0,
+        0
+      ],
+      "normal": [
+        -1,
+        0,
+        0
+      ]
+    }
+  },
+  "connectors": [],
+  "notes": "Cable strain relief is not modelled; the overmold cylinder is the insertion envelope swept outward. Total length 30 mm includes only the handle, not the cable. Many adapters have an overmold of 12 to 14 mm diameter; the 11 mm value is the plan's typical, uncertainty +3 mm.",
+  "self_checks": [
+    {
+      "name": "barrel diameter",
+      "expr": "barrel.size_y",
+      "value": 5.5,
+      "tol": 0.1
+    },
+    {
+      "name": "overmold diameter",
+      "expr": "overmold.size_z",
+      "value": 11.0,
+      "tol": 0.3
+    },
+    {
+      "name": "total length 30",
+      "expr": "overmold.max_x",
+      "value": 30.0,
+      "tol": 0.3
+    },
+    {
+      "name": "overmold face beyond the seat",
+      "expr": "OVERMOLD_FACE.x - SEAT.x",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

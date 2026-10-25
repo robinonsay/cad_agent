@@ -1,0 +1,138 @@
+{
+ "paraphrases": [
+  {
+   "id": "G39",
+   "tier": 4,
+   "title": "2020 end drill guide for M5 tap",
+   "request": "Drill jig that clamps on the end of 2020 aluminium T-slot extrusion (20 x 20 mm section, 6.2 mm slot opening, 6.1 mm slot depth, 4.2 mm centre bore, at least 100 mm long) and centres a 4.2 mm drill on the bore so it can be drilled out and tapped M5. The jig has a 20.2 mm square pocket, 15 mm deep; the profile end slides straight in until its end face is flat on the pocket floor. A guide plate sits behind the pocket floor with one 4.3 mm guide hole, at least 8 mm long. The hole must be coaxial with the profile centre within 0.2 mm including slack between the 20.0 mm profile and the 20.2 mm pocket, and within 0.05 mm with the profile centred in the pocket. Two tongues in two opposite T-slots (5.6 to 5.95 mm wide, 2 to 4 mm into the slot, at least 10 mm long, never touching the profile) prevent rotation. One M3 clamp screw through a side wall bears on the flat lip of a profile face, at least 1 mm from the slot edge and 5 to 10 mm above the pocket floor. The 4.2 mm drill passes the guide hole and goes 20 mm into the bore, with room for a 10 mm drill chuck behind the plate. Walls at least 3 mm, 5 mm at the clamp screw. One printed part, FDM, no supports, max 40 x 40 x 35 mm.",
+   "request_verbatim": "A jig that clamps onto the end of a 2020 extrusion and centres a 4.2 mm drill on the center bore (M5 tap drill). Guide bushing hole is 4.3 mm and must be coaxial within 0.2 mm of the profile centre. The jig has a 20.2 mm square pocket 15 mm deep.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: 2020 profile numbers (extrusion_2020 part.json); drill = generic_tube OD 4.2 (A3); guide plate behind the pocket floor (F2); tongues in two opposite slots (F4, 'slot_engagement'); M3 clamp screw (F3, bolt_m3_iso4762); 20 mm drilling depth (A4); FDM, 40 x 40 x 35 limit (A8, A9). Audit additions: centred-pose 0.05, guide length 8, tongue width/protrusion/length, clamp position, wall thickness (all already judged in requirements.md L3.3.3.2, L3.2.3.1, L2.5.2, L2.6.2, L2.7.2).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Jig has a square pocket, 20.2 mm across and 15 mm deep, flat floor. The end of a 20 x 20 mm profile slides in straight along its axis, touching no pocket wall, until the end face lies flat on the floor.",
+     "method": "test"
+    },
+    {
+     "id": "L1.2",
+     "text": "Jig has one round guide hole, 4.3 mm diameter, through a guide plate behind the pocket floor. It is parallel to the pocket axis and the guide length is at least 8 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Guide hole axis is within 0.2 mm of the profile centre bore axis worst case, with the profile anywhere within its slack in the pocket, and within 0.05 mm with the profile centred in the pocket.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Profile centred in the pocket: a 4.2 mm drill on the profile centre axis passes through the guide hole and goes 20 mm into the bore without touching the jig. A 10 mm drill chuck has clear space behind the guide plate.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "Two tongues, in two opposite T-slots of the profile, each 5.6 to 5.95 mm wide, 2 to 4 mm into the slot and at least 10 mm long, stop the jig rotating on the profile. They touch the profile at no position the pocket slack allows.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "One M3 clamp screw goes through a side wall and presses on a flat face of the profile next to a slot, not in the slot: at least 1 mm from the slot edge, 5 to 10 mm above the pocket floor. A hex key can reach it.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "No openings in the jig except the pocket, the guide hole and the clamp screw hole. Walls at least 3 mm thick, at least 5 mm at the clamp screw.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "Jig is a single manifold body, printable on an FDM printer without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Jig max size 40 x 40 x 35 mm, and it stands flat on its guide plate.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliverables: jig STL, OpenSCAD source, declared layout of profile and drill relative to the jig, and the agent's own clearance report, which must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a square blind pocket, a round through hole parallel to the pocket axis, a cross hole into the pocket",
+    "datum placement: put the guide hole axis on the pocket centre, which is the profile centre, to a stated tolerance",
+    "tolerance stack: derive the worst-case axis offset from the pocket slack and the hole offset",
+    "slot engagement: tongues inside T-slot keep-out channels read from the profile part.json",
+    "interference and clearance checks against external solids: install sweep, drill envelope, chuck zone, hex key column"
+   ]
+  },
+  {
+   "id": "G39",
+   "tier": 4,
+   "title": "2020 end drill guide for M5 tap",
+   "request": "I'm after a drilling jig for the end of a piece of 2020 aluminium T-slot extrusion. The profile is 20 x 20 mm in section with a 6.2 mm slot opening, 6.1 mm slot depth and a 4.2 mm centre bore, and the piece is at least 100 mm long. The jig clamps on the end and centres a 4.2 mm drill on the bore, so you can drill it out and tap it M5. The profile end goes straight into a 20.2 mm square pocket that is 15 mm deep, until its end face sits flat against the pocket floor. Behind that floor there is a guide plate with a single 4.3 mm hole for the drill, at least 8 mm long. Even counting the slack between the 20.0 mm profile and the 20.2 mm pocket, the hole has to be coaxial with the profile centre to within 0.2 mm, and to within 0.05 mm when the profile is centred in the pocket. To stop the jig twisting, use two tongues, one in each of two opposite T-slots; each is 5.6 to 5.95 mm wide, sticks 2 to 4 mm into the slot, is at least 10 mm long, and never touches the profile. An M3 clamp screw goes through a side wall and bears on the flat lip of a profile face, at least 1 mm away from the slot edge and 5 to 10 mm above the pocket floor, to keep the jig on. The 4.2 mm drill must go through the guide hole and 20 mm into the bore, and there must be room behind the plate for a 10 mm drill chuck. Make walls at least 3 mm thick, and 5 mm where the clamp screw is. It's a single FDM print with no supports, no bigger than 40 x 40 x 35 mm.",
+   "request_verbatim": "A jig that clamps onto the end of a 2020 extrusion and centres a 4.2 mm drill on the center bore (M5 tap drill). Guide bushing hole is 4.3 mm and must be coaxial within 0.2 mm of the profile centre. The jig has a 20.2 mm square pocket 15 mm deep.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: 2020 profile numbers (extrusion_2020 part.json); drill = generic_tube OD 4.2 (A3); guide plate behind the pocket floor (F2); tongues in two opposite slots (F4, 'slot_engagement'); M3 clamp screw (F3, bolt_m3_iso4762); 20 mm drilling depth (A4); FDM, 40 x 40 x 35 limit (A8, A9). Audit additions: centred-pose 0.05, guide length 8, tongue width/protrusion/length, clamp position, wall thickness (all already judged in requirements.md L3.3.3.2, L3.2.3.1, L2.5.2, L2.6.2, L2.7.2).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "The jig needs a flat-bottomed square pocket, 20.2 mm wide and 15 mm deep. A 20 x 20 mm profile end must be able to slide straight in along its own axis without rubbing the pocket walls, and finish with its end face lying flat on the pocket floor.",
+     "method": "test"
+    },
+    {
+     "id": "L1.2",
+     "text": "There should be one round 4.3 mm guide hole through a guide plate that sits behind the pocket floor. Run it parallel to the pocket axis, with a guide length of at least 8 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "In the worst case, wherever the profile sits within its slack in the pocket, the guide hole axis must land within 0.2 mm of the centre bore axis of the profile. With the profile centred in the pocket it must be within 0.05 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "With the profile centred in the pocket, a 4.2 mm drill running along the profile's centre axis has to go through the guide hole and 20 mm into the bore without touching the jig, and a 10 mm drill chuck needs clear room behind the guide plate.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "Use two tongues, one in each of two opposite T-slots of the profile, to keep the jig from turning on it. Each tongue is 5.6 to 5.95 mm wide, reaches 2 to 4 mm into the slot, and is at least 10 mm long. Wherever the pocket slack lets the profile sit, they never touch it.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "A single M3 clamp screw passes through a side wall and presses on a flat face of the profile beside a slot, not into the slot itself. It lands at least 1 mm from the slot edge and 5 to 10 mm above the pocket floor, and a hex key must be able to get at it.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "Apart from the pocket, the guide hole and the clamp screw hole, the jig has no openings. Walls are at least 3 mm thick, and at least 5 mm around the clamp screw.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "The jig must be a single manifold body that prints on an FDM printer with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Keep the jig inside 40 x 40 x 35 mm and make it stand flat on its guide plate.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliver a jig STL, the OpenSCAD source, the declared layout of the profile and the drill relative to the jig, and your own clearance report, which has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a square blind pocket, a round through hole parallel to the pocket axis, a cross hole into the pocket",
+    "datum placement: put the guide hole axis on the pocket centre, which is the profile centre, to a stated tolerance",
+    "tolerance stack: derive the worst-case axis offset from the pocket slack and the hole offset",
+    "slot engagement: tongues inside T-slot keep-out channels read from the profile part.json",
+    "interference and clearance checks against external solids: install sweep, drill envelope, chuck zone, hex key column"
+   ]
+  }
+ ]
+}

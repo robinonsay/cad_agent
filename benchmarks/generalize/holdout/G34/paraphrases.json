@@ -1,0 +1,160 @@
+{
+ "paraphrases": [
+  {
+   "id": "G34",
+   "tier": 4,
+   "title": "Sliding drawer with dovetail rails and magnet detent",
+   "request": "Small parts drawer, 80 mm long, 60 mm wide, 25 mm tall including rails. It runs in a printed housing on two dovetail rails, 0.3 mm clearance per side between each rail and its groove. One 6 x 3 mm neodymium disc magnet is in a pocket in the drawer back, one in the housing back wall. Drawer shut, the magnets are 0.5 mm apart and keep it closed. Travel is limited to 70 mm so the drawer cannot be pulled out by mistake, yet it can be removed for assembly. Drawer, housing and stop are three separate printed parts, hand assembled, no screws, FDM, no supports.",
+   "request_verbatim": "A small parts drawer 80 x 60 x 25 mm that slides in a housing on two dovetail rails with 0.3 mm clearance per side. A 6 x 3 mm neodymium magnet pocket in the drawer and another in the housing hold it closed with the magnets 0.5 mm apart. Stop the drawer at 70 mm travel.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: 80 x 60 x 25 includes the rails (D2); magnets seated on the pocket floors and the 0.5 mm measured between their faces (D3, A4); stop is a separate removable part so the drawer can be assembled (D4, A5); no fasteners, FDM, no supports (A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Drawer: open-top tray, 80 mm long (along the slide direction), 60 mm wide, 25 mm tall, rails included.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Drawer has two dovetail rails, one per side, each sticking out 2 to 5 mm, flank angle 48 to 65 degrees from the drawer width axis. They run in two matching dovetail grooves in the housing. Clearance between each rail flank and groove flank is 0.3 mm per side.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Drawer slides freely from closed to 70 mm of travel and touches nothing. Gap to the housing is at least 0.3 mm everywhere; when shut, 0.3 to 0.6 mm above and below the drawer. At 70 mm each rail still has at least 8 mm inside its groove.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "With the stop fitted, the drawer stops at 70 mm travel (69.5 to 70.5 mm). The stop is a separate part and bears on the drawer over at least 6 mm2.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "Drawer back and housing back wall each get one pocket for a 6 x 3 mm disc magnet. Pocket is 0.1 to 0.3 mm wider and 0.15 to 0.35 mm deeper than the magnet, so a seated magnet sits 0 to 0.6 mm below the wall face. The pockets are coaxial. Drawer shut, the two seated magnets are 0.5 mm apart (0.4 to 0.6 mm).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Shut drawer sits against the housing back wall, its front face flush with the housing front face. No interference in the closed assembly.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Rails retain the drawer: at any position from closed to 70 mm it cannot be lifted or moved sideways by 1 mm. Sideways play is 0.3 to 0.45 mm each way, total vertical play 0.4 to 1.2 mm. At 70 mm travel the drawer tilts 1 to 8 degrees before it touches the housing.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Drawer, housing and stop are three separate printed bodies, assembled by hand, no fasteners. Remove the stop and the drawer slides straight out of the housing.",
+     "method": "test"
+    },
+    {
+     "id": "L1.9",
+     "text": "Wall and rail thickness limits for printing and use: housing roof, floor and back wall 2.0 to 5.5 mm; housing side walls 2.0 to 7.0 mm; drawer walls 1.6 to 5.0 mm (drawer back wall up to 6.0 mm); rail necks at least 3.0 mm; stop section at least 6.0 mm2.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Each of the three bodies is a single manifold body, printable on an FDM printer in its stated print orientation without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Housing max size 90 x 70 x 35 mm, with a flat underside, and it stands on a desk without tipping over.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliverables: drawer STL, housing STL, stop STL (closed assembly pose, mm), OpenSCAD source, a manifest giving the magnet poses, the stop removal direction and each body's print orientation, and the agent's own measurement report. The report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "dovetail profile (trapezoid extrusion) on a body and its offset negative in a second body at a stated normal clearance",
+    "sliding assembly: poses of the same body at different travel positions, sweeps and first-contact distance as checks",
+    "magnet pockets from a catalogue part (pocket diameter and depth derived from the magnet, recess so the faces are a stated gap apart)",
+    "three printable bodies, one of them a removable stop, each with its own print orientation",
+    "tolerance stack on a gap built from measured depths and catalogue tolerances",
+    "rotation clearance: tilt of the drawer at full extension from the engaged rail length and the clearances"
+   ]
+  },
+  {
+   "id": "G34",
+   "tier": 4,
+   "title": "Sliding drawer with dovetail rails and magnet detent",
+   "request": "I need a little drawer for small parts that slides in a printed housing. The drawer is 25 mm tall counting its rails, 60 mm wide and 80 mm long, and it rides on two dovetail rails. Allow 0.3 mm per side of clearance between each rail and its groove. For a catch, put a 6 x 3 mm neodymium disc magnet in a pocket at the back of the drawer and a second one in the back wall of the housing; when the drawer is pushed home they should be 0.5 mm apart, which is enough to hold it shut. The drawer must stop after 70 mm of travel so nobody pulls it out accidentally, but it still has to come out when assembling. So it is three printed parts, the drawer, the housing and a stop, pushed together by hand with no screws, printed on an FDM machine with no supports.",
+   "request_verbatim": "A small parts drawer 80 x 60 x 25 mm that slides in a housing on two dovetail rails with 0.3 mm clearance per side. A 6 x 3 mm neodymium magnet pocket in the drawer and another in the housing hold it closed with the magnets 0.5 mm apart. Stop the drawer at 70 mm travel.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: 80 x 60 x 25 includes the rails (D2); magnets seated on the pocket floors and the 0.5 mm measured between their faces (D3, A4); stop is a separate removable part so the drawer can be assembled (D4, A5); no fasteners, FDM, no supports (A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "The drawer should be an open-top tray, 60 mm wide, 25 mm tall and 80 mm long in the direction it slides, with the rails counted in all three sizes.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "It needs two dovetail rails, one down each side, each standing out 2 to 5 mm, with the flanks angled 48 to 65 degrees off the drawer's width axis. They sit in two matching dovetail grooves in the housing, and each rail flank has 0.3 mm of clearance per side to its groove flank.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "From shut to 70 mm out, the drawer has to move freely and touch nothing, staying at least 0.3 mm clear of the housing everywhere (with 0.3 to 0.6 mm above and below it when shut). Even at 70 mm, at least 8 mm of each rail must still be inside its groove.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "Once the stop is in place the drawer comes to a halt at 70 mm of travel (anywhere from 69.5 to 70.5 mm). The stop is its own part and presses on the drawer over an area of at least 6 mm2.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "Put one pocket for a 6 x 3 mm disc magnet in the back of the drawer and one in the housing's back wall, lined up on the same axis. Each pocket is 0.1 to 0.3 mm wider and 0.15 to 0.35 mm deeper than the magnet, so the seated magnet ends up 0 to 0.6 mm below the wall face. With the drawer shut, the two seated magnets are 0.5 mm apart (0.4 to 0.6 mm).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "When shut, the drawer rests on the back wall of the housing and its front face is flush with the housing's front face. The closed assembly must have no interference.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "The rails have to hold the drawer in place: anywhere from closed to 70 mm, you must not be able to lift it or push it sideways by 1 mm. Sideways play is 0.3 to 0.45 mm each way and vertical play 0.4 to 1.2 mm overall, and at 70 mm out the drawer tips 1 to 8 degrees before it meets the housing.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "There are three separate printed bodies, drawer, housing and stop, which go together by hand without fasteners. Take the stop away and the drawer slides straight out of the housing.",
+     "method": "test"
+    },
+    {
+     "id": "L1.9",
+     "text": "Everything has to be sturdy enough to print and to use: housing roof, floor and back wall 2.0 to 5.5 mm thick, housing side walls 2.0 to 7.0 mm, drawer walls 1.6 to 5.0 mm (the drawer back can go to 6.0 mm), rail necks no thinner than 3.0 mm, and the stop at least 6.0 mm2 in section.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Each of the three bodies must be a single manifold body that can be printed on an FDM printer, in its stated print orientation, with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Keep the housing within 90 x 70 x 35 mm, give it a flat underside, and make sure it sits on a desk without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Hand over a drawer STL, a housing STL and a stop STL (in the closed assembly pose, in mm), plus the OpenSCAD source, a manifest that states the magnet poses, which way the stop comes out and how each body is oriented to print, and your own measurement report. That report has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "dovetail profile (trapezoid extrusion) on a body and its offset negative in a second body at a stated normal clearance",
+    "sliding assembly: poses of the same body at different travel positions, sweeps and first-contact distance as checks",
+    "magnet pockets from a catalogue part (pocket diameter and depth derived from the magnet, recess so the faces are a stated gap apart)",
+    "three printable bodies, one of them a removable stop, each with its own print orientation",
+    "tolerance stack on a gap built from measured depths and catalogue tolerances",
+    "rotation clearance: tilt of the drawer at full extension from the engaged rail length and the clearances"
+   ]
+  }
+ ]
+}

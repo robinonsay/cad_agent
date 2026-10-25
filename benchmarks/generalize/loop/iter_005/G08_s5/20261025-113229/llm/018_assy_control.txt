@@ -1,0 +1,24 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'd like a rugged-ish little sensor node box, and I'm keeping it weather-resistant within what a printed box can do, meaning it stays sealed except for the USB opening, the switch slot and the seam around the door. Inside goes a Raspberry Pi Pico 2 and one 18650 Li-ion cell (18.6 mm across, 65.2 mm long). The cell lies in a printed cradle along the box, and the bottom has a sliding door that keeps it in place, so I can change the cell without touching the electronics. The Pico is mounted on top of the cell with four M2 screws. For the power switch I'm using an SK12D-type slide switch whose handle sticks out of a side wall, and the Pico's micro-USB port should be reachable through an end wall while the lid is on. Aim for roughly 0.3 mm of clearance per side on the door. Everything is FDM printed without supports: a base, a lid and the door.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. text_coverage (L1.7): board.usb (raspberry pi pico 2) is closed, but L1.7 names a micro-usb plug: "With the lid shut, you must be able to push a micro-USB cable all the way into the Pico via a single opening in an end wall, with at least 0.3 mm between the..."; needs: an opening for each connector whose mating plug the text names
+
+The design now:
+- board (primary): raspberry pi pico 2 x1; connectors: usb closed
+- lid closure: lip; lid bosses: outside_corners
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- A: expose board.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed
+- B: stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? Answer with its letter.
+
+=== RESPONSE ===
+{"action":"A"}

@@ -1,0 +1,73 @@
+{
+ "id": "G50",
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.1,
+ "summary": "Only a plain Pi Zero 2 W box (base + lid, 76.5x41.4x18.5, two USB openings in rear wall). No fan, OLED, encoder, fan posts, vents, window, encoder hole or snap hooks; layout.json lists only the Pi.",
+ "defects": [
+  {
+   "requirement_id": "L3.1.1.1 (G0)",
+   "where": "layout.json references",
+   "what": "only rpi_zero2w declared (unplaced list non-empty); fan_40x40x10, oled_ssd1306_096, encoder_ec11 and screws absent",
+   "expected": "all four catalogue parts + screws declared",
+   "observed": "Pi only; run.log fails content_placed_display_1",
+   "severity": "critical"
+  },
+  {
+   "requirement_id": "L3.4.2.1/L3.4.3.1/L3.4.3.2 (G3)",
+   "where": "lid.stl underside",
+   "what": "no fan posts, no fan; lid is a plain plate at z 6.5..11.0; only 8.6-0 = 8.6 mm interior height above floor, no room for fan with 5 mm air gaps",
+   "expected": "4 posts at 32 mm pitch, 5+10+5 mm stack above Pi",
+   "observed": "none; case Z total 18.5",
+   "severity": "critical"
+  },
+  {
+   "requirement_id": "L3.5.1.1/L3.5.2.1/L3.6.1.1 (G3)",
+   "where": "base.stl side walls +-X and rear",
+   "what": "no vent slots; no air path",
+   "expected": "intake >=300 mm2 and exhaust >=300 mm2 on >=2 walls each",
+   "observed": "0 mm2 (apertures_-X/+X show 0 through openings)",
+   "severity": "critical"
+  },
+  {
+   "requirement_id": "L3.7.1.1/L3.7.2.1 (G4)",
+   "where": "front panel (y min wall), model_front.png",
+   "what": "no OLED window",
+   "expected": "window 26-29 x 15-22 mm centred on OLED",
+   "observed": "no opening in front wall",
+   "severity": "critical"
+  },
+  {
+   "requirement_id": "L3.8.1.1",
+   "where": "base.stl",
+   "what": "no OLED screw posts or pin posts",
+   "expected": "2 screw posts + 2 pin posts",
+   "observed": "none",
+   "severity": "critical"
+  },
+  {
+   "requirement_id": "L3.9.1.1/L3.9.1.2 (G4)",
+   "where": "front wall",
+   "what": "no encoder hole",
+   "expected": "one hole 7.4 +-0.1",
+   "observed": "none",
+   "severity": "critical"
+  },
+  {
+   "requirement_id": "L3.10.3.1 (G5)",
+   "where": "lid/base walls",
+   "what": "no snap hooks or catch recesses; lid held only by 4 M3 corner bosses",
+   "expected": "4-8 hooks, >=2 on each of 2 opposite walls",
+   "observed": "0 hooks",
+   "severity": "critical"
+  },
+  {
+   "requirement_id": "L3.3.1.1 (G2 pass note)",
+   "where": "rear wall, ghost_front.png",
+   "what": "two USB openings present, 10.8x7.8 around 10x7 plug, 0.4/side, ligament 1.8 -- these pass",
+   "expected": "-",
+   "observed": "pass",
+   "severity": "info"
+  }
+ ]
+}

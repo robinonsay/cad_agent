@@ -53,8 +53,13 @@ MOUTH_TOL = 0.05         # mm: a connector mouth must lie on a geometry primitiv
 DEFERRED_RULES = {
     "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
     "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
-    "R9": "skipped: imported models are compared only in the --with-models arm (M14)",
+    "R10": "skipped: imported models are compared only in the --with-models arm (M14; numbered R9 before generalize "
+           "delta 001, which gave R9 to the interface gate)",
 }
+# Interface kinds the gate knows (ARCHITECTURE.md generalize 3.1): field -> the datum class it must name. R9 checks every
+# `interfaces` entry against this table; a kind outside it is a gate failure (a closed vocabulary).
+MOUNT_HOLES = "mount_holes"
+INTERFACE_KINDS: Dict[str, Dict[str, type]] = {}
 STOPWORDS = {"a", "an", "the", "of", "and", "with", "for", "on", "in", "to", "x", "type"}
 
 
@@ -121,6 +126,15 @@ class AxisList:
 
 
 Datum = Union[Point, Axis, Plane, AxisList]
+INTERFACE_KINDS[MOUNT_HOLES] = {"holes": AxisList, "seat": Plane, "top": Plane}
+# Generalize delta 003 D1: a named plan region of a part (a chip footprint a vent row lies over): `at` is its centre point
+# datum, `size` [long, short] expressions over the part's params, `long_axis` a unit direction in the part frame and
+# `names` the words a text uses for it (never archetype evidence words: LoadRules drops a part whose zone uses one).
+ZONE = "zone"
+INTERFACE_KINDS[ZONE] = {"at": Point}
+# Optional numeric fields an interface may carry (generalize delta 002 C1): field -> what it means. R9 accepts each only
+# as a positive number. `thread`: the nominal thread (mm) of the screw the part's datasheet gives for these holes.
+INTERFACE_NUMBERS: Dict[str, str] = {"thread": "nominal screw thread of the holes (mm), from the part's datasheet"}
 
 
 def pose_matrix(translation: Sequence[float] = (0, 0, 0), rot_z_deg: float = 0.0,
@@ -429,8 +443,8 @@ def _point_to_box_surface(p: np.ndarray, lo: np.ndarray, hi: np.ndarray) -> floa
 def validate(inst: PartInstance) -> List[GateFailure]:
     """The import gate (R1, datum directions, connector mouths, self_checks). Empty list = usable.
 
-    R7 and R8 need a layout and envelopes and run later (DEFERRED_RULES); R9 is the
-    --with-models arm only.
+    R9 checks the part's `interfaces` (interface_failures). R7 and R8 need a layout and envelopes and run later
+    (DEFERRED_RULES); R10 is the --with-models arm only.
     """
     part, data = inst.part, inst.part.data
     fails: List[GateFailure] = []
@@ -484,6 +498,7 @@ def validate(inst: PartInstance) -> List[GateFailure]:
             for axis, n in zip("xy", grid["count"] or []):
                 if n < 1 or abs(n - round(n)) > UNIT_TOL:
                     fails.append(GateFailure(part.id, "grid", f"count along {axis} is {n:.6g}, not a whole number >= 1"))
+    fails += interface_failures(inst)
     # Part-specific sanity checks (R2, R4, R5, R6 ...) are data.
     for chk in data.get("self_checks", []):
         try:
@@ -500,6 +515,146 @@ def validate(inst: PartInstance) -> List[GateFailure]:
         elif not ok:
             fails.append(GateFailure(part.id, "self_check",
                                      f"{chk.get('name')}: {chk['expr']} = {v:.4g}, expected {op} {target:.4g} +/- {tol:.3g}"))
+    return fails
+
+
+def interfaces(part: Part) -> List[dict]:
+    """The part's `interfaces` list (ARCHITECTURE.md generalize 3.1); empty when it declares none."""
+    raw = part.data.get("interfaces") or []
+    return [i for i in raw if isinstance(i, dict)] if isinstance(raw, list) else []
+
+
+def mount_interface(part: Part) -> Optional[dict]:
+    """The part's first `mount_holes` interface ({id, kind, holes, seat, top}) or None. A part that offers one can be the
+    primary reference: its holes are the mounting axes, `seat` the plane it rests on over them and `top` the plane its
+    component keep-out starts from (generalize delta 001 C1)."""
+    return next((i for i in interfaces(part) if i.get("kind") == MOUNT_HOLES), None)
+
+
+def interface_thread(part: Part) -> Optional[float]:
+    """The nominal screw thread (mm) the part's mount_holes interface declares from its datasheet (generalize delta 002
+    C1, D2), or None when it declares none."""
+    m = mount_interface(part)
+    v = (m or {}).get("thread")
+    return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0 else None
+
+
+def mount_names(part: Part) -> Tuple[str, str, str]:
+    """(holes, seat, top) datum names of the part's mount_holes interface; PartError when it has none."""
+    m = mount_interface(part)
+    if m is None:
+        raise PartError(f"{part.id}: no {MOUNT_HOLES} interface")
+    return str(m["holes"]), str(m["seat"]), str(m["top"])
+
+
+def is_carrier(part: Part) -> bool:
+    """A carrier is a part other contents are placed on (generalize delta 001 D2): in this slice, a part with a `grid`
+    block (a through-hole board). Read from part data by rule, never from a part id."""
+    return bool(part.data.get("grid"))
+
+
+def zones(part: Part) -> List[dict]:
+    """The part's `zone` interfaces (generalize delta 003 D1), in declaration order; empty when it declares none."""
+    return [i for i in interfaces(part) if i.get("kind") == ZONE]
+
+
+def zone_geometry(inst: PartInstance, zone: Mapping[str, Any]) -> dict:
+    """A zone evaluated in the part frame: {centre (3), long (the size along long_axis), short, long_axis (unit, 3)}."""
+    long_, short = (fg.evaluate(e, inst.env) for e in zone["size"])
+    axis = np.asarray(zone["long_axis"], dtype=float)
+    return {"centre": list(lookup_datum(inst.datums, zone["at"]).at), "long": float(long_), "short": float(short),
+            "long_axis": (axis / np.linalg.norm(axis)).tolist()}
+
+
+def zone_reserved_failures(part: Part, reserved: Sequence[str]) -> List[GateFailure]:
+    """Generalize delta 003 D1: a zone name that is an archetype evidence word (`reserved`, from design_rules.json) would
+    turn a shell word into a vent target, so the part fails R9 when one of its zone names tokenises to one of them."""
+    words = {" ".join(tokens(w)) for w in reserved}
+    out = []
+    for z in zones(part):
+        bad = [n for n in z.get("names") or [] if isinstance(n, str) and " ".join(tokens(n)) in words]
+        if bad:
+            out.append(GateFailure(part.id, "R9", f"zone {z.get('id')}: names {bad} are archetype evidence words"))
+    return out
+
+
+def _zone_failures(inst: PartInstance, it: Mapping[str, Any], name: str) -> List[GateFailure]:
+    """R9 for a zone interface (generalize delta 003 D1): size is two expressions that resolve > 0, long_axis a horizontal
+    unit vector in the part frame, names a non-empty list of non-empty words."""
+    part, fails = inst.part, []
+    size = it.get("size")
+    if not isinstance(size, list) or len(size) != 2:
+        fails.append(GateFailure(part.id, "R9", f"interface {name}: size must be [long, short] expressions"))
+    else:
+        for k, e in enumerate(size):
+            try:
+                v = fg.evaluate(e, inst.env)
+            except (fg.ExprError, fg.MissingRefError, KeyError) as err:
+                fails.append(GateFailure(part.id, "R9", f"interface {name}: size[{k}] does not resolve ({err})"))
+                continue
+            if not v > 0:
+                fails.append(GateFailure(part.id, "R9", f"interface {name}: size[{k}] = {v:g} is not > 0"))
+    axis = it.get("long_axis")
+    ok_axis = isinstance(axis, list) and len(axis) == 3 and all(isinstance(v, (int, float)) and not isinstance(v, bool)
+                                                                for v in axis)
+    if not ok_axis or abs(float(np.linalg.norm(axis)) - 1.0) > UNIT_TOL or abs(float(axis[2])) > UNIT_TOL:
+        fails.append(GateFailure(part.id, "R9", f"interface {name}: long_axis must be a horizontal unit vector "
+                                 f"(got {axis!r})"))
+    names = it.get("names")
+    if not isinstance(names, list) or not names or not all(isinstance(n, str) and tokens(n) for n in names):
+        fails.append(GateFailure(part.id, "R9", f"interface {name}: names must be a non-empty list of words"))
+    return fails
+
+
+def interface_failures(inst: PartInstance) -> List[GateFailure]:
+    """R9: every `interfaces` entry has an id and a known kind, and each field of that kind names an existing datum of
+    the declared class (INTERFACE_KINDS). For mount_holes, the seat and top planes are perpendicular to the hole axes.
+    A zone's size, long axis and names are checked too (generalize delta 003 D1)."""
+    part = inst.part
+    raw = part.data.get("interfaces")
+    if raw is None:
+        return []
+    if not isinstance(raw, list):
+        return [GateFailure(part.id, "R9", "interfaces must be a list")]
+    fails: List[GateFailure] = []
+    for k, it in enumerate(raw):
+        if not isinstance(it, dict):
+            fails.append(GateFailure(part.id, "R9", f"interface {k} is not an object"))
+            continue
+        name = it.get("id") or f"#{k}"
+        kind = it.get("kind")
+        if not it.get("id"):
+            fails.append(GateFailure(part.id, "R9", f"interface {name} has no id"))
+        if kind not in INTERFACE_KINDS:
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: unknown kind {kind!r}"))
+            continue
+        found = {}
+        for fld, cls in INTERFACE_KINDS[kind].items():
+            ref = it.get(fld)
+            d = inst.datums.get(ref) if isinstance(ref, str) else None
+            if d is None:
+                fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} names no datum ({ref!r})"))
+            elif not isinstance(d, cls):
+                fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} {ref!r} is a {type(d).__name__}, "
+                                         f"not a {cls.__name__}"))
+            else:
+                found[fld] = d
+        for fld in INTERFACE_NUMBERS:
+            if fld in it:
+                v = it[fld]
+                if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v <= 0:
+                    fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} must be a positive number "
+                                             f"(got {v!r})"))
+        if kind == ZONE:
+            fails += _zone_failures(inst, it, name)
+        if kind == MOUNT_HOLES and "holes" in found:
+            axis = np.asarray(found["holes"].dir, dtype=float)
+            for fld in ("seat", "top"):
+                if fld in found:
+                    n = np.asarray(found[fld].normal, dtype=float)
+                    if abs(abs(float(np.dot(axis, n))) - 1.0) > UNIT_TOL:
+                        fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} {it[fld]!r} is not "
+                                                 "perpendicular to the hole axes"))
     return fails
 
 
@@ -610,32 +765,41 @@ class Catalog:
     parts: Dict[str, Part] = field(default_factory=dict)
     errors: List[str] = field(default_factory=list)
     root: Optional[Path] = None
+    roots: List[Path] = field(default_factory=list)
 
     @classmethod
-    def load(cls, root: Union[str, Path]) -> "Catalog":
-        """Every `<root>/<id>/part.json`; unreadable or malformed files are skipped and reported."""
-        root = Path(root)
-        cat = cls(root=root)
-        if not root.is_dir():
-            cat.errors.append(f"{root}: not a directory")
-            return cat
-        for path in sorted(root.glob("*/part.json")):
-            try:
-                data = json.loads(path.read_text())
-            except (OSError, ValueError) as e:
-                cat.errors.append(f"{path}: unreadable ({e})")
+    def load(cls, root: Union[str, Path, Sequence[Union[str, Path]]]) -> "Catalog":
+        """Every `<root>/<id>/part.json` of one catalogue folder, or of several in the order given; unreadable or
+        malformed files are skipped and reported. With several folders the first one holding an id keeps it: a
+        byte-equal copy of that part in a later folder is skipped silently, a different one is reported."""
+        roots = [Path(r) for r in root] if isinstance(root, (list, tuple)) else [Path(root)]
+        cat = cls(root=roots[0] if roots else None, roots=roots)
+        for folder in roots:
+            if not folder.is_dir():
+                cat.errors.append(f"{folder}: not a directory")
                 continue
-            missing = [f for f in REQUIRED_FIELDS if f not in data] if isinstance(data, dict) else ["object"]
-            if missing:
-                cat.errors.append(f"{path}: missing {', '.join(missing)}")
-                continue
-            if data["schema"] != SCHEMA:
-                cat.errors.append(f"{path}: schema {data['schema']!r}, expected {SCHEMA}")
-                continue
-            if data["id"] in cat.parts:
-                cat.errors.append(f"{path}: duplicate id {data['id']!r}")
-                continue
-            cat.parts[data["id"]] = Part(data["id"], data, path)
+            for path in sorted(folder.glob("*/part.json")):
+                try:
+                    data = json.loads(path.read_text())
+                except (OSError, ValueError) as e:
+                    cat.errors.append(f"{path}: unreadable ({e})")
+                    continue
+                missing = [f for f in REQUIRED_FIELDS if f not in data] if isinstance(data, dict) else ["object"]
+                if missing:
+                    cat.errors.append(f"{path}: missing {', '.join(missing)}")
+                    continue
+                if data["schema"] != SCHEMA:
+                    cat.errors.append(f"{path}: schema {data['schema']!r}, expected {SCHEMA}")
+                    continue
+                if data["id"] in cat.parts:
+                    first = cat.parts[data["id"]]
+                    if first.path is not None and first.path.parent.parent != path.parent.parent \
+                            and first.data == data:
+                        continue                      # the same part shipped in two catalogue folders
+                    kept = f" (kept {first.path})" if first.path is not None else ""
+                    cat.errors.append(f"{path}: duplicate id {data['id']!r}{kept}")
+                    continue
+                cat.parts[data["id"]] = Part(data["id"], data, path)
         return cat
 
     def __contains__(self, part_id: str) -> bool:
@@ -694,7 +858,12 @@ class Rules:
     sources: Dict[str, str]
     print_orientation: Dict[str, dict] = field(default_factory=dict)
     path: Optional[Path] = None
-    spec_slots: List[dict] = field(default_factory=list)     # {name, meaning, unit, default_rule (key or None)}
+    spec_slots: List[dict] = field(default_factory=list)     # {name, meaning, unit, default_rule (key or None), required}
+    archetypes: Dict[str, dict] = field(default_factory=dict)  # archetype -> {evidence: [words], needs, source}
+    face_relations: Dict[str, dict] = field(default_factory=dict)   # relation -> {evidence: [words], meaning, source}
+    fastener_roles: Dict[str, dict] = field(default_factory=dict)   # fastener use -> {evidence: [words], source}
+    closures: Dict[str, dict] = field(default_factory=dict)   # closure -> {default | evidence, meaning, source} (delta 003)
+    vents: Dict[str, Any] = field(default_factory=dict)       # {evidence: [words], slots: [{name, meaning, unit}], source}
 
     def slot(self, name: str) -> dict:
         return next(s for s in self.spec_slots if s["name"] == name)
@@ -722,8 +891,54 @@ def load_rules(path: Union[str, Path]) -> Rules:
         if default is not None and default not in values:
             raise PartError(f"{path}: spec slot {slot['name']!r} defaults to unknown rule {default!r}")
         slots.append({"name": str(slot["name"]), "meaning": str(slot["meaning"]), "unit": str(slot["unit"]),
-                      "default_rule": default})
-    return Rules(values, sources, dict(data.get("print_orientation", {})), path, slots)
+                      "default_rule": default, "required": default is None and slot.get("required", True) is not False})
+    archetypes = {}
+    for key, entry in (data.get("archetypes") or {}).items():
+        if key == "about":
+            continue
+        if not isinstance(entry, dict) or not isinstance(entry.get("evidence"), list) or not entry.get("source"):
+            raise PartError(f"{path}: archetype {key!r} needs an evidence list and a source")
+        archetypes[key] = dict(entry)
+    vocab = {}
+    for block in ("face_relations", "fastener_roles"):      # generalize delta 002 C0 / C1: evidence vocabularies
+        vocab[block] = {}
+        for key, entry in (data.get(block) or {}).items():
+            if key == "about":
+                continue
+            if not isinstance(entry, dict) or not isinstance(entry.get("evidence"), list) or not entry["evidence"] \
+                    or not all(isinstance(w, str) and w.strip() for w in entry["evidence"]) or not entry.get("source"):
+                raise PartError(f"{path}: {block} {key!r} needs a non-empty evidence word list and a source")
+            if block == "face_relations" and not entry.get("meaning"):
+                raise PartError(f"{path}: face_relations {key!r} needs a meaning (the controller's enum gloss)")
+            vocab[block][key] = dict(entry)
+    closures = {}                                           # generalize delta 003 C2: lid closures
+    for key, entry in (data.get("closures") or {}).items():
+        if key == "about":
+            continue
+        if not isinstance(entry, dict) or not entry.get("source") or not entry.get("meaning"):
+            raise PartError(f"{path}: closure {key!r} needs a meaning and a source")
+        if not entry.get("default") and (not isinstance(entry.get("evidence"), list) or not entry["evidence"]
+                                         or not all(isinstance(w, str) and w.strip() for w in entry["evidence"])):
+            raise PartError(f"{path}: closure {key!r} is not the default, so it needs a non-empty evidence word list")
+        closures[key] = dict(entry)
+    if closures and sum(bool(e.get("default")) for e in closures.values()) != 1:
+        raise PartError(f"{path}: closures need exactly one default")
+    vents: Dict[str, Any] = {}
+    raw = data.get("vents")                                 # generalize delta 003 C3: vent evidence and size slots
+    if raw:
+        words = raw.get("evidence")
+        if not isinstance(words, list) or not words or not all(isinstance(w, str) and w.strip() for w in words) \
+                or not raw.get("source"):
+            raise PartError(f"{path}: vents needs a non-empty evidence word list and a source")
+        vslots = []
+        for slot in raw.get("slots") or []:
+            if not isinstance(slot, dict) or not all(slot.get(k) for k in ("name", "meaning", "unit")):
+                raise PartError(f"{path}: vent slot {slot!r} needs a name, a meaning and a unit")
+            vslots.append({"name": str(slot["name"]), "meaning": str(slot["meaning"]), "unit": str(slot["unit"]),
+                           "default_rule": None, "required": False})
+        vents = {"evidence": list(words), "slots": vslots, "source": str(raw["source"])}
+    return Rules(values, sources, dict(data.get("print_orientation", {})), path, slots, archetypes,
+                 vocab["face_relations"], vocab["fastener_roles"], closures, vents)
 
 
 # ---------------------------------------------------------------------------
@@ -798,11 +1013,12 @@ def plug_sweep(conn_world: Mapping[str, Datum], plug_inst: PartInstance, clearan
 
 def board_keepout(board_inst: PartInstance, board_pose: np.ndarray, above: float, below: float,
                   prefix: str = "board") -> List["fg.Node"]:
-    """V-KO-TOP (board footprint, TOP up by `above`) and V-KO-BOT (footprint, BOTTOM down by `below`).
-    The seat columns are separate envelopes (`column`), which the checks subtract."""
+    """V-KO-TOP (the primary's footprint, its mount `top` plane up by `above`) and V-KO-BOT (footprint, its mount `seat`
+    plane down by `below`). The seat columns are separate envelopes (`column`), which the checks subtract."""
     lo, hi = fg.instance_world_bbox(board_inst, board_pose)
-    top = transform(lookup_datum(board_inst.datums, "TOP"), board_pose).at[2]
-    bottom = transform(lookup_datum(board_inst.datums, "BOTTOM"), board_pose).at[2]
+    _, seat_name, top_name = mount_names(board_inst.part)
+    top = transform(lookup_datum(board_inst.datums, top_name), board_pose).at[2]
+    bottom = transform(lookup_datum(board_inst.datums, seat_name), board_pose).at[2]
     cx, cy = float((lo[0] + hi[0]) / 2), float((lo[1] + hi[1]) / 2)
     sx, sy = float(hi[0] - lo[0]), float(hi[1] - lo[1])
     return [

@@ -1,0 +1,333 @@
+{
+  "request": "I need a small box for an Arduino Nano (board 45 x 18 mm) that I will leave on a shelf. The Nano's mini-USB port has to be reachable through one short end of the box with the lid on, so I can plug a cable in. Three 5 mm status LEDs, separate parts wired to the Nano, sit in the top face of the lid and must be visible from outside. The lid snaps on without screws, so the box has no fasteners at all. The Nano keeps its header pins pointing down (they stick out of the underside), so the board has to stand clear of the floor. The base is printed flat on the bed in PLA, with no supports. Requirements: The design shall place the Arduino Nano from the catalogue with its mini-USB port facing one short (18 mm) end and three 5 mm LEDs on the lid, without the parts colliding, and shall declare that layout. The 45 x 18 x 1.6 mm board shall fit inside the closed box with at least 0.5 mm clearance to every printed surface, except where it rests on its posts, and its USB receptacle shall be inside the box. The board shall rest on exactly four posts, one under each mounting hole, each 3.0 to 4.0 mm across (the hole's own keep-out is 4.0) with a locating pin 0.1 to 0.3 mm smaller than the 1.7 mm hole going through it, with its header tails clear of the floor. With the lid closed, nothing shall come within 5.0 mm above the board's top surface, nor within 0.3 mm of the header bodies and pin tails below it. With the lid closed, a mini-USB cable shall plug fully into the Nano through one opening in the \u2212X end wall with at least 0.3 mm to spare all round the plug, leaving at least 1.5 mm of wall between the opening and the lid seam, the floor and the corners, and the opening shall be no more than 1.5 mm bigger than the plug on any side. The lid shall hold three 5 mm LEDs with their lenses through 5.2 to 5.4 mm holes in its top face and their flanges captured behind it, so each dome is visible from outside and the LED cannot be pulled out of the front (flange overlap on the hole at least 0.2 mm per side). The three LEDs sit in a row over the board, at least 9.0 mm apart and at least 4.0 mm from the cavity edge. The lid shall be held by snap hooks only, with no screw or other fastener, with at least two hooks on each long side and none at the end walls, each hook at least 5 mm wide and engaging 0.6 to 1.0 mm, on an arm whose bending strain 1.5 t y / L^2 (thickness t, engagement y, free length L) stays at or below 0.02. The lid shall be a separate body that locates on the base with a sliding lip (at least 2.0 mm deep, 0.15 to 0.35 mm per side clearance) and closes flush, without interpenetrating it. The closed box shall have no openings other than the USB opening and the three LED holes, and its walls, floor and lid shall be 2.0 to 3.0 mm thick, with at least 1.5 mm of material round each opening. The base shall print flat on its floor and the lid on its outer face, each as one manifold body without supports. The closed box, not counting the LED domes, shall be no larger than 60 x 30 x 26 mm, longest along the board's 45 mm side, and shall stand flat on a shelf without tipping. The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and the report shall agree with an independent measurement.",
+  "base_request": "I need a small box for an Arduino Nano (board 45 x 18 mm) that I will leave on a shelf. The Nano's mini-USB port has to be reachable through one short end of the box with the lid on, so I can plug a cable in. Three 5 mm status LEDs, separate parts wired to the Nano, sit in the top face of the lid and must be visible from outside. The lid snaps on without screws, so the box has no fasteners at all. The Nano keeps its header pins pointing down (they stick out of the underside), so the board has to stand clear of the floor. The base is printed flat on the bed in PLA, with no supports.",
+  "seed": 2,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "The design shall place the Arduino Nano from the catalogue with its mini-USB port facing one short (18 mm) end and three 5 mm LEDs on the lid, without the parts colliding, and shall declare that layout.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "The 45 x 18 x 1.6 mm board shall fit inside the closed box with at least 0.5 mm clearance to every printed surface, except where it rests on its posts, and its USB receptacle shall be inside the box.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.3",
+      "text": "The board shall rest on exactly four posts, one under each mounting hole, each 3.0 to 4.0 mm across (the hole's own keep-out is 4.0) with a locating pin 0.1 to 0.3 mm smaller than the 1.7 mm hole going through it, with its header tails clear of the floor.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.4",
+      "text": "With the lid closed, nothing shall come within 5.0 mm above the board's top surface, nor within 0.3 mm of the header bodies and pin tails below it.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.5",
+      "text": "With the lid closed, a mini-USB cable shall plug fully into the Nano through one opening in the \u2212X end wall with at least 0.3 mm to spare all round the plug, leaving at least 1.5 mm of wall between the opening and the lid seam, the floor and the corners, and the opening shall be no more than 1.5 mm bigger than the plug on any side.",
+      "method": "test"
+    },
+    {
+      "id": "L1.6",
+      "text": "The lid shall hold three 5 mm LEDs with their lenses through 5.2 to 5.4 mm holes in its top face and their flanges captured behind it, so each dome is visible from outside and the LED cannot be pulled out of the front (flange overlap on the hole at least 0.2 mm per side). The three LEDs sit in a row over the board, at least 9.0 mm apart and at least 4.0 mm from the cavity edge.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.7",
+      "text": "The lid shall be held by snap hooks only, with no screw or other fastener, with at least two hooks on each long side and none at the end walls, each hook at least 5 mm wide and engaging 0.6 to 1.0 mm, on an arm whose bending strain 1.5 t y / L^2 (thickness t, engagement y, free length L) stays at or below 0.02.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.8",
+      "text": "The lid shall be a separate body that locates on the base with a sliding lip (at least 2.0 mm deep, 0.15 to 0.35 mm per side clearance) and closes flush, without interpenetrating it.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.9",
+      "text": "The closed box shall have no openings other than the USB opening and the three LED holes, and its walls, floor and lid shall be 2.0 to 3.0 mm thick, with at least 1.5 mm of material round each opening.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "The base shall print flat on its floor and the lid on its outer face, each as one manifold body without supports.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.11",
+      "text": "The closed box, not counting the LED domes, shall be no larger than 60 x 30 x 26 mm, longest along the board's 45 mm side, and shall stand flat on a shelf without tipping.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.12",
+      "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and the report shall agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": "failed",
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [],
+    "all_verified": false
+  },
+  "notes": [],
+  "components": [],
+  "assembly": {
+    "stage": "arrange_contents",
+    "notes": [
+      "contents: primary by the largest catalogue plan footprint: arduino_nano 822.6 mm2",
+      "coverage: board.usb exposed by rule: L1.5 names mini-usb plug (Contents votes {'no': 3} recorded, not used)",
+      "no catalogue screw passes the board's mounting holes (primary arduino_nano)"
+    ],
+    "parts_dir": "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts:/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts",
+    "parts_dirs": [
+      "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts",
+      "/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts"
+    ],
+    "rules_path": "/Users/robinonsay/python/llm-bt/design_rules.json",
+    "with_models": false,
+    "catalog": [
+      "arduino_nano",
+      "arduino_uno_r3",
+      "battery_9v_pp3",
+      "bearing_608",
+      "bearing_623",
+      "bearing_625",
+      "bolt_m3_iso4762",
+      "bolt_m4_iso4762",
+      "bolt_m5_iso7380",
+      "button_tact_6mm",
+      "buzzer_12mm",
+      "camera_screw_1_4_20",
+      "cell_18650",
+      "dc_jack_pj002a",
+      "dowel_pin_generic",
+      "encoder_ec11",
+      "esp32_devkitc_v4",
+      "extrusion_2020",
+      "fan_40x40x10",
+      "fan_60x60x25",
+      "gear_spur_generic",
+      "generic_box",
+      "generic_cylinder",
+      "generic_tube",
+      "gt2_belt_6mm",
+      "gt2_pulley_20t",
+      "hc_sr04",
+      "header_female_2p54",
+      "header_male_2p54",
+      "heatset_m2p5",
+      "heatset_m3",
+      "jack_3p5_pj320a",
+      "lcd1602_hd44780",
+      "led_5mm",
+      "lipo_503450",
+      "lm8uu",
+      "magnet_disc_6x3",
+      "microswitch_kw12",
+      "n20_gearmotor",
+      "nema17_motor",
+      "nut_m3",
+      "nut_m4",
+      "oled_ssd1306_096",
+      "perfboard",
+      "plug_dc_barrel_5p5",
+      "plug_microusb_b",
+      "plug_minihdmi",
+      "plug_miniusb_b",
+      "plug_trs_3p5",
+      "plug_usb_b",
+      "plug_usbc",
+      "pot_rk09",
+      "rod_8mm",
+      "rpi_camera_v2",
+      "rpi_pico2",
+      "rpi_zero2w",
+      "screw_m2_selftap",
+      "screw_m2p5_selftap",
+      "screw_m3_selftap",
+      "servo_mg996r",
+      "servo_sg90",
+      "slide_sk12d",
+      "tnut_2020_m5",
+      "toggle_mts102",
+      "tp4056_usbc_module"
+    ],
+    "catalog_errors": [],
+    "rules": {
+      "sliding_fit_min": 0.15,
+      "sliding_fit_max": 0.35,
+      "sliding_fit": 0.25,
+      "board_to_wall": 0.5,
+      "plug_to_opening": 0.3,
+      "opening_oversize_max": 1.5,
+      "min_ligament": 1.5,
+      "wall_default": 2.4,
+      "floor_default": 2.4,
+      "min_feature": 0.8,
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0,
+      "round_hole_exempt_max": 12.0,
+      "bed_x": 200.0,
+      "bed_y": 200.0,
+      "bed_z": 200.0,
+      "layer_height": 0.2,
+      "fn": 64.0,
+      "standoff_wall_min": 1.6,
+      "component_height_default": 10.0,
+      "solder_side_default": 3.0,
+      "keepout_margin": 1.0,
+      "plug_travel": 40.0,
+      "driver_clearance": 1.0,
+      "driver_diameter": 6.0,
+      "driver_reach": 50.0,
+      "design_margin": 0.1,
+      "grid_search_step": 0.01,
+      "grid_residual_max": 0.15,
+      "overlap_max": 1.0,
+      "interference_max": 0.01,
+      "seat_gap_max": 0.1,
+      "seat_axis_residual_max": 0.25,
+      "lip_engagement": 2.0,
+      "lip_wall": 1.2,
+      "boss_wall_min": 1.6,
+      "cut_overrun": 1.0,
+      "screw_hole_clearance_min": 0.2,
+      "given_hole_clearance_min": 0.0,
+      "max_quantity": 8.0,
+      "part_to_wall": 0.2,
+      "measure_tol": 0.01,
+      "margin_scale": 1.0,
+      "lookup_k": 3.0,
+      "view_elevation_deg": 20.0,
+      "arrange_rank_max": 16.0,
+      "layout_step": 0.5,
+      "aperture_min_volume": 1.0,
+      "parity_volume_rel": 0.005,
+      "parity_bbox": 0.05
+    },
+    "spec": {
+      "board_width": 45.0,
+      "board_depth": 18.0,
+      "keepout_above": 5.0,
+      "keepout_below": 0.3,
+      "board_clearance": 0.5,
+      "headroom": 0.5,
+      "opening_oversize_max": 1.5,
+      "wall_min": 2.0,
+      "wall_max": 3.0,
+      "max_x": 60.0,
+      "max_y": 30.0,
+      "max_z": 26.0
+    },
+    "spec_provenance": {
+      "board_width": "request:\"I need a small box for an Arduino Nano (board 45 x 18 mm) that I will leave on a shelf. The Nano's mini-USB\"",
+      "board_depth": "request:\"I need a small box for an Arduino Nano (board 45 x 18 mm) that I will leave on a shelf. The Nano's mini-USB port has\"",
+      "keepout_above": "L1.4:\"With the lid closed, nothing shall come within 5.0 mm above the board's top surface, nor within 0.3 mm of the hea\"",
+      "keepout_below": "L1.4:\"ome within 5.0 mm above the board's top surface, nor within 0.3 mm of the header bodies and pin tails below it.\"",
+      "board_clearance": "L1.2:\"1.6 mm board shall fit inside the closed box with at least 0.5 mm clearance to every printed surface, except where it re\"",
+      "headroom": "rules:board_to_wall",
+      "opening_oversize_max": "L1.5:\"loor and the corners, and the opening shall be no more than 1.5 mm bigger than the plug on any side.\"",
+      "wall_min": "L1.9:\"the three LED holes, and its walls, floor and lid shall be 2.0 to 3.0 mm thick, with at least 1.5 mm of material round e\"",
+      "wall_max": "L1.9:\"ree LED holes, and its walls, floor and lid shall be 2.0 to 3.0 mm thick, with at least 1.5 mm of material round each op\"",
+      "max_x": "L1.11:\"ed box, not counting the LED domes, shall be no larger than 60 x 30 x 26 mm, longest along the board's 45 mm side, and s\"",
+      "max_y": "L1.11:\"x, not counting the LED domes, shall be no larger than 60 x 30 x 26 mm, longest along the board's 45 mm side, and shall \"",
+      "max_z": "L1.11:\"t counting the LED domes, shall be no larger than 60 x 30 x 26 mm, longest along the board's 45 mm side, and shall stand\""
+    },
+    "contents": [
+      {
+        "part": "arduino_nano",
+        "kind": "module",
+        "quantity": 1,
+        "exposed": true,
+        "name": "arduino nano",
+        "exposed_connectors": [
+          "usb"
+        ],
+        "exposed_votes": {
+          "no": 3
+        },
+        "id": "board",
+        "params": {},
+        "exposed_by": "rule:text_coverage",
+        "coverage_connectors": [
+          "usb"
+        ]
+      }
+    ],
+    "layout": {},
+    "arrange": {},
+    "grid_report": {},
+    "conflicts": [],
+    "coverage": [
+      {
+        "item": "board",
+        "part": "arduino_nano",
+        "connector": "usb",
+        "plug": "plug_miniusb_b",
+        "evidence": [
+          {
+            "source": "L1.5",
+            "quote": "With the lid closed, a mini-USB cable shall plug fully into the Nano through one opening in the \u2212X end wall with at least 0.3 mm to spare all round the plug, leaving at least 1.5 mm of wall between the opening and the lid seam, the floor and the corners, and the opening shall be no more than 1.5 mm bigger than the plug on any side."
+          }
+        ],
+        "resolved": "exposed",
+        "by": "rule:text_coverage"
+      }
+    ],
+    "links": {},
+    "number_owner": {
+      "n1": "board_width",
+      "n2": "board_depth",
+      "n16": "keepout_above",
+      "n17": "keepout_below",
+      "n9": "board_clearance",
+      "n20": "opening_oversize_max",
+      "n36": "wall_min",
+      "n37": "wall_max",
+      "n39": "max_x",
+      "n40": "max_y",
+      "n41": "max_z"
+    },
+    "unplaced": [],
+    "fasteners": {},
+    "choices": {
+      "primary": {
+        "value": "arduino_nano",
+        "by": "rule:primary_reference",
+        "reason": "largest plan footprint",
+        "interface": "mount"
+      },
+      "exposed[board]": {
+        "value": true,
+        "by": "rule:text_coverage",
+        "evidence": [
+          {
+            "source": "L1.5",
+            "quote": "With the lid closed, a mini-USB cable shall plug fully into the Nano through one opening in the \u2212X end wall with at least 0.3 mm to spare all round the plug, leaving at least 1.5 mm of wall between the opening and the lid seam, the floor and the corners, and the opening shall be no more than 1.5 mm bigger than the plug on any side."
+          }
+        ],
+        "overrides": {
+          "contents_votes": {
+            "no": 3
+          }
+        }
+      }
+    },
+    "assumptions": [
+      "headroom = 0.5 mm from rules:board_to_wall (the text states no number for it)"
+    ],
+    "stl_source": {},
+    "components": [],
+    "results": [],
+    "results_manifold": [],
+    "files": [],
+    "deferred_gate_rules": {
+      "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
+      "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
+      "R10": "skipped: imported models are compared only in the --with-models arm (M14; numbered R9 before generalize delta 001, which gave R9 to the interface gate)"
+    },
+    "feature_graph": null
+  }
+}

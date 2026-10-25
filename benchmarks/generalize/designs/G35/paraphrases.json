@@ -1,0 +1,130 @@
+{
+ "paraphrases": [
+  {
+   "id": "G35",
+   "tier": 4,
+   "title": "Cable chain link pair",
+   "request": "Two cable-chain links for 6.5 mm cable, print-in-place, 0.35 mm clearance at the pivot. Inner section of each link: 12 x 10 mm (12 mm along the pivot axis, 10 mm across the bend plane). The pair bends 30 degrees each way about a vertical pivot pin and then hits a stop. Link length 20 to 40 mm. Two separate bodies in one print, not touching. Pivot pin at least 3.0 mm diameter; head overlaps the bore by 0.4 mm or more per side; sideways play max 0.8 mm, axial play max 1.2 mm. Flat print, no supports.",
+   "request_verbatim": "Two links of a cable chain for a 6.5 mm cable, printed in place with 0.35 mm clearance on the pivot. Each link has an inner section 12 x 10 mm and bends 30 degrees either way before a stop. Print flat without supports.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3: the links bend in the plane they are printed in (A3, 'print flat' with a vertical pivot pin); 12 mm is along the pivot axis and 10 mm across the bend plane (A2, FD2); link length 20 to 40 mm (A5); two separate bodies that do not touch (A4); the cable is a solid 6.5 mm cylinder (A1). Audit additions: pin size, head overlap and play limits (A7, A11, L2.3.3, L2.3.4).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Two separate links in a single print, each one connected body and not fused together. Declare the pivot axis, straight pose and print orientation.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Each link has a straight inner section, 12 mm along the pivot axis by 10 mm across the bend plane, 20 mm long or more, passing a 6.5 mm cable with 0.5 mm or more clearance.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "A pivot pin in a bore joins the links with 0.35 mm clearance all round and 0.35 mm axially. The pin (3.0 mm diameter or more, head overlapping the bore by 0.4 mm or more per side) cannot come out. Sideways play at most 0.8 mm, axial play at most 1.2 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The pair bends freely from 30 degrees one way to 30 degrees the other; the links never touch and stay 0.30 mm or more apart.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "A stop blocks the bend at 30 degrees in both directions, within one degree.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "A 6.5 mm cable through both inner sections clears both links by 0.2 mm or more at all bend angles from 30 degrees one way to 30 degrees the other.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Each link is 20 to 40 mm long, at most 20 mm wide across the bend plane and at most 25 mm tall along the pivot axis; all walls at least 1.6 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Both links print flat together on FDM without supports, pivot axis vertical.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Deliver an STL of the pair, the OpenSCAD source, the declared layout and the agent's clearance report, which must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "a print-in-place joint: a pin fused to one link, a bore and a head on the other, with gaps of 0.35 mm, in two bodies that must not touch",
+    "swept rotation about an axis: interference of one body against the other over an angle range, and the angle at which a stop first interferes",
+    "stop geometry derived from an angle limit and the link's width",
+    "a cable envelope bent through the joint, kept clear of both bodies",
+    "a print orientation analysis with an exemption for printed clearance gaps",
+    "relief cuts in plates and walls so two bodies share a pivot region without touching"
+   ]
+  },
+  {
+   "id": "G35",
+   "tier": 4,
+   "title": "Cable chain link pair",
+   "request": "I want a pair of cable chain links to carry a 6.5 mm cable, printed already assembled with a 0.35 mm gap at the pivot. The cable passes through a 12 x 10 mm opening in each link, 12 mm along the pivot axis and 10 mm across the bend plane. The links should swing 30 degrees in either direction around a vertical pin and then be stopped. Each one is 20 to 40 mm long. They are two separate bodies on the same print and must not touch one another. The pin has a diameter of at least 3.0 mm, and its head covers the bore by at least 0.4 mm per side; there can be at most 0.8 mm of play sideways and at most 1.2 mm along the axis. Lay them flat to print, no supports.",
+   "request_verbatim": "Two links of a cable chain for a 6.5 mm cable, printed in place with 0.35 mm clearance on the pivot. Each link has an inner section 12 x 10 mm and bends 30 degrees either way before a stop. Print flat without supports.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3: the links bend in the plane they are printed in (A3, 'print flat' with a vertical pivot pin); 12 mm is along the pivot axis and 10 mm across the bend plane (A2, FD2); link length 20 to 40 mm (A5); two separate bodies that do not touch (A4); the cable is a solid 6.5 mm cylinder (A1). Audit additions: pin size, head overlap and play limits (A7, A11, L2.3.3, L2.3.4).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Deliver two links on one print as separate bodies; each is a single connected piece and they are not joined. State the pivot axis, the straight pose, and how it is oriented for printing.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Every link has a straight opening 12 mm in the pivot-axis direction and 10 mm across the bend plane, at least 20 mm long, so that a 6.5 mm cable fits through with at least 0.5 mm to spare.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The links are connected by a pivot pin in a bore, with a gap of 0.35 mm around it and 0.35 mm along the axis, so the pin cannot pull out. The pin diameter is at least 3.0 mm, its head overlaps the bore by at least 0.4 mm per side, and play is no more than 0.8 mm sideways and 1.2 mm axially.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The pair can swing freely from 30 degrees on one side to 30 degrees on the other, never touching, always at least 0.30 mm apart.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "A stop halts the bend at 30 degrees on both sides, accurate to one degree.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "With a 6.5 mm cable running through both inner sections, it stays at least 0.2 mm from both links at every angle from 30 degrees one way to 30 degrees the other.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Link length 20 to 40 mm; width across the bend plane no more than 20 mm; height along the pivot axis no more than 25 mm; walls everywhere 1.6 mm or thicker.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Both links are printed flat in one run on an FDM printer, with no supports and the pivot axis vertical.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "The deliverables: an STL of the pair, the OpenSCAD source, the declared layout, and the agent's own clearance report, which should agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "a print-in-place joint: a pin fused to one link, a bore and a head on the other, with gaps of 0.35 mm, in two bodies that must not touch",
+    "swept rotation about an axis: interference of one body against the other over an angle range, and the angle at which a stop first interferes",
+    "stop geometry derived from an angle limit and the link's width",
+    "a cable envelope bent through the joint, kept clear of both bodies",
+    "a print orientation analysis with an exemption for printed clearance gaps",
+    "relief cuts in plates and walls so two bodies share a pivot region without touching"
+   ]
+  }
+ ]
+}

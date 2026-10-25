@@ -1,0 +1,142 @@
+{
+ "paraphrases": [
+  {
+   "id": "G42",
+   "tier": 4,
+   "title": "16 mm hose to 25 mm pipe adapter",
+   "request": "Hose adapter from a hose of 16 mm inner diameter to a pipe of 25 mm outside diameter. Hose end: barbed spigot, 16 mm body, three ribs 0.8 mm tall. Pipe end: socket for the 25 mm pipe, bore 0.15 mm larger than the pipe (0.15 mm loose), 20 mm deep, ending in a stop shoulder for the pipe. Wall 2 mm throughout. Through bore for the flow, overall length 60 mm, transition between the two sizes no steeper than 45 degrees. Prints upright (axis vertical) on an FDM printer in PLA, no supports.",
+   "request_verbatim": "A hose adapter from a 16 mm inner diameter hose onto a 25 mm OD pipe: a barbed 16 mm end with three ribs 0.8 mm tall, a 2 mm wall, and a socket for the 25 mm pipe 0.15 mm loose, 20 mm deep. Overall length 60 mm and it must print upright without supports.",
+   "request_notes": "Added to the brief, all from requirements.md section 3: the spigot body is 16.0 mm and the ribs stand 0.8 above it (A1, F1); '0.15 mm loose' is a diametral clearance, bore 25.15 (A2, F2); pipe stop shoulder at the bottom of the socket (F3); the 45 degree limit on the transition follows from printing upright (A5); spigot end down when printing (F5).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Hose end is a spigot with a 16.0 mm body and exactly three barb ribs, each 0.8 mm tall. Retention flanks no steeper than 45 degrees from the axis: retention flank 30 to 45 degrees, lead-in flank 10 to 30 degrees. Crests at least 5.0 mm apart, first crest at least 3.0 mm from the tip, last at least 4.0 mm before the end of the straight part, so a 16 mm hose pushes on and does not pull off.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Spigot straight part at least 25 mm long, with the profile widening behind it, giving a hose a length to grip and a stop: the straight part ends 25.0 to 33.0 mm from the tip, and the outside radius reaches 11.0 mm (half of a 22 mm hose outside diameter) within 5.0 mm after it.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Pipe end is a socket 20.0 mm deep with a 25.15 mm bore (0.15 mm over the 25 mm pipe), ending in a flat shoulder that stops the pipe, so the pipe slides in and seats. Bore constant over the full depth, no step or rib; shoulder square to the axis within 1.0 degree, at least 3.0 mm wide radially, backed by at least 2.0 mm of solid; the 25 mm pipe seats with its end face within 0.10 mm of the shoulder.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "Spigot and socket walls are 2.0 to 2.4 mm thick, and no wall anywhere is thinner than 2.0 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Adapter is 60.0 mm long with a through bore along its whole length, all sections coaxial on one axis (each within 0.10 mm of the axis), and no bore restriction below 11.2 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "The outside goes from the 16 mm spigot to the socket in one smooth transition, no steeper than 45 degrees from the axis, between 15 and 45 degrees from the axis, never narrowing, with no step other than the barb ribs, and ends at the socket's outside diameter.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Prints upright, axis vertical, spigot end on the bed. No overhang steeper than 45 degrees from vertical, bed contact at least 80 mm2, height at most four times the bed face diameter, no feature thinner than 0.8 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "The adapter is one manifold body.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "No openings other than the two ends of the bore, and no internal cavity.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliver an STL, the OpenSCAD source, the declared layout and the agent's own measurement report; the report must agree with an independent measurement to within 0.10 mm.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "a revolved profile with a concentric step: spigot, three ribs, cone transition, socket and shoulder on one axis",
+    "dimensions derived from the joined parts' parameters (hose inner diameter, pipe outer diameter) with the fit clearances applied, never typed",
+    "a blind socket (bore not through) with a flat shoulder and a through bore beyond it",
+    "print-orientation reasoning: which end goes on the bed so that the flat shoulder faces up and the transition is at most 45 degrees",
+    "parts catalogue: load part.json generic_tube parameters (OD, ID, length) for the hose and the pipe and read AXIS, BORE, END_START, END_FAR datums",
+    "profile checks on a single body: radius versus height sampling, wall thickness by ray casting, overhang scan, coaxiality of sections",
+    "interference checks against external solids: clear_of for the pipe in the socket, seat verification at the shoulder"
+   ]
+  },
+  {
+   "id": "G42",
+   "tier": 4,
+   "title": "16 mm hose to 25 mm pipe adapter",
+   "request": "I need an adapter to connect a hose with a 16 mm inner diameter to a pipe that is 25 mm OD. On the hose side there is a barbed nozzle: a 16 mm body carrying three ribs, each 0.8 mm high. On the pipe side there is a socket for the 25 mm pipe, its bore 0.15 mm bigger than the pipe (so 0.15 mm loose) and 20 mm deep, finishing in a shoulder the pipe butts against. The wall is 2 mm all the way along. A bore runs right through for the flow, the whole piece is 60 mm long, and going from one size to the other the profile mustn't be steeper than 45 degrees. I print it standing up (axis vertical) on an FDM printer in PLA without supports.",
+   "request_verbatim": "A hose adapter from a 16 mm inner diameter hose onto a 25 mm OD pipe: a barbed 16 mm end with three ribs 0.8 mm tall, a 2 mm wall, and a socket for the 25 mm pipe 0.15 mm loose, 20 mm deep. Overall length 60 mm and it must print upright without supports.",
+   "request_notes": "Added to the brief, all from requirements.md section 3: the spigot body is 16.0 mm and the ribs stand 0.8 above it (A1, F1); '0.15 mm loose' is a diametral clearance, bore 25.15 (A2, F2); pipe stop shoulder at the bottom of the socket (F3); the 45 degree limit on the transition follows from printing upright (A5); spigot end down when printing (F5).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "The hose side has a nozzle with a 16.0 mm body and exactly three barb ribs of 0.8 mm height each. The retention flank runs 30 to 45 degrees and the lead-in flank 10 to 30 degrees from the axis, so no retention flank is steeper than 45 degrees. Crests are 5.0 mm or more apart, the first at least 3.0 mm back from the tip and the last at least 4.0 mm before where the straight part ends; a 16 mm hose then pushes on and stays on.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The nozzle's straight section must run at least 25 mm and the profile has to grow wider after it, so a pushed-on hose has something to grip and something to stop against. The straight section finishes 25.0 to 33.0 mm from the tip, and within 5.0 mm beyond that the outer radius reaches 11.0 mm (half of a 22 mm hose outside diameter).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The pipe side is a 20.0 mm deep socket whose bore, 25.15 mm, is 0.15 mm larger than the 25 mm pipe, and it ends in a flat shoulder that stops the pipe, letting the pipe slide in and seat. The bore stays the same over its whole depth with no step or rib. The shoulder is square to the axis within 1.0 degree, at least 3.0 mm wide in the radial direction and backed by 2.0 mm or more of solid, and the 25 mm pipe seats with its end face within 0.10 mm of the shoulder.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "Both the spigot wall and the socket wall measure 2.0 to 2.4 mm, and nowhere is any wall thinner than 2.0 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Total length is 60.0 mm, with a bore through its entire length. Every section shares one axis, each within 0.10 mm of it, and the bore never narrows below 11.2 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "On the outside, the shape changes from the 16 mm spigot to the socket in a single smooth transition: never steeper than 45 degrees from the axis, between 15 and 45 degrees from the axis, never narrowing, and with no step apart from the barb ribs. It finishes at the socket's outside diameter.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "It prints standing upright, axis vertical, with the spigot end on the bed. No overhang may be steeper than 45 degrees from vertical; the bed contact is 80 mm2 or more, the height is no more than four times the diameter of the bed face, and nothing is thinner than 0.8 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "The whole adapter is a single manifold body.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Apart from the two ends of the bore there must be no openings, and no internal cavity.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Give me an STL, the OpenSCAD source, the declared layout and the agent's own measurement report, with that report agreeing to within 0.10 mm of an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "a revolved profile with a concentric step: spigot, three ribs, cone transition, socket and shoulder on one axis",
+    "dimensions derived from the joined parts' parameters (hose inner diameter, pipe outer diameter) with the fit clearances applied, never typed",
+    "a blind socket (bore not through) with a flat shoulder and a through bore beyond it",
+    "print-orientation reasoning: which end goes on the bed so that the flat shoulder faces up and the transition is at most 45 degrees",
+    "parts catalogue: load part.json generic_tube parameters (OD, ID, length) for the hose and the pipe and read AXIS, BORE, END_START, END_FAR datums",
+    "profile checks on a single body: radius versus height sampling, wall thickness by ray casting, overhang scan, coaxiality of sections",
+    "interference checks against external solids: clear_of for the pipe in the socket, seat verification at the shoulder"
+   ]
+  }
+ ]
+}

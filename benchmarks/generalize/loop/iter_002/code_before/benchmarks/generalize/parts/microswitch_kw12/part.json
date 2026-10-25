@@ -1,0 +1,201 @@
+{
+  "id": "microswitch_kw12",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "microswitch",
+    "micro switch",
+    "limit switch",
+    "micro limit switch",
+    "kw12",
+    "kw12-3",
+    "snap action switch",
+    "lever microswitch",
+    "endstop switch"
+  ],
+  "kind": "switch",
+  "source": "KW12-3 micro limit switch datasheet: body 20 x 6.4 x 10.2 mm, two 2.0 mm mounting holes 9.5 mm apart, lever travel about 1.0 mm. Hole height (body mid-height), actuator position near the +X end, lever rise 1.5 mm and press direction are assumed from the common KW12 outline; uncertainty +-1 mm.",
+  "frame": "switch: origin at the body min corner, length along X, thickness along Y (6.4 mm), height along Z; lever on the +Z face; mounting holes pass through along Y",
+  "params": {
+    "body_length": {
+      "default": 20.0,
+      "source": "datasheet: body length"
+    },
+    "body_thickness": {
+      "default": 6.4,
+      "source": "datasheet: body thickness"
+    },
+    "body_height": {
+      "default": 10.2,
+      "source": "datasheet: body height"
+    },
+    "hole_diameter": {
+      "default": 2.0,
+      "source": "datasheet: mounting holes"
+    },
+    "hole_pitch": {
+      "default": 9.5,
+      "source": "datasheet: hole spacing"
+    },
+    "hole_height": {
+      "default": 5.1,
+      "source": "assumed: holes at body mid-height, uncertainty +-1 mm"
+    },
+    "hole_centre_x": {
+      "default": 10.0,
+      "source": "assumed: pattern centred along the body, uncertainty +-1.5 mm"
+    },
+    "lever_travel": {
+      "default": 1.0,
+      "source": "datasheet: lever travel (free position to operating position)"
+    },
+    "lever_rise": {
+      "default": 1.5,
+      "source": "assumed: lever free height above the body top, uncertainty +-1 mm"
+    },
+    "actuator_inset": {
+      "default": 3.0,
+      "source": "assumed: actuator point inset from the +X end, uncertainty +-2 mm"
+    },
+    "actuator_zone": {
+      "default": 6.0,
+      "source": "assumed: actuator keep-out width along X, uncertainty +-2 mm"
+    }
+  },
+  "datasheet_size": [
+    "body_length",
+    "body_thickness",
+    "body_height"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "body_length",
+        "body_thickness",
+        "body_height"
+      ],
+      "at": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "lever_zone",
+      "primitive": "box",
+      "size": [
+        "actuator_zone",
+        "body_thickness",
+        "lever_rise + lever_travel"
+      ],
+      "at": [
+        "body_length - actuator_inset - actuator_zone / 2",
+        0,
+        "body_height"
+      ]
+    }
+  ],
+  "datums": {
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        1,
+        0
+      ],
+      "diameter": "hole_diameter",
+      "at": [
+        [
+          "hole_centre_x - hole_pitch / 2",
+          0,
+          "hole_height"
+        ],
+        [
+          "hole_centre_x + hole_pitch / 2",
+          0,
+          "hole_height"
+        ]
+      ]
+    },
+    "ACTUATOR": {
+      "kind": "point",
+      "at": [
+        "body_length - actuator_inset",
+        "body_thickness / 2",
+        "body_height + lever_rise"
+      ]
+    },
+    "PRESS_AXIS": {
+      "kind": "axis",
+      "at": [
+        "body_length - actuator_inset",
+        "body_thickness / 2",
+        "body_height + lever_rise"
+      ],
+      "dir": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    }
+  },
+  "connectors": [],
+  "notes": "Mounting holes pass through the 6.4 mm thickness along Y; screws are M2 (hole 2.0 mm is a thread pilot, not a clearance). The lever zone reserves the actuator's free rise plus its 1.0 mm travel; a cam or finger must not touch the lever outside that zone. Lever style (flat, roller, hinge) varies by KW12 suffix; the lever length is not catalogue data, request it. Terminals leave the -Z face (assumed, not modelled).",
+  "self_checks": [
+    {
+      "name": "hole pitch 9.5",
+      "expr": "HOLE[1].x - HOLE[0].x",
+      "value": 9.5,
+      "tol": 0.1
+    },
+    {
+      "name": "hole diameter 2.0",
+      "expr": "HOLE.diameter",
+      "value": 2.0,
+      "tol": 0.1
+    },
+    {
+      "name": "holes through Y",
+      "expr": "HOLE.dy",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "lever travel 1.0",
+      "expr": "lever_travel",
+      "value": 1.0,
+      "tol": 0.2
+    },
+    {
+      "name": "press toward the body",
+      "expr": "PRESS_AXIS.dz",
+      "value": -1,
+      "tol": 1e-06
+    },
+    {
+      "name": "actuator above the body",
+      "expr": "ACTUATOR.z - body.max_z",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

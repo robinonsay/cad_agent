@@ -1,0 +1,486 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "dd1b7871cc1c06af",
+        "graph": "cee6873984ac184e",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "arduino_uno_r3",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": "zone:board.mcu",
+          "fasteners": {
+            "board": "screw_m3_selftap",
+            "lid": "screw_m3_selftap"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 2,
+        "violation": 3.0
+      },
+      "failing": [
+        "text_coverage",
+        "closure_evidence"
+      ],
+      "terms": [
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5",
+            "L1.6"
+          ],
+          "where": "board.usb (arduino uno r3) is closed, but L1.5 names a usb-b plug: \"Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more betw...\"; board.dc (arduino uno r3) is closed, but L1.6 names a dc plug: \"Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the US...\"",
+          "deficit": 2.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -2.0,
+          "detail": "0 named plug connection(s) covered; uncovered: board.usb takes plug_usb_b named by L1.5; board.dc takes plug_dc_barrel_5p5 named by L1.6"
+        },
+        {
+          "check": "closure_evidence",
+          "type": "closure_evidence",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "the lid closure is lip, but L1.8 names rebate: \"Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, ...\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the lid closure the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "closure lip; the text names rebate (broken; L1.8: \"Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a re..."
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "dd1b7871cc1c06af",
+      "error_before": {
+        "hard_failures": 2,
+        "violation": 3.0
+      },
+      "menu": [
+        {
+          "kind": "expose",
+          "target": "board.usb",
+          "value": true,
+          "words": "expose board.usb: open the enclosure wall for the arduino uno r3's usb connector so a usb-b plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.5",
+              "quote": "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side."
+            }
+          ],
+          "key": "expose:board.usb=True",
+          "letter": "A"
+        },
+        {
+          "kind": "expose",
+          "target": "board.dc",
+          "value": true,
+          "words": "expose board.dc: open the enclosure wall for the arduino uno r3's dc connector so a dc plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.6",
+              "quote": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side."
+            }
+          ],
+          "key": "expose:board.dc=True",
+          "letter": "B"
+        },
+        {
+          "kind": "set_closure",
+          "target": "closure",
+          "value": "rebate",
+          "words": "set the lid closure to rebate: a flat plate that drops into a rebate in the top of the walls, flush with the upstand",
+          "targets": [
+            "closure_evidence"
+          ],
+          "invalidates": "derive",
+          "evidence": [
+            {
+              "source": "L1.8",
+              "quote": "Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held by four M3 self-tapping screws that go into four bosses in the base."
+            }
+          ],
+          "key": "set_closure:closure=rebate",
+          "letter": "C"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "D"
+        }
+      ],
+      "votes": {
+        "C": 2,
+        "D": 1
+      },
+      "action": {
+        "kind": "set_closure",
+        "target": "closure",
+        "value": "rebate",
+        "words": "set the lid closure to rebate: a flat plate that drops into a rebate in the top of the walls, flush with the upstand",
+        "targets": [
+          "closure_evidence"
+        ],
+        "invalidates": "derive",
+        "evidence": [
+          {
+            "source": "L1.8",
+            "quote": "Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held by four M3 self-tapping screws that go into four bosses in the base."
+          }
+        ],
+        "key": "set_closure:closure=rebate"
+      },
+      "chosen": "C",
+      "accepted": true,
+      "reason": "fewer failing checks (2 -> 1)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 2.0
+      },
+      "state_after": "ce7eec7e25a38907",
+      "failing_after": [
+        "text_coverage"
+      ],
+      "llm_calls": 3,
+      "secs": 3.71
+    },
+    {
+      "step": 2,
+      "state_before": "ce7eec7e25a38907",
+      "error_before": {
+        "hard_failures": 1,
+        "violation": 2.0
+      },
+      "menu": [
+        {
+          "kind": "expose",
+          "target": "board.usb",
+          "value": true,
+          "words": "expose board.usb: open the enclosure wall for the arduino uno r3's usb connector so a usb-b plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.5",
+              "quote": "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side."
+            }
+          ],
+          "key": "expose:board.usb=True",
+          "letter": "A"
+        },
+        {
+          "kind": "expose",
+          "target": "board.dc",
+          "value": true,
+          "words": "expose board.dc: open the enclosure wall for the arduino uno r3's dc connector so a dc plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.6",
+              "quote": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side."
+            }
+          ],
+          "key": "expose:board.dc=True",
+          "letter": "B"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "C"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "board.usb",
+        "value": true,
+        "words": "expose board.usb: open the enclosure wall for the arduino uno r3's usb connector so a usb-b plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "L1.5",
+            "quote": "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side."
+          }
+        ],
+        "key": "expose:board.usb=True"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "violation 2 -> 1 (lower)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "state_after": "c46b370eb9267efe",
+      "failing_after": [
+        "text_coverage"
+      ],
+      "llm_calls": 3,
+      "secs": 3.58
+    },
+    {
+      "step": 3,
+      "state_before": "c46b370eb9267efe",
+      "error_before": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "menu": [
+        {
+          "kind": "expose",
+          "target": "board.dc",
+          "value": true,
+          "words": "expose board.dc: open the enclosure wall for the arduino uno r3's dc connector so a dc plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.6",
+              "quote": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side."
+            }
+          ],
+          "key": "expose:board.dc=True",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "board.dc",
+        "value": true,
+        "words": "expose board.dc: open the enclosure wall for the arduino uno r3's dc connector so a dc plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "L1.6",
+            "quote": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side."
+          }
+        ],
+        "key": "expose:board.dc=True"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (1 -> 0)",
+      "error_after": {
+        "hard_failures": 0,
+        "violation": 0
+      },
+      "state_after": "57a78354fcaccb27",
+      "failing_after": [],
+      "llm_calls": 3,
+      "secs": 3.5
+    }
+  ],
+  "stop": {
+    "reason": "every check passes",
+    "step": 3
+  },
+  "final": {
+    "state": {
+      "decisions": "57a78354fcaccb27",
+      "graph": "919f2c3ad87ed781",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "arduino_uno_r3",
+            1,
+            [
+              "dc",
+              "usb"
+            ]
+          ]
+        ],
+        "stacks": {},
+        "faces": {
+          "wall[board.dc]": "-X",
+          "wall[board.usb]": "-X"
+        },
+        "relations": [],
+        "closure": "rebate",
+        "boss_layout": "inside_band_x",
+        "archetype": "tray_lid+screws",
+        "vent_face": "zone:board.mcu",
+        "fasteners": {
+          "board": "screw_m3_selftap",
+          "lid": "screw_m3_selftap"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 0,
+      "violation": 0
+    },
+    "failing": [],
+    "terms": []
+  },
+  "secs": 11.28,
+  "authority": {
+    "decisions": {
+      "plant": 1,
+      "llm": 3,
+      "semantic-rule": 4,
+      "guardrail": 3
+    },
+    "proposal": {
+      "llm_slots": 13,
+      "default_slots": 1,
+      "llm_contents_items": 1
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "fastener[board]",
+        "by": "rule:text_evidence[board]",
+        "migration": "R03"
+      },
+      {
+        "decision": "vent_face",
+        "by": "rule:vent_zone",
+        "migration": "R04"
+      },
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      },
+      {
+        "decision": "fastener[lid]",
+        "by": "rule:text_evidence[lid]",
+        "migration": "R03"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.6538
+  },
+  "accepted": [
+    {
+      "kind": "set_closure",
+      "target": "closure",
+      "value": "rebate",
+      "words": "set the lid closure to rebate: a flat plate that drops into a rebate in the top of the walls, flush with the upstand",
+      "targets": [
+        "closure_evidence"
+      ],
+      "invalidates": "derive",
+      "evidence": [
+        {
+          "source": "L1.8",
+          "quote": "Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held by four M3 self-tapping screws that go into four bosses in the base."
+        }
+      ],
+      "key": "set_closure:closure=rebate",
+      "step": 1
+    },
+    {
+      "kind": "expose",
+      "target": "board.usb",
+      "value": true,
+      "words": "expose board.usb: open the enclosure wall for the arduino uno r3's usb connector so a usb-b plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "L1.5",
+          "quote": "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side."
+        }
+      ],
+      "key": "expose:board.usb=True",
+      "step": 2
+    },
+    {
+      "kind": "expose",
+      "target": "board.dc",
+      "value": true,
+      "words": "expose board.dc: open the enclosure wall for the arduino uno r3's dc connector so a dc plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "L1.6",
+          "quote": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side."
+        }
+      ],
+      "key": "expose:board.dc=True",
+      "step": 3
+    }
+  ]
+}

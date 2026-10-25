@@ -51,13 +51,20 @@
     "layout_step": {"value": 0.5, "unit": "mm", "source": "step of the 1-D shift search that resolves a placement collision"},
     "aperture_min_volume": {"value": 1.0, "unit": "mm3", "source": "aperture regions smaller than this are numerical slivers, not openings (rubric.md 3.4)"},
     "parity_volume_rel": {"value": 0.005, "unit": "ratio", "source": "OpenSCAD vs manifold3d volume agreement for the delivered mesh (ARCHITECTURE.md 3.2)"},
-    "parity_bbox": {"value": 0.05, "unit": "mm", "source": "OpenSCAD vs manifold3d bounding-box agreement for the delivered mesh (ARCHITECTURE.md 3.2)"}
+    "parity_bbox": {"value": 0.05, "unit": "mm", "source": "OpenSCAD vs manifold3d bounding-box agreement for the delivered mesh (ARCHITECTURE.md 3.2)"},
+    "rebate_upstand": {"value": 1.5, "unit": "mm", "source": "generalize delta 003 C2: the wall left outside a lid rebate, 4 perimeters at 0.4 mm (the same printed-ligament basis as min_ligament)"},
+    "vent_slot_width": {"value": 2.0, "unit": "mm", "source": "generalize delta 003 C3: vent slot width when the text gives no width band, 5 extrusion lines at 0.4 mm; flagged as an assumption when used"},
+    "vent_slot_length": {"value": 10.0, "unit": "mm", "source": "generalize delta 003 C3: vent slot length in a lid row when the text gives no length band (common FDM vent practice, 8-12 mm); flagged as an assumption when used"},
+    "controller_step_budget": {"value": 6, "unit": "count", "source": "migration delta R01 (owner decision D1): the closed-loop controller's correction steps per run. A step is one voted question (3 samples) plus the re-run of the stages its action invalidates and one manifold build (seconds; an arrangement re-run asks its own questions), so 6 steps stay far inside the 20-minute run timeout and cover one correction per named mating connector of the largest train contents (4) plus a structural correction and a spare"},
+    "controller_trust_region": {"value": 0.05, "unit": "mm", "source": "migration delta R01: a step that keeps the number of failing checks may raise their summed normalised violation by at most this much (half of design_margin) and still be kept; a step that adds a failing check is always undone"},
+    "controller_error_terms": {"value": 6, "unit": "count", "source": "migration delta R01: failing checks shown to the controller per step, ranked actionable first then worst margin; a 9B model answers short enum questions best (benchmarks/reports/2026-10-23-voting.md)"},
+    "controller_menu_max": {"value": 8, "unit": "count", "source": "migration delta R01: actions offered per step (plus stop); a short lettered menu keeps the question a discrete choice"}
   },
   "spec_slots": {
-    "about": "Generic enclosure spec slots. The controller maps each slot onto one number occurrence that Python extracted from the request or L1 text (or 'none'); a 'none' slot takes its default_rule value and is flagged as an assumption. A slot whose default_rule is null must come from the text.",
+    "about": "Generic enclosure spec slots. The controller maps each slot onto one number occurrence that Python extracted from the request or L1 text (or 'none'); a 'none' slot takes its default_rule value and is flagged as an assumption. A slot whose default_rule is null must come from the text unless it says \"required\": false (the board size slots: a primary reference that is not request-sized needs no number, and a request-sized one takes its size from them when they are filled, else from the part-size question; generalize delta 001 D4). The required flag is never shown to the controller.",
     "slots": [
-      {"name": "board_width", "meaning": "the length of the circuit board's longer edge", "unit": "mm", "default_rule": null},
-      {"name": "board_depth", "meaning": "the length of the circuit board's shorter edge", "unit": "mm", "default_rule": null},
+      {"name": "board_width", "meaning": "the length of the circuit board's longer edge", "unit": "mm", "default_rule": null, "required": false},
+      {"name": "board_depth", "meaning": "the length of the circuit board's shorter edge", "unit": "mm", "default_rule": null, "required": false},
       {"name": "keepout_above", "meaning": "the free height that must stay clear above the board's top surface (component keep-out)", "unit": "mm", "default_rule": "component_height_default"},
       {"name": "keepout_below", "meaning": "the free height that must stay clear below the board's underside (solder side)", "unit": "mm", "default_rule": "solder_side_default"},
       {"name": "board_clearance", "meaning": "the minimum gap between the board and any printed surface", "unit": "mm", "default_rule": "board_to_wall"},
@@ -69,6 +76,40 @@
       {"name": "max_y", "meaning": "the largest allowed outside width of the closed enclosure", "unit": "mm", "default_rule": "bed_y"},
       {"name": "max_z", "meaning": "the largest allowed outside height of the closed enclosure", "unit": "mm", "default_rule": "bed_z"}
     ]
+  },
+  "archetypes": {
+    "about": "Evidence gates for the archetypes the derivation rules can build (generalize delta 001 D5): an archetype is feasible only when its `needs` hold and the request or an L1 names one of its `evidence` words (text_evidence token runs). Generic vocabulary only; no design names. housing and block are left out on purpose: they name bearing housings and pillow blocks (block archetype, GM5).",
+    "tray_lid": {"evidence": ["enclosure", "box", "case", "lid"], "lid_words": ["lid"], "needs": "mount_holes primary", "source": "words that ask for a body enclosing its contents; a generic vocabulary, no design names. lid_words (generalize delta 003 C2): the evidence words that name the lid, so a closure word gates only in a sentence about the lid"}
+  },
+  "closures": {
+    "about": "How the lid of a tray_lid closes on the base (generalize delta 003 C2). The default closure is used unless one sentence of the request or an L1 names a closure's evidence word and a lid word (archetypes.tray_lid.lid_words; text_evidence token runs). The form is a rule: no controller question. Generic vocabulary only.",
+    "lip": {"default": true, "meaning": "a lid plate over the walls with a locating lip that drops inside them", "source": "the iteration 002 closure (ARCHITECTURE.md 4.3): plate + lid_lip"},
+    "rebate": {"evidence": ["rebate", "rebated"], "meaning": "a flat plate that drops into a rebate in the top of the walls, flush with the upstand", "source": "English / joinery: a rebate is a step cut along an edge to receive a panel"}
+  },
+  "vents": {
+    "about": "Vent slot rows (generalize delta 003 C3). A vent sentence is a sentence of the request or an L1 that contains one of the evidence words (text_evidence token runs). Bare 'exhaust' (a fan's exhaust side) and bare 'slot' (a card slot) are not evidence. The slots are the generated spec slots of the one voted size question (assy_vent_spec), each with a meaning and a unit; a silent slot is none, and rules.vent_slot_width / vent_slot_length fill a silent width or lid-row length.",
+    "evidence": ["vent", "vents", "ventilation", "vent slots", "exhaust slots", "exhaust slot", "louvre", "louvres", "louver", "louvers"],
+    "source": "English words for openings that let air through a wall or lid; a generic vocabulary, no design names",
+    "slots": [
+      {"name": "vent_count_min", "meaning": "the fewest vent slots the row may have", "unit": "count"},
+      {"name": "vent_count_max", "meaning": "the most vent slots the row may have", "unit": "count"},
+      {"name": "vent_width_min", "meaning": "the smallest width of one vent slot (its narrow side)", "unit": "mm"},
+      {"name": "vent_width_max", "meaning": "the largest width of one vent slot (its narrow side)", "unit": "mm"},
+      {"name": "vent_length_min", "meaning": "the smallest length (or height) of one vent slot (its long side)", "unit": "mm"},
+      {"name": "vent_length_max", "meaning": "the largest length (or height) of one vent slot (its long side)", "unit": "mm"},
+      {"name": "vent_pitch_min", "meaning": "the smallest centre-to-centre spacing of neighbouring vent slots", "unit": "mm"},
+      {"name": "vent_pitch_max", "meaning": "the largest centre-to-centre spacing of neighbouring vent slots", "unit": "mm"},
+      {"name": "vent_area_min", "meaning": "the smallest total open area of all vent slots together", "unit": "mm2"}
+    ]
+  },
+  "face_relations": {
+    "about": "How a text relates the walls two exposed cable connectors face (generalize delta 002 C0). A pair of exposed connectors may take a relation only when one sentence of the request or an L1 names both parts (their part.json names) and one of the relation's evidence words (text_evidence token runs); the controller then reads the relation from the request (one voted enum per gated pair, plus not_stated) and a unanimous reading becomes a face_relation check. Generic English relation words only; no design names or numbers.",
+    "same": {"evidence": ["same"], "meaning": "both connectors open through the same end or side of the enclosure", "wall_meaning": "the same wall that connector opens through", "source": "English: 'the same end', 'the same side'"},
+    "opposite": {"evidence": ["opposite", "other"], "meaning": "the two connectors open through opposite ends or sides of the enclosure", "wall_meaning": "the wall opposite the one that connector opens through", "source": "English: 'the opposite end', 'the other end'"}
+  },
+  "fastener_roles": {
+    "about": "Words that say a fastener named in the same clause of the request or an L1 holds the primary board (generalize delta 002 C1): the board screw is the largest such named catalogue screw that passes the board's holes, else the thread the board's mount_holes interface declares, else the smallest screw that passes. The primary's own part.json names count as role evidence too. Generic vocabulary only.",
+    "board": {"evidence": ["board", "pcb", "standoff", "mounting hole"], "source": "words a requirement uses for the part held on standoffs at its mounting holes"}
   },
   "print_orientation": {
     "base": {"orientation": "open_side_up", "source": "a tray prints on its floor without support"},

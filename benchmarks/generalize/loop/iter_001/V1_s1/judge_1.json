@@ -1,0 +1,36 @@
+{
+  "id": "V1_s1",
+  "meets": true,
+  "class": "CORRECT",
+  "score": 1.0,
+  "defects": [],
+  "summary": "V1 passes all gates and L3s. Pico USB mouth (3.04,22.38,4.9) and jack mouth (0.0,44.0,2.5) both on the -X short end; two openings (rect 10.8x7.8 + round D8.81) in -X wall, none in +X; standoffs at 75x55; closed 93.17x73.17x24.70 <= 100x80x35.",
+  "observations": [
+    "Plug envelopes of USB and jack do not intersect (centre separation 21.6 mm; ligament between openings 11.8 mm).",
+    "M2 pilot (D1.70) used on D3.0 board holes; within the M2 band, not a defect."
+  ],
+  "measured": {
+    "board_clearance_d": "1.448 (E1) / 1.100 (V)",
+    "envelope": "93.17 x 73.17 x 24.70",
+    "limit": "<= 100 x 80 x 35",
+    "usb_plug_d": "0.400",
+    "jack_plug_d": "0.405",
+    "usb_opening": "10.8 x 7.8 centred (y22.38,z4.9)",
+    "jack_opening": "D8.81 at (y44.0,z2.5)",
+    "walls": "2.4 all four walls, floor 2.4, lid plate 2.4",
+    "lip_gap_per_side": "0.25 (all 4 sides), engagement 2.1",
+    "shells": "base 1 / lid 1, manifold NoError, overlap 0 mm3",
+    "overhang": "only USB-opening ceiling (bridge 10.8 <= 15) and round jack holes (D8.8 <= 12): exempt",
+    "bed_contact": "base ~0.85-0.87, lid ~0.84-0.86",
+    "standoffs": "4, OD 5.1, pilot D1.702, depth 5.1, top z -1.6 (spread 0), axis offset 0",
+    "bosses": "4 lid bosses OD 6.59, pilot D2.503 depth 6.1, lid holes D3.404 coaxial offset 0",
+    "top_KO_d": 0.1,
+    "bottom_KO_d": 0.1,
+    "pico_inside_d": 4.37,
+    "jack_inside_d": 1.208,
+    "install_sweep_d": 0.949,
+    "inner_X_length": 82.2,
+    "opening_counts": "-X 2 / +X 0 / other 0"
+  },
+  "note": "Judge 1, iteration 001. claude-context MCP failed to connect, so grep/ls fallback was used to locate files. Requirements per benchmarks/enclosure/requirements.md + variants.json grading_deltas (no per-design requirements.md exists under generalize/designs/). All numbers re-measured from base.stl/lid.stl with manifold3d/trimesh against catalogue references built from layout.json poses."
+}

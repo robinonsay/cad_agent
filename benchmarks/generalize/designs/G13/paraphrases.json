@@ -1,0 +1,152 @@
+{
+ "paraphrases": [
+  {
+   "id": "G13",
+   "tier": 4,
+   "title": "Pico macro pad with four buttons",
+   "request": "2 x 2 macro pad. Four 6 mm tactile switches on a 70 x 50 mm perfboard with a mounting hole in every corner, 19.05 mm pitch both ways. A Raspberry Pi Pico 2 sits in female sockets on that board, behind the switches. Each switch is pressed by a printed plunger through a hole in the top plate, 0.4 mm clearance all round, 1.5 mm of travel to the bottom stop. The Pico's micro-USB port opens through the rear end wall; cable plugs in with the lid on. Enclosure: base plus removable top plate (the lid). FDM, no supports.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: 'above them' = behind the buttons, further along +Y (A1); 'rear' = the short end wall the Pico's USB faces (A2); the Pico on female sockets (A3, the plan lists a female header); the plunger is a printed part with a stem, a retaining flange and a stop (A5); 0.4 mm clearance per side (A6); lid screws M3 into bosses outside the board (F2); FDM, no supports (A10).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "From the parts catalogue, place four tactile switches in a 2 x 2 array at 19.05 mm pitch and the Pico 2 on female sockets behind them, on the 70 x 50 mm board. USB port faces the rear short end. No collisions between parts, corner holes stay uncovered. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The 70 x 50 x 1.6 mm board fits inside the closed enclosure, 0.5 mm or more from every printed surface except at its standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Exactly four standoffs carry the board, one under each corner hole, outside diameter 5 to 7 mm each. Tops level to within 0.1 mm of each other. Each has a pilot hole for an M2 self-tapping screw through the board.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Lid closed: nothing from base or lid within 13.3 mm above the board's top surface or within 4 mm below its underside, apart from the standoffs under the holes. Pico, sockets and switches all lie inside the enclosure.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Lid closed, a micro-USB cable seats fully in the Pico through one opening in the rear end wall, clear of the enclosure by 0.3 mm or more all round. The opening is at most 1.5 mm larger than the plug on each side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "One printed plunger per switch, rising through a round hole in the top plate and coaxial with the switch to within 0.2 mm. Clearance between plunger and hole: 0.4 mm on every side. Stem is round, 4.0 to 5.6 mm diameter; tip face 3.5 mm across or more.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "Plunger travel: 1.5 mm to the bottom stop. It must reach the switch's actuation point before bottoming, without crushing the switch, and still stand 0.5 mm or more proud of the plate at full travel. It must not fall out when the case is inverted: a flange at least 2 mm wider than the hole rests against the underside of the plate.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Enclosure = base + separate removable lid. Lid is a flat plate dropping into a rebate at the top of the walls: plate 2 to 3 mm thick, fit gap 0.15 to 0.35 mm per side, upstand 1 mm or more. Four M3 self-tapping screws fasten it into four bosses in the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed enclosure has no openings except the USB opening, four plunger holes and screw holes. Walls, floor and lid 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base, lid and plunger: each a single manifold body, FDM printable with no supports. No overhang steeper than 45° from vertical, no bridge longer than 15 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed enclosure at most 95 x 70 x 35 mm, long axis along the board's 70 mm side. Stands flat on a desk, no tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Plungers load into the lid from underneath. With the lid off, the populated board drops straight down onto the standoffs. The lid, plungers fitted, closes over the board. A screwdriver reaches every screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliverables: base STL, lid STL, plunger STL, OpenSCAD source, declared layout, and the agent's clearance report, which must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  },
+  {
+   "id": "G13",
+   "tier": 4,
+   "title": "Pico macro pad with four buttons",
+   "request": "I'm making a macro pad with a 2 x 2 key layout. The four 6 mm tactile switches are mounted on a 70 x 50 mm perfboard that has a mounting hole at each corner, spaced 19.05 mm apart in both directions, and a Raspberry Pi Pico 2 is plugged into female sockets on the same board, further back. A printed plunger presses each switch and rises through a hole in the top plate, which leaves 0.4 mm clearance all the way round; the plunger moves 1.5 mm before it bottoms out. The Pico's micro-USB port faces out of the rear end wall so the cable goes in even with the lid fitted. The case is a base with a removable top plate acting as the lid, and it prints on an FDM printer with no supports.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: 'above them' = behind the buttons, further along +Y (A1); 'rear' = the short end wall the Pico's USB faces (A2); the Pico on female sockets (A3, the plan lists a female header); the plunger is a printed part with a stem, a retaining flange and a stop (A5); 0.4 mm clearance per side (A6); lid screws M3 into bosses outside the board (F2); FDM, no supports (A10).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Using catalogue parts, the layout puts the four tactile switches in a 2 x 2 grid with 19.05 mm pitch on the 70 x 50 mm board, with the Pico 2 in female sockets behind them and its USB port pointing at the rear short end. Parts must not collide or cover the corner holes, and the design has to declare this layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "With the enclosure shut, there must be at least 0.5 mm between the 70 x 50 x 1.6 mm board and any printed surface, other than where the board sits on the standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Put the board on precisely four standoffs, one beneath every corner hole. Each has an outside diameter of 5 to 7 mm and a top that is within 0.1 mm of the plane of the other three, and each includes a pilot hole so an M2 self-tapping screw can go through the board.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Keep a 13.3 mm zone above the board's top face and a 4 mm zone beneath its underside free of base and lid material when the lid is closed; only the standoffs below the holes may enter. The Pico, its sockets and the switches need to be inside the enclosure.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "A micro-USB cable has to go all the way into the Pico via a single hole in the rear end wall while the lid is on, never touching the enclosure (at least 0.3 mm of space all around). The hole can't be more than 1.5 mm bigger than the plug on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Every switch gets a dedicated printed plunger that pokes up through a round hole in the top plate, centred on the switch axis within 0.2 mm, leaving 0.4 mm of gap all around between plunger and hole. A plunger's stem is round and 4.0 to 5.6 mm in diameter, and the face at its tip is at least 3.5 mm wide.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "Each plunger moves 1.5 mm before it bottoms out; within that travel it must hit the switch's actuation point without crushing the switch, and at the bottom of its stroke it still sticks out of the plate by at least 0.5 mm. When the case is flipped over the plunger stays put, retained by a flange, at least 2 mm wider than the hole, that bears on the plate's underside.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Build the enclosure from a base and a detachable lid. The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "When closed, the only holes allowed are the USB opening, the four plunger holes and the screw holes; walls, floor and lid are to be between 2 and 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Each of the base, the lid and the plunger should be a single manifold body that an FDM printer can make without supports, meaning overhangs no steeper than 45° from vertical and bridges no longer than 15 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "The shut enclosure needs to fit in 95 x 70 x 35 mm, its longest extent running along the 70 mm side of the board, and it has to sit on a desk without tipping over.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Assembly has to work: you insert the plungers into the lid from its underside, lower the populated board vertically onto the standoffs with the lid removed, then close the lid with its plungers over the board, and a screwdriver can get to each screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Hand over three STL files (base, lid and plunger), the OpenSCAD source, the declared layout and the agent's own clearance report; an independent measurement has to confirm that report.",
+     "method": "inspection"
+    }
+   ]
+  }
+ ]
+}

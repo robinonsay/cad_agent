@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n23 = 60 (L1.11): "...The closed enclosure shall be no larger than 80 x 60 x 40 mm, longest along the Nano's 45 mm side, and shall sta..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n23 state?
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- generic_1.size_y: the size_y of the rectangular block (request text) (mm)
+
+=== RESPONSE ===
+{
+  "owner": "generic_1.size_y"
+}

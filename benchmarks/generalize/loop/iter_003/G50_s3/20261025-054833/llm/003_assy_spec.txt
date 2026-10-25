@@ -1,0 +1,96 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 2 (request): "...A desktop console for a Raspberry Pi Zero 2 W (65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern)...."
+n2 = 65 (request): "...A desktop console for a Raspberry Pi Zero 2 W (65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40..."
+n3 = 30 mm (request): "...A desktop console for a Raspberry Pi Zero 2 W (65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 1..."
+n4 = 2.75 mm (request): "...sktop console for a Raspberry Pi Zero 2 W (65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 10 mm fa..."
+n5 = 58 (request): "...Raspberry Pi Zero 2 W (65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 10 mm fan sits above the Pi,..."
+n6 = 23 mm (request): "...berry Pi Zero 2 W (65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 10 mm fan sits above the Pi, fix..."
+n7 = 40 (request): "...(65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 10 mm fan sits above the Pi, fixed on its 32 mm ho..."
+n8 = 40 (request): "...30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 10 mm fan sits above the Pi, fixed on its 32 mm hole pit..."
+n9 = 10 mm (request): "...m, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 10 mm fan sits above the Pi, fixed on its 32 mm hole pitch a..."
+n10 = 32 mm (request): "...ern). A 40 x 40 x 10 mm fan sits above the Pi, fixed on its 32 mm hole pitch and blowing down onto it. A 0.96 inch SSD13..."
+n11 = 0.96 (request): "..., fixed on its 32 mm hole pitch and blowing down onto it. A 0.96 inch SSD1306 OLED (27.3 x 27.8 mm, viewing area 25 x 14..."
+n12 = 27.3 (request): "...e pitch and blowing down onto it. A 0.96 inch SSD1306 OLED (27.3 x 27.8 mm, viewing area 25 x 14 mm) shows through a win..."
+n13 = 27.8 mm (request): "...and blowing down onto it. A 0.96 inch SSD1306 OLED (27.3 x 27.8 mm, viewing area 25 x 14 mm) shows through a window in t..."
+n14 = 25 (request): "...it. A 0.96 inch SSD1306 OLED (27.3 x 27.8 mm, viewing area 25 x 14 mm) shows through a window in the front panel, with a..."
+n15 = 14 mm (request): "...A 0.96 inch SSD1306 OLED (27.3 x 27.8 mm, viewing area 25 x 14 mm) shows through a window in the front panel, with an EC..."
+n16 = 2 (L1.1): "...The design shall place the Pi Zero 2 W, the fan, the OLED and the encoder from the parts catalog..."
+n17 = 0.5 mm (L1.2): "...with screws, inside the case, with its board edges at least 0.5 mm from the side and front walls and the whole Pi, conne..."
+n18 = 0.2 mm (L1.2): "...front walls and the whole Pi, connectors included, at least 0.2 mm inside the cavity...."
+n19 = 1.5 mm (L1.3): "...case or each other, and each opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n20 = 32 mm (L1.4): "...The fan shall sit above the Pi on four screws through its 32 mm hole pattern, blowing down, with its axis within 6 mm of..."
+n21 = 6 mm (L1.4): "...its 32 mm hole pattern, blowing down, with its axis within 6 mm of the Pi board's centre in plan, and at least 5 mm of f..."
+n22 = 5 mm (L1.4): "...within 6 mm of the Pi board's centre in plan, and at least 5 mm of free air above its inlet and below its exhaust...."
+n23 = 300 (L1.5): "...The side walls shall have vent slots that give at least 300 square millimetres of open area above the fan's mid-plane f..."
+n24 = 300 (L1.5): "...open area above the fan's mid-plane for intake and at least 300 square millimetres of open area below the fan for exhaus..."
+n25 = 2 (L1.5): "...limetres of open area below the fan for exhaust, with slots 2 to 3 mm wide and at least 1.5 mm of wall between slots, th..."
+n26 = 3 mm (L1.5): "...res of open area below the fan for exhaust, with slots 2 to 3 mm wide and at least 1.5 mm of wall between slots, the int..."
+n27 = 1.5 mm (L1.5): "...the fan for exhaust, with slots 2 to 3 mm wide and at least 1.5 mm of wall between slots, the intake and the exhaust ven..."
+n28 = 5 mm (L1.6): "...the fan to the exhaust vents past the Pi, wide enough for a 5 mm sphere to roll through the inside of the case: from a v..."
+n29 = 5 mm (L1.6): "...of the case: from a vent's inner mouth to the centre of the 5 mm air gap above the fan inlet, and from the centre of the..."
+n30 = 5 mm (L1.6): "...mm air gap above the fan inlet, and from the centre of the 5 mm air gap below the fan exhaust past the Pi to an exhaust ..."
+n31 = 25 (L1.7): "...The front panel shall have a window that shows the whole 25 x 14 mm viewing area of the OLED with nothing in the way an..."
+n32 = 14 mm (L1.7): "...e front panel shall have a window that shows the whole 25 x 14 mm viewing area of the OLED with nothing in the way and t..."
+n33 = 26 (L1.7): "...the OLED with nothing in the way and that is not oversized (26 to 29 mm wide, 15 to 22 mm tall, its bottom edge 0.4 to 2..."
+n34 = 29 mm (L1.7): "...ED with nothing in the way and that is not oversized (26 to 29 mm wide, 15 to 22 mm tall, its bottom edge 0.4 to 2.0 mm ..."
+n35 = 15 (L1.7): "...ing in the way and that is not oversized (26 to 29 mm wide, 15 to 22 mm tall, its bottom edge 0.4 to 2.0 mm below the vi..."
+n36 = 22 mm (L1.7): "...the way and that is not oversized (26 to 29 mm wide, 15 to 22 mm tall, its bottom edge 0.4 to 2.0 mm below the viewing a..."
+n37 = 0.4 (L1.7): "...rsized (26 to 29 mm wide, 15 to 22 mm tall, its bottom edge 0.4 to 2.0 mm below the viewing area and centred on it in wi..."
+n38 = 2.0 mm (L1.7): "...(26 to 29 mm wide, 15 to 22 mm tall, its bottom edge 0.4 to 2.0 mm below the viewing area and centred on it in width)...."
+n39 = 1.5 mm (L1.8): "...ed by pins in its other two holes (those two holes lie only 1.5 mm from the glass edge, too close for a screw post or he..."
+n40 = 3 mm (L1.8): "...m the glass edge, too close for a screw post or head), with 3 mm behind the OLED board kept free for header pins and wir..."
+n41 = 0.5 mm (L1.8): "...LED board kept free for header pins and wires, and at least 0.5 mm clear of the fan, the encoder and the Pi...."
+n42 = 2 (L1.9): "...he panel and its nut and shaft on the outside, with a panel 2 to 3 mm thick at the hole, thin enough for the thread...."
+n43 = 3 mm (L1.9): "...nel and its nut and shaft on the outside, with a panel 2 to 3 mm thick at the hole, thin enough for the thread...."
+n44 = 20 mm (L1.10): "...t least two on each of two opposite side walls and at least 20 mm apart along the wall, each engaging a blind catch rece..."
+n45 = 0.6 (L1.10): "...apart along the wall, each engaging a blind catch recess by 0.6 to 1.2 mm with a peak bending strain of at most 1.5 perc..."
+n46 = 1.2 mm (L1.10): "...long the wall, each engaging a blind catch recess by 0.6 to 1.2 mm with a peak bending strain of at most 1.5 percent)...."
+n47 = 1.5 (L1.10): "...cess by 0.6 to 1.2 mm with a peak bending strain of at most 1.5 percent)...."
+n48 = 2 (L1.11): "...enings and the vents, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n49 = 4 mm (L1.11): "...s and the vents, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n50 = 12 mm (L1.12): "...rints on an FDM printer without supports (round holes up to 12 mm, bridges up to 15 mm and a horizontal step up to 1.2 m..."
+n51 = 15 mm (L1.12): "...er without supports (round holes up to 12 mm, bridges up to 15 mm and a horizontal step up to 1.2 mm deep, such as a hoo..."
+n52 = 1.2 mm (L1.12): "...p to 12 mm, bridges up to 15 mm and a horizontal step up to 1.2 mm deep, such as a hook's return face, are allowed)...."
+n53 = 90 (L1.13): "...The closed case shall be no larger than 90 x 70 x 45 mm and shall stand on a desk without tipping...."
+n54 = 70 (L1.13): "...The closed case shall be no larger than 90 x 70 x 45 mm and shall stand on a desk without tipping...."
+n55 = 45 mm (L1.13): "...The closed case shall be no larger than 90 x 70 x 45 mm and shall stand on a desk without tipping...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "n17",
+  "board_depth": "n2",
+  "board_width": "n3",
+  "headroom": "n29",
+  "keepout_above": "n29",
+  "keepout_below": "n30",
+  "max_x": "n53",
+  "max_y": "n54",
+  "max_z": "n55",
+  "opening_oversize_max": "n19",
+  "wall_max": "n49",
+  "wall_min": "n48"
+}

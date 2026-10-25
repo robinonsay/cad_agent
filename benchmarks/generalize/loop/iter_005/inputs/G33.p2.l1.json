@@ -1,0 +1,57 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Make two printed leaves, each one manifold body measuring 25.0 mm (plus or minus 0.3) by 40.0 mm (plus or minus 0.2) in plan and between 8.4 and 10.0 mm thick; the mounting face is flat to 0.2 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Along the 40 mm pin axis the leaves take turns carrying knuckles: odd number, at least 3, each 5.0 mm or longer, a gap of 0.30 to 0.40 mm between neighbouring faces, and the two end knuckles flush with the 40 mm ends.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The pin, 3 mm, runs through each knuckle on a shared axis (within 0.10 mm). Holes in the turning leaf are 0.20 mm larger than the pin (3.15 to 3.30 mm) and every knuckle keeps 2.0 mm or more of wall around its hole.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "In the other leaf, the pin is gripped by a press fit (hole 2.95 to 3.05 mm) in the outer knuckles, engaging 14.0 mm or more; both pin ends sit within 0.3 mm of the 40 mm ends.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "On each leaf, two M3 heat-set insert holes of 3.9 to 4.1 mm diameter, 7.2 mm or deeper with a floor of at least 1.0 mm, square to the mounting face within 1 degree, 3.0 mm or more from any edge or feature, 15.0 mm or more apart, and symmetric about the mid-length of the leaf to within 0.5 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "Sweeping from 0 to 180 degrees in 5 degree steps, the leaves must never intersect and must remain 0.30 mm or more apart, with the turning leaf's pin holes at least 0.05 mm clear of the pin.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "Open to 180 degrees, the mounting faces lie in one plane within 0.2 mm. At 0 degrees they are parallel within 1 degree, and the leaves fold face to face with 0.30 to 0.60 mm between the plates.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "Closed, it fits inside 30 x 41 x 20 mm; flat, inside 45 x 41 x 15 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "Every leaf prints with no supports in a stated orientation, with at least 50 percent of its plan footprint on the bed and no feature under 0.8 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Once assembled, you can slide the pin in along its axis through all knuckles, and reach every insert with an M3 bolt from outside along its axis, whether folded or flat.",
+    "method": "test"
+  },
+  {
+    "id": "L1.11",
+    "text": "Provide one STL for each leaf in the flat pose, the OpenSCAD source, the stated pin axis, insert axes and print orientations, plus the agent's own swing report; that report must match an independent measurement.",
+    "method": "inspection"
+  }
+]

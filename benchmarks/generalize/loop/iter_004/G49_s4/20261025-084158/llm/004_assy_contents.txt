@@ -1,0 +1,56 @@
+MODEL: ornith-1.5:9b T=0.3 seed=4000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A two-axis camera pod with two SG90 servos (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch), one rotating the other, and a Raspberry Pi camera module v2 (25 x 24 mm board, lens 8 mm diameter, 9 mm overall height, four 2.2 mm holes on a 21 x 12.5 mm pattern, a 21 mm wide flat cable connector on the back). The pan servo sits in the base with its shaft up; a two-arm horn trimmed to 10 mm reach and 7 mm wide carries the yoke in a socket 0.1 to 0.4 mm bigger than the horn all round and 2.0 to 2.4 mm deep. The tilt servo sits in a vertical wall of the yoke with its shaft horizontal and at right angles to the pan axis; a second trimmed horn carries the camera cradle. Each servo is held by its tabs resting flat on a shelf or wall face, its body fitting the pocket or window with 0.1 to 0.35 mm clearance per side, and two M2 x 8 self-tapping screws through its tab holes. The camera is held in the cradle by its mounting holes without touching its flat cable connector, with its lens axis horizontal at the centre of the tilt range and at right angles to the tilt axis, and it looks out of a window in the cradle's front wall that does not clip its 62.2 x 48.8 degree field of view (62.2 along the 25 mm side, 48.8 along the 24 mm side). Pan and tilt each swing +/- 60 degrees from the centre, with 0.5 mm clear of collision at every combination (checked at -60, -30, 0, 30 and 60 degrees on each axis), the pan and tilt axes meeting within 5 mm and the lens axis passing within 5 mm of the tilt axis. Each servo's cable and the camera's flat cable need a slot or a free run (the base wall slot for the pan servo no more than 3 mm bigger than the lead's exit volume on any side; one slot in the yoke platform for the ribbon, at least 24 x 2 mm and within 15 mm of the pan axis). Three printed parts (base, yoke, cradle) for an FDM printer, no supports, the whole pod no bigger than 100 x 100 x 80 mm at its centre position.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 1
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

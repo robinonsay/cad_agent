@@ -1,0 +1,336 @@
+{
+ "id": "lcd1602_hd44780",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "1602 lcd",
+  "lcd1602",
+  "1602 lcd module",
+  "16x2 lcd",
+  "hd44780 lcd",
+  "hd44780",
+  "character lcd",
+  "16x2 character display",
+  "lcd 1602",
+  "1602 display"
+ ],
+ "kind": "display",
+ "source": "HD44780 1602 LCD module datasheet (e.g. Winstar WH1602, generalize/plan.json datasheet_note): PCB 80 x 36 mm, four 2.5 mm holes on 75 x 31 mm, viewport 64.5 x 14.0 mm, active 56.2 x 11.5 mm, overall height about 13 mm. ASSUMED: PCB thickness 1.6 mm, bezel outline 71.2 x 24.2 mm centred in X and Y, viewport centred on the bezel, 16-pin 2.54 mm header 2.5 mm from one long edge starting 8.0 mm from the short edge.",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, bezel and glass on +Z, header on the +Y long edge",
+ "params": {
+  "pcb_length": {
+   "default": 80.0,
+   "source": "datasheet: PCB outline X"
+  },
+  "pcb_width": {
+   "default": 36.0,
+   "source": "datasheet: PCB outline Y"
+  },
+  "pcb_thickness": {
+   "default": 1.6,
+   "source": "ASSUMED standard 1.6 mm PCB; +/- 0.1"
+  },
+  "hole_diameter": {
+   "default": 2.5,
+   "source": "datasheet: mounting holes"
+  },
+  "hole_from_x_edge": {
+   "default": 2.5,
+   "source": "datasheet: 75 mm pattern on an 80 mm board"
+  },
+  "hole_from_y_edge": {
+   "default": 2.5,
+   "source": "datasheet: 31 mm pattern on a 36 mm board"
+  },
+  "overall_height": {
+   "default": 13.0,
+   "source": "datasheet: overall height from the PCB bottom to the top of the bezel (about)"
+  },
+  "bezel_length": {
+   "default": 71.2,
+   "source": "ASSUMED bezel outline X (Winstar WH1602B 71.2); +/- 0.5"
+  },
+  "bezel_width": {
+   "default": 24.2,
+   "source": "ASSUMED bezel outline Y; +/- 0.5"
+  },
+  "view_width": {
+   "default": 64.5,
+   "source": "datasheet: viewport X"
+  },
+  "view_height": {
+   "default": 14.0,
+   "source": "datasheet: viewport Y"
+  },
+  "active_width": {
+   "default": 56.2,
+   "source": "datasheet: active area X"
+  },
+  "active_height": {
+   "default": 11.5,
+   "source": "datasheet: active area Y"
+  },
+  "view_clear_height": {
+   "default": 3.0,
+   "source": "ASSUMED clear height in front of the bezel reserved for the window"
+  },
+  "pin_pitch": {
+   "default": 2.54,
+   "source": "16-pin 2.54 mm header"
+  },
+  "pin_from_x_edge": {
+   "default": 8.0,
+   "source": "ASSUMED first pin from the short edge; +/- 2.0"
+  },
+  "pin_from_y_edge": {
+   "default": 2.5,
+   "source": "ASSUMED pin row from the long edge, on the hole row; +/- 0.5"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "overall_height"
+ ],
+ "size_tolerance": 0.3,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "bezel",
+   "primitive": "box",
+   "size": [
+    "bezel_length",
+    "bezel_width",
+    "overall_height - pcb_thickness"
+   ],
+   "at": [
+    "(pcb_length - bezel_length) / 2",
+    "(pcb_width - bezel_width) / 2",
+    "pcb_thickness"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "view_zone",
+   "primitive": "box",
+   "size": [
+    "view_width",
+    "view_height",
+    "view_clear_height"
+   ],
+   "at": [
+    "(pcb_length - view_width) / 2",
+    "(pcb_width - view_height) / 2",
+    "overall_height"
+   ]
+  }
+ ],
+ "interfaces": [{"id": "mount", "kind": "mount_holes", "holes": "HOLE", "seat": "PCB_BOTTOM", "top": "PCB_TOP", "source": "catalogue data (generalize iteration 001, delta D1): the mounting-hole axis list, the plane the part rests on when seated over its holes, and the plane its component keep-out starts from"}],
+ "datums": {
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "FACE_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "overall_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "ACTIVE_CENTER": {
+   "kind": "point",
+   "at": [
+    "pcb_length / 2",
+    "pcb_width / 2",
+    "overall_height"
+   ]
+  },
+  "VIEW_AXIS": {
+   "kind": "axis",
+   "at": [
+    "pcb_length / 2",
+    "pcb_width / 2",
+    "overall_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  "HOLE": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "hole_diameter",
+   "keepout_diameter": 5.0,
+   "at": [
+    [
+     "hole_from_x_edge",
+     "hole_from_y_edge",
+     0
+    ],
+    [
+     "pcb_length - hole_from_x_edge",
+     "hole_from_y_edge",
+     0
+    ],
+    [
+     "hole_from_x_edge",
+     "pcb_width - hole_from_y_edge",
+     0
+    ],
+    [
+     "pcb_length - hole_from_x_edge",
+     "pcb_width - hole_from_y_edge",
+     0
+    ]
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": 16,
+   "start": [
+    "pin_from_x_edge",
+    "pcb_width - pin_from_y_edge",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [],
+ "notes": "The viewport 64.5 x 14.0 is the bezel opening; the case window must not clip it (view_zone). ASSUMPTIONS and uncertainty: bezel outline 71.2 x 24.2 (+/-0.5, some modules 72 x 25); viewport and active area assumed centred on the PCB (real offsets up to ~1.5 mm toward the header side); PCB 1.6 (+/-0.1); overall height 13 is from the datasheet 'about', module variants with LED backlight run 11.5 to 14. Header position assumed (+/-2 mm in X), PINS is a through-hole 16-pin row on the +Y edge with the header body not modelled. Import gate: bounding box 80 x 36 x 13; hole pattern 75 x 31; viewport inside the bezel.",
+ "self_checks": [
+  {
+   "name": "pcb length",
+   "expr": "pcb.size_x",
+   "value": 80.0,
+   "tol": 0.05
+  },
+  {
+   "name": "pcb width",
+   "expr": "pcb.size_y",
+   "value": 36.0,
+   "tol": 0.05
+  },
+  {
+   "name": "overall height",
+   "expr": "bbox.size_z",
+   "value": 13.0,
+   "tol": 0.3
+  },
+  {
+   "name": "hole pitch X",
+   "expr": "HOLE[1].x - HOLE[0].x",
+   "value": 75.0,
+   "tol": 0.05
+  },
+  {
+   "name": "hole pitch Y",
+   "expr": "HOLE[2].y - HOLE[0].y",
+   "value": 31.0,
+   "tol": 0.05
+  },
+  {
+   "name": "hole diameter",
+   "expr": "HOLE.diameter",
+   "value": 2.5,
+   "tol": 0.05
+  },
+  {
+   "name": "viewport X",
+   "expr": "view_width",
+   "value": 64.5,
+   "tol": 0.01
+  },
+  {
+   "name": "viewport Y",
+   "expr": "view_height",
+   "value": 14.0,
+   "tol": 0.01
+  },
+  {
+   "name": "viewport inside the bezel X",
+   "expr": "bezel_length - view_width",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "viewport inside the bezel Y",
+   "expr": "bezel_width - view_height",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "viewport covers the active area",
+   "expr": "view_width - active_width",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "16 header pins fit on the board",
+   "expr": "pcb_length - pin_from_x_edge - 15 * pin_pitch",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 54.4 (request): "...I'm after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on..."
+n2 = 27.9 mm (request): "...after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on one ..."
+n3 = 19 (request): "...e micro-USB port is on one short end, there are two rows of 19 header pins pointing up (jumper wires go on those), and t..."
+n4 = 0.96 (request): "...nd the PCB antenna is at the other end. Alongside it goes a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm..."
+n5 = 27.3 (request): "...her end. Alongside it goes a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm holes, which should be visible..."
+n6 = 27.8 mm (request): ".... Alongside it goes a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm holes, which should be visible throug..."
+n7 = 2 mm (request): "...s a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm holes, which should be visible through a window in the ..."
+n8 = 6 mm (request): "...ch should be visible through a window in the front, and two 6 mm tactile buttons placed next to that window, with each b..."
+n9 = 4 mm (request): "...d next to that window, with each button axis no closer than 4 mm to the window edge and the two buttons no closer than 1..."
+n10 = 12 mm (request): "...4 mm to the window edge and the two buttons no closer than 12 mm to each other. The window has to reveal the 21.7 x 10.9..."
+n11 = 21.7 (request): "...oser than 12 mm to each other. The window has to reveal the 21.7 x 10.9 mm active area with a margin of 1 mm or more all..."
+n12 = 10.9 mm (request): "...an 12 mm to each other. The window has to reveal the 21.7 x 10.9 mm active area with a margin of 1 mm or more all round,..."
+n13 = 1 mm (request): "...s to reveal the 21.7 x 10.9 mm active area with a margin of 1 mm or more all round, without clipping the 25 x 14 mm view..."
+n14 = 25 (request): "...th a margin of 1 mm or more all round, without clipping the 25 x 14 mm viewing area. Give each button a printed plunger ..."
+n15 = 14 mm (request): "...margin of 1 mm or more all round, without clipping the 25 x 14 mm viewing area. Give each button a printed plunger that ..."
+n16 = 1.5 (request): "...ted plunger that genuinely presses its switch and protrudes 1.5 to 3.5 mm above the lid. At the back, which is the end w..."
+n17 = 3.5 mm (request): "...nger that genuinely presses its switch and protrudes 1.5 to 3.5 mm above the lid. At the back, which is the end wall beh..."
+n18 = 8 mm (request): "...d fitted. Leave the antenna end open: no wall or lid within 8 mm of the board end above the board's top face, and nothin..."
+n19 = 5 mm (request): "...he board end above the board's top face, and nothing within 5 mm above the module there (low edge stops below the board ..."
+n20 = 4 mm (L1.1): "...ward. Put the switches beside the window (axes no less than 4 mm from the window edge, and no less than 12 mm from each ..."
+n21 = 12 mm (L1.1): "...es no less than 4 mm from the window edge, and no less than 12 mm from each other), keep the parts from colliding, and d..."
+n22 = 0.6 mm (L1.2): "...must be held against sliding along either axis by more than 0.6 mm, and with the lid off it must lower straight onto the..."
+n23 = 8 mm (L1.3): "...n-tail and antenna keep-out volumes (the antenna zone being 8 mm past the board end and 5 mm over the module, above the ..."
+n24 = 5 mm (L1.3): "...volumes (the antenna zone being 8 mm past the board end and 5 mm over the module, above the board's top face alone), and..."
+n25 = 7 (L1.4): "...Fasten the OLED module to the lid with at least two M2 x 7 screws in pilot holes at its mounting holes, and give its b..."
+n26 = 0.2 mm (L1.4): "...t three bearing contacts; no printed material may be within 0.2 mm of the glass...."
+n27 = 25 (L1.5): "...lid cut one rectangular window. It must contain the OLED's 25 x 14 mm viewing area, leave a margin of at least 1 mm arou..."
+n28 = 14 mm (L1.5): "...cut one rectangular window. It must contain the OLED's 25 x 14 mm viewing area, leave a margin of at least 1 mm around t..."
+n29 = 1 mm (L1.5): "...OLED's 25 x 14 mm viewing area, leave a margin of at least 1 mm around the 21.7 x 10.9 mm active area, exceed the viewin..."
+n30 = 21.7 (L1.5): "...mm viewing area, leave a margin of at least 1 mm around the 21.7 x 10.9 mm active area, exceed the viewing area by no mo..."
+n31 = 10.9 mm (L1.5): "...ing area, leave a margin of at least 1 mm around the 21.7 x 10.9 mm active area, exceed the viewing area by no more than..."
+n32 = 1.5 mm (L1.5): "...0.9 mm active area, exceed the viewing area by no more than 1.5 mm, and have nothing within 3 mm above the glass over th..."
+n33 = 3 mm (L1.5): "...iewing area by no more than 1.5 mm, and have nothing within 3 mm above the glass over that area...."
+n34 = 0.5 mm (L1.6): "...Every button gets a printed plunger, centred within 0.5 mm on its switch's actuator and sitting 0 to 0.5 mm above the..."
+n35 = 0 (L1.6): "...centred within 0.5 mm on its switch's actuator and sitting 0 to 0.5 mm above the plunger, running in a hole in the lid a..."
+n36 = 0.5 mm (L1.6): "...red within 0.5 mm on its switch's actuator and sitting 0 to 0.5 mm above the plunger, running in a hole in the lid and h..."
+n37 = 1.5 (L1.6): "...in a hole in the lid and held in by a flange. It protrudes 1.5 to 3.5 mm from the lid and has enough travel to click the..."
+n38 = 3.5 mm (L1.6): "...ole in the lid and held in by a flange. It protrudes 1.5 to 3.5 mm from the lid and has enough travel to click the switc..."
+n39 = 1.5 mm (L1.7): "...and not touch the enclosure, the opening being no more than 1.5 mm larger than the plug on any side...."
+n40 = 2 (L1.9): "...ger holes and the screw holes, and walls, floor and lid are 2 to 4 mm thick...."
+n41 = 4 mm (L1.9): "...oles and the screw holes, and walls, floor and lid are 2 to 4 mm thick...."
+n42 = 75 (L1.11): "...Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's lengt..."
+n43 = 55 (L1.11): "...Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's length, an..."
+n44 = 30 mm (L1.11): "...Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's length, and stand..."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "n2",
+  "board_width": "n1",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n42",
+  "max_y": "n43",
+  "max_z": "n44",
+  "opening_oversize_max": "n39",
+  "wall_max": "n41",
+  "wall_min": "n40"
+}

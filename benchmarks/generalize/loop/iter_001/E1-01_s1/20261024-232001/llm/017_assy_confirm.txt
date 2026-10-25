@@ -1,0 +1,14 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+
+Proposed arrangement on the board: raspberry pi pico 2 (usb) faces the long (70 mm) side at +Y; 3.5 mm jack x2 (jack) face the short (50 mm) end at -X.
+Does this arrangement match the request? Answer yes or no.
+
+=== RESPONSE ===
+p_yes=0.110

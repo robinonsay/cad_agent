@@ -1,0 +1,1005 @@
+{
+  "request": "An enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. The board has a 3 mm mounting hole in each corner, 2.5 mm in from the edges. On it are a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a heatsink 20 x 12 mm and 20 mm tall, and two electrolytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside the box, and blows down into it through an opening in the lid, held by M3 socket-head screws on its 32 mm hole pattern, and exhaust slots line the opposite end wall. A 5.5 x 2.1 mm DC plug must plug into the jack with the lid on. Keep the fan intake at least 5 mm from the nearest tall component, which I take to mean its frame stays at least 5 mm clear of every part on the board. The enclosure is a base and a removable lid held by M3 screws, printed on an FDM printer, and no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap screws, which I have in the stock lengths 6, 8, 10, 12, 14, 16 and 20 mm. Requirements: The design shall place the DC jack, the heatsink and the two capacitors on the 80 x 60 mm board, from the parts catalogue, with the jack facing one short end, without the parts colliding or covering the corner holes, and shall declare that layout. The 80 x 60 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its standoffs. The board shall rest on exactly four standoffs, 4 to 10 mm tall, one under each corner hole, each with a pilot hole at least 5 mm deep for an M3 screw through the board, and the declared screws shall bite with at least 4 mm of thread engagement. With the lid closed, no printed surface shall come within 0.5 mm of any board part or within 4.0 mm below the board's underside (except the standoffs under the holes), and every part shall lie inside the enclosure. With the lid closed, a 5.5 x 2.1 mm DC plug shall plug fully into the jack through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side. The 40 x 40 x 10 mm fan shall sit on the lid's underside blowing into the box, fixed on its 32 mm hole pattern by four M3 screws with at least 3 mm of thread engagement into pilot holes in the lid that leave at least 0.8 mm of skin, over an opening in the lid of at least 60 percent of its 38 mm bore, with its frame at least 5 mm from every board part. Exhaust slots shall line the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a total open area of at least 567 mm2. The enclosure shall be a base and a separate removable lid, a flat plate 4.8 to 6 mm thick with a locating lip that engages the base 2 to 3 mm with a sliding fit, no more than 9 mm tall overall, held closed by four M3 screws into bosses outside the board's outline. The closed enclosure shall have no openings other than the DC opening, the exhaust slots, the fan opening and screw holes, and its walls and floor shall be 2 to 4 mm thick. The base and the lid shall each be one manifold body that prints on an FDM printer without supports. The closed enclosure shall be no larger than 100 x 80 x 40 mm, longest along the board's 80 mm side, and shall stand flat on a desk without tipping, stable at 5 degrees of table tilt. With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver. The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+  "base_request": "An enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. The board has a 3 mm mounting hole in each corner, 2.5 mm in from the edges. On it are a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a heatsink 20 x 12 mm and 20 mm tall, and two electrolytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside the box, and blows down into it through an opening in the lid, held by M3 socket-head screws on its 32 mm hole pattern, and exhaust slots line the opposite end wall. A 5.5 x 2.1 mm DC plug must plug into the jack with the lid on. Keep the fan intake at least 5 mm from the nearest tall component, which I take to mean its frame stays at least 5 mm clear of every part on the board. The enclosure is a base and a removable lid held by M3 screws, printed on an FDM printer, and no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap screws, which I have in the stock lengths 6, 8, 10, 12, 14, 16 and 20 mm.",
+  "seed": 1,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "The design shall place the DC jack, the heatsink and the two capacitors on the 80 x 60 mm board, from the parts catalogue, with the jack facing one short end, without the parts colliding or covering the corner holes, and shall declare that layout.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "The 80 x 60 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its standoffs.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.3",
+      "text": "The board shall rest on exactly four standoffs, 4 to 10 mm tall, one under each corner hole, each with a pilot hole at least 5 mm deep for an M3 screw through the board, and the declared screws shall bite with at least 4 mm of thread engagement.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.4",
+      "text": "With the lid closed, no printed surface shall come within 0.5 mm of any board part or within 4.0 mm below the board's underside (except the standoffs under the holes), and every part shall lie inside the enclosure.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.5",
+      "text": "With the lid closed, a 5.5 x 2.1 mm DC plug shall plug fully into the jack through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+      "method": "test"
+    },
+    {
+      "id": "L1.6",
+      "text": "The 40 x 40 x 10 mm fan shall sit on the lid's underside blowing into the box, fixed on its 32 mm hole pattern by four M3 screws with at least 3 mm of thread engagement into pilot holes in the lid that leave at least 0.8 mm of skin, over an opening in the lid of at least 60 percent of its 38 mm bore, with its frame at least 5 mm from every board part.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.7",
+      "text": "Exhaust slots shall line the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a total open area of at least 567 mm2.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.8",
+      "text": "The enclosure shall be a base and a separate removable lid, a flat plate 4.8 to 6 mm thick with a locating lip that engages the base 2 to 3 mm with a sliding fit, no more than 9 mm tall overall, held closed by four M3 screws into bosses outside the board's outline.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.9",
+      "text": "The closed enclosure shall have no openings other than the DC opening, the exhaust slots, the fan opening and screw holes, and its walls and floor shall be 2 to 4 mm thick.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.11",
+      "text": "The closed enclosure shall be no larger than 100 x 80 x 40 mm, longest along the board's 80 mm side, and shall stand flat on a desk without tipping, stable at 5 degrees of table tilt.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.12",
+      "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.",
+      "method": "test"
+    },
+    {
+      "id": "L1.13",
+      "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": "crashed",
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [],
+    "all_verified": false
+  },
+  "notes": [],
+  "components": [],
+  "assembly": {
+    "stage": "derive_features",
+    "notes": [
+      "parse_spec: re-asking: wall_min (4.8) must not exceed wall_max (4)",
+      "parse_spec: still violated after one re-ask: wall_min (4.8) must not exceed wall_max (4)",
+      "hole columns: \u00d87 = max(board HOLE.keepout_diameter 7, screw_m2_selftap head + 2 x rules.driver_clearance 6) (rule:hole_column_d)"
+    ],
+    "parts_dir": "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts:/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts",
+    "parts_dirs": [
+      "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts",
+      "/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts"
+    ],
+    "rules_path": "/Users/robinonsay/python/llm-bt/design_rules.json",
+    "with_models": false,
+    "catalog": [
+      "arduino_nano",
+      "arduino_uno_r3",
+      "battery_9v_pp3",
+      "bearing_608",
+      "bearing_623",
+      "bearing_625",
+      "bolt_m3_iso4762",
+      "bolt_m4_iso4762",
+      "bolt_m5_iso7380",
+      "button_tact_6mm",
+      "buzzer_12mm",
+      "camera_screw_1_4_20",
+      "cell_18650",
+      "dc_jack_pj002a",
+      "dowel_pin_generic",
+      "encoder_ec11",
+      "esp32_devkitc_v4",
+      "extrusion_2020",
+      "fan_40x40x10",
+      "fan_60x60x25",
+      "gear_spur_generic",
+      "generic_box",
+      "generic_cylinder",
+      "generic_tube",
+      "gt2_belt_6mm",
+      "gt2_pulley_20t",
+      "hc_sr04",
+      "header_female_2p54",
+      "header_male_2p54",
+      "heatset_m2p5",
+      "heatset_m3",
+      "jack_3p5_pj320a",
+      "lcd1602_hd44780",
+      "led_5mm",
+      "lipo_503450",
+      "lm8uu",
+      "magnet_disc_6x3",
+      "microswitch_kw12",
+      "n20_gearmotor",
+      "nema17_motor",
+      "nut_m3",
+      "nut_m4",
+      "oled_ssd1306_096",
+      "perfboard",
+      "plug_dc_barrel_5p5",
+      "plug_microusb_b",
+      "plug_minihdmi",
+      "plug_miniusb_b",
+      "plug_trs_3p5",
+      "plug_usb_b",
+      "plug_usbc",
+      "pot_rk09",
+      "rod_8mm",
+      "rpi_camera_v2",
+      "rpi_pico2",
+      "rpi_zero2w",
+      "screw_m2_selftap",
+      "screw_m2p5_selftap",
+      "screw_m3_selftap",
+      "servo_mg996r",
+      "servo_sg90",
+      "slide_sk12d",
+      "tnut_2020_m5",
+      "toggle_mts102",
+      "tp4056_usbc_module"
+    ],
+    "catalog_errors": [],
+    "rules": {
+      "sliding_fit_min": 0.15,
+      "sliding_fit_max": 0.35,
+      "sliding_fit": 0.25,
+      "board_to_wall": 0.5,
+      "plug_to_opening": 0.3,
+      "opening_oversize_max": 1.5,
+      "min_ligament": 1.5,
+      "wall_default": 2.4,
+      "floor_default": 2.4,
+      "min_feature": 0.8,
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0,
+      "round_hole_exempt_max": 12.0,
+      "bed_x": 200.0,
+      "bed_y": 200.0,
+      "bed_z": 200.0,
+      "layer_height": 0.2,
+      "fn": 64.0,
+      "standoff_wall_min": 1.6,
+      "component_height_default": 10.0,
+      "solder_side_default": 3.0,
+      "keepout_margin": 1.0,
+      "plug_travel": 40.0,
+      "driver_clearance": 1.0,
+      "driver_diameter": 6.0,
+      "driver_reach": 50.0,
+      "design_margin": 0.1,
+      "grid_search_step": 0.01,
+      "grid_residual_max": 0.15,
+      "overlap_max": 1.0,
+      "interference_max": 0.01,
+      "seat_gap_max": 0.1,
+      "seat_axis_residual_max": 0.25,
+      "lip_engagement": 2.0,
+      "lip_wall": 1.2,
+      "boss_wall_min": 1.6,
+      "cut_overrun": 1.0,
+      "screw_hole_clearance_min": 0.2,
+      "given_hole_clearance_min": 0.0,
+      "max_quantity": 8.0,
+      "part_to_wall": 0.2,
+      "measure_tol": 0.01,
+      "margin_scale": 1.0,
+      "lookup_k": 3.0,
+      "view_elevation_deg": 20.0,
+      "arrange_rank_max": 16.0,
+      "layout_step": 0.5,
+      "aperture_min_volume": 1.0,
+      "parity_volume_rel": 0.005,
+      "parity_bbox": 0.05
+    },
+    "spec": {
+      "board_width": 80.0,
+      "board_depth": 60.0,
+      "keepout_above": 10.0,
+      "keepout_below": 4.0,
+      "board_clearance": 0.5,
+      "headroom": 0.5,
+      "opening_oversize_max": 1.5,
+      "wall_min": 2.4,
+      "wall_max": 2.4,
+      "max_x": 100.0,
+      "max_y": 80.0,
+      "max_z": 40.0
+    },
+    "spec_provenance": {
+      "board_width": "request:\"An enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W.\"",
+      "board_depth": "request:\"An enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. The boar\"",
+      "keepout_above": "rules:component_height_default",
+      "keepout_below": "L1.4:\"urface shall come within 0.5 mm of any board part or within 4.0 mm below the board's underside (except the standoffs und\"",
+      "board_clearance": "L1.2:\"m board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where \"",
+      "headroom": "rules:board_to_wall",
+      "opening_oversize_max": "L1.5:\"ching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.\"",
+      "wall_min": "rules:wall_default",
+      "wall_max": "rules:wall_default",
+      "max_x": "request:\"by M3 screws, printed on an FDM printer, and no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap\"",
+      "max_y": "request:\"screws, printed on an FDM printer, and no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap screw\"",
+      "max_z": "request:\"s, printed on an FDM printer, and no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap screws, wh\"",
+      "generic_1.diameter": "request:\"12 mm and 20 mm tall, and two electrolytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is f\"",
+      "generic_1.height": "request:\"and two electrolytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside \"",
+      "board.hole_inset": "catalogue:perfboard family default",
+      "board.hole_diameter": "catalogue:perfboard family default"
+    },
+    "contents": [
+      {
+        "part": "perfboard",
+        "kind": "board",
+        "quantity": 1,
+        "exposed": false,
+        "name": "perfboard",
+        "params": {
+          "width": 80.0,
+          "depth": 60.0
+        },
+        "id": "board"
+      },
+      {
+        "part": "dc_jack_pj002a",
+        "kind": "connector",
+        "quantity": 1,
+        "exposed": true,
+        "name": "dc jack",
+        "exposed_votes": {
+          "yes": 3
+        },
+        "id": "connector_1",
+        "params": {}
+      },
+      {
+        "part": "generic_cylinder",
+        "kind": "generic",
+        "quantity": 2,
+        "exposed": false,
+        "name": "capacitor",
+        "id": "generic_1",
+        "params": {
+          "diameter": 10.0,
+          "height": 16.0
+        }
+      }
+    ],
+    "layout": {
+      "board": {
+        "part": "perfboard",
+        "params": {
+          "width": 80.0,
+          "depth": 60.0
+        },
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "",
+        "copy": 0,
+        "role": "board",
+        "edge": null,
+        "of": null
+      },
+      "connector_1_1": {
+        "part": "dc_jack_pj002a",
+        "params": {},
+        "x": 14.000000000000002,
+        "y": 34.5,
+        "z": 0.0,
+        "rot_z": 180.0,
+        "item": "connector_1",
+        "copy": 0,
+        "role": "content",
+        "edge": "-X",
+        "of": null
+      },
+      "generic_1_1": {
+        "part": "generic_cylinder",
+        "params": {
+          "diameter": 10.0,
+          "height": 16.0
+        },
+        "x": 40.0,
+        "y": 30.0,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "generic_1",
+        "copy": 0,
+        "role": "content",
+        "edge": null,
+        "of": null
+      },
+      "generic_1_2": {
+        "part": "generic_cylinder",
+        "params": {
+          "diameter": 10.0,
+          "height": 16.0
+        },
+        "x": 30.0,
+        "y": 30.0,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "generic_1",
+        "copy": 1,
+        "role": "content",
+        "edge": null,
+        "of": null
+      }
+    },
+    "arrange": {
+      "candidates": [
+        {
+          "assignment": {
+            "connector_1": "-X"
+          },
+          "outcome": "scored",
+          "class": 0,
+          "words": "dc jack (dc_in) faces the short (60 mm) end at -X",
+          "votes": 3,
+          "p_yes": 0.13175207934637545,
+          "asked": true,
+          "chosen": true,
+          "prescore": {
+            "key": {
+              "hard_failures": Infinity,
+              "violation": Infinity,
+              "soft": 0.0
+            },
+            "failing": [],
+            "uncontrollable": [],
+            "error": "MissingParam: camera_screw_1_4_20: parameter 'length' must come from the request"
+          }
+        },
+        {
+          "assignment": {
+            "connector_1": "+X"
+          },
+          "outcome": "scored",
+          "class": 0,
+          "words": "dc jack (dc_in) faces the short (60 mm) end at +X",
+          "votes": 0,
+          "p_yes": 0.13175207934637545,
+          "asked": false,
+          "chosen": false,
+          "prescore": {
+            "key": {
+              "hard_failures": Infinity,
+              "violation": Infinity,
+              "soft": 0.0
+            },
+            "failing": [],
+            "uncontrollable": [],
+            "error": "MissingParam: camera_screw_1_4_20: parameter 'length' must come from the request"
+          }
+        },
+        {
+          "assignment": {
+            "connector_1": "-Y"
+          },
+          "outcome": "scored",
+          "class": 1,
+          "words": "dc jack (dc_in) faces the long (80 mm) side at -Y",
+          "votes": 0,
+          "p_yes": 0.09501141195594154,
+          "asked": true,
+          "chosen": false,
+          "prescore": {
+            "key": {
+              "hard_failures": Infinity,
+              "violation": Infinity,
+              "soft": 0.0
+            },
+            "failing": [],
+            "uncontrollable": [],
+            "error": "MissingParam: camera_screw_1_4_20: parameter 'length' must come from the request"
+          }
+        },
+        {
+          "assignment": {
+            "connector_1": "+Y"
+          },
+          "outcome": "scored",
+          "class": 1,
+          "words": "dc jack (dc_in) faces the long (80 mm) side at +Y",
+          "votes": 0,
+          "p_yes": 0.09501141195594154,
+          "asked": false,
+          "chosen": false,
+          "prescore": {
+            "key": {
+              "hard_failures": Infinity,
+              "violation": Infinity,
+              "soft": 0.0
+            },
+            "failing": [],
+            "uncontrollable": [],
+            "error": "MissingParam: camera_screw_1_4_20: parameter 'length' must come from the request"
+          }
+        }
+      ],
+      "classes": 2,
+      "truncated": 0,
+      "decision": "llm:vote+rank",
+      "prescored": 4,
+      "filtered": [],
+      "symmetries": 2
+    },
+    "grid_report": {
+      "grid": true,
+      "soft": false,
+      "finite": true,
+      "max": 0.0,
+      "worst": null,
+      "parts": {
+        "connector_1_1": {
+          "residual": 1.287245120402485,
+          "edge": "-X",
+          "tangential": 1.2700000000000031,
+          "normal": 0.21000000000000085,
+          "normal_fix": -0.21000000000000085,
+          "best_any": 0.4604345773494849,
+          "best_free": 0.5338893211490221,
+          "positions": 0,
+          "snap": "pin_pattern",
+          "kind": "pin_pattern"
+        }
+      },
+      "no_pin_data": [],
+      "exempt": [
+        "connector_1_1"
+      ]
+    },
+    "conflicts": [],
+    "coverage": [],
+    "links": {},
+    "fasteners": {
+      "fastener.board.thread_diameter": 2.0,
+      "fastener.board.pilot_diameter": 1.7,
+      "fastener.board.pilot_min": 1.6,
+      "fastener.board.pilot_max": 1.8,
+      "fastener.board.clearance_diameter": 2.4,
+      "fastener.board.head_diameter": 4.0,
+      "fastener.board.head_height": 1.6,
+      "fastener.board.length": 6.0,
+      "fastener.board.min_engagement": 5.0,
+      "fastener.board.min_boss_od": 5.0
+    },
+    "choices": {
+      "fastener[board]": {
+        "value": "screw_m2_selftap",
+        "by": "rule:smallest_thread_through_board_hole"
+      },
+      "edge[connector_1]": {
+        "value": "-X",
+        "by": "llm",
+        "votes": {
+          "-X": 3
+        }
+      },
+      "arrangement_confirmed": {
+        "value": {
+          "connector_1": "-X"
+        },
+        "by": "llm:vote+rank",
+        "p_yes": 0.13175207934637545,
+        "rank": 1,
+        "margin_to_next": 0.03674066739043391,
+        "prescore": {
+          "hard_failures": Infinity,
+          "violation": Infinity,
+          "soft": 0.0
+        }
+      },
+      "archetype": {
+        "value": "tray_lid+screws",
+        "by": "rule:only_feasible"
+      }
+    },
+    "assumptions": [
+      "keepout_above = 10 mm from rules:component_height_default (the text states no number for it)",
+      "headroom = 0.5 mm from rules:board_to_wall (the text states no number for it)",
+      "wall_min = 2.4 mm from rules:wall_default (the text states no number for it)",
+      "wall_max = 2.4 mm from rules:wall_default (the text states no number for it)",
+      "The request does not state the board's mounting-hole pattern; the catalogue family default is used: \u00d83 holes 2.5 mm from each edge.",
+      "arrangement accepted by rank: the controller's absolute confidence was low (p_yes 0.13; next class 0.10)",
+      "connector_1_1: mounted through enlarged holes; its pin pattern meets no grid position (best 0.460 mm), so it is exempt from grid conformance"
+    ],
+    "stl_source": {},
+    "components": [],
+    "results": [],
+    "results_manifold": [],
+    "files": [],
+    "deferred_gate_rules": {
+      "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
+      "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
+      "R9": "skipped: imported models are compared only in the --with-models arm (M14)"
+    },
+    "feature_graph": {
+      "schema": 1,
+      "nodes": [
+        {
+          "id": "board",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "width": 80.0,
+            "depth": 60.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "perfboard",
+          "source": "layout:board",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "connector_1_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {},
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              14.000000000000002,
+              34.5,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 180.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "dc_jack_pj002a",
+          "source": "layout:content",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "generic_1_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "diameter": 10.0,
+            "height": 16.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              40.0,
+              30.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "generic_cylinder",
+          "source": "layout:content",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "generic_1_2",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "diameter": 10.0,
+            "height": 16.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              30.0,
+              30.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "generic_cylinder",
+          "source": "layout:content",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "connector_1_1_plug_barrel",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 5.5,
+            "h": 14.0,
+            "s0": -13.0,
+            "s1": 1.0,
+            "cw": 5.5,
+            "ch": 5.5
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              13.000000000000002,
+              30.0,
+              5.5
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": [
+              -1.0,
+              1.2246467991473532e-16,
+              0.0
+            ]
+          },
+          "body": null,
+          "role": "plug_shell",
+          "part": "plug_dc_barrel_5p5",
+          "source": "rule:plug_sweep(plug_dc_barrel_5p5)",
+          "free": [],
+          "color": null,
+          "group": "connector_1_1_plug"
+        },
+        {
+          "id": "connector_1_1_plug_overmold",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 11.0,
+            "h": 56.0,
+            "s0": 1.0,
+            "s1": 57.0,
+            "cw": 11.0,
+            "ch": 11.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -0.9999999999999982,
+              30.0,
+              5.5
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": [
+              -1.0,
+              1.2246467991473532e-16,
+              0.0
+            ]
+          },
+          "body": null,
+          "role": "plug_overmold",
+          "part": "plug_dc_barrel_5p5",
+          "source": "rule:plug_sweep(plug_dc_barrel_5p5)",
+          "free": [],
+          "color": null,
+          "group": "connector_1_1_plug"
+        },
+        {
+          "id": "board_ko_top",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 80.0,
+            "y": 60.0,
+            "z": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              40.0,
+              30.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "keepout_top",
+          "part": null,
+          "source": "rule:board_keepout",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "board_ko_bot",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 80.0,
+            "y": 60.0,
+            "z": 4.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              40.0,
+              30.0,
+              -5.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "keepout_bottom",
+          "part": null,
+          "source": "rule:board_keepout",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_0",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 7.6
+          },
+          "pose": {
+            "at": "board.HOLE[0]",
+            "offset": [
+              0,
+              0,
+              -6.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_0",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[0]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_1",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 7.6
+          },
+          "pose": {
+            "at": "board.HOLE[1]",
+            "offset": [
+              0,
+              0,
+              -6.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_1",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[1]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_2",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 7.6
+          },
+          "pose": {
+            "at": "board.HOLE[2]",
+            "offset": [
+              0,
+              0,
+              -6.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_2",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[2]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_3",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 7.6
+          },
+          "pose": {
+            "at": "board.HOLE[3]",
+            "offset": [
+              0,
+              0,
+              -6.6
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_3",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 7.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[3]",
+            "offset": [
+              0,
+              0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        }
+      ]
+    }
+  }
+}

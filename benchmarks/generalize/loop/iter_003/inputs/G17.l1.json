@@ -1,0 +1,57 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall declare the motor's pose against the bracket, with the shaft pointing through the face toward the flange side, the motor body on the other side of the plate with its square faces parallel and perpendicular to the flange, and the screw lengths and print orientation it uses.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The vertical face shall take the motor flat: the motor face seats on it within 0.1 mm, the bracket does not enter the motor, and every motor hole has at least 2.0 mm of material round it.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "A register hole of 22.5 mm diameter shall locate the motor's 22 mm pilot, coaxial with the hole pattern, with the pilot fully inside it and the shaft passing through with at least 3.0 mm of clearance.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "Four M3 holes shall lie on the motor's 31 mm square pattern, counterbored from the shaft side so the screw heads sit 0.2 to 1.0 mm below the face, with the declared screws biting 3.0 to 4.5 mm into the motor.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "The shaft shall pass through the face and stand at least 15 mm proud of it, with nothing printed within 3.0 mm of it, and the motor shall install from behind without hitting the bracket.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "The horizontal flange shall have two M4 holes 40.0 mm apart (plus or minus 0.2), counterbored from the top face, on a line parallel to the bend axis, symmetric about the motor axis, with a flat underside to mount on.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "The bracket shall survive about 20 N at the shaft tip in any radial direction plus the motor's weight, with a bending stress at the bend's root of no more than 5.0 MPa, the bend shall have an inside radius of at least 2.0 mm, the plate and the flange shall each be 5 to 10 mm thick, and each M4 bolt shall carry no more than 200 N of tension.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The bracket shall be printable with its layers parallel to the bend: the bed normal within 5 degrees of the bend axis, no unsupported overhang, and a base large enough to stand on (at least 300 mm2 and 30 percent of its footprint box).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The bracket shall be one manifold body in one shell with no stray fragments and no feature beyond the plate, flange, fillet, holes and counterbores.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The bracket shall be no larger than 40 x 70 x 70 mm and its plate shall be tall enough to hold all four screws with 2 mm of edge material but no taller than the motor body plus 10 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.11",
+    "text": "The design shall be delivered as a bracket STL, the OpenSCAD source, the declared pose and the agent's own report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

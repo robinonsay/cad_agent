@@ -1,0 +1,138 @@
+{
+ "paraphrases": [
+  {
+   "id": "G31",
+   "tier": 4,
+   "title": "GT2 idler block with two 623 bearings",
+   "request": "Idler block for a GT2 belt, 6 mm wide and 1.38 mm thick. Two 623 bearings (3 x 10 x 4 mm) are stacked on a single M3 x 12 bolt. The bolt head bears on the top bearing; a boss on the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm high, clear of the outer ring) supports the bottom bearing, so the inner rings are clamped between head and boss. An M3 nut sits in a hex pocket under the floor: 5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, with at least 1.2 mm of floor above it, and the bolt tip reaches at least 1.5 mm into the nut. The outer rings spin freely as a roller, with at least 0.4 mm to the block all round, inside a chamber of 12 mm across at most. The belt goes straight through the block beside the roller, on edge (width along the bolt axis), its smooth back just touching both bearings: gap within 0.3 mm, at least 2 mm overlap with each, centred on the stack within 0.25 mm. The belt channel is 7 mm wide, leaving 0.5 mm beside the belt on each side and at least 0.5 mm on the tooth side. Bearings and bolt are inserted from the top, the nut from the bottom. The block slides along the belt for tensioning, so it has one slot for an M3 mounting screw into the machine frame, 5 mm of travel, 3.3 to 3.6 mm wide, with room for the head and a hex key along the travel. Single FDM part, no supports, max 40 x 40 x 25 mm.",
+   "request_verbatim": "An idler block for a 6 mm GT2 belt using two 623 bearings (3 x 10 x 4 mm) stacked on an M3 bolt with a belt channel 7 mm wide. The belt runs straight through with 0.5 mm side clearance and the block moves in a 5 mm slot for belt tension.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: belt thickness 1.38 (gt2_belt_6mm); belt on edge and back-contact roller (A5, F2); clamped inner rings and floor boss (F2); nut trap (A9); open-top chamber so parts go in from above (F3); M3 x 12 axle bolt (A3); tooth-side clearance 0.5 (A4); one slot with 5 mm travel (F5); FDM and the size limit (A8, A10). Audit additions: boss OD and height, chamber upper bound, hex pocket numbers, bolt engagement, belt contact and overlap bands, slot width (all already judged in requirements.md L2.2.2, L3.3.1.2, L2.7.1, L2.2.4, L2.5.1, L2.5.2, L2.6.1).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the belt run, both 623 bearings, the M3 bolt, the M3 nut and the M3 mounting screw from the parts catalogue. The bearings are stacked coaxially on the bolt with their axis across the belt width. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The bearings sit directly on one another and are clamped between the bolt head and a floor boss (4.6 to 5.0 mm across, 0.3 to 0.8 mm high) that contacts only the inner ring of the bottom bearing. The bolt goes through the floor with clearance.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The outer rings turn freely: at least 0.4 mm clearance to the block all round, chamber 12 mm across at most. Bearings and bolt enter from above and the nut from below, with no contact with the block.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "The belt runs straight through the block in a 7 mm wide channel, open at both ends, with 0.5 mm clearance on each side of the belt and at least 0.5 mm on the tooth side.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The smooth back of the belt just touches both bearing outer rings without being pressed in (gap 0 to 0.3 mm). The belt overlaps the width of each bearing by at least 2 mm and is centred on the stack within 0.25 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "One slot, 3.3 to 3.6 mm wide, lets the block slide 5 mm along the belt on an M3 mounting screw, with room for the screw head and a hex key over the whole travel.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "The nut is held in a hex pocket under the floor, open on the mounting face: 5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, at least 1.2 mm of floor above it. The bolt tip goes at least 1.5 mm into the nut and does not exit the block.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "The block is a single manifold body, printable on FDM without supports, with walls of at least 2 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Block size at most 40 x 40 x 25 mm; it stands flat on its mounting face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliver a block STL, the OpenSCAD source, the declared layout and the agent's own clearance report. The report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: an open-top cylindrical chamber, a through channel, a hex nut pocket from the underside, round and slotted holes",
+    "datum placement: put the bearing axis a bearing radius from the belt's back plane; stack two bearings by their FACE_A and FACE_B datums",
+    "multi-body assembly: bearings, bolt, nut, belt and screw as reference models in one declared layout",
+    "keep-out volumes: belt envelope, bearing insertion sweep, nut insertion sweep, slot head sweep, hex-key columns",
+    "tolerance and travel: slot length, width and centre travel from the request"
+   ]
+  },
+  {
+   "id": "G31",
+   "tier": 4,
+   "title": "GT2 idler block with two 623 bearings",
+   "request": "So I want a belt idler. The housing takes a 6 mm wide GT2 belt (1.38 mm thick, smooth back to the bearings) and the whole thing must print as one FDM part with no supports, and be no bigger than 40 x 40 x 25 mm. Inside there are two 623 bearings (3 x 10 x 4 mm) on top of each other on one M3 x 12 bolt, acting as a roller; their outer rings must spin freely with at least 0.4 mm of air all round, in a chamber no wider than 12 mm. The bolt head presses on the upper bearing and a small boss rising from the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm tall, not touching the outer ring) holds up the lower one, so both inner rings are clamped. Underneath the floor there is a hex pocket trapping an M3 nut (5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, leaving at least 1.2 mm of floor over it); the bolt must reach at least 1.5 mm into that nut. You drop the bearings and bolt in from the top and the nut from the bottom. The belt goes straight through on one side of the roller, standing on its edge so its width is along the bolt axis, and its back must just touch both bearings: within 0.3 mm, at least 2 mm of overlap on each, centred on the stack within 0.25 mm. Cut a 7 mm wide belt channel, so the belt has 0.5 mm spare each side and at least 0.5 mm on the tooth side. To tension the belt you slide the block along it, so add a single slot for an M3 screw into the machine frame: 5 mm of travel, 3.3 to 3.6 mm wide, with space for the screw head and a hex key anywhere along the travel.",
+   "request_verbatim": "An idler block for a 6 mm GT2 belt using two 623 bearings (3 x 10 x 4 mm) stacked on an M3 bolt with a belt channel 7 mm wide. The belt runs straight through with 0.5 mm side clearance and the block moves in a 5 mm slot for belt tension.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: belt thickness 1.38 (gt2_belt_6mm); belt on edge and back-contact roller (A5, F2); clamped inner rings and floor boss (F2); nut trap (A9); open-top chamber so parts go in from above (F3); M3 x 12 axle bolt (A3); tooth-side clearance 0.5 (A4); one slot with 5 mm travel (F5); FDM and the size limit (A8, A10). Audit additions: boss OD and height, chamber upper bound, hex pocket numbers, bolt engagement, belt contact and overlap bands, slot width (all already judged in requirements.md L2.2.2, L3.3.1.2, L2.7.1, L2.2.4, L2.5.1, L2.5.2, L2.6.1).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "From the parts catalogue, put in the belt run, the two 623 bearings, the M3 bolt, the M3 nut and the M3 mounting screw. Stack the bearings on the bolt on a common axis, running across the width of the belt, and declare this layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Bearings rest directly against each other, held between the bolt head and a boss on the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm high) which touches nothing but the inner ring of the lower bearing; the bolt passes through the floor without touching.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Outer rings must be free to turn, with 0.4 mm or more between them and the block on every side, inside a chamber not wider than 12 mm. Bearings and bolt go in from the top, the nut from the bottom, all without touching the block.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "Channel for the belt: 7 mm wide, straight through and open at each end of the block, leaving 0.5 mm beside the belt on both sides and 0.5 mm or more on the tooth side.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The belt's smooth back must just touch the outer rings of both bearings, not pushed into them (gap between 0 and 0.3 mm). It overlaps each bearing's width by 2 mm or more, and is centred on the stack to within 0.25 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Provide one slot, 3.3 to 3.6 mm wide, so the block can travel 5 mm along the belt on an M3 mounting screw; the head and a hex key must have room along the full travel.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "A hex pocket under the floor, opening onto the mounting face, holds the nut: 5.7 to 5.9 mm across flats and 2.6 to 3.4 mm deep, with 1.2 mm or more of floor over it. The bolt tip is at least 1.5 mm inside the nut and stays inside the block.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "The block must be a single manifold body that FDM prints without supports; every wall at least 2 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Overall dimensions no more than 40 x 40 x 25 mm, and the block sits flat on its mounting face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Hand over the block STL, the OpenSCAD source, the declared layout and the agent's clearance report, which has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: an open-top cylindrical chamber, a through channel, a hex nut pocket from the underside, round and slotted holes",
+    "datum placement: put the bearing axis a bearing radius from the belt's back plane; stack two bearings by their FACE_A and FACE_B datums",
+    "multi-body assembly: bearings, bolt, nut, belt and screw as reference models in one declared layout",
+    "keep-out volumes: belt envelope, bearing insertion sweep, nut insertion sweep, slot head sweep, hex-key columns",
+    "tolerance and travel: slot length, width and centre travel from the request"
+   ]
+  }
+ ]
+}

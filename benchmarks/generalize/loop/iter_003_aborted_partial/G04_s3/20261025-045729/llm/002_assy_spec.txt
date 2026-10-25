@@ -1,0 +1,66 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 2 (request): "...A two-part case for a Raspberry Pi Zero 2 W, a 65 x 30 mm board. The board is held at its four 2.75 m..."
+n2 = 65 (request): "...A two-part case for a Raspberry Pi Zero 2 W, a 65 x 30 mm board. The board is held at its four 2.75 mm mounti..."
+n3 = 30 mm (request): "...A two-part case for a Raspberry Pi Zero 2 W, a 65 x 30 mm board. The board is held at its four 2.75 mm mounting holes..."
+n4 = 2.75 mm (request): "...Zero 2 W, a 65 x 30 mm board. The board is held at its four 2.75 mm mounting holes, on the 58 x 23 mm pattern 3.5 mm in ..."
+n5 = 58 (request): "...he board is held at its four 2.75 mm mounting holes, on the 58 x 23 mm pattern 3.5 mm in from the edges, by screws into ..."
+n6 = 23 mm (request): "...ard is held at its four 2.75 mm mounting holes, on the 58 x 23 mm pattern 3.5 mm in from the edges, by screws into print..."
+n7 = 3.5 mm (request): "...its four 2.75 mm mounting holes, on the 58 x 23 mm pattern 3.5 mm in from the edges, by screws into printed standoffs. W..."
+n8 = 2 (L1.1): "...The design shall place the Raspberry Pi Zero 2 W in the case in its own orientation, from the parts catalo..."
+n9 = 65 (L1.2): "...The 65 x 30 mm board shall fit inside the closed case with at leas..."
+n10 = 30 mm (L1.2): "...The 65 x 30 mm board shall fit inside the closed case with at least 0.5 mm..."
+n11 = 0.5 mm (L1.2): "...30 mm board shall fit inside the closed case with at least 0.5 mm clearance to every printed surface, apart from where i..."
+n12 = 2.75 mm (L1.3): "...board shall rest on exactly four standoffs, one under each 2.75 mm mounting hole on the 58 x 23 mm pattern, each with a ..."
+n13 = 58 (L1.3): "...four standoffs, one under each 2.75 mm mounting hole on the 58 x 23 mm pattern, each with a pilot hole for an M2.5 screw..."
+n14 = 23 mm (L1.3): "...standoffs, one under each 2.75 mm mounting hole on the 58 x 23 mm pattern, each with a pilot hole for an M2.5 screw thro..."
+n15 = 5 mm (L1.4): "...With the lid closed, no part of the case shall come within 5 mm above the board's top surface or 2 mm below its undersid..."
+n16 = 2 mm (L1.4): "...ase shall come within 5 mm above the board's top surface or 2 mm below its underside, except the standoffs under the hol..."
+n17 = 1.5 mm (L1.5): "...t touching the case, and that opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n18 = 1.5 mm (L1.6): "...case or each other, and each opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n19 = 1.5 mm (L1.7): "...t touching the case, and that opening shall be no more than 1.5 mm bigger than the card access zone on any side...."
+n20 = 2 (L1.9): "...ning and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n21 = 4 mm (L1.9): "...and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n22 = 90 (L1.11): "...The closed case shall be no larger than 90 x 40 x 22 mm, longest along the board's 65 mm side, and sha..."
+n23 = 40 (L1.11): "...The closed case shall be no larger than 90 x 40 x 22 mm, longest along the board's 65 mm side, and shall st..."
+n24 = 22 mm (L1.11): "...The closed case shall be no larger than 90 x 40 x 22 mm, longest along the board's 65 mm side, and shall stand flat..."
+n25 = 65 mm (L1.11): "...e no larger than 90 x 40 x 22 mm, longest along the board's 65 mm side, and shall stand flat on a desk without tipping...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "n11",
+  "board_depth": "n3",
+  "board_width": "n2",
+  "headroom": "none",
+  "keepout_above": "n15",
+  "keepout_below": "n16",
+  "max_x": "n22",
+  "max_y": "n23",
+  "max_z": "n24",
+  "opening_oversize_max": "n17",
+  "wall_max": "n21",
+  "wall_min": "n20"
+}

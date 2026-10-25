@@ -1,0 +1,194 @@
+{
+  "id": "bearing_608",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "608 bearing",
+    "608zz bearing",
+    "608 ball bearing",
+    "608 skate bearing",
+    "608zz",
+    "608rs",
+    "608 deep groove bearing"
+  ],
+  "kind": "bearing",
+  "source": "608 deep-groove ball bearing, ISO 15 boundary dimensions 8 x 22 x 7 mm (plan.json datasheet note); minimum corner radius 0.3 mm (ISO 15 / catalogue). Printing allowances are assumptions.",
+  "frame": "bearing: axis along Z, origin at the centre of face A, face B at Z = width",
+  "params": {
+    "bore_diameter": {
+      "default": 8.0,
+      "source": "ISO 15 (608): bore d"
+    },
+    "outer_diameter": {
+      "default": 22.0,
+      "source": "ISO 15 (608): outside diameter D"
+    },
+    "width": {
+      "default": 7.0,
+      "source": "ISO 15 (608): width B"
+    },
+    "housing_allowance": {
+      "default": 0.1,
+      "source": "assumed FDM convention: printed housing bore = outer diameter + this for a light press; +/- 0.1, tune with a test ring"
+    },
+    "shaft_clearance": {
+      "default": 0.1,
+      "source": "assumed FDM convention: smooth shaft is the bore size; printed shaft stub = bore diameter minus this for a slip fit; +/- 0.05"
+    },
+    "chamfer": {
+      "default": 0.3,
+      "source": "ISO 15 minimum corner radius r_s (lead-in the housing should clear)"
+    }
+  },
+  "datasheet_size": [
+    "outer_diameter",
+    "outer_diameter",
+    "width"
+  ],
+  "size_tolerance": 0.1,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "outer_diameter",
+      "h": "width",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "bore_open",
+      "primitive": "cylinder",
+      "d": "bore_diameter",
+      "h": "width",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "bore_diameter"
+    },
+    "HOUSING_BORE": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "outer_diameter + housing_allowance"
+    },
+    "FACE_A": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "FACE_B": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "width"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "CENTRE": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "width / 2"
+      ]
+    }
+  },
+  "connectors": [],
+  "mount": {
+    "axis_datum": "AXIS",
+    "housing_datum": "HOUSING_BORE",
+    "seat_datums": [
+      "FACE_A",
+      "FACE_B"
+    ],
+    "notes": "Pressed into a printed housing bore (HOUSING_BORE.diameter) at least `width` deep, seated against a shoulder or retained by a lip on one face; the shoulder must stay on the outer ring, i.e. outside bore_diameter + (outer_diameter - bore_diameter) / 4 radius clearance round the bore, so the inner ring turns free (assumed convention, not a datasheet value). The outer ring in its housing and the shaft in the bore are designed contact; nothing printed may enter bore_open except the shaft."
+  },
+  "notes": "Boundary dimensions per ISO 15: d 8, D 22, B 7 (tolerance class normal: D within -0.009, bore -0.008; assumed nominal). Seals/shields do not change the outline. Housing allowance 0.1 and shoulder rule are FDM conventions, uncertain by about 0.1 mm per printer; print a test ring.",
+  "self_checks": [
+    {
+      "name": "bore (8.0 mm)",
+      "expr": "AXIS.diameter",
+      "value": 8.0,
+      "tol": 0.01
+    },
+    {
+      "name": "outside diameter (22.0 mm)",
+      "expr": "body.size_x",
+      "value": 22.0,
+      "tol": 0.01
+    },
+    {
+      "name": "width (7.0 mm)",
+      "expr": "body.size_z",
+      "value": 7.0,
+      "tol": 0.01
+    },
+    {
+      "name": "bore smaller than the outer diameter",
+      "expr": "outer_diameter - bore_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "housing bore above the outer diameter",
+      "expr": "HOUSING_BORE.diameter - outer_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

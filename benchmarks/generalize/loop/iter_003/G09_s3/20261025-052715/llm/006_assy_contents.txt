@@ -1,0 +1,44 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A pocket box for a 9 V PP3 battery, 26.5 x 17.5 x 48.5 mm with the snap terminals on one end. A mini toggle switch (MTS-102 class: 6.0 mm bushing, lever 12 mm above the panel, panel up to 4 mm thick) sits on top of the box in a hole 0.2 to 0.8 mm bigger than the bushing, and a panel DC jack (PJ-002A class: 14 x 9 x 11 mm body, for a 5.5 x 2.1 mm barrel plug) sits on one end. The box is a base and a lid. The lid is hinged on a 3 mm steel dowel pin, 24 mm long, and closes with a snap latch on the opposite long side (a printed cantilever hook: free length at least 8 mm, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm of catch overlap, bending strain at most 2 percent), and the lid swings open to 100 degrees. The battery sits in a pocket 0.2 to 0.5 mm bigger than the battery on each free face, must be held so it cannot rattle, with room for its snap clip on the terminal end, and the DC plug (5.5 mm barrel, 11 mm dia handle) has to fit through the end wall when the jack is used. Walls, floor and lid plate are 2 to 4 mm thick. Print the base and lid on an FDM printer without supports. The closed box is at most 90 x 45 x 30 mm, not counting the switch lever.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_box: rectangular block (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 1
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

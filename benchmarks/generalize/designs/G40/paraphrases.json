@@ -1,0 +1,128 @@
+{
+ "paraphrases": [
+  {
+   "id": "G40",
+   "tier": 4,
+   "title": "Pico mounting-hole drill guide",
+   "request": "Flat drill guide for putting the Raspberry Pi Pico 2 mounting-hole pattern into a panel. The Pico 2 has four 2.1 mm mounting holes on a 47.0 x 11.4 mm pattern (47.0 mm along the long side, 11.4 mm across). The guide has a 2.3 mm guide hole at each of the four positions, so a 2.1 mm drill passes with a little play. It locates on a straight panel edge: I press the guide against the edge of the panel, a flat sheet 3 mm thick, and drill through. The nearest hole row is 10 mm from that edge; position along the edge is set by eye, so only the distance from the edge and the rotation matter. The top face carries a recess shaped like the Pico outline, so I can lay a Pico in and check the position before drilling. Hole centres must be within 0.1 mm of the pattern. Printed in PLA on an FDM printer.",
+   "request_verbatim": "A flat guide for drilling the Pico 2 mounting-hole pattern into a panel: two or four 2.1 mm holes 47.0 x 11.4 mm apart with guide hole 2.3 mm. The guide locates on a panel edge and has a recess for the Pico outline so I can check position. Hole centres must hit the pattern to within 0.1 mm.",
+   "request_notes": "Added to the brief (all derived, see requirements.md sections 3.1 and 3.2): four holes, not two (FD1); 'locates on a panel edge' = a fence that hangs over the edge and butts its face, one straight edge, the Pico's long side parallel to it (FD2, FD3); panel is a flat sheet 3.0 mm thick (A2); the Pico is a bare board without headers when it lies in the recess (A3); FDM, PLA (A9). Audit: the panel thickness (3 mm), the 10 mm hole-row distance and the free position along the edge are now in the request; the judge's other bands are in the L1 text.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Four guide holes with axes on the Pico 2's 47.0 x 11.4 mm mounting-hole rectangle, each within 0.1 mm of its ideal position, pattern rows parallel to the locating edge (within 0.1 degrees). Declare the layout. Position along the edge is free, so the 0.1 mm is measured after the best shift along the edge.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.2",
+     "text": "Each guide hole is 2.3 mm in diameter, through the full guide plate, round to within 0.1 mm, and long enough to keep a 2.1 mm drill square to the panel (2.0 to 4.0 mm guide length from recess floor to underside).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "A fence whose flat inner face butts the straight edge of a 3.0 mm panel while the plate sits on the panel's top face. Nearest hole row is 10.0 mm (within 0.1 mm) from the fence face. Fence is at least 2.0 mm thick and 40 mm long, and reaches 3.0 to 6.0 mm below the plate.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The top face has a recess matching the Pico 2 outline with 0.2 mm clearance per side (corner radius at most 0.6 mm), 0.8 mm deep, centred on the hole pattern, so a Pico laid in it has its holes coaxial with the guide holes.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Plate is 4.0 mm thick with a flat underside; every hole and the recess keep at least 3.0 mm of material to the plate's free edges.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "One manifold body, printable in PLA on an FDM printer without supports in its declared orientation.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "At most 70 x 40 x 10 mm (X x Y x Z, closed assembly pose with the fence), with nothing rising above the plate top face.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "A 2.1 mm drill must reach every guide hole from above, with room for the chuck above the plate top.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Deliver an STL, the OpenSCAD source, the declared layout (seating pose and print orientation) and the agent's own measurement report; the report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the guide holes are derived from the HOLE datums of the catalogue Pico, not typed in",
+    "subtraction: four through holes and a shallow recess in a plate",
+    "a fence (edge locator) as a second face at a fixed distance from the hole rows",
+    "pocket fit: the recess outline derived from the Pico's PCB size plus a clearance",
+    "checks against external solids: the Pico model laid in the recess, the panel, the drill sweep"
+   ]
+  },
+  {
+   "id": "G40",
+   "tier": 4,
+   "title": "Pico mounting-hole drill guide",
+   "request": "I need a drilling template, flat, for the Raspberry Pi Pico 2 hole pattern in a panel. The Pico 2's four mounting holes are 2.1 mm and form a 47.0 x 11.4 mm rectangle (47.0 mm apart lengthwise, 11.4 mm across). Each of the four gets a 2.3 mm guide hole in the template, so a 2.1 mm drill goes through with some play. The template registers against a straight panel edge: I hold it to the edge of the panel, a flat sheet 3 mm thick, and drill. The closest row of holes has to be 10 mm from that edge; I slide it along the edge by eye, so just the distance from the edge and the angle count. In the top face there is a pocket in the shape of the Pico's outline, so I can set a Pico in it to verify placement before I drill. Hole centres have to land within 0.1 mm of the pattern. I print it in PLA on an FDM printer.",
+   "request_verbatim": "A flat guide for drilling the Pico 2 mounting-hole pattern into a panel: two or four 2.1 mm holes 47.0 x 11.4 mm apart with guide hole 2.3 mm. The guide locates on a panel edge and has a recess for the Pico outline so I can check position. Hole centres must hit the pattern to within 0.1 mm.",
+   "request_notes": "Added to the brief (all derived, see requirements.md sections 3.1 and 3.2): four holes, not two (FD1); 'locates on a panel edge' = a fence that hangs over the edge and butts its face, one straight edge, the Pico's long side parallel to it (FD2, FD3); panel is a flat sheet 3.0 mm thick (A2); the Pico is a bare board without headers when it lies in the recess (A3); FDM, PLA (A9). Audit: the panel thickness (3 mm), the 10 mm hole-row distance and the free position along the edge are now in the request; the judge's other bands are in the L1 text.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "The template needs four guide holes whose axes sit on the 47.0 x 11.4 mm mounting-hole rectangle of the Pico 2, every one within 0.1 mm of where it should be, with the pattern rows parallel to the locating edge to within 0.1 degrees. The layout has to be declared. Where the pattern sits along the edge is free, so the 0.1 mm is measured after finding the best shift along that edge.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.2",
+     "text": "All guide holes are 2.3 mm across and round to within 0.1 mm, passing through the entire plate, and they are long enough to keep a 2.1 mm drill square to the panel: 2.0 to 4.0 mm of guide length between the recess floor and the underside.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The fence's flat inner face sits against the straight edge of a 3.0 mm panel while the plate lies on the panel's top face, and the nearest hole row is 10.0 mm (within 0.1 mm) from that face. The fence is no less than 2.0 mm thick and 40 mm long and extends 3.0 to 6.0 mm under the plate.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "On the top face there is a pocket that follows the Pico 2's outline with 0.2 mm of clearance on each side (corners rounded by 0.6 mm at most) and is 0.8 mm deep. It is centred on the hole pattern, so a Pico lying in it has its holes lined up with the guide holes.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The plate is 4.0 mm thick and has a flat underside. Each hole and the pocket must have 3.0 mm or more of material between them and the plate's free edges.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "The template is a single manifold body that can be printed in PLA on an FDM printer, in its declared orientation, with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Its size must not exceed 70 x 40 x 10 mm (X x Y x Z, closed assembly pose including the fence), and nothing may stick up above the top face of the plate.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "From above, a 2.1 mm drill has to be able to get to every guide hole, and the chuck needs space above the plate's top.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Deliver an STL, the OpenSCAD source, the declared layout (seating pose and print orientation) and the agent's own measurement report, which must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the guide holes are derived from the HOLE datums of the catalogue Pico, not typed in",
+    "subtraction: four through holes and a shallow recess in a plate",
+    "a fence (edge locator) as a second face at a fixed distance from the hole rows",
+    "pocket fit: the recess outline derived from the Pico's PCB size plus a clearance",
+    "checks against external solids: the Pico model laid in the recess, the panel, the drill sweep"
+   ]
+  }
+ ]
+}

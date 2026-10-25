@@ -1,0 +1,411 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "cc190c103cff82dc",
+        "graph": "ced257115c6f8b41",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "perfboard",
+              1,
+              []
+            ],
+            [
+              "module_1",
+              "rpi_pico2",
+              1,
+              []
+            ]
+          ],
+          "stacks": {
+            "module_1": "header_female_2p54"
+          },
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": "screw_m2_selftap",
+            "lid": "screw_m3_selftap"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 3,
+        "violation": 4.79
+      },
+      "failing": [
+        "text_coverage",
+        "closure_evidence",
+        "bbox"
+      ],
+      "terms": [
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5"
+          ],
+          "where": "module_1.usb (raspberry pi pico 2) is closed, but L1.5 names a micro-usb plug: \"A micro-USB cable has to go all the way into the Pico via a single hole in the rear end wall while the lid is on, never touching the enclosure (at least 0.3 ...\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "0 named plug connection(s) covered; uncovered: module_1.usb takes plug_microusb_b named by L1.5"
+        },
+        {
+          "check": "closure_evidence",
+          "type": "closure_evidence",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "the lid closure is lip, but L1.8 names rebate: \"The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upsta...\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the lid closure the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "closure lip; the text names rebate (broken; L1.8: \"The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a f..."
+        },
+        {
+          "check": "bbox",
+          "type": "bbox_within",
+          "requirement": [
+            "L1.11"
+          ],
+          "where": "outside 84.17 x 64.17 x 37.80 mm, max 95 x 70 x 35 with X longest",
+          "deficit": 2.79,
+          "unit": "mm",
+          "direction": "decrease the outside size",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.79,
+          "detail": "outside 84.17 x 64.17 x 37.80 mm, max 95 x 70 x 35 with X longest"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "cc190c103cff82dc",
+      "error_before": {
+        "hard_failures": 3,
+        "violation": 4.79
+      },
+      "menu": [
+        {
+          "kind": "expose",
+          "target": "module_1.usb",
+          "value": true,
+          "words": "expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.5",
+              "quote": "A micro-USB cable has to go all the way into the Pico via a single hole in the rear end wall while the lid is on, never touching the enclosure (at least 0.3 mm of space all around)."
+            }
+          ],
+          "key": "expose:module_1.usb=True",
+          "letter": "A"
+        },
+        {
+          "kind": "set_closure",
+          "target": "closure",
+          "value": "rebate",
+          "words": "set the lid closure to rebate: a flat plate that drops into a rebate in the top of the walls, flush with the upstand",
+          "targets": [
+            "closure_evidence"
+          ],
+          "invalidates": "derive",
+          "evidence": [
+            {
+              "source": "L1.8",
+              "quote": "The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base."
+            }
+          ],
+          "key": "set_closure:closure=rebate",
+          "letter": "B"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "C"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "module_1.usb",
+        "value": true,
+        "words": "expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "L1.5",
+            "quote": "A micro-USB cable has to go all the way into the Pico via a single hole in the rear end wall while the lid is on, never touching the enclosure (at least 0.3 mm of space all around)."
+          }
+        ],
+        "key": "expose:module_1.usb=True"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (3 -> 2)",
+      "error_after": {
+        "hard_failures": 2,
+        "violation": 3.79
+      },
+      "state_after": "027873d4d1d91510",
+      "failing_after": [
+        "bbox",
+        "closure_evidence"
+      ],
+      "llm_calls": 8,
+      "secs": 14.7
+    },
+    {
+      "step": 2,
+      "state_before": "027873d4d1d91510",
+      "error_before": {
+        "hard_failures": 2,
+        "violation": 3.79
+      },
+      "menu": [
+        {
+          "kind": "set_closure",
+          "target": "closure",
+          "value": "rebate",
+          "words": "set the lid closure to rebate: a flat plate that drops into a rebate in the top of the walls, flush with the upstand",
+          "targets": [
+            "closure_evidence"
+          ],
+          "invalidates": "derive",
+          "evidence": [
+            {
+              "source": "L1.8",
+              "quote": "The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base."
+            }
+          ],
+          "key": "set_closure:closure=rebate",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "set_closure",
+        "target": "closure",
+        "value": "rebate",
+        "words": "set the lid closure to rebate: a flat plate that drops into a rebate in the top of the walls, flush with the upstand",
+        "targets": [
+          "closure_evidence"
+        ],
+        "invalidates": "derive",
+        "evidence": [
+          {
+            "source": "L1.8",
+            "quote": "The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base."
+          }
+        ],
+        "key": "set_closure:closure=rebate"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (2 -> 1)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 0.69
+      },
+      "state_after": "0db38d8ec3ec100a",
+      "failing_after": [
+        "bbox"
+      ],
+      "llm_calls": 3,
+      "secs": 3.31
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 2
+  },
+  "final": {
+    "state": {
+      "decisions": "0db38d8ec3ec100a",
+      "graph": "354daeab75f7c557",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "perfboard",
+            1,
+            []
+          ],
+          [
+            "module_1",
+            "rpi_pico2",
+            1,
+            [
+              "usb"
+            ]
+          ]
+        ],
+        "stacks": {
+          "module_1": "header_female_2p54"
+        },
+        "faces": {
+          "edge[module_1]": "-X"
+        },
+        "relations": [],
+        "closure": "rebate",
+        "boss_layout": "inside_band_x",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": "screw_m2_selftap",
+          "lid": "screw_m3_selftap"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 1,
+      "violation": 0.69
+    },
+    "failing": [
+      "bbox"
+    ],
+    "terms": [
+      {
+        "check": "bbox",
+        "type": "bbox_within",
+        "requirement": [
+          "L1.11"
+        ],
+        "where": "outside 92.40 x 58.00 x 35.70 mm, max 95 x 70 x 35 with X longest",
+        "deficit": 0.69,
+        "unit": "mm",
+        "direction": "decrease the outside size",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.69,
+        "detail": "outside 92.40 x 58.00 x 35.70 mm, max 95 x 70 x 35 with X longest"
+      }
+    ]
+  },
+  "secs": 18.36,
+  "authority": {
+    "decisions": {
+      "plant": 1,
+      "semantic-rule": 4,
+      "llm": 4,
+      "guardrail": 1
+    },
+    "proposal": {
+      "llm_slots": 10,
+      "default_slots": 2,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "stack[module_1]",
+        "by": "rule:text_evidence[stack]",
+        "migration": "R02"
+      },
+      {
+        "decision": "fastener[board]",
+        "by": "rule:text_evidence[board]",
+        "migration": "R03"
+      },
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      },
+      {
+        "decision": "fastener[lid]",
+        "by": "rule:text_evidence[lid]",
+        "migration": "R03"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.6667
+  },
+  "accepted": [
+    {
+      "kind": "expose",
+      "target": "module_1.usb",
+      "value": true,
+      "words": "expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "L1.5",
+          "quote": "A micro-USB cable has to go all the way into the Pico via a single hole in the rear end wall while the lid is on, never touching the enclosure (at least 0.3 mm of space all around)."
+        }
+      ],
+      "key": "expose:module_1.usb=True",
+      "step": 1
+    },
+    {
+      "kind": "set_closure",
+      "target": "closure",
+      "value": "rebate",
+      "words": "set the lid closure to rebate: a flat plate that drops into a rebate in the top of the walls, flush with the upstand",
+      "targets": [
+        "closure_evidence"
+      ],
+      "invalidates": "derive",
+      "evidence": [
+        {
+          "source": "L1.8",
+          "quote": "The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base."
+        }
+      ],
+      "key": "set_closure:closure=rebate",
+      "step": 2
+    }
+  ]
+}

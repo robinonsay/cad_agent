@@ -1,0 +1,55 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Could you design a mount for a Raspberry Pi camera v2 board? The board measures 25 x 24 mm and stands 9 mm tall counting the lens; it has four 2.2 mm mounting holes in a 21 x 12.5 mm rectangle and a ribbon connector on its rear. I'd like it to drop into a pocket and stay there with no screws, held by lips that extend 0.6 to 1.15 mm across the face of the board. The lens is 8 mm, and it should look out through an opening where no wall is closer than 0.5 mm to the lens barrel and nothing intrudes on the camera's 62 x 49 degree view. I don't know how the board is turned relative to the sensor axes, so assume 62 degrees along both. The ribbon cable is 16 mm wide and comes out the rear via a slot 17 mm wide and no longer than 10 mm. The underside has a hex recess for a 1/4-20 nut (11.1 mm across flats and 5.6 mm thick, with the recess 0.1 to 0.3 mm larger than the nut on each flat, a stud hole of 6.4 to 6.8 mm diameter and a seat 2.0 to 3.65 mm thick), so the mount can be screwed onto a 10 mm tripod stud. Make it a single FDM print needing no supports, using whichever orientation you specify, and keep it within 45 x 45 x 30 mm.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_tube: tube (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 1
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_zero2w": {
+    "hdmi_exposed": "no",
+    "quantity": 0,
+    "sd_exposed": "no",
+    "usb_data_exposed": "no",
+    "usb_power_exposed": "no"
+  }
+}

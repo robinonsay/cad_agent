@@ -1,0 +1,304 @@
+{
+  "id": "servo_sg90",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "sg90 servo",
+    "sg90",
+    "micro servo",
+    "9g servo",
+    "tower pro sg90",
+    "tiny servo",
+    "sg90 micro servo"
+  ],
+  "kind": "motor",
+  "source": "SG90 micro servo datasheet (as in plan.json): 22.5 x 12.2 x 22.7 mm body, 32.5 mm overall across the mounting tabs, tab holes 2.0 mm on a 27.5 mm pitch, 4.8 mm spline offset from the body end. Tab thickness/height, spline diameter/height, horn reach and cable zone are not in the note and are assumed (see notes).",
+  "frame": "servo: origin at the tab-end min corner on the bottom face (Z = 0); X along the tab direction, Y across the body, output spline on +Z at the shaft end (low X)",
+  "params": {
+    "body_length": {
+      "default": 22.5,
+      "source": "datasheet: body outline"
+    },
+    "body_width": {
+      "default": 12.2,
+      "source": "datasheet: body outline"
+    },
+    "body_height": {
+      "default": 22.7,
+      "source": "datasheet: body outline"
+    },
+    "tab_length": {
+      "default": 32.5,
+      "source": "datasheet: overall length across the tabs"
+    },
+    "tab_thickness": {
+      "default": 2.5,
+      "source": "assumed: SG90 tab thickness, +/- 0.3"
+    },
+    "tab_z": {
+      "default": 16.0,
+      "source": "assumed: tab underside above the base, +/- 0.5"
+    },
+    "hole_diameter": {
+      "default": 2.0,
+      "source": "datasheet: tab hole"
+    },
+    "hole_pitch": {
+      "default": 27.5,
+      "source": "datasheet: tab hole pitch"
+    },
+    "spline_offset": {
+      "default": 4.8,
+      "source": "datasheet: spline offset from the body end (reading of the note, +/- 1.2)"
+    },
+    "spline_diameter": {
+      "default": 4.8,
+      "source": "assumed: spline outer diameter, +/- 0.3"
+    },
+    "spline_height": {
+      "default": 3.2,
+      "source": "assumed: spline height above the body, +/- 1"
+    },
+    "horn_reach": {
+      "default": 21.0,
+      "source": "assumed: longest common SG90 single arm, +/- 3"
+    },
+    "horn_thickness": {
+      "default": 2.0,
+      "source": "assumed: horn plate thickness, uncertainty +/- 0.5"
+    },
+    "cable_clearance": {
+      "default": 10.0,
+      "source": "assumed: 3-wire lead leaves the end opposite the spline; room for its bend (+/- 4)"
+    },
+    "cable_height": {
+      "default": 6.0,
+      "source": "assumed: lead exit height above the base (+/- 2)"
+    }
+  },
+  "datasheet_size": [
+    "tab_length",
+    "body_width",
+    "body_height + spline_height"
+  ],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "body_length",
+        "body_width",
+        "body_height"
+      ],
+      "at": [
+        "(tab_length - body_length) / 2",
+        0,
+        0
+      ]
+    },
+    {
+      "id": "tabs",
+      "primitive": "box",
+      "size": [
+        "tab_length",
+        "body_width",
+        "tab_thickness"
+      ],
+      "at": [
+        0,
+        0,
+        "tab_z"
+      ]
+    },
+    {
+      "id": "spline",
+      "primitive": "cylinder",
+      "d": "spline_diameter",
+      "h": "spline_height",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "horn_sweep",
+      "primitive": "cylinder",
+      "d": "2 * horn_reach",
+      "h": "horn_thickness",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height + spline_height - horn_thickness"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "cable_exit",
+      "primitive": "box",
+      "size": [
+        "cable_clearance",
+        "body_width",
+        "cable_height"
+      ],
+      "at": [
+        "(tab_length + body_length) / 2",
+        0,
+        0
+      ]
+    }
+  ],
+  "datums": {
+    "SPLINE_AXIS": {
+      "kind": "axis",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "spline_diameter"
+    },
+    "SPLINE_TIP": {
+      "kind": "point",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height + spline_height"
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TAB_TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "tab_z + tab_thickness"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "TAB_BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "tab_z"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "hole_diameter",
+      "keepout_diameter": "2 * hole_diameter",
+      "at": [
+        [
+          "(tab_length - hole_pitch) / 2",
+          "body_width / 2",
+          "tab_z + tab_thickness"
+        ],
+        [
+          "(tab_length + hole_pitch) / 2",
+          "body_width / 2",
+          "tab_z + tab_thickness"
+        ]
+      ]
+    }
+  },
+  "connectors": [],
+  "mount": {
+    "seat_datum": "TAB_BOTTOM",
+    "hole_datum": "HOLE",
+    "body_pocket": "body",
+    "notes": "The servo drops into a rectangular pocket in a plate with the tab undersides (TAB_BOTTOM) resting on the plate top; the body sits in the pocket (body_length x body_width plus printing clearance) and the two tab holes take screws into the plate. Tab on plate and screw in hole are designed contact."
+  },
+  "notes": "Datasheet figures (22.5 x 12.2 x 22.7, tabs 32.5, holes 2.0 at 27.5, spline offset 4.8) come from the plan note; the spline offset is read as measured along X from the body end nearest the shaft (other drawings quote about 6 mm, +/- 1.2: measure the owner's servo). Assumed: tab thickness 2.5 +/- 0.3, tab underside 16.0 mm above the base +/- 0.5, spline OD 4.8 +/- 0.3 and 3.2 high +/- 1 beyond the body top, horn_reach 21 (longest common single arm, +/- 3), horn plate 2 thick. The lead exits the end opposite the spline; cable_clearance and cable_height are generic bend room. The horn sweep keepout is the swept disc of the horn plate; the caller shrinks horn_reach to the horn actually used. The real tab holes are slots and screws are M2 self-tapping. Gear-boss relief on the body top is not modelled (box is conservative).",
+  "self_checks": [
+    {
+      "name": "tab span (overall)",
+      "expr": "bbox.size_x",
+      "value": 32.5,
+      "tol": 0.3
+    },
+    {
+      "name": "hole pitch",
+      "expr": "HOLE[1].x - HOLE[0].x",
+      "value": 27.5,
+      "tol": 0.1
+    },
+    {
+      "name": "holes inside the tabs",
+      "expr": "tab_length - hole_pitch - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "tabs wider than the body",
+      "expr": "tab_length - body_length",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "spline on +Z",
+      "expr": "SPLINE_AXIS.dz",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "spline inside the body outline",
+      "expr": "spline.min_x - body.min_x",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "tabs inside the body height",
+      "expr": "body_height - tab_z - tab_thickness",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

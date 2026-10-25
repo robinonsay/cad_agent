@@ -1,0 +1,40 @@
+{
+  "id": "screw_m2p5_selftap",
+  "schema": 1,
+  "units": "mm",
+  "names": ["m2.5 self-tapping screw", "m2.5 self tapping screw", "m2.5 screw", "m2.5 thread-forming screw", "m2.5 pan head screw"],
+  "kind": "fastener",
+  "source": "M2.5 pan-head screw driven into a printed pilot hole: head per ISO 7045 (dk, k), lid/board clearance hole per ISO 273 medium series, pilot diameter and minimum engagement for thread-forming into PLA/PETG per common FDM fastener tables (requirements.md A9, A10).",
+  "frame": "fastener: axis along Z, origin on the head bearing face, shank toward -Z, head toward +Z",
+  "params": {
+    "thread_diameter": {"default": 2.5, "source": "nominal thread diameter"},
+    "pilot_diameter": {"default": 2.1, "source": "FDM fastener table: pilot hole for thread-forming"},
+    "pilot_min": {"default": 2.0, "source": "FDM fastener table: pilot range"},
+    "pilot_max": {"default": 2.2, "source": "FDM fastener table: pilot range"},
+    "clearance_diameter": {"default": 2.9, "source": "ISO 273 medium clearance hole"},
+    "head_diameter": {"default": 5.0, "source": "ISO 7045 head diameter dk"},
+    "head_height": {"default": 1.75, "source": "ISO 7045 head height k"},
+    "length": {"default": 8.0, "source": "stock length (shortest common length that reaches min_engagement through a 2-4 mm plate)"},
+    "min_engagement": {"default": 5.0, "source": "FDM fastener table: minimum pilot depth"},
+    "min_boss_od": {"default": 5.0, "source": "FDM fastener table: minimum boss outer diameter"}
+  },
+  "datasheet_size": ["head_diameter", "head_diameter", "length + head_height"],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {"id": "shank", "primitive": "cylinder", "d": "thread_diameter", "h": "length", "at": [0, 0, "-length"], "dir": [0, 0, 1]},
+    {"id": "head", "primitive": "cylinder", "d": "head_diameter", "h": "head_height", "at": [0, 0, 0], "dir": [0, 0, 1]}
+  ],
+  "datums": {
+    "AXIS": {"kind": "axis", "at": [0, 0, 0], "dir": [0, 0, -1], "diameter": "thread_diameter"},
+    "HEAD_BEARING": {"kind": "plane", "at": [0, 0, 0], "normal": [0, 0, -1]},
+    "TIP": {"kind": "point", "at": [0, 0, "-length"]}
+  },
+  "connectors": [],
+  "self_checks": [
+    {"name": "pilot inside its range", "expr": "pilot_diameter - pilot_min", "op": "ge", "value": 0, "tol": 0},
+    {"name": "pilot below its range maximum", "expr": "pilot_max - pilot_diameter", "op": "ge", "value": 0, "tol": 0},
+    {"name": "pilot smaller than the thread", "expr": "thread_diameter - pilot_diameter", "op": "ge", "value": 0, "tol": 0},
+    {"name": "clearance hole passes the thread", "expr": "clearance_diameter - thread_diameter", "op": "ge", "value": 0, "tol": 0},
+    {"name": "head larger than the clearance hole", "expr": "head_diameter - clearance_diameter", "op": "ge", "value": 0, "tol": 0}
+  ]
+}

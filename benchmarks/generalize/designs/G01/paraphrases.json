@@ -1,0 +1,160 @@
+{
+ "paraphrases": [
+  {
+   "id": "G01",
+   "tier": 4,
+   "title": "Arduino Nano box with snap lid",
+   "request": "Small shelf box for an Arduino Nano (45 x 18 mm board). Mini-USB port must be accessible through a short end wall with the lid fitted, for a cable. Three 5 mm status LEDs (separate parts, wired to the Nano) go in the lid's top face and must be visible from outside. Lid is snap-fit, no screws, so no fasteners at all. Header pins face down and protrude below the board, so lift the board off the floor. Base prints flat on the bed in PLA, no supports.",
+   "request_verbatim": "I need a small box for an Arduino Nano that I will leave on a shelf. The mini-USB port has to be reachable through one short end with the lid on, and three 5 mm status LEDs on the top face should be visible. The lid snaps on without screws and the base is printed flat in PLA.",
+   "request_notes": "Added to the brief (derived, see requirements.md 3.1 and 3.2): 'top face' = the lid's top (FD2); the LEDs are separate 5 mm LEDs in lid holes (FD3); the Nano is held on four posts under its holes with locating pins (FD1); the header tails point down as supplied (A2); lid snap = cantilever hooks on the long sides (FD4); PLA FDM (A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the catalogue Arduino Nano with its mini-USB port towards one short (18 mm) end and three 5 mm LEDs on the lid, no part collisions, and declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Board (45 x 18 x 1.6 mm) fits in the closed box with 0.5 mm minimum clearance to all printed surfaces other than its posts; the USB receptacle is inside the box.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Exactly four posts carry the board, one below each mounting hole, 3.0 to 4.0 mm across (hole keep-out is 4.0). Each has a locating pin 0.1 to 0.3 mm smaller than the 1.7 mm hole passing through it. Header tails stay off the floor.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Lid closed: no material within 5.0 mm over the board's top face, and none within 0.3 mm of the header bodies and pin tails underneath.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Lid closed: a mini-USB cable plugs in fully through a single opening in the −X end wall, with 0.3 mm or more spare around the plug. Keep at least 1.5 mm of wall between the opening and the lid seam, the floor and the corners. The opening is at most 1.5 mm oversize on any side of the plug.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Lid holds three 5 mm LEDs: lenses pass through 5.2 to 5.4 mm holes in the top face, flanges trapped behind it, so each dome shows outside and the LED can't be pulled out the front (flange overlap on the hole at least 0.2 mm per side). LEDs are in a row above the board, 9.0 mm or more apart and 4.0 mm or more from the cavity edge.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "Snap hooks only; no screws or other fasteners. At least two hooks per long side, none on the end walls. Each hook is 5 mm wide or more and engages 0.6 to 1.0 mm, on an arm whose bending strain 1.5 t y / L^2 (thickness t, engagement y, free length L) is no more than 0.02.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Lid is its own body, located on the base by a sliding lip (2.0 mm deep or more, 0.15 to 0.35 mm clearance per side), closing flush with no interpenetration.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed box has only the USB opening and the three LED holes. Walls, floor and lid are 2.0 to 3.0 mm thick, with 1.5 mm or more of material around every opening.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base prints flat on its floor, lid on its outer face; each is a single manifold body, no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed box, leaving out the LED domes, fits within 60 x 30 x 26 mm with the longest side along the board's 45 mm edge, and sits flat on a shelf without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliver base STL, lid STL, OpenSCAD source, declared layout and the agent's own clearance report; the report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the Nano's pose, its USB_MOUTH / USB_AXIS and HOLE datums set the openings and the posts",
+    "a plug-envelope opening sized from the mini-USB plug (overmold 11 x 8) and its sweep",
+    "three LED holes in a flat lid, derived from the LED's lens and flange, with a retention shoulder",
+    "a snap-fit lid: cantilever hooks with a computed strain limit, lead-in and catch faces, grooves in the base",
+    "posts and locating pins at the board's mounting holes, with a floor gap that clears the header tails",
+    "two printable bodies with their own print orientation"
+   ]
+  },
+  {
+   "id": "G01",
+   "tier": 4,
+   "title": "Arduino Nano box with snap lid",
+   "request": "I'm after a little housing for an Arduino Nano, whose board is 45 x 18 mm, to sit on a shelf. It should be possible to get a cable into the Nano's mini-USB port through one of the short ends even with the lid fitted. The lid goes on with snaps rather than screws, so the housing has no fasteners whatsoever, and it carries three 5 mm status LEDs in its top face; they're separate parts wired to the Nano and have to be visible from outside. Because the Nano's header pins point downward and poke out below the board, the board must be held up off the floor. Print the base flat on the bed in PLA without supports.",
+   "request_verbatim": "I need a small box for an Arduino Nano that I will leave on a shelf. The mini-USB port has to be reachable through one short end with the lid on, and three 5 mm status LEDs on the top face should be visible. The lid snaps on without screws and the base is printed flat in PLA.",
+   "request_notes": "Added to the brief (derived, see requirements.md 3.1 and 3.2): 'top face' = the lid's top (FD2); the LEDs are separate 5 mm LEDs in lid holes (FD3); the Nano is held on four posts under its holes with locating pins (FD1); the header tails point down as supplied (A2); lid snap = cantilever hooks on the long sides (FD4); PLA FDM (A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Using the Nano from the catalogue, orient it so the mini-USB port looks at one of the short 18 mm ends, put three 5 mm LEDs in the lid, keep the parts from colliding, and state the layout you chose.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Inside the closed box the 45 x 18 x 1.6 mm board needs at least 0.5 mm of clearance from every printed surface (its posts excepted), and the USB receptacle has to be within the box.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Four posts, no more and no fewer, carry the board, each below a mounting hole and 3.0 to 4.0 mm wide (the hole's own keep-out being 4.0). A locating pin runs through each hole, 0.1 to 0.3 mm under the 1.7 mm hole size, and the header tails must not touch the floor.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "When the lid is shut, keep everything at least 5.0 mm above the top of the board, and at least 0.3 mm away from the header bodies and pin tails below.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "With the lid shut, a mini-USB cable has to go all the way into the Nano via one opening in the −X end wall, leaving at least 0.3 mm spare around the plug. Between that opening and the lid seam, the floor and the corners leave 1.5 mm of wall or more. The opening may exceed the plug by 1.5 mm at most per side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Three 5 mm LEDs are carried by the lid: lenses stick out through holes of 5.2 to 5.4 mm in the top face with the flanges held behind, so every dome can be seen from outside and none can be pulled out forwards (flange overlap on the hole of 0.2 mm per side minimum). Put them in a line above the board, spaced 9.0 mm or more apart and 4.0 mm or more from the cavity edge.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "Only snap hooks hold the lid, with no screws or other fasteners: two or more hooks on each long side and none on the end walls. Hooks are at least 5 mm wide and engage 0.6 to 1.0 mm, on an arm where the bending strain 1.5 t y / L^2 (t thickness, y engagement, L free length) does not exceed 0.02.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Make the lid a separate body that sits on the base via a sliding lip, at least 2.0 mm deep with 0.15 to 0.35 mm of clearance each side, and closes flush without the two overlapping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Once closed, the box should have just the USB opening and three LED holes. Wall, floor and lid thickness is 2.0 to 3.0 mm, and every opening has at least 1.5 mm of material around it.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base prints flat on its floor and lid on its outer face, each as a single manifold body needing no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Excluding the LED domes, the closed box can be at most 60 x 30 x 26 mm, with its long dimension running along the board's 45 mm side, and it has to stand flat on a shelf and not tip.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Hand over a base STL, a lid STL, the OpenSCAD source, the declared layout, and the agent's own clearance report, which has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the Nano's pose, its USB_MOUTH / USB_AXIS and HOLE datums set the openings and the posts",
+    "a plug-envelope opening sized from the mini-USB plug (overmold 11 x 8) and its sweep",
+    "three LED holes in a flat lid, derived from the LED's lens and flange, with a retention shoulder",
+    "a snap-fit lid: cantilever hooks with a computed strain limit, lead-in and catch faces, grooves in the base",
+    "posts and locating pins at the board's mounting holes, with a floor gap that clears the header tails",
+    "two printable bodies with their own print orientation"
+   ]
+  }
+ ]
+}

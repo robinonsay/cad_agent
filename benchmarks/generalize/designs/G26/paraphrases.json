@@ -1,0 +1,110 @@
+{
+  "paraphrases": [
+    {
+      "id": "G26",
+      "tier": 4,
+      "title": "Snap tube clip for 12 mm rod",
+      "request": "C-shaped snap clip for a 12 mm round tube (solid rod or pipe, 12 mm OD). Wall mount with two M3 countersunk screws spaced 30 mm, side by side across the clip. Mouth opening 10.5 mm; the tube pushes in from the side and snaps in. Arm thickness 2.2 mm. Clip width along the tube 12 to 30 mm. Single FDM printed part, printed open side up so the layer lines run along the arm flex direction.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Place the 12 mm tube from the parts catalogue in the clip's round bore, mouth facing up, and the two M3 countersunk screws in the wall holes, no collisions. Declare that layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The round bore holds the 12 mm tube with a small clearance all round, 0.05 to 0.15 mm per side. The clip wraps more than half the tube, so across its axis the tube can only leave through the mouth.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.3",
+          "text": "Test: mouth opening 10.5 mm. The tube is pushed in along the mouth direction, touching the clip only at the two lips as it passes. A lead-in guides it: lip end faces slope 20 to 60 degrees from horizontal.",
+          "method": "test"
+        },
+        {
+          "id": "L1.4",
+          "text": "Two arms, 2.2 mm thick, long enough to open 0.75 mm per side for the tube without more than 3 % bending strain, and free to flex. Worst-case tolerances (12.1 mm tube, mouth 0.1 mm smaller): within 3.5 %.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "Wall mount: two M3 countersunk screws exactly 30 mm apart in countersunk holes that leave each screw head at or below the clip surface. At least 1.5 mm of material around every hole, on a flange 3 to 4 mm thick.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.6",
+          "text": "The wall face is flat, with nothing protruding below it. Each screw is reachable with a screwdriver with the tube in place.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Print mouth up, wall face on the bed, as one manifold body without supports; the arms flex in the layer plane.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "Max clip size 50 x 30 x 20 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.9",
+          "text": "Deliver the clip STL, OpenSCAD source, declared layout and the agent's own clearance report; the report must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ]
+    },
+    {
+      "id": "G26",
+      "tier": 4,
+      "title": "Snap tube clip for 12 mm rod",
+      "request": "I need a wall-mounted clip that snaps onto a tube, a rod or pipe with a 12 mm outer diameter, i.e. a 12 mm tube. It's C-shaped, held to the wall by a pair of M3 countersunk screws set 30 mm apart, side by side across the clip. The tube enters sideways through a 10.5 mm mouth and snaps in; the arms are 2.2 mm thick. Along the tube the clip is 12 to 30 mm wide. Make it a single FDM print with the opening facing up, so the layer lines follow the direction the arms flex.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Declare a layout with the catalogue's 12 mm tube seated in the round bore of the clip, mouth upward, and the two M3 countersunk screws sitting in the wall holes, with no parts colliding.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The 12 mm tube sits in a round bore with a slight all-round gap of 0.05 to 0.15 mm on each side. Because the clip encloses over half of the tube, the only way out, crosswise to its axis, is the mouth.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.3",
+          "text": "With a mouth opening of 10.5 mm, the tube must press in along the mouth direction and contact only the two lips on the way through. The lips' end faces form a lead-in, sloping between 20 and 60 degrees from horizontal.",
+          "method": "test"
+        },
+        {
+          "id": "L1.4",
+          "text": "Make the two arms 2.2 mm thick and free to flex, long enough that spreading by the 0.75 mm per side the tube needs keeps bending strain at or below 3 %. In the worst tolerance case, a 12.1 mm tube and a mouth 0.1 mm smaller, strain must stay within 3.5 %.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The clip is fixed to the wall with a pair of M3 countersunk screws spaced exactly 30 mm apart. The countersinks must leave each head flush or below the clip's surface, and every hole needs 1.5 mm or more of surrounding material on a flange that is 3 to 4 mm thick.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.6",
+          "text": "Nothing may stick out below the flat wall face of the clip, and with the tube fitted a screwdriver must still get to every screw.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "The clip is printed as a single manifold body with no supports, wall face on the bed and the mouth pointing up, so the arms flex within the plane of the layers.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "The clip must fit inside 50 x 30 x 20 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.9",
+          "text": "Supply the STL of the clip, its OpenSCAD source, the layout declaration and the agent's own clearance report, which has to match an independent measurement.",
+          "method": "inspection"
+        }
+      ]
+    }
+  ]
+}

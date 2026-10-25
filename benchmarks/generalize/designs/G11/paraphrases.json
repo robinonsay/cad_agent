@@ -1,0 +1,170 @@
+{
+  "paraphrases": [
+    {
+      "id": "G11",
+      "tier": 4,
+      "title": "Fan-cooled power module box",
+      "request": "Enclosure for an 80 x 60 mm perfboard power module dissipating about 8 W. The board has a 3 mm mounting hole in each corner, 2.5 mm in from the edges. Mounted on it: a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a heatsink 20 x 12 mm and 20 mm tall, and two electrolytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside the box, blowing down into it through a lid opening, held by M3 socket-head screws on its 32 mm hole pattern. Exhaust slots line the opposite end wall. A 5.5 x 2.1 mm DC plug must plug into the jack with the lid on. The fan intake stays at least 5 mm from the nearest tall component, meaning its frame stays at least 5 mm clear of every part on the board. Base plus removable lid held by M3 screws, FDM printed, no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap screws, in stock lengths 6, 8, 10, 12, 14, 16 and 20 mm.",
+      "request_verbatim": "Enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. A 40 x 40 x 10 mm fan blows in through the lid on its 32 mm hole pattern and exhaust slots line the opposite wall, with the DC input jack on the end. Keep the fan intake at least 5 mm from the nearest tall component.",
+      "request_notes": "Added to the brief, all from requirements.md sections 3 and 4: board hole size and position (A4), the heatsink and capacitors that make 'the nearest tall component' concrete (A2), fan on the lid with M3 screws (A1, A13), base + lid with screws (F3), FDM (A9), size limit (A11). Audit 2026-10-24: fan placement (underside of the lid) and the 5 mm reading (frame to every part) now stated in the request; standoff height, engagement, lid plate and tilt numbers now in L1. Screw type and stock lengths added (F7, A14): bolt_m3_iso4762 takes its length from the request.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Place the DC jack, the heatsink and the two capacitors on the 80 x 60 mm board from the parts catalogue and declare the layout: jack facing one short end, no collisions, and no part covering a corner hole.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The 80 x 60 x 1.6 mm board fits inside the closed enclosure with at least 0.5 mm clearance to every printed surface, except where it rests on its standoffs.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The board rests on exactly four standoffs, 4 to 10 mm tall, one under each corner hole. Each has a pilot hole at least 5 mm deep for an M3 screw passing through the board, and the declared screws bite with at least 4 mm of thread engagement.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.4",
+          "text": "Lid closed: no printed surface comes within 0.5 mm of any board part or within 4.0 mm below the board's underside (the standoffs under the holes excepted), and every part is inside the enclosure.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "Lid closed: a 5.5 x 2.1 mm DC plug plugs fully into the jack through one opening in its end wall without touching the enclosure. The opening is at most 1.5 mm bigger than the plug on any side.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "The 40 x 40 x 10 mm fan sits on the lid's underside blowing into the box, fixed by four M3 screws on its 32 mm hole pattern with at least 3 mm thread engagement into lid pilot holes that leave at least 0.8 mm of skin. It is over a lid opening of at least 60 percent of its 38 mm bore, and its frame is at least 5 mm from every board part.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "Exhaust slots line the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, total open area at least 567 mm2.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "The enclosure is a base and a separate removable lid. The lid is a flat plate 4.8 to 6 mm thick with a locating lip engaging the base 2 to 3 mm with a sliding fit, at most 9 mm tall overall, held shut by four M3 screws into bosses outside the board's outline.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.9",
+          "text": "Closed enclosure openings: only the DC opening, the exhaust slots, the fan opening and screw holes. Walls and floor are 2 to 4 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "Base and lid are each one manifold body that prints on an FDM printer without supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "Closed enclosure at most 100 x 80 x 40 mm, longest along the board's 80 mm side, standing flat on a desk without tipping and stable at 5 degrees of table tilt.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "Lid off: the populated board drops straight down onto its standoffs, and a screwdriver reaches every board screw.",
+          "method": "test"
+        },
+        {
+          "id": "L1.13",
+          "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report. The report must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: a round DC opening, vent slots, a fan intake opening in the lid, blind pilot holes in standoffs, bosses and the lid",
+        "interior placement: standoffs at catalogue hole coordinates, bosses outside the board outline, a lid lip",
+        "a fan placed on the lid by its hole datums with airflow direction, 5 mm gap and air-room keep-outs",
+        "parts catalogue: load part.json models (perfboard, jack, fan, plug, screws, generic blocks) and place them by datums",
+        "envelope generation: plug sweep, fan frame and exhaust room, screw-head columns, install sweep",
+        "interference checks against external solids: clear_of, inside, gap, aperture finding and area"
+      ]
+    },
+    {
+      "id": "G11",
+      "tier": 4,
+      "title": "Fan-cooled power module box",
+      "request": "I need a housing for a power module built on an 80 x 60 mm perfboard that gives off roughly 8 W. The board has a 3 mm hole in every corner, set 2.5 mm in from the edges. Populating it are a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a 20 x 12 mm heatsink standing 20 mm tall, and a pair of electrolytic capacitors, each 10 mm in diameter and 16 mm tall. Cooling comes from a 40 x 40 x 10 mm fan attached under the lid on the inside, pushing air down into the box through an opening in the lid. It's held with M3 socket-head screws on its 32 mm hole pattern, and the opposite end wall gets exhaust slots. A 5.5 x 2.1 mm DC plug has to plug into the jack while the lid is on. Keep the fan intake 5 mm or more from the nearest tall component; I read that as the fan frame being at least 5 mm from everything on the board. The housing is a base and a removable lid fastened with M3 screws, printed on an FDM printer, and no bigger than 100 x 80 x 40 mm. Every screw is an ISO 4762 M3 socket-head cap screw, and my stock lengths are 6, 8, 10, 12, 14, 16 and 20 mm.",
+      "request_verbatim": "Enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. A 40 x 40 x 10 mm fan blows in through the lid on its 32 mm hole pattern and exhaust slots line the opposite wall, with the DC input jack on the end. Keep the fan intake at least 5 mm from the nearest tall component.",
+      "request_notes": "Added to the brief, all from requirements.md sections 3 and 4: board hole size and position (A4), the heatsink and capacitors that make 'the nearest tall component' concrete (A2), fan on the lid with M3 screws (A1, A13), base + lid with screws (F3), FDM (A9), size limit (A11). Audit 2026-10-24: fan placement (underside of the lid) and the 5 mm reading (frame to every part) now stated in the request; standoff height, engagement, lid plate and tilt numbers now in L1. Screw type and stock lengths added (F7, A14): bolt_m3_iso4762 takes its length from the request.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Using the parts catalogue, put the DC jack, the heatsink and the two capacitors on the 80 x 60 mm board and declare the layout. The jack faces one short end, no parts collide, and none covers a corner hole.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The 80 x 60 x 1.6 mm board must fit in the closed enclosure, at least 0.5 mm away from every printed surface other than the standoffs it rests on.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "Exactly four standoffs carry the board, each 4 to 10 mm tall and placed under a corner hole. Each has a pilot hole of at least 5 mm depth for an M3 screw through the board, and the declared screws must engage at least 4 mm of thread.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.4",
+          "text": "When the lid is on, no printed surface may get within 0.5 mm of a board part, or within 4.0 mm under the underside of the board (apart from the standoffs below the holes), and all parts have to be inside the enclosure.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "With the lid on, a 5.5 x 2.1 mm DC plug must go all the way into the jack through one opening in its end wall and not touch the enclosure, and no side of that opening may be more than 1.5 mm bigger than the plug.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "Mount the 40 x 40 x 10 mm fan on the underside of the lid so it blows into the box. Four M3 screws on its 32 mm hole pattern hold it, engaging at least 3 mm of thread in pilot holes in the lid that leave at least 0.8 mm of skin. It sits over a lid opening that is at least 60 percent of its 38 mm bore, and the fan frame stays at least 5 mm from every board part.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "On the end wall facing away from the jack, cut exhaust slots: no fewer than 8 of them, each 2 to 4 mm wide and 10 mm or more tall, adding up to an open area of at least 567 mm2.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "Build the enclosure from a base and a separate lid you can remove. The lid is a flat plate between 4.8 and 6 mm thick, with a locating lip that engages the base by 2 to 3 mm in a sliding fit, no more than 9 mm tall in total, and four M3 screws going into bosses outside the board's outline hold it closed.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.9",
+          "text": "The closed enclosure has no openings other than the DC opening, the exhaust slots, the fan opening and the screw holes, and its walls and floor are 2 to 4 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "Make the base and the lid each a single manifold body that prints on an FDM printer without supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "The closed enclosure must fit in 100 x 80 x 40 mm with its longest side along the board's 80 mm edge, sit flat on a desk without tipping, and remain stable when the table is tilted 5 degrees.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "With the lid removed, the populated board must drop straight down onto its standoffs, and a screwdriver must be able to reach each board screw.",
+          "method": "test"
+        },
+        {
+          "id": "L1.13",
+          "text": "Supply a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, the latter agreeing with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: a round DC opening, vent slots, a fan intake opening in the lid, blind pilot holes in standoffs, bosses and the lid",
+        "interior placement: standoffs at catalogue hole coordinates, bosses outside the board outline, a lid lip",
+        "a fan placed on the lid by its hole datums with airflow direction, 5 mm gap and air-room keep-outs",
+        "parts catalogue: load part.json models (perfboard, jack, fan, plug, screws, generic blocks) and place them by datums",
+        "envelope generation: plug sweep, fan frame and exhaust room, screw-head columns, install sweep",
+        "interference checks against external solids: clear_of, inside, gap, aperture finding and area"
+      ]
+    }
+  ]
+}

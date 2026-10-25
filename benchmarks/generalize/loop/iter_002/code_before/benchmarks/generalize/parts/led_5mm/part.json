@@ -1,0 +1,225 @@
+{
+ "id": "led_5mm",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "5mm led",
+  "5 mm led",
+  "led",
+  "t-1 3/4 led",
+  "status led",
+  "indicator led",
+  "5mm indicator",
+  "through-hole led",
+  "light emitting diode"
+ ],
+ "kind": "control",
+ "source": "Generic 5 mm LED (T-1 3/4, generalize/plan.json datasheet_note): dia 5.0 mm, flange 5.8 mm, height about 8.6 mm, leads 2.54 mm. ASSUMED: flange thickness 1.0 mm, lead length 20 mm trimmed to 3.0 mm in the model, beam half-angle about 15 degrees (not used geometrically).",
+ "frame": "led: origin at the lens axis on the flange bottom (seat) plane at Z = 0, dome toward +Z, leads toward -Z",
+ "params": {
+  "lens_diameter": {
+   "default": 5.0,
+   "source": "datasheet: body diameter"
+  },
+  "flange_diameter": {
+   "default": 5.8,
+   "source": "datasheet: flange diameter"
+  },
+  "flange_height": {
+   "default": 1.0,
+   "source": "ASSUMED flange thickness; +/- 0.3"
+  },
+  "height": {
+   "default": 8.6,
+   "source": "datasheet: seat plane to dome top (about); +/- 0.4"
+  },
+  "lead_pitch": {
+   "default": 2.54,
+   "source": "datasheet: lead spacing"
+  },
+  "lead_length": {
+   "default": 3.0,
+   "source": "ASSUMED lead length below the seat in the model"
+  },
+  "view_clear_height": {
+   "default": 2.0,
+   "source": "ASSUMED clear height reserved above the dome so the wall does not shadow it"
+  }
+ },
+ "datasheet_size": [
+  "flange_diameter",
+  "flange_diameter",
+  "height"
+ ],
+ "size_tolerance": 0.1,
+ "geometry": [
+  {
+   "id": "flange",
+   "primitive": "cylinder",
+   "d": "flange_diameter",
+   "h": "flange_height",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "lens",
+   "primitive": "cylinder",
+   "d": "lens_diameter",
+   "h": "height",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "view_zone",
+   "primitive": "cylinder",
+   "d": "lens_diameter",
+   "h": "view_clear_height",
+   "at": [
+    0,
+    0,
+    "height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "SEAT": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PANEL_SEAT": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "flange_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "lens_diameter",
+   "keepout_diameter": "flange_diameter"
+  },
+  "DOME_TOP": {
+   "kind": "point",
+   "at": [
+    0,
+    0,
+    "height"
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "at": [
+    [
+     "-lead_pitch / 2",
+     0,
+     0
+    ],
+    [
+     "lead_pitch / 2",
+     0,
+     0
+    ]
+   ]
+  }
+ },
+ "connectors": [],
+ "mount": {
+  "type": "panel",
+  "panel_datum": "PANEL_SEAT",
+  "hole_axis": "AXIS",
+  "notes": "the lens passes through a panel hole of lens_diameter plus rules clearance; the 5.8 mm flange stops against the panel's inner face at PANEL_SEAT (designed contact); the hole must be smaller than flange_diameter"
+ },
+ "notes": "Lead orientation: the two leads lie along X (anode/cathode not distinguished by geometry). ASSUMPTIONS and uncertainty: flange thickness 1.0 (+/-0.3); height 8.6 is 'about' (real parts 8.4 to 9.0); the lens is modelled as one 5.0 cylinder through the flange for the footprint (the dome is not rounded, so the volume is an upper bound). The PCB seat is SEAT (flange bottom), standoff of the flange above the board is zero unless the request adds a spacer. Import gate: bounding box 5.8 x 5.8 x 8.6; AXIS unit vector; flange larger than the lens.",
+ "self_checks": [
+  {
+   "name": "lens diameter",
+   "expr": "lens.size_x",
+   "value": 5.0,
+   "tol": 0.05
+  },
+  {
+   "name": "flange diameter",
+   "expr": "flange.size_x",
+   "value": 5.8,
+   "tol": 0.05
+  },
+  {
+   "name": "overall height",
+   "expr": "bbox.size_z",
+   "value": 8.6,
+   "tol": 0.05
+  },
+  {
+   "name": "lead pitch",
+   "expr": "PINS[1].x - PINS[0].x",
+   "value": 2.54,
+   "tol": 0.01
+  },
+  {
+   "name": "flange larger than the lens",
+   "expr": "flange_diameter - lens_diameter",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "axis along +Z",
+   "expr": "AXIS.dz",
+   "value": 1,
+   "tol": 1e-06
+  }
+ ]
+}

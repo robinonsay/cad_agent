@@ -1,0 +1,150 @@
+{
+ "paraphrases": [
+  {
+   "id": "G23",
+   "tier": 4,
+   "title": "RPi camera pocket mount with 1/4-20 base",
+   "request": "Holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall with the lens, four 2.2 mm holes on a 21 x 12.5 mm pattern, ribbon connector at the back. Board sits in a pocket and is retained without screws by lips overlapping its front face by 0.6 to 1.15 mm. The 8 mm lens sees out through a window free of walls: no wall within 0.5 mm of the barrel and nothing in the 62 x 49 degree field of view (sensor axis orientation unknown, so use 62 degrees on both axes). The 16 mm wide ribbon exits the back through a 17 mm wide slot, 10 mm long at most. In the base, a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick; pocket 0.1 to 0.3 mm over the nut per flat; stud hole 6.4 to 6.8 mm diameter; seat 2.0 to 3.65 mm thick) lets it thread onto a 10 mm tripod stud. One FDM piece, no supports, orientation stated by you. Max size 45 x 45 x 30 mm.",
+   "request_verbatim": "A holder for a Raspberry Pi camera v2 (25 x 24 x 9 mm, holes 21 x 12.5 mm) with the lens window clear of any wall at 8 mm diameter. The base has a 1/4-20 hex nut pocket so I can put it on a tripod. The ribbon cable exits the back through a 17 mm wide slot.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3 or the catalogue datasheets: 'held without screws' (A8); ribbon width 16 mm (A5); field of view 62.2 x 48.8 degrees (catalogue); nut size and stud length 10 mm (A6, A7); 'no wall within 0.5 mm of the lens barrel' is the reading of 'clear of any wall at 8 mm' (A3); FDM, one piece, no supports (A9); size limit 45 x 45 x 30 (A10). Audit additions from requirements.md: lip overlap band (L2.3.2), both-axes field of view (A4), slot length 10 (L2.5.3), nut pocket and seat bands (A6, A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the catalogue camera board in the holder, lens facing out the front. Declare the layout, the direction the board is installed from, and the tripod stud axis.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The 25 x 24 mm board sits in a pocket with 0.15 to 0.35 mm clearance per edge, on printed supports under its edges, clear of the ribbon connector, the lens and every other printed surface.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Screwless retention: board moves 0.8 mm sideways at most and 1.0 mm out of the pocket at most. At least two retaining lips on opposite sides over the front face, each overlapping the board by 0.6 to 1.15 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Lens window (8 mm) must be clear: no printed surface within 0.5 mm of the barrel, nothing in the lens keep-out cylinder or field of view (62 degrees on both axes, sensor orientation unknown).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The 16 mm ribbon leaves the back through a slot 17 mm wide and 10 mm long at most. A straight 20 mm ribbon path behind the connector stays at least 0.4 mm clear of the holder.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Base holds a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex pocket that prevents turning (0.1 to 0.3 mm over the nut per flat). Stud hole 6.4 to 6.8 mm, seat 2.0 to 3.65 mm thick, room for a 10 mm stud through the nut, so the holder mounts on a tripod.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Tripod stud axis perpendicular to the lens axis, centred across the board, entering a flat base face at least 20 mm across.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Board installs into the pocket in one straight move from outside; the hex nut enters its pocket in one straight move. Neither touches the holder en route (lips may flex).",
+     "method": "test"
+    },
+    {
+     "id": "L1.9",
+     "text": "One manifold body, FDM printable with no supports in the stated orientation, walls 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Max size 45 x 45 x 30 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Deliver an STL, OpenSCAD source, declared layout and the agent's own clearance report. The report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a pocket for a board, a stepped lens window, a ribbon slot, a hex nut pocket with a stud hole",
+    "parts catalogue: load part.json models (camera board, tripod stud) and place them by datums",
+    "retention without fasteners: edge supports, lips over the board's front face, travel limits derived from the board's size",
+    "envelope generation: lens keep-out, field-of-view pyramid, ribbon path, stud, nut and install sweeps",
+    "a hex pocket sized from across-flats with a per-flat clearance and a print orientation that needs no support",
+    "interference checks against external solids: clear_of, travel, aperture width, swept installation"
+   ]
+  },
+  {
+   "id": "G23",
+   "tier": 4,
+   "title": "RPi camera pocket mount with 1/4-20 base",
+   "request": "Could you design a mount for a Raspberry Pi camera v2 board? The board measures 25 x 24 mm and stands 9 mm tall counting the lens; it has four 2.2 mm mounting holes in a 21 x 12.5 mm rectangle and a ribbon connector on its rear. I'd like it to drop into a pocket and stay there with no screws, held by lips that extend 0.6 to 1.15 mm across the face of the board. The lens is 8 mm, and it should look out through an opening where no wall is closer than 0.5 mm to the lens barrel and nothing intrudes on the camera's 62 x 49 degree view. I don't know how the board is turned relative to the sensor axes, so assume 62 degrees along both. The ribbon cable is 16 mm wide and comes out the rear via a slot 17 mm wide and no longer than 10 mm. The underside has a hex recess for a 1/4-20 nut (11.1 mm across flats and 5.6 mm thick, with the recess 0.1 to 0.3 mm larger than the nut on each flat, a stud hole of 6.4 to 6.8 mm diameter and a seat 2.0 to 3.65 mm thick), so the mount can be screwed onto a 10 mm tripod stud. Make it a single FDM print needing no supports, using whichever orientation you specify, and keep it within 45 x 45 x 30 mm.",
+   "request_verbatim": "A holder for a Raspberry Pi camera v2 (25 x 24 x 9 mm, holes 21 x 12.5 mm) with the lens window clear of any wall at 8 mm diameter. The base has a 1/4-20 hex nut pocket so I can put it on a tripod. The ribbon cable exits the back through a 17 mm wide slot.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3 or the catalogue datasheets: 'held without screws' (A8); ribbon width 16 mm (A5); field of view 62.2 x 48.8 degrees (catalogue); nut size and stud length 10 mm (A6, A7); 'no wall within 0.5 mm of the lens barrel' is the reading of 'clear of any wall at 8 mm' (A3); FDM, one piece, no supports (A9); size limit 45 x 45 x 30 (A10). Audit additions from requirements.md: lip overlap band (L2.3.2), both-axes field of view (A4), slot length 10 (L2.5.3), nut pocket and seat bands (A6, A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Put the camera board from the parts catalogue into the holder with the lens facing outward at the front, and declare the layout, which direction the board goes in from, and the axis of the tripod stud.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The 25 x 24 mm board goes in a pocket leaving 0.15 to 0.35 mm of clearance at each edge. It rests on printed supports beneath its edges and keeps clear of its ribbon connector, its lens and every other printed surface.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The board stays put without screws: it can shift at most 0.8 mm sideways and 1.0 mm out of the pocket, held by no fewer than two lips on opposite sides over the front face, each reaching 0.6 to 1.15 mm over the board.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The window for the 8 mm lens must be open: no printed surface within 0.5 mm of the lens barrel, and nothing inside the lens keep-out cylinder or in its field of view, taking the 62 degree angle on both axes because the sensor orientation is unknown.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The 16 mm wide ribbon exits at the back of the holder through a slot that is 17 mm wide and no more than 10 mm long, and the straight 20 mm run of ribbon behind the connector stays at least 0.4 mm away from the holder.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "In the base, a hex recess holds a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick) so it can't turn, with 0.1 to 0.3 mm of extra room on each flat. The stud hole is 6.4 to 6.8 mm, the seat is 2.0 to 3.65 mm thick, and a 10 mm stud has room to pass through the nut, letting the holder screw onto a tripod.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "The tripod stud axis runs at right angles to the lens axis and is centred across the board, going into a flat face of the base at least 20 mm across.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "The board has to go into its pocket from outside in a single straight motion, and the hex nut has to go into its recess in a single straight motion too, neither one touching the holder as it travels (the retaining lips are allowed to flex).",
+     "method": "test"
+    },
+    {
+     "id": "L1.9",
+     "text": "The holder is a single manifold body that prints on FDM without supports in its stated orientation, and its walls are 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "The holder may be no bigger than 45 x 45 x 30 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Provide an STL, the OpenSCAD source, the declared layout and the agent's own clearance report; the report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a pocket for a board, a stepped lens window, a ribbon slot, a hex nut pocket with a stud hole",
+    "parts catalogue: load part.json models (camera board, tripod stud) and place them by datums",
+    "retention without fasteners: edge supports, lips over the board's front face, travel limits derived from the board's size",
+    "envelope generation: lens keep-out, field-of-view pyramid, ribbon path, stud, nut and install sweeps",
+    "a hex pocket sized from across-flats with a per-flat clearance and a print orientation that needs no support",
+    "interference checks against external solids: clear_of, travel, aperture width, swept installation"
+   ]
+  }
+ ]
+}

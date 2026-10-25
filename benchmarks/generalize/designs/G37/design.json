@@ -1,0 +1,80 @@
+{
+  "about": "The Motor pinion and idler gear carrier design of the generalisation set (family and capabilities in benchmarks/generalize/plan.json), in dev.json format. Tier 4 = a real product: bought-in parts placed from a parts catalogue, openings and holes, printed bodies, and fit and access requirements judged as interference and clearance checks against reference models and keep-out volumes. L1 ids match requirements.md next to this file, which holds the L2/L3 tree, the reference models, the assumptions with their uncertainty, the fixed decisions, the feasibility sketch and the traceability. Numbers that are not in the brief come from requirements.md sections 3 and 4. Never put any of these numbers in agent logic: they belong in the request text and in the parts' part.json.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G37",
+      "tier": 4,
+      "title": "Motor pinion and idler gear carrier",
+      "request": "A carrier plate for a NEMA 17 stepper motor (42.3 mm square body, 40 mm long, 31 mm bolt pattern, 22 mm pilot), held by four ISO 4762 M3 socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through the plate and the motor behind the plate. A 16 tooth, module 1.5 pinion sits on the motor shaft and drives a 32 tooth idler gear that turns on a 608 bearing; both gears are 8 mm wide. Set the idler's centre distance from the gear parameters plus 0.2 mm, and keep a 0.5 mm gap between the gears and the plate. The motor's peak torque is 0.4 N m. The gears, motor and bearing are bought parts; the carrier is one part printed in PLA on an FDM printer.",
+      "request_verbatim": "A carrier plate that mounts a NEMA 17 on its 31 mm pattern, with a 16 tooth module 1.5 pinion on the shaft driving a 32 tooth idler on a 608 bearing. Set the idler center distance from the gear parameters plus 0.2 mm, and include a 0.5 mm gap between gears and plate.",
+      "request_notes": "Added to the brief, from requirements.md sections 3 and 4: gear width 8 mm (A1); four M3 screws (F2); one printed part (F1); PLA/FDM (A14). Audit 2026-10-24: screw type and stock lengths (F7; bolt_m3_iso4762 takes length from the request), motor torque (A6) and motor-behind-plate (F2) added to the request; counterbore, shoulder height, stub margin and bed-contact numbers moved into L1.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall declare the poses of the motor, the pinion, the idler gear and the 608 bearing, with the pinion on the shaft, the idler and bearing on one axis, all axes parallel and the two gears in one plane, without interference other than the designed contacts and the gear mesh.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The motor shall seat on the plate's back face within 0.1 mm, its 22 mm pilot in a register of 22.3 to 22.7 mm, its shaft passing through with at least 3.0 mm of clearance, on four M3 holes on the 31 mm square pattern counterbored from the gear side with 2.0 mm of web and of edge material, heads recessed 0.2 to 1.0 mm, and the declared screws biting 3.0 to 4.5 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The 16 tooth module 1.5 pinion (27 mm tip diameter, 8 mm wide) shall sit on the shaft with at least 2.0 mm of shaft showing beyond it, clear of the plate and of the screw heads.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.4",
+          "text": "The idler's axis shall be at the gear parameters' centre distance plus 0.2 mm from the motor axis, that is 36.2 mm (plus or minus 0.05), which leaves 0.50 to 0.65 mm between each gear's tip and the other's root.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.5",
+          "text": "The 32 tooth idler (51 mm tip diameter, 8 mm wide) shall turn on a 608 bearing that seats on a printed stub of 7.9 mm diameter (plus or minus 0.05) against a shoulder of 9.5 to 11.5 mm diameter and 1.0 mm (plus or minus 0.1) high that bears on its inner ring only, with the stub 8.0 to 11.0 mm proud of the plate.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "Each gear shall keep a gap of 0.48 to 0.70 mm from the plate's front face, and nothing else printed shall enter either gear's rotating envelope by less than 0.45 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "The stub shall carry the tooth load: the bending stress at its root, for the tooth force of a 0.4 N m motor at the pinion's pitch circle, shall be no more than 5.0 MPa, on a plate 5.0 to 8.0 mm thick with at least 3.0 mm of plate round the stub's shoulder.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "The carrier shall print on an FDM printer without supports, lying on its back face with the stub up, with no unsupported overhang and at least half of its footprint box on the bed.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The carrier shall be one manifold body in one shell, no larger than 120 x 80 mm in plan and 30 mm high.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The design shall be delivered as a carrier STL, the OpenSCAD source, the declared poses and the agent's own report, and that report shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "gear mesh geometry: a centre distance computed from module and tooth counts plus an allowance, tip-to-root clearances derived",
+        "multi-body assembly poses: motor, two gears, bearing all placed by datums and checked for interference except designed contacts",
+        "subtraction: a register hole, counterbored plain holes; additive: a stub with an inner-ring shoulder",
+        "gap checks between rotating envelopes (blank minus hub bore) and a printed plate",
+        "a load-path calculation from the measured stub section against a stated allowable",
+        "parts catalogue: load part.json models (motor, generic gear, bearing, screw) and use their datums"
+      ]
+    }
+  ]
+}

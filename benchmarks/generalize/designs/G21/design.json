@@ -1,0 +1,83 @@
+{
+  "about": "Generalisation design G21 (mechanical_mount family), dev.json format. Tier 4: a printed servo mount with a pocket fit, a bolt pattern, an extrusion T-slot attachment, gussets and a stated torque, judged as interference and clearance checks against reference models and keep-out volumes plus a load-path calculation. L1 ids match benchmarks/generalize/designs/G21/requirements.md, which holds the L2/L3 tree, the reference models, the assumptions and the traceability. Numbers that are not in the owner's words come from requirements.md section 3 and are provisional. Never put any of these numbers in agent logic: they belong in the request text and in the parts catalogue (servo_mg996r, bolt_m4_iso4762, bolt_m5_iso7380, tnut_2020_m5, extrusion_2020).",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (connectivity, interference and clearance against reference models, load-path hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (drop the servo in, slide the nuts along the slot, drive a bolt along its axis, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G21",
+      "tier": 4,
+      "title": "MG996R servo mount with gussets",
+      "request": "A heavy-duty mount for an MG996R servo (body 40.7 x 19.7 x 42.9 mm, tabs 53.6 mm long with mounting holes 49.5 mm apart, output shaft up) on top of a 2020 aluminium extrusion at least 300 mm long. The servo drops straight down into a pocket in a printed block with 0.3 mm clearance per side, its tabs rest on the top of the block, and four M4 socket-head bolts fix it through the tab holes (two holes per tab, 49.5 mm apart along the tab and 10 mm apart across it). The block stands on a flange that is bolted into the T-slot of the extrusion by two M5 bolts and T-nuts, and two gussets stiffen the block against a servo torque reaction of 1.5 N m. Show the load path from the servo to the extrusion bolts. It is printed in PLA on an FDM printer without supports.",
+      "request_notes": "Added to the plan brief, all from requirements.md section 3: servo output axis vertical with the tabs on the block top (FD1); four tab holes, two per tab (A2); M5 bolts and T-nuts into the top slot (FD2, A4); PLA and FDM (A9). Audit: the cross-tab hole spacing (A2) is now in the request and in part.json.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall place the servo, the extrusion, two T-nuts and the bolts from the parts catalogue, with the servo's output shaft vertical, and shall declare that layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The servo shall drop straight down into a pocket in the block with 0.3 mm clearance per side around its body, clear of the pocket floor by 0.3 to 2.5 mm, with its tabs resting on the top of the block.",
+          "method": "test"
+        },
+        {
+          "id": "L1.3",
+          "text": "The servo shall be fixed to the block by four M4 bolts through its four tab holes into pilot holes in the block, and each bolt shall be reachable with a screwdriver.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.4",
+          "text": "The mount shall leave the servo's cable exit, output spline and horn sweep free of printed material.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The block shall stand on a flange that sits flat on the extrusion and is held by two M5 bolts through clearance holes into T-nuts in the extrusion's top slot on its centreline, 60 to 110 mm apart along the slot with the servo's output spline between them in X, with each bolt long enough to engage its nut and short enough not to touch the slot floor, with at least 3 mm of flange round each bolt head.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.6",
+          "text": "Two gussets shall join the block to the flange, one on each side of the block, 3 to 8 mm thick, at least 10 mm long along the flange and 15 mm high up the block, and together giving the block-to-flange section at least 1.25 times the bending stiffness (second moment of area about the axis along the extrusion) of the block footprint alone.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "The mount shall resist a servo torque reaction of 1.5 N m: the load path from the servo through the M4 bolts, the block, the gussets and the flange to the two M5 extrusion bolts shall be stated and shall stay within the stress, bearing and bolt limits. Use these limits and this model: PLA thread shear 4 MPa on the pilot cylinder (tab-bolt thread strength at least 3 times the bolt shear, bolts sharing the torque in proportion to their distance from the centroid of the four holes), 2 MPa shear and 3 MPa bending in the block-to-flange junction, 5 MPa bearing under an M5 head, 500 N tension per T-nut; the horn side force is the torque divided by the 25 mm horn reach, acting across the extrusion at the horn plate mid-height and tipping the mount about the extrusion's edge (10 mm from the bolt line), carried by the two M5 bolts in proportion to their X distance from the spline.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "With the M5 bolts loosened, the T-nuts and the mount shall slide along the slot, and every M5 bolt shall be reachable with a screwdriver.",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "The mount shall be one manifold body that prints on an FDM printer without supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The mount shall be no larger than 130 x 70 x 45 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.11",
+          "text": "The design shall be delivered as an STL (assembly pose), the OpenSCAD source, the declared layout, the load-path statement and the agent's own clearance report, and the report and statement shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "catalogue placement of a servo, an extrusion with a T-slot cavity, T-nuts and bolts by datums",
+        "subtraction: a pocket, a cable channel, blind pilots and through holes",
+        "tolerance stack: bolt length against flange thickness, lip thickness, nut thickness and slot depth",
+        "load path: statics from the measured mesh with stated allowable stresses",
+        "interference checks against keep-out volumes (horn sweep, cable exit), driver columns and a drop-in sweep"
+      ]
+    }
+  ]
+}

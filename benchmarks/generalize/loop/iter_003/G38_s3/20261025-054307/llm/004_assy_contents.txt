@@ -1,0 +1,50 @@
+MODEL: ornith-1.5:9b T=0.3 seed=3000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A tilting holder for a 70 x 50 mm perfboard so I can solder it upside down, component side facing down. The board has a 3 mm hole whose centre is 2.5 mm in from each of the two edges at its corner, and four corner pins go through those holes. Nothing may come within 10 mm below the board, where the component bodies hang, and the solder side must be open from above. The board sits in a cradle that tilts on two M3 bolts through the uprights of a heavy base, at least 20 degrees each way. The base is heavy enough that the holder does not tip at a 20 degree tilt, and it prints flat on an FDM printer without supports.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  }
+}

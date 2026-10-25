@@ -1,0 +1,74 @@
+{
+  "about": "Benchmark entry G40 (train split) in dev.json format. Tier 4: a printed fixture whose geometry is judged against a catalogue part (Pico 2 hole pattern and outline) and a reference panel edge, with sub-0.1 mm position checks. L1 ids match benchmarks/generalize/designs/G40/requirements.md, which holds the L2/L3 tree, reference models, assumptions and traceability. Never put any of these numbers in agent logic: they belong in the request text and in the part.json catalogue.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G40",
+      "tier": 4,
+      "title": "Pico mounting-hole drill guide",
+      "request": "I need a flat guide for drilling the Raspberry Pi Pico 2 mounting-hole pattern into a panel. The Pico 2's four mounting holes are 2.1 mm and sit on a 47.0 x 11.4 mm pattern (47.0 mm apart along the long side, 11.4 mm across). The guide has a 2.3 mm guide hole for each of the four, so a 2.1 mm drill passes through with a little play. It must locate on a straight panel edge: I hold the guide against the edge of the panel, which is a flat sheet 3 mm thick, and drill through it. The nearest row of holes must be 10 mm from that edge; I set the position along the edge by eye, so only the distance from the edge and the rotation matter. The top face has a recess in the shape of the Pico's outline so I can lay a Pico in it and check the position before I drill. The hole centres must hit the pattern to within 0.1 mm. It is printed on an FDM printer in PLA.",
+      "request_verbatim": "A flat guide for drilling the Pico 2 mounting-hole pattern into a panel: two or four 2.1 mm holes 47.0 x 11.4 mm apart with guide hole 2.3 mm. The guide locates on a panel edge and has a recess for the Pico outline so I can check position. Hole centres must hit the pattern to within 0.1 mm.",
+      "request_notes": "Added to the brief (all derived, see requirements.md sections 3.1 and 3.2): four holes, not two (FD1); 'locates on a panel edge' = a fence that hangs over the edge and butts its face, one straight edge, the Pico's long side parallel to it (FD2, FD3); panel is a flat sheet 3.0 mm thick (A2); the Pico is a bare board without headers when it lies in the recess (A3); FDM, PLA (A9). Audit: the panel thickness (3 mm), the 10 mm hole-row distance and the free position along the edge are now in the request; the judge's other bands are in the L1 text.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The guide shall have four guide holes whose axes lie on the Pico 2's 47.0 x 11.4 mm mounting-hole rectangle, each within 0.1 mm of its ideal position, with the pattern rows parallel to the locating edge (within 0.1 degrees), and the layout shall be declared; the pattern's position along the edge is free, so the 0.1 mm is measured after the best shift along the edge.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.2",
+          "text": "Each guide hole shall be 2.3 mm in diameter, through the whole guide plate, and long enough to hold a 2.1 mm drill square to the panel (2.0 to 4.0 mm of guide length from the recess floor to the underside), round to within 0.1 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The guide shall have a fence whose flat inner face butts the straight edge of a 3.0 mm panel while the plate rests on the panel's top face, with the nearest hole row 10.0 mm (within 0.1 mm) from the fence face; the fence is at least 2.0 mm thick, at least 40 mm long and reaches 3.0 to 6.0 mm below the plate.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The top face shall have a recess that takes the Pico 2's outline with 0.2 mm clearance per side (corners rounded no more than 0.6 mm) and 0.8 mm depth, centred on the hole pattern, so a Pico laid in it has its holes coaxial with the guide holes.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The plate shall be 4.0 mm thick with a flat underside, and every hole and the recess shall have at least 3.0 mm of material to the plate's free edges.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.6",
+          "text": "The guide shall be one manifold body that prints in PLA on an FDM printer without supports in its declared orientation.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "The guide shall be no larger than 70 x 40 x 10 mm (X x Y x Z, closed assembly pose with the fence) and shall have no feature rising above the plate top face.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.8",
+          "text": "A 2.1 mm drill shall reach each guide hole from above and the chuck shall have room above the plate top.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The design shall be delivered as an STL, the OpenSCAD source, the declared layout (seating pose and print orientation) and the agent's own measurement report, and the report shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "datum placement: the guide holes are derived from the HOLE datums of the catalogue Pico, not typed in",
+        "subtraction: four through holes and a shallow recess in a plate",
+        "a fence (edge locator) as a second face at a fixed distance from the hole rows",
+        "pocket fit: the recess outline derived from the Pico's PCB size plus a clearance",
+        "checks against external solids: the Pico model laid in the recess, the panel, the drill sweep"
+      ]
+    }
+  ]
+}

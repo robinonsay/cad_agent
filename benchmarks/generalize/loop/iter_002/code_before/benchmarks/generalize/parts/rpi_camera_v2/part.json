@@ -1,0 +1,328 @@
+{
+ "id": "rpi_camera_v2",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "raspberry pi camera module 2",
+  "raspberry pi camera v2",
+  "pi camera v2",
+  "rpi camera v2",
+  "pi camera module",
+  "pi camera",
+  "imx219 camera",
+  "camera module v2"
+ ],
+ "kind": "module",
+ "source": "Raspberry Pi Camera Module v2 mechanical drawing (Raspberry Pi, 'Camera Module 2 mechanical drawing'): PCB 25 x 24 mm, four 2.2 mm holes on a 21 x 12.5 mm pattern, lens 8 mm diameter, overall height about 9 mm (to the lens top, PCB included), 15-way FFC connector on the rear. Sensor field of view (Camera Module 2 datasheet): 62.2 deg horizontal, 48.8 deg vertical. ASSUMED / uncertain: PCB thickness 1.0 mm; holes 2.0 mm from the left/right edges and 2.0 mm from the FFC edge (rows at y = 2.0 and 14.5), lens centred across at x = 12.5 and level with the upper hole row (y = 14.5, +/-0.5); FFC connector 21.0 x 5.5 x 2.0 mm on the rear at the y = 0 edge (+/-0.5).",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, lens looks toward +Z, FFC connector on the rear (-Z) at the -Y edge",
+ "params": {
+  "pcb_length": {
+   "default": 25.0,
+   "source": "datasheet: board width"
+  },
+  "pcb_width": {
+   "default": 24.0,
+   "source": "datasheet: board height"
+  },
+  "pcb_thickness": {
+   "default": 1.0,
+   "source": "assumed PCB thickness"
+  },
+  "hole_diameter": {
+   "default": 2.2,
+   "source": "datasheet: mounting holes"
+  },
+  "hole_from_edge_x": {
+   "default": 2.0,
+   "source": "assumed: holes 2.0 mm from the left/right edges (21 mm pattern on 25 mm)"
+  },
+  "hole_from_edge_y": {
+   "default": 2.0,
+   "source": "assumed: lower hole row 2.0 mm from the FFC edge"
+  },
+  "hole_pitch_y": {
+   "default": 12.5,
+   "source": "datasheet: hole pattern 21 x 12.5"
+  },
+  "hole_keepout": {
+   "default": 5.0,
+   "source": "assumed: M2 head plus margin"
+  },
+  "lens_diameter": {
+   "default": 8.0,
+   "source": "datasheet: lens barrel diameter"
+  },
+  "total_height": {
+   "default": 9.0,
+   "source": "datasheet: overall height including the PCB"
+  },
+  "lens_centre_x": {
+   "default": 12.5,
+   "source": "datasheet: lens centred across the board"
+  },
+  "lens_centre_y": {
+   "default": 14.5,
+   "source": "assumed: lens level with the upper hole row"
+  },
+  "ffc_width": {
+   "default": 21.0,
+   "source": "assumed: 15-way 1.0 mm FFC connector width"
+  },
+  "ffc_depth": {
+   "default": 5.5,
+   "source": "assumed: FFC connector depth"
+  },
+  "ffc_height": {
+   "default": 2.0,
+   "source": "assumed: FFC connector height on the rear"
+  },
+  "ffc_cable_clear": {
+   "default": 8.0,
+   "source": "assumed: space behind the board for the ribbon cable bend"
+  },
+  "fov_clear_margin": {
+   "default": 1.0,
+   "source": "assumed: clearance around the lens barrel for the viewing aperture at the lens plane"
+  },
+  "fov_clear_depth": {
+   "default": 10.0,
+   "source": "assumed: depth of the unobstructed cone in front of the lens"
+  },
+  "fov_h_deg": {
+   "default": 62.2,
+   "source": "datasheet: horizontal field of view"
+  },
+  "fov_v_deg": {
+   "default": 48.8,
+   "source": "datasheet: vertical field of view"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "total_height + ffc_height"
+ ],
+ "size_tolerance": 0.3,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "lens",
+   "primitive": "cylinder",
+   "d": "lens_diameter",
+   "h": "total_height - pcb_thickness",
+   "at": [
+    "lens_centre_x",
+    "lens_centre_y",
+    "pcb_thickness"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "ffc",
+   "primitive": "box",
+   "size": [
+    "ffc_width",
+    "ffc_depth",
+    "ffc_height"
+   ],
+   "at": [
+    "(pcb_length - ffc_width) / 2",
+    0,
+    "-ffc_height"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "fov_aperture",
+   "primitive": "cylinder",
+   "d": "lens_diameter + 2 * fov_clear_margin",
+   "h": "fov_clear_depth",
+   "at": [
+    "lens_centre_x",
+    "lens_centre_y",
+    "total_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "ffc_cable",
+   "primitive": "box",
+   "size": [
+    "ffc_width",
+    "ffc_depth + 3.0",
+    "ffc_cable_clear"
+   ],
+   "at": [
+    "(pcb_length - ffc_width) / 2",
+    -3.0,
+    "-ffc_height - ffc_cable_clear"
+   ]
+  }
+ ],
+ "interfaces": [{"id": "mount", "kind": "mount_holes", "holes": "HOLE", "seat": "PCB_BOTTOM", "top": "PCB_TOP", "source": "catalogue data (generalize iteration 001, delta D1): the mounting-hole axis list, the plane the part rests on when seated over its holes, and the plane its component keep-out starts from"}],
+ "datums": {
+  "LENS_AXIS": {
+   "kind": "axis",
+   "at": [
+    "lens_centre_x",
+    "lens_centre_y",
+    "total_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "lens_diameter",
+   "keepout_diameter": "lens_diameter + 2 * fov_clear_margin"
+  },
+  "LENS_POINT": {
+   "kind": "point",
+   "at": [
+    "lens_centre_x",
+    "lens_centre_y",
+    "total_height"
+   ]
+  },
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "LENS_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "total_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "HOLE": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "hole_diameter",
+   "keepout_diameter": "hole_keepout",
+   "at": [
+    [
+     "hole_from_edge_x",
+     "hole_from_edge_y",
+     0
+    ],
+    [
+     "pcb_length - hole_from_edge_x",
+     "hole_from_edge_y",
+     0
+    ],
+    [
+     "hole_from_edge_x",
+     "hole_from_edge_y + hole_pitch_y",
+     0
+    ],
+    [
+     "pcb_length - hole_from_edge_x",
+     "hole_from_edge_y + hole_pitch_y",
+     0
+    ]
+   ]
+  }
+ },
+ "connectors": [],
+ "notes": "The lens looks along +Z from LENS_POINT. The viewing aperture must clear the field of view, not just the lens: the fov_aperture keepout is a cylinder of lens_diameter + 2 mm over fov_clear_depth (10 mm) in front of the lens; a front wall of thickness t whose hole is at the lens plane needs a hole of at least lens_diameter + 2 * (distance from the lens top) * tan(31.1 deg) horizontally (62.2 deg) and tan(24.4 deg) vertically (48.8 deg) to avoid vignetting; the wall hole may be the fov_aperture diameter only when the wall is flush with the lens top (distance about 0). The FFC ribbon leaves the rear at the y = 0 edge and needs ffc_cable_clear (8 mm) behind the board (ffc_cable keepout). The hole pattern is two pairs 21 mm apart across the width, so the board is fixed by 4 screws M2 (2.2 mm holes) or posts with a 2.0 mm pin. Import gate: R1 bbox 25 x 24 x 11 (the 9 mm overall height of the datasheet plus the 2.0 mm assumed FFC connector below the PCB; datasheet_size = total_height + ffc_height); R2 hole pitch 21 x 12.5, diameter 2.2; R9 skipped.",
+ "self_checks": [
+  {
+   "name": "R2 hole diameter",
+   "expr": "HOLE.diameter",
+   "value": 2.2,
+   "tol": 0.1
+  },
+  {
+   "name": "R2 hole pitch X",
+   "expr": "HOLE[1].x - HOLE[0].x",
+   "value": 21.0,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 hole pitch Y",
+   "expr": "HOLE[2].y - HOLE[0].y",
+   "value": 12.5,
+   "tol": 0.05
+  },
+  {
+   "name": "lens diameter",
+   "expr": "lens.size_x",
+   "value": 8.0,
+   "tol": 0.1
+  },
+  {
+   "name": "lens axis along +Z",
+   "expr": "LENS_AXIS.dz",
+   "value": 1,
+   "tol": 1e-06
+  },
+  {
+   "name": "overall height above the PCB bottom",
+   "expr": "lens.max_z - pcb.min_z",
+   "value": 9.0,
+   "tol": 0.2
+  },
+  {
+   "name": "lens inside the board outline",
+   "expr": "pcb.max_y - lens.max_y",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  }
+ ]
+}

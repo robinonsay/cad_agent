@@ -1,0 +1,51 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a small sensor node box for a Raspberry Pi Pico 2 powered by one 18650 Li-ion cell (18.6 mm diameter, 65.2 mm long). The cell lies in a printed cradle along the box, and a sliding door on the bottom of the box holds it in, so I can swap the cell without opening the electronics. The Pico sits above the cell on four M2 screws. A slide switch (SK12D type) is the power switch, with its handle poking through one side wall, and the Pico's micro-USB port must be reachable through one end wall with the lid on. The box is weather-resistant as far as a printed box goes: it is closed everywhere except the USB opening, the switch slot and the door seam. The door slides with about 0.3 mm of clearance per side. The box is a base, a lid and the door, printed on an FDM printer without supports.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 1
+  },
+  "rpi_zero2w": {
+    "hdmi_exposed": "no",
+    "quantity": 0,
+    "sd_exposed": "no",
+    "usb_data_exposed": "no",
+    "usb_power_exposed": "no"
+  }
+}

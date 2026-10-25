@@ -1,0 +1,486 @@
+{
+ "id": "esp32_devkitc_v4",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "esp32 devkitc",
+  "esp32-devkitc",
+  "esp32 devkitc v4",
+  "esp32-devkitc-v4",
+  "esp32 dev board",
+  "esp32 devkit",
+  "esp32 board",
+  "esp32"
+ ],
+ "kind": "module",
+ "source": "Espressif ESP32-DevKitC V4 getting-started guide and board dimensions: PCB 54.4 x 27.9 mm, NO mounting holes, micro-USB B receptacle on one short end, 2 x 19 pin headers with the rows 25.4 mm apart (1.0 in, 2.54 mm pitch), ESP32-WROOM-32 module (18.0 x 25.5 x 3.1 mm per its datasheet) at the other end with the PCB antenna at the board edge. ASSUMED / uncertain: PCB thickness 1.6 mm; header pins point UP (male pins soldered, plastic 2.5 mm on top, 8.5 mm pin height above the PCB, 3 mm tails below); micro-USB 7.5 x 5.9 x 2.9 mm with 1.0 mm overhang (+/-0.5) centred across the width; first-pin offset from the USB end (headers assumed centred along the length); tallest other top part 3.6 mm (EN/BOOT tact switches); antenna keep-out: module antenna zone 6.0 mm long, plus 8.0 mm of free space past the board end and 5.0 mm free above the module (brief G03 asks for 8 mm; Espressif's hardware guidelines recommend at least 15 mm of free board, no metal, and the zone beyond the module edge clear of walls).",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, components on +Z, micro-USB end at -X, antenna end at +X",
+ "params": {
+  "pcb_length": {
+   "default": 54.4,
+   "source": "Espressif: board outline"
+  },
+  "pcb_width": {
+   "default": 27.9,
+   "source": "Espressif: board outline"
+  },
+  "pcb_thickness": {
+   "default": 1.6,
+   "source": "assumed standard 1.6 mm FR4"
+  },
+  "usb_width": {
+   "default": 7.5,
+   "source": "micro-USB B receptacle body width (typical)"
+  },
+  "usb_depth": {
+   "default": 5.9,
+   "source": "micro-USB B receptacle body depth (typical)"
+  },
+  "usb_height": {
+   "default": 2.9,
+   "source": "micro-USB B receptacle body height (typical)"
+  },
+  "usb_overhang": {
+   "default": 1.0,
+   "source": "assumed receptacle overhang beyond the PCB edge"
+  },
+  "pin_pitch": {
+   "default": 2.54,
+   "source": "datasheet: header pitch"
+  },
+  "pin_row_spacing": {
+   "default": 25.4,
+   "source": "Espressif: rows 1.0 in apart"
+  },
+  "pin_count": {
+   "default": 19,
+   "source": "Espressif: 19 pins per row"
+  },
+  "header_body_height": {
+   "default": 2.5,
+   "source": "standard 2.54 mm header plastic height (top side)"
+  },
+  "pin_height_above": {
+   "default": 8.5,
+   "source": "assumed: male pin tip height above the PCB"
+  },
+  "pin_tail_length": {
+   "default": 3.0,
+   "source": "assumed: pin tails below the PCB"
+  },
+  "module_length": {
+   "default": 25.5,
+   "source": "WROOM-32 datasheet: module length"
+  },
+  "module_width": {
+   "default": 18.0,
+   "source": "WROOM-32 datasheet: module width"
+  },
+  "module_height": {
+   "default": 3.1,
+   "source": "WROOM-32 datasheet: module height"
+  },
+  "antenna_zone_length": {
+   "default": 6.0,
+   "source": "WROOM-32 datasheet: antenna area at the module end, about 6 mm"
+  },
+  "antenna_clear_beyond": {
+   "default": 8.0,
+   "source": "brief G03: free space past the antenna end"
+  },
+  "antenna_clear_above": {
+   "default": 5.0,
+   "source": "assumed: free height above the module top over the antenna zone"
+  },
+  "top_parts_height": {
+   "default": 3.6,
+   "source": "assumed tallest top part other than the module and header pins (tact switches)"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "pcb_thickness"
+ ],
+ "size_of": "pcb",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "usb",
+   "primitive": "box",
+   "size": [
+    "usb_depth",
+    "usb_width",
+    "usb_height"
+   ],
+   "at": [
+    "-usb_overhang",
+    "(pcb_width - usb_width) / 2",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "module",
+   "primitive": "box",
+   "size": [
+    "module_length",
+    "module_width",
+    "module_height"
+   ],
+   "at": [
+    "pcb_length - module_length",
+    "(pcb_width - module_width) / 2",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "header_a",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "header_body_height"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width - pin_row_spacing) / 2 - 1.27",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "header_b",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "header_body_height"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width + pin_row_spacing) / 2 - 1.27",
+    "pcb_thickness"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "component_side",
+   "primitive": "box",
+   "size": [
+    "pcb_length - module_length",
+    "pcb_width",
+    "top_parts_height"
+   ],
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "antenna_zone",
+   "primitive": "box",
+   "size": [
+    "antenna_zone_length + antenna_clear_beyond",
+    "pcb_width",
+    "module_height + antenna_clear_above"
+   ],
+   "at": [
+    "pcb_length - antenna_zone_length",
+    0,
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "header_pins_a",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "pin_height_above"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width - pin_row_spacing) / 2 - 1.27",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "header_pins_b",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "pin_height_above"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width + pin_row_spacing) / 2 - 1.27",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "pin_tails_a",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "pin_tail_length"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width - pin_row_spacing) / 2 - 1.27",
+    "-pin_tail_length"
+   ]
+  },
+  {
+   "id": "pin_tails_b",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "pin_tail_length"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width + pin_row_spacing) / 2 - 1.27",
+    "-pin_tail_length"
+   ]
+  }
+ ],
+ "datums": {
+  "USB_MOUTH": {
+   "kind": "point",
+   "at": [
+    "-usb_overhang",
+    "pcb_width / 2",
+    "pcb_thickness + usb_height / 2"
+   ]
+  },
+  "USB_AXIS": {
+   "kind": "axis",
+   "at": [
+    "-usb_overhang",
+    "pcb_width / 2",
+    "pcb_thickness + usb_height / 2"
+   ],
+   "dir": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "EDGE_LONG_A": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    -1,
+    0
+   ]
+  },
+  "EDGE_LONG_B": {
+   "kind": "plane",
+   "at": [
+    0,
+    "pcb_width",
+    0
+   ],
+   "normal": [
+    0,
+    1,
+    0
+   ]
+  },
+  "EDGE_USB": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "EDGE_ANTENNA": {
+   "kind": "plane",
+   "at": [
+    "pcb_length",
+    0,
+    0
+   ],
+   "normal": [
+    1,
+    0,
+    0
+   ]
+  },
+  "ANTENNA_END": {
+   "kind": "point",
+   "at": [
+    "pcb_length",
+    "pcb_width / 2",
+    "pcb_thickness + module_height"
+   ]
+  },
+  "PINS_A": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "count": "pin_count",
+   "start": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2",
+    "(pcb_width - pin_row_spacing) / 2",
+    "pcb_thickness"
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  },
+  "PINS_B": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "count": "pin_count",
+   "start": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2",
+    "(pcb_width + pin_row_spacing) / 2",
+    "pcb_thickness"
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [
+  {
+   "name": "usb",
+   "mouth": "USB_MOUTH",
+   "axis": "USB_AXIS",
+   "mates": "plug_microusb_b",
+   "overhang_datum": "USB_MOUTH"
+  }
+ ],
+ "notes": "The board has no mounting holes and no HOLE datum: the design must hold it by edge ribs, clips or a pocket. Hold it at the long edges (EDGE_LONG_A / EDGE_LONG_B planes) on strips that lie OUTSIDE the header footprint: the rows are 25.4 mm apart on a 27.9 mm board, so the clear land outside each row is only 0.25 mm wide before the pin tails (rows centre 1.25 mm from the edge, header body 2.54 wide), so a rib must grip the board edge itself from above and below, or rest on the PCB underside in the end regions ahead of / behind the pin tails (the headers span x = 4.3 to 50.1). The USB end (x < 4.3) and the module end are the clear lands for support. antenna_zone keepout: no wall or lid material above the module's antenna end and for antenna_clear_beyond past the board end (a no-material region; a lid that spans over the module must stop before x = pcb_length - antenna_zone_length or be open there). Header pins point up (tips 8.5 mm over the PCB, the dupont-wire envelope) and the pins' tails 3 mm under, keepout to avoid the lid/ribs; if the owner has the pins soldered the other way round, swap pin_height_above and pin_tail_length. Import gate: R1 PCB 54.4 x 27.9; R3 USB along -X; R4 overhang assumed (tol 0.5); R9 skipped.",
+ "self_checks": [
+  {
+   "name": "R2 row spacing",
+   "expr": "PINS_B[0].y - PINS_A[0].y",
+   "value": 25.4,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 pitch",
+   "expr": "PINS_A[1].x - PINS_A[0].x",
+   "value": 2.54,
+   "tol": 0.02
+  },
+  {
+   "name": "R2 pins per row",
+   "expr": "PINS_A.count",
+   "value": 19,
+   "tol": 0
+  },
+  {
+   "name": "R3 USB axis along -X",
+   "expr": "USB_AXIS.dx",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 receptacle at the -X end",
+   "expr": "usb.min_x",
+   "value": 0,
+   "tol": 0,
+   "op": "le"
+  },
+  {
+   "name": "R3 components on +Z",
+   "expr": "usb.min_z - PCB_TOP.z",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "R4 USB overhang",
+   "expr": "-usb.min_x",
+   "value": 1.0,
+   "tol": 0.5
+  },
+  {
+   "name": "module at the antenna end",
+   "expr": "module.max_x - pcb.max_x",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "headers inside the board",
+   "expr": "pcb.max_x - PINS_A[18].x",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "antenna clearance (brief: 8 mm)",
+   "expr": "antenna_clear_beyond",
+   "value": 8.0,
+   "tol": 0.01
+  }
+ ]
+}

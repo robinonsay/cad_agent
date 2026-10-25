@@ -1,0 +1,74 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 54.4 (request): "...a wall and holds an ESP32 DevKitC V4 dev board (it measures 54.4 x 27.9 mm and has no screw holes; the micro-USB connect..."
+n2 = 27.9 mm (request): "...and holds an ESP32 DevKitC V4 dev board (it measures 54.4 x 27.9 mm and has no screw holes; the micro-USB connector is o..."
+n3 = 4.2 mm (request): "...n the opposite one). The housing gets two mounting ears for 4.2 mm countersunk wood screws, with the two screw slots 100..."
+n4 = 100 mm (request): "...or 4.2 mm countersunk wood screws, with the two screw slots 100 mm from each other, and each slot has to stay at least 3..."
+n5 = 3 mm (request): "...100 mm from each other, and each slot has to stay at least 3 mm clear of the ear's edge and of the box itself. Up top, t..."
+n6 = 5 mm (request): "...lear of the ear's edge and of the box itself. Up top, three 5 mm LEDs shine out through the lid, sitting flush with its ..."
+n8 = 5 mm (L1.1): "...at −X and the antenna points toward +X; it also puts three 5 mm LEDs in the lid. Nothing may collide, and the layout has..."
+n9 = 10 (L1.2): "..., away from the header footprint, every pad no smaller than 10 mm². The walls plus two stops at the antenna end hold it ..."
+n10 = 0.2 (L1.2): "...stops at the antenna end hold it in place, the stops being 0.2 to 1.0 mm away from the board and under its top face. Non..."
+n11 = 1.0 mm (L1.2): "...at the antenna end hold it in place, the stops being 0.2 to 1.0 mm away from the board and under its top face. None of t..."
+n12 = 6.0 mm (L1.3): "...y of walls and lid. Per the part's data it covers the final 6.0 mm of the board and the 8.0 mm past its end, spanning th..."
+n13 = 8.0 mm (L1.3): "...part's data it covers the final 6.0 mm of the board and the 8.0 mm past its end, spanning the board's full width and rea..."
+n14 = 5.0 mm (L1.3): "...its end, spanning the board's full width and reaching up to 5.0 mm over the top of the module; the cavity must run at le..."
+n15 = 8.0 mm (L1.3): "...mm over the top of the module; the cavity must run at least 8.0 mm beyond the antenna end...."
+n16 = 0.3 mm (L1.4): "...ole in the end wall at −X. The hole gives the plug at least 0.3 mm of room all the way round, but is no more than 1.5 mm..."
+n17 = 1.5 mm (L1.4): "...least 0.3 mm of room all the way round, but is no more than 1.5 mm larger than the plug on any side, and at least 1.5 mm..."
+n18 = 1.5 mm (L1.4): "...than 1.5 mm larger than the plug on any side, and at least 1.5 mm of wall remains around it...."
+n19 = 5 mm (L1.5): "...In the lid, each of three 5 mm LEDs goes into a collar so its dome is level with the outer..."
+n20 = 5.2 (L1.5): "...h keeps the LED from dropping out. The collar holes measure 5.2 to 5.4 mm across, the flange overlaps by at least 0.2 mm..."
+n21 = 5.4 mm (L1.5): "...the LED from dropping out. The collar holes measure 5.2 to 5.4 mm across, the flange overlaps by at least 0.2 mm each si..."
+n22 = 0.2 mm (L1.5): "...asure 5.2 to 5.4 mm across, the flange overlaps by at least 0.2 mm each side, the dome is within 0.3 mm of flush, and th..."
+n23 = 0.3 mm (L1.5): "...e overlaps by at least 0.2 mm each side, the dome is within 0.3 mm of flush, and the snap-lip opening is 5.3 to 5.6 mm w..."
+n24 = 5.3 (L1.5): "...dome is within 0.3 mm of flush, and the snap-lip opening is 5.3 to 5.6 mm with at least two slits. Arrange the LEDs in a..."
+n25 = 5.6 mm (L1.5): "...within 0.3 mm of flush, and the snap-lip opening is 5.3 to 5.6 mm with at least two slits. Arrange the LEDs in a line wi..."
+n26 = 10.0 mm (L1.5): "...t least two slits. Arrange the LEDs in a line with at least 10.0 mm between them, and keep every LED axis at least 4.5 m..."
+n27 = 4.5 mm (L1.5): "...east 10.0 mm between them, and keep every LED axis at least 4.5 mm (in plan) from the board's header-pin and antenna kee..."
+n28 = 4.2 mm (L1.6): "...ir of ears, and each carries a countersunk slot sized for a 4.2 mm wood screw. The centres of the two slots are 100.0 mm..."
+n29 = 100.0 mm (L1.6): "...d for a 4.2 mm wood screw. The centres of the two slots are 100.0 mm from each other, and the countersink outline of eac..."
+n30 = 3.0 mm (L1.6): "...er, and the countersink outline of each slot stays at least 3.0 mm away from its ear's edge and from the box. Every slot..."
+n31 = 4.5 mm (L1.6): "...om its ear's edge and from the box. Every slot is a stadium 4.5 mm wide with 4.0 mm between the centres of its ends (so ..."
+n32 = 4.0 mm (L1.6): "...and from the box. Every slot is a stadium 4.5 mm wide with 4.0 mm between the centres of its ends (so you can adjust), b..."
+n33 = 90 (L1.6): "...ween the centres of its ends (so you can adjust), beneath a 90 degree countersink that is 8.4 mm across. Make the ears 3..."
+n34 = 8.4 mm (L1.6): "...so you can adjust), beneath a 90 degree countersink that is 8.4 mm across. Make the ears 3.5 to 5.0 mm thick, with the s..."
+n35 = 3.5 (L1.6): "...90 degree countersink that is 8.4 mm across. Make the ears 3.5 to 5.0 mm thick, with the slot centres symmetric about th..."
+n36 = 5.0 mm (L1.6): "...ree countersink that is 8.4 mm across. Make the ears 3.5 to 5.0 mm thick, with the slot centres symmetric about the cent..."
+n37 = 0.5 mm (L1.6): "...lot centres symmetric about the centre of the box to within 0.5 mm...."
+n38 = 0.3 mm (L1.7): "...e a flat face and the ears must be coplanar with it, within 0.3 mm...."
+n39 = 3.5 (L1.8): "...ws that go into tabs outside the cavity. The screw axes lie 3.5 to 5.0 mm outside the wall's outer face, the pilot holes..."
+n40 = 5.0 mm (L1.8): "...go into tabs outside the cavity. The screw axes lie 3.5 to 5.0 mm outside the wall's outer face, the pilot holes are 2.4..."
+n41 = 2.4 (L1.8): "...o 5.0 mm outside the wall's outer face, the pilot holes are 2.4 to 2.6 mm across and at least 6.0 mm deep, and the lid's..."
+n42 = 2.6 mm (L1.8): "...m outside the wall's outer face, the pilot holes are 2.4 to 2.6 mm across and at least 6.0 mm deep, and the lid's holes ..."
+n43 = 6.0 mm (L1.8): "...face, the pilot holes are 2.4 to 2.6 mm across and at least 6.0 mm deep, and the lid's holes are 3.4 mm. The lip should ..."
+n44 = 3.4 mm (L1.8): "...mm across and at least 6.0 mm deep, and the lid's holes are 3.4 mm. The lip should be at least 2.0 mm deep, with 0.15 to..."
+n45 = 2.0 mm (L1.8): "...and the lid's holes are 3.4 mm. The lip should be at least 2.0 mm deep, with 0.15 to 0.35 mm of clearance on each side...."
+n46 = 0.15 (L1.8): "...es are 3.4 mm. The lip should be at least 2.0 mm deep, with 0.15 to 0.35 mm of clearance on each side...."
+n47 = 0.35 mm (L1.8): "....4 mm. The lip should be at least 2.0 mm deep, with 0.15 to 0.35 mm of clearance on each side...."
+n48 = 2.0 (L1.9): "...the ears. Wall, floor and lid thickness should fall between 2.0 and 4.0 mm, and every opening needs at least 1.5 mm of s..."
+n49 = 4.0 mm (L1.9): ".... Wall, floor and lid thickness should fall between 2.0 and 4.0 mm, and every opening needs at least 1.5 mm of surroundi..."
+n50 = 1.5 mm (L1.9): "...ll between 2.0 and 4.0 mm, and every opening needs at least 1.5 mm of surrounding material...."
+n51 = 125 (L1.11): "...erall, counting ears and tabs, the shut box must fit within 125 x 50 x 26 mm, with the long direction running along the ..."
+n52 = 50 (L1.11): "...counting ears and tabs, the shut box must fit within 125 x 50 x 26 mm, with the long direction running along the 54.4 mm..."
+n53 = 26 mm (L1.11): "...ting ears and tabs, the shut box must fit within 125 x 50 x 26 mm, with the long direction running along the 54.4 mm sid..."
+n54 = 54.4 mm (L1.11): "...125 x 50 x 26 mm, with the long direction running along the 54.4 mm side of the board...."
+
+n7 (8 mm) states headroom, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+
+
+=== RESPONSE ===
+{
+  "keepout_above": "none"
+}

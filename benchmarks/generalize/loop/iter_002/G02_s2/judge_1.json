@@ -1,0 +1,73 @@
+{
+ "id": "G02",
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.74,
+ "summary": "Gates G4, G5 and G6 fail. Board standoff pilots are 1.70 mm (M2) not 2.4-2.6; the lid has no vent slots at all; lid-boss pilots are 6.1 deep (needs 7.6) and the lid is a lip-in-wall plate, not the required rebate form. Plug openings, board clearance, keep-outs, shells and size pass. Score is an estimate.",
+ "defects": [
+  {
+   "requirement_id": "L3.3.3.1 (G4; L2.3.3, L1.3)",
+   "where": "base.stl, 4 standoff pilots at (14.0,2.5), (15.3,50.7), (66.1,7.6), (66.1,35.5), Z -5.1 to 0; open_iso.png / ghost_top.png",
+   "what": "Standoff pilots are sized for M2 (layout.json declares screw_m2_selftap) instead of M3",
+   "expected": "pilot dia 2.4-2.6",
+   "observed": "section dia 1.702 on all four (margin -0.70)",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.3.3.2 (L2.3.3)",
+   "where": "same four standoff pilots",
+   "what": "Pilot too shallow for a 10 mm screw through the 1.6 board",
+   "expected": "depth from standoff top >= 8.4",
+   "observed": "5.1 (floor at Z -5.1, top at Z 0)",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.7.1.1 / L3.7.2.1 (G5; L2.7.1, L2.7.2, L1.7)",
+   "where": "lid.stl plate Z 15.8-18.2; expected row at X 30.2-65.8, Y 11.2-24.8 (V-VENT); ghost_top.png / model_top.png",
+   "what": "No ventilation slots exist; the lid has only the 4 screw holes (ray casts at 3 lid positions hit 2 faces only, SCAD has no vent cut)",
+   "expected": "5-9 slots, 1.5-3.0 x 8-12, pitch 3.5-6.5, inside V-VENT, area >= 100 mm2",
+   "observed": "0 slots, 0 mm2",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.7.1.2, L3.7.1.3, L3.7.2.2, L3.7.3.1, L3.7.4.1",
+   "where": "lid.stl",
+   "what": "All other vent L3s fail with the slots missing (width/length, pitch, straight row span >= 21.4, area >= 100, ligament)",
+   "expected": "as L2.7.x",
+   "observed": "absent",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.8.3.2 (G6; L2.8.3)",
+   "where": "base.stl lid bosses at (-8.787,-3.287), (71.887,-3.287), (-8.787,56.487), (71.887,56.487); pilot Z 9.7-15.8",
+   "what": "Boss pilot too shallow",
+   "expected": "depth >= 10.0 - lid thickness = 7.6 (never below 6.0)",
+   "observed": "6.1 (pilot dia 2.503 and OD 6.6 are fine)",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.8.2.1, L3.8.2.2, L3.8.2.3 (L2.8.2, F2)",
+   "where": "lid.stl: plate Z 15.8-18.2 on top of wall tops (Z 15.8) with lip Z 13.7-15.8 inside the walls; open_iso.png",
+   "what": "Wrong lid form: plate sits on the wall tops with a lip inside the walls; there is no rebate or upstand, so no flush upstand/plate relation. F2 forbids a lip-in-wall lid",
+   "expected": "rebate in wall tops, upstand >= 1.0, depth = plate thickness +-0.3, plate flush with upstand within 0.3",
+   "observed": "no rebate, no upstand; plate 2.4 thick on a flat wall top, lip 0.25 per side",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.10.1.1 (L2.10.1)",
+   "where": "base.stl -X wall USB opening Y 29.7-46.5, Z 0.2-14.0",
+   "what": "Rectangular USB opening has a flat 16.8 mm roof (bridge) with no 45 degree roof",
+   "expected": "bridge <= 15.0 or 45 degree roof",
+   "observed": "16.8 mm flat bridge",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.13.2.1 (L2.13.2)",
+   "where": "self_report.json / verification_matrix",
+   "what": "Self-report claims pilot dia 2.500 and vent/lid checks pass or are unlinked; judge measures 1.70 pilots and no vents",
+   "expected": "agreement within 0.10",
+   "observed": "pilot claim off by 0.80; vent L1.7 never checked",
+   "severity": "minor"
+  }
+ ]
+}

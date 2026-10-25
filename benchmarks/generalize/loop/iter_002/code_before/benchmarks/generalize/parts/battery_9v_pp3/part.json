@@ -1,0 +1,182 @@
+{
+  "id": "battery_9v_pp3",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "9v battery",
+    "9 v battery",
+    "pp3 battery",
+    "pp3",
+    "9v pp3",
+    "6lr61",
+    "9 volt battery",
+    "9v block battery",
+    "9v cell"
+  ],
+  "kind": "power",
+  "source": "9 V PP3 battery (IEC 6LR61 alkaline, IEC 60086-2): 26.5 x 17.5 x 48.5 mm maximum, snap terminals on one end. Terminal centre distance 12.7 mm and stud height 1.5 mm are typical (assumed, uncertainty +-0.5 mm); the snap clip and wire keep-out height is assumed (typical clip body 10 mm).",
+  "frame": "battery: origin at the body min corner, long axis along Z, terminals on the +Z end face, 26.5 mm along X, 17.5 mm along Y",
+  "params": {
+    "batt_width": {
+      "default": 26.5,
+      "source": "IEC 6LR61: maximum width (long side of the end face)"
+    },
+    "batt_depth": {
+      "default": 17.5,
+      "source": "IEC 6LR61: maximum depth (short side of the end face)"
+    },
+    "batt_length": {
+      "default": 48.5,
+      "source": "IEC 6LR61: maximum height of the body"
+    },
+    "terminal_spacing": {
+      "default": 12.7,
+      "source": "typical snap terminal centre distance, uncertainty +-0.5 mm"
+    },
+    "stud_height": {
+      "default": 1.5,
+      "source": "typical terminal stud height above the end face, uncertainty +-0.5 mm"
+    },
+    "clip_height": {
+      "default": 10.0,
+      "source": "assumed snap-clip body height over the end face, uncertainty +-2 mm"
+    },
+    "clip_width": {
+      "default": 17.5,
+      "source": "assumed snap-clip width (about the battery depth), uncertainty +-1.5 mm"
+    }
+  },
+  "datasheet_size": [
+    "batt_width",
+    "batt_depth",
+    "batt_length"
+  ],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "batt_width",
+        "batt_depth",
+        "batt_length"
+      ],
+      "at": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "clip_zone",
+      "primitive": "box",
+      "size": [
+        "batt_width",
+        "clip_width",
+        "clip_height"
+      ],
+      "at": [
+        0,
+        "(batt_depth - clip_width) / 2",
+        "batt_length"
+      ]
+    }
+  ],
+  "datums": {
+    "TERMINALS": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "at": [
+        [
+          "batt_width / 2 - terminal_spacing / 2",
+          "batt_depth / 2",
+          "batt_length"
+        ],
+        [
+          "batt_width / 2 + terminal_spacing / 2",
+          "batt_depth / 2",
+          "batt_length"
+        ]
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "batt_length"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "SIDE_SUPPORT": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        -1,
+        0,
+        0
+      ]
+    }
+  },
+  "connectors": [],
+  "notes": "The clip zone reserves room on the terminal end for the snap clip and its wires; it is deliberately larger than the studs. The pocket should leave a finger or pull-tab path, which is a design choice not data. Real cells are 0.3 to 0.5 mm smaller than the maximum; the maximum is used so the pocket never binds. Terminal spacing and stud height are assumed typical, not from a drawing.",
+  "self_checks": [
+    {
+      "name": "body width",
+      "expr": "body.size_x",
+      "value": 26.5,
+      "tol": 0.3
+    },
+    {
+      "name": "body depth",
+      "expr": "body.size_y",
+      "value": 17.5,
+      "tol": 0.3
+    },
+    {
+      "name": "body height",
+      "expr": "body.size_z",
+      "value": 48.5,
+      "tol": 0.5
+    },
+    {
+      "name": "terminal spacing",
+      "expr": "TERMINALS[1].x - TERMINALS[0].x",
+      "value": 12.7,
+      "tol": 0.6
+    },
+    {
+      "name": "terminals on the end face",
+      "expr": "TERMINALS[0].z - body.max_z",
+      "value": 0,
+      "tol": 1e-06
+    }
+  ]
+}

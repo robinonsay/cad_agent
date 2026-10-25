@@ -1,0 +1,214 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          60.0
+        ],
+        "length": 60.0,
+        "words": "the short (60 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 80.0,
+        "span": [
+          0.0,
+          60.0
+        ],
+        "length": 60.0,
+        "words": "the short (60 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          80.0
+        ],
+        "length": 80.0,
+        "words": "the long (80 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 60.0,
+        "span": [
+          0.0,
+          80.0
+        ],
+        "length": 80.0,
+        "words": "the long (80 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "perfboard",
+      "params": {
+        "width": 80.0,
+        "depth": 60.0
+      },
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "connector_1_1",
+      "part": "dc_jack_pj002a",
+      "params": {},
+      "x": 14.000000000000002,
+      "y": 34.5,
+      "z": 0.0,
+      "rot_z": 180.0,
+      "item": "connector_1",
+      "copy": 0,
+      "role": "content",
+      "edge": "-X",
+      "of": null
+    },
+    {
+      "id": "generic_1_1",
+      "part": "generic_cylinder",
+      "params": {
+        "diameter": 10.0,
+        "height": 16.0
+      },
+      "x": 40.0,
+      "y": 30.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "generic_1",
+      "copy": 0,
+      "role": "content",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "generic_1_2",
+      "part": "generic_cylinder",
+      "params": {
+        "diameter": 10.0,
+        "height": 16.0
+      },
+      "x": 30.0,
+      "y": 30.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "generic_1",
+      "copy": 1,
+      "role": "content",
+      "edge": null,
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 80.0,
+    "board_depth": 60.0,
+    "keepout_above": 10.0,
+    "keepout_below": 4.0,
+    "board_clearance": 0.5,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.4,
+    "wall_max": 2.4,
+    "max_x": 100.0,
+    "max_y": 80.0,
+    "max_z": 40.0
+  },
+  "board": {
+    "part": "perfboard",
+    "specimen": null,
+    "params": {
+      "width": 80.0,
+      "depth": 60.0,
+      "thickness": 1.6,
+      "hole_inset": 2.5,
+      "hole_diameter": 3.0,
+      "hole_keepout_diameter": 7.0,
+      "grid_pitch": 2.54,
+      "grid_margin_x": 4.74,
+      "grid_margin_y": 2.54
+    },
+    "holes": [
+      [
+        2.5,
+        2.5,
+        0.0
+      ],
+      [
+        77.5,
+        2.5,
+        0.0
+      ],
+      [
+        2.5,
+        57.5,
+        0.0
+      ],
+      [
+        77.5,
+        57.5,
+        0.0
+      ]
+    ],
+    "hole_diameter": 3.0,
+    "hole_keepout_diameter": 7.0,
+    "grid": {
+      "origin": [
+        5.71,
+        3.33,
+        0.0
+      ],
+      "pitch": 2.54,
+      "count": [
+        28,
+        22
+      ]
+    },
+    "screw": "screw_m2_selftap"
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [
+    "connector_1_1"
+  ],
+  "grid_exempt_assumptions": {
+    "connector_1_1": "connector_1_1: mounted through enlarged holes; its pin pattern meets no grid position (best 0.460 mm), so it is exempt from grid conformance"
+  },
+  "grid_residual_all_parts": 1.287245
+}

@@ -1,0 +1,331 @@
+{
+  "id": "servo_mg996r",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "mg996r servo",
+    "mg996r",
+    "mg996 servo",
+    "standard servo mg996r",
+    "tower pro mg996r",
+    "metal gear servo",
+    "mg996r standard servo"
+  ],
+  "kind": "motor",
+  "source": "MG996R servo datasheet (as in plan.json): 40.7 x 19.7 x 42.9 mm body, 53.6 mm across the mounting tabs, mounting holes on a 49.5 mm pitch. Tab thickness/height, hole diameter, spline position/size, horn reach and cable zone are not in the note and are assumed (see notes).",
+  "frame": "servo: origin at the tab-end min corner on the bottom face (Z = 0); X along the tab direction, Y across the body, output spline on +Z at the shaft end (low X)",
+  "params": {
+    "body_length": {
+      "default": 40.7,
+      "source": "datasheet: body outline"
+    },
+    "body_width": {
+      "default": 19.7,
+      "source": "datasheet: body outline"
+    },
+    "body_height": {
+      "default": 42.9,
+      "source": "datasheet: body outline"
+    },
+    "tab_length": {
+      "default": 53.6,
+      "source": "datasheet: overall length across the tabs"
+    },
+    "tab_thickness": {
+      "default": 2.6,
+      "source": "assumed: MG996R tab thickness, +/- 0.4"
+    },
+    "tab_z": {
+      "default": 26.5,
+      "source": "assumed: tab underside above the base, +/- 1"
+    },
+    "hole_diameter": {
+      "default": 4.0,
+      "source": "assumed: tab hole (slot on some makes), +/- 0.5"
+    },
+    "hole_pitch": {
+      "default": 49.5,
+      "source": "datasheet: mounting hole pitch"
+    },
+    "spline_offset": {
+      "default": 10.0,
+      "source": "assumed: spline centre from the body end, +/- 1.5"
+    },
+    "spline_diameter": {
+      "default": 5.8,
+      "source": "assumed: 25T spline outer diameter, +/- 0.3"
+    },
+    "spline_height": {
+      "default": 4.0,
+      "source": "assumed: spline height above the body, +/- 1"
+    },
+    "horn_reach": {
+      "default": 25.0,
+      "source": "assumed: common long horn arm, +/- 4"
+    },
+    "horn_thickness": {
+      "default": 2.0,
+      "source": "assumed: horn plate thickness, uncertainty +/- 0.5"
+    },
+    "cable_clearance": {
+      "default": 10.0,
+      "source": "assumed: 3-wire lead leaves the end opposite the spline; room for its bend (+/- 4)"
+    },
+    "cable_height": {
+      "default": 6.0,
+      "source": "assumed: lead exit height above the base (+/- 2)"
+    },
+    "hole_row_spacing": {
+      "default": 10.0,
+      "source": "ASSUMED: two holes per tab, 10.0 apart across the tab (centred on the body width), +/- 1.0; the brief gives four M4 bolts"
+    }
+  },
+  "datasheet_size": [
+    "tab_length",
+    "body_width",
+    "body_height + spline_height"
+  ],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "body_length",
+        "body_width",
+        "body_height"
+      ],
+      "at": [
+        "(tab_length - body_length) / 2",
+        0,
+        0
+      ]
+    },
+    {
+      "id": "tabs",
+      "primitive": "box",
+      "size": [
+        "tab_length",
+        "body_width",
+        "tab_thickness"
+      ],
+      "at": [
+        0,
+        0,
+        "tab_z"
+      ]
+    },
+    {
+      "id": "spline",
+      "primitive": "cylinder",
+      "d": "spline_diameter",
+      "h": "spline_height",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "horn_sweep",
+      "primitive": "cylinder",
+      "d": "2 * horn_reach",
+      "h": "horn_thickness",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height + spline_height - horn_thickness"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "cable_exit",
+      "primitive": "box",
+      "size": [
+        "cable_clearance",
+        "body_width",
+        "cable_height"
+      ],
+      "at": [
+        "(tab_length + body_length) / 2",
+        0,
+        0
+      ]
+    }
+  ],
+  "datums": {
+    "SPLINE_AXIS": {
+      "kind": "axis",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "spline_diameter"
+    },
+    "SPLINE_TIP": {
+      "kind": "point",
+      "at": [
+        "(tab_length - body_length) / 2 + spline_offset",
+        "body_width / 2",
+        "body_height + spline_height"
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TAB_TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "tab_z + tab_thickness"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "TAB_BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "tab_z"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "hole_diameter",
+      "keepout_diameter": "2 * hole_diameter",
+      "at": [
+        [
+          "(tab_length - hole_pitch) / 2",
+          "body_width / 2 - hole_row_spacing / 2",
+          "tab_z + tab_thickness"
+        ],
+        [
+          "(tab_length + hole_pitch) / 2",
+          "body_width / 2 - hole_row_spacing / 2",
+          "tab_z + tab_thickness"
+        ],
+        [
+          "(tab_length - hole_pitch) / 2",
+          "body_width / 2 + hole_row_spacing / 2",
+          "tab_z + tab_thickness"
+        ],
+        [
+          "(tab_length + hole_pitch) / 2",
+          "body_width / 2 + hole_row_spacing / 2",
+          "tab_z + tab_thickness"
+        ]
+      ]
+    }
+  },
+  "connectors": [],
+  "mount": {
+    "seat_datum": "TAB_BOTTOM",
+    "hole_datum": "HOLE",
+    "body_pocket": "body",
+    "notes": "The servo drops into a rectangular pocket in a plate with the tab undersides (TAB_BOTTOM) resting on the plate top; the body sits in the pocket (body_length x body_width plus printing clearance) and the two tab holes take screws into the plate. Tab on plate and screw in hole are designed contact."
+  },
+  "notes": "Datasheet figures (40.7 x 19.7 x 42.9, tabs 53.6, holes 49.5 pitch) come from the plan note. Assumed, uncertainties stated: tab thickness 2.6 +/- 0.4, tab underside 26.5 mm above the base +/- 1 (MG996R drawings 26-27.5), tab holes 4.0 mm +/- 0.4 (bounded by the 4.1 mm of tab beyond the 49.5 pitch; slots on some makes; M3 or M4 screws), spline centre 10.0 mm from the body end +/- 1.5 (shaft is on the end boss), spline OD 5.8 +/- 0.3 (25-tooth) and 4.0 high +/- 1 above the 42.9 mm top, horn_reach 25 (common long arm, +/- 4), horn plate 2 thick, cable zone generic. Specimens vary between makers by about 0.5 mm, so measure the owner's servo before cutting a pocket. The pocket must leave printing clearance (design_rules) round body_length x body_width. Gear-boss relief on top is not modelled (box is conservative). HOLE has four axes (two per tab): X = (tab_length -/+ hole_pitch)/2, Y = body_width/2 -/+ hole_row_spacing/2 (assumed 10.0, +/-1.0); HOLE[0], HOLE[1] are the -Y row, HOLE[2], HOLE[3] the +Y row.",
+  "self_checks": [
+    {
+      "name": "tab span (overall)",
+      "expr": "bbox.size_x",
+      "value": 53.6,
+      "tol": 0.3
+    },
+    {
+      "name": "hole pitch",
+      "expr": "HOLE[1].x - HOLE[0].x",
+      "value": 49.5,
+      "tol": 0.1
+    },
+    {
+      "name": "holes inside the tabs",
+      "expr": "tab_length - hole_pitch - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "tabs wider than the body",
+      "expr": "tab_length - body_length",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "spline on +Z",
+      "expr": "SPLINE_AXIS.dz",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "spline inside the body outline",
+      "expr": "spline.min_x - body.min_x",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "tabs inside the body height",
+      "expr": "body_height - tab_z - tab_thickness",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hole row spacing",
+      "expr": "HOLE[2].y - HOLE[0].y",
+      "value": 10.0,
+      "tol": 0.05
+    },
+    {
+      "name": "four holes inside the tab width",
+      "expr": "body_width - hole_row_spacing - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

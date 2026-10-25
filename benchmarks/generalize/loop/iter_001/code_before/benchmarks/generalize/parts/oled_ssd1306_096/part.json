@@ -1,0 +1,330 @@
+{
+ "id": "oled_ssd1306_096",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "0.96 inch oled",
+  "0.96 oled",
+  "0.96 inch ssd1306 oled",
+  "ssd1306 oled",
+  "ssd1306",
+  "oled display",
+  "oled module",
+  "128x64 oled",
+  "i2c oled",
+  "oled ssd1306 0.96"
+ ],
+ "kind": "display",
+ "source": "SSD1306 0.96 inch 128x64 I2C OLED module, vendor drawing (generalize/plan.json datasheet_note): board 27.3 x 27.8 mm, four 2.0 mm holes, active area 21.74 x 10.86 mm, viewing area about 25 x 14 mm, glass about 1.4 mm above the PCB. ASSUMED (not on the vendor sheet, uncertainty in the notes): PCB thickness 1.2 mm, hole inset 1.9 x 2.0 mm, glass outline 26.7 x 19.3 mm, glass 5.0 mm above the board's header edge, 4-pin header 2.54 mm pitch 2.0 mm from the header edge.",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, glass on +Z, header edge at Y = 0",
+ "params": {
+  "pcb_length": {
+   "default": 27.3,
+   "source": "vendor drawing: board width (X)"
+  },
+  "pcb_width": {
+   "default": 27.8,
+   "source": "vendor drawing: board height (Y)"
+  },
+  "pcb_thickness": {
+   "default": 1.2,
+   "source": "ASSUMED typical 1.2 mm PCB; +/- 0.2"
+  },
+  "hole_diameter": {
+   "default": 2.0,
+   "source": "vendor drawing: mounting holes"
+  },
+  "hole_from_x_edge": {
+   "default": 1.9,
+   "source": "ASSUMED: hole centre from the short edge, 23.5 mm pattern; +/- 0.3"
+  },
+  "hole_from_y_edge": {
+   "default": 2.0,
+   "source": "ASSUMED: hole centre from the long edge, 23.8 mm pattern; +/- 0.3"
+  },
+  "glass_length": {
+   "default": 26.7,
+   "source": "ASSUMED glass outline (X) of the 0.96 inch panel; +/- 0.3"
+  },
+  "glass_width": {
+   "default": 19.3,
+   "source": "ASSUMED glass outline (Y); +/- 0.3"
+  },
+  "glass_height": {
+   "default": 1.4,
+   "source": "vendor drawing: glass height above the PCB top"
+  },
+  "glass_y0": {
+   "default": 5.0,
+   "source": "ASSUMED: glass lower edge from the header edge; +/- 1.0, measure the module"
+  },
+  "active_width": {
+   "default": 21.74,
+   "source": "vendor drawing: active area X"
+  },
+  "active_height": {
+   "default": 10.86,
+   "source": "vendor drawing: active area Y"
+  },
+  "view_width": {
+   "default": 25.0,
+   "source": "vendor drawing: viewing area X (no-clip zone)"
+  },
+  "view_height": {
+   "default": 14.0,
+   "source": "vendor drawing: viewing area Y (no-clip zone)"
+  },
+  "view_clear_height": {
+   "default": 3.0,
+   "source": "ASSUMED clear height in front of the glass reserved for the window; request/rules may override"
+  },
+  "pin_pitch": {
+   "default": 2.54,
+   "source": "4-pin 2.54 mm header (I2C: GND VCC SCL SDA)"
+  },
+  "pin_from_y_edge": {
+   "default": 2.0,
+   "source": "ASSUMED header pin centre from the header edge; +/- 0.5"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "pcb_thickness"
+ ],
+ "size_of": "pcb",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "glass",
+   "primitive": "box",
+   "size": [
+    "glass_length",
+    "glass_width",
+    "glass_height"
+   ],
+   "at": [
+    "(pcb_length - glass_length) / 2",
+    "glass_y0",
+    "pcb_thickness"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "view_zone",
+   "primitive": "box",
+   "size": [
+    "view_width",
+    "view_height",
+    "view_clear_height"
+   ],
+   "at": [
+    "(pcb_length - view_width) / 2",
+    "glass_y0 + glass_width / 2 - view_height / 2",
+    "pcb_thickness + glass_height"
+   ]
+  }
+ ],
+ "datums": {
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "GLASS_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness + glass_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "ACTIVE_CENTER": {
+   "kind": "point",
+   "at": [
+    "pcb_length / 2",
+    "glass_y0 + glass_width / 2",
+    "pcb_thickness + glass_height"
+   ]
+  },
+  "VIEW_AXIS": {
+   "kind": "axis",
+   "at": [
+    "pcb_length / 2",
+    "glass_y0 + glass_width / 2",
+    "pcb_thickness + glass_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  "HOLE": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "hole_diameter",
+   "keepout_diameter": 4.0,
+   "at": [
+    [
+     "hole_from_x_edge",
+     "hole_from_y_edge",
+     0
+    ],
+    [
+     "pcb_length - hole_from_x_edge",
+     "hole_from_y_edge",
+     0
+    ],
+    [
+     "hole_from_x_edge",
+     "pcb_width - hole_from_y_edge",
+     0
+    ],
+    [
+     "pcb_length - hole_from_x_edge",
+     "pcb_width - hole_from_y_edge",
+     0
+    ]
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": 4,
+   "start": [
+    "(pcb_length - 3 * pin_pitch) / 2",
+    "pin_from_y_edge",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [],
+ "notes": "Window rule inputs: ACTIVE area 21.74 x 10.86 must be fully visible with the request's margin (G05: at least 1 mm); the 25 x 14 view_zone must not be clipped by the wall. ASSUMPTIONS and uncertainty: PCB thickness 1.2 (+/-0.2); hole inset 1.9 x 2.0 (+/-0.3, so the 23.5 x 23.8 pattern is +/-0.6); glass outline 26.7 x 19.3 and glass_y0 5.0 (+/-1.0), so the active-area centre is assumed at the glass centre and may sit up to ~1 mm off (many modules offset the active area toward the far edge): measure the owner's module and override via the request. Module variants exist with the header on the top face. Import gate: bounding box of pcb equals the 27.3 x 27.8 x 1.2 size; HOLE direction is a unit vector; view zone inside the glass outline (self_checks).",
+ "self_checks": [
+  {
+   "name": "pcb length",
+   "expr": "pcb.size_x",
+   "value": 27.3,
+   "tol": 0.05
+  },
+  {
+   "name": "pcb width",
+   "expr": "pcb.size_y",
+   "value": 27.8,
+   "tol": 0.05
+  },
+  {
+   "name": "hole diameter",
+   "expr": "HOLE.diameter",
+   "value": 2.0,
+   "tol": 0.05
+  },
+  {
+   "name": "hole pitch X (23.5 assumed)",
+   "expr": "HOLE[1].x - HOLE[0].x",
+   "value": 23.5,
+   "tol": 0.6
+  },
+  {
+   "name": "active area X",
+   "expr": "active_width",
+   "value": 21.74,
+   "tol": 0.01
+  },
+  {
+   "name": "active area Y",
+   "expr": "active_height",
+   "value": 10.86,
+   "tol": 0.01
+  },
+  {
+   "name": "glass above the PCB",
+   "expr": "GLASS_TOP.z - PCB_TOP.z",
+   "value": 1.4,
+   "tol": 0.05
+  },
+  {
+   "name": "view zone narrower than the glass",
+   "expr": "glass_length - view_width",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "view zone shorter than the glass",
+   "expr": "glass_width - view_height",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "glass inside the board",
+   "expr": "pcb_width - glass_y0 - glass_width",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "view zone covers the active area",
+   "expr": "view_height - active_height",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  }
+ ]
+}

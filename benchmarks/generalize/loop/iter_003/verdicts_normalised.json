@@ -1,0 +1,380 @@
+{
+ "G02": {
+  "meets": false,
+  "class": "WRONG",
+  "score": 0.84,
+  "summary": "Gate G5 fails: the lid has no vent slots (0 slots over the ATmega). The lid is also a lip-in-wall plate, which fixed decision F2 forbids (no rebate, no upstand). The USB opening has a flat 16.8 mm roof, over the 15.0 bridge limit. Everything else measured passes: one shell per body, board clearance 1.5, USB plug clearance 0.40, DC plug clearance 0.41, four standoffs at the hole datums with 2.5 mm pilots 8.5 deep, and four bosses with 3.4 mm lid holes. claude-context failed to connect, so I fell back to direct reads.",
+  "defects": [
+   {
+    "requirement_id": "L3.7.1.1 (gate G5); also L3.7.2.1 (G5), L3.7.1.2, L3.7.1.3, L3.7.2.2, L3.7.3.1, L3.7.4.1",
+    "where": "lid.stl, plate Z 15.8..18.2, over the ATmega zone X 30.2..65.8, Y 11.2..24.8. Renders: model_top.png, model_iso.png.",
+    "what": "No ventilation slots in the lid or the base. Slices of the lid at Z 16.5 and 17.5 show only the four corner 3.41 mm screw holes.",
+    "expected": "5 to 9 slots, 1.5-3.0 wide by 8-12 long, pitch 3.5-6.5, inside X 30.2..65.8 / Y 11.2..24.8, total area >= 100 mm2, span >= 21.4",
+    "observed": "0 slots, 0 mm2, span 0. The agent's own verification_matrix.md lists L1.7 as UNLINKED.",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.8.2.1, L3.8.2.2, L3.8.2.3 (L2.8.2; fixed decision F2)",
+    "where": "lid.stl ring lip Z 13.7..15.8 (outer X -6.35..69.95, Y -1.35..54.55, 1.2 thick) inside the walls. base.stl wall top is a flat rim at Z 15.8 (walls 2.4 thick). Plate Z 15.8..18.2 covers the full outline X -12.09..75.69, Y -7.09..60.29.",
+    "what": "The lid is a plate with a lip that fits inside the walls, the form F2 forbids. There is no rebate and no upstand. The plate sits on the wall tops, 2.4 mm above them.",
+    "expected": "Plate 2.0-3.0 thick dropping into a rebate in the wall tops: upstand >= 1.0, rebate depth equal to plate thickness +-0.3, fit 0.15-0.35 per side, plate top flush within 0.3",
+    "observed": "Rebate depth 0, upstand 0, flush error 2.4. Plate thickness 2.4 and lip fit 0.25 per side pass numerically but belong to the wrong form.",
+    "severity": "weight-3"
+   },
+   {
+    "requirement_id": "L3.10.1.1 (L2.10.1)",
+    "where": "base.stl -X end wall, USB opening Y 29.7..46.5, Z 0.2..14.0. Render: model_left.png.",
+    "what": "The USB opening is a plain rectangle 16.8 wide with a flat roof at Z 14.0, so the base prints with a 16.8 mm unsupported bridge.",
+    "expected": "Bridge <= 15.0, or a 45 degree roof on an opening wider than 15.0",
+    "observed": "16.8 mm flat bridge",
+    "severity": "weight-2"
+   }
+  ],
+  "verdict": "DNM",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "G04": {
+  "meets": false,
+  "class": "CORRECT",
+  "score": 0.99,
+  "summary": "Every gate and every weight 2-3 row passes. Measured: board clearance 0.60; HDMI, two USB and SD openings each 0.40 mm per side around their plug or card envelopes; four standoffs 5.3 mm OD with 2.1 mm pilots 6.7 deep; lid lip fit 0.25 per side. The one miss is weight 1 (L3.11.1.1): the closed outside Y is 42.22 mm against the 40.0 limit, because the four lid bosses sit outside the walls. claude-context failed to connect, so I fell back to direct reads.",
+  "defects": [
+   {
+    "requirement_id": "L3.11.1.1 (L2.11.1)",
+    "where": "Corner lid bosses at (-3.61,-3.51), (67.61,-3.51), (-3.61,32.61), (67.61,32.61), OD 6.1, outside the walls. Base Y range -6.56..35.66. Renders: model_top.png, open_top.png.",
+    "what": "The assembly is too deep in Y because the bosses stick out of the wall footprint. The walls alone span Y -3.9..33.0 (36.9). The agent's own self_report.json lists this bbox check as its only failure.",
+    "expected": "X <= 90.0, Y <= 40.0, Z <= 22.0, X > Y",
+    "observed": "77.32 x 42.22 x 19.00 mm, Y over by 2.22 mm",
+    "severity": "weight-1"
+   }
+  ],
+  "verdict": "DNM",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "G06": {
+  "meets": false,
+  "class": "WRONG",
+  "score": 0.51,
+  "summary": "Wrong kind of design. The LCD is flat (0 degrees, not 30). The lid is a flat horizontal plate with no sloped face and no window. The Pico 2 was never placed (layout lists it as unplaced), so there are no Pico standoffs and no USB opening in the back wall. There are 4 closure bosses instead of 2. Gates G2 (tilt), G4 (Pico) and G5 (USB plug) fail. claude-context failed to connect, so I fell back to direct reads.",
+  "defects": [
+   {
+    "requirement_id": "L3.2.1.1 (gate G2); also L3.2.1.2",
+    "where": "layout.json: lcd1602_hd44780 at x0 y0 z0 rot_z 0, no tilt. Renders: ghost_left.png, ghost_iso.png.",
+    "what": "The LCD lies flat: PCB Z 0..1.6, bezel face Z 13.0, VIEW_AXIS (0,0,1).",
+    "expected": "Tilt 30.0 +-0.5 deg, VIEW_AXIS.y < 0",
+    "observed": "0.0 deg (margin -29.5 deg), VIEW_AXIS.y = 0",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.2.2.1 (gate G2); also L3.2.3.2",
+    "where": "lid.stl outer face at Z 18.1, X -5.23..85.23, Y -5.23..41.23, normal (0,0,1), area 3653.8 mm2. Render: model_iso.png.",
+    "what": "The panel outer face is horizontal. The only face normals in lid.stl are along +-X, +-Y and +-Z.",
+    "expected": "Outer-face normal within 1.0 deg of the 30 degree tilted VIEW_AXIS; gap from bezel face to panel underside 0 to 0.3",
+    "observed": "30 deg off, no sloped panel. Bezel face Z 13.0 to panel underside Z 16.0 is a 3.0 mm gap.",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.3.1.1, L3.3.1.2, L3.3.3.1, L3.3.3.2",
+    "where": "lid.stl plate Z 16.0..18.1 over the viewport area X 7.75..72.25, Y 11..25 in the module frame.",
+    "what": "No window. Slices at Z 16, 17 and 18 contain only four 2.4 mm lid screw holes.",
+    "expected": "Through window about 65.5..68.0 x 15.0..18.0, centred on VIEW_AXIS within 0.5",
+    "observed": "0 windows",
+    "severity": "weight-2"
+   },
+   {
+    "requirement_id": "L3.5.1.1, L3.5.1.2, L3.5.2.1 (gate G4); also L3.5.1.3, L3.5.3.1, L3.5.3.2, L3.5.4.1, L3.1.2.1, L3.1.3.1, L3.1.3.2, L3.11.2.1, L3.11.3.1, L3.12.1.2",
+    "where": "layout.json unplaced[0] is rpi_pico2 (\"lcd1602_hd44780 is not a carrier\"). base.stl has only 4 LCD standoffs at (2.5,2.5), (77.5,2.5), (2.5,33.5), (77.5,33.5).",
+    "what": "The Pico 2 is absent: no pose, no standoffs, no stack clearance, no extraction path.",
+    "expected": "4 vertical standoffs at the Pico holes (47.0 x 11.4 pattern), d >= 1.0 to the LCD back zone, USB_AXIS +Y",
+    "observed": "Pico count 0. The agent's self_report.json has all_passed=false (content_placed_module_1, text_coverage).",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.6.1.1 (gate G5); also L3.6.2.1, L3.6.3.1, L3.6.3.2",
+    "where": "base.stl back wall (+Y, Y 36.6..39.0). A ray at X 40, Z 8 hits 36.6 and 39.0; the wall is solid over its whole face.",
+    "what": "No USB opening. The plug envelope would penetrate the back wall.",
+    "expected": "1 opening, plug clearance >= 0.30, opening <= 13.0 x 10.0",
+    "observed": "0 openings, plug inside the wall",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.7.4.1, L3.7.4.2",
+    "where": "base.stl bosses at (-2.43,-2.43), (82.43,-2.43), (-2.43,38.43), (82.43,38.43); pilot 1.7 mm, bottom Z 10.6, top Z 15.7.",
+    "what": "Four bosses at all four corners where the brief fixes two screws at the rear corners. No screw length is declared, so engagement cannot be verified.",
+    "expected": "Boss count 2 at the rear corners; engagement = screw length minus panel thickness >= 5.0",
+    "observed": "4 bosses, pilot depth 5.1, no declared length",
+    "severity": "weight-2"
+   },
+   {
+    "requirement_id": "L3.4.1.3, L3.4.3.3",
+    "where": "base.stl LCD standoffs, vertical axes, floor top Z -5.1.",
+    "what": "The standoff axes are vertical because the LCD is not tilted. Pilot depth 5.1 is below engagement + 0.5 for any stock screw of 8 mm or more, and no screw length is declared.",
+    "expected": "Axis within 1.0 deg of the tilted VIEW_AXIS; depth >= max(5.0, engagement + 0.5)",
+    "observed": "Axis 30 deg off the required VIEW_AXIS; depth 5.1",
+    "severity": "weight-2"
+   }
+  ],
+  "verdict": "DNM",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "G08": {
+  "meets": false,
+  "class": "WRONG",
+  "score": 0.41,
+  "summary": "Only the Pico, its four posts, the USB opening and a two-part box were built. The 18650 cell and cradle, the sliding door (door.stl missing, only base.stl and lid.stl delivered), the SK12D slide switch and its slot, and the wire passages are all absent. Gates G0, G1, G2, G4 and G5 fail. The Pico posts (four, 5.1 mm OD, 1.7 mm pilots) and the USB opening (plug clearance 0.40) are correct. claude-context failed to connect, so I fell back to direct reads.",
+  "defects": [
+   {
+    "requirement_id": "L3.13.1.1 (gate G0) and L3.11.1.1 (gate G1)",
+    "where": "Package folder: only base.stl and lid.stl, no door.stl.",
+    "what": "The third body, the sliding door, was not delivered or modelled.",
+    "expected": "base.stl, lid.stl and door.stl all present, one manifold shell each",
+    "observed": "door.stl missing, 2 bodies",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.4.2.1 (gate G5); also L3.4.1.1, L3.4.1.2, L3.4.2.2, L3.4.2.3, L3.4.3.1, L3.4.4.1, L3.4.4.2, L3.4.4.3",
+    "where": "base.stl floor Z -6.0..-3.6 is solid over X -7.25..57.65, Y -5.95..26.95. The +X wall (X 52.1..54.5) has no door slot.",
+    "what": "No door, no grooves, no bottom opening, no stop, detent or grip.",
+    "expected": "Door slides 0..100 mm along +X with 0.25-0.35 clearances, plate 2.0-3.0, protrusion 1.0-5.0",
+    "observed": "No door body and no door slot",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.2.1.1, L3.3.1.1 (gate G2); also L3.2.2.1, L3.2.2.2, L3.2.3.1, L3.3.2.1, L3.3.3.1, L3.5.1.1, L3.5.2.1",
+    "where": "layout.json references hold only the Pico. Renders: ghost_iso.png, open_iso.png show a shallow tray with no cradle.",
+    "what": "No 18650 cell is placed and there is no cradle. The interior is one flat floor at Z -3.6 with the Pico on posts. The inner X length is only -1.7..52.1 (53.8).",
+    "expected": "Cell placed and held (capture within 1.0 mm in +-Y and +Z), cavity length >= 71.2, drop path clear, bottom opening >= 19.2",
+    "observed": "No cell, inner length 53.8, no bottom opening",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.8.1.1, L3.8.2.1 (gate G4); also L3.8.1.2, L3.8.1.3, L3.8.2.2, L3.8.3.1, L3.8.4.1, L3.1.2.2",
+    "where": "base.stl +Y wall (Y 21.4..23.8) is solid. layout.json has no slide_sk12d.",
+    "what": "No slide switch and no switch slot in any side wall.",
+    "expected": "Slot for the SK12D handle, sweep clearance >= 0.25, switch captive",
+    "observed": "0 slots, 0 switches",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.1.2.1, L3.1.2.3, L3.1.3.1, L3.13.1.2",
+    "where": "layout.json references.",
+    "what": "The layout names only the Pico: no cell, switch or plug poses, and no screws.",
+    "expected": "Cell axis along X, Pico at least 2.0 above the cell, poses declared for cell and switch",
+    "observed": "Pico only",
+    "severity": "weight-3"
+   },
+   {
+    "requirement_id": "L3.9.3.1",
+    "where": "base.stl corner bosses at (-3.95,-2.65) and 3 more, pilot top Z 7.9, bottom 0.2.",
+    "what": "Four lid bosses where the design fixes two M3 screws.",
+    "expected": "Boss count 2",
+    "observed": "4",
+    "severity": "weight-2"
+   },
+   {
+    "requirement_id": "L3.10.2.2",
+    "where": "base.stl interior.",
+    "what": "No shelf between the cell chamber and the Pico storey.",
+    "expected": "Shelf 2.0-4.0 thick",
+    "observed": "No shelf",
+    "severity": "weight-2"
+   },
+   {
+    "requirement_id": "L3.6.4.1",
+    "where": "base.stl, no shelf and no wire passages.",
+    "what": "No wire passages at the cell ends.",
+    "expected": "2 passages of 4.0 mm or more, at X 4.6 and X 72.0",
+    "observed": "0",
+    "severity": "weight-1"
+   }
+  ],
+  "verdict": "DNM",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "G11": {
+  "meets": false,
+  "class": "WRONG",
+  "score": 0.35,
+  "summary": "Plain tray with jack and two capacitors. No fan, heatsink, fan opening, fan pilots or exhaust slots. Gates G4 and G5 fail. Base and lid are one manifold shell each with 0 overlap. Judged without claude-context because the server failed to connect. Full verdict is in G11_s3/20261025-052828/judge_1.json.",
+  "defects": [
+   {
+    "requirement_id": "L3.7.2.1 (L2.7.2, L1.7), gate G5",
+    "where": "base.stl +X end wall, X 81.6..84.0 in layout frame; views/model_right.png and open_iso.png",
+    "what": "No exhaust slots. A ray through the +X wall at z=-8, -1.6 and 4.8 hits solid wall only.",
+    "expected": "At least 8 slots, open area >= 567 mm2",
+    "observed": "0 slots, 0 mm2",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.6.2.1 and L3.6.4.1 (L2.6.2, L2.6.4, L1.6), gate G4",
+    "where": "lid.stl plate (Z 18.7..21.1, 88x68 plan); views/model_iso.png",
+    "what": "No fan, no 4 pilots on the 32 mm pattern, no intake opening. The lid is a solid plate and layout.json has no fan entry.",
+    "expected": "Fan on lid underside, 4 pilots d2.5, opening area 680-1158 mm2",
+    "observed": "none",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.1.1.1 (L2.1.1, L1.1)",
+    "where": "layout.json references",
+    "what": "Heatsink (20x12x20) and fan missing. Only board, jack and 2 capacitors are declared.",
+    "expected": "Board, jack, heatsink, 2 capacitors, fan",
+    "observed": "Board, jack, 2 capacitors",
+    "severity": "3"
+   },
+   {
+    "requirement_id": "L3.8.4.1 (L2.8.4, L1.8)",
+    "where": "lid.stl plate",
+    "what": "Plate is 2.4 thick, too thin for fan pilots.",
+    "expected": "4.8-6.0",
+    "observed": "2.4",
+    "severity": "3"
+   },
+   {
+    "requirement_id": "L3.9.1.1 (L1.9)",
+    "where": "lid, fan region",
+    "what": "Fan intake opening is absent.",
+    "expected": "Fan opening in the lid",
+    "observed": "closed lid",
+    "severity": "2"
+   }
+  ],
+  "verdict": "DNM",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "G13": {
+  "meets": false,
+  "class": "WRONG",
+  "score": 0.3,
+  "summary": "Empty box with a rear USB cut. No switches, no plungers, no plunger holes in the lid and no plunger.stl. Gates G0 (package) and G5 (buttons) fail. Base and lid are one shell each with 0 overlap. Judged without claude-context because the server failed to connect. Full verdict is in G13_s3/20261025-053048/judge_1.json.",
+  "defects": [
+   {
+    "requirement_id": "L3.6.1.1 and L3.6.1.2 (L2.6.1, L1.6), gate G5",
+    "where": "lid.stl plate (Z 25.7..30.2); views/model_top.png and model_iso.png",
+    "what": "Lid is a solid plate with no plunger holes at the button axes (X 25.475/44.525, Y 5.0/24.05, board frame).",
+    "expected": "4 holes of about d5.8, each within 0.2 of its switch axis",
+    "observed": "0 holes",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.1.2.1 and L3.1.2.2 (L2.1.2), gate G5",
+    "where": "layout.json references",
+    "what": "No button_tact_6mm placed. Only board, rpi_pico2 and two female headers are declared.",
+    "expected": "4 buttons on 19.05 mm pitch",
+    "observed": "0 buttons",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.7.1.1, L3.7.2.1, L3.7.3.1 and L3.12.1.1 (L1.7, L1.12), gate G5",
+    "where": "package",
+    "what": "No plunger body exists, so there is no travel, retention or bottoming height.",
+    "expected": "plunger.stl with 4 instances, travel 1.5, retention flange",
+    "observed": "absent",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.13.1.1 (L2.13.1), gate G0",
+    "where": "package folder",
+    "what": "plunger.stl and report.json are missing.",
+    "expected": "6 of 6 files",
+    "observed": "base.stl, lid.stl, scad and layout.json only",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.1.3.2 (L2.1.3)",
+    "where": "layout.json module_1_1 (Pico at x45.5, y0, z8.5, rot -270)",
+    "what": "The Pico is the sole content, so 'behind the buttons' cannot hold.",
+    "expected": "Pico Y min >= button Y max + 0.5",
+    "observed": "not satisfiable without buttons",
+    "severity": "3"
+   },
+   {
+    "requirement_id": "L3.8.2.1 (L2.8.2, L1.8)",
+    "where": "lid.stl",
+    "what": "Lip-style lid with 4.5 total height instead of a plate in a wall rebate.",
+    "expected": "Rebate with upstand >= 1.0, plate 2.0-3.0",
+    "observed": "Lip lid, Z 25.7-30.2",
+    "severity": "2"
+   }
+  ],
+  "verdict": "DNM",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "G50": {
+  "meets": false,
+  "class": "WRONG",
+  "score": 0.3,
+  "summary": "Pi Zero 2 W tray with two rear USB cuts and a 4-screw lid. No fan, OLED window, encoder hole, vents or snap latches. Gates G3, G4 and G5 fail. Base and lid are one shell each with 0 overlap. Judged without claude-context because the server failed to connect. Full verdict is in G50_s3/20261025-054833/judge_1.json.",
+  "defects": [
+   {
+    "requirement_id": "L3.4.2.1, L3.4.3.1, L3.4.3.2 and L3.6.1.1 (L1.4, L1.6), gate G3",
+    "where": "layout.json (only the Pi is declared); side walls of base.stl",
+    "what": "No fan, no fan posts and no intake or exhaust path. Rays through both long walls at z=-4.6, -0.7 and 3.1 hit solid wall only, so there are no side vents.",
+    "expected": "Fan on 32 mm pitch above the Pi, 4 posts, vents of at least 300 mm2 each above and below the fan mid-plane",
+    "observed": "none",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.7.2.1, L3.9.1.2 and L3.9.2.1 (L1.7, L1.9), gate G4",
+    "where": "front wall (-Y), views/model_front.png",
+    "what": "No OLED window and no 7.3-7.5 mm encoder hole.",
+    "expected": "Window for the 25x14 viewing area and an encoder hole of d7.4",
+    "observed": "solid wall",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.10.3.1 and L3.10.4.2 (L1.10), gate G5",
+    "where": "lid.stl and base.stl",
+    "what": "Lid is held by 4 M3 bosses and screws (boss_1..4, lid_lip). There are no snap hooks.",
+    "expected": "Snap hooks with engagement 0.6-1.2",
+    "observed": "0 hooks",
+    "severity": "gate"
+   },
+   {
+    "requirement_id": "L3.1.1.1 (L2.1.1)",
+    "where": "layout.json",
+    "what": "OLED, encoder and fan are not declared.",
+    "expected": "Pi, fan, OLED, encoder",
+    "observed": "Pi only",
+    "severity": "3"
+   }
+  ],
+  "verdict": "DNM",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "E1-01": {
+  "meets": true,
+  "class": "CORRECT",
+  "score": 1,
+  "defects": [],
+  "summary": "MEETS. All gates and all applicable non-physical L3 pass, measured on base.stl and lid.stl. Board clearance 1.448 mm (needs 0.5). Standoffs: 4 at pitch 66.0 x 46.0, OD 5.1, pilot D1.70, depth 5.1. Keep-outs: top 0.18 mm, bottom 0.10 mm. USB plug clearance 0.400 mm and jack plug clearance 0.405 mm each. Openings: 1 in the -X wall (10.8 x 7.8), 2 in the +X wall (D8.81), 0 unlisted. Lid: lip fit 0.25 mm per side, engagement 2.1 mm, plate 2.4 mm. Walls, floor and lid are all 2.4 mm. Overhang patches 0 after the bridge and round-hole exemptions. Closed envelope 84.17 x 64.17 x 24.7. The agent's self-report matches my numbers within 0.005 mm. Smallest weight-3 margins are 0.10 mm (normalised 0.2). claude-context failed to connect, so I used direct file reads and targeted shell commands instead. judge_1.json written in the package folder.",
+  "verdict": "MEETS",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "V1": {
+  "meets": true,
+  "class": "CORRECT",
+  "score": 1,
+  "defects": [],
+  "summary": "MEETS. All grading deltas are met. Board 80 x 60, standoff pitch 75.0 x 55.0. USB and jack both face -X: USB mouth X=3.04 (window 2.54 to 3.54), jack mouth X=0.0 (window -1.8 to 0.5). The -X wall has 2 openings (USB 10.8 x 7.8, jack D8.81) and the +X wall has none. The USB and jack plug envelopes do not intersect (gap 12.6 mm). Plug clearances 0.400 and 0.405 mm. Board clearance 1.10 mm, keep-outs 0.10 mm. Closed envelope 93.17 x 73.17 x 24.7 (limit 100 x 80 x 35). Lid and printability checks pass, 0 unlisted openings, shells 1 and 1. No defects. judge_1.json written in the package folder.",
+  "verdict": "MEETS",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "V2": {
+  "meets": true,
+  "class": "CORRECT",
+  "score": 1,
+  "defects": [],
+  "summary": "MEETS. Board 90 x 45, standoff pitch 85.0 x 40.0. The delivered layout puts the three jacks on the -Y wall; I normalised by mirroring Y (allowed by the rubric), which puts the jack mouths at Y=45.0 on +Y (window 44.5 to 46.0). USB is on -X with mouth X=2.96 (window 2.46 to 3.46). Openings: 1 in the -X wall, 3 in the jack side wall (axis spacing 21.0, D8.81 each), 0 in +X, 0 unlisted. Plug clearances 0.400 and 0.405 mm. The side openings clear the seam (7.3 mm) and the corner bosses by more than 1.5 mm. Closed envelope 103.17 x 58.17 x 24.7 (limit 110 x 65 x 35). Observation only: the jack bodies abut the Pico PCB edge at Y=12.0 with zero intersection volume. No defects. judge_1.json written in the package folder.",
+  "verdict": "MEETS",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ },
+ "V3": {
+  "meets": true,
+  "class": "CORRECT",
+  "score": 1,
+  "defects": [],
+  "summary": "MEETS. Board 80 x 40, standoff pitch 75.0 x 35.0. The Pico sits on female headers with its underside at Z=8.5, so the USB opening is centred at Z=10.9 (10.8 x 7.8) and the jack opening at Z=2.5 (D8.81, mouth X=80.0, window 79.5 to 81.0). The capacitor (D10 x H20) lies inside the cavity with at least 5.2 mm clearance (needs 0.3). Headroom above it is 3.1 mm (needs at least 3.0), measured to the lid lip underside at Z=23.1. The top keep-out is Z 0 to 23 and clears by 0.10 mm. Plug clearances 0.400 and 0.405 mm. Openings: 1 in -X, 1 in +X, 0 unlisted. Closed envelope 93.17 x 53.17 x 35.7 (limit 100 x 60 x 45). Thinnest margin: the USB-port tipping margin under a 0.5 N pull is +0.93 N*mm, which still passes. No defects. judge_1.json written in the package folder.",
+  "verdict": "MEETS",
+  "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+ }
+}

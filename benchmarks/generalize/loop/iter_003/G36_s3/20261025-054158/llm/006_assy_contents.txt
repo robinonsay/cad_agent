@@ -1,0 +1,21 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A knob for an Alps RK09 potentiometer (6 mm D-shaft, 7 mm threaded bushing), 24 mm in diameter and 18 mm tall. The knob locks onto the shaft with an M3 set screw in a radial hole, and the screw's M3 nut is held in a captive hex pocket in the knob. Include the 3 mm thick panel the potentiometer mounts in, with a 7.2 mm hole for the bushing. The knob's skirt must clear the panel by 1 mm. The knob and the panel are two separate FDM printed parts.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"arduino_nano": {"exposed": "no", "quantity": 0}, "arduino_uno_r3": {"dc_exposed": "no", "quantity": 0, "usb_exposed": "no"}, "dc_jack_pj002a": {"exposed": "no", "quantity": 0}, "generic_box": {"quantity": 0}, "generic_cylinder": {"quantity": 0}, "jack_3p5_pj320a": {"exposed": "no", "quantity": 0}}

@@ -1,0 +1,44 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I want a small holder box for a 9 V PP3 battery (26.5 x 17.5 x 48.5 mm, with the snap terminals at one end). It's two printed pieces, a base and a lid, and both go on an FDM printer without supports. The box closed should be no bigger than 90 x 45 x 30 mm, not counting the switch lever, and the walls, floor and lid plate should be 2 to 4 mm thick. On the top sits a mini toggle switch of the MTS-102 kind (6.0 mm bushing, a lever 12 mm above the panel, panel up to 4 mm thick), poking through a hole that is 0.2 to 0.8 mm larger than the bushing. On one end I want a panel DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug). The lid turns on a 3 mm steel dowel pin that is 24 mm long, opens up to 100 degrees, and shuts with a snap latch on the other long side: a printed cantilever hook whose free length is at least 8 mm, thickness 1.2 to 2.5 mm, catch overlap 0.4 to 1.2 mm, with bending strain no higher than 2 percent. The battery lies in a pocket that is 0.2 to 0.5 mm oversize on each free face, mustn't rattle, and there has to be room for its snap clip at the terminal end. The DC plug (5.5 mm barrel, 11 mm dia handle) has to be able to go through the end wall when the jack is in use.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_box: rectangular block (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 1
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

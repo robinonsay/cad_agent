@@ -1,0 +1,28 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a printed mount, one PLA piece made on an FDM printer, that carries a NEMA 17 stepper (body 42.3 mm square and 40 mm long, 31 mm bolt pattern, 22 mm pilot) with the motor tucked behind the plate and its shaft poking through. Four ISO 4762 M3 socket-head screws hold it, and my stock lengths are 6, 8, 10, 12, 16, 20 and 25 mm. On the shaft goes a 16 tooth, module 1.5 pinion, which drives a 32 tooth idler turning on a 608 bearing; both gears are 8 mm wide. Place the idler at the centre distance the gear parameters give, plus 0.2 mm, and keep a 0.5 mm gap between the gears and the plate. The motor peaks at 0.4 N m. The motor, gears and bearing are all bought in.
+
+Catalogue parts that may be in the request:
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- hc_sr04: hc-sr04 (module)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- gear_spur_generic: spur gear (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {"exposed": "yes", "quantity": 0},
+  "dc_jack_pj002a": {"exposed": "yes", "quantity": 0},
+  "esp32_devkitc_v4": {"exposed": "yes", "quantity": 0},
+  "gear_spur_generic": {"quantity": 2},
+  "hc_sr04": {"quantity": 0},
+  "jack_3p5_pj320a": {"exposed": "yes", "quantity": 0}
+}

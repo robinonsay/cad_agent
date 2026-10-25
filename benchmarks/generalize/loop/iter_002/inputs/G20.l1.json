@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the servo from the parts catalogue in a pocket with its shaft pointing up, its tabs resting flat on a shelf of the bracket and its body clear of the bracket, and shall declare that placement.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.2",
+    "text": "The pocket shall hold the servo body snugly, with about 0.2 mm clearance per side, and shall leave a gap of 0.3 to 1.5 mm between the servo's bottom and the pocket floor.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "Two M2 x 8 self-tapping screws shall go through the two tab holes into two pilot holes in the shelf, and the pilot holes shall line up with the tab holes even when the servo sits anywhere inside its slack in the pocket.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The output shaft shall be unobstructed within a 5 mm radius above the tabs, and the screw heads shall not enter that zone.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The servo's cable shall leave through one slot in the end wall opposite the shaft, no more than 3 mm bigger than the cable's exit and bend volume on any side, and nothing of the bracket shall enter that volume.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "The bracket's mounting base shall be 40 x 25 mm in plan with two M3 clearance holes 30 mm apart (centres at least 3.2 mm from the edge), the plate 2.5 to 4 mm thick at the holes, and each M3 screw head and hex key shall have clear room above the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "The servo shall drop straight down into the pocket from above and both tab screws shall be reachable with a screwdriver.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "The bracket shall be one manifold body that prints on an FDM printer without supports, with walls and floor at least 2 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The bracket shall be no taller than 25 mm and shall stand flat on its base and stay upright when tipped 5 degrees with the servo seated.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The design shall be delivered as a bracket STL, the OpenSCAD source, the declared servo and screw placement and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

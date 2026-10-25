@@ -1,0 +1,138 @@
+{
+  "id": "dowel_pin_generic",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "dowel pin",
+    "dowel",
+    "steel dowel",
+    "alignment pin",
+    "locating pin",
+    "iso 2338 dowel",
+    "3 mm dowel"
+  ],
+  "kind": "mech",
+  "source": "ISO 2338 type B (h8) steel dowel pin, 3 mm dia (3 mm h8: 0 to -0.014); length comes from the request (ISO 2338 stock 6-30 mm). Pin fit holes are an FDM convention (assumed, +/-0.05 mm): a printed hole prints undersize, so the press-fit hole is the nominal size and the clearance hole 0.2 mm larger.",
+  "frame": "mech: origin at the centre of the pin's base end, axis +Z",
+  "params": {
+    "diameter": {
+      "default": 3.0,
+      "source": "ISO 2338: nominal diameter, h8"
+    },
+    "length": {
+      "default": null,
+      "from_request": true,
+      "source": "request text"
+    },
+    "chamfer": {
+      "default": 0.3,
+      "source": "ISO 2338 type B: approx. end chamfer (not modelled in the solid)"
+    },
+    "press_fit_hole": {
+      "default": 3.0,
+      "source": "assumed FDM convention: nominal hole prints tight on a h8 pin"
+    },
+    "clearance_hole": {
+      "default": 3.2,
+      "source": "assumed FDM convention: sliding location hole, +0.2 mm"
+    },
+    "min_engagement": {
+      "default": 4.5,
+      "source": "assumed convention: engagement of at least 1.5 x diameter in the receiving part"
+    }
+  },
+  "gate_params": {
+    "length": 10.0,
+    "source": "sample size used only by the load-time validation gate; never a design value"
+  },
+  "datasheet_size": [
+    "diameter",
+    "diameter",
+    "length"
+  ],
+  "size_tolerance": 0.05,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "diameter",
+      "h": "length",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "diameter"
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "length"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "self_checks": [
+    {
+      "name": "clearance hole passes the pin",
+      "expr": "clearance_hole - diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "press-fit hole not above the pin",
+      "expr": "diameter - press_fit_hole",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "length positive",
+      "expr": "TOP.z - BOTTOM.z",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a housing that goes on a wall and holds an ESP32 DevKitC V4 dev board (it measures 54.4 x 27.9 mm and has no screw holes; the micro-USB connector is on one short end and the PCB antenna on the opposite one). The housing gets two mounting ears for 4.2 mm countersunk wood screws, with the two screw slots 100 mm from each other, and each slot has to stay at least 3 mm clear of the ear's edge and of the box itself. Up top, three 5 mm LEDs shine out through the lid, sitting flush with its outer surface and unable to fall out. I want to plug a micro-USB cable into one short end while the lid is on. Don't cover the antenna end: no wall or lid above the antenna, and at least 8 mm of open space past the end of the board. The lid is fastened with M3 self-tapping screws. I'll print it in PLA on an FDM printer with the back face on the bed.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- tp4056_usbc_module: tp4056 (module; cable connector: usb connector (takes a usb-c plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 1
+  },
+  "generic_box": {
+    "quantity": 1
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "tp4056_usbc_module": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

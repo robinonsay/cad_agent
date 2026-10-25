@@ -1,0 +1,32 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Please design a shroud that tapers down smoothly from a 40 x 40 x 10 mm axial fan (3.2 mm mounting holes, 32 mm pitch) to a round spigot with a 25 mm outer diameter and 40 mm straight length; the fan attaches on the blowing side. The duct is a simple 60 mm tube with a 25.4 mm inside diameter and 2 mm wall that fits over the spigot. To print without supports, flange side down, no part of the transition may exceed 45 degrees from the airflow axis, and walls must be at least 1.6 mm thick. The fan is held by four M3 socket-head bolts that go in from the intake side and thread into the shroud. Print on an FDM printer in PLA.
+
+Catalogue parts that may be in the request:
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {"exposed": "no", "quantity": 0},
+  "dc_jack_pj002a": {"exposed": "no", "quantity": 0},
+  "esp32_devkitc_v4": {"exposed": "no", "quantity": 0},
+  "generic_box": {"quantity": 0},
+  "generic_cylinder": {"quantity": 0},
+  "generic_tube": {"quantity": 0},
+  "jack_3p5_pj320a": {"exposed": "no", "quantity": 0},
+  "rpi_pico2": {"exposed": "no", "quantity": 0}
+}

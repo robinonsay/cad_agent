@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": -6.0,
+        "span": [
+          0.0,
+          53.3
+        ],
+        "length": 53.3,
+        "words": "the short (53.3 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 68.6,
+        "span": [
+          0.0,
+          53.3
+        ],
+        "length": 53.3,
+        "words": "the short (53.3 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          -6.0,
+          68.6
+        ],
+        "length": 74.6,
+        "words": "the long (74.6 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 53.3,
+        "span": [
+          -6.0,
+          68.6
+        ],
+        "length": 74.6,
+        "words": "the long (74.6 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "arduino_uno_r3",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 68.6,
+    "board_depth": 53.3,
+    "keepout_above": 12.0,
+    "keepout_below": 4.0,
+    "board_clearance": 0.5,
+    "headroom": 0.1,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 100.0,
+    "max_y": 70.0,
+    "max_z": 35.0
+  },
+  "board": {
+    "part": "arduino_uno_r3",
+    "specimen": null,
+    "params": {
+      "pcb_length": 68.6,
+      "pcb_width": 53.3,
+      "pcb_thickness": 1.6,
+      "hole_diameter": 3.2,
+      "hole_keepout": 7.0,
+      "usb_depth": 16.0,
+      "usb_width": 12.0,
+      "usb_height": 11.0,
+      "usb_overhang": 6.0,
+      "usb_centre_y": 38.1,
+      "jack_depth": 14.0,
+      "jack_width": 9.0,
+      "jack_height": 11.0,
+      "jack_overhang": 2.0,
+      "jack_centre_y": 7.6,
+      "top_parts_height": 8.5,
+      "solder_tail_height": 2.0,
+      "mcu_centre_x": 48.0,
+      "mcu_centre_y": 18.0
+    },
+    "holes": [
+      [
+        14.0,
+        2.5,
+        0.0
+      ],
+      [
+        15.3,
+        50.7,
+        0.0
+      ],
+      [
+        66.1,
+        7.6,
+        0.0
+      ],
+      [
+        66.1,
+        35.5,
+        0.0
+      ]
+    ],
+    "hole_diameter": 3.2,
+    "hole_keepout_diameter": 7.0,
+    "grid": null,
+    "screw": "screw_m3_selftap"
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0
+}

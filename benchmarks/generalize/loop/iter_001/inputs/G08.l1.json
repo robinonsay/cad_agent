@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the Pico 2, the 18650 cell and the slide switch from the parts catalogue, with the Pico above the cell and both lengthwise, the Pico's USB port facing one end, and the switch handle facing one side wall, without the parts colliding, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The 18.6 x 65.2 mm cell shall lie in a cradle inside the closed enclosure without penetrating any printed surface, with 3.0 mm of free space at each end for contacts and 0.3 to 1.0 mm of side clearance at its widest point.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "With the door closed, the cell shall be held so that it cannot move more than 1.0 mm sideways or upward, nor more than 4.0 mm along its axis, and it shall rest on the door (within 0.3 mm of its upper face).",
+    "method": "demonstration"
+  },
+  {
+    "id": "L1.4",
+    "text": "The door shall be a separate body 2.0 to 3.0 mm thick on the bottom of the enclosure that slides along the cell axis with 0.25 to 0.35 mm of clearance per side, leaves through the end opposite the USB, is held closed by a detent (0.3 to 0.8 mm deep) and an end stop, and has a grip (1.0 to 5.0 mm beyond the end wall); the door shall overlap each side wall by at least 1.0 mm along at least 60 percent of its length, and its outer face shall lie 0.3 to 3.0 mm above the base's bottom plane.",
+    "method": "test"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the door removed and the lid on, the cell shall drop straight down out of the cradle through the bottom opening (at least 0.3 mm wider than the cell on each side) without touching anything.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "The Pico shall be fixed on four posts under its mounting holes, each with a pilot hole for an M2 self-tapping screw, with at least 4.0 mm clear above its top surface and 2.0 mm clear below its underside, at least 0.3 mm from every wall, and with a passage for the cell wires at each end of the cell (a hole at least 4.0 mm across through the shelf, not open to the outside).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in the end wall staying at least 0.3 mm clear of the plug's envelope, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "The slide switch shall be held captive (within 1.0 mm in every direction except toward its wire side) with 5.0 mm of free space behind its terminals, its handle shall pass through a slot in the side wall and move through its full 3.5 mm throw without touching the slot (at least 0.25 mm clearance), the slot shall be no more than 1.0 mm bigger than the handle's swept area, and the handle shall protrude 1.0 to 3.0 mm beyond the wall.",
+    "method": "test"
+  },
+  {
+    "id": "L1.9",
+    "text": "The base and a separate removable lid shall close the top, the lid locating on the base with a lip with a sliding fit and held by two M3 screws into bosses (lid lip clearance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, total lid height at most 6.0 mm); with the lid off, the Pico and the switch shall install along their own axes and a screwdriver shall reach each Pico screw and each lid screw.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "The closed enclosure shall have no openings other than the USB opening, the switch slot, the door seam (gap at most 0.4 mm) and screw holes, with at least 1.0 mm of material round each opening, and its walls, shelf and lid shall be 2.0 to 4.0 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The base, the lid and the door shall each be one manifold body that prints on an FDM printer without supports (at least 25 percent of the base's and 50 percent of the lid's and the door's plan bounding box on the bed).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "The closed enclosure shall be no larger than 85 x 40 x 40 mm, longest along the cell axis, and shall stand on its base without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.13",
+    "text": "The design shall be delivered as the base, lid and door STLs, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

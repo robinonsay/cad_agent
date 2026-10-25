@@ -1,0 +1,281 @@
+{
+ "id": "tp4056_usbc_module",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "tp4056",
+  "tp4056 usb-c",
+  "tp4056 charger",
+  "tp4056 module",
+  "lipo charger module",
+  "usb-c charger board",
+  "tp4056 usb c module",
+  "li-ion charger board"
+ ],
+ "kind": "module",
+ "source": "Common TP4056 USB-C 1 A single-cell Li-ion charger board (no official datasheet for the board; vendor listings and the TP4056 data sheet for the IC): about 26 x 17 x 4 mm overall; USB-C receptacle per USB Type-C spec 2.0 (receptacle 8.94 x 3.26 mm opening, shell depth about 7.3 mm). ASSUMED / uncertain, vary between vendors by +/-1 mm: PCB 26.0 x 17.0 x 1.0 mm (the 4 mm overall height is the receptacle 3.26 mm on a 1.0 mm board), receptacle overhang 1.0 mm, no mounting holes, tallest top part other than the receptacle 1.8 mm (TP4056 SOP-8 / LEDs), four corner solder pads (B+, B-, OUT+, OUT-) 2.0 mm from the edges; wire solder fillets up to 2.0 mm over and under the pads. Measure the owner's board.",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, components on +Z, USB-C end at -X",
+ "params": {
+  "pcb_length": {
+   "default": 26.0,
+   "source": "vendor listing / task sheet: board length"
+  },
+  "pcb_width": {
+   "default": 17.0,
+   "source": "vendor listing / task sheet: board width"
+  },
+  "pcb_thickness": {
+   "default": 1.0,
+   "source": "assumed: thin module PCB"
+  },
+  "usb_width": {
+   "default": 8.94,
+   "source": "USB Type-C spec: receptacle outer width"
+  },
+  "usb_depth": {
+   "default": 7.3,
+   "source": "USB Type-C spec: mid-mount / SMD receptacle shell depth (typical 6.2 - 7.35)"
+  },
+  "usb_height": {
+   "default": 3.26,
+   "source": "USB Type-C spec: receptacle outer height"
+  },
+  "usb_overhang": {
+   "default": 1.0,
+   "source": "assumed receptacle overhang beyond the PCB edge"
+  },
+  "pad_inset": {
+   "default": 2.0,
+   "source": "assumed: solder pad centres from the board edges"
+  },
+  "pad_hole": {
+   "default": 1.5,
+   "source": "assumed: pad hole diameter for wires"
+  },
+  "wire_clear": {
+   "default": 2.0,
+   "source": "assumed: wire / solder fillet height above and below the pads"
+  },
+  "top_parts_height": {
+   "default": 1.8,
+   "source": "assumed tallest top part other than the receptacle"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "pcb_thickness"
+ ],
+ "size_of": "pcb",
+ "size_tolerance": 1.0,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "usb",
+   "primitive": "box",
+   "size": [
+    "usb_depth",
+    "usb_width",
+    "usb_height"
+   ],
+   "at": [
+    "-usb_overhang",
+    "(pcb_width - usb_width) / 2",
+    "pcb_thickness"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "component_side",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "top_parts_height"
+   ],
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "wire_pads_top",
+   "primitive": "box",
+   "size": [
+    "2 * pad_inset + 1.0",
+    "pcb_width",
+    "wire_clear"
+   ],
+   "at": [
+    "pcb_length - 2 * pad_inset - 1.0",
+    0,
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "wire_pads_bottom",
+   "primitive": "box",
+   "size": [
+    "2 * pad_inset + 1.0",
+    "pcb_width",
+    "wire_clear"
+   ],
+   "at": [
+    "pcb_length - 2 * pad_inset - 1.0",
+    0,
+    "-wire_clear"
+   ]
+  }
+ ],
+ "datums": {
+  "USB_MOUTH": {
+   "kind": "point",
+   "at": [
+    "-usb_overhang",
+    "pcb_width / 2",
+    "pcb_thickness + usb_height / 2"
+   ]
+  },
+  "USB_AXIS": {
+   "kind": "axis",
+   "at": [
+    "-usb_overhang",
+    "pcb_width / 2",
+    "pcb_thickness + usb_height / 2"
+   ],
+   "dir": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "PADS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "pad_hole",
+   "at": [
+    [
+     "pcb_length - pad_inset",
+     "pad_inset",
+     0
+    ],
+    [
+     "pcb_length - pad_inset",
+     "pcb_width - pad_inset",
+     0
+    ],
+    [
+     "pad_inset",
+     "pad_inset",
+     0
+    ],
+    [
+     "pad_inset",
+     "pcb_width - pad_inset",
+     0
+    ]
+   ]
+  }
+ },
+ "connectors": [
+  {
+   "name": "usb",
+   "mouth": "USB_MOUTH",
+   "axis": "USB_AXIS",
+   "mates": "plug_usbc",
+   "overhang_datum": "USB_MOUTH"
+  }
+ ],
+ "notes": "No mounting holes: the board is held by edge ribs/clips or a pocket. Pad order in PADS: [0], [1] are the wire pads at the far end (OUT+ / OUT-) and [2], [3] the pads beside the USB-C (B+ / B-) on a typical layout, but the labelling differs by vendor and is not used by any check; the pad positions are approximate (+/-1.5 mm). Because wires are soldered to the pads, ribs must not cover the wire_pads_* keepouts (2 mm over and under the far-end pad pair; the pads near the USB end are inside component_side). The datasheet_size tolerance is 1.0 mm because no manufacturer drawing exists: vendors ship 25.5 - 26.5 x 16.5 - 17.5 mm boards. The USB-C opening is 8.94 x 3.26 mm; the plug overmold comes from plug_usbc. Import gate: R1 PCB 26 x 17 (tol 1.0); R3 USB along -X; R4 overhang assumed (tol 0.7); R9 skipped.",
+ "self_checks": [
+  {
+   "name": "R3 USB axis along -X",
+   "expr": "USB_AXIS.dx",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 receptacle at the -X end",
+   "expr": "usb.min_x",
+   "value": 0,
+   "tol": 0,
+   "op": "le"
+  },
+  {
+   "name": "R3 components on +Z",
+   "expr": "usb.min_z - PCB_TOP.z",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "R4 receptacle overhang",
+   "expr": "-usb.min_x",
+   "value": 1.0,
+   "tol": 0.7
+  },
+  {
+   "name": "R5 overall height (about 4 mm)",
+   "expr": "usb.max_z - pcb.min_z",
+   "value": 4.0,
+   "tol": 0.5
+  },
+  {
+   "name": "R5 USB-C opening width",
+   "expr": "usb_width",
+   "value": 8.94,
+   "tol": 0.1
+  },
+  {
+   "name": "pads inside the board",
+   "expr": "PADS[1].y - PADS[0].y",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  }
+ ]
+}

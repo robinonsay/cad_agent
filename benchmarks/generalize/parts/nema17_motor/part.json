@@ -1,0 +1,321 @@
+{
+  "id": "nema17_motor",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "nema 17 stepper",
+    "nema17 stepper",
+    "nema 17 motor",
+    "nema17 motor",
+    "nema 17 stepper motor",
+    "17hs4401",
+    "42 mm stepper motor",
+    "42mm stepper"
+  ],
+  "kind": "motor",
+  "source": "NEMA 17 stepper (NEMA ICS 16 frame, e.g. 17HS4401 datasheet): body 42.3 mm square, length 40 mm (body lengths 34 / 40 / 48 mm exist: set body_length from the request), 4 x M3 on a 31.0 mm square pattern, 22 mm pilot 2 mm high, 5 mm shaft 24 mm long from the mounting face with a flat.",
+  "frame": "motor: axis along Z, origin on the mounting face at the shaft axis, body toward -Z, pilot and shaft toward +Z",
+  "params": {
+    "body_size": {
+      "default": 42.3,
+      "source": "datasheet: square frame (NEMA ICS 16 nominal 42.3 / 1.67 in)"
+    },
+    "body_length": {
+      "default": 40.0,
+      "source": "datasheet 17HS4401: stack length; 34 and 48 mm variants exist, give it in the request"
+    },
+    "hole_pitch": {
+      "default": 31.0,
+      "source": "datasheet / NEMA ICS 16: square bolt pattern"
+    },
+    "hole_diameter": {
+      "default": 3.0,
+      "source": "datasheet: M3 threaded holes"
+    },
+    "hole_thread_depth": {
+      "default": 4.5,
+      "source": "datasheet: maximum screw engagement; a longer screw bottoms in the motor"
+    },
+    "screw_head_diameter": {
+      "default": 5.5,
+      "source": "ISO 4762 M3 socket head dk, used as the screw keep-out"
+    },
+    "pilot_diameter": {
+      "default": 22.0,
+      "source": "datasheet / NEMA ICS 16: locating pilot"
+    },
+    "pilot_height": {
+      "default": 2.0,
+      "source": "datasheet: pilot height above the face"
+    },
+    "shaft_diameter": {
+      "default": 5.0,
+      "source": "datasheet: shaft diameter"
+    },
+    "shaft_length": {
+      "default": 24.0,
+      "source": "datasheet: shaft length measured from the mounting face"
+    },
+    "shaft_flat_depth": {
+      "default": 0.5,
+      "source": "assumed: D flat leaves 4.5 mm across flats (typical 17HS shaft); uncertainty +/- 0.1"
+    },
+    "shaft_flat_length": {
+      "default": 15.0,
+      "source": "assumed: typical 17HS flat length; uncertainty +/- 3, measure the owner's motor"
+    },
+    "cable_exit_clearance": {
+      "default": 10.0,
+      "source": "assumed: 4-pin lead leaves the rear or side; room for the bend radius; +/- 4"
+    }
+  },
+  "datasheet_size": [
+    "body_size",
+    "body_size",
+    "body_length + shaft_length"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "body_size",
+        "body_size",
+        "body_length"
+      ],
+      "at": [
+        "-body_size / 2",
+        "-body_size / 2",
+        "-body_length"
+      ]
+    },
+    {
+      "id": "pilot",
+      "primitive": "cylinder",
+      "d": "pilot_diameter",
+      "h": "pilot_height",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "shaft",
+      "primitive": "cylinder",
+      "d": "shaft_diameter",
+      "h": "shaft_length",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "shaft_path",
+      "primitive": "cylinder",
+      "d": "shaft_diameter",
+      "h": "shaft_length",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "rear_cable",
+      "primitive": "box",
+      "size": [
+        "body_size",
+        "body_size",
+        "cable_exit_clearance"
+      ],
+      "at": [
+        "-body_size / 2",
+        "-body_size / 2",
+        "-body_length - cable_exit_clearance"
+      ]
+    }
+  ],
+  "datums": {
+    "SHAFT_AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "shaft_diameter"
+    },
+    "PILOT_AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "pilot_diameter"
+    },
+    "FACE": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "BACK": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "-body_length"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "SHAFT_TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "shaft_length"
+      ]
+    },
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "hole_diameter",
+      "keepout_diameter": "screw_head_diameter",
+      "at": [
+        [
+          "-hole_pitch / 2",
+          "-hole_pitch / 2",
+          0
+        ],
+        [
+          "hole_pitch / 2",
+          "-hole_pitch / 2",
+          0
+        ],
+        [
+          "-hole_pitch / 2",
+          "hole_pitch / 2",
+          0
+        ],
+        [
+          "hole_pitch / 2",
+          "hole_pitch / 2",
+          0
+        ]
+      ]
+    }
+  },
+  "connectors": [],
+  "mount": {
+    "face_datum": "FACE",
+    "pilot_datum": "PILOT_AXIS",
+    "hole_datum": "HOLE",
+    "max_screw_engagement": "hole_thread_depth",
+    "notes": "The motor bolts through a plate lying on FACE: plate hole = pilot_diameter plus a printing clearance (design_rules), four clearance holes on HOLE, screw length = plate thickness + at most hole_thread_depth. The pilot in its plate hole, the screws in HOLE and the face on the plate are designed contact."
+  },
+  "notes": "Datasheet values come from the plan's datasheet_note (42.3 square, 40 long, 31.0 square M3, 22 pilot 2 high, 5 shaft 24 long). Shaft flat depth/length, screw head dk (ISO 4762) and cable clearance are assumptions with the stated uncertainty. Frame corner chamfers (about 5 mm) are not modelled; the box is conservative. The shaft cylinder includes the flat's material (conservative). The rotating-part envelope (coupler or pulley) is the caller's part, not this one.",
+  "self_checks": [
+    {
+      "name": "bolt square (NEMA ICS 16: 31.0)",
+      "expr": "HOLE[1].x - HOLE[0].x",
+      "value": 31.0,
+      "tol": 0.1
+    },
+    {
+      "name": "bolt square Y",
+      "expr": "HOLE[2].y - HOLE[0].y",
+      "value": 31.0,
+      "tol": 0.1
+    },
+    {
+      "name": "holes are M3",
+      "expr": "HOLE.diameter",
+      "value": 3.0,
+      "tol": 0.1
+    },
+    {
+      "name": "pilot (22 mm)",
+      "expr": "PILOT_AXIS.diameter",
+      "value": 22.0,
+      "tol": 0.1
+    },
+    {
+      "name": "pilot clears the bolt circle",
+      "expr": "hole_pitch - pilot_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "shaft (5 mm)",
+      "expr": "SHAFT_AXIS.diameter",
+      "value": 5.0,
+      "tol": 0.05
+    },
+    {
+      "name": "holes inside the frame",
+      "expr": "body_size - hole_pitch - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "shaft leaves the face on +Z",
+      "expr": "SHAFT_AXIS.dz",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "body behind the face",
+      "expr": "body.max_z",
+      "value": 0,
+      "tol": 1e-06
+    }
+  ]
+}

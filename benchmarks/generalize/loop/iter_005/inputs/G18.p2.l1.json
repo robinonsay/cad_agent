@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "I want a base and a cap as two separate printed bodies. The split runs on a plane through the bearing axis, and with the halves closed they sit together on that plane.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "When the halves are closed the bearing seat should be round, centred on the bearing axis, and 21.9 mm in diameter (anywhere from 21.85 to 21.95 mm), so the 22 mm bearing is pinched by about 0.1 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The seat should keep the 7 mm wide bearing from sliding along its axis by using two lips against the outer ring, and no printed part may touch the bearing's bore or inner ring.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The two halves, once closed, must really touch along the split: a gap of no more than 0.05 mm across an area of at least 100 mm2, so the bolts squeeze the bearing rather than closing a gap between the halves.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "Put one M3 bolt on each side of the bearing. Each passes down through a clearance hole in the cap, with the head sunk in a counterbore, and into the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "In the base each bolt threads into an M3 hex nut that sits trapped in a hex recess open to the split face, so once the cap is on the nut can't fall out or spin.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "The base gets two M4 mounting holes 40.0 mm apart, with enough room for the screw heads and for a hex key.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "Take the cap off and the bearing should drop into the base and the nuts into their recesses. Put the cap on and a hex key should get at every bolt and mounting screw.",
+    "method": "test"
+  },
+  {
+    "id": "L1.9",
+    "text": "The load has to get to the mounting holes through solid material. That means a wall of at least 2.5 mm from the bearing seat to any outer surface, at least 2.0 mm around every hole, counterbore and nut recess, and at least 100 mm2 of base cross-section on each plane between the block and either M4 hole. A 100 N pull on the bearing may give no more than 10 MPa bending stress in the base, and the base must be a single connected body.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Each of the base and the cap should be one manifold body that I can print on an FDM printer, in the print orientation given, without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "Closed up, the block has to fit inside 60 x 60 x 32 mm and sit flat on its mounting face without tipping over.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "Hand over a base STL, a cap STL (closed assembly pose, in mm), the OpenSCAD source, the declared hardware layout and the agent's own measurement report. That report has to agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

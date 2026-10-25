@@ -1,0 +1,14 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm making a macro pad with a 2 x 2 key layout. The four 6 mm tactile switches are mounted on a 70 x 50 mm perfboard that has a mounting hole at each corner, spaced 19.05 mm apart in both directions, and a Raspberry Pi Pico 2 is plugged into female sockets on the same board, further back. A printed plunger presses each switch and rises through a hole in the top plate, which leaves 0.4 mm clearance all the way round; the plunger moves 1.5 mm before it bottoms out. The Pico's micro-USB port faces out of the rear end wall so the cable goes in even with the lid fitted. The case is a base with a removable top plate acting as the lid, and it prints on an FDM printer with no supports.
+
+Proposed arrangement on the board: raspberry pi pico 2 (usb) faces the long (70 mm) side at -Y.
+Does this arrangement match the request? Answer yes or no.
+
+=== RESPONSE ===
+p_yes=0.163

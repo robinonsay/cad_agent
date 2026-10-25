@@ -1,0 +1,169 @@
+{
+ "id": "generic_box",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "rectangular block",
+  "heatsink",
+  "heat sink",
+  "wrench",
+  "tool",
+  "rectangular part",
+  "cuboid",
+  "rectangular object"
+ ],
+ "kind": "generic",
+ "source": "Parametric stand-in for any rectangular object (heatsink, wrench, tool): size_x, size_y and size_z come from the request (no datasheet).",
+ "frame": "generic: origin at the min corner of the box (X length, Y width, Z height), base on Z = 0",
+ "params": {
+  "size_x": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  },
+  "size_y": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  },
+  "size_z": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  }
+ },
+ "gate_params": {
+  "size_x": 50.0,
+  "size_y": 20.0,
+  "size_z": 30.0,
+  "source": "sample size used only by the load-time validation gate; never a design value"
+ },
+ "datasheet_size": [
+  "size_x",
+  "size_y",
+  "size_z"
+ ],
+ "size_tolerance": 0.05,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "box",
+   "size": [
+    "size_x",
+    "size_y",
+    "size_z"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "datums": {
+  "ORIGIN": {
+   "kind": "point",
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  "CENTRE": {
+   "kind": "point",
+   "at": [
+    "size_x / 2",
+    "size_y / 2",
+    "size_z / 2"
+   ]
+  },
+  "BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "size_z"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "FACE_MX": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "FACE_PX": {
+   "kind": "plane",
+   "at": [
+    "size_x",
+    0,
+    0
+   ],
+   "normal": [
+    1,
+    0,
+    0
+   ]
+  },
+  "FACE_MY": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    -1,
+    0
+   ]
+  },
+  "FACE_PY": {
+   "kind": "plane",
+   "at": [
+    0,
+    "size_y",
+    0
+   ],
+   "normal": [
+    0,
+    1,
+    0
+   ]
+  }
+ },
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "height positive",
+   "expr": "TOP.z - BOTTOM.z",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

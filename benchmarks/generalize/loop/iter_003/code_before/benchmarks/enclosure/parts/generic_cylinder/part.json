@@ -1,0 +1,28 @@
+{
+  "id": "generic_cylinder",
+  "schema": 1,
+  "units": "mm",
+  "names": ["capacitor", "electrolytic capacitor", "upright capacitor", "can capacitor", "cylindrical part", "cylindrical component", "upright cylinder"],
+  "kind": "generic",
+  "source": "Parametric stand-in for any round upright part; diameter and height come from the request (no datasheet).",
+  "frame": "generic: origin at the centre of the base, axis +Z",
+  "params": {
+    "diameter": {"default": null, "from_request": true, "source": "request text"},
+    "height": {"default": null, "from_request": true, "source": "request text"}
+  },
+  "gate_params": {"diameter": 8.0, "height": 11.0, "source": "sample size used only by the load-time validation gate; never a design value"},
+  "datasheet_size": ["diameter", "diameter", "height"],
+  "size_tolerance": 0.05,
+  "geometry": [
+    {"id": "body", "primitive": "cylinder", "d": "diameter", "h": "height", "at": [0, 0, 0], "dir": [0, 0, 1]}
+  ],
+  "datums": {
+    "AXIS": {"kind": "axis", "at": [0, 0, 0], "dir": [0, 0, 1], "diameter": "diameter"},
+    "BOTTOM": {"kind": "plane", "at": [0, 0, 0], "normal": [0, 0, -1]},
+    "TOP": {"kind": "plane", "at": [0, 0, "height"], "normal": [0, 0, 1]}
+  },
+  "connectors": [],
+  "self_checks": [
+    {"name": "height positive", "expr": "TOP.z - BOTTOM.z", "op": "ge", "value": 0, "tol": 0}
+  ]
+}

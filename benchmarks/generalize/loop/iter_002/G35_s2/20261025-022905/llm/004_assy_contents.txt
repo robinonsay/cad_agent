@@ -1,0 +1,34 @@
+MODEL: ornith-1.5:9b T=0.3 seed=2000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Two links of a cable chain for a 6.5 mm cable, printed in place with 0.35 mm clearance on the pivot. Each link has an inner section 12 x 10 mm (12 mm along the pivot axis, 10 mm across the bend plane) and the pair bends 30 degrees either way about a vertical pivot pin before a stop. Each link is 20 to 40 mm long. The two links are separate bodies in one print and must not touch each other. The pivot pin is at least 3.0 mm in diameter and its head overlaps the bore by at least 0.4 mm per side; sideways play is at most 0.8 mm and axial play at most 1.2 mm. Print flat without supports.
+
+Catalogue parts that may be in the request:
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- gear_spur_generic: spur gear (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "gear_spur_generic": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

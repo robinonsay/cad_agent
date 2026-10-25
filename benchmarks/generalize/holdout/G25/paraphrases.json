@@ -1,0 +1,152 @@
+{
+ "paraphrases": [
+  {
+   "id": "G25",
+   "tier": 4,
+   "title": "PVC pipe clamp to 2020 profile",
+   "request": "Clamp to hold a 32 mm outside diameter PVC pipe on the face of a 2020 aluminium extrusion. The pipe runs parallel to the extrusion, its axis 18 to 30 mm out from the mounting face (extrusion 100 mm long; the pipe is treated as a solid rod). Two-piece strap: a saddle with a back plate, and a cap, printed separately and joined by two M4 bolts into captive hex nuts. Clamp bore 32.3 mm, so the bolts close a 0.5 mm gap between the pieces and squeeze the pipe. The back plate takes two M5 bolts into drop-in T-nuts in the slot of that face. FDM, PLA or PETG, no supports. Max 80 mm along the extrusion, 70 mm across, 60 mm out from the face. A hex key must reach every bolt.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: pipe parallel to the extrusion (A1); the extrusion length 100 mm and the pipe as a solid rod (A2, A3); the M5 bolts use drop-in T-nuts (A4); FDM, PLA or PETG, no supports, hex-key access (A8, A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "From the parts catalogue place the 32 mm pipe, the 100 mm 2020 extrusion, two M5 T-nuts, two M5 bolts, two M4 bolts and two M4 nuts. Pipe axis parallel to the extrusion axis, 18 to 30 mm out from the mounting face. No two parts collide. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The clamp grips the 32 mm pipe in a round bore of 32.3 mm diameter, concentric with the declared pipe axis, over 20 to 40 mm of grip length.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Two separate printed bodies: a saddle carrying the back plate, and a cap. They meet at a split plane through the bore axis and have a 0.5 mm gap between split faces as delivered.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Two M4 bolts go through plain holes in the cap into two M4 hex nuts held captive in pockets in the saddle, one each side of the pipe. Bolt axes 21.3 to 30 mm from the pipe axis, equal on both sides within 0.5 mm, tip 0 to 3 mm past the nut. The closed clamp must be able to bring the cap fully down onto the saddle.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "With the 0.5 mm gap closed the bore squeezes the pipe: the closed bore span across the clamp direction is 31.8 mm, 0.2 mm under the pipe.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Saddle back plate lies flat on the extrusion face within the 100 mm length: at least 5 mm from each end, 4 to 8 mm thick, at least 600 mm² on the face. No printed material enters the extrusion or its slot.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "The back plate takes two M5 bolts on the slot centreline, 40 to 70 mm apart and at least 10 mm from the ends, into two drop-in T-nuts in the 2020 slot. Each bolt is long enough to engage its nut and short enough to clear the slot floor.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "With the pipe in place, nothing printed touches it except at the bore (everything else at least 0.5 mm off). The pipe clears the extrusion, the M5 bolt heads and the plate by at least 0.5 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "A hex key reaches every bolt along its axis. Assembly order: saddle bolted to the extrusion, nuts dropped in, pipe laid in the saddle, cap fitted and bolted.",
+     "method": "test"
+    },
+    {
+     "id": "L1.10",
+     "text": "Enough material to carry the bolt load: at least 3.0 mm round the bore, 1.5 mm round each pocket, 2.0 mm between an M4 hole and the bore, 3.0 mm between an M5 hole and the plate edge.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Saddle and cap are each one manifold body, FDM printable with no supports in the stated print orientation (no overhang steeper than 45° from vertical, no bridge over 15 mm).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Delivered clamp is at most 80 mm along the extrusion, 70 mm across it and 60 mm out from the extrusion face.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliver a saddle STL and a cap STL (relaxed pose, extrusion frame, mm), the OpenSCAD source, the declared layout, the print orientations and the agent's own clearance report. The report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  },
+  {
+   "id": "G25",
+   "tier": 4,
+   "title": "PVC pipe clamp to 2020 profile",
+   "request": "I'd like a strap clamp that fixes a PVC pipe, 32 mm in outside diameter, to the face of a 2020 aluminium extrusion. The pipe goes alongside the extrusion, parallel to it, with its axis somewhere from 18 to 30 mm away from the face the clamp mounts on. For the design I use a 100 mm length of extrusion and take the pipe as a solid rod. The clamp has two pieces, a saddle that includes a back plate and a cap, printed on their own and fastened with two M4 bolts that screw into captive hex nuts. The bore is 32.3 mm, so tightening the bolts closes a 0.5 mm gap between the pieces and squeezes the pipe. Two M5 bolts through the back plate go into drop-in T-nuts in the slot of that extrusion face. Print it on an FDM printer in PLA or PETG, without supports, within 80 mm along the extrusion, 70 mm across it and 60 mm out from its face, and I have to be able to get a hex key onto every bolt.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: pipe parallel to the extrusion (A1); the extrusion length 100 mm and the pipe as a solid rod (A2, A3); the M5 bolts use drop-in T-nuts (A4); FDM, PLA or PETG, no supports, hex-key access (A8, A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Take the 32 mm pipe, the 100 mm 2020 extrusion, two M5 T-nuts, two M5 bolts, two M4 bolts and two M4 nuts from the parts catalogue and place them so the pipe axis runs parallel to the extrusion axis at a distance of 18 to 30 mm from the face the clamp sits on. Nothing may collide with anything else, and the layout must be declared.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "A round bore of 32.3 mm diameter, on the same axis as the declared pipe, grips the 32 mm pipe along a grip length of 20 to 40 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "The clamp is made up of a saddle (which carries the back plate) and a cap, two bodies printed separately. Their split plane passes through the bore axis, and as delivered the split faces have a 0.5 mm gap between them.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "The cap has plain holes for two M4 bolts, which go down into two M4 hex nuts captive in pockets of the saddle, one on either side of the pipe. The bolt axes sit 21.3 to 30 mm from the pipe axis and match left to right within 0.5 mm, the tips stick out 0 to 3 mm beyond the nut, and the clamp when closed must let the cap come all the way down on the saddle.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "Once the 0.5 mm gap has been closed, the bore grips the pipe tightly: across the clamp direction the closed bore spans 31.8 mm, which is 0.2 mm smaller than the pipe.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "The back plate of the saddle sits flat on the face of the extrusion and inside its 100 mm length, at least 5 mm from either end. The plate is 4 to 8 mm thick, covers at least 600 mm² of the face, and no printed material goes into the extrusion or the slot.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Two M5 bolts pass through the back plate along the slot centreline, 40 to 70 mm apart, each at least 10 mm from the ends, and into two drop-in T-nuts in the 2020 slot. Each bolt needs to be long enough to engage its nut and short enough not to hit the slot floor.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "When the pipe is in position, the only printed contact with it is at the bore, with everything else at least 0.5 mm away; the pipe also stays 0.5 mm or more away from the extrusion, the M5 bolt heads and the plate.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Each bolt can be reached by a hex key straight along its axis, and assembly goes in this sequence: bolt the saddle to the extrusion, drop the nuts in, lay the pipe into the saddle, then fit and bolt the cap.",
+     "method": "test"
+    },
+    {
+     "id": "L1.10",
+     "text": "There has to be enough material to take the bolt load: 3.0 mm or more round the bore, 1.5 mm round each pocket, 2.0 mm separating an M4 hole from the bore and 3.0 mm separating an M5 hole from the edge of the plate.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "The saddle and the cap each need to be a single manifold body that an FDM printer can make without supports in the print orientation given by the design (overhangs no steeper than 45° from vertical, bridges no longer than 15 mm).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "As delivered, the clamp measures no more than 80 mm along the extrusion, 70 mm across it, and 60 mm out from the face of the extrusion.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.13",
+     "text": "The deliverables: a saddle STL and a cap STL (relaxed pose, extrusion frame, mm), the OpenSCAD source, the declared layout, the print orientations, and the agent's own clearance report, which must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  }
+ ]
+}

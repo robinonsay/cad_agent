@@ -33,6 +33,7 @@
   "keepouts": [
     {"id": "component_side", "primitive": "box", "size": ["pcb_length", "pcb_width", "top_parts_height"], "at": [0, 0, "pcb_thickness"]}
   ],
+  "interfaces": [{"id": "mount", "kind": "mount_holes", "holes": "HOLE", "seat": "PCB_BOTTOM", "top": "PCB_TOP", "source": "catalogue data (generalize iteration 001, delta D1): the mounting-hole axis list, the plane the part rests on when seated over its holes, and the plane its component keep-out starts from. thread: generalize delta 002 D2, Raspberry Pi Pico 2 datasheet gives 2.1 mm drilled holes; M2 is the screw that fits them (engineering convention, uncertainty low)", "thread": 2.0}],
   "datums": {
     "USB_MOUTH": {"kind": "point", "at": ["-usb_overhang", "pcb_width / 2", "pcb_thickness + usb_height / 2"]},
     "USB_AXIS": {"kind": "axis", "at": ["-usb_overhang", "pcb_width / 2", "pcb_thickness + usb_height / 2"], "dir": [-1, 0, 0]},

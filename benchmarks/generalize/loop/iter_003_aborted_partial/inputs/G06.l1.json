@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the LCD module and the Pico 2 from the parts catalogue, with the LCD tilted 30 degrees and the Pico's USB port facing the back wall, without the parts colliding, with the Pico lying partly under the LCD (at least 100 mm2 of overlap seen from above), and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The LCD plane shall be tilted 30 degrees from the table with the display facing up and toward the front, and the case's front panel shall be a flat sloped face parallel to the LCD.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The sloped panel shall have a window that shows the whole 64.5 x 14 mm LCD viewport without any material in the way, and that is not oversized (0.5 to 2.0 mm bigger than the viewport on each side).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The LCD shall be fixed on four standoffs at its four 2.5 mm mounting holes with screws, with its edges at least 0.5 mm clear of the case walls.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "The Pico 2 shall be mounted behind and below the LCD on four standoffs at its mounting holes, inside the case, with at least 1.0 mm between the Pico's top side and the back of the LCD module, taking 2.0 mm of soldered components and driver epoxy on the LCD's back across its whole PCB.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "With the case closed, a micro-USB cable shall plug fully into the Pico through one opening in the back wall without touching the case, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "The case shall be a base and a separate removable sloped front panel that locates on the base with a sliding fit and is held closed by two M2 self-tapping screws at its rear corners, each driven along the panel normal into a boss on the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The closed case shall have no openings other than the LCD window, the USB opening and screw holes, and its walls, floor and panel shall be 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The base and the panel shall each be one manifold body that prints on an FDM printer without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The closed case shall be no larger than 100 x 80 x 70 mm and shall stand on a desk without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "With the panel off, the LCD and the Pico shall each lift out along a clear path and every board screw shall be reachable with a screwdriver.",
+    "method": "test"
+  },
+  {
+    "id": "L1.12",
+    "text": "The design shall be delivered as a base STL, a panel STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

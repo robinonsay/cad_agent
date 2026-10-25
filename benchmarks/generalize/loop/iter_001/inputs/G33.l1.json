@@ -1,0 +1,57 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The hinge shall be two printed leaves, each one manifold body, each 25.0 mm (plus or minus 0.3) by 40.0 mm (plus or minus 0.2) in plan and 8.4 to 10.0 mm thick, with a flat mounting face (flat within 0.2 mm).",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The leaves shall carry alternate knuckles along the 40 mm pin axis: an odd number of at least 3, each at least 5.0 mm long, with 0.30 to 0.40 mm between neighbouring knuckle faces and the two outer knuckles flush with the 40 mm ends.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The 3 mm pin shall pass through every knuckle on one common axis (within 0.10 mm). The holes of the turning leaf shall be 0.20 mm larger than the pin (3.15 to 3.30 mm), and every knuckle shall have at least 2.0 mm of wall round its hole.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "The pin shall be held by a press fit (hole 2.95 to 3.05 mm) in the outer knuckles of the other leaf, with at least 14.0 mm of engagement, and the pin ends shall lie within 0.3 mm of the 40 mm ends.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "Each leaf shall have two M3 heat-set insert holes of 3.9 to 4.1 mm diameter, at least 7.2 mm deep with at least 1.0 mm floor, square to the mounting face within 1 degree, at least 3.0 mm from any edge or feature and at least 15.0 mm apart, and symmetric about the leaf's mid-length (within 0.5 mm).",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "Through the whole swing from 0 to 180 degrees, sampled every 5 degrees, the two leaves shall not intersect and shall stay at least 0.30 mm apart, and the turning leaf's pin holes shall stay at least 0.05 mm clear of the pin.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "At 180 degrees the two mounting faces shall be coplanar within 0.2 mm. At 0 degrees they shall be parallel within 1 degree and the leaves shall fold face to face with 0.30 to 0.60 mm between the plates.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The folded hinge shall fit within 30 x 41 x 20 mm and the flat hinge within 45 x 41 x 15 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "Each leaf shall print without supports in a declared orientation, with at least 50 percent of its plan on the bed and no feature thinner than 0.8 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "With the leaves assembled, the pin shall be insertable along its axis through every knuckle, and an M3 bolt shall reach every insert from outside along its axis, both folded and flat.",
+    "method": "test"
+  },
+  {
+    "id": "L1.11",
+    "text": "The design shall be delivered as one STL per leaf in the flat pose, the OpenSCAD source, the declared pin axis, insert axes and print orientations, and the agent's own swing report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

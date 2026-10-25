@@ -1,0 +1,494 @@
+{
+ "package": "V1_s2",
+ "judge": "judge_1",
+ "iteration": "iter_002",
+ "request": "V1",
+ "verdict": "DOES NOT MEET",
+ "meets": false,
+ "class": "MINOR",
+ "score": 0.9185,
+ "worst_weight3_normalised_margin": -179.0,
+ "worst_margin_item": "L3.1.2.1 jack axis 180 deg vs 1 deg tolerance",
+ "gates": {
+  "G0 package": "PASS",
+  "G1 manifold, two bodies": "PASS",
+  "G2 board fit": "PASS",
+  "G3 USB plug seats": "PASS",
+  "G4 jack plugs seat": "PASS",
+  "G5 board fixed": "PASS"
+ },
+ "frame_note": "STLs already in the enclosure frame (USB at -X, jack at +X as built).",
+ "measured_values": {
+  "Board clearance to any surface (L3.2.1.1) mm": 1.1,
+  "Pico in cavity (L3.2.2.1) mm": 4.37,
+  "Headers, jacks in cavity (L3.4.3.1) mm": 1.208,
+  "Standoff count / pitch X,Y / axis offset max": [
+   4,
+   75.0,
+   55.0,
+   0.0
+  ],
+  "Standoff OD / pilot dia / pilot depth mm": [
+   5.1,
+   1.7,
+   5.1
+  ],
+  "Top / bottom keep-out d (L3.4.1.1, L3.4.2.1) mm": [
+   0.1,
+   0.1
+  ],
+  "USB plug d (L3.5.1.1) mm; USB opening outside grown envelope mm3": [
+   0.4,
+   [
+    0.0
+   ]
+  ],
+  "USB opening W x H, centre (t,z as-built wall frame) mm": [
+   [
+    10.8,
+    7.8,
+    [
+     30.0,
+     4.9
+    ]
+   ]
+  ],
+  "Jack plug d each (L3.6.1.1) mm": [
+   0.405
+  ],
+  "Jack opening dia and centre (t,z) each": [
+   [
+    8.8,
+    [
+     30.0,
+     2.5
+    ]
+   ]
+  ],
+  "Opening counts (usb wall / jack wall(s))": [
+   1,
+   {
+    "+X": 1
+   }
+  ],
+  "Lip gap per side; lip engagement mm": [
+   {
+    "-X": 0.25,
+    "+X": 0.25,
+    "-Y": 0.25,
+    "+Y": 0.25
+   },
+   2.1
+  ],
+  "Wall / floor / lid thickness mm": [
+   2.4,
+   2.4,
+   2.4
+  ],
+  "Overhang patches (non-exempt); bed contact base/lid": [
+   0,
+   {
+    "base": 0.869,
+    "lid_flipped": 0.864
+   }
+  ],
+  "Shells base / lid": [
+   1,
+   1
+  ],
+  "Closed envelope X x Y x Z mm": [
+   93.17,
+   73.17,
+   24.7
+  ],
+  "Install sweep d; driver columns d mm": [
+   0.2,
+   [
+    0.6,
+    0.6,
+    0.6,
+    0.6
+   ]
+  ],
+  "Self-report agreement (L3.12.2.1)": "100% within 0.10 mm (every clear_of/inside d compared)"
+ },
+ "l3": {
+  "L3.1.1.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.1.2.1": {
+   "status": "FAIL",
+   "weight": 3,
+   "measured": "USB_AXIS [-1.0, 0.0, 0.0], JACK_AXES [[1.0, 0.0, 0.0]] (as built)"
+  },
+  "L3.1.3.1": {
+   "status": "FAIL",
+   "weight": 2,
+   "measured": "USB_MOUTH [3.04, 30.0, 4.9], JACK_MOUTHS [[80.0, 30.0, 2.5]] (as built)"
+  },
+  "L3.1.4.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.1.4.2": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.1.4.3": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.1.6.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.2.1.1": {
+   "status": "PASS",
+   "weight": 3,
+   "measured": "d=1.1 >= 0.5"
+  },
+  "L3.2.1.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.2.2.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.2.2.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.3.1.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.3.1.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.3.1.3": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.3.1.4": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.3.2.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.3.2.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.3.3.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.3.3.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.3.4.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.3.4.2": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.3.5.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.4.1.1": {
+   "status": "PASS",
+   "weight": 3,
+   "measured": "d=0.1 >= 0.0"
+  },
+  "L3.4.1.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.4.2.1": {
+   "status": "PASS",
+   "weight": 3,
+   "measured": "d=0.1 >= 0.0"
+  },
+  "L3.4.2.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.4.3.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.5.1.1": {
+   "status": "PASS",
+   "weight": 3,
+   "measured": "d=0.4 >= 0.3"
+  },
+  "L3.5.2.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.5.3.1": {
+   "status": "FAIL",
+   "weight": 2
+  },
+  "L3.6.1.1": {
+   "status": "PASS",
+   "weight": 3,
+   "measured": "d=[0.405] >= 0.3"
+  },
+  "L3.6.2.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.6.3.1": {
+   "status": "FAIL",
+   "weight": 2
+  },
+  "L3.7.1.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.7.1.2": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.7.2.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.7.2.2": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.7.3.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.7.3.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.7.3.3": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.7.3.4": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.7.4.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.7.5.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.8.1.1": {
+   "status": "FAIL",
+   "weight": 2
+  },
+  "L3.8.2.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.8.2.2": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.8.2.3": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.8.3.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.8.4.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.9.1.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.9.2.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.9.3.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.9.4.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.9.5.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.10.1.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.10.2.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.10.3.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.10.4.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.11.1.1": {
+   "status": "PASS",
+   "weight": 2
+  },
+  "L3.11.2.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.11.3.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.12.1.1": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.12.1.2": {
+   "status": "PASS",
+   "weight": 3
+  },
+  "L3.12.2.1": {
+   "status": "PASS",
+   "weight": 1
+  },
+  "L3.1.5.1": {
+   "status": "N/A",
+   "weight": 2,
+   "note": "needs two jacks"
+  },
+  "L3.5.1.2": {
+   "status": "N/A",
+   "weight": 2,
+   "note": "physical test, no print made"
+  },
+  "L3.6.1.2": {
+   "status": "N/A",
+   "weight": 2,
+   "note": "physical test, no print made"
+  },
+  "L3.7.3.6": {
+   "status": "N/A",
+   "weight": 2,
+   "note": "physical test, no print made"
+  },
+  "L3.7.3.5": {
+   "status": "N/A",
+   "weight": 0,
+   "note": "removed 2026-10-24"
+  }
+ },
+ "defects": [
+  {
+   "req": "L3.1.2.1 (L2.1.2, L1.1)",
+   "status": "FAIL",
+   "body": "layout",
+   "feature": "3.5 mm jack connector_1_1 (catalogue jack_3p5_pj320a) in layout.json references[], edge '+X'",
+   "face": "jack mouth face, outward normal +X, at the +X short end (X = 80.0); the Pico USB mouth is at the -X short end",
+   "location": "jack body [68.0, 27.0, 0.0]-[80.0, 33.0, 5.0]; JACK_MOUTH (80.0, 30.0, 2.5); USB_MOUTH (3.04, 30.0, 4.9) (board frame, as built = enclosure frame)",
+   "measured": "JACK_AXIS = +X, i.e. 180 deg from the required direction (USB_AXIS = -X)",
+   "limit": "JACK_AXIS within 1 deg of -X (V1 grading_delta: both ports on the -X end; request: both ports through the same short end)",
+   "margin": "-179 deg (-179 normalised)",
+   "reference": "V1 grading_deltas 2; JACK_AXIS datum of M-JACK-1 at the declared pose (x 68.0, y 27.0, rot_z 0)",
+   "render": "views/open_iso.png: USB opening in the near-left end wall, jack hole in the far-right end wall, i.e. opposite ends",
+   "evidence": "layout.json references[connector_1_1]; run.log ArrangeContents line 'jack faces the short (60 mm) end at +X'",
+   "needed": "jack placed with rot_z 180 so that JACK_AXIS = -X and JACK_MOUTH X in [-1.8, 0.5]; jack body Y must stay clear of the Pico (PCB Y 19.5-40.5, X from 3.04) and of the screw columns; USB and jack opening ligament >= 1.5 (USB opening spans Y 24.6-35.4, jack opening dia 8.8 needs centre Y <= 18.7 or >= 41.3 for 1.5 ligament)",
+   "also_fails": [
+    "L3.1.3.1",
+    "L3.5.3.1",
+    "L3.6.3.1",
+    "L3.8.1.1"
+   ]
+  },
+  {
+   "req": "L3.1.3.1 (L2.1.3, L1.1)",
+   "status": "FAIL",
+   "body": "layout",
+   "feature": "jack mouth position along X (connector_1_1)",
+   "face": "jack mouth, normal +X",
+   "location": "JACK_MOUTH (80.0, 30.0, 2.5)",
+   "measured": "JACK_MOUTH X = 80.0 (USB_MOUTH X = 3.04 passes, window [2.54, 3.54])",
+   "limit": "X in [-1.8, 0.5]",
+   "margin": "+79.5 mm beyond the upper bound",
+   "reference": "V1 grading_deltas 2",
+   "render": "views/open_iso.png",
+   "evidence": "layout.json",
+   "needed": "jack mouth X between -1.8 and 0.5 on the -X end"
+  },
+  {
+   "req": "L3.5.3.1 (L2.5.3 / V1 delta 4, L1.5)",
+   "status": "FAIL",
+   "body": "base",
+   "feature": "-X end wall (outer face X -3.5, inner face X -1.1)",
+   "face": "-X wall mid-section",
+   "location": "wall section X = -2.3: one opening, 10.8 x 7.8 at Y 24.6-35.4, Z 1.0-8.8 (USB only)",
+   "measured": "1 region in the -X wall",
+   "limit": "2 regions in the -X wall (USB + jack)",
+   "margin": "-1 region",
+   "reference": "V1 grading_deltas 4",
+   "render": "views/model_left.png",
+   "evidence": "wall section computed from base.stl+lid.stl",
+   "needed": "a second through opening (dia >= 8.6 with plug clearance 0.3, <= 11.0) for the jack in the -X wall with centre Z 2.5, >= 1.5 ligament from the USB opening"
+  },
+  {
+   "req": "L3.6.3.1 (L2.6.3 / V1 delta 4, L1.5)",
+   "status": "FAIL",
+   "body": "base",
+   "feature": "+X end wall jack opening dia 8.8 (connector_1_1_cut)",
+   "face": "+X wall (outer X 83.5, inner X 81.1), outward normal +X",
+   "location": "opening centre (Y 30.0, Z 2.5), bbox Y 25.6-34.4, Z -1.9-6.9",
+   "measured": "1 opening in the +X wall, 0 jack openings in the -X wall",
+   "limit": "0 openings in the +X wall; jack opening in the -X wall",
+   "margin": "-1",
+   "reference": "V1 grading_deltas 4",
+   "render": "views/model_right.png",
+   "evidence": "wall section",
+   "needed": "no opening in the +X wall"
+  },
+  {
+   "req": "L3.8.1.1 (L2.8.1, L1.7)",
+   "status": "FAIL",
+   "body": "base",
+   "feature": "+X wall dia 8.8 opening",
+   "face": "+X wall",
+   "location": "[81.1, 25.6, -1.9]-[83.5, 34.4, 6.9]",
+   "measured": "1 through path admitting a dia 2.0 sphere into the cavity outside the V1-listed openings (listed: USB and jack openings in the -X wall)",
+   "limit": "0 unlisted paths",
+   "margin": "-1 path",
+   "reference": "V1 L1.7 / grading_deltas 4",
+   "render": "views/model_right.png",
+   "evidence": "follows from the jack placement",
+   "needed": "no opening in the +X wall"
+  }
+ ],
+ "observations": [
+  "The package is internally consistent: the plug envelopes for the declared layout clear the enclosure (USB d 0.40, jack d 0.405), the self-report agrees with the judge within 0.10, and 75/75 self checks pass; the miss is the layout itself (the agent's run.log: 'jack faces the short (60 mm) end at +X'), so the agent's own checks cannot see it.",
+  "Normalising by mirror or rotation cannot fix it: the USB and jack axes are anti-parallel in the declared layout, and a mirror or 180 deg turn keeps them anti-parallel.",
+  "L3.6.1.1 / L3.6.2.1 are graded on the declared layout and pass; they will need re-measuring once the jack moves to the -X end (the two plug envelopes must also stay apart, >= 1.5 ligament)."
+ ],
+ "method": "trimesh + manifold3d on base.stl and lid.stl; references built from layout.json poses and parts/*/part.json; clear_of/inside per rubric 3.2/3.3; apertures from wall cross-sections; unlisted-opening probe by 0.3 mm voxel flood fill with dia 2.0 erosion (validated: unfilled -> connected, listed apertures filled -> not connected); overhang, bed contact, thin-feature, stability, install sweep and driver-column checks per rubric 3.6/3.7; mass for stability = 40 g total (conservative)."
+}

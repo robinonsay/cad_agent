@@ -1,0 +1,140 @@
+{
+ "id": "rod_8mm",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "8mm rod",
+  "8 mm rod",
+  "8mm smooth rod",
+  "8 mm smooth rod",
+  "8mm steel rod",
+  "8 mm steel rod",
+  "8mm linear rod",
+  "8 mm linear rod",
+  "8mm shaft",
+  "8 mm shaft",
+  "ground steel rod"
+ ],
+ "kind": "mech",
+ "source": "8 mm precision ground steel rod, h6 (ISO 286-2): nominal 8.000 mm, tolerance 0 / -0.009 mm; straightness depends on grade (about 0.1 mm/m for 3D-printer rod, assumed). Length comes from the request. Recommended LM8UU running fit is the bearing's own bore, not this part's.",
+ "frame": "rod: axis along Z, origin at the centre of the start end face, rod extends toward +Z",
+ "params": {
+  "diameter": {
+   "default": 8.0,
+   "source": "nominal diameter, ISO 286 h6 (0 / -0.009)"
+  },
+  "diameter_tolerance": {
+   "default": 0.009,
+   "source": "ISO 286-2 h6 band for 6-10 mm"
+  },
+  "length": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  }
+ },
+ "gate_params": {
+  "length": 200.0,
+  "source": "sample size used only by the load-time validation gate; never a design value"
+ },
+ "datasheet_size": [
+  "diameter",
+  "diameter",
+  "length"
+ ],
+ "size_tolerance": 0.05,
+ "geometry": [
+  {
+   "id": "rod",
+   "primitive": "cylinder",
+   "d": "diameter",
+   "h": "length",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "sliding_envelope",
+   "primitive": "cylinder",
+   "d": "diameter",
+   "h": "length",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "diameter"
+  },
+  "END_START": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "END_FAR": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  }
+ },
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "rod diameter 8",
+   "expr": "rod.size_x",
+   "value": 8.0,
+   "tol": 0.05
+  },
+  {
+   "name": "length positive",
+   "expr": "END_FAR.z - END_START.z",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

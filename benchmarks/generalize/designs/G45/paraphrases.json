@@ -1,0 +1,140 @@
+{
+  "paraphrases": [
+    {
+      "id": "G45",
+      "tier": 4,
+      "title": "Nozzle and wrench organiser with magnets",
+      "request": "Tray holding six M6 hotend nozzles (hex, 7 mm across flats, 12 mm tall, 0.3 mm clearance per side in the pocket), a 7 mm combination wrench (120 x 14 x 4 mm, same clearance) in its own pocket, and four 6 x 3 mm disc magnets in underside pockets to hold it on a steel surface. Magnets: one per quarter of the tray, spread over at least half its length and a quarter of its width. Loaded centre of mass must be at least 2 mm inside the four magnets (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each). Magnets are recessed 0.5 mm above the underside, away from the steel. The six nozzle pockets are 6 to 10 mm deep, in a regular row or grid (centres within 0.1 mm of the lattice) with at least 3 mm between neighbours, so the nozzles can be taken out one at a time by finger. FDM, printed flat, no supports. Maximum size 140 x 40 x 15 mm.",
+      "request_verbatim": "A tray for six M6 hotend nozzles (hex 7 mm AF, 12 mm tall, pocket clearance 0.3 mm), a 7 mm combination wrench pocket 120 x 14 x 4 mm, and four 6 x 3 mm magnet pockets underneath that keep the tray on a steel surface. Magnets sit 0.5 mm below the base surface.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3: clearance 0.3 is per side (A2); the wrench is 120 x 14 x 4 and gets the same clearance (A3); 'sit 0.5 mm below the base surface' is read as recessed 0.5 mm inside the underside (A4, FD2); regular pattern so the nozzles can be picked out one at a time (A6); FDM, flat, no supports (A8); size limit 140 x 40 x 15 (A9). Audit additions from requirements.md: nozzle pocket depth 6 to 10 (A7), lattice residual 0.1 and finger room 3.0 (A6, L2.3.2), magnet spread (L2.5.4), masses (A10).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Put six hex nozzles (7 mm across flats, 12 mm tall), one 120 x 14 x 4 mm wrench and four 6 x 3 mm magnets into a tray, using the request sizes and the parts catalogue, and declare that layout and the print orientation.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "Each of the six nozzle pockets: clearance of at least 0.3 mm all round and at most 0.45 mm at the nearest point; pocket 6 to 10 mm deep; nozzle rests on the pocket floor and sticks out of the tray by at least 2 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "Six nozzle pockets in a regular row or grid with equal pitch (centres within 0.1 mm of the lattice); between neighbouring pockets at least 1.6 mm of material and at least 3.0 mm of finger room.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "Wrench pocket: fits the 120 x 14 x 4 mm wrench with at least 0.3 mm and at most 0.45 mm clearance per side, and is 2.5 to 4.0 mm deep so the wrench lifts out.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "Four magnet pockets open on the underside, each 6.1 to 6.3 mm in diameter and 3.4 to 3.6 mm deep, so each magnet face is 0.5 mm inside the underside. At least 1.2 mm of material from a magnet to every other pocket and to the top face. One magnet per quarter of the tray, the four spanning at least half the tray's length and a quarter of its width.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "Flat underside so the tray sits on steel. With the six nozzles and the wrench loaded (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each), the centre of mass lies inside the four magnets by at least 2 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Material around every pocket: at least 1.6 mm to every other pocket, at least 2.0 mm to the tray's outside, at least 1.2 mm of floor under the nozzle and wrench pockets.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "One manifold body, printed flat on FDM, no supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "Maximum size 140 x 40 x 15 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.10",
+          "text": "Deliver an STL, the OpenSCAD source, the declared layout and the agent's own clearance report; the report must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "pattern arrays: six pockets at an equal pitch derived from the pocket size and a ligament",
+        "hex pockets sized from across-flats with a per-side clearance, in a print orientation that needs no support",
+        "pockets from the underside (blind, open at the bed) with a recess derived from the request",
+        "tolerance stack: clearances, depths and ligaments that add up along the tray's length and height",
+        "parts catalogue: request-sized generic parts (nozzle envelope, wrench box) and a magnet placed by datums",
+        "interference checks against external solids: clear_of, lift and install sweeps, ligament, pattern fit"
+      ]
+    },
+    {
+      "id": "G45",
+      "tier": 4,
+      "title": "Nozzle and wrench organiser with magnets",
+      "request": "I'm after a tray that stays put on a steel surface thanks to four 6 x 3 mm disc magnets sitting in pockets on the underside. One magnet goes in each quarter of the tray, and together they should span at least half its length and a quarter of its width. The magnets are recessed 0.5 mm above the underside so they don't touch the steel. On top it holds six M6 hotend nozzles (hex, 7 mm across flats, 12 mm tall), each in a pocket with 0.3 mm clearance per side, and a 7 mm combination wrench, 120 x 14 x 4 mm, in its own pocket with the same clearance. The six nozzle pockets are 6 to 10 mm deep and laid out in a regular row or grid, centres within 0.1 mm of the lattice, with at least 3 mm between neighbours so you can pick the nozzles out one at a time with your fingers. When loaded, the centre of mass has to be at least 2 mm inside the four magnets (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each). Print it flat on an FDM printer with no supports, and keep it no larger than 140 x 40 x 15 mm.",
+      "request_verbatim": "A tray for six M6 hotend nozzles (hex 7 mm AF, 12 mm tall, pocket clearance 0.3 mm), a 7 mm combination wrench pocket 120 x 14 x 4 mm, and four 6 x 3 mm magnet pockets underneath that keep the tray on a steel surface. Magnets sit 0.5 mm below the base surface.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3: clearance 0.3 is per side (A2); the wrench is 120 x 14 x 4 and gets the same clearance (A3); 'sit 0.5 mm below the base surface' is read as recessed 0.5 mm inside the underside (A4, FD2); regular pattern so the nozzles can be picked out one at a time (A6); FDM, flat, no supports (A8); size limit 140 x 40 x 15 (A9). Audit additions from requirements.md: nozzle pocket depth 6 to 10 (A7), lattice residual 0.1 and finger room 3.0 (A6, L2.3.2), magnet spread (L2.5.4), masses (A10).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Using the sizes in the request and the parts catalogue, lay out a tray for six hex nozzles (7 mm across flats, 12 mm tall), a single 120 x 14 x 4 mm wrench and four 6 x 3 mm magnets; declare the layout along with the print orientation.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "Each of the six nozzle pockets should let its nozzle stand on the pocket floor, 6 to 10 mm deep, with the nozzle poking out of the tray by 2 mm or more. Clearance round it must be 0.3 mm or more on every side and 0.45 mm or less at the nearest point.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "Arrange the six nozzle pockets as a regular row or grid at equal pitch, centres no more than 0.1 mm off the lattice. Neighbouring pockets need 1.6 mm or more of material between them and 3.0 mm or more of finger room.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The pocket for the 120 x 14 x 4 mm wrench should leave 0.3 mm minimum and 0.45 mm maximum clearance on each side, and be 2.5 to 4.0 mm deep, shallow enough to lift the wrench out.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "From the underside, cut four magnet pockets, 6.1 to 6.3 mm across and 3.4 to 3.6 mm deep, so that every magnet face ends up 0.5 mm inside the underside. Keep 1.2 mm or more of material between a magnet and every other pocket as well as the top face. Put one magnet in each quarter of the tray, with the four covering at least half its length and a quarter of its width.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "Give the tray a flat underside to sit on a steel surface. Loaded with the six nozzles and the wrench (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each), its centre of mass must fall inside the four magnets with a margin of 2 mm or more.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Pockets must keep 1.6 mm or more of material from each other pocket and 2.0 mm or more from the outer edge of the tray; under the nozzle and wrench pockets leave a floor of at least 1.2 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "The tray is a single manifold piece that prints flat on an FDM printer and needs no supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "Keep the tray within 140 x 40 x 15 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.10",
+          "text": "Deliverables are the STL, OpenSCAD source, declared layout and the agent's own clearance report, which has to match an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "pattern arrays: six pockets at an equal pitch derived from the pocket size and a ligament",
+        "hex pockets sized from across-flats with a per-side clearance, in a print orientation that needs no support",
+        "pockets from the underside (blind, open at the bed) with a recess derived from the request",
+        "tolerance stack: clearances, depths and ligaments that add up along the tray's length and height",
+        "parts catalogue: request-sized generic parts (nozzle envelope, wrench box) and a magnet placed by datums",
+        "interference checks against external solids: clear_of, lift and install sweeps, ligament, pattern fit"
+      ]
+    }
+  ]
+}

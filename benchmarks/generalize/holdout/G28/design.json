@@ -1,0 +1,91 @@
+{
+  "about": "Generalisation benchmark G28 (held-out split), in dev.json format. Tier 4 = a real product: bought-in parts (two spur gears, four bearings, four bolts) placed from a parts catalogue, bearing pockets, bolt holes and a two-half housing, judged as interference and clearance checks against reference models and envelopes. L1 ids match benchmarks/generalize/holdout/G28/requirements.md, which holds the L2/L3 tree, reference models, assumptions, fixed decisions and traceability. Numbers that are not in the owner's words (size limit, wall range, bolt length rule) come from requirements.md section 3. Never put any of these numbers in agent logic: they belong in the request text and in the part.json catalogue.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a shaft along its axis, drop the gears in, separate the halves)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G28",
+      "tier": 4,
+      "title": "Spur gear pair housing, 1 mm module",
+      "request": "A two-half housing for a pair of involute spur gears: a 20 tooth pinion and a 40 tooth wheel, both module 1, 20 degree pressure angle, 6 mm face width. The centre distance should come out at the pitch centre distance plus 0.15 mm backlash allowance. Each gear sits on its own 5 mm shaft, and each shaft is carried by two 625 bearings (5 x 16 x 5 mm), one on each side of the gear, so four bearings in all, each pressed into a printed pocket. The gears must clear the housing walls by 2 mm. The two halves are held together by four M3 socket-head bolts. It is printed in PLA on an FDM printer without supports, and the closed housing should be no larger than 85 x 65 x 30 mm.",
+      "request_verbatim": "A two-half housing for a 20 tooth and a 40 tooth module 1 spur gear pair, 6 mm face width. Center distance should come out at the pitch value plus 0.15 mm backlash allowance, each shaft carried by two 625 bearings. The gears must clear the housing walls by 2 mm and the halves are held by four M3 bolts.",
+      "request_notes": "Added to the brief, all from requirements.md section 3: 20 degree pressure angle (ISO 53, A1); the 0.15 mm is added to the centre distance, not to the tooth thickness (A2); one bearing each side of the gear, so the split plane is across the shafts (F1); 5 mm shafts = the 625 bore (A3); PLA/FDM, no supports (A8); size limit (A9).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall hold a 20 tooth and a 40 tooth module 1 spur gear (6 mm face width) from the parts catalogue on parallel shafts whose centre distance is 30.15 mm (30.00 mm pitch centre distance plus the 0.15 mm backlash allowance), within 0.05 mm, with both gears in one plane (face centres within 0.5 mm along the shafts) and at least 0.25 mm root clearance on both sides of the mesh, and shall declare that layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The two shaft axes shall be parallel to each other and perpendicular to the split plane, and the two bearing seats of each shaft shall be coaxial within 0.10 mm with the housing closed (axes within 0.3 degrees of perpendicular to the split plane).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "Each shaft shall be carried by two 625 bearings, one on each side of its gear, four in all, each pressed into a printed pocket of 16.1 mm diameter and seated against a shoulder that stays on the bearing's outer ring; each pocket is 5.0 to 5.3 mm deep, the shoulder is at least 1.5 mm thick with a hole of 10.5 to 14.0 mm diameter, and at least 2.0 mm of material surrounds each pocket (1.5 mm on the cavity side, where the shoulder is).",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.4",
+          "text": "Both gears shall lie inside the closed housing and clear every housing surface, radially and along the shaft, by at least 2.0 mm, and the nearest housing surface to each gear shall be no more than 4.0 mm away (so the cavity between the shoulders of one shaft is 10 to 14 mm tall).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The housing shall be two separate halves, split across the shafts, each one manifold body, locating on each other with a sliding fit (0.15 to 0.35 mm clearance per side, at least 2.0 mm engagement, no locating leaf thinner than 0.8 mm) and not interpenetrating when closed.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "The halves shall be held together by exactly four M3 socket-head bolts: plain 3.4 mm holes with counterbores in one half, 2.5 mm pilot holes in the other, with at least 6.0 mm of thread engagement and the heads below the surface, spread so that the bolt-axis rectangle spans at least 60 percent of the housing plan extent in X and in Y, with at least 1.5 mm of material around every hole and counterbore, and a hex key able to reach every head.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "A 5 mm shaft shall pass through both bearings of each shaft line with the housing closed without touching it, and each gear axis shall coincide with its shaft axis.",
+          "method": "test"
+        },
+        {
+          "id": "L1.8",
+          "text": "The closed housing shall have no openings other than the four bearing pockets (closed by the bearings) and the bolt holes, and its side walls shall be 2.4 to 5.0 mm thick and its bearing end plates (outer face to cavity face) 6.5 to 8.5 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "Both halves shall be manifold bodies that print on an FDM printer without supports (45 degree overhang limit, at least half of each half's plan area flat on the bed, no feature thinner than 0.8 mm).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The closed housing shall be no larger than 85 x 65 x 30 mm and shall stand flat on a table.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "With the bolts out, the upper half shall lift straight off the lower half, and both gears shall drop straight into the lower half without touching it (at least 0.5 mm clearance on the way down).",
+          "method": "test"
+        },
+        {
+          "id": "L1.12",
+          "text": "The design shall be delivered as a lower-half STL, an upper-half STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement to within 0.10 mm.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: bearing pockets with shoulders, bolt clearance holes with counterbores, blind pilot holes",
+        "interior placement: bolt bosses in the cavity corners at positions derived from the gear envelopes",
+        "a shell / cavity primitive whose cavity is derived from the gear tip envelopes and the 2 mm clearance",
+        "two printable bodies (lower and upper half) each with its own print orientation",
+        "parts catalogue: load part.json models (gear_spur_generic with module/teeth/face width, bearing_625, bolt_m3_iso4762) and derive centre distance, pitch, tip and root diameters from parameters instead of inventing sizes",
+        "datum-derived numbers: centre distance = (m*z1 + m*z2)/2 + 0.15 computed, never typed in",
+        "interference checks against external solids: clear_of with tip-envelope cylinders, inside, bearing seating verification, shaft sweep"
+      ]
+    }
+  ]
+}

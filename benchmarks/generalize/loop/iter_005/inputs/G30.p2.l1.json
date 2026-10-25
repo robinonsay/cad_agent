@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Declare a layout from the parts catalogue: the 60 x 60 x 25 mm fan blowing straight down, the 50 x 20 x 30 mm heatsink beneath it with its 50 x 20 mm top as the leading face, and four M4 bolts. The fan axis must be within 1.0 mm of the centre of the heatsink face and no parts may collide.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The duct needs a flange lying flat against the fan's exhaust face, with its 60 x 60 mm outline within 1 mm and 800 mm\u00b2 or more of contact, and four screw pilots laid out on the fan's 50 mm square hole pattern.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The duct inlet should almost match the fan's air bore: its inscribed circle is 54 mm or more, its area at least 85% of the bore and no larger than the bore plus 1 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "Going from the fan opening to the heatsink face the passage must narrow steadily with no steps. Wall slope is capped at 45 degrees from the air direction, cross-section area must not drop under 950 mm\u00b2 nor change faster than 10% per millimetre of height, and the transition is 18 to 34 mm long.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The passage must stop right at the heatsink's leading face, and the outlet opening has to cover that entire 50 x 20 mm face so that all the air goes into the fins, while staying within 52 x 22 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "As a sleeve the outlet goes over the heatsink top, with 0.2 mm minimum and 1.0 mm maximum clearance to each of the four sides of the heatsink, over an overlap of 5 mm or more.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "No printed material may intrude into the fan or the heatsink or obstruct the fan's intake, so the 58 mm bore column over the intake face stays clear for 15 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The fan is held by four M4 socket-head bolts that pass through its holes and into flange pilot holes of 3.1 to 3.5 mm diameter and 6 mm minimum depth. Every bolt engages 5 mm or more and ends short of the pilot's bottom.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "From directly above, a hex driver must get to each fan screw head unobstructed, meaning the 6 mm wide, 25 mm long column along every bolt axis is free.",
+    "method": "test"
+  },
+  {
+    "id": "L1.10",
+    "text": "Apart from the inlet and the outlet the duct must be sealed against air leaks, and its wall thickness is 1.6 mm or more.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "Using the print orientation stated in the design, the duct must print on an FDM printer with no supports: overhangs no steeper than 45\u00b0 from vertical, bridges of 15 mm or less, and a bed contact area of at least 25% (and 800 mm\u00b2).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "The duct should fit in 64 x 64 x 45 mm and be symmetrical about the fan axis to within 1 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.13",
+    "text": "Provide the duct STL in the declared layout frame, the OpenSCAD source, the layout declaration, the print orientation and the agent's own clearance report, which must agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

@@ -1,0 +1,64 @@
+{
+ "id": "G04",
+ "folder": "G04_s4/20261025-081631",
+ "meets": false,
+ "score": 0.99,
+ "summary": "Right design; all gates and all weight-3 L3 pass on independent measurement. Only failed L3 is weight 1 (L3.13.2.1 self-report vs judge). Observation: layout.json declares no screws. meets=false because a weight-1 L3 fails.",
+ "defects": [
+  {
+   "requirement_id": "L3.13.2.1",
+   "severity": "weight 1",
+   "where": "self_report.json clear_keepout_bottom and clear_hole_ko_0..3 versus judge; base standoffs at (3.5,3.5),(61.5,3.5),(3.5,26.5),(61.5,26.5); V-KO-BOT zone X 0..65, Y 0..30, Z -2..0",
+   "what": "Agent reports different distances than the independent judge for the keep-out checks (it seems to subtract wider columns than the dia 6.0 columns of requirements.md).",
+   "expected": "agent d within 0.10 of judge d: KO-BOT 0.35; hole-KO k=1,2 0.743; k=3,4 0.50",
+   "observed": "agent KO-BOT 0.60 (diff 0.25); hole_ko_0/1 0.5021 (diff 0.24); hole_ko_2/3 0.5000 (equal)"
+  },
+  {
+   "requirement_id": "L2.1.1 / L3.3.3.4 (observation)",
+   "severity": "observation",
+   "where": "layout.json: references list has only board rpi_zero2w at identity",
+   "what": "No board screws, lid screws or screw lengths declared; L2.1.1 asks for the board and 8 screws.",
+   "expected": "8 screws with declared lengths",
+   "observed": "0 screws; L3.3.3.4 graded on catalogue default 8.0: 6.4 <= 8.0 <= 8.1 passes"
+  }
+ ],
+ "measured": {
+  "base": "1 shell NoError; bbox X -10.7..74.7, Y -3.9..33.0, Z -7.6..9.0",
+  "lid_body": "1 shell NoError; Z 6.9..11.4",
+  "overlap_mm3": 0.0,
+  "board_clear_d": 0.6,
+  "conn_in_cavity_d": 1.54,
+  "KO_top_d": 0.5,
+  "KO_bot_d": 0.35,
+  "hole_KO_d": [
+   0.743,
+   0.743,
+   0.5,
+   0.5
+  ],
+  "hdmi_plug_d": 0.4,
+  "usbd_plug_d": 0.4,
+  "usbp_plug_d": 0.4,
+  "sd_path_d": 0.4,
+  "openings": {
+   "-Y": "3: HDMI X3.5..21.3 Z-1.4..7.4; USBD X36.0..46.8 Z-1.2..6.6; USBP X48.6..59.4 Z-1.2..6.6",
+   "-X": "1: Y10.5..23.3 Z0..6.2",
+   "+X": 0,
+   "+Y": 0
+  },
+  "usb_ligament": 1.8,
+  "standoffs": "4, dia 5.3, tops Z 0, height 5.2, pilot dia 2.10 depth 6.7 (limit 6.8), floor contact 18.6 mm2",
+  "bosses": "4, dia 6.1, pilot dia 2.10 depth 5.7, lid holes dia 2.9",
+  "lid_form": "plate 2.4, lip 1.2 thick, engagement 2.1, gap 0.25 per side, closed 85.4x36.9x19.0",
+  "walls": 2.4,
+  "floor": 2.4,
+  "stability": "COM (32.4,15.0,1.3), 21 g, 0.2 N pull at HDMI margin about 1.8 N.mm"
+ },
+ "renders_seen": [
+  "model_iso",
+  "open_top",
+  "ghost_front",
+  "model_left"
+ ],
+ "class": "CORRECT"
+}

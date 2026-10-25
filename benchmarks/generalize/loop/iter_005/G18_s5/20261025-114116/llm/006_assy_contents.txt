@@ -1,0 +1,50 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I'm after a pillow block for a 608 bearing (it measures 8 x 22 x 7 mm) that holds the bearing by clamping instead of glue. It comes in two halves, a base and a cap, divided along the bearing axis. A pair of M3 bolts, each with a captive hex nut, draw the halves together, and once they are closed the bearing seat is about 0.1 mm tighter than 22 mm across, which is what grips the bearing. On the underside, the base needs two M4 mounting holes set 40 mm apart. I'll print it on an FDM machine and want no supports.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- gear_spur_generic: spur gear (generic)
+- generic_box: rectangular block (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "gear_spur_generic": {
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

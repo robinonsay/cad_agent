@@ -1,0 +1,52 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A carrier plate for a NEMA 17 stepper motor (42.3 mm square body, 40 mm long, 31 mm bolt pattern, 22 mm pilot), held by four ISO 4762 M3 socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through the plate and the motor behind the plate. A 16 tooth, module 1.5 pinion sits on the motor shaft and drives a 32 tooth idler gear that turns on a 608 bearing; both gears are 8 mm wide. Set the idler's centre distance from the gear parameters plus 0.2 mm, and keep a 0.5 mm gap between the gears and the plate. The motor's peak torque is 0.4 N m. The gears, motor and bearing are bought parts; the carrier is one part printed in PLA on an FDM printer.
+
+Catalogue parts that may be in the request:
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- hc_sr04: hc-sr04 (module)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- gear_spur_generic: spur gear (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "gear_spur_generic": {
+    "quantity": 2
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "hc_sr04": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

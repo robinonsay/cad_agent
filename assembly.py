@@ -8,28 +8,42 @@ Iteration 002 wires the walking skeleton (ARCHITECTURE.md 7.1 step 2, 7.4):
     ├── LoadRules          design_rules.json (generic FDM / fastener rules and spec slots, each with a source)
     ├── ParseSpec          LLM maps generic spec slots onto number ids Python extracted from the text (enum)
     ├── Contents           Python proposes catalogue candidates; LLM gives quantity + exposed (enums)
-    ├── ExposureCoverage   a text naming a plug requires the connector that takes it to be exposed: Python senses
-    │                      each violation and exposes it by rule, no question (7.10, 7.11)
+    ├── ExposureCoverage   a sensor (migration delta R01, owner decision D1): a text naming a plug whose connector is
+    │                      closed is recorded (st.coverage, resolved "open"); the controller may expose it after the
+    │                      first build (ControllerLoop). Until R01 this stage exposed it by rule (7.10, 7.11).
     ├── ChooseStack        evidence-gated: one option named by the text -> rule; several -> LLM enum among them;
     │                      none -> the catalogue default, flagged (7.10)
-    ├── ArrangeContents    LLM: board edge per exposed item (enum); Python: mm placement (layout.py);
+    ├── ArrangeContents    board screw by rule (role evidence > datasheet thread > smallest that passes, delta 002 C1);
+    │                      LLM: board edge per exposed item (enum); a gated face-relation question (delta 002 C0: only
+    │                      when one sentence names two exposed parts and a relation word; a unanimous reading becomes a
+    │                      face_relation check); Python: mm placement (layout.py);
     │                      prescore: every feasible candidate through the downstream plant, only the ties at the
     │                      minimum controllable error go on (one survivor -> rule:prescore, 7.11);
     │                      ConfirmArrangement: LLM ranks the feasible classes (p_yes) + vote; comparative pick
     │                      on disagreement (board-symmetric layouts are one class; p_yes is never a gate)
+    ├── Vents              generalize delta 003 C3: vent sentences (design_rules.json vents) -> a named zone (lid row, rule),
+    │                      else a unanimous voted relation to an exposed connector (wall row), else a typed note; then
+    │                      one voted size mapping over the vent sentences' unowned numbers (nothing asked without vents)
     ├── BuildEnvelopes     plug sweeps, keep-outs, seat / hole columns (datum-anchored), module envelopes
     │                      (parts.py, from datums); KEEP_OUTS says how each envelope role is consumed
     ├── ChooseArchetype    feasible archetypes; one feasible -> recorded as a rule choice (no LLM call)
     ├── DeriveFeatures     cavity from contents + plan keep-outs (+ design_margin), base shell, V-DRIVER columns,
-    │                      standoffs + pilots, port cuts, lid + lip, corner pilaster bosses + lid holes:
+    │                      standoffs + pilots, port cuts (+ 45-degree roofs, delta 003 C4), lid + lip or rebate
+    │                      (the default closure, or the controller's set_closure since R01), lid bosses (layout
+    │                      choice, C1: outside_corners kept when it passes,
+    │                      else inside bands scored on the plant), vent slots (C3) + lid holes:
     │                      feature-graph nodes whose params are expressions; every one-sided minimum is
     │                      derived at setpoint(limit) = limit + design_margin (ARCHITECTURE.md 7.9)
+    ├── ControllerLoop     controller.py (R01, D1): the first manifold build of the proposal, the typed error vector,
+    │                      one voted correction per step from a typed action menu (expose a connector, set the lid
+    │                      closure, stop), applied on a fork of the invalidated stage's checkpoint and kept only when
+    │                      the controllable error does not rise; budget and trust region from design_rules.json
     ├── Build              resolve, manifold solid per body, OpenSCAD compile per body (manifold fallback, parity)
     ├── Verify             rule-derived checks on the manifold solids and on the delivered STLs (never fails)
     ├── RenderViews        views/model_* (bodies), views/ghost_* (bodies + references), views/open_* (lid off);
     │                      elevations tilted down by rules.view_elevation_deg (assembly_views, 7.11)
     └── WritePackage       base/lid .stl/.scad, model.scad, layout.json, self_report.json, feature_graph.json,
-                           checks.json, verification_matrix.{md,json}, model.3mf
+                           checks.json, verification_matrix.{md,json}, controller_trace.json, model.3mf
     finalize(): verified (every check passes on the delivered STLs) | unsatisfied; failing checks that name a
                 competing rule are listed as typed requirement conflicts (assembly.conflicts, one per part,
                 with a kind such as grid_extent / blocked / no_pin_data / coverage)
@@ -37,13 +51,16 @@ Iteration 002 wires the walking skeleton (ARCHITECTURE.md 7.1 step 2, 7.4):
 The local LLM is the controller for discrete choices and answers only enums that
 Python builds; Python is the plant model and the sensor. Nothing here holds a
 number, part or face that is specific to one request (test_no_hardcoding.py
-scans this module).
+scans this module). Every rule:* decision string is registered with its class in
+controller_rules.json (test_controller_authority.py); a semantic rule (one that reads
+the text and picks a meaning) is allowed only while its migration delta is pending.
 """
 
 import copy
 import itertools
 import json
 import math
+import os
 import re
 from collections import Counter
 from dataclasses import dataclass, field
@@ -69,14 +86,18 @@ CONTENT_KINDS = ("board", "module", "connector", "generic")   # plugs mate, fast
 BODIES = ("base", "lid")
 DIAGONAL = math.sqrt(0.5)    # unit diagonal component (a boss sits on the diagonal of a corner)
 GHOST_ALPHA = 0.3            # body opacity in the ghost renders
-APERTURE_CUT_ROLES = ("port_cut", "pilot", "screw_hole")   # cuts a wall-slab region is attributed to (7.9)
+APERTURE_CUT_ROLES = ("port_cut", "pilot", "screw_hole", "vent_cut")   # cuts a wall-slab region is attributed to (7.9);
+                                                                        # vent_cut: generalize delta 003 C3
+WALL_CUT_ROLES = ("port_cut", "vent_cut")   # openings through a vertical wall: counted per wall, bridge-checked (C3, C4)
 OPEN_BODY = BODIES[0]        # the body shown alone, lid off, in views/open_* (the tray: standoffs, rim, bosses)
 OPEN_VIEWS = ("iso", "top")  # cameras (cad_agent.VIEWS keys) rendered for the lid-off view
 EVEN_ODDS = 0.5              # p_yes below this is reported as low absolute confidence (a report, never a gate)
-COVERAGE_RULE = "rule:text_coverage"             # a named plug's connector is exposed by rule (7.11)
-COVERAGE_INFEASIBLE = "rule:coverage_infeasible"  # ...unless no feasible arrangement exists with it exposed
+COVERAGE_OPEN = "open"       # a text-coverage row the controller has not resolved (R01: the sensor never exposes)
 ELEVATION_VIEWS = ("front", "back", "left", "right")   # cad_agent.VIEWS keys tilted down in assembly renders (7.11)
 VIEW_ROTX = 3                # index of rotx in a cad_agent.VIEWS tuple (tx, ty, tz, rotx, roty, rotz, dist)
+PRIMARY = "board"            # node id, item id and layout role of the primary reference (generalize delta 001 C1): kept
+                             # for any primary part, so every downstream expression keeps its anchor
+LID_FIELDS = ("pilot_diameter", "thread_diameter", "clearance_diameter", "min_engagement")   # a screw that can hold a lid
 
 
 @dataclass
@@ -105,6 +126,7 @@ class AssemblyState:
     stage: str = ""                                           # the stage reached (or the one that failed)
     notes: List[str] = field(default_factory=list)
     parts_dir: Optional[str] = None
+    parts_dirs: List[str] = field(default_factory=list)       # every catalogue folder, in lookup order
     rules_path: Optional[str] = None
     with_models: bool = False
     stl_source: Dict[str, str] = field(default_factory=dict)
@@ -122,12 +144,24 @@ class AssemblyState:
     texts: List[Tuple[str, str]] = field(default_factory=list)  # (source, text): the request and every L1 (ParseSpec)
     coverage: List[dict] = field(default_factory=list)        # text-coverage violations and how each was resolved (7.10)
     links: Dict[str, List[str]] = field(default_factory=dict)  # check id -> the L1 ids it is traced to (7.10)
+    number_owner: Dict[str, str] = field(default_factory=dict)  # number id -> the slot that states it (spec slot or
+                                                                # <item>.<param>): one number, one slot across stages
+    unplaced: List[dict] = field(default_factory=list)        # content items the primary does not carry (GM2b relations)
+    relations: List[dict] = field(default_factory=list)       # face relations the controller read unanimously (delta 002
+                                                              # C0): each becomes a face_relation_<A>_<B> check
+    vent: Dict[str, Any] = field(default_factory=dict)        # the vent face + size bands (Vents stage, delta 003 C3)
+    vent_row: Dict[str, Any] = field(default_factory=dict)    # the derived vent row (solve result or conflict)
+    control: Dict[str, Any] = field(default_factory=dict)     # the closed-loop controller's decisions (R01): closure,
+                                                              # accepted actions, infeasible action keys
+    checkpoints: Dict[str, Any] = field(default_factory=dict)  # re-runnable stage -> the state at its entry (snapshot)
+    trajectory: Dict[str, Any] = field(default_factory=dict)  # the controller's trace (controller_trace.json)
 
     def summary(self) -> dict:
         return {
             "stage": self.stage,
             "notes": list(self.notes),
             "parts_dir": self.parts_dir,
+            "parts_dirs": list(self.parts_dirs or [self.parts_dir]),
             "rules_path": self.rules_path,
             "with_models": self.with_models,
             "catalog": self.catalog.ids() if self.catalog else [],
@@ -142,6 +176,12 @@ class AssemblyState:
             "conflicts": list(self.conflicts),
             "coverage": list(self.coverage),
             "links": dict(self.links),
+            "number_owner": dict(self.number_owner),
+            "unplaced": list(self.unplaced),
+            "relations": list(self.relations),
+            **({"vent": dict(self.vent), "vent_row": {k: v for k, v in self.vent_row.items()}} if self.vent else {}),
+            **({"controller": controller_summary(self), "control": control_record(self.control)}
+               if self.trajectory else {}),
             "fasteners": dict(self.fasteners),
             "choices": dict(self.choices),
             "assumptions": list(self.assumptions),
@@ -208,6 +248,43 @@ def majority(c: Counter):
 
 def choice(st: AssemblyState, name: str, value: Any, by: str, **extra) -> None:
     st.choices[name] = dict({"value": value, "by": by}, **extra)
+
+
+# ---------------------------------------------------------------------------
+# Stage checkpoints (migration delta R01): the closed-loop controller re-runs the stages an action invalidates from the
+# state at their entry, so no record of a discarded downstream pass (votes, notes, assumptions, number ownership) leaks
+# ---------------------------------------------------------------------------
+
+SHARED_FIELDS = ("catalog", "rules", "graph", "resolved", "solids", "plan", "checkpoints", "placed", "trajectory")
+
+
+def snapshot(st: AssemblyState) -> AssemblyState:
+    """A copy of the blackboard that no later stage can change: every mutable field deep-copied, the catalogue, rules and
+    the placed layout shared (read-only downstream), the feature graph a new graph over the same nodes (stages add
+    nodes, they never change one), the plant outputs and the checkpoints reset."""
+    sc = copy.copy(st)
+    for f in st.__dataclass_fields__:
+        if f not in SHARED_FIELDS:
+            setattr(sc, f, copy.deepcopy(getattr(st, f)))
+    sc.graph = fg.FeatureGraph(list(st.graph)) if st.graph is not None else None
+    sc.resolved, sc.solids, sc.plan, sc.checkpoints, sc.trajectory = None, {}, None, {}, {}
+    return sc
+
+
+def checkpoint(st: AssemblyState, stage: str) -> None:
+    """Record the state at the entry of a re-runnable stage (controller.RERUN_ORDER)."""
+    st.checkpoints[stage] = snapshot(st)
+
+
+def controller_summary(st: AssemblyState) -> dict:
+    import controller          # imported here: controller imports this module
+    return controller.controller_summary(st)
+
+
+def control_record(control: Mapping[str, Any]) -> dict:
+    """design.json assembly.control: the controller's decisions in JSON form."""
+    return {"closure": control.get("closure"), "infeasible": dict(control.get("infeasible") or {}),
+            "accepted": [dict(d["action"], step=d["record"].get("step")) for d in control.get("accepted") or []]}
 
 
 # ---------------------------------------------------------------------------
@@ -303,6 +380,22 @@ def human_name(catalog: pt.Catalog, pid: str) -> str:
     return catalog.get(pid).names[0] if pid in catalog and catalog.get(pid).names else pid
 
 
+def primary_item(st: "AssemblyState") -> Optional[dict]:
+    """The content item that is the primary reference (generalize delta 001 C1), or None before Contents chose it."""
+    return next((i for i in st.contents if i.get("id") == PRIMARY), None)
+
+
+def primary_mount(st: "AssemblyState") -> Tuple[str, str, str]:
+    """(holes, seat, top) datum names of the placed primary's mount_holes interface: no datum name is literal here."""
+    return pt.mount_names(st.placed.get(PRIMARY).inst.part)
+
+
+def conn_key(p: lay.Placed, conn: dict) -> str:
+    """The id stem of one exposed connector's plug sweep and port cut: the node id for a part with one connector (the
+    iteration 002 ids), node id + connector name for a part with several, so each connector gets its own envelope."""
+    return p.node_id if len(p.inst.connectors) <= 1 else f"{p.node_id}_{conn['name']}"
+
+
 # ---------------------------------------------------------------------------
 # Stages
 # ---------------------------------------------------------------------------
@@ -317,7 +410,7 @@ class LoadCatalog(AssemblyStep):
     def update(self) -> Status:
         st = self.state
         st.stage = "load_catalog"
-        cat = pt.Catalog.load(st.parts_dir)
+        cat = pt.Catalog.load(st.parts_dirs or st.parts_dir)
         for err in cat.errors:
             st.notes.append(f"catalogue: {err}")
         for pid in cat.ids():
@@ -358,8 +451,52 @@ class LoadRules(AssemblyStep):
         if not st.rules.spec_slots:
             st.notes.append(f"rules: {st.rules_path} has no spec_slots")
             return Status.FAILURE
+        reserved = [w for a in st.rules.archetypes.values() for w in a.get("evidence", [])]
+        for pid in (st.catalog.ids() if st.catalog is not None else []):     # generalize delta 003 D1: zone names
+            fails = pt.zone_reserved_failures(st.catalog.get(pid), reserved)
+            if fails:
+                st.catalog.drop(pid, "; ".join(f"{f.rule}: {f.detail}" for f in fails))
+                st.notes.append(f"catalogue: {pid} failed the import gate and is not used: "
+                                + "; ".join(str(f) for f in fails))
         self.logger.info(f"rules: {len(st.rules.values)} values from {st.rules_path}")
         return Status.SUCCESS
+
+
+def spec_prompt(numbers, slots, violation: str = "", note: str = "") -> str:
+    lines = "\n".join(f'- {s["name"]}: {s["meaning"]} ({s["unit"]})' for s in slots)
+    again = (f"\nYour previous answer broke these rules: {violation}. Answer again and fix that.\n"
+             if violation else "")
+    note = f"{note}\n\n" if note else ""
+    return (f"An enclosure is being designed from this request and its requirements.\n\n"
+            f"Numbers found in the text (each occurrence has its own id):\n{number_lines(numbers)}\n\n"
+            f"{note}"
+            f"For each quantity below, give the id of the number in the text that states it, or \"none\" "
+            f"if the text does not state it. Never use a number for something it does not describe.\n"
+            f"{lines}\n{again}")
+
+
+def ask_slots(llm, numbers, slots, violation: str = "", label: Optional[str] = None,
+              note: str = "") -> Dict[str, Optional[str]]:
+    """One voted slot-mapping question (ParseSpec's, also used to re-ask a spec slot that lost a number later)."""
+    ids = [n["id"] for n in numbers] + ["none"]
+    schema = ca.obj_schema({s["name"]: {"type": "string", "enum": ids} for s in slots})
+    label = label or ("assy_spec_reask" if violation else "assy_spec")
+    counts = tally(llm, spec_prompt(numbers, slots, violation, note), schema, label, {s["name"]: ids for s in slots})
+    return {k: (None if majority(c) in (None, "none") else majority(c)) for k, c in counts.items()}
+
+
+def owner_question(llm, ref: str, n: dict, names: Sequence[str], meaning: Mapping[str, dict]) -> Tuple[Optional[str], Counter]:
+    """Each number in the text states one quantity: one voted question gives number `ref` to one of `names` (spec slots
+    or part sizes, each {meaning, unit}). Lifted from ParseSpec.resolve_shared (generalize delta 001 C3) so the same
+    question also runs across ParseSpec and Contents.ask_params. Returns (owner or None, the votes)."""
+    lines = "\n".join(f"- {k}: {meaning[k]['meaning']} ({meaning[k]['unit']})" for k in names)
+    prompt = (f"An enclosure is being designed from this request and its requirements.\n\n"
+              f'Number {ref} = {n["text"]} ({n["source"]}): "...{n["quote"]}..."\n\n'
+              f"Each number in the text states exactly one quantity. Which one of these quantities does "
+              f"{ref} state?\n{lines}")
+    counts = tally(llm, prompt, ca.obj_schema({"owner": {"type": "string", "enum": list(names)}}),
+                   "assy_spec_owner", {"owner": list(names)})
+    return majority(counts["owner"]), counts["owner"]
 
 
 class ParseSpec(AssemblyStep):
@@ -374,24 +511,10 @@ class ParseSpec(AssemblyStep):
         return [("request", d.base_request or d.request)] + [(r["id"], r["text"]) for r in d.l1]
 
     def prompt(self, numbers, slots, violation: str = "", note: str = "") -> str:
-        lines = "\n".join(f'- {s["name"]}: {s["meaning"]} ({s["unit"]})' for s in slots)
-        again = (f"\nYour previous answer broke these rules: {violation}. Answer again and fix that.\n"
-                 if violation else "")
-        note = f"{note}\n\n" if note else ""
-        return (f"An enclosure is being designed from this request and its requirements.\n\n"
-                f"Numbers found in the text (each occurrence has its own id):\n{number_lines(numbers)}\n\n"
-                f"{note}"
-                f"For each quantity below, give the id of the number in the text that states it, or \"none\" "
-                f"if the text does not state it. Never use a number for something it does not describe.\n"
-                f"{lines}\n{again}")
+        return spec_prompt(numbers, slots, violation, note)
 
     def ask(self, numbers, slots, violation="", label: Optional[str] = None, note: str = "") -> Dict[str, Optional[str]]:
-        ids = [n["id"] for n in numbers] + ["none"]
-        schema = ca.obj_schema({s["name"]: {"type": "string", "enum": ids} for s in slots})
-        label = label or ("assy_spec_reask" if violation else "assy_spec")
-        counts = tally(self.llm, self.prompt(numbers, slots, violation, note), schema, label,
-                       {s["name"]: ids for s in slots})
-        return {k: (None if majority(c) in (None, "none") else majority(c)) for k, c in counts.items()}
+        return ask_slots(self.llm, numbers, slots, violation, label, note)
 
     @staticmethod
     def shared(answer, slots) -> Dict[str, List[str]]:
@@ -407,7 +530,7 @@ class ParseSpec(AssemblyStep):
         out = []
         val = {k: by_id[v]["value"] for k, v in answer.items() if v}
         for s in slots:
-            if s["default_rule"] is None and not answer.get(s["name"]):
+            if s.get("required", s["default_rule"] is None) and not answer.get(s["name"]):
                 out.append((f"{s['name']} has no default and must be one of the numbers", [s["name"]]))
         for k, v in val.items():
             if v <= 0:
@@ -432,21 +555,14 @@ class ParseSpec(AssemblyStep):
         st = self.state
         n = by_id[ref]
         meaning = {s["name"]: s for s in slots}
-        lines = "\n".join(f"- {k}: {meaning[k]['meaning']} ({meaning[k]['unit']})" for k in names)
-        prompt = (f"An enclosure is being designed from this request and its requirements.\n\n"
-                  f'Number {ref} = {n["text"]} ({n["source"]}): "...{n["quote"]}..."\n\n'
-                  f"Each number in the text states exactly one quantity. Which one of these quantities does "
-                  f"{ref} state?\n{lines}")
-        counts = tally(self.llm, prompt, ca.obj_schema({"owner": {"type": "string", "enum": list(names)}}),
-                       "assy_spec_owner", {"owner": list(names)})
-        owner = majority(counts["owner"])
+        owner, votes = owner_question(self.llm, ref, n, names, meaning)
         if owner is None:
             st.notes.append(f"parse_spec: no valid owner for {ref} among {', '.join(names)}; they fall back")
             for k in names:
                 answer[k] = None
             return answer
         losers = [k for k in names if k != owner]
-        st.notes.append(f"parse_spec: {ref} states {owner} (owner vote {dict(counts['owner'])}); re-asking "
+        st.notes.append(f"parse_spec: {ref} states {owner} (owner vote {dict(votes)}); re-asking "
                         f"{', '.join(losers)} without it")
         got = self.ask([x for x in numbers if x["id"] != ref], [meaning[k] for k in losers], label="assy_spec_slot",
                        note=f'{ref} ({n["text"]}) states {owner}, so it is not offered for the quantities below.')
@@ -473,7 +589,7 @@ class ParseSpec(AssemblyStep):
                 st.notes.append(f"parse_spec: still violated after one re-ask: {msg}")
                 for k in names:
                     answer[k] = None
-        missing = [s["name"] for s in slots if s["default_rule"] is None and not answer.get(s["name"])]
+        missing = [s["name"] for s in slots if s.get("required", s["default_rule"] is None) and not answer.get(s["name"])]
         if missing:
             return self.fail(f"no number in the text for {', '.join(missing)} (no default exists)")
         for s in slots:
@@ -482,27 +598,52 @@ class ParseSpec(AssemblyStep):
                 n = by_id[ref]
                 st.spec[k] = n["value"]
                 st.spec_provenance[k] = f'{n["source"]}:"{n["quote"]}"'
+                st.number_owner.setdefault(ref, k)
+            elif s["default_rule"] is None:      # an optional slot with no default (the board size): left out of the spec
+                continue
             else:
                 v = st.rules.values[s["default_rule"]]
                 st.spec[k] = v
                 st.spec_provenance[k] = f"rules:{s['default_rule']}"
                 st.assumptions.append(f"{k} = {v:g} {s['unit']} from rules:{s['default_rule']} "
                                       "(the text states no number for it)")
-        lo, hi = "wall_min", "wall_max"
-        if lo in st.spec and hi in st.spec and st.spec[lo] > st.spec[hi]:
-            # a band with one end from the text and the other from a default: the default yields to the text
-            fix = hi if st.spec_provenance[hi].startswith("rules:") else lo
-            other = lo if fix == hi else hi
-            st.spec[fix] = st.spec[other]
-            st.spec_provenance[fix] = f"{st.spec_provenance[other]} (band end set equal: its default broke the band)"
-            st.assumptions.append(f"{fix} = {st.spec[fix]:g} (its rules default fell outside the stated band)")
-        if st.spec["board_depth"] > st.spec["board_width"]:   # frame rule: X along the board's longest edge
-            st.spec["board_width"], st.spec["board_depth"] = st.spec["board_depth"], st.spec["board_width"]
-            st.spec_provenance["board_width"], st.spec_provenance["board_depth"] = (
-                st.spec_provenance["board_depth"], st.spec_provenance["board_width"])
-            st.notes.append("parse_spec: board_width/board_depth swapped so X runs along the longest edge")
+        settle_spec(st, "parse_spec")
         self.logger.info(f"spec: {st.spec}")
         return Status.SUCCESS
+
+
+def spec_relation_error(spec: Mapping[str, float], name: str, value: float) -> Optional[str]:
+    """ParseSpec's generic relations for one slot taking `value` (> 0; wall_min <= wall_max against a text-stated other
+    end). Used when a spec slot is re-asked after ParseSpec (Contents.reask_spec_slot). Returns the violation or None."""
+    if value <= 0:
+        return f"{name} must be greater than 0 (got {value:g})"
+    lo, hi = "wall_min", "wall_max"
+    if name in (lo, hi):
+        other = hi if name == lo else lo
+        if other in spec and ((name == lo and value > spec[hi]) or (name == hi and spec[lo] > value)):
+            return f"wall_min must not exceed wall_max ({name} {value:g}, {other} {spec[other]:g})"
+    return None
+
+
+def settle_spec(st: "AssemblyState", stage: str) -> None:
+    """The spec rules that run after slots change (ParseSpec, and again after a cross-stage re-ask, C3): a band whose
+    rules-default end breaks it yields to the text-stated end, and the frame rule puts X along the board's longest edge
+    (board_width/board_depth swapped with their provenance and number ownership)."""
+    lo, hi = "wall_min", "wall_max"
+    if lo in st.spec and hi in st.spec and st.spec[lo] > st.spec[hi]:
+        # a band with one end from the text and the other from a default: the default yields to the text
+        fix = hi if st.spec_provenance[hi].startswith("rules:") else lo
+        other = lo if fix == hi else hi
+        st.spec[fix] = st.spec[other]
+        st.spec_provenance[fix] = f"{st.spec_provenance[other]} (band end set equal: its default broke the band)"
+        st.assumptions.append(f"{fix} = {st.spec[fix]:g} (its rules default fell outside the stated band)")
+    w, d = "board_width", "board_depth"
+    if w in st.spec and d in st.spec and st.spec[d] > st.spec[w]:   # frame rule: X along the board's longest edge
+        st.spec[w], st.spec[d] = st.spec[d], st.spec[w]
+        st.spec_provenance[w], st.spec_provenance[d] = st.spec_provenance[d], st.spec_provenance[w]
+        swap = {w: d, d: w}
+        st.number_owner = {ref: swap.get(slot, slot) for ref, slot in st.number_owner.items()}
+        st.notes.append(f"{stage}: board_width/board_depth swapped so X runs along the longest edge")
 
 
 def part_words(part: pt.Part, catalog: Optional[pt.Catalog] = None) -> str:
@@ -518,12 +659,47 @@ def part_words(part: pt.Part, catalog: Optional[pt.Catalog] = None) -> str:
     return f"{part.names[0] if part.names else part.id} ({part.kind}{extra})"
 
 
+def connector_list(part: pt.Part) -> List[dict]:
+    return list(part.data.get("connectors", []) or [])
+
+
+def exposure_key(conn: dict) -> str:
+    """The per-connector yes/no key of a part with two or more connectors (generalize delta 001 C1)."""
+    return f"{conn['name']}_exposed"
+
+
+def assign_ids(items: Sequence[dict], primary: Optional[dict]) -> Dict[str, str]:
+    """Item ids: the primary is PRIMARY, every other item <kind>_<n> in candidate order. Returns old id -> new id."""
+    kinds: Counter = Counter()
+    moved = {}
+    for it in items:
+        old = it.get("id")
+        if it is primary:
+            it["id"] = PRIMARY
+        else:
+            kinds[it["kind"]] += 1
+            it["id"] = f"{it['kind']}_{kinds[it['kind']]}"
+        if old is not None and old != it["id"]:
+            moved[old] = it["id"]
+    return moved
+
+
+def plan_footprint(catalog: pt.Catalog, item: dict) -> float:
+    """The part's catalogue plan footprint (bbox X x Y in its own frame, at the item's params)."""
+    lo, hi = catalog.instantiate(item["part"], item.get("params") or {}).bbox()
+    return float((hi[0] - lo[0]) * (hi[1] - lo[1]))
+
+
 class Contents(AssemblyStep):
-    """Python proposes catalogue candidates per content kind; the LLM answers quantity (and whether the
-    connector is exposed) per candidate; Python checks there is exactly one board."""
+    """Python proposes catalogue candidates per content kind, plus every part with a mount_holes interface the text names;
+    the LLM answers quantity and, per cable connector, whether it is exposed. Python then chooses the primary reference by
+    rule (generalize delta 001 C1): the carrier (a part with a grid block) when exactly one is in the contents, else the
+    content part with the largest catalogue plan footprint, which must offer a mount_holes interface. A non-carrier
+    primary carries no other contents: they are listed as unplaced (each with a failing content_placed check)."""
 
     def __init__(self, design, llm):
         super().__init__("Contents", design, llm)
+        self.param_stop: Optional[str] = None      # a typed stop from a final part-size re-ask (claim)
 
     def candidates(self) -> List[str]:
         st = self.state
@@ -533,29 +709,41 @@ class Contents(AssemblyStep):
         out = []
         for kind in CONTENT_KINDS:
             out += [pid for pid, _ in ranked if st.catalog.get(pid).kind == kind][:k]
+        named = named_parts(st)        # a contiguous alias run: stricter than token overlap
+        out += [pid for pid in st.catalog.ids()
+                if pid in named and pid not in out and pt.mount_interface(st.catalog.get(pid)) is not None]
         return out
 
     def update(self) -> Status:
         st = self.state
         st.stage = "contents"
+        self.param_stop = None
         cands = self.candidates()
-        if not any(st.catalog.get(c).kind == "board" for c in cands):
-            return self.fail("no catalogue board matches the request")
+        if not cands:
+            return self.fail("nothing to design around: no catalogue part matches the request")
         qmax = int(st.rules.values["max_quantity"])
-        props, allowed = {}, {}
+        props, allowed, multi = {}, {}, False
         for pid in cands:
-            part = st.catalog.get(pid)
+            conns = connector_list(st.catalog.get(pid))
             p = {"quantity": {"type": "integer", "enum": list(range(qmax + 1))}}
             allowed[f"{pid}.quantity"] = list(range(qmax + 1))
-            if part.data.get("connectors"):
+            if len(conns) == 1:
                 p["exposed"] = {"type": "string", "enum": ["yes", "no"]}
                 allowed[f"{pid}.exposed"] = ["yes", "no"]
+            elif conns:
+                multi = True
+                for c in conns:
+                    p[exposure_key(c)] = {"type": "string", "enum": ["yes", "no"]}
+                    allowed[f"{pid}.{exposure_key(c)}"] = ["yes", "no"]
             props[pid] = ca.obj_schema(p)
         lines = "\n".join(f"- {pid}: {part_words(st.catalog.get(pid), st.catalog)}" for pid in cands)
         prompt = (f"Request: {self.design.base_request or self.design.request}\n\n"
                   f"Catalogue parts that may be in the request:\n{lines}\n\n"
                   "For each part give how many the request puts inside the enclosure (0 if none), and for parts "
                   "with a cable connector whether that connector must be reachable from outside (exposed).")
+        if multi:
+            prompt += (" A part with several cable connectors has one answer per connector (<connector>_exposed), "
+                       "because each one may or may not be exposed.")
         counts = tally(self.llm, prompt, ca.obj_schema(props), "assy_contents", allowed)
         items = []
         for pid in cands:
@@ -563,65 +751,226 @@ class Contents(AssemblyStep):
             if not q:
                 continue
             part = st.catalog.get(pid)
-            exposed = majority(counts.get(f"{pid}.exposed", Counter())) == "yes"
-            items.append({"part": pid, "kind": part.kind, "quantity": int(q), "exposed": exposed,
-                          "name": part.names[0] if part.names else pid})
-            if f"{pid}.exposed" in counts:    # recorded only (7.11): text coverage may override it, never the reverse
-                items[-1]["exposed_votes"] = {k: v for k, v in counts[f"{pid}.exposed"].items() if k is not None}
-        boards = [i for i in items if i["kind"] == "board"]
-        if len(boards) != 1 or boards[0]["quantity"] != 1:
-            return self.fail(f"exactly one board is needed, the answer has {sum(b['quantity'] for b in boards)}")
-        board = st.catalog.get(boards[0]["part"])
-        rp = board.request_params()
-        if len(rp) < 2:
-            return self.fail(f"board {board.id} does not take its size from the request")
-        boards[0]["params"] = {rp[0]: st.spec["board_width"], rp[1]: st.spec["board_depth"]}
-        kinds = Counter()
+            conns = connector_list(part)
+            item = {"part": pid, "kind": part.kind, "quantity": int(q), "exposed": False,
+                    "name": part.names[0] if part.names else pid, "exposed_connectors": []}
+            if len(conns) == 1:
+                if majority(counts.get(f"{pid}.exposed", Counter())) == "yes":
+                    item["exposed_connectors"] = [conns[0]["name"]]
+                # recorded only (7.11): text coverage may override it, never the reverse
+                item["exposed_votes"] = {k: v for k, v in counts[f"{pid}.exposed"].items() if k is not None}
+            elif conns:
+                item["exposed_connectors"] = [c["name"] for c in conns
+                                              if majority(counts[f"{pid}.{exposure_key(c)}"]) == "yes"]
+                item["exposed_votes"] = {c["name"]: {k: v for k, v in counts[f"{pid}.{exposure_key(c)}"].items()
+                                                     if k is not None} for c in conns}
+            item["exposed"] = bool(item["exposed_connectors"])
+            items.append(item)
+        if not items:
+            return self.fail("nothing to design around: the answer puts no catalogue part in the request")
+        primary, why = self.choose_primary(items)
+        if primary is None:
+            return Status.FAILURE
+        part = st.catalog.get(primary["part"])
+        if pt.mount_interface(part) is None:
+            return self.fail(f"primary {primary['part']} has no {pt.MOUNT_HOLES} interface; its support (pocket / ribs "
+                             "/ bolt-through) is not implemented (GM3/GM6)")
+        if primary["quantity"] != 1:
+            return self.fail(f"primary {primary['part']} has quantity {primary['quantity']}; one primary reference is "
+                             "placed (several copies of it are GM2b)")
+        moved = assign_ids(items, primary)
+        self.rename(moved)
+        sized_by_slots = self.size_primary(primary, part)
         for it in items:
-            kinds[it["kind"]] += 1
-            it["id"] = "board" if it["kind"] == "board" else f"{it['kind']}_{kinds[it['kind']]}"
             it.setdefault("params", {})
-            part = st.catalog.get(it["part"])
-            need = [p for p in part.request_params() if p not in it["params"]]
+            ipart = st.catalog.get(it["part"])
+            need = [p for p in ipart.request_params() if p not in it["params"]]
             if need:
-                got = self.ask_params(it, part, need)
+                got = self.ask_params(it, ipart, need)
                 if got is None:
-                    return self.fail(f"{it['part']}: no number in the text for {', '.join(need)}")
+                    return self.fail(self.param_stop or f"{it['part']}: no number in the text for {', '.join(need)}")
                 it["params"].update(got)
+        if sized_by_slots:                    # a cross-stage owner question may have moved a size slot (C3)
+            rp = part.request_params()
+            if "board_width" not in st.spec or "board_depth" not in st.spec:
+                return self.fail(f"primary {part.id}: its size slots lost their numbers to other quantities")
+            primary["params"].update({rp[0]: st.spec["board_width"], rp[1]: st.spec["board_depth"]})
+        choice(st, "primary", primary["part"], "rule:primary_reference", reason=why,
+               interface=pt.mount_interface(part).get("id"))
         st.contents = items
         try:
-            board_provenance(st, st.catalog.instantiate(board.id, boards[0]["params"]))
+            board_provenance(st, st.catalog.instantiate(part.id, primary["params"]))
         except (pt.PartError, fg.ExprError, fg.MissingRefError, KeyError, ValueError) as e:
-            st.notes.append(f"contents: board {board.id} not instantiated for provenance ({e})")
-        st.items = [lay.Item(i["id"], i["part"], dict(i["params"]), i["quantity"], i["exposed"], None, i["name"])
-                    for i in items if i["kind"] != "board"]
+            st.notes.append(f"contents: primary {part.id} not instantiated for provenance ({e})")
+        others = [i for i in items if i is not primary]
+        if pt.is_carrier(part):
+            st.items = [lay.Item(i["id"], i["part"], dict(i["params"]), i["quantity"], i["exposed"], None, i["name"],
+                                 list(i["exposed_connectors"])) for i in others]
+        else:
+            st.items = []
+            st.unplaced = [{"id": i["id"], "part": i["part"], "quantity": i["quantity"],
+                            "reason": f"{part.id} is not a carrier: no relation places it yet (GM2b)"} for i in others]
+            for u in st.unplaced:
+                st.notes.append(f"contents: {u['id']} ({u['part']}) is unplaced: {u['reason']}")
         self.logger.info(f"contents: {[(i['part'], i['quantity'], i['exposed']) for i in items]}")
         return Status.SUCCESS
 
-    def ask_params(self, item, part: pt.Part, need: List[str]) -> Optional[Dict[str, float]]:
+    def choose_primary(self, items: List[dict]) -> Tuple[Optional[dict], str]:
+        """The primary reference rule. Carrier: exactly one carrier with quantity 1. Otherwise the largest catalogue
+        plan footprint (request-sized parts are sized first, under provisional ids)."""
         st = self.state
-        ids = [n["id"] for n in st.numbers] + ["none"]
+        carriers = [i for i in items if pt.is_carrier(st.catalog.get(i["part"]))]
+        if carriers:
+            if len(carriers) != 1 or carriers[0]["quantity"] != 1:
+                self.fail(f"exactly one carrier board can be the primary reference, the answer has "
+                          f"{sum(c['quantity'] for c in carriers)} (several carriers are not implemented)")
+                return None, ""
+            return carriers[0], "carrier"
+        assign_ids(items, None)
+        for it in items:
+            it.setdefault("params", {})
+            ipart = st.catalog.get(it["part"])
+            need = [p for p in ipart.request_params() if p not in it["params"]]
+            if need:
+                got = self.ask_params(it, ipart, need)
+                if got is None:
+                    self.fail(self.param_stop or f"{it['part']}: no number in the text for {', '.join(need)}")
+                    return None, ""
+                it["params"].update(got)
+        areas = {it["id"]: plan_footprint(st.catalog, it) for it in items}
+        best = items[0]
+        for it in items[1:]:
+            if areas[it["id"]] > areas[best["id"]] + st.rules.values["measure_tol"]:
+                best = it
+        st.notes.append("contents: primary by the largest catalogue plan footprint: "
+                        + ", ".join(f"{it['part']} {areas[it['id']]:.1f} mm2" for it in items))
+        return best, "largest plan footprint"
+
+    def rename(self, moved: Mapping[str, str]) -> None:
+        """Provisional item ids -> final ids in the provenance and number ownership records."""
+        st = self.state
+        if not moved:
+            return
+
+        def new(key: str) -> str:
+            head, dot, tail = key.partition(".")
+            return f"{moved[head]}.{tail}" if dot and head in moved else key
+
+        st.spec_provenance = {new(k): v for k, v in st.spec_provenance.items()}
+        st.number_owner = {ref: new(slot) for ref, slot in st.number_owner.items()}
+
+    def size_primary(self, primary: dict, part: pt.Part) -> bool:
+        """A request-sized primary takes its two size params from the spec's board size slots when ParseSpec filled them
+        (True); otherwise its params come from the part-size question like any request-sized part (False)."""
+        st = self.state
+        primary.setdefault("params", {})
+        rp = part.request_params()
+        if len(rp) >= 2 and not any(k in primary["params"] for k in rp[:2]) and \
+                "board_width" in st.spec and "board_depth" in st.spec:
+            primary["params"].update({rp[0]: st.spec["board_width"], rp[1]: st.spec["board_depth"]})
+            return True
+        return False
+
+    def ask_params(self, item, part: pt.Part, need: List[str], exclude: Sequence[str] = ()) -> Optional[Dict[str, float]]:
+        st = self.state
+        numbers = [n for n in st.numbers if n["id"] not in exclude]
+        ids = [n["id"] for n in numbers] + ["none"]
         by_id = {n["id"]: n for n in st.numbers}
         schema = ca.obj_schema({p: {"type": "string", "enum": ids} for p in need})
         lines = "\n".join(f"- {p}: {part.params[p].get('source', p)}" for p in need)
-        prompt = (f"Numbers found in the text:\n{number_lines(st.numbers)}\n\n"
+        prompt = (f"Numbers found in the text:\n{number_lines(numbers)}\n\n"
                   f"The request includes a {item['name']}. For each of its sizes below give the id of the number "
                   f"that states it, or \"none\".\n{lines}")
-        counts = tally(self.llm, prompt, schema, "assy_params", {p: ids for p in need})
+        counts = tally(self.llm, prompt, schema, "assy_params_reask" if exclude else "assy_params",
+                       {p: ids for p in need})
         out = {}
         for p in need:
             ref = majority(counts[p])
             if ref in (None, "none"):
                 return None
+            ref = self.claim(item, part, p, ref, by_id, final=bool(exclude))
+            if ref is None:
+                return None
             out[p] = by_id[ref]["value"]
             st.spec_provenance[f"{item['id']}.{p}"] = f'{by_id[ref]["source"]}:"{by_id[ref]["quote"]}"'
         return out
 
+    def claim(self, item: dict, part: pt.Part, param: str, ref: str, by_id: Mapping[str, dict],
+              final: bool = False) -> Optional[str]:
+        """One number, one slot across stages (generalize delta 001 C3). A number id a spec slot already owns goes to one
+        of the two by the owner question; the loser is re-asked once with the id removed from its enum (a spec slot that
+        still has none falls back to its rules default, flagged). The part-size re-ask is final (`final`): if it again
+        picks an id a spec slot owns, no second owner question runs and the part size stops, typed (sets param_stop).
+        Returns the id this part size keeps, or None."""
+        st = self.state
+        slot = f"{item['id']}.{param}"
+        owner = st.number_owner.get(ref)
+        if owner is None or owner == slot or "." in owner:     # free, already this slot's, or another part's size
+            st.number_owner.setdefault(ref, slot)
+            return ref
+        if final:
+            self.param_stop = (f"{item['part']}: no number in the text for {param}: the re-asked {param} chose {ref} "
+                               f"({by_id[ref]['text']}), which spec slot {owner} owns, and the part-size re-ask is "
+                               f"final")
+            return None                                         # every caller stops with fail(param_stop)
+        spec_slot = st.rules.slot(owner)
+        meaning = {owner: spec_slot,
+                   slot: {"meaning": f"the {param} of the {item['name']} ({part.params[param].get('source', param)})",
+                          "unit": part.data.get("units", "mm")}}
+        n = by_id[ref]
+        won, votes = owner_question(self.llm, ref, n, [owner, slot], meaning)
+        st.notes.append(f"contents: {ref} ({n['text']}) is claimed by spec slot {owner} and by {slot}; owner vote "
+                        f"{dict(votes)}")
+        if won == slot:
+            st.number_owner[ref] = slot
+            self.reask_spec_slot(owner, ref, slot)
+            return ref
+        st.notes.append(f"contents: {ref} stays with {owner}; re-asking {slot} without it")
+        got = self.ask_params(item, part, [param], exclude=[ref])
+        if got is None:
+            return None
+        return next((r for r, s in st.number_owner.items() if s == slot), None)
+
+    def reask_spec_slot(self, name: str, ref: str, winner: str) -> None:
+        """A spec slot that lost its number to a part size: re-asked once without that id (assy_spec_slot); with no
+        answer it takes its rules default, flagged as an assumption (as for any ParseSpec violation)."""
+        st = self.state
+        s = st.rules.slot(name)
+        n = next(x for x in st.numbers if x["id"] == ref)
+        got = ask_slots(self.llm, [x for x in st.numbers if x["id"] != ref], [s], label="assy_spec_slot",
+                        note=f'{ref} ({n["text"]}) states {winner}, so it is not offered for the quantities below.')
+        new = got.get(name)
+        if new and st.number_owner.get(new) not in (None, name):
+            st.notes.append(f"contents: the re-asked {name} chose {new}, which {st.number_owner[new]} owns; not used")
+            new = None
+        if new:
+            m = next(x for x in st.numbers if x["id"] == new)
+            bad = spec_relation_error(st.spec, name, m["value"])
+            if bad:
+                st.notes.append(f"contents: the re-asked {name} chose {new} ({m['text']}): {bad}; not used")
+                new = None
+        if new:
+            st.spec[name] = m["value"]
+            st.spec_provenance[name] = f'{m["source"]}:"{m["quote"]}"'
+            st.number_owner[new] = name
+            st.notes.append(f"contents: {name} re-asked without {ref}: {new} ({m['text']})")
+        elif s["default_rule"] is not None:
+            v = st.rules.values[s["default_rule"]]
+            st.spec[name] = v
+            st.spec_provenance[name] = f"rules:{s['default_rule']}"
+            st.assumptions.append(f"{name} = {v:g} {s['unit']} from rules:{s['default_rule']} (its number states "
+                                  f"{winner}, and the text states no other)")
+        else:
+            st.spec.pop(name, None)
+            st.spec_provenance.pop(name, None)
+            st.notes.append(f"contents: {name} has no number left in the text and no default")
+        settle_spec(st, "contents")          # the band and frame rules ParseSpec ran, again on the changed slot (N2)
+
 
 def hole_pattern_params(inst: pt.PartInstance) -> List[str]:
-    """The non-request params the board's HOLE datum (its positions and diameter) is built from, read from the part
-    data, so no param name is listed in agent code."""
-    d = inst.part.data.get("datums", {}).get("HOLE") or {}
+    """The non-request params the primary's mounting-hole datum (its positions and diameter) is built from, read from
+    the part data, so no param name is listed in agent code."""
+    d = inst.part.data.get("datums", {}).get(pt.mount_names(inst.part)[0]) or {}
     exprs = json.dumps([d.get("at"), d.get("start"), d.get("step"), d.get("count"), d.get("diameter")])
     names = set(re.findall(r"[A-Za-z_][A-Za-z_0-9]*", exprs))
     req = set(inst.part.request_params())
@@ -629,8 +978,8 @@ def hole_pattern_params(inst: pt.PartInstance) -> List[str]:
 
 
 def hole_pattern_words(inst: pt.PartInstance) -> str:
-    """'Ø3 holes 2.5 mm from each edge' (or the hole centres) read back from the instance's HOLE datum and bbox."""
-    holes = pt.lookup_datum(inst.datums, "HOLE")
+    """'Ø3 holes 2.5 mm from each edge' (or the hole centres) read back from the instance's mounting holes and bbox."""
+    holes = pt.lookup_datum(inst.datums, pt.mount_names(inst.part)[0])
     lo, hi = inst.bbox()
     insets = [min(abs(q[i] - lo[i]), abs(hi[i] - q[i])) for q in holes.at for i in (0, 1)]
     dia = f"Ø{holes.diameter:g} " if holes.diameter is not None else ""
@@ -649,8 +998,8 @@ def board_provenance(st: AssemblyState, inst: pt.PartInstance) -> None:
             st.spec_provenance[f"board.{p}"] = f"catalogue:{part} specimen {sp['id']} ({sp.get('source', '')})"
         st.notes.append(f"contents: board matches catalogue specimen {sp['id']}")
         return
-    if "HOLE" not in inst.datums:
-        return
+    if not inst.part.request_params() or pt.mount_interface(inst.part) is None:
+        return                       # a fixed-size module: its holes are catalogue (datasheet) data, not a family default
     defaulted = hole_pattern_params(inst)
     for p in defaulted:
         st.spec_provenance[f"board.{p}"] = f"catalogue:{part} family default"
@@ -665,11 +1014,11 @@ def board_block(st: AssemblyState) -> Optional[dict]:
     if st.placed is None:
         return None
     try:
-        b = st.placed.get("board")
+        b = st.placed.get(PRIMARY)
     except StopIteration:
         return None
     inst = b.inst
-    holes = lay.world_datum(b, "HOLE") if "HOLE" in inst.datums else None
+    holes = lay.world_datum(b, pt.mount_names(inst.part)[0]) if pt.mount_interface(inst.part) else None
     g = inst.grid()
     grid = None
     if g is not None:
@@ -684,12 +1033,11 @@ def board_block(st: AssemblyState) -> Optional[dict]:
 
 
 class ExposureCoverage(AssemblyStep):
-    """Text coverage (ARCHITECTURE.md 7.10, 7.11; the first outer-loop correction of 4.1, run before ArrangeContents): a
-    text (request or L1) that names a catalogue plug requires the content connector that takes it to be exposed. Python
-    senses each violation (named_parts) and resolves it by rule: "unexposed" leaves a hard check failing and "exposed"
-    closes it, so the two are no tie on error and no vote is asked (7.11). The Contents vote is recorded under
-    `overrides`. Only geometric infeasibility reverts it (ArrangeContents, rule:coverage_infeasible); the row then stays
-    in st.coverage as a failing text_coverage check and a `coverage` conflict."""
+    """Text coverage as a sensor (migration delta R01, owner decision D1; was ARCHITECTURE.md 7.10/7.11's rule). A text
+    (request or L1) that names a catalogue plug while the content connector that takes it is closed is recorded in
+    st.coverage (resolved "open") and noted; nothing is exposed here. The same reading is the text_coverage check of the
+    plan, which the closed-loop controller sees after the first build and may correct with an `expose` action
+    (controller.expose_actions). A plug that no content connector takes is a note."""
 
     def __init__(self, design):
         super().__init__("ExposureCoverage", design)
@@ -697,36 +1045,71 @@ class ExposureCoverage(AssemblyStep):
     def update(self) -> Status:
         st = self.state
         st.stage = "exposure_coverage"
-        named = named_parts(st)
-        items = {i.id: i for i in st.items}
-        takers = {}
-        for it in st.contents:
-            for c in st.catalog.get(it["part"]).data.get("connectors", []):
-                takers.setdefault(c.get("mates"), []).append((it, c))
-        mated = {c.get("mates") for pid in st.catalog.ids() for c in st.catalog.get(pid).data.get("connectors", [])}
-        for plug, hits in named.items():
-            if plug not in mated:            # only a part some catalogue connector takes (a plug) asks for an opening
-                continue
-            if plug not in takers:
-                st.notes.append(f"coverage: the text names {human_name(st.catalog, plug)} ({hits[0]['source']}) but no "
-                                "content connector takes it")
-                continue
-            for it, conn in takers[plug]:
-                if it["exposed"]:
-                    continue
-                evidence = [{"source": h["source"], "quote": h["quote"]} for h in hits]
-                votes = dict(it.get("exposed_votes", {}))
-                it["exposed"] = True
-                if it["id"] in items:
-                    items[it["id"]].exposed = True
-                it["exposed_by"] = COVERAGE_RULE
-                st.coverage.append({"item": it["id"], "part": it["part"], "connector": conn["name"], "plug": plug,
-                                    "evidence": evidence, "resolved": "exposed", "by": COVERAGE_RULE})
-                choice(st, f"exposed[{it['id']}]", True, COVERAGE_RULE, evidence=evidence,
-                       overrides={"contents_votes": votes})
-                st.notes.append(f"coverage: {it['id']}.{conn['name']} exposed by rule: {hits[0]['source']} names "
-                                f"{human_name(st.catalog, plug)} (Contents votes {votes} recorded, not used)")
+        st.coverage = coverage_rows(st)
+        for row in st.coverage:
+            st.notes.append(f"coverage: {row['item']}.{row['connector']} is closed although {row['evidence'][0]['source']} "
+                            f"names {human_name(st.catalog, row['plug'])} (the controller decides after the first build)")
         return Status.SUCCESS
+
+
+def coverage_rows(st: AssemblyState) -> List[dict]:
+    """The text-coverage sensor's reading on the contents: one row per closed content connector whose mating plug the
+    request or an L1 names (named_parts), with the quotes; plugs no content connector takes are noted."""
+    named = named_parts(st)
+    takers: Dict[str, List[Tuple[dict, dict]]] = {}
+    for it in st.contents:
+        for c in st.catalog.get(it["part"]).data.get("connectors", []):
+            takers.setdefault(c.get("mates"), []).append((it, c))
+    mated = {c.get("mates") for pid in st.catalog.ids() for c in st.catalog.get(pid).data.get("connectors", [])}
+    rows = []
+    for plug, hits in named.items():
+        if plug not in mated:                # only a part some catalogue connector takes (a plug) asks for an opening
+            continue
+        if plug not in takers:
+            note = (f"coverage: the text names {human_name(st.catalog, plug)} ({hits[0]['source']}) but no content "
+                    "connector takes it")
+            if note not in st.notes:
+                st.notes.append(note)
+            continue
+        for it, conn in takers[plug]:
+            if conn["name"] in it.get("exposed_connectors", []):
+                continue
+            rows.append({"item": it["id"], "part": it["part"], "connector": conn["name"], "plug": plug,
+                         "evidence": [{"source": h["source"], "quote": h["quote"]} for h in hits],
+                         "resolved": COVERAGE_OPEN})
+    return rows
+
+
+def expose_connector(st: AssemblyState, item_id: str, connector: str, by: str, record: Mapping[str, Any]) -> None:
+    """Open one content connector (the `expose` actuator, migration delta R01): the item's exposed connectors, its layout
+    item, its coverage row and the decision record exposed[<item>] (one-connector part) or exposed[<item>.<connector>].
+    Idempotent. The Contents vote is kept under `overrides`."""
+    it = next(c for c in st.contents if c.get("id") == item_id)
+    conns = connector_list(st.catalog.get(it["part"]))
+    conn = next(c for c in conns if c["name"] == connector)
+    names = it.setdefault("exposed_connectors", [])
+    if connector not in names:
+        names.append(connector)
+    it["exposed"] = True
+    it["exposed_by"] = by
+    for item in st.items:
+        if item.id == item_id:
+            item.exposed = True
+            item.connectors = list(names)
+    for row in st.coverage:
+        if row["item"] == item_id and row["connector"] == connector:
+            row.update(resolved="exposed", by=by, step=record.get("step"))
+    multi = len(conns) > 1
+    votes = dict(it.get("exposed_votes", {}))
+    if multi:
+        votes = dict(votes.get(connector, {}))
+    choice(st, exposure_choice(it, conn, multi), True, by, **dict(record), overrides={"contents_votes": votes})
+
+
+def exposure_choice(it: dict, conn: dict, multi: bool) -> str:
+    """The choice key of one connector's exposure: exposed[<item>] for a one-connector part (the iteration 007 key),
+    exposed[<item>.<connector>] for a part with several."""
+    return f"exposed[{it['id']}.{conn['name']}]" if multi else f"exposed[{it['id']}]"
 
 
 def stack_height(catalog: pt.Catalog, option: str) -> float:
@@ -746,6 +1129,7 @@ class ChooseStack(AssemblyStep):
     def update(self) -> Status:
         st = self.state
         st.stage = "choose_stack"
+        checkpoint(st, "stack")
         tol = st.rules.values["measure_tol"]
         for it in st.items:
             part = st.catalog.get(it.part)
@@ -759,7 +1143,7 @@ class ChooseStack(AssemblyStep):
             name = f"stack[{it.id}]"
             if len(backed) == 1:
                 pick = backed[0]
-                choice(st, name, pick, "rule:text_evidence", evidence=evidence[pick])
+                choice(st, name, pick, "rule:text_evidence[stack]", evidence=evidence[pick])
             elif not backed:
                 pick = options[0]
                 st.assumptions.append(f"{name} = {pick}: the text names no mounting; catalogue default used")
@@ -783,27 +1167,93 @@ class ChooseStack(AssemblyStep):
         return Status.SUCCESS
 
 
-def board_screw(catalog: pt.Catalog, board: pt.PartInstance, rules) -> Optional[pt.Part]:
-    """The smallest-thread catalogue screw that passes the board's mounting hole (ARCHITECTURE.md 7.13). The hole is a
-    given datum, not one the design drills, so the pass test is thread + 2 x rules.given_hole_clearance_min <= hole +
-    rules.measure_tol; ISO 273 clearance (rules.screw_hole_clearance_min) is for the holes the design makes."""
-    hole = pt.lookup_datum(board.datums, "HOLE").diameter
-    ok = []
+BOARD_ROLE = "board"                 # the fastener use whose role words design_rules.json fastener_roles gives (C1)
+CLAUSE_RE = re.compile(r"[,;:]\s*")  # clause breaks inside a sentence (board role evidence is clause-scoped, C1)
+
+
+def board_screw_candidates(catalog: pt.Catalog) -> List[Tuple[float, str]]:
+    """(thread, id) of every catalogue-complete fastener with pilot and thread fields: the screws that can hold a board
+    in a printed pilot (ARCHITECTURE.md 7.13)."""
+    out = []
     for pid in catalog.ids():
         part = catalog.get(pid)
         p = {k: v.get("default") for k, v in part.params.items()}
-        if part.kind != "fastener" or p.get("pilot_diameter") is None or p.get("thread_diameter") is None:
+        if part.kind != "fastener" or not catalogue_complete(part) or p.get("pilot_diameter") is None \
+                or p.get("thread_diameter") is None:
             continue
-        if p["thread_diameter"] + 2 * rules["given_hole_clearance_min"] <= hole + rules["measure_tol"]:
-            ok.append((p["thread_diameter"], pid))
-    return catalog.get(min(ok)[1]) if ok else None
+        out.append((float(p["thread_diameter"]), pid))
+    return out
+
+
+def clauses(texts: Sequence[Tuple[str, str]]) -> List[Tuple[str, str]]:
+    """(source, clause): every sentence of the texts split at its clause breaks (, ; :)."""
+    return [(src, c.strip()) for src, text in texts for sent in sentences(text) for c in CLAUSE_RE.split(sent)
+            if c.strip()]
+
+
+def board_screw_choice(catalog: pt.Catalog, board: pt.PartInstance, rules, texts: Sequence[Tuple[str, str]] = (),
+                       roles: Optional[Mapping[str, dict]] = None) -> dict:
+    """The board screw rule (generalize delta 002 C1), among the catalogue-complete screws with pilot and thread fields
+    (board_screw_candidates). A screw passes the board's mounting hole when thread + 2 x rules.given_hole_clearance_min
+    <= hole + rules.measure_tol (the hole is a given datum, not one the design drills; ISO 273 clearance is for the holes
+    the design makes). In order:
+    1. role evidence (rule:text_evidence[board], a semantic rule pending migration R03): the screws the text names
+       (text_evidence over their names) in a clause that also names the primary (its part.json names) or a role word
+       (design_rules.json fastener_roles.board); the largest thread among those that pass. A named screw that does not
+       pass is noted and skipped. Clause scope: a requirement sentence often names a second part's fastener and the
+       board in different clauses.
+    2. the datasheet (rule:interface_thread): the screw whose thread equals the primary's mount_holes `thread` (within
+       rules.measure_tol), if it passes;
+    3. the smallest thread that passes (rule:smallest_thread_through_board_hole), an assumption.
+    Returns {part, by, evidence, notes}."""
+    hole = pt.lookup_datum(board.datums, pt.mount_names(board.part)[0]).diameter
+    tol = rules["measure_tol"]
+    cands = board_screw_candidates(catalog)
+
+    def passes(thread: float) -> bool:
+        return hole is not None and thread + 2 * rules["given_hole_clearance_min"] <= hole + tol
+
+    notes: List[str] = []
+    words = list(((roles or {}).get(BOARD_ROLE) or {}).get("evidence", [])) + list(board.part.names)
+    role_clauses = {(h["source"], h["quote"]) for h in text_evidence(clauses(texts), words)} if texts and words else set()
+    named: Dict[str, List[dict]] = {}
+    for thread, pid in cands:
+        hits = [h for h in text_evidence(clauses(texts), catalog.get(pid).names) if (h["source"], h["quote"]) in
+                role_clauses] if role_clauses else []
+        if not hits:
+            continue
+        if passes(thread):
+            named[pid] = hits
+        else:
+            notes.append(f"board fastener {pid} named but does not pass the Ø{hole:g} hole "
+                         f"({hits[0]['source']}: \"{hits[0]['quote']}\")")
+    if named:
+        pick = max((t, pid) for t, pid in cands if pid in named)[1]
+        return {"part": catalog.get(pick), "by": f"rule:text_evidence[{BOARD_ROLE}]", "evidence": named[pick],
+                "notes": notes}
+    thread = pt.interface_thread(board.part)
+    if thread is not None:
+        match = [(t, pid) for t, pid in cands if abs(t - thread) <= tol and passes(t)]
+        if match:
+            return {"part": catalog.get(min(match)[1]), "by": "rule:interface_thread", "evidence": [], "notes": notes}
+        notes.append(f"the {board.part.id} datasheet thread M{thread:g} has no catalogue screw that passes the "
+                     f"Ø{hole:g} hole")
+    ok = [(t, pid) for t, pid in cands if passes(t)]
+    return {"part": catalog.get(min(ok)[1]) if ok else None, "by": "rule:smallest_thread_through_board_hole",
+            "evidence": [], "notes": notes}
+
+
+def board_screw(catalog: pt.Catalog, board: pt.PartInstance, rules, texts: Sequence[Tuple[str, str]] = (),
+                roles: Optional[Mapping[str, dict]] = None) -> Optional[pt.Part]:
+    """The board screw part (board_screw_choice)."""
+    return board_screw_choice(catalog, board, rules, texts, roles)["part"]
 
 
 def hole_column_terms(st: "AssemblyState", board: pt.PartInstance) -> Dict[str, float]:
     """The two terms of the screw-head and seat column on each board hole (ARCHITECTURE.md 7.13): the keep-out the board
     declares round its mounting holes (HOLE.keepout_diameter, 0 when it declares none) and the room the chosen board
     screw needs (head diameter + 2 x rules.driver_clearance)."""
-    holes = pt.lookup_datum(board.datums, "HOLE")
+    holes = pt.lookup_datum(board.datums, pt.mount_names(board.part)[0])
     return {"board_keepout": float(holes.keepout_diameter or 0.0),
             "fastener": st.fasteners["fastener.board.head_diameter"] + 2 * st.rules.values["driver_clearance"]}
 
@@ -814,23 +1264,150 @@ def hole_column_d(st: "AssemblyState", board: pt.PartInstance) -> float:
     return max(hole_column_terms(st, board).values())
 
 
-def lid_screw(catalog: pt.Catalog, rules) -> Optional[pt.Part]:
-    """The largest-thread catalogue screw (its boss OD = max(setpoint(min_boss_od), pilot + 2 x boss_wall_min,
-    clearance + 2 x setpoint(min_ligament)): the lid pad round its clearance hole is the same column, ARCHITECTURE.md 7.12)."""
-    ok = []
+def catalogue_complete(part: pt.Part) -> bool:
+    """A fastener is catalogue-complete when no param of it must come from the request (generalize delta 001 C2): a bolt
+    whose length comes from a stock list is not, until the fastener-chain length rule exists (GM3)."""
+    return not part.request_params()
+
+
+def lid_screw_choice(catalog: pt.Catalog, rules, texts: Sequence[Tuple[str, str]] = ()) -> dict:
+    """The lid screw rule (generalize delta 001 C2): among the catalogue-complete fasteners with the lid fields
+    (LID_FIELDS), the ones the text names (text_evidence over their aliases) win, the largest thread among them
+    (rule:text_evidence[lid], a semantic rule pending migration R03); with none named, the largest-thread one
+    (rule:largest_complete_screw, an assumption). A named
+    fastener that is not catalogue-complete is skipped and reported. Its boss OD = max(setpoint(min_boss_od), pilot +
+    2 x boss_wall_min, clearance + 2 x setpoint(min_ligament)): the lid pad round its clearance hole is the same column
+    (ARCHITECTURE.md 7.12). Returns {part, by, evidence, skipped}."""
+    ok, named, skipped_hits = [], {}, {}
     for pid in catalog.ids():
         part = catalog.get(pid)
-        p = {k: v.get("default") for k, v in part.params.items()}
-        if part.kind != "fastener" or any(p.get(k) is None for k in
-                                          ("pilot_diameter", "thread_diameter", "clearance_diameter", "min_engagement")):
+        if part.kind != "fastener":
             continue
-        ok.append((p["thread_diameter"], pid))
-    return catalog.get(max(ok)[1]) if ok else None
+        hits = text_evidence(texts, part.names) if texts else []
+        if not catalogue_complete(part):
+            if hits:
+                skipped_hits[pid] = hits
+            continue
+        p = {k: v.get("default") for k, v in part.params.items()}
+        if any(p.get(k) is None for k in LID_FIELDS):
+            continue
+        ok.append((float(p["thread_diameter"]), pid))
+        if hits:
+            named[pid] = hits
+    # a skipped fastener is reported only when the text names it apart from a complete one: an alias both share
+    # ("m3 screw") in the same sentence is evidence for the complete fastener, not a request for the skipped one
+    key = lambda h: (h["source"], h["quote"], h["match"])
+    shared = {key(h) for hs in named.values() for h in hs}
+    skipped = [pid for pid, hs in skipped_hits.items() if any(key(h) not in shared for h in hs)]
+    pool = [o for o in ok if o[1] in named]
+    if pool:
+        pick = max(pool)[1]
+        return {"part": catalog.get(pick), "by": "rule:text_evidence[lid]", "evidence": named[pick], "skipped": skipped}
+    if ok:
+        return {"part": catalog.get(max(ok)[1]), "by": "rule:largest_complete_screw", "evidence": [], "skipped": skipped}
+    return {"part": None, "by": "", "evidence": [], "skipped": skipped}
+
+
+def lid_screw(catalog: pt.Catalog, rules, texts: Sequence[Tuple[str, str]] = ()) -> Optional[pt.Part]:
+    """The lid screw part (lid_screw_choice)."""
+    return lid_screw_choice(catalog, rules, texts)["part"]
 
 
 def fastener_values(use: str, part: pt.Part) -> Dict[str, float]:
     inst = pt.instantiate(part)
     return {f"fastener.{use}.{k}": float(v) for k, v in inst.params.items()}
+
+
+NOT_STATED = "not_stated"            # the face-relation enum value that constrains nothing (C0)
+NOT_STATED_MEANING = "the request does not say how these two connectors are placed relative to each other"
+RELATION_LABEL = "assy_relation"
+
+
+def relation_members(st: AssemblyState) -> List[dict]:
+    """The exposed connectors a face relation can name (generalize delta 002 C0): every exposed connector of a content
+    item (an item with quantity > 1 is one member: its copies share an edge by construction) and the primary's own
+    exposed connectors (`fixed`: their wall follows from the primary's axis). Only connectors that mate a catalogue plug
+    count, as in exposed_connectors."""
+    out = []
+    prim = primary_item(st)
+    if prim is not None:
+        for c in connector_list(st.catalog.get(prim["part"])):
+            if c["name"] in prim.get("exposed_connectors", []) and c.get("mates") in st.catalog:
+                out.append({"key": f"{PRIMARY}.{c['name']}", "item": PRIMARY, "connector": c["name"],
+                            "part": prim["part"], "name": prim.get("name") or human_name(st.catalog, prim["part"]),
+                            "fixed": True})
+    for it in st.items:
+        conns = connector_list(st.catalog.get(it.part))
+        if not it.exposed or not conns:
+            continue
+        names = list(it.connectors) if it.connectors else [conns[0]["name"]]
+        for c in conns:
+            if c["name"] in names and c.get("mates") in st.catalog:
+                out.append({"key": f"{it.id}.{c['name']}", "item": it.id, "connector": c["name"], "part": it.part,
+                            "name": it.name or human_name(st.catalog, it.part), "fixed": False})
+    return out
+
+
+def relation_gate(st: AssemblyState, members: Sequence[dict]) -> List[dict]:
+    """The pairs a face relation may constrain, each with its gated values (generalize delta 002 C0). Pair (A, B) may take
+    relation v only when one sentence of the request or an L1 names both A's and B's parts (text_evidence over their
+    part.json names) and one of v's evidence words (design_rules.json face_relations). A pair no choice can change (both
+    members on one item: two connectors of the primary, or of one content part) is never gated. Relations the sensor has
+    no rule for (assembly_checks.FACE_RELATIONS) are not offered. Returns [{a, b, values, evidence}] in member order."""
+    vocab = {v: e for v, e in (st.rules.face_relations or {}).items() if v in ac.FACE_RELATIONS}
+    if not vocab or len(members) < 2:
+        return []
+
+    def where(words: Sequence[str]) -> List[Tuple[str, str]]:
+        return [(h["source"], h["quote"]) for h in text_evidence(st.texts, words)]
+
+    named = {pid: set(where(st.catalog.get(pid).names)) for pid in {m["part"] for m in members}}
+    said = {v: where(e["evidence"]) for v, e in vocab.items()}
+    pairs = []
+    for a, b in itertools.combinations(members, 2):
+        if a["item"] == b["item"]:
+            continue
+        both = named[a["part"]] & named[b["part"]]
+        values, evidence = [], []
+        for v in vocab:
+            quotes = [q for q in said[v] if q in both]
+            if quotes:
+                values.append(v)
+                evidence += [{"source": s, "quote": q, "relation": v} for s, q in quotes]
+        if values:
+            pairs.append({"a": a, "b": b, "values": values, "evidence": evidence})
+    return pairs
+
+
+def relation_check_id(r: Mapping[str, Any]) -> str:
+    return f"face_relation_{r['a']['key'].replace('.', '_')}_{r['b']['key'].replace('.', '_')}"
+
+
+def member_connector(st: AssemblyState, m: Mapping[str, Any]) -> Optional[Tuple[lay.Placed, dict]]:
+    """The placed connector of a relation member (the first copy of a content item), or None when it is not exposed."""
+    for p, c in exposed_connectors(st):
+        if c["name"] == m["connector"] and ((m["item"] == PRIMARY and p.role == "board") or p.item == m["item"]):
+            return p, c
+    return None
+
+
+def add_relation_checks(st: AssemblyState, plan: ac.Plan) -> None:
+    """face_relation_<A>_<B> (generalize delta 002 C0): every face relation the controller read unanimously, computed
+    from the layout (the wall each member's connector axis faces). A controllable hard check: prescore removes the
+    arrangements that break it; when no feasible arrangement meets it, every candidate ties on it and the package
+    carries it failing, with the quoted text and the votes."""
+    for r in st.relations:
+        got = [member_connector(st, r[k]) for k in ("a", "b")]
+        if any(g is None for g in got):
+            continue
+        walls = [wall_facing(lay.world_datum(p, c["axis"]).dir) for p, c in got]
+        quote = r["evidence"][0]
+        meaning = (st.rules.face_relations.get(r["value"]) or {}).get("meaning", r["value"])
+        plan.add(relation_check_id(r), "face_relation", f"{r['a']['key']} and {r['b']['key']}: {meaning}, as the text "
+                 f"states ({quote['source']}: \"{quote['quote']}\")", relation=r["value"], walls=walls,
+                 members=[r["a"]["key"], r["b"]["key"]],
+                 evidence={"quotes": list(r["evidence"]), "votes": dict(r["votes"]), "by": r["by"]},
+                 parts=sorted({r["a"]["part"], r["b"]["part"]}))
 
 
 class ArrangeContents(AssemblyStep):
@@ -844,14 +1421,70 @@ class ArrangeContents(AssemblyStep):
 
     Pre-score (ARCHITECTURE.md 7.11, the M11 slice of the 4.1 middle loop): every feasible candidate is first run
     through the downstream plant (prescore); only the candidates tied at the minimum controllable error reach the
-    LLM, and a single survivor is a rule decision (rule:prescore). When nothing is feasible while a coverage-forced
-    item is exposed, that item is reverted (rule:coverage_infeasible) and the placement runs once more."""
+    LLM, and a single survivor is a rule decision (rule:prescore). Migration delta R01: no exposure is forced before the
+    arrangement any more (the coverage rule and its infeasibility revert are gone); when the controller exposes a
+    connector after the first build, this stage re-runs from its checkpoint with the new exposure."""
 
     def __init__(self, design, llm):
         super().__init__("ArrangeContents", design, llm)
+        self.relation_record: Optional[dict] = None
 
     def request_text(self) -> str:
         return self.design.base_request or self.design.request
+
+    def ask_relations(self, st: AssemblyState) -> dict:
+        """The face-relation stage (generalize delta 002 C0), once per run, after the edge vote. Python gates the pairs
+        (relation_gate); with none gated nothing is asked and the transcript is unchanged. Otherwise one voted question
+        (RELATION_LABEL): the request, the gating sentences quoted (the 9B read "the same short end" as not_stated in 13
+        of 15 samples without them, and as same in 15 of 15 with them; LEDGER iteration 002), then per gated pair an
+        enum of its gated values plus NOT_STATED. A relation constrains only when
+        every valid sample names the same value and it is not NOT_STATED (7.6: one noisy signal never vetoes alone); a
+        split vote is recorded and constrains nothing. Constraints go to st.relations (face_relation checks) and to
+        choices relation[<A>|<B>]. Returns the record for design.json arrange.relations."""
+        pairs = relation_gate(st, relation_members(st))
+        record: Dict[str, Any] = {"asked": [], "constraints": []}
+        st.relations = []
+        if not pairs:
+            return record
+        vocab = st.rules.face_relations
+        keys = [f"pair_{k}" for k in range(1, len(pairs) + 1)]
+        lines = "\n".join(f"- {k}: {pr['a']['name']} ({pr['a']['connector']} connector) and {pr['b']['name']} "
+                          f"({pr['b']['connector']} connector)" for k, pr in zip(keys, pairs))
+        used = [v for v in vocab if any(v in pr["values"] for pr in pairs)]
+        meanings = "\n".join([f"- {v}: {vocab[v]['meaning']}" for v in used] + [f"- {NOT_STATED}: {NOT_STATED_MEANING}"])
+        these = "these two cable connectors" if len(pairs) == 1 else "the two cable connectors of each pair"
+        quotes = []                          # the gating sentences, quoted (implementer's measured refinement, see LEDGER)
+        for k, pr in zip(keys, pairs):
+            seen = []
+            for e in pr["evidence"]:
+                if e["quote"] not in seen:
+                    seen.append(e["quote"])
+                    quotes.append(f'- "{e["quote"]}"' if len(pairs) == 1 else f'- {k}: "{e["quote"]}"')
+        prompt = (f"Request: {self.request_text()}\n\n"
+                  f"Where the text relates them:\n" + "\n".join(quotes) + "\n\n"
+                  f"{'Pair' if len(pairs) == 1 else 'Pairs'} of cable connectors:\n{lines}\n\n"
+                  f"How does the request place {these} relative to each other?\n{meanings}")
+        enums = {k: pr["values"] + [NOT_STATED] for k, pr in zip(keys, pairs)}
+        schema = ca.obj_schema({k: {"type": "string", "enum": e} for k, e in enums.items()})
+        counts = tally(self.llm, prompt, schema, RELATION_LABEL, enums)
+        for k, pr in zip(keys, pairs):
+            votes = {v: n for v, n in counts[k].items() if v is not None}
+            value = next(iter(votes)) if len(votes) == 1 else None
+            constraint = value if value not in (None, NOT_STATED) else None
+            name = f"{pr['a']['key']}|{pr['b']['key']}"
+            row = {"pair": name, "a": pr["a"]["key"], "b": pr["b"]["key"], "enum": enums[k], "votes": votes,
+                   "constraint": constraint, "evidence": pr["evidence"]}
+            record["asked"].append(row)
+            if constraint is None:
+                st.notes.append(f"arrange: relation {name}: votes {votes} are not a unanimous relation; no constraint")
+                continue
+            ev = [e for e in pr["evidence"] if e["relation"] == constraint] or pr["evidence"]
+            st.relations.append({"a": pr["a"], "b": pr["b"], "value": constraint, "votes": votes, "evidence": ev,
+                                 "by": "llm:relation"})
+            record["constraints"].append({"pair": name, "value": constraint})
+            choice(st, f"relation[{name}]", constraint, "llm:relation", votes=votes,
+                   evidence=[{"source": e["source"], "quote": e["quote"]} for e in ev])
+        return record
 
     def candidates(self, st: AssemblyState, placer: lay.Placer) -> dict:
         """The edge vote over the exposed items and the feasible placements in vote order (capped by
@@ -862,8 +1495,8 @@ class ArrangeContents(AssemblyStep):
         voted = False
         if exposed:
             words = "\n".join(f"- {s}: {edges[s]['words']}" for s in sides)
-            items = "\n".join(f"- {it.id}: {it.name} x{it.quantity} "
-                              f"({st.catalog.get(it.part).data['connectors'][0]['name']} connector)" for it in exposed)
+            items = "\n".join(f"- {it.id}: {it.name} x{it.quantity} ({facing_connector(st, it)} connector)"
+                              for it in exposed)
             prompt = (f"Request: {self.request_text()}\n\n"
                       f"The board edges:\n{words}\n\nWhich board edge does each part's connector face, so its "
                       f"cable plugs in through that end or side of the enclosure?\n{items}")
@@ -875,6 +1508,8 @@ class ArrangeContents(AssemblyStep):
                     st.assumptions.append(f"edge[{it.id}]: no valid answer, {sides[0]} tried first")
             voted = any(majority(counts[it.id]) is not None for it in exposed)
             order = self.assignments(exposed, sides, counts, first)
+            if self.relation_record is None:          # once per run, even when the placement runs twice
+                self.relation_record = self.ask_relations(st)
         else:
             counts, order = {}, [{}]
         cap = int(st.rules.values["arrange_rank_max"]) if exposed else 1
@@ -894,56 +1529,45 @@ class ArrangeContents(AssemblyStep):
         return {"exposed": exposed, "counts": counts, "voted": voted, "cands": cands, "pruned": pruned,
                 "truncated": truncated, "cap": cap}
 
-    def revert_coverage(self, st: AssemblyState, pruned: Sequence[dict]) -> List[str]:
-        """No feasible arrangement while a coverage-forced item is exposed (7.11): revert every such item to unexposed,
-        mark its coverage row and choice (rule:coverage_infeasible). Returns the reverted item ids. Finite: the
-        reduced set holds no coverage-forced item, so it runs at most once."""
-        kinds = sorted({c["kind"] for c in pruned})
-        reason = f"no feasible arrangement with it exposed: {', '.join(kinds)}"
-        reverted = []
-        for it in st.contents:
-            if it.get("exposed_by") != COVERAGE_RULE:
-                continue
-            it["exposed"] = False
-            it["exposed_by"] = COVERAGE_INFEASIBLE
-            for item in st.items:
-                if item.id == it["id"]:
-                    item.exposed = False
-            for row in st.coverage:
-                if row["item"] == it["id"]:
-                    row.update(resolved="unexposed", reason=reason, by=COVERAGE_INFEASIBLE)
-            old = st.choices.get(f"exposed[{it['id']}]", {})
-            choice(st, f"exposed[{it['id']}]", False, COVERAGE_INFEASIBLE, reason=reason,
-                   evidence=old.get("evidence", []), overrides=old.get("overrides", {}))
-            reverted.append(it["id"])
-        if reverted:
-            st.notes.append(f"coverage: {', '.join(reverted)} reverted to unexposed ({reason}); placing once more "
-                            "(reported as a failing text_coverage check)")
-        return reverted
-
     def update(self) -> Status:
         st = self.state
         st.stage = "arrange_contents"
-        board_item = next(i for i in st.contents if i["kind"] == "board")
+        checkpoint(st, "arrange")
+        self.relation_record = None
+        st.relations = []
+        board_item = primary_item(st)
         board_inst = st.catalog.instantiate(board_item["part"], board_item["params"])
-        screw = board_screw(st.catalog, board_inst, st.rules.values)
+        pick = board_screw_choice(st.catalog, board_inst, st.rules.values, st.texts, st.rules.fastener_roles)
+        for note in pick["notes"]:
+            st.notes.append(f"arrange: {note}")
+        screw = pick["part"]
         if screw is None:
-            return self.fail("no catalogue screw passes the board's mounting holes")
+            return self.fail(f"no catalogue screw passes the board's mounting holes (primary {board_item['part']})")
         st.fasteners.update(fastener_values("board", screw))
-        choice(st, "fastener[board]", screw.id, "rule:smallest_thread_through_board_hole")
-        board = lay.Placed("board", board_item["part"], dict(board_item["params"]), 0.0, 0.0, 0.0, 0.0, "",
+        choice(st, "fastener[board]", screw.id, pick["by"],
+               **({"evidence": [{"source": h["source"], "quote": h["quote"]} for h in pick["evidence"]]}
+                  if pick["evidence"] else {}))
+        if pick["by"] == "rule:smallest_thread_through_board_hole":
+            st.assumptions.append(f"fastener[board] = {screw.id}: the text names no board screw and the "
+                                  f"{board_item['part']} datasheet gives no thread; the smallest catalogue screw that "
+                                  "passes the board's mounting holes is used")
+        board = lay.Placed(PRIMARY, board_item["part"], dict(board_item["params"]), 0.0, 0.0, 0.0, 0.0, "",
                            role="board", inst=board_inst)
+        for c in board_inst.connectors:      # the primary's own connectors: the wall follows from the axis, no choice
+            if c["name"] in board_item.get("exposed_connectors", []):
+                axis = pt.lookup_datum(board_inst.datums, c["axis"]).dir
+                choice(st, f"wall[{PRIMARY}.{c['name']}]", wall_facing(axis), "rule:fixed_by_primary")
         terms = hole_column_terms(st, board_inst)
         column_d = max(terms.values())
         st.notes.append(f"hole columns: Ø{column_d:g} = max(board HOLE.keepout_diameter {terms['board_keepout']:g}, "
                         f"{screw.id} head + 2 x rules.driver_clearance {terms['fastener']:g}) (rule:hole_column_d)")
         placer = lay.Placer(st.catalog, board, st.rules.values, column_d, st.spec["keepout_above"])
         got = self.candidates(st, placer)
-        if not got["cands"] and self.revert_coverage(st, got["pruned"]):
-            got = self.candidates(st, placer)
         exposed, counts, voted = got["exposed"], got["counts"], got["voted"]
         cands, pruned, truncated, cap = got["cands"], got["pruned"], got["truncated"], got["cap"]
         st.arrange = {"candidates": [], "classes": 0, "truncated": truncated, "decision": None}
+        if self.relation_record and self.relation_record["asked"]:
+            st.arrange["relations"] = self.relation_record
         if truncated:
             st.notes.append(f"arrange: {truncated} lower-voted assignments were not evaluated "
                             f"(rules.arrange_rank_max = {cap})")
@@ -1079,6 +1703,203 @@ class ArrangeContents(AssemblyStep):
         return Status.SUCCESS
 
 
+VENT_RELATION_LABEL = "assy_vent_relation"
+VENT_SPEC_LABEL = "assy_vent_spec"
+VENT_NOT_RESOLVED = "face words only"
+
+
+def sentence_spans(text: str) -> List[Tuple[int, int, str]]:
+    """(start, end, stripped sentence) of every sentence of a text, as `sentences` splits it."""
+    out, start = [], 0
+    for m in list(SENTENCE_RE.finditer(text or "")) + [None]:
+        end = m.start() if m else len(text or "")
+        chunk = (text or "")[start:end]
+        if chunk.strip():
+            lead = len(chunk) - len(chunk.lstrip())
+            out.append((start + lead, start + lead + len(chunk.strip()), chunk.strip()))
+        if m:
+            start = m.end()
+    return out
+
+
+def number_positions(texts: Sequence[Tuple[str, str]]) -> Dict[str, Tuple[str, int]]:
+    """number id -> (source, start offset): the ids extract_numbers gives (one per NUMBER_RE match, in text order)."""
+    out, k = {}, 0
+    for source, text in texts:
+        for m in NUMBER_RE.finditer(text):
+            k += 1
+            out[f"n{k}"] = (source, m.start())
+    return out
+
+
+def vent_sentences(st: AssemblyState) -> List[dict]:
+    """The vent sentences (generalize delta 003 C3): each sentence of the request or an L1 holding a vents evidence word
+    (text_evidence token runs), as {source, quote}."""
+    words = list((st.rules.vents or {}).get("evidence", []))
+    return [{"source": h["source"], "quote": h["quote"]} for h in text_evidence(st.texts, words)] if words else []
+
+
+def vent_zone_hit(st: AssemblyState, sents: Sequence[dict]) -> Optional[dict]:
+    """The first placed part zone whose names a vent sentence names (primary first, then the contents in placement
+    order), as {node, zone, evidence}; None when no zone is named."""
+    pairs = [(s_["source"], s_["quote"]) for s_ in sents]
+    for p in st.placed.placed:
+        for z in pt.zones(p.inst.part):
+            hits = text_evidence(pairs, z.get("names") or [])
+            if hits:
+                return {"node": p.node_id, "zone": z["id"],
+                        "evidence": [{"source": h["source"], "quote": h["quote"], "match": h["match"]} for h in hits]}
+    return None
+
+
+def vent_relation_gate(st: AssemblyState, sents: Sequence[dict]) -> Tuple[List[str], List[dict]]:
+    """The relation values a vent text states (clause scope: one clause holds a vents evidence word and a face_relations
+    evidence word, so "no openings other than ... the vents" in separate clauses is no relation), and the gating
+    clauses. Relations the sensor has no rule for (assembly_checks.FACE_RELATIONS) are never offered."""
+    words = list((st.rules.vents or {}).get("evidence", []))
+    cl = clauses([(s_["source"], s_["quote"]) for s_ in sents])
+    vented = {(h["source"], h["quote"]) for h in text_evidence(cl, words)}
+    values, gates = [], []
+    for v, e in (st.rules.face_relations or {}).items():
+        if v not in ac.FACE_RELATIONS:
+            continue
+        hits = [h for h in text_evidence(cl, e["evidence"]) if (h["source"], h["quote"]) in vented]
+        if hits:
+            values.append(v)
+            gates += [{"source": h["source"], "clause": h["quote"], "relation": v} for h in hits]
+    return values, gates
+
+
+def vent_violations(answer: Mapping[str, Optional[str]], by_id: Mapping[str, dict]) -> List[Tuple[str, List[str]]]:
+    """The generic relations of the vent size answer: one number per slot, each value > 0, a count a whole number,
+    each band's min <= max."""
+    out = []
+    users: Dict[str, List[str]] = {}
+    for k, ref in answer.items():
+        if ref:
+            users.setdefault(ref, []).append(k)
+    for ref, names in users.items():
+        if len(names) > 1:
+            out.append((f"{' and '.join(names)} all use {ref} ({by_id[ref]['text']}); each number in the text states "
+                        "one quantity", names))
+    val = {k: by_id[v]["value"] for k, v in answer.items() if v}
+    for k, v in val.items():
+        if v <= 0:
+            out.append((f"{k} must be greater than 0 (got {v:g})", [k]))
+        if k.startswith("vent_count") and abs(v - round(v)) > 1e-9:
+            out.append((f"{k} must be a whole number of slots (got {v:g})", [k]))
+    for band in VENT_BANDS:
+        lo, hi = f"vent_{band}_min", f"vent_{band}_max"
+        if lo in val and hi in val and val[lo] > val[hi]:
+            out.append((f"{lo} ({val[lo]:g}) must not exceed {hi} ({val[hi]:g})", [lo, hi]))
+    return out
+
+
+class Vents(AssemblyStep):
+    """Vent slot rows (generalize delta 003 C3), after the arrangement is fixed. Python finds the vent sentences
+    (design_rules.json vents evidence). The face: (1) a placed part's `zone` whose names a vent sentence names (a lid
+    row over it, rule:vent_zone); else (2) a clause holding a vent word and a relation word: one voted enum question
+    (VENT_RELATION_LABEL) quoting the vent sentences, options {(exposed member, relation)} + not_stated, and only a
+    unanimous reading counts (llm:vent_relation); else (3) a typed note and a failing vent_placed check with a conflict
+    (no geometry is guessed). Once the face resolves, one voted mapping question (VENT_SPEC_LABEL) gives the vent size
+    slots the numbers of the vent sentences that no slot owns yet; a broken answer (shared number, lo > hi, a count that
+    is not whole, a value <= 0) is re-asked once, then the broken slots fall to none. Texts with no vent word ask
+    nothing."""
+
+    def __init__(self, design, llm):
+        super().__init__("Vents", design, llm)
+
+    def update(self) -> Status:
+        st = self.state
+        st.stage = "vents"
+        checkpoint(st, "vents")
+        st.vent = {}
+        sents = vent_sentences(st)
+        if not sents:
+            return Status.SUCCESS
+        vent: Dict[str, Any] = {"evidence": list(sents), "bands": {}}
+        zone = vent_zone_hit(st, sents)
+        if zone is not None:
+            vent.update(face="zone", node=zone["node"], zone=zone["zone"], zone_evidence=zone["evidence"])
+            choice(st, "vent_face", f"zone:{zone['node']}.{zone['zone']}", "rule:vent_zone",
+                   evidence=[{"source": e["source"], "quote": e["quote"]} for e in zone["evidence"]])
+        else:
+            self.ask_relation(st, sents, vent)
+        if vent.get("face") is None:
+            vent.update(face=None, reason=VENT_NOT_RESOLVED)
+            st.notes.append(f"vent: face not resolved ({VENT_NOT_RESOLVED})")
+            st.vent = vent
+            return Status.SUCCESS
+        self.ask_sizes(st, sents, vent)
+        st.vent = vent
+        return Status.SUCCESS
+
+    def ask_relation(self, st: AssemblyState, sents: Sequence[dict], vent: dict) -> None:
+        values, gates = vent_relation_gate(st, sents)
+        members = relation_members(st)
+        if not values or not members:
+            return
+        vocab = st.rules.face_relations
+        options = [f"{m['key']}|{v}" for m in members for v in values]
+        enum = options + [NOT_STATED]
+        quoted = [s_ for s_ in sents if any(g["source"] == s_["source"] and g["clause"] in s_["quote"] for g in gates)]
+        lines = "\n".join(f'- "{s_["quote"]}"' for s_ in quoted)
+        opts = "\n".join(f"- {m['key']}|{v}: the vents go in {vocab[v].get('wall_meaning', vocab[v]['meaning'])} "
+                         f"({m['name']}, {m['connector']} connector)" for m in members for v in values)
+        prompt = (f"Request: {self.design.base_request or self.design.request}\n\n"
+                  f"Where the text places the vents:\n{lines}\n\n"
+                  f"Which wall do the vents go in, relative to a cable connector's wall?\n{opts}\n"
+                  f"- {NOT_STATED}: the request does not relate the vents' wall to a cable connector")
+        counts = tally(self.llm, prompt, ca.obj_schema({"vents": {"type": "string", "enum": enum}}),
+                       VENT_RELATION_LABEL, {"vents": enum})
+        votes = {v: n for v, n in counts["vents"].items() if v is not None}
+        value = next(iter(votes)) if len(votes) == 1 else None
+        vent["relation_question"] = {"enum": enum, "votes": votes, "gates": gates}
+        if value in (None, NOT_STATED):
+            st.notes.append(f"vent: relation votes {votes} are not a unanimous relation to a connector")
+            return
+        key, rel = value.split("|", 1)
+        member = next(m for m in members if m["key"] == key)
+        vent.update(face="wall", member=member, relation=rel)
+        choice(st, "vent_face", value, "llm:vent_relation", votes=votes,
+               evidence=[{"source": s_["source"], "quote": s_["quote"]} for s_ in quoted])
+
+    def ask_sizes(self, st: AssemblyState, sents: Sequence[dict], vent: dict) -> None:
+        slots = list((st.rules.vents or {}).get("slots", []))
+        pos = number_positions(st.texts)
+        spans = {(src, q): (a, b) for src, text in st.texts for a, b, q in sentence_spans(text)}
+        inside = []
+        for n in st.numbers:
+            src, at = pos.get(n["id"], (None, -1))
+            if n["id"] in st.number_owner:
+                continue
+            if any(src == s_["source"] and spans.get((s_["source"], s_["quote"]), (1, 0))[0] <= at
+                   < spans.get((s_["source"], s_["quote"]), (1, 0))[1] for s_ in sents):
+                inside.append(n)
+        vent["bands"] = {s_["name"]: None for s_ in slots}
+        if not slots or not inside:
+            return
+        by_id = {n["id"]: n for n in inside}
+        answer = ask_slots(self.llm, inside, slots, label=VENT_SPEC_LABEL)
+        bad = vent_violations(answer, by_id)
+        if bad:
+            st.notes.append("vents: re-asking: " + "; ".join(b[0] for b in bad))
+            answer = ask_slots(self.llm, inside, slots, "; ".join(b[0] for b in bad), label=VENT_SPEC_LABEL + "_reask")
+            for msg, names in vent_violations(answer, by_id):
+                st.notes.append(f"vents: still violated after one re-ask: {msg}; {', '.join(names)} fall to none")
+                for k in names:
+                    answer[k] = None
+        for s_ in slots:
+            ref = answer.get(s_["name"])
+            if not ref:
+                continue
+            n = by_id[ref]
+            vent["bands"][s_["name"]] = n["value"]
+            st.spec[s_["name"]] = n["value"]
+            st.spec_provenance[s_["name"]] = f'{n["source"]}:"{n["quote"]}"'
+            st.number_owner.setdefault(ref, s_["name"])
+
+
 def accept_layout(st: AssemblyState, result: lay.Layout, placer: lay.Placer) -> None:
     """The state half of accepting an arrangement (shared by ArrangeContents.accept and prescore, 7.11): the placed
     layout, the frame, the grid sensor's report and a fresh feature graph holding the reference parts. No logging."""
@@ -1097,33 +1918,52 @@ def accept_layout(st: AssemblyState, result: lay.Layout, placer: lay.Placer) -> 
                              source=f"layout:{p.role}"))
 
 
+def facing_connector(st: AssemblyState, it: lay.Item) -> str:
+    """The name of the connector an exposed item turns toward its edge: its first exposed connector."""
+    conns = connector_list(st.catalog.get(it.part))
+    return next((c["name"] for c in conns if it.connectors and c["name"] in it.connectors), conns[0]["name"])
+
+
 def exposed_connectors(st: AssemblyState) -> List[Tuple[lay.Placed, dict]]:
-    exposed = {it.id for it in st.items if it.exposed}
-    return [(p, c) for p in st.placed.placed if p.role == "content" and p.item in exposed
-            for c in p.inst.connectors[:1] if c.get("mates") in st.catalog]
+    """Every exposed connector of every placed part (generalize delta 001 C1): each exposed connector of a content part
+    (a one-connector part: its connector, as before) and the primary's own exposed connectors."""
+    items = {it.id: it for it in st.items if it.exposed}
+    prim = primary_item(st) or {}
+    out = []
+    for p in st.placed.placed:
+        if p.role == "board":
+            names = list(prim.get("exposed_connectors", []))
+        elif p.role == "content" and p.item in items:
+            it = items[p.item]
+            names = list(it.connectors) if it.connectors else [c["name"] for c in p.inst.connectors[:1]]
+        else:
+            continue
+        out += [(p, c) for c in p.inst.connectors if c.get("name") in names and c.get("mates") in st.catalog]
+    return out
 
 
 def build_envelopes(st: AssemblyState) -> Optional[str]:
     """V- volumes from the placed datums (parts.py generators); lengths from spec and rules only. Shared by
     BuildEnvelopes and prescore (7.11); returns an error message or None."""
     r, s = st.rules.values, st.spec
-    board = st.placed.get("board")
+    board = st.placed.get(PRIMARY)
     for p, c in exposed_connectors(st):
         world = {"mouth": lay.world_datum(p, c["mouth"]), "axis": lay.world_datum(p, c["axis"])}
         try:
             nodes = pt.plug_sweep(world, st.catalog.instantiate(c["mates"]), 0.0, r["plug_travel"],
-                                  prefix=f"{p.node_id}_plug")
+                                  prefix=f"{conn_key(p, c)}_plug")
         except pt.PartError as e:
             return str(e)
         for n in nodes:
             st.graph.add(n)
     for n in pt.board_keepout(board.inst, board.pose, s["keepout_above"], s["keepout_below"], prefix="board"):
         st.graph.add(n)
-    holes = lay.world_datum(board, "HOLE")
-    top, bottom = lay.world_datum(board, "TOP").at[2], lay.world_datum(board, "BOTTOM").at[2]
+    hole_name, seat_name, top_name = primary_mount(st)
+    holes = lay.world_datum(board, hole_name)
+    top, bottom = lay.world_datum(board, top_name).at[2], lay.world_datum(board, seat_name).at[2]
     seat_d = hole_column_d(st, board.inst)
     for i in range(len(holes.at)):
-        anchor = f"board.HOLE[{i}]"
+        anchor = f"{PRIMARY}.{hole_name}[{i}]"
         st.graph.add(pt.column(holes, i, seat_d, bottom - s["keepout_below"] - r["cut_overrun"],
                                top + r["cut_overrun"], "seat", prefix="seat", anchor=anchor))
         st.graph.add(pt.column(holes, i, seat_d, top, top + s["keepout_above"], "hole_keepout", prefix="hole_ko",
@@ -1146,6 +1986,7 @@ class BuildEnvelopes(AssemblyStep):
     def update(self) -> Status:
         st = self.state
         st.stage = "build_envelopes"
+        checkpoint(st, "envelopes")
         err = build_envelopes(st)
         return self.fail(err) if err else Status.SUCCESS
 
@@ -1230,24 +2071,45 @@ def driver_columns(st: AssemblyState) -> List[fg.Node]:
     rules.driver_reach (lid off). Added after the base exists (its height reads base.split); the cavity never
     reads these nodes (KEEP_OUTS bounds it through rules.driver_diameter on the hole axes instead)."""
     r = st.rules.values
-    board = st.placed.get("board")
-    holes = lay.world_datum(board, "HOLE")
-    top = lay.world_datum(board, "TOP").at[2]
+    board = st.placed.get(PRIMARY)
+    hole_name, _, top_name = primary_mount(st)
+    holes = lay.world_datum(board, hole_name)
+    top = lay.world_datum(board, top_name).at[2]
     return [pt.column(holes, i, r["driver_diameter"], top, "base.split + rules.driver_reach", "driver",
-                      prefix="driver", anchor=f"board.HOLE[{i}]") for i in range(len(holes.at))]
+                      prefix="driver", anchor=f"{PRIMARY}.{hole_name}[{i}]") for i in range(len(holes.at))]
+
+
+SHELL = ("tray_lid", "screws")       # the one archetype + closure the derivation rules build (ARCHITECTURE.md 4.3)
+
+
+def archetype_gate(st: AssemblyState) -> Tuple[List[Tuple[str, str]], str]:
+    """(feasible (archetype, closure) pairs, the typed reason when there are none). tray_lid is feasible only when (a)
+    the primary offers a mount_holes interface and (b) the request or an L1 names one of design_rules.json
+    archetypes.tray_lid.evidence (text_evidence), so a fixture or a mount never gets a box (generalize delta 001 C4)."""
+    prim = primary_item(st)
+    pid = prim["part"] if prim else None
+    if pid is None or pt.mount_interface(st.catalog.get(pid)) is None:
+        return [], f"not implemented: archetype (primary {pid}; no {pt.MOUNT_HOLES} interface)"
+    words = list((st.rules.archetypes.get(SHELL[0]) or {}).get("evidence", []))
+    hits = text_evidence(st.texts, words) if words else []
+    if not hits:
+        return [], (f"not implemented: archetype (primary {pid}; no shell evidence; candidates for GM5: plate / "
+                    "bracket / block / cradle)")
+    return [SHELL], ""
 
 
 def feasible_archetypes(st: AssemblyState) -> List[Tuple[str, str]]:
-    """(archetype, closure) pairs the derivation rules can build. The skeleton has one (ARCHITECTURE.md 4.3)."""
-    return [("tray_lid", "screws")]
+    """(archetype, closure) pairs the derivation rules can build for this request (archetype_gate)."""
+    return archetype_gate(st)[0]
 
 
 def choose_archetype_rule(st: AssemblyState) -> Optional[str]:
     """The rule half of ChooseArchetype (shared with prescore, 7.11): one feasible archetype is recorded as a rule
     choice; with two or more, the current choice holds, else the first (prescore never asks the LLM)."""
-    options = ["+".join(o) for o in feasible_archetypes(st)]
+    feasible, reason = archetype_gate(st)
+    options = ["+".join(o) for o in feasible]
     if not options:
-        return "no feasible archetype"
+        return reason or "no feasible archetype"
     if len(options) == 1:
         choice(st, "archetype", options[0], "rule:only_feasible")
     elif st.choices.get("archetype", {}).get("value") not in options:
@@ -1262,7 +2124,8 @@ class ChooseArchetype(AssemblyStep):
     def update(self) -> Status:
         st = self.state
         st.stage = "choose_archetype"
-        options = feasible_archetypes(st)
+        checkpoint(st, "archetype")
+        options, _ = archetype_gate(st)
         if len(options) <= 1:
             err = choose_archetype_rule(st)
             return self.fail(err) if err else Status.SUCCESS
@@ -1284,17 +2147,26 @@ def _fold(fn: str, terms: Sequence[str]) -> str:
     return terms[0] if len(terms) == 1 else f"{fn}({', '.join(terms)})"
 
 
-def derive_cavity(st: AssemblyState) -> fg.Node:
+def derive_cavity(st: AssemblyState, layout: str = "outside_corners") -> fg.Node:
     """CavityFromContents = hull(references ∪ keep-outs) + clearances (ARCHITECTURE.md 4, 7.7).
+
+    Generalize delta 003 C1: an inside boss layout (inside_band_x / inside_band_y) grows the cavity along its axis by a
+    boss band at each end (band = the lid boss diameter + spec.board_clearance + rules.design_margin), so the four lid
+    bosses stand inside the walls; outside_corners (the default) derives the iteration 002 expressions unchanged.
 
     In plan: the AABB of every reference part grown by spec.board_clearance, and every plan keep-out
     (KEEP_OUTS "plan") around its anchor axis by its radius (no clearance: its limit is d >= 0); floor at
-    the solder-side keep-out; top at the component keep-out (or the tallest part plus the headroom). Every
+    the solder-side keep-out or lower, so every standoff holds its pilot over rules.min_feature of floor (delta 002 C2);
+    top at the component keep-out (or the tallest part plus the headroom). Every
     one-sided bound carries rules.design_margin (setpoint inside the band; the checks keep the limits).
     Every size is an expression, so a spec or board change re-derives it (the size-leak fix)."""
     refs = [n.id for n in st.graph.references()]
     axes = plan_axes(st)
     m = "rules.design_margin"
+    _, seat, top = primary_mount(st)
+    # the floor also holds every standoff's pilot over rules.min_feature of floor (generalize delta 002 C2, RC-B3):
+    # pilot_depth_standoff_* (depth <= seat - z0 + floor - min_feature) then holds by construction
+    pilot = f"{PRIMARY}.{seat}.z - ({pilot_depth('board', st)}) - rules.min_feature + floor - {m}"
 
     def bound(fn: str, axis: str, sign: str) -> str:
         terms = [f"{_fold(fn, [f'{r}.bbox.{fn}_{axis}' for r in refs])} {sign} spec.board_clearance {sign} {m}"]
@@ -1304,13 +2176,19 @@ def derive_cavity(st: AssemblyState) -> fg.Node:
     p = {
         "x0": bound("min", "x", "-"), "x1": bound("max", "x", "+"),
         "y0": bound("min", "y", "-"), "y1": bound("max", "y", "+"),
-        "z0": f"board.BOTTOM.z - spec.keepout_below - {m}",
-        "z1": f"max(board.TOP.z + spec.keepout_above + {m}, "
+        "z0": f"min({PRIMARY}.{seat}.z - spec.keepout_below - {m}, {pilot})",
+        "z1": f"max({PRIMARY}.{top}.z + spec.keepout_above + {m}, "
               f"{_fold('max', [f'{r}.bbox.max_z' for r in refs])} + spec.headroom + {m})",
         "wall": "min(max(rules.wall_default, spec.wall_min), spec.wall_max)",
         "floor": "min(max(rules.floor_default, spec.wall_min), spec.wall_max)",
         "x": "x1 - x0", "y": "y1 - y0", "z": "z1 - z0", "cx": "(x0 + x1) / 2", "cy": "(y0 + y1) / 2",
     }
+    axis = INSIDE_LAYOUTS.get(layout)
+    if axis is not None:
+        p["boss_d"] = BOSS_D
+        p["band"] = "boss_d + spec.board_clearance + rules.design_margin"
+        p[f"{axis}0"] = f"{p[axis + '0']} - band"
+        p[f"{axis}1"] = f"{p[axis + '1']} + band"
     return fg.Node("cavity", "envelope", "box", p, fg.Pose(offset=("cx", "cy", "z0")), role="cavity",
                    source="rule:cavity_from_contents")
 
@@ -1338,7 +2216,8 @@ def derive_port_cut(st: AssemblyState, p: lay.Placed, conn: dict, res: fg.Resolv
         raise ValueError(f"{p.node_id}: connector axis is parallel to wall {side}")
     s_in = (cav[bound] - mouth.at[i]) / u[i]
     s_out = s_in + cav["wall"] / abs(u[i])
-    plugs = [n for n in st.graph if n.kind == "envelope" and n.id.startswith(f"{p.node_id}_plug_")]
+    key = conn_key(p, conn)
+    plugs = [n for n in st.graph if n.kind == "envelope" and n.id.startswith(f"{key}_plug_")]
     crossing = [n for n in plugs if res.params[n.id]["s0"] < s_out and res.params[n.id]["s1"] > s_in]
     if not crossing:
         raise ValueError(f"{p.node_id}: no plug primitive crosses wall {side}")
@@ -1346,7 +2225,25 @@ def derive_port_cut(st: AssemblyState, p: lay.Placed, conn: dict, res: fg.Resolv
     h = f"{_fold('max', [f'{n.id}.ch' for n in crossing])} + 2*(rules.plug_to_opening + rules.design_margin)"
     m = f"{p.node_id}.{conn['mouth']}"
     xyz = "xyz"[i]
-    cid = f"{p.node_id}_cut"
+    cid = f"{key}_cut"
+    sec = crossing_section(res, crossing, 1 - i, mouth.at)
+    if sec["offset"] and all(n.primitive == "cylinder" for n in crossing):
+        raise ValueError(f"{p.node_id}: round plug primitives off the connector axis are not supported")
+    if sec["offset"]:
+        # generalize delta 002 D1: plug primitives whose section is not centred on the mouth (a card's access zone
+        # above its axis): the box opening is centred on, and sized by, the union of their sections
+        pad = "2*(rules.plug_to_opening + rules.design_margin)"
+        w, h = f"{sec['w']!r} + {pad}", f"{sec['h']!r} + {pad}"
+        centre = f"cavity.{bound} {'+' if sign > 0 else '-'} cavity.wall/2 - {m}.{xyz}"
+        offset = [0, 0, f"{sec['dz']!r} - z/2"]
+        offset[i], offset[1 - i] = centre, f"{sec['dt']!r}"
+        params = {"x": "cavity.wall + 2*rules.cut_overrun", "y": w, "z": h, "top": f"{m}.z + {sec['dz']!r} + z/2",
+                  "cw": w, "ch": h}
+        node = fg.Node(cid, "cut", "box", params, fg.Pose(at=m, offset=tuple(offset), rot_z=lay.angle_of(u)),
+                       body="base", role="port_cut", source=f"rule:connector_to_cut({p.node_id}.{conn['name']})")
+        node.wall, node.crossing, node.env = side, [n.id for n in crossing], (sec["w"], sec["h"])
+        port_roof(st, node, sec["w"], m, i, centre, f"{sec['dt']!r}", u)
+        return node, side
     if all(n.primitive == "cylinder" for n in crossing):
         start = f"cavity.{bound} {'-' if sign > 0 else '+'} rules.cut_overrun - {m}.{xyz}"
         offset = [0, 0, 0]
@@ -1365,7 +2262,72 @@ def derive_port_cut(st: AssemblyState, p: lay.Placed, conn: dict, res: fg.Resolv
                    source=f"rule:connector_to_cut({p.node_id}.{conn['name']})")
     node.wall = side
     node.crossing = [n.id for n in crossing]
+    node.env = (max(res.params[n.id]["cw"] for n in crossing), max(res.params[n.id]["ch"] for n in crossing))
+    if prim == "box":
+        port_roof(st, node, node.env[0], m, i, centre, "0", u)
     return node, side
+
+
+def port_roof(st: AssemblyState, node: fg.Node, env_w: float, m: str, i: int, centre: str, along: str,
+              u: Sequence[float]) -> None:
+    """The bridge rule of a box opening in a vertical wall (generalize delta 003 C4). Its flat roof spans the opening's
+    width w_o = plug section + 2 x (plug_to_opening + design_margin). When w_o > rules.bridge_max - design_margin, a
+    roof is added: a prism on the opening's top, bottom width w_o, top width b = bridge_max - design_margin, rise
+    (w_o - b)/2 / tan(rules.overhang_angle_deg), unless the roofed opening's top would then be more than
+    spec.opening_oversize_max - design_margin above the plug (the stated oversize wins; node.bridge_conflict carries the
+    words and the bridge_<cut> check fails with a typed conflict). The cut's `top` includes the rise, so the split
+    ligament term holds; node.roof names the roof node (node.roof_node), which derive_features adds."""
+    r, s = st.rules.values, st.spec
+    pad = r["plug_to_opening"] + r["design_margin"]
+    w_o = float(env_w) + 2 * pad
+    b = r["bridge_max"] - r["design_margin"]
+    if w_o <= b:
+        return
+    rise = (w_o - b) / 2 / fg.tand(r["overhang_angle_deg"])
+    allowed = s["opening_oversize_max"] - r["design_margin"]
+    if pad + rise > allowed + 1e-9:
+        node.bridge_conflict = (f"stated oversize vs bridge limit: {node.id} is {w_o:.3f} mm wide; a roof to the "
+                                f"{r['bridge_max']:g} mm bridge limit would rise {rise:.3f} mm and leave its top "
+                                f"{pad + rise:.3f} mm above the plug (opening_oversize_max {s['opening_oversize_max']:g}"
+                                f" - design margin {r['design_margin']:g}), so the roof stays flat")
+        return
+    cid = node.id
+    node.params["rise"] = "(y - (rules.bridge_max - rules.design_margin)) / 2 / tand(rules.overhang_angle_deg)"
+    node.params["top"] = f"{node.params['top']} + rise"
+    offset = [0, 0, f"{cid}.top - {cid}.rise - {m}.z"]
+    offset[i] = f"{centre} - {cid}.x/2*({float(u[i])!r})"
+    offset[1 - i] = f"{along} - {cid}.x/2*({float(u[1 - i])!r})"
+    # local frame: Z (the extrusion) along the outward axis u, X up, Y along the wall (rot_z turns local X onto the
+    # preimage of world up under align_z_to(u)); the trapezoid's base is the opening's top edge
+    roof = fg.Node(f"{cid}_roof", "cut", "prism", {
+        "n": 4, "w": f"{cid}.y", "b": "rules.bridge_max - rules.design_margin", "rise": f"{cid}.rise", "h": f"{cid}.x",
+        "x1": 0, "y1": "-w/2", "x2": "rise", "y2": "-b/2", "x3": "rise", "y3": "b/2", "x4": 0, "y4": "w/2"},
+        fg.Pose(at=m, offset=tuple(offset), axis_dir=(float(u[0]), float(u[1]), 0.0),
+                rot_z=lay.angle_of(u) + HALF_TURN_DEG),
+        body="base", role="port_roof", source=f"rule:bridge_roof({cid})")
+    node.roof, node.roof_node = roof.id, roof
+
+
+def crossing_section(res: fg.Resolved, crossing: Sequence[fg.Node], t: int, mouth: Sequence[float]) -> dict:
+    """The union of the crossing plug primitives' sections in the wall plane (generalize delta 002 D1): its width `w`
+    along world axis t and height `h` along Z, and its centre's offset from the mouth (dt, dz). `offset` is False when
+    every section is centred on the connector axis (every catalogue cable plug), so the opening keeps the iteration 002
+    expressions. A box envelope's pose is its section centre in plan with its base at Z; a cylinder's is a point of its
+    axis."""
+    lo_t, hi_t, lo_z, hi_z = [], [], [], []
+    for n in crossing:
+        q, prm = res.poses[n.id][:3, 3], res.params[n.id]
+        ct, cz = float(q[t]), float(q[2]) + (prm["z"] / 2 if n.primitive == "box" else 0.0)
+        lo_t.append(ct - prm["cw"] / 2)
+        hi_t.append(ct + prm["cw"] / 2)
+        lo_z.append(cz - prm["ch"] / 2)
+        hi_z.append(cz + prm["ch"] / 2)
+    w, h = max(hi_t) - min(lo_t), max(hi_z) - min(lo_z)
+    dt, dz = (max(hi_t) + min(lo_t)) / 2 - float(mouth[t]), (max(hi_z) + min(lo_z)) / 2 - float(mouth[2])
+    tol = 1e-6
+    centred = abs(dt) <= tol and abs(dz) <= tol and abs(w - max(res.params[n.id]["cw"] for n in crossing)) <= tol \
+        and abs(h - max(res.params[n.id]["ch"] for n in crossing)) <= tol
+    return {"w": w, "h": h, "dt": dt, "dz": dz, "offset": not centred}
 
 
 def setpoint(limit_expr: str) -> str:
@@ -1383,98 +2345,702 @@ def setpoint(limit_expr: str) -> str:
     return f"{expr} + rules.design_margin"
 
 
-def derive_features(st: AssemblyState) -> List[str]:
-    """Tray + lid with screws (ARCHITECTURE.md 4.3, 7.4). Returns the port-cut node ids."""
+PILOT_USES = {"standoff": "board", "boss": "lid"}   # the fastener use whose pilot each support role holds
+
+
+def clamped_plate(use: str, st: AssemblyState) -> str:
+    """The plate a fastener clamps before it enters its pilot (generalize delta 002 C2), as an expression: the board
+    screw passes the primary between its mount_holes `seat` and `top` planes; the lid screw passes the lid plate
+    (lid.z, which is also the lid pad's height)."""
+    if use == "board":
+        _, seat, top = primary_mount(st)
+        return f"{PRIMARY}.{top}.z - {PRIMARY}.{seat}.z"
+    return "lid.z"
+
+
+def pilot_depth(use: str, st: AssemblyState) -> str:
+    """The pilot depth of a fastener use, the one expression the pilot nodes and the cavity floor read (generalize delta
+    002 C2, RC-B2): setpoint(max(fastener.<use>.min_engagement, fastener.<use>.length - clamped plate)). A catalogue
+    screw of length L through a clamped plate t protrudes L - t; a shallower pilot would bottom the screw before its
+    head seats. A fastener with no `length` keeps setpoint(min_engagement)."""
+    eng = f"fastener.{use}.min_engagement"
+    if f"fastener.{use}.length" not in st.fasteners:
+        return setpoint(eng)
+    return setpoint(f"max({eng}, fastener.{use}.length - ({clamped_plate(use, st)}))")
+
+
+HALF_TURN_DEG = 180.0                # degrees: a half turn about Z
+BOSS_LAYOUTS = ("outside_corners", "inside_band_x", "inside_band_y")   # generalize delta 003 C1, in enumeration order
+INSIDE_LAYOUTS = {"inside_band_x": "x", "inside_band_y": "y"}          # the cavity axis each inside layout grows
+BOSS_D = (f"max({setpoint('fastener.lid.min_boss_od')}, fastener.lid.pilot_diameter + 2*rules.boss_wall_min, "
+          f"fastener.lid.clearance_diameter + 2*({setpoint('rules.min_ligament')}))")   # the lid boss diameter (7.12)
+CORNERS = [("x0", "y0", -1, -1), ("x1", "y0", 1, -1), ("x0", "y1", -1, 1), ("x1", "y1", 1, 1)]
+
+
+class BossLayoutInfeasible(ValueError):
+    """An inside boss layout with no free position for a boss in its band (generalize delta 003 C1)."""
+
+
+def derive_features(st: AssemblyState, layout: str = "outside_corners", closure: Optional[str] = None) -> List[str]:
+    """Tray + lid with screws (ARCHITECTURE.md 4.3, 7.4). Returns the port-cut node ids.
+
+    Generalize delta 003: `layout` is the lid boss layout (C1: outside_corners = the iteration 002 corner pilasters,
+    byte-identical; inside_band_x / inside_band_y = four bosses inside the walls in boss bands, slid off plug sweeps,
+    cuts and keep-outs by a 1-D interval solve); `closure` the lid closure (C2: lip, the default, or rebate: the walls
+    rise by the plate, a rebate leaves an upstand, the plate drops in flush). Box openings wider than the bridge limit
+    get a roof (C4), and a resolved vent row (st.vent, C3) adds its slots."""
     g = st.graph
     r = st.rules.values
+    closure = closure or default_closure(st.rules)
+    rebate = closure == REBATE
+    if rebate and layout not in INSIDE_LAYOUTS:
+        raise BossLayoutInfeasible(f"{layout}: the {REBATE} closure needs the bosses under the plate, inside the walls")
     engagement = setpoint("rules.lip_engagement")
-    g.add(derive_cavity(st))
+    g.add(derive_cavity(st, layout))
     res = resolve(st)
     cuts = []
     for p, c in exposed_connectors(st):
         node, side = derive_port_cut(st, p, c, res)
         g.add(node)
+        if getattr(node, "roof_node", None) is not None:
+            g.add(node.roof_node)
         cuts.append(node)
-    split_terms = [f"cavity.z1 + {engagement}"] + [f"{n.id}.top + {setpoint('rules.min_ligament')}" for n in cuts]
-    g.add(fg.Node("base", "body", "shell", {
-        "wall": "cavity.wall", "floor": "cavity.floor", "split": _fold("max", split_terms),
-        "x": "cavity.x + 2*wall", "y": "cavity.y + 2*wall", "z": "split - cavity.z0 + floor", "open_top": 1},
+    top = "cavity.z1" if rebate else f"cavity.z1 + {engagement}"     # a rebate's plate hangs no lip below the split
+    split_terms = [top] + [f"{n.id}.top + {setpoint('rules.min_ligament')}" for n in cuts]
+    base = {"wall": "cavity.wall", "floor": "cavity.floor", "split": _fold("max", split_terms),
+            "x": "cavity.x + 2*wall", "y": "cavity.y + 2*wall", "z": "split - cavity.z0 + floor", "open_top": 1}
+    if rebate:                           # the walls rise by the plate thickness above the split (C2)
+        base.update(rim="cavity.wall", z="split - cavity.z0 + floor + rim")
+    g.add(fg.Node("base", "body", "shell", base,
         fg.Pose(offset=("cavity.cx", "cavity.cy", "cavity.z0 - floor")), role="tray",
         source="rule:tray_lid.base", color=fg.BODY_COLORS[0]))
     for n in driver_columns(st):
         g.add(n)
-    holes = lay.world_datum(st.placed.get("board"), "HOLE")
+    hole_name, seat_name, _ = primary_mount(st)
+    seat = f"{PRIMARY}.{seat_name}.z"
+    holes = lay.world_datum(st.placed.get(PRIMARY), hole_name)
     for i in range(len(holes.at)):
-        hole = f"board.HOLE[{i}]"
+        hole = f"{PRIMARY}.{hole_name}[{i}]"
         g.add(fg.Node(f"standoff_{i + 1}", "add", "cylinder", {
             "d": f"max(fastener.board.pilot_diameter + 2*rules.standoff_wall_min, "
                  f"{setpoint('fastener.board.min_boss_od')})",
-            "h": "board.BOTTOM.z - cavity.z0 + base.floor", "top": "board.BOTTOM.z",
-            "height": "board.BOTTOM.z - cavity.z0"},
+            "h": f"{seat} - cavity.z0 + base.floor", "top": seat,
+            "height": f"{seat} - cavity.z0"},
             fg.Pose(at=hole, offset=(0, 0, f"cavity.z0 - base.floor - {hole}.z")), body="base", role="standoff",
             source="rule:mount_hole_to_standoff"))
         g.add(fg.Node(f"standoff_{i + 1}_pilot", "cut", "cylinder", {
             "d": "fastener.board.pilot_diameter", "h": "depth + rules.cut_overrun",
-            "depth": setpoint("fastener.board.min_engagement")},
-            fg.Pose(at=hole, offset=(0, 0, f"board.BOTTOM.z - depth - {hole}.z")),
+            "depth": pilot_depth("board", st)},
+            fg.Pose(at=hole, offset=(0, 0, f"{seat} - depth - {hole}.z")),
             body="base", role="pilot", source="rule:mount_hole_to_standoff"))
-    g.add(fg.Node("lid", "body", "box", {"x": "base.x", "y": "base.y", "z": "cavity.wall"},
-                  fg.Pose(offset=("cavity.cx", "cavity.cy", "base.split")), role="lid_plate",
-                  source="rule:tray_lid.lid", color=fg.BODY_COLORS[1]))
-    g.add(fg.Node("lid_lip", "add", "shell", {
-        "x": "cavity.x - 2*rules.sliding_fit", "y": "cavity.y - 2*rules.sliding_fit",
-        "engagement": engagement, "z": "engagement + lid.z", "wall": "rules.lip_wall", "floor": 0, "open_top": 1,
-        "fit": "rules.sliding_fit", "bottom": "base.split - engagement"},
-        fg.Pose(offset=("cavity.cx", "cavity.cy", "base.split - engagement")), body="lid", role="lip",
-        source="rule:lid_to_fastening.lip"))
-    corners = [("x0", "y0", -1, -1), ("x1", "y0", 1, -1), ("x0", "y1", -1, 1), ("x1", "y1", 1, 1)]
-    for k, (bx, by, sx, sy) in enumerate(corners, 1):
+    if rebate:
+        g.add(fg.Node("lid", "body", "box", {
+            "x": "base.x - 2*(rules.rebate_upstand + rules.sliding_fit)",
+            "y": "base.y - 2*(rules.rebate_upstand + rules.sliding_fit)", "z": "cavity.wall"},
+            fg.Pose(offset=("cavity.cx", "cavity.cy", "base.split")), role="lid_plate",
+            source=f"rule:closure.{REBATE}.plate", color=fg.BODY_COLORS[1]))
+        g.add(fg.Node(REBATE, "cut", "box", {
+            "x": "base.x - 2*rules.rebate_upstand", "y": "base.y - 2*rules.rebate_upstand",
+            "z": "lid.z + rules.cut_overrun"},
+            fg.Pose(offset=("cavity.cx", "cavity.cy", "base.split")), body="base", role=REBATE,
+            source=f"rule:closure.{REBATE}.cut"))
+    else:
+        g.add(fg.Node("lid", "body", "box", {"x": "base.x", "y": "base.y", "z": "cavity.wall"},
+                      fg.Pose(offset=("cavity.cx", "cavity.cy", "base.split")), role="lid_plate",
+                      source="rule:tray_lid.lid", color=fg.BODY_COLORS[1]))
+        g.add(fg.Node("lid_lip", "add", "shell", {
+            "x": "cavity.x - 2*rules.sliding_fit", "y": "cavity.y - 2*rules.sliding_fit",
+            "engagement": engagement, "z": "engagement + lid.z", "wall": "rules.lip_wall", "floor": 0, "open_top": 1,
+            "fit": "rules.sliding_fit", "bottom": "base.split - engagement"},
+            fg.Pose(offset=("cavity.cx", "cavity.cy", "base.split - engagement")), body="lid", role="lip",
+            source="rule:lid_to_fastening.lip"))
+    if layout in INSIDE_LAYOUTS:
+        add_inside_bosses(st, layout, lip=not rebate)
+    else:
+        add_corner_pilasters(st)
+    add_vent_row(st)
+    return [n.id for n in cuts]
+
+
+def add_corner_pilasters(st: AssemblyState) -> None:
+    """outside_corners (the iteration 002 layout, byte-identical): four diagonal corner pilasters outside the cavity,
+    with lid pads, lid clearance holes and lip notches."""
+    g = st.graph
+    for k, (bx, by, sx, sy) in enumerate(CORNERS, 1):
         boss = f"boss_{k}"
         cx = f"cavity.{bx} {'+' if sx < 0 else '-'} spec.board_clearance"
         cy = f"cavity.{by} {'+' if sy < 0 else '-'} spec.board_clearance"
         g.add(fg.Node(boss, "add", "cylinder", {
-            "d": f"max({setpoint('fastener.lid.min_boss_od')}, fastener.lid.pilot_diameter + 2*rules.boss_wall_min, "
-                 f"fastener.lid.clearance_diameter + 2*({setpoint('rules.min_ligament')}))",
+            "d": BOSS_D,
             "ax": f"{cx} {'-' if sx < 0 else '+'} {DIAGONAL!r}*(d/2 + spec.board_clearance)",
             "ay": f"{cy} {'-' if sy < 0 else '+'} {DIAGONAL!r}*(d/2 + spec.board_clearance)",
             "h": "base.split - cavity.z0 + base.floor"},
             fg.Pose(offset=("ax", "ay", "cavity.z0 - base.floor")), body="base", role="boss",
             source="rule:lid_to_fastening.corner_pilaster"))
-        g.add(fg.Node(f"{boss}_pilot", "cut", "cylinder", {
-            "d": "fastener.lid.pilot_diameter", "h": "depth + rules.cut_overrun",
-            "depth": setpoint("fastener.lid.min_engagement")},
-            fg.Pose(offset=(f"{boss}.ax", f"{boss}.ay", "base.split - depth")),
-            body="base", role="pilot", source="rule:lid_to_fastening.corner_pilaster"))
+        add_boss_fastening(st, boss, "rule:lid_to_fastening.corner_pilaster", pad=True, notch=True)
+
+
+def add_boss_fastening(st: AssemblyState, boss: str, source: str, pad: bool, notch: bool) -> None:
+    """A lid boss's pilot (base), its lid pad (outside layouts only: an inside boss is under the plate already), its
+    clearance hole through the lid and its lip notch (lip closure only)."""
+    g = st.graph
+    g.add(fg.Node(f"{boss}_pilot", "cut", "cylinder", {
+        "d": "fastener.lid.pilot_diameter", "h": "depth + rules.cut_overrun",
+        "depth": pilot_depth("lid", st)},
+        fg.Pose(offset=(f"{boss}.ax", f"{boss}.ay", "base.split - depth")),
+        body="base", role="pilot", source=source))
+    if pad:
         g.add(fg.Node(f"{boss}_pad", "add", "cylinder", {"d": f"{boss}.d", "h": "lid.z"},
                       fg.Pose(offset=(f"{boss}.ax", f"{boss}.ay", "base.split")), body="lid", role="pad",
-                      source="rule:lid_to_fastening.corner_pilaster"))
-        g.add(fg.Node(f"{boss}_lid_hole", "cut", "cylinder", {
-            "d": "fastener.lid.clearance_diameter", "h": "lid.z + 2*rules.cut_overrun"},
-            fg.Pose(offset=(f"{boss}.ax", f"{boss}.ay", "base.split - rules.cut_overrun")), body="lid",
-            role="screw_hole", source="rule:lid_to_fastening.corner_pilaster"))
+                      source=source))
+    g.add(fg.Node(f"{boss}_lid_hole", "cut", "cylinder", {
+        "d": "fastener.lid.clearance_diameter", "h": "lid.z + 2*rules.cut_overrun"},
+        fg.Pose(offset=(f"{boss}.ax", f"{boss}.ay", "base.split - rules.cut_overrun")), body="lid",
+        role="screw_hole", source=source))
+    if notch:
         g.add(fg.Node(f"{boss}_lip_notch", "cut", "cylinder", {
             "d": f"{boss}.d + 2*rules.sliding_fit", "h": "lid_lip.engagement + rules.cut_overrun"},
             fg.Pose(offset=(f"{boss}.ax", f"{boss}.ay", "base.split - lid_lip.engagement - rules.cut_overrun")),
-            body="lid", role="lip_notch", source="rule:lid_to_fastening.corner_pilaster"))
-    return [n.id for n in cuts]
+            body="lid", role="lip_notch", source=source))
+
+
+def boss_obstacles(st: AssemblyState, res: fg.Resolved) -> List[Tuple[np.ndarray, np.ndarray, float, str]]:
+    """What a lid boss must keep off (generalize delta 003 C1), as (world AABB lo, hi, clearance, node id): every plug
+    sweep, keep-out and access envelope at its KEEP_OUTS clearance (seats at 0), every port cut and roof at 0 (its
+    overrun into the cavity must not nick the boss), the primary at spec.board_clearance and every other reference part
+    at rules.part_to_wall; each clearance plus rules.design_margin (a setpoint inside the limit, 7.7). Delta 003 asked
+    for min_ligament round port cuts; a boss stands in the cavity, outside the wall cross-section the ligament rule
+    measures (ligament_<cut> slices the wall's mid-plane), and that 1.5 mm left the G04 card-slot band 0.3 mm short
+    (LEDGER iteration 003, implementation deviation 1). The plug sweep (plug_to_opening) still keeps the boss off the
+    opening, and the cut's ligament check is unchanged."""
+    r, s, g = st.rules.values, st.spec, st.graph
+    m = r["design_margin"]
+    out = []
+    for n in g:
+        if n.kind == "envelope":
+            if n.role == "cavity":
+                continue
+            row = keep_out(n)
+            c = 0.0 if row.get("clearance") is None else keepout_clearance(row, s, r)
+        elif n.kind == "cut" and n.role in ("port_cut", "port_roof"):
+            c = 0.0          # measured deviation from delta 003 (+ min_ligament): see the docstring
+
+        elif n.kind == "reference":
+            c = s["board_clearance"] if n.id == st.placed.get(PRIMARY).node_id else r["part_to_wall"]
+        else:
+            continue
+        bb = fg.solid(n, res).bounding_box()
+        out.append((np.asarray(bb[:3], float), np.asarray(bb[3:], float), float(c) + m, n.id))
+    return out
+
+
+def free_slot(start: float, direction: int, limit: float, forbidden: Sequence[Tuple[float, float, str]],
+              tol: float = 1e-9) -> Optional[float]:
+    """The nearest position from `start` moving in `direction` (+1 / -1) that lies in no open forbidden interval, or None
+    when it passes `limit` first (generalize delta 003 C1: a boss slides along its band towards the band's middle)."""
+    t = start
+    for _ in range(len(forbidden) + 1):
+        hit = [(lo, hi) for lo, hi, _ in forbidden if lo + tol < t < hi - tol]
+        if not hit:
+            break
+        t = max(hi for _, hi in hit) if direction > 0 else min(lo for lo, _ in hit)
+    else:
+        return None
+    if (direction > 0 and t > limit + tol) or (direction < 0 and t < limit - tol):
+        return None
+    return t
+
+
+def inside_boss_positions(st: AssemblyState, layout: str, res: fg.Resolved) -> List[dict]:
+    """The 1-D interval solve of an inside boss layout (generalize delta 003 C1; no LLM). Each boss stands in the boss
+    band at one end of the layout's axis, tangent to and fused with the end wall (it reaches rules.design_margin into
+    it), and starts at its band corner. The forbidden intervals along the band are the projections of every obstacle
+    (boss_obstacles) whose AABB, grown by its clearance, meets the boss's band strip and its height; the boss slides to
+    the nearest free position towards the band's middle. No free position, or two bosses of one band closer than a
+    boss diameter + rules.min_ligament: BossLayoutInfeasible. Returns per boss (CORNERS order) {ax, ay expressions,
+    slide, blocked_by}."""
+    r = st.rules.values
+    cav, base = res.params["cavity"], res.params["base"]
+    d, ov = cav["boss_d"], r["design_margin"]
+    a_name = INSIDE_LAYOUTS[layout]
+    a = "xy".index(a_name)
+    t = 1 - a
+    t_name = "xy"[t]
+    z_lo, z_hi = cav["z0"] - base["floor"], base["split"]
+    obstacles = boss_obstacles(st, res)
+    t_lo, t_hi = cav[f"{t_name}0"] + d / 2 - ov, cav[f"{t_name}1"] - d / 2 + ov
+    mid = (t_lo + t_hi) / 2
+    found: Dict[Tuple[int, int], dict] = {}
+    for end in (-1, 1):
+        ca_ = cav[f"{a_name}0"] + d / 2 - ov if end < 0 else cav[f"{a_name}1"] - d / 2 + ov
+        forbidden = [(lo[t] - c - d / 2, hi[t] + c + d / 2, nid) for lo, hi, c, nid in obstacles
+                     if lo[a] - c < ca_ + d / 2 and hi[a] + c > ca_ - d / 2 and lo[2] - c < z_hi and hi[2] + c > z_lo]
+        got = {}
+        for side, start in ((-1, t_lo), (1, t_hi)):
+            pos = free_slot(start, -side, mid, forbidden)
+            if pos is None:
+                raise BossLayoutInfeasible(f"{layout}: no free position for the boss at the {a_name}{'01'[end > 0]} / "
+                                           f"{t_name}{'01'[side > 0]} band corner (blocked by "
+                                           f"{', '.join(sorted({f[2] for f in forbidden})) or 'nothing'})")
+            got[side] = pos
+        if got[1] - got[-1] < d + r["min_ligament"] - 1e-9:
+            raise BossLayoutInfeasible(f"{layout}: the two bosses of the {a_name}{'01'[end > 0]} band are "
+                                       f"{got[1] - got[-1]:.3f} mm apart (need {d + r['min_ligament']:.3f})")
+        for side in (-1, 1):
+            slide = float(abs(got[side] - (t_lo if side < 0 else t_hi)))
+            along = f"cavity.{a_name}0 + d/2 - rules.design_margin" if end < 0 else \
+                f"cavity.{a_name}1 - d/2 + rules.design_margin"
+            across = f"cavity.{t_name}0 + d/2 - rules.design_margin" if side < 0 else \
+                f"cavity.{t_name}1 - d/2 + rules.design_margin"
+            if slide > 1e-9:
+                across += f" {'+' if side < 0 else '-'} {slide!r}"
+            blocked = sorted({f[2] for f in forbidden if f[0] < (t_lo if side < 0 else t_hi) < f[1]})
+            found[(end, side)] = {"along": along, "across": across, "slide": slide, "blocked_by": blocked}
+    out = []
+    for bx, by, sx, sy in CORNERS:              # boss_k keeps the corner order of the outside layout
+        end, side = (sx, sy) if a == 0 else (sy, sx)
+        row = found[(end, side)]
+        ax, ay = (row["along"], row["across"]) if a == 0 else (row["across"], row["along"])
+        out.append({"ax": ax, "ay": ay, "slide": row["slide"], "blocked_by": row["blocked_by"]})
+    return out
+
+
+def add_inside_bosses(st: AssemblyState, layout: str, lip: bool) -> None:
+    """inside_band_x / inside_band_y (generalize delta 003 C1): four bosses inside the walls, fused to the floor and
+    the end wall, their tops at base.split; no lid pads (the plate covers them), clearance holes through the plate,
+    the lip notched at each boss (lip closure)."""
+    g = st.graph
+    rows = inside_boss_positions(st, layout, resolve(st))
+    source = f"rule:lid_to_fastening.{layout}"
+    for k, row in enumerate(rows, 1):
+        boss = f"boss_{k}"
+        g.add(fg.Node(boss, "add", "cylinder", {
+            "d": "cavity.boss_d", "ax": row["ax"], "ay": row["ay"], "h": "base.split - cavity.z0 + base.floor"},
+            fg.Pose(offset=("ax", "ay", "cavity.z0 - base.floor")), body="base", role="boss", source=source))
+        if row["slide"] > 0:
+            st.notes.append(f"derive: {boss} ({layout}) slid {row['slide']:.3f} mm along its band, off "
+                            f"{', '.join(row['blocked_by']) or 'its neighbours'}")
+        add_boss_fastening(st, boss, source, pad=False, notch=lip)
+
+
+VENT_BANDS = ("count", "width", "length", "pitch")    # the vent size bands (vent_<band>_min / vent_<band>_max slots)
+
+
+def vent_band(bands: Mapping[str, Optional[float]], name: str) -> Tuple[Optional[float], Optional[float]]:
+    return bands.get(f"vent_{name}_min"), bands.get(f"vent_{name}_max")
+
+
+def clamp_band(v: float, lo: Optional[float], hi: Optional[float]) -> float:
+    if lo is not None:
+        v = max(v, lo)
+    if hi is not None:
+        v = min(v, hi)
+    return v
+
+
+def vent_solve(bands: Mapping[str, Optional[float]], extent: float, avail_len: Optional[float],
+               rules: Mapping[str, float]) -> dict:
+    """The vent row solve (generalize delta 003 C3; Python, no LLM): setpoints inside the stated bands.
+    width w = the middle of the width band (else rules.vent_slot_width, clamped to a stated end); length l = the middle
+    of the length band when both ends are stated, else the available extent across the row (`avail_len`: a wall's
+    height between the floor top and the split minus 2 x min_ligament; None for a lid row: rules.vent_slot_length),
+    clamped to the stated ends; pitch p = the middle of the pitch band, else w + max(min_ligament, w), never below
+    w + min_ligament; count N = the largest count in the band with (N - 1) p + w <= extent. While N w l < vent_area_min,
+    N grows (p down to its floor), then w, then l, within their bands. Returns {w, l, p, n, area, span, assumed: [...]}
+    or {conflict: words naming the binding band}."""
+    lig = rules["min_ligament"]
+    assumed = []
+    (cmin, cmax), (wmin, wmax) = vent_band(bands, "count"), vent_band(bands, "width")
+    (lmin, lmax), (pmin, pmax) = vent_band(bands, "length"), vent_band(bands, "pitch")
+    amin = bands.get("vent_area_min")
+    if wmin is not None and wmax is not None:
+        w = (wmin + wmax) / 2
+    else:
+        w = clamp_band(rules["vent_slot_width"], wmin, wmax)
+        assumed.append(f"vent slot width {w:g} mm from rules.vent_slot_width (the text states no width band)")
+    if lmin is not None and lmax is not None:
+        l_ = (lmin + lmax) / 2
+    elif avail_len is not None:
+        l_ = clamp_band(avail_len, lmin, lmax)
+    else:
+        l_ = clamp_band(rules["vent_slot_length"], lmin, lmax)
+        assumed.append(f"vent slot length {l_:g} mm from rules.vent_slot_length (the text states no length band)")
+    l_top = lmax if lmax is not None else (avail_len if avail_len is not None else l_)
+    if avail_len is not None:
+        l_top = min(l_top, avail_len)
+        if l_ > avail_len + 1e-9:
+            return {"conflict": f"vent length band (min {lmin:g}) vs the {avail_len:.3f} mm the wall leaves"}
+    w_top = wmax if wmax is not None else w
+
+    def p_floor(w_):
+        return max(w_ + lig, pmin if pmin is not None else 0.0)
+
+    p = (pmin + pmax) / 2 if pmin is not None and pmax is not None else w + max(lig, w)
+    p = max(clamp_band(p, pmin, pmax), p_floor(w))
+    if pmax is not None and p_floor(w) > pmax + 1e-9:
+        return {"conflict": f"vent pitch band (max {pmax:g}) vs slot width {w:g} + min_ligament {lig:g}"}
+    lo_n = int(cmin) if cmin is not None else 1
+    hi_n = int(cmax) if cmax is not None else None
+
+    def fit(w_, p_):
+        return int(math.floor((extent - w_) / p_ + 1e-9)) + 1 if extent >= w_ - 1e-9 else 0
+
+    n = fit(w, p) if hi_n is None else min(hi_n, fit(w, p))
+    if n < lo_n:
+        if lo_n > 1 and (extent - w) / (lo_n - 1) >= p_floor(w) - 1e-9:
+            n, p = lo_n, min(p, (extent - w) / (lo_n - 1))
+        else:
+            return {"conflict": f"vent count band (min {lo_n}) vs the {extent:.3f} mm row extent at pitch "
+                                f"{p_floor(w):g} and width {w:g}"}
+    if n < 1:
+        return {"conflict": f"no vent slot of width {w:g} fits the {extent:.3f} mm row extent"}
+
+    def area():
+        return n * w * l_
+
+    for _ in range(int(extent / max(lig, 1e-6)) + 2):
+        if amin is None or area() >= amin - 1e-9:
+            break
+        more = fit(w, p_floor(w))
+        if (hi_n is None or n < hi_n) and more > n:                      # one more slot, pitch down towards its floor
+            n += 1
+            p = max(p_floor(w), min(p, (extent - w) / (n - 1)))
+            continue
+        if w < w_top - 1e-9:                                            # then wider slots
+            need = amin / (n * l_)
+            w2 = min(w_top, need)
+            if (n - 1) * p_floor(w2) + w2 <= extent + 1e-9:
+                w = max(w2, w + 1e-6)
+                p = max(p, p_floor(w))
+                if (n - 1) * p + w > extent + 1e-9 and n > 1:
+                    p = (extent - w) / (n - 1)
+                continue
+        if l_ < l_top - 1e-9:                                           # then longer slots
+            l_ = min(l_top, amin / (n * w))
+            continue
+        return {"conflict": f"vent area: {area():.1f} mm2 < vent_area_min {amin:g} with every band at its end "
+                            f"(count {n}, width {w:g}, length {l_:g}, pitch {p:g})"}
+    return {"w": float(w), "l": float(l_), "p": float(p), "n": int(n), "area": float(area()),
+            "span": float((n - 1) * p + w), "assumed": assumed}
+
+
+def zone_world(st: AssemblyState, node_id: str, zone: Mapping[str, Any]) -> dict:
+    """A placed part's zone in the world frame: centre (3), long / short sizes, the long axis as a horizontal unit
+    vector (2)."""
+    p = st.placed.get(node_id)
+    z = pt.zone_geometry(p.inst, zone)
+    rot = np.asarray(p.pose, dtype=float)[:3, :3]
+    centre = np.asarray(p.pose, dtype=float)[:3, :3] @ np.asarray(z["centre"]) + np.asarray(p.pose, dtype=float)[:3, 3]
+    e = rot @ np.asarray(z["long_axis"])
+    e = e[:2] / np.linalg.norm(e[:2])
+    return {"centre": [float(v) for v in centre], "long": float(z["long"]), "short": float(z["short"]),
+            "axis": [float(v) for v in e]}
+
+
+def vent_wall(st: AssemblyState, vent: Mapping[str, Any]) -> Optional[str]:
+    """The wall of a relation vent row in the accepted layout: the member connector's wall, or the wall in the voted
+    relation to it (assembly_checks.FACE_RELATIONS: same = that wall, opposite = the wall across)."""
+    got = member_connector(st, vent["member"])
+    if got is None:
+        return None
+    wall = wall_facing(lay.world_datum(got[0], got[1]["axis"]).dir)
+    rel = ac.FACE_RELATIONS[vent["relation"]]
+    return next(s for s in SIDE_BOUND if rel(wall, s))
+
+
+def note_vent_assumptions(st: AssemblyState, sol: Mapping[str, Any]) -> None:
+    for text in sol.get("assumed", []):
+        if text not in st.assumptions:
+            st.assumptions.append(text)
+
+
+def add_vent_row(st: AssemblyState) -> None:
+    """The vent slot row of a resolved vent face (generalize delta 003 C3): one `cut` box per slot, role vent_cut.
+    A zone row lies in the lid plate over the zone, centred on its centre line and running along its long axis; a wall
+    row lies in the wall the relation names, centred in the longest free stretch of its inner span (minus
+    min_ligament at each end and round every boss or port cut that meets the wall) and between the floor top and the
+    split. Sizes come from vent_solve; an infeasible solve adds no slot and leaves st.vent_row["conflict"]."""
+    vent = st.vent or {}
+    st.vent_row = {}
+    if vent.get("face") not in ("zone", "wall"):
+        return
+    r = st.rules.values
+    lig = r["min_ligament"]
+    bands = vent.get("bands") or {}
+    res = resolve(st)
+    cav, base = res.params["cavity"], res.params["base"]
+    if vent["face"] == "zone":
+        zone = next(z for z in pt.zones(st.placed.get(vent["node"]).inst.part) if z["id"] == vent["zone"])
+        zw = zone_world(st, vent["node"], zone)
+        sol = vent_solve(bands, zw["long"], None, r)
+        st.vent_row = dict(sol, face="zone", zone=zw, node=vent["node"], zone_id=vent["zone"])
+        if "conflict" in sol:
+            return
+        note_vent_assumptions(st, sol)
+        e = zw["axis"]
+        ang = math.degrees(math.atan2(e[1], e[0]))
+        for k in range(sol["n"]):
+            f = k - (sol["n"] - 1) / 2
+            st.graph.add(fg.Node(f"vent_{k + 1}", "cut", "box", {
+                "x": f"{sol['w']!r}", "y": f"{sol['l']!r}", "z": "lid.z + 2*rules.cut_overrun", "pitch": f"{sol['p']!r}",
+                "f": f"{f!r}"},
+                fg.Pose(at=f"{vent['node']}.{zone['at']}", offset=(f"f*pitch*{e[0]!r}", f"f*pitch*{e[1]!r}",
+                                                                   f"base.split - rules.cut_overrun - "
+                                                                   f"{vent['node']}.{zone['at']}.z"),
+                        rot_z=ang), body="lid", role="vent_cut", source=f"rule:vent_row({vent['node']}.{zone['id']})"))
+        return
+    side = vent_wall(st, vent)
+    if side is None:
+        st.vent_row = {"face": "wall", "conflict": f"vent: the related connector {vent['member']['key']} is not placed"}
+        return
+    bound, i, sign = SIDE_BOUND[side]
+    t = 1 - i
+    tn = "xy"[t]
+    inner, outer = cav[bound], cav[bound] + sign * base["wall"]
+    lo_w, hi_w = min(inner, outer), max(inner, outer)
+    free = [(cav[f"{tn}0"] + lig, cav[f"{tn}1"] - lig)]
+    for n in st.graph:
+        if not (n.role == "boss" or (n.kind == "cut" and n.role in ("port_cut", "port_roof"))):
+            continue
+        bb = fg.solid(n, res).bounding_box()
+        if bb[i] - lig < hi_w + r["cut_overrun"] and bb[i + 3] + lig > lo_w - r["cut_overrun"]:
+            cut_lo, cut_hi = bb[t] - lig, bb[t + 3] + lig
+            nxt = []
+            for a, b in free:
+                if cut_hi <= a or cut_lo >= b:
+                    nxt.append((a, b))
+                    continue
+                if cut_lo > a:
+                    nxt.append((a, cut_lo))
+                if cut_hi < b:
+                    nxt.append((cut_hi, b))
+            free = nxt
+    if not free:
+        st.vent_row = {"face": "wall", "wall": side, "conflict": f"vent: no free stretch on wall {side}"}
+        return
+    a, b = (float(v) for v in max(free, key=lambda ab: ab[1] - ab[0]))
+    avail = float(base["split"] - cav["z0"] - 2 * lig)
+    sol = vent_solve(bands, b - a, avail, r)
+    st.vent_row = dict(sol, face="wall", wall=side, stretch=[a, b])
+    if "conflict" in sol:
+        return
+    note_vent_assumptions(st, sol)
+    mid_t = (a + b) / 2
+    for k in range(sol["n"]):
+        f = k - (sol["n"] - 1) / 2
+        offset = [0, 0, "(cavity.z0 + base.split)/2 - z/2"]
+        offset[i] = f"cavity.{bound} {'+' if sign > 0 else '-'} cavity.wall/2"
+        offset[t] = f"{mid_t!r} + f*pitch"
+        node = fg.Node(f"vent_{k + 1}", "cut", "box", {
+            "x": "cavity.wall + 2*rules.cut_overrun", "y": f"{sol['w']!r}", "z": f"{sol['l']!r}",
+            "pitch": f"{sol['p']!r}", "f": f"{f!r}"},
+            fg.Pose(offset=tuple(offset), rot_z=0.0 if i == 0 else HALF_TURN_DEG / 2), body="base", role="vent_cut",
+            source=f"rule:vent_row({side})")
+        node.wall = side
+        st.graph.add(node)
 
 
 def resolve(st: AssemblyState) -> fg.Resolved:
     return st.graph.resolve(st.spec, st.rules.values, catalog=st.catalog, fasteners=st.fasteners)
 
 
+REBATE = "rebate"                    # the closure whose geometry derive_features builds besides the default lip (C2)
+
+
+def default_closure(rules: pt.Rules) -> str:
+    """The default lid closure (design_rules.json closures, `default`: true); "lip" when the rules have no closures."""
+    return next((k for k, e in (rules.closures or {}).items() if e.get("default")), "lip")
+
+
+def buildable_closures(rules: pt.Rules) -> List[str]:
+    """The lid closures derive_features builds: the default, then the rebate when design_rules.json lists it."""
+    out = [default_closure(rules)]
+    if REBATE in (rules.closures or {}) and REBATE not in out:
+        out.append(REBATE)
+    return out
+
+
+def closure_text_evidence(st: AssemblyState) -> Dict[str, List[dict]]:
+    """The closure sensor's reading (migration delta R01; until R01 this decided the closure, rule:text_evidence[closure]):
+    every buildable closure other than the default whose evidence word one sentence of the request or an L1 names
+    together with a lid word (archetypes.tray_lid.lid_words), both by text_evidence token runs -> its quotes. The
+    controller sees a mismatch as the failing closure_evidence check and may correct it with set_closure."""
+    lid_words = list((st.rules.archetypes.get(SHELL[0]) or {}).get("lid_words", []))
+    lid = {(h["source"], h["quote"]) for h in text_evidence(st.texts, lid_words)} if lid_words else set()
+    out: Dict[str, List[dict]] = {}
+    for name, e in (st.rules.closures or {}).items():
+        if e.get("default") or name not in buildable_closures(st.rules):
+            continue
+        hits = [h for h in text_evidence(st.texts, e.get("evidence", [])) if (h["source"], h["quote"]) in lid]
+        if hits:
+            out[name] = [{"source": h["source"], "quote": h["quote"]} for h in hits]
+    return out
+
+
+def closure_choice(st: AssemblyState) -> dict:
+    """The lid closure the plant derives: the controller's set_closure decision (st.control, migration delta R01), else
+    the default closure (design_rules.json closures, `default`: true), recorded rule:default_closure. No text is read
+    here: the text's closure words are the closure_evidence sensor's (closure_text_evidence). Returns {value, by}."""
+    if st.control.get("closure"):
+        return {"value": st.control["closure"], "by": (st.choices.get("closure") or {}).get("by", "llm:controller")}
+    return {"value": default_closure(st.rules), "by": "rule:default_closure"}
+
+
+def closure_evidence_check(st: AssemblyState, plan: ac.Plan) -> None:
+    """closure_evidence (migration delta R01): when the text names a buildable closure in a lid sentence, the derived
+    closure must be one it names. A graph-data, controllable check: the controller corrects it with set_closure. It is
+    typed as a `closure` conflict (a requirement question) only when the controller found every named closure
+    infeasible (st.control["infeasible"]), as text_coverage is. Texts that name no closure get no check, so their plans
+    are unchanged."""
+    expected = closure_text_evidence(st)
+    if not expected:
+        return
+    current = (st.choices.get("closure") or {}).get("value", default_closure(st.rules))
+    quotes = [q for name in expected for q in expected[name]]
+    evidence: Dict[str, Any] = {"quotes": quotes}
+    infeasible = (st.control or {}).get("infeasible") or {}
+    keys = {name: f"set_closure:closure={name}" for name in expected}
+    if current not in expected and all(k in infeasible for k in keys.values()):
+        why = "; ".join(f"{name}: {infeasible[k]}" for name, k in keys.items())
+        evidence.update(conflict=f"the text names a {' or '.join(expected)} lid, but the plant cannot build it ({why})",
+                        competing_rule="closure")
+    plan.add("closure_evidence", "closure_evidence", f"the lid closes the way the text names "
+             f"({' or '.join(expected)})", current=current, expected=list(expected),
+             evidence=evidence, sources=sorted({q["source"] for q in quotes}))
+
+
+BOSS_AFFECTED_TYPES = ("bbox_within", "clear_of", "inside")    # the checks a boss layout can move (C1)
+
+
+def boss_affected(st: AssemblyState, plan: ac.Plan, results: Sequence[cc.CheckResult]) -> List[str]:
+    """The controllable failures a boss layout affects (generalize delta 003 C1): `bbox`, and every failing clear_of /
+    inside check that the boss solids alone fail (measured with the same volume, minus and clearance), i.e. that names a
+    boss."""
+    ctrl, _ = controllable(results)
+    if not ctrl:
+        return []
+    bosses = [n for n in st.graph if n.role == "boss"]
+    boss_solid = ac.union([fg.solid(n, st.resolved) for n in bosses]) if bosses else None
+    specs = {sp["id"]: sp for sp in plan.specs}
+    out = []
+    for r in ctrl:
+        if r.type == "bbox_within":
+            out.append(r.check_id)
+            continue
+        sp = specs.get(r.check_id)
+        if boss_solid is None or sp is None or r.type not in ("clear_of", "inside") or sp["args"].get("subject"):
+            continue
+        a = sp["args"]
+        alone = ac.clear_of(boss_solid, plan.volumes[a["volume"]], a["clearance"], plan.tol,
+                            plan.volumes[a["minus"]] if a.get("minus") else None, r.check_id)
+        if not alone.passed:
+            out.append(r.check_id)
+    return out
+
+
+def plant_error(st: AssemblyState, types: Optional[Sequence[str]] = None) -> Tuple[ac.Plan, List[cc.CheckResult]]:
+    """The downstream plant on a derived state (as prescore runs it): manifold solids, build_plan, run_plan (only the
+    check types given, when given). Sets st.solids and st.plan."""
+    st.solids = {b: fg.body_solid(st.graph, b, st.resolved) for b in st.graph.bodies()}
+    plan = build_plan(st)
+    if types is not None:
+        plan = copy.copy(plan)
+        plan.specs = [sp for sp in plan.specs if sp["type"] in types]
+    return plan, ac.run_plan(plan, st.solids)
+
+
+def derive_layout(st: AssemblyState, base_nodes: Sequence[fg.Node], layout: str, closure: str) -> None:
+    """derive_features for one boss layout on `st`, from the graph as it was before DeriveFeatures (references and
+    envelopes), then resolve."""
+    st.graph = fg.FeatureGraph(list(base_nodes))
+    derive_features(st, layout, closure)
+    st.resolved = resolve(st)
+
+
+def choose_boss_layout(st: AssemblyState, closure: str) -> None:
+    """The lid boss layout (generalize delta 003 C1, the enclosure 7.11 pattern at derive level). outside_corners is
+    derived first; when the closure allows it and no controllable check the boss layout affects fails (boss_affected),
+    it is kept and nothing else is evaluated (rule:default_layout_passes). Otherwise every feasible layout is derived on a
+    scratch state and run through the plant (solids, build_plan, run_plan, as prescore does); the strictly smallest
+    controllable error wins (cc.strictly_better, cascade.ACCEPT_EPS) and a tie keeps the enumeration order
+    (prescore:derive). An infeasible layout (BossLayoutInfeasible) is dropped with a note. The choice records every
+    layout's error key or its infeasibility (choices.boss_layout.errors)."""
+    base_nodes = list(st.graph)
+    errors: Dict[str, Any] = {}
+    default = BOSS_LAYOUTS[0]
+    if closure != REBATE:
+        derive_layout(st, base_nodes, default, closure)
+        plan, results = plant_error(st, BOSS_AFFECTED_TYPES)
+        affected = boss_affected(st, plan, results)
+        if not affected:
+            choice(st, "boss_layout", default, "rule:default_layout_passes")
+            st.solids, st.plan = {}, None
+            return
+        errors[default] = {"affected": affected}
+    else:
+        errors[default] = {"infeasible": f"the {REBATE} closure needs the bosses under the plate, inside the walls"}
+    scored = []
+    for layout in BOSS_LAYOUTS:
+        if "infeasible" in errors.get(layout, {}):
+            continue
+        sc = scratch_state(st)
+        try:
+            derive_layout(sc, base_nodes, layout, closure)
+        except BossLayoutInfeasible as e:
+            errors[layout] = {"infeasible": str(e)}
+            note = f"derive: boss layout {layout} is infeasible: {e}"
+            if note not in st.notes:
+                st.notes.append(note)
+            continue
+        _, results = plant_error(sc)
+        ctrl, _ = controllable(results)
+        key = cc.error_key(ctrl)
+        errors[layout] = dict(errors.get(layout, {}), key=key.to_dict(), failing=[r.check_id for r in ctrl])
+        scored.append((layout, key, sc))
+    if not scored:
+        raise ValueError("no feasible lid boss layout: " + "; ".join(
+            f"{k}: {v.get('infeasible')}" for k, v in errors.items() if v.get("infeasible")))
+    best = scored[0]
+    for row in scored[1:]:
+        if cc.strictly_better(row[1], best[1], eps=cascade.ACCEPT_EPS):
+            best = row
+    layout, _, sc = best
+    for k in ("notes", "assumptions"):                  # what the chosen derivation noted
+        for item in getattr(sc, k):
+            if item not in getattr(st, k):
+                getattr(st, k).append(item)
+    st.graph, st.resolved, st.vent_row = sc.graph, sc.resolved, sc.vent_row
+    st.solids, st.plan = {}, None
+    choice(st, "boss_layout", layout, "prescore:derive", errors=errors)
+
+
 def derive(st: AssemblyState) -> Optional[str]:
-    """DeriveFeatures on a state (shared with prescore, 7.11): the lid screw, the feature rules, resolve. Returns an
-    error message or None."""
-    screw = lid_screw(st.catalog, st.rules.values)
-    if screw is None:
-        return "no catalogue screw can hold the lid"
-    st.fasteners.update(fastener_values("lid", screw))
-    choice(st, "fastener[lid]", screw.id, "rule:largest_thread_screw")
-    try:
-        derive_features(st)
+    """DeriveFeatures on a state (shared with prescore, 7.11): the lid screw, the closure rule, the feature rules with the
+    boss layout choice, resolve. Returns an error message or None."""
+    try:                                 # part errors are contained: a note and a package, never a traceback (C2)
+        pick = lid_screw_choice(st.catalog, st.rules.values, st.texts)
+        for pid in pick["skipped"]:
+            note = (f"derive: the text names {pid}, which is not catalogue-complete (a size comes from the request); "
+                    "skipped for the lid (its length rule is GM3)")
+            if note not in st.notes:
+                st.notes.append(note)
+        screw = pick["part"]
+        if screw is None:
+            return "no catalogue-complete screw can hold the lid"
+        st.fasteners.update(fastener_values("lid", screw))
+        choice(st, "fastener[lid]", screw.id, pick["by"],
+               evidence=[{"source": h["source"], "quote": h["quote"]} for h in pick["evidence"]])
+        if pick["by"] == "rule:largest_complete_screw":
+            text = (f"fastener[lid] = {screw.id}: the text names no lid screw; the largest-thread catalogue-complete "
+                    "screw is used")
+            if text not in st.assumptions:
+                st.assumptions.append(text)
+        clo = closure_choice(st)
+        if not st.control.get("closure"):        # a controller decision keeps its own record (step, votes, evidence)
+            choice(st, "closure", clo["value"], clo["by"])
+        choose_boss_layout(st, clo["value"])
         st.resolved = resolve(st)
-    except (ValueError, KeyError, fg.ExprError) as e:
+    except (ValueError, KeyError, fg.ExprError, pt.PartError) as e:
         return f"derivation failed: {e}"
     return None
 
@@ -1486,6 +3052,7 @@ class DeriveFeatures(AssemblyStep):
     def update(self) -> Status:
         st = self.state
         st.stage = "derive_features"
+        checkpoint(st, "derive")
         err = derive(st)
         return self.fail(err) if err else Status.SUCCESS
 
@@ -1665,7 +3232,7 @@ def add_keepout_checks(st: AssemblyState, plan: ac.Plan, envelopes: Sequence[fg.
     """One check per checked envelope (per Node.group for grouped rows: plug sweeps, module envelopes), generated
     from KEEP_OUTS, in the table's role order. The check ids are the iteration 002 ids (checks.json stays comparable)."""
     r, s, res = st.rules.values, st.spec, st.resolved
-    plugs = {f"{p.node_id}_plug": (p, c) for p, c in exposed_connectors(st)}
+    plugs = {f"{conn_key(p, c)}_plug": (p, c) for p, c in exposed_connectors(st)}
     done = set()
     for role, row in KEEP_OUTS.items():
         if row.get("clearance") is None:
@@ -1821,8 +3388,10 @@ def grid_check(st: AssemblyState, plan: ac.Plan) -> None:
 def coverage_check(st: AssemblyState, plan: ac.Plan) -> None:
     """text_coverage (ARCHITECTURE.md 7.10): for every catalogue plug the request or an L1 names, every placed copy of
     a content item whose connector takes it needs its plug check (clear_<copy>_plug), i.e. it is exposed. Computed on
-    graph data (st.contents, the placed copies, the plan's check ids) plus named_parts; an uncovered connection is a
-    `coverage` conflict that quotes the naming text, so the self-verdict cannot hide a missing opening."""
+    graph data (st.contents, the placed copies, the plan's check ids) plus named_parts. Migration delta R01: an
+    uncovered connection is a controllable failure the closed-loop controller corrects with an `expose` action; it is
+    typed as a `coverage` conflict (a requirement question) only when the controller found every such expose action
+    infeasible (st.control["infeasible"]), so the self-verdict never hides a missing opening."""
     named = named_parts(st)
     ids = {sp["id"] for sp in plan.specs}
     covered, uncovered, plugs = [], [], []
@@ -1833,20 +3402,24 @@ def coverage_check(st: AssemblyState, plan: ac.Plan) -> None:
                 continue
             plugs.append(plug)
             ev = [{"source": h["source"], "quote": h["quote"]} for h in named[plug]]
-            copies = [p for p in st.placed.placed if p.item == it["id"] and p.part == it["part"]] or [None]
+            copies = [p for p in st.placed.placed if p.part == it["part"]
+                      and (p.item == it["id"] or (p.role == "board" and it["id"] == PRIMARY))] or [None]
             for p in copies:
                 row = {"item": it["id"], "copy": p.node_id if p else None, "connector": conn["name"], "plug": plug,
                        "evidence": ev}
-                (covered if p is not None and f"clear_{p.node_id}_plug" in ids else uncovered).append(row)
+                (covered if p is not None and f"clear_{conn_key(p, conn)}_plug" in ids else uncovered).append(row)
     evidence: Dict[str, Any] = {"named": {pl: [{"source": h["source"], "quote": h["quote"]} for h in named[pl]]
                                           for pl in sorted(set(plugs))}}
-    if uncovered:
+    infeasible = (st.control or {}).get("infeasible") or {}
+    if uncovered and all(f"expose:{u['item']}.{u['connector']}=True" in infeasible for u in uncovered):
         rows = []
         for u in uncovered:
             e = u["evidence"][0]
+            why = infeasible[f"expose:{u['item']}.{u['connector']}=True"]
             rows.append({"part": u["copy"] or u["item"], "kind": "coverage", "competing_rule": "coverage",
                          "text": f"{u['item']}.{u['connector']} is not exposed, but {e['source']} names "
-                                 f"{human_name(st.catalog, u['plug'])}: \"{e['quote']}\""})
+                                 f"{human_name(st.catalog, u['plug'])}: \"{e['quote']}\" (exposing it is infeasible: "
+                                 f"{why})"})
         evidence.update(conflict=rows[0]["text"], competing_rule="coverage", conflicts=rows)
     plan.add("text_coverage", "coverage", "every content connector whose mating plug the request or an L1 names is "
              "exposed (it has its plug check)", uncovered=uncovered, covered=covered, evidence=evidence,
@@ -1856,10 +3429,13 @@ def coverage_check(st: AssemblyState, plan: ac.Plan) -> None:
 def add_minimum_checks(st: AssemblyState, plan: ac.Plan) -> None:
     """ARCHITECTURE.md 7.9: every one-sided minimum the derivation sets with `setpoint` has its own check at the
     limit, on the resolved graph: pilot depth >= the fastener's min_engagement (standoffs: the board screw;
-    bosses: the lid screw), outside diameter >= its min_boss_od, and the lid lip's engagement >= rules.lip_engagement."""
+    bosses: the lid screw), outside diameter >= its min_boss_od, and the lid lip's engagement >= rules.lip_engagement.
+    Generalize delta 002 C2: pilot depth >= the screw's length - its clamped plate (`pilot_bottoming_<node>`, when the
+    fastener declares a length), so the head seats before the tip bottoms. Engagement shortfall (length - plate <
+    min_engagement) is not a check yet: it needs the stock-length rule of GM3."""
     r, res, g, f = st.rules.values, st.resolved, st.graph, st.fasteners
     for n in g:
-        use = {"standoff": "board", "boss": "lid"}.get(n.role)
+        use = PILOT_USES.get(n.role)
         if use is None:
             continue
         pilot = res.params[f"{n.id}_pilot"]["depth"]
@@ -1870,11 +3446,28 @@ def add_minimum_checks(st: AssemblyState, plan: ac.Plan) -> None:
         od, need_od = res.params[n.id]["d"], f[f"fastener.{use}.min_boss_od"]
         plan.add(f"boss_od_{n.id}", "boss_od", f"{n.id} is at least {need_od:g} mm across (the {use} screw's minimum "
                  "boss diameter)", value=od, limit=need_od, detail=f"outside diameter {od:.3f} vs min_boss_od {need_od:g}")
+        length = f.get(f"fastener.{use}.length")
+        if length is not None:              # generalize delta 002 C2: the screw tip clears the pilot's bottom
+            plate = clamped_plate_value(st, use)
+            tip = length - plate
+            plan.add(f"pilot_bottoming_{n.id}", "pilot_bottoming", f"the pilot in {n.id} is at least {tip:g} mm deep, "
+                     f"so the {use} screw ({length:g} mm through a {plate:g} mm plate) seats its head before its tip "
+                     "bottoms", value=pilot, limit=tip,
+                     detail=f"pilot depth {pilot:.3f} vs screw length {length:g} - clamped plate {plate:.3f}")
     if "lid_lip" in g.nodes:
         eng = res.params["base"]["split"] - res.params["lid_lip"]["bottom"]
         plan.add("lip_engagement", "lip_engagement", f"the lid lip reaches at least {r['lip_engagement']:g} mm below "
                  "the split plane", value=eng, limit=r["lip_engagement"],
                  detail=f"lip engagement {eng:.3f} vs {r['lip_engagement']:g}")
+
+
+def clamped_plate_value(st: AssemblyState, use: str) -> float:
+    """clamped_plate resolved: the primary's top - seat plane heights (board screw) or the lid plate's height."""
+    if use == "board":
+        _, seat, top = primary_mount(st)
+        board = st.placed.get(PRIMARY)
+        return float(lay.world_datum(board, top).at[2] - lay.world_datum(board, seat).at[2])
+    return float(st.resolved.params["lid"]["z"])
 
 
 def add_fastener_checks(st: AssemblyState, plan: ac.Plan) -> None:
@@ -1885,7 +3478,7 @@ def add_fastener_checks(st: AssemblyState, plan: ac.Plan) -> None:
     resolved graph, so they read the same on the solids and on the STLs (no inscribed-circle recipe yet)."""
     r, res, g, f = st.rules.values, st.resolved, st.graph, st.fasteners
     for n in g:
-        use = {"standoff": "board", "boss": "lid"}.get(n.role)
+        use = PILOT_USES.get(n.role)
         pilot = f"{n.id}_pilot"
         if use is None or pilot not in g.nodes:
             continue
@@ -1894,8 +3487,8 @@ def add_fastener_checks(st: AssemblyState, plan: ac.Plan) -> None:
         plan.add(f"pilot_band_{n.id}", "pilot_band", f"the pilot in {n.id} is {lo:g}-{hi:g} mm across (the {use} "
                  "screw's pilot range)", value=d, lo=lo, hi=hi, parts=[screw] if screw else [],
                  detail=f"pilot diameter {d:.3f} vs [{lo:g}, {hi:g}] ({screw or use + ' screw'})")
-    board = st.placed.get("board")
-    hole = lay.world_datum(board, "HOLE").diameter
+    board = st.placed.get(PRIMARY)
+    hole = lay.world_datum(board, primary_mount(st)[0]).diameter
     if hole is not None and "fastener.board.thread_diameter" in f:
         thread = f["fastener.board.thread_diameter"]
         need = thread + 2 * r["given_hole_clearance_min"]
@@ -1915,7 +3508,7 @@ def add_plug_reference_checks(st: AssemblyState, plan: ac.Plan) -> None:
     delivered STLs give the same result."""
     res, g = st.resolved, st.graph
     for p, c in exposed_connectors(st):
-        group = f"{p.node_id}_plug"
+        group = f"{conn_key(p, c)}_plug"
         if group not in plan.volumes:
             continue
         mouth = np.asarray(lay.world_datum(p, c["mouth"]).at, dtype=float)
@@ -1938,10 +3531,20 @@ def add_plug_reference_checks(st: AssemblyState, plan: ac.Plan) -> None:
 
 
 def cut_axis(st: AssemblyState, n: fg.Node) -> int:
-    """The world axis an opening passes along: a port cut's wall normal, else the axis nearest the cut's local Z."""
-    if n.role == "port_cut":
+    """The world axis an opening passes along: a wall cut's wall normal (port cuts, wall vent slots), else the axis
+    nearest the cut's local Z."""
+    if getattr(n, "wall", None):
         return SIDE_BOUND[n.wall][1]
     return int(np.argmax(np.abs(st.resolved.poses[n.id][:3, 2])))
+
+
+def cut_volume(st: AssemblyState, n: fg.Node, res: fg.Resolved):
+    """The air an opening leaves: its cut solid, unioned with its roof prism when it has one (generalize delta 003 C4),
+    so a roofed opening is one opening for the ligament and aperture sensors."""
+    roof = getattr(n, "roof", None)
+    if roof and roof in st.graph.nodes:
+        return ac.union([fg.solid(n, res), fg.solid(st.graph.nodes[roof], res)])
+    return fg.solid(n, res)
 
 
 def add_ligament_checks(st: AssemblyState, plan: ac.Plan) -> None:
@@ -1956,12 +3559,12 @@ def add_ligament_checks(st: AssemblyState, plan: ac.Plan) -> None:
     openings = [n for n in g if n.kind == "cut" and n.role in APERTURE_CUT_ROLES and n.body in solids]
     for n in openings:
         if n.id not in plan.volumes:
-            plan.volumes[n.id] = fg.solid(n, res)
-            plan.sources[n.id] = [n.id]
+            plan.volumes[n.id] = cut_volume(st, n, res)
+            plan.sources[n.id] = [n.id] + ([n.roof] if getattr(n, "roof", None) else [])
     for n in openings:
         b, axis = n.body, cut_axis(st, n)
         floor_z = None
-        if n.role == "port_cut":
+        if getattr(n, "wall", None):
             bound, _, sign = SIDE_BOUND[n.wall]
             plane = cav[bound] + sign * base["wall"] / 2
             if g.nodes[b].role == "tray":
@@ -1981,6 +3584,134 @@ def add_ligament_checks(st: AssemblyState, plan: ac.Plan) -> None:
                  f"{b} (to the outer edges, the floor top, the seam and the neighbouring openings)", **args)
 
 
+def add_bridge_checks(st: AssemblyState, plan: ac.Plan) -> None:
+    """bridge_<cut> (generalize delta 003 C4): every opening through a vertical wall (port cuts, wall vent slots) has a
+    flat roof span at most rules.bridge_max: the opening's top width along the wall (a roofed opening: its roof's top
+    width). A round opening up to rules.round_hole_exempt_max is exempt; a larger one is measured by its diameter
+    against that limit. When the stated oversize kept a wide opening flat, the check carries a typed `conflict`
+    (stated oversize vs bridge limit), so it is reported and never steers prescore. A graph-data check."""
+    r, res, g = st.rules.values, st.resolved, st.graph
+    for n in g:
+        if n.kind != "cut" or n.role not in WALL_CUT_ROLES or not getattr(n, "wall", None):
+            continue
+        prm = res.params[n.id]
+        if n.primitive == "cylinder":
+            if prm["d"] <= r["round_hole_exempt_max"] + r["measure_tol"]:
+                continue
+            value, limit, what = prm["d"], r["round_hole_exempt_max"], "round opening diameter"
+        else:
+            roof = getattr(n, "roof", None)
+            value = res.params[roof]["b"] if roof else prm["y"]
+            limit, what = r["bridge_max"], "roof top width" if roof else "flat roof span"
+        args: Dict[str, Any] = {"value": float(value), "limit": float(limit),
+                                "detail": f"{n.id}: {what} {value:.3f} vs bridge limit {limit:g}"}
+        conflict = getattr(n, "bridge_conflict", None)
+        if conflict:
+            args["evidence"] = {"conflict": conflict, "competing_rule": "opening_oversize_max"}
+        plan.add(f"bridge_{n.id}", "bridge", f"the opening {n.id} in wall {n.wall} bridges at most {limit:g} mm "
+                 "(no flat roof wider than the bridge limit)", slots=("opening_oversize_max",) if conflict else (),
+                 **args)
+
+
+def add_closure_checks(st: AssemblyState, plan: ac.Plan) -> None:
+    """The rebate closure's sensors (generalize delta 003 C2), graph data on the resolved graph: lid_fit (the per-side gap
+    between the plate and the upstand lies in [sliding_fit_min, sliding_fit_max]), rebate_upstand (>= the rule),
+    lid_flush (plate top vs upstand top <= design_margin) and boss_top_plane_<boss> (each boss top on the rebate floor,
+    <= seat_gap_max)."""
+    g, res, r = st.graph, st.resolved, st.rules.values
+    if REBATE not in g.nodes:
+        return
+    base, lid, cut = res.params["base"], res.params["lid"], res.params[REBATE]
+    for ax in ("x", "y"):
+        gap = (cut[ax] - lid[ax]) / 2
+        plan.add(f"lid_fit_{ax}", "lid_fit", f"the lid plate sits in the rebate with a {r['sliding_fit_min']:g}-"
+                 f"{r['sliding_fit_max']:g} mm sliding fit per side along {ax}", value=gap, lo=r["sliding_fit_min"],
+                 hi=r["sliding_fit_max"], detail=f"plate {lid[ax]:.3f} in rebate {cut[ax]:.3f}: {gap:.3f} per side")
+        up = (base[ax] - cut[ax]) / 2
+        plan.add(f"rebate_upstand_{ax}", "rebate_upstand", f"the rebate leaves an upstand at least "
+                 f"{r['rebate_upstand']:g} mm thick along {ax}", value=up, limit=r["rebate_upstand"],
+                 detail=f"base {base[ax]:.3f} - rebate {cut[ax]:.3f}: upstand {up:.3f}")
+    base_top = float(res.poses["base"][2, 3]) + base["z"]
+    lid_top = float(res.poses["lid"][2, 3]) + lid["z"]
+    plan.add("lid_flush", "lid_flush", f"the lid plate's top is flush with the upstand (within {r['design_margin']:g} "
+             "mm)", value=abs(lid_top - base_top), limit=r["design_margin"],
+             detail=f"plate top {lid_top:.3f} vs upstand top {base_top:.3f}")
+    for n in g:
+        if n.role == "boss":
+            top = float(res.poses[n.id][2, 3]) + res.params[n.id]["h"]
+            plan.add(f"boss_top_plane_{n.id}", "boss_top_plane", f"{n.id} ends on the rebate floor (the plate rests on "
+                     f"it within {r['seat_gap_max']:g} mm)", value=abs(top - base["split"]), limit=r["seat_gap_max"],
+                     detail=f"{n.id} top {top:.3f} vs rebate floor {base['split']:.3f}")
+
+
+VENT_CHECK_SLOTS = {"vent_count": "count", "vent_width": "width", "vent_length": "length", "vent_pitch": "pitch"}
+
+
+def add_vent_checks(st: AssemblyState, plan: ac.Plan) -> None:
+    """The vent row's sensors (generalize delta 003 C3), graph data on the resolved slots, each traced to its L1 through
+    the vent slots' provenance: vent_count / vent_width / vent_length / vent_pitch (the stated band ends only),
+    vent_area (>= vent_area_min; a typed conflict naming the binding band when the solve is infeasible) and
+    vent_zone_<zone> (every slot outline inside the zone's long extent, the row centred across it within
+    design_margin). A vent text whose face does not resolve gets vent_placed, failing with a typed conflict. The
+    slots' ligaments, wall aperture counts and bridges come from the generic opening sensors."""
+    vent = st.vent or {}
+    if not vent:
+        return
+    r, res, g = st.rules.values, st.resolved, st.graph
+    bands = vent.get("bands") or {}
+    evidence = {"quotes": list(vent.get("evidence", []))}
+    if vent.get("face") not in ("zone", "wall"):
+        plan.add("vent_placed", "vent_placed", "the vent slots the text asks for are placed", reason=vent.get("reason", ""),
+                 evidence=dict(evidence, conflict=f"vent: face not resolved ({vent.get('reason', 'face words only')})",
+                               competing_rule="vent_face"))
+        return
+    row = st.vent_row or {}
+    slots = [n for n in g if n.role == "vent_cut"]
+    area_slots = ("vent_area_min",) + tuple(f"vent_{b}_{e}" for b in VENT_BANDS for e in ("min", "max"))
+    stated = tuple(k for k in area_slots if bands.get(k) is not None)
+    if row.get("conflict") or not slots:
+        plan.add("vent_area", "vent_area", "the vent slots give the stated open area", value=0.0,
+                 limit=float(bands.get("vent_area_min") or 0.0), slots=stated,
+                 detail=f"no vent slot: {row.get('conflict', 'no slot derived')}",
+                 evidence=dict(evidence, conflict=row.get("conflict", "no slot derived"), competing_rule="vent_bands"))
+        return
+    prm = [res.params[n.id] for n in slots]
+    pos = [res.poses[n.id][:3, 3] for n in slots]
+    wall = vent["face"] == "wall"
+    width = [p["y"] if wall else p["x"] for p in prm]
+    length = [p["z"] if wall else p["y"] for p in prm]
+    pitches = [float(np.linalg.norm(np.subtract(b[:2], a[:2]))) for a, b in zip(pos, pos[1:])]
+    values = {"vent_count": float(len(slots)), "vent_width": min(width), "vent_length": min(length),
+              "vent_pitch": min(pitches) if pitches else None}
+    for cid, band in VENT_CHECK_SLOTS.items():             # the slots of one row are equal: one value per band
+        lo, hi = vent_band(bands, band)
+        v = values[cid]
+        if v is None or (lo is None and hi is None):
+            continue
+        plan.add(cid, cid, f"vent slot {band} within the stated band ({'-' if lo is None else f'{lo:g}'} to "
+                 f"{'-' if hi is None else f'{hi:g}'})", value=float(v), lo=lo, hi=hi,
+                 slots=tuple(k for k in (f"vent_{band}_min", f"vent_{band}_max") if bands.get(k) is not None),
+                 detail=f"{band} {v:g} (band {'-' if lo is None else f'{lo:g}'}..{'-' if hi is None else f'{hi:g}'})")
+    area = float(sum(a * b for a, b in zip(width, length)))
+    plan.add("vent_area", "vent_area", "the vent slots give at least the stated open area", value=area,
+             limit=float(bands.get("vent_area_min") or 0.0), slots=stated,
+             detail=f"{len(slots)} slots, {area:.1f} mm2 open (need >= {bands.get('vent_area_min') or 0:g})",
+             evidence=evidence)
+    if vent["face"] == "zone":
+        z = row["zone"]
+        e = np.asarray(z["axis"], dtype=float)
+        across = np.array([-e[1], e[0]])
+        c = np.asarray(z["centre"][:2], dtype=float)
+        along = [float(np.dot(np.asarray(q[:2]) - c, e)) for q in pos]
+        out = max(max(a + w / 2 - z["long"] / 2, -z["long"] / 2 - (a - w / 2)) for a, w in zip(along, width))
+        off = abs(float(np.mean([np.dot(np.asarray(q[:2]) - c, across) for q in pos])))
+        value = max(out, off - r["design_margin"])
+        plan.add(f"vent_zone_{row['zone_id']}", "vent_zone", f"every vent slot lies inside the {row['zone_id']} zone's "
+                 f"{z['long']:g} mm long extent and the row is centred across it within {r['design_margin']:g} mm",
+                 value=value, limit=0.0, slots=stated,
+                 detail=f"worst slot end {out:+.3f} mm past the zone end; row {off:.3f} mm off the zone centre line")
+
+
 def build_plan(st: AssemblyState) -> ac.Plan:
     """The rule-derived check set (iteration 002 subset) and the volumes it measures against."""
     r, s, res, g = st.rules.values, st.spec, st.resolved, st.graph
@@ -1997,14 +3728,14 @@ def build_plan(st: AssemblyState) -> ac.Plan:
         vols[name] = ac.union([fg.solid(g.nodes[i], res) for i in ids])
     vols.setdefault("seats", ac.union([]))
     plan.sources.setdefault("seats", [])
-    board_id = st.placed.get("board").node_id
+    board_id = st.placed.get(PRIMARY).node_id
     contents = [i for i in ref_solids if i != board_id]
     vols["board"] = ref_solids[board_id]
     vols["contents"] = ac.union([ref_solids[i] for i in contents])
     plan.sources["board"] = [board_id]
     plan.sources["contents"] = contents
     bc = s["board_clearance"]
-    board_part = [st.placed.get("board").part]
+    board_part = [st.placed.get(PRIMARY).part]
     content_parts = sorted({g.nodes[i].part for i in contents if g.nodes[i].part})
     seat_words = grown_words(st, plan, "seats", bc)
     plan.add("separable", "separable", "base and lid are each one shell and overlap by at most "
@@ -2012,9 +3743,13 @@ def build_plan(st: AssemblyState) -> ac.Plan:
     plan.add("inside_board", "inside", f"the board (minus the seat columns {seat_words}) lies inside the closed "
              f"enclosure with {bc:g} mm clearance", volume="board", minus="seats", clearance=bc,
              slots=("board_clearance",), parts=board_part)
-    plan.add("inside_contents", "inside", "every part the board carries lies inside the closed enclosure, at least "
-             f"{r['part_to_wall']:g} mm from every printed surface and from the outside", volume="contents",
-             clearance=r["part_to_wall"], parts=content_parts)
+    if contents:
+        plan.add("inside_contents", "inside", "every part the board carries lies inside the closed enclosure, at least "
+                 f"{r['part_to_wall']:g} mm from every printed surface and from the outside", volume="contents",
+                 clearance=r["part_to_wall"], parts=content_parts)
+    for u in st.unplaced:                    # a sensor, so the package is honest about what it does not hold (C1)
+        plan.add(f"content_placed_{u['id']}", "content_placed", f"{u['id']} ({u['part']} x{u['quantity']}) is placed in "
+                 "the design", item=u["id"], part=u["part"], reason=u["reason"], parts=[u["part"]])
     plan.add("clear_board", "clear_of", f"no printed surface within {bc:g} mm of the board, "
              f"except the standoff tops in the seat columns {seat_words}", volume="board", minus="seats", clearance=bc,
              slots=("board_clearance",), parts=board_part)
@@ -2031,8 +3766,9 @@ def build_plan(st: AssemblyState) -> ac.Plan:
     eps = r["measure_tol"]
     z_lo, z_hi = cav["z0"] - base["floor"] + eps, base["split"] + lid["z"] - eps
     cuts = [n for n in g if n.role == "port_cut"]
+    wall_cuts = [n for n in g if n.kind == "cut" and n.role in WALL_CUT_ROLES and getattr(n, "wall", None)]
     all_cuts = [n for n in g if n.kind == "cut" and n.role in APERTURE_CUT_ROLES]
-    mates = {f"{p.node_id}_cut": c["mates"] for p, c in exposed_connectors(st)}
+    mates = {f"{conn_key(p, c)}_cut": c["mates"] for p, c in exposed_connectors(st)}
     for side, (bound, i, sign) in SIDE_BOUND.items():
         inner = cav[bound]
         outer = inner + sign * base["wall"]
@@ -2047,31 +3783,35 @@ def build_plan(st: AssemblyState) -> ac.Plan:
         near = []
         for n in all_cuts:                    # the cuts that reach into this slab: blind regions name them
             if n.id not in vols:
-                vols[n.id] = fg.solid(n, res)
-                plan.sources[n.id] = [n.id]
+                vols[n.id] = cut_volume(st, n, res)
+                plan.sources[n.id] = [n.id] + ([n.roof] if getattr(n, "roof", None) else [])
             if not (vols[n.id] ^ vols[slab]).is_empty():
                 near.append(n.id)
-        on_wall = [n for n in cuts if n.wall == side]
+        on_wall = [n for n in wall_cuts if n.wall == side]       # port cuts and wall vent slots (delta 003 C3)
         plan.add(f"apertures_{side}", "aperture_count", f"wall {side} has exactly {len(on_wall)} through opening(s) "
                  "(blind regions in the wall slab are listed, not counted)", slab=slab, n=len(on_wall), wall=side,
                  normal_axis=i, cuts=near)
-        for n in on_wall:
+        for n in [c for c in on_wall if c.role == "port_cut"]:
             pose = res.poses[n.id][:3, 3]
             point = [float(v) for v in pose]
             point[i] = (inner + outer) / 2
             if n.primitive == "box":
                 point[2] = float(pose[2] + res.params[n.id]["z"] / 2)
             crossing = n.crossing
-            env_w = max(res.params[c]["cw"] for c in crossing)
-            env_h = max(res.params[c]["ch"] for c in crossing)
+            env_w, env_h = getattr(n, "env", None) or (max(res.params[c]["cw"] for c in crossing),
+                                                        max(res.params[c]["ch"] for c in crossing))
+            extra = {}
+            if getattr(n, "roof", None):     # a roofed opening is measured per side about its plug section (C4)
+                extra["center"] = [point[1 - i], point[2]]
             plan.add(f"oversize_{n.id}", "aperture_oversize", f"the opening of {n.id} is at most "
                      f"{s['opening_oversize_max']:g} mm bigger than its plug per side", slab=slab, wall=side,
                      normal_axis=i, point=point, env_w=env_w, env_h=env_h, max=s["opening_oversize_max"],
-                     slots=("opening_oversize_max",), parts=[mates[n.id]] if n.id in mates else [])
+                     slots=("opening_oversize_max",), parts=[mates[n.id]] if n.id in mates else [], **extra)
     add_ligament_checks(st, plan)
-    board = st.placed.get("board")
-    holes = lay.world_datum(board, "HOLE")
-    bottom = lay.world_datum(board, "BOTTOM").at[2]
+    board = st.placed.get(PRIMARY)
+    hole_name, seat_name, _ = primary_mount(st)
+    holes = lay.world_datum(board, hole_name)
+    bottom = lay.world_datum(board, seat_name).at[2]
     standoffs = [n for n in g if n.role == "standoff"]
     probe = min(res.params[f"{n.id}_pilot"]["depth"] for n in standoffs) / 2
     search_d = min((res.params[f"{n.id}_pilot"]["d"] + res.params[n.id]["d"]) / 2 for n in standoffs)
@@ -2088,6 +3828,7 @@ def build_plan(st: AssemblyState) -> ac.Plan:
                  "split plane", value=res.params[n.id]["top"] + r["min_ligament"], limit=base["split"],
                  detail=f"{n.id} top {res.params[n.id]['top']:.3f} + ligament {r['min_ligament']:g} vs split "
                         f"{base['split']:.3f}")
+    add_bridge_checks(st, plan)
     for n in g:
         if n.role == "standoff":
             pilot = res.params[f"{n.id}_pilot"]
@@ -2096,10 +3837,20 @@ def build_plan(st: AssemblyState) -> ac.Plan:
                      limit=res.params[n.id]["height"] + base["floor"] - r["min_feature"],
                      detail=f"pilot depth {pilot['depth']:g} vs standoff {res.params[n.id]['height']:.3f} + floor "
                             f"{base['floor']:.3f} - {r['min_feature']:g}")
+    for n in g:                              # generalize delta 003 C1 (review N5 of delta 002): lid boss pilots too
+        if n.role == "boss" and f"{n.id}_pilot" in g.nodes:
+            depth, h = res.params[f"{n.id}_pilot"]["depth"], res.params[n.id]["h"]
+            plan.add(f"pilot_depth_{n.id}", "pilot_depth", f"the pilot in {n.id} leaves at least "
+                     f"{r['min_feature']:g} mm of material under it", value=depth, limit=h - r["min_feature"],
+                     detail=f"pilot depth {depth:g} vs boss height {h:.3f} (floor included) - {r['min_feature']:g}")
+    add_closure_checks(st, plan)
+    add_vent_checks(st, plan)
     add_minimum_checks(st, plan)
     add_fastener_checks(st, plan)
+    add_relation_checks(st, plan)
     grid_check(st, plan)
     coverage_check(st, plan)
+    closure_evidence_check(st, plan)
     grow_exemptions(st, plan)
     add_part_maps(st, plan)
     return plan
@@ -2123,6 +3874,7 @@ def trace_links(st: AssemblyState, plan: ac.Plan) -> Dict[str, List[str]]:
     for sp in plan.specs:
         found = [slot_l1[k] for k in sp.get("slots", []) if k in slot_l1]
         found += [l for pid in sp.get("parts", []) for l in part_l1.get(pid, [])]
+        found += [src for src in sp["args"].get("sources", []) if src in l1_ids]   # a text sensor's quoted L1s (R01)
         out[sp["id"]] = sorted(set(found), key=l1_ids.index)
     return out
 
@@ -2243,8 +3995,11 @@ class WritePackage(AssemblyStep):
             "grid_exempt_assumptions": {nid: grid_exempt_text(st.grid_report["parts"][nid], nid)
                                         for nid in st.layout_grid_exempt if nid in st.grid_report.get("parts", {})},
             "grid_residual_all_parts": None if st.layout_grid_residual_all is None
-            else round(st.layout_grid_residual_all, 6)})
+            else round(st.layout_grid_residual_all, 6), **({"unplaced": list(st.unplaced)} if st.unplaced else {})})
         ac.write_json(wd / "self_report.json", st.self_report)
+        if st.trajectory:                     # the closed-loop controller's trajectory + authority audit (R01)
+            import controller
+            ac.write_json(wd / "controller_trace.json", controller.trace_record(st))
         ac.write_json(wd / "feature_graph.json", st.graph.to_json())
         ac.write_json(wd / "checks.json", [dict(c.to_dict(), links=list(st.links.get(c.id, []))) for c in st.checks])
         rows = trace_matrix(list(self.design.l1), st.checks, st.results, st.links)
@@ -2301,13 +4056,17 @@ def build_assembly_tree(design, llm, parts_dir, rules_path, with_models: bool = 
                         auto_approve: bool = False) -> py_trees.behaviour.Behaviour:
     """The assembly-mode tree. `llm` is the controller for the discrete choices."""
     if design.assy is None:
-        design.assy = AssemblyState(parts_dir=str(parts_dir), rules_path=str(rules_path),
-                                    with_models=bool(with_models))
+        dirs = [str(p) for p in parts_dir] if isinstance(parts_dir, (list, tuple)) else [str(parts_dir)]
+        design.assy = AssemblyState(parts_dir=dirs[0] if len(dirs) == 1 else os.pathsep.join(dirs), parts_dirs=dirs,
+                                    rules_path=str(rules_path), with_models=bool(with_models))
+    from controller import ControllerLoop, QuestionCache      # imported here: controller imports this module
+    llm = QuestionCache(llm)                  # one question, one answer per run (re-run stages reuse answers, R01)
     return py_trees.composites.Sequence("cad_assembly", memory=True, children=[
         LoadCatalog(design), LoadRules(design), ParseSpec(design, llm), Contents(design, llm),
-        ExposureCoverage(design), ChooseStack(design, llm), ArrangeContents(design, llm), BuildEnvelopes(design),
-        ChooseArchetype(design, llm), DeriveFeatures(design), Build(design), Verify(design),
-        RenderViews(design), WritePackage(design)])
+        ExposureCoverage(design), ChooseStack(design, llm), ArrangeContents(design, llm), Vents(design, llm),
+        BuildEnvelopes(design),
+        ChooseArchetype(design, llm), DeriveFeatures(design), ControllerLoop(design, llm), Build(design),
+        Verify(design), RenderViews(design), WritePackage(design)])
 
 
 def conflict_entries(results: Sequence[cc.CheckResult]) -> List[dict]:

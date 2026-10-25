@@ -1,0 +1,227 @@
+{
+  "id": "fan_40x40x10",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "40 mm fan",
+    "40mm fan",
+    "40x40x10 fan",
+    "4010 fan",
+    "40 x 40 x 10 fan",
+    "dc fan",
+    "cooling fan",
+    "case fan",
+    "axial fan",
+    "blower fan"
+  ],
+  "kind": "fan",
+  "source": "40 x 40 x 10 mm DC axial fan datasheet (Sunon / Delta class): 40 x 40 x 10 mm frame, hole pitch 32.0 mm, mounting hole 3.2 mm, bore about 38 mm, airflow along +Z. Free-air gap, screw keep-out and cable exit are assumed (heuristics; typical minimum free inlet distance 5 mm).",
+  "frame": "fan: origin at the frame min corner, frame bottom (inlet side) on Z = 0, airflow toward +Z (exhaust face at Z = height), square outline in XY",
+  "params": {
+    "frame_size": {
+      "default": 40.0,
+      "source": "datasheet: frame width and length"
+    },
+    "frame_height": {
+      "default": 10.0,
+      "source": "datasheet: frame thickness"
+    },
+    "hole_pitch": {
+      "default": 32.0,
+      "source": "datasheet: mounting hole pitch"
+    },
+    "hole_diameter": {
+      "default": 3.2,
+      "source": "datasheet: mounting holes"
+    },
+    "bore_diameter": {
+      "default": 38.0,
+      "source": "datasheet: airflow bore, approximate (blade tip circle)"
+    },
+    "hole_keepout_diameter": {
+      "default": 7.0,
+      "source": "assumed: screw head clearance round each hole (M3 pan head dk 6.0 plus margin)"
+    },
+    "inlet_gap": {
+      "default": 5.0,
+      "source": "assumed: free air space needed in front of the inlet, uncertainty +-3 mm"
+    },
+    "exhaust_gap": {
+      "default": 5.0,
+      "source": "assumed: free air space needed after the exhaust, uncertainty +-3 mm"
+    }
+  },
+  "datasheet_size": [
+    "frame_size",
+    "frame_size",
+    "frame_height"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "frame",
+      "primitive": "box",
+      "size": [
+        "frame_size",
+        "frame_size",
+        "frame_height"
+      ],
+      "at": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "inlet_air",
+      "primitive": "box",
+      "size": [
+        "frame_size",
+        "frame_size",
+        "inlet_gap"
+      ],
+      "at": [
+        0,
+        0,
+        "-inlet_gap"
+      ]
+    },
+    {
+      "id": "exhaust_air",
+      "primitive": "box",
+      "size": [
+        "frame_size",
+        "frame_size",
+        "exhaust_gap"
+      ],
+      "at": [
+        0,
+        0,
+        "frame_height"
+      ]
+    }
+  ],
+  "datums": {
+    "AIRFLOW": {
+      "kind": "axis",
+      "at": [
+        "frame_size / 2",
+        "frame_size / 2",
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "bore_diameter"
+    },
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "hole_diameter",
+      "keepout_diameter": "hole_keepout_diameter",
+      "at": [
+        [
+          "(frame_size - hole_pitch) / 2",
+          "(frame_size - hole_pitch) / 2",
+          0
+        ],
+        [
+          "(frame_size + hole_pitch) / 2",
+          "(frame_size - hole_pitch) / 2",
+          0
+        ],
+        [
+          "(frame_size - hole_pitch) / 2",
+          "(frame_size + hole_pitch) / 2",
+          0
+        ],
+        [
+          "(frame_size + hole_pitch) / 2",
+          "(frame_size + hole_pitch) / 2",
+          0
+        ]
+      ]
+    },
+    "INLET": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "EXHAUST": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "frame_height"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "notes": "The bore is the vent opening seen from outside; a grille over it should open at least that circle with margin. Inlet and exhaust air keep-outs are heuristics, not datasheet values. Screws (M3) go through the four holes along Z; the self-tapping screw part gives the pilot rules. Flow direction for a given model is marked on the frame by an arrow; +Z is assumed and must be flipped by pose if the part is reversed. The cable leaves a frame corner (not modelled). Maximum cable exit and vibration isolation are design choices, not data.",
+  "self_checks": [
+    {
+      "name": "frame 40",
+      "expr": "frame.size_x",
+      "value": 40.0,
+      "tol": 0.2
+    },
+    {
+      "name": "frame 10 thick",
+      "expr": "frame.size_z",
+      "value": 10.0,
+      "tol": 0.2
+    },
+    {
+      "name": "hole pitch X 32",
+      "expr": "HOLE[1].x - HOLE[0].x",
+      "value": 32.0,
+      "tol": 0.1
+    },
+    {
+      "name": "hole pitch Y 32",
+      "expr": "HOLE[2].y - HOLE[0].y",
+      "value": 32.0,
+      "tol": 0.1
+    },
+    {
+      "name": "hole diameter 3.2",
+      "expr": "HOLE.diameter",
+      "value": 3.2,
+      "tol": 0.1
+    },
+    {
+      "name": "airflow +Z",
+      "expr": "AIRFLOW.dz",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "bore smaller than the frame",
+      "expr": "frame_size - bore_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

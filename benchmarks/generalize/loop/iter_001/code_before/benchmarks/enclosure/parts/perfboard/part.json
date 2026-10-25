@@ -1,0 +1,318 @@
+{
+  "id": "perfboard",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "perfboard",
+    "perf board",
+    "protoboard",
+    "proto board",
+    "prototyping board",
+    "double sided perfboard",
+    "stripboard"
+  ],
+  "kind": "board",
+  "source": "Generic double-sided FR4 prototyping board (typical green 2.54 mm proto board). Family data: width and depth come from the request; thickness 1.6 is the standard FR4 laminate; corner holes 3.0 mm at 2.5 mm from each edge unless stated (catalogue family default; OWNER_DECISIONS: variants keep their own boards); a 2.54 mm hole array centred on the board, with the edge-pad column outside the grid (requirements.md A7, OWNER_DECISIONS 1). The owner's photographed 70 x 50 board (requirements.md A7, 2026-10-24: corner holes 2.0 in from each edge, diameter 2.0; 24 x 18 grid from X 5.79, Y 3.41; photo fitted at 5.51 px/mm) is the specimen photo_70x50 below, selected by size.",
+  "frame": "board: origin at the min-X, min-Y corner of the top surface, X along width, Y along depth, Z up; the board occupies Z -thickness..0",
+  "params": {
+    "width": {
+      "default": null,
+      "from_request": true,
+      "source": "request text (board size)"
+    },
+    "depth": {
+      "default": null,
+      "from_request": true,
+      "source": "request text (board size)"
+    },
+    "thickness": {
+      "default": 1.6,
+      "source": "standard FR4 laminate thickness (requirements.md A7)"
+    },
+    "hole_inset": {
+      "default": 2.5,
+      "source": "typical green 2.54 mm proto board; catalogue family default, corner holes 3.0 mm at 2.5 mm from each edge unless stated (OWNER_DECISIONS: variants keep their own boards)"
+    },
+    "hole_diameter": {
+      "default": 3.0,
+      "source": "typical green 2.54 mm proto board; catalogue family default, corner holes 3.0 mm at 2.5 mm from each edge unless stated (OWNER_DECISIONS: variants keep their own boards)"
+    },
+    "hole_keepout_diameter": {
+      "default": 7.0,
+      "source": "the board's component and fastener keep-out round each mounting hole: no part or printed feature inside this circle above or below the board (requirements.md V-SEAT-k / V-HOLE-KO-k, 7.0 columns on PERF_HOLE_k)"
+    },
+    "grid_pitch": {
+      "default": 2.54,
+      "source": "0.1 in through-hole grid"
+    },
+    "grid_margin_x": {
+      "default": 4.74,
+      "source": "minimum distance from a short (X) edge to the first grid column centre: the edge-pad column centre (~2.2, A7) plus one pitch, so the pad column lies outside the grid; any value in (4.52, 5.79] reproduces A7's 24 columns on a 70 mm board, 4.74 is the physical rule (pad column + one pitch)"
+    },
+    "grid_margin_y": {
+      "default": 2.54,
+      "source": "minimum distance from a long (Y) edge to the first grid row centre: one pitch (the board has no pad row along its long edges, A7); any value in (2.14, 3.41] reproduces A7's 18 rows on a 50 mm board"
+    }
+  },
+  "gate_params": {
+    "width": 100.0,
+    "depth": 75.0,
+    "source": "sample size used only by the load-time validation gate; never a design value"
+  },
+  "specimens": [
+    {
+      "id": "photo_70x50",
+      "match": {
+        "width": 70.0,
+        "depth": 50.0
+      },
+      "params": {
+        "hole_inset": 2.0,
+        "hole_diameter": 2.0
+      },
+      "source": "requirements.md A7: the owner's photographed board (2026-10-24), corner holes 2.0 in from each edge, Ø2.0 (hole + plated ring ~2.1); pitch 66.0 x 46.0 on 70 x 50"
+    }
+  ],
+  "datasheet_size": [
+    "width",
+    "depth",
+    "thickness"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "pcb",
+      "primitive": "box",
+      "size": [
+        "width",
+        "depth",
+        "thickness"
+      ],
+      "at": [
+        0,
+        0,
+        "-thickness"
+      ]
+    }
+  ],
+  "datums": {
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "-thickness"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "EDGE_X0": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        -1,
+        0,
+        0
+      ]
+    },
+    "EDGE_X1": {
+      "kind": "plane",
+      "at": [
+        "width",
+        0,
+        0
+      ],
+      "normal": [
+        1,
+        0,
+        0
+      ]
+    },
+    "EDGE_Y0": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        -1,
+        0
+      ]
+    },
+    "EDGE_Y1": {
+      "kind": "plane",
+      "at": [
+        0,
+        "depth",
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
+    },
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "hole_diameter",
+      "keepout_diameter": "hole_keepout_diameter",
+      "at": [
+        [
+          "hole_inset",
+          "hole_inset",
+          0
+        ],
+        [
+          "width - hole_inset",
+          "hole_inset",
+          0
+        ],
+        [
+          "hole_inset",
+          "depth - hole_inset",
+          0
+        ],
+        [
+          "width - hole_inset",
+          "depth - hole_inset",
+          0
+        ]
+      ]
+    }
+  },
+  "grid": {
+    "pitch": "grid_pitch",
+    "count": [
+      "floor((width - 2*grid_margin_x) / grid_pitch) + 1",
+      "floor((depth - 2*grid_margin_y) / grid_pitch) + 1"
+    ],
+    "origin": [
+      "(width - floor((width - 2*grid_margin_x) / grid_pitch) * grid_pitch) / 2",
+      "(depth - floor((depth - 2*grid_margin_y) / grid_pitch) * grid_pitch) / 2",
+      0
+    ],
+    "source": "requirements.md A7: measured hole array, centred on the board (the largest whole number of pitches that keeps every hole at least grid_margin_x/y from the edges); edge pads are not grid holes"
+  },
+  "connectors": [],
+  "self_checks": [
+    {
+      "name": "holes inside the board outline",
+      "expr": "hole_inset - hole_diameter / 2",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hole pattern X pitch = width - 2 inset",
+      "expr": "HOLE[1].x - HOLE[0].x",
+      "value": "width - 2 * hole_inset",
+      "tol": 1e-06
+    },
+    {
+      "name": "hole pattern Y pitch = depth - 2 inset",
+      "expr": "HOLE[2].y - HOLE[0].y",
+      "value": "depth - 2 * hole_inset",
+      "tol": 1e-06
+    },
+    {
+      "name": "top plane at Z = 0",
+      "expr": "TOP.z",
+      "value": 0,
+      "tol": 1e-09
+    },
+    {
+      "name": "bottom plane one thickness down",
+      "expr": "pcb.min_z",
+      "value": "-thickness",
+      "tol": 1e-09
+    },
+    {
+      "name": "grid starts inside the board (X)",
+      "expr": "grid.origin_x",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "grid ends inside the board (X)",
+      "expr": "width - (grid.origin_x + (grid.count_x - 1) * grid.pitch)",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "grid starts inside the board (Y)",
+      "expr": "grid.origin_y",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "grid ends inside the board (Y)",
+      "expr": "depth - (grid.origin_y + (grid.count_y - 1) * grid.pitch)",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "grid centred on the board (X)",
+      "expr": "grid.origin_x + (grid.count_x - 1) * grid.pitch / 2",
+      "value": "width / 2",
+      "tol": 1e-06
+    },
+    {
+      "name": "grid centred on the board (Y)",
+      "expr": "grid.origin_y + (grid.count_y - 1) * grid.pitch / 2",
+      "value": "depth / 2",
+      "tol": 1e-06
+    },
+    {
+      "name": "first grid column at least grid_margin_x from the edge",
+      "expr": "grid.origin_x",
+      "op": "ge",
+      "value": "grid_margin_x",
+      "tol": 1e-09
+    },
+    {
+      "name": "first grid row at least grid_margin_y from the edge",
+      "expr": "grid.origin_y",
+      "op": "ge",
+      "value": "grid_margin_y",
+      "tol": 1e-09
+    },
+    {
+      "name": "mounting-hole keep-out larger than the hole",
+      "expr": "hole_keepout_diameter - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm holes on a 21 x 12.5 mm pattern and a ribbon connector on the back. The board sits in a pocket and is held without screws by lips that reach 0.6 to 1.15 mm over its front face. The 8 mm lens looks out through a window that is clear of any wall (no wall within 0.5 mm of the lens barrel, and nothing in the camera's 62 x 49 degree field of view; the board's orientation to the sensor axes is not known, so use the 62 degree angle on both axes). The 16 mm wide ribbon cable leaves through the back of the holder through a slot 17 mm wide and no more than 10 mm long. The base of the holder has a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick, held in a hex pocket 0.1 to 0.3 mm bigger than the nut on each flat, with a stud hole 6.4 to 6.8 mm in diameter and a seat 2.0 to 3.65 mm thick) so it screws onto a tripod stud 10 mm long. Print it in one piece on an FDM printer without supports, in the orientation you state. It is no larger than 45 x 45 x 30 mm.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_tube: tube (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {"exposed": "no", "quantity": 0},
+  "generic_tube": {"quantity": 0},
+  "jack_3p5_pj320a": {"exposed": "no", "quantity": 0},
+  "perfboard": {"quantity": 0},
+  "rpi_camera_v2": {"quantity": 1},
+  "rpi_pico2": {"exposed": "no", "quantity": 0},
+  "rpi_zero2w": {"hdmi_exposed": "no", "quantity": 0, "sd_exposed": "no", "usb_data_exposed": "no", "usb_power_exposed": "no"}
+}

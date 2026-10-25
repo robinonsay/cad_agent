@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "From the parts catalogue, position the RK09 potentiometer, the M7 nut sitting on the panel, the M3 nut and the M3 screw. The shaft, the hole in the panel and the knob all share an axis, the D-flat of the shaft faces the set screw, and none of the parts collide. State the layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The panel is a flat 3 mm plate, square, between 36 and 60 mm a side, with every edge at least 6 mm beyond the rim of the knob, and a 7.2 mm hole for the bushing on the same axis as the potentiometer. The shoulder of the potentiometer rests against the panel from below.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The bushing must stand proud of the panel far enough that the M7 nut lies flat on the panel's upper face and at least 0.5 mm of thread shows past the nut.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The knob is 24 mm across and 18 mm high. Its skirt stays between 1 and 1.5 mm from the panel in every rotated position, and at least 0.5 mm from the M7 nut and the bushing.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "A D-shaped bore lets the knob fit the 6 mm D-shaft with slight clearance and no contact, along at least 12 mm of its length.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "The knob has a radial M3 set screw hole, with its axis 4 to 12 mm higher than the top of the bushing, which meets the shaft's flat and has a counterbore for the screw head, so the screw reaches and clamps the flat and the head is no more than 0.6 mm proud of the knob surface.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "A captive hex pocket in the knob, loaded from the knob's underside, holds the M3 nut so that it can't turn more than 10 degrees and stays aligned with the screw; at least 1.2 mm of material surrounds the pocket.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "Each of the knob and panel is one manifold body that FDM prints with no supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "Fitting: the knob goes straight down the shaft with no contact with the panel, the M7 nut or the potentiometer. The M3 nut is dropped into its pocket from below before the knob goes on, and the set screw is added from outside after.",
+    "method": "test"
+  },
+  {
+    "id": "L1.10",
+    "text": "Hand over a knob STL, a panel STL, the OpenSCAD source, the declared layout and the agent's own clearance report; the report has to agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

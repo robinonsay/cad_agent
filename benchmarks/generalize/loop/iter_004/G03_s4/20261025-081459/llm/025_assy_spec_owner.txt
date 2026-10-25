@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.3 seed=4000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n8 = 25 mm (request): "...orts, and the closed box should be no larger than 75 x 45 x 25 mm...."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n8 state?
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+- generic_1.size_z: the size_z of the rectangular block (request text) (mm)
+
+=== RESPONSE ===
+{
+  "owner": "generic_1.size_z"
+}

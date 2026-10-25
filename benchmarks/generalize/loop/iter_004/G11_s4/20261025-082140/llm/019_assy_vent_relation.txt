@@ -1,0 +1,21 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. The board has a 3 mm mounting hole in each corner, 2.5 mm in from the edges. On it are a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a heatsink 20 x 12 mm and 20 mm tall, and two electrolytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside the box, and blows down into it through an opening in the lid, held by M3 socket-head screws on its 32 mm hole pattern, and exhaust slots line the opposite end wall. A 5.5 x 2.1 mm DC plug must plug into the jack with the lid on. Keep the fan intake at least 5 mm from the nearest tall component, which I take to mean its frame stays at least 5 mm clear of every part on the board. The enclosure is a base and a removable lid held by M3 screws, printed on an FDM printer, and no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap screws, which I have in the stock lengths 6, 8, 10, 12, 14, 16 and 20 mm.
+
+Where the text places the vents:
+- "A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside the box, and blows down into it through an opening in the lid, held by M3 socket-head screws on its 32 mm hole pattern, and exhaust slots line the opposite end wall."
+- "Exhaust slots shall line the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a total open area of at least 567 mm2."
+
+Which wall do the vents go in, relative to a cable connector's wall?
+- connector_1.dc_in|opposite: the vents go in the wall opposite the one that connector opens through (dc jack, dc_in connector)
+- not_stated: the request does not relate the vents' wall to a cable connector
+
+=== RESPONSE ===
+{
+  "vents": "connector_1.dc_in|opposite"
+}

@@ -1,0 +1,160 @@
+{
+ "paraphrases": [
+  {
+   "id": "G15",
+   "tier": 4,
+   "title": "LiPo charger pocket box with USB-C",
+   "request": "Compact FDM-printed PLA box holding a 5 x 34 x 50 mm LiPo cell, a TP4056 USB-C charger board (26 x 17 mm) and a slide switch. The battery goes in a pocket with 0.5 mm clearance on its sides, with space above it for about 10 percent swelling and space at its tab end for wiring the tabs to the charger. The battery must never be able to press on the charger board. The USB-C plug overmold (12.4 x 6.5 mm) has to reach the port through one short end with the lid on; the switch handle sticks out of the opposite short end and works with the lid on. Base plus lid, lid snaps on with no screws and comes off by hand. Closed box under 70 x 60 x 25 mm.",
+   "request_verbatim": "A compact box for a 5 x 34 x 50 mm LiPo, a TP4056 USB-C charger board (26 x 17 mm) and a slide switch. The battery sits in a pocket with 0.5 mm side clearance and cannot press on the charger board. The USB-C plug overmold (12.4 x 6.5 mm) must reach the port, and the lid is a snap fit.",
+   "request_notes": "Added to the brief, all from requirements.md sections 3 and 4: PLA/FDM (A7); swell 10 percent and tab room (A1, A2); ports on the two short ends (F1, F2); base + lid, no screws (F3, F5); size limit (A9). Audit 2026-10-24: judge-needed numbers (supports, wall height, mouth depth, switch hold, hook strain, lip engagement, tilt) moved into L1; L1.4 'holds the board' made precise.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the charger board, the LiPo and the slide switch from the parts catalogue. USB-C port faces one short end, switch handle faces the other. No collisions, no keep-out violations. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Lid closed, the charger board has 0.2 mm minimum clearance to all printed surfaces except its supports. It rests on at least two supports, can move no more than 1.0 mm sideways and lift no more than 4.0 mm, and its solder pad end is left free for wires.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "LiPo pocket: 0.5 mm clearance (0.40 to 0.70 mm) to the pocket walls on the three sides without tabs, 0.2 to 1.5 mm of headroom for swelling, walls at least 3 mm tall on those sides, nothing printed in the tab zone.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The battery must not be able to press on the board. The swollen cell stays at least 1.5 mm from the board, and no support, hold-down or stop of the board comes within 1.0 mm of the swollen cell. The pocket's own partition separates them and must be at least 0.8 mm thick, or else the gap must be over 5 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Lid closed, a USB-C plug goes fully into the charger through one opening in its end wall, touching nothing on the box. The opening is at most 1.5 mm bigger than the plug on each side, and the port mouth is at most 4 mm behind the inner face of the wall.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Lid closed, the switch handle moves through its full travel through one opening in the opposite end wall without touching the box. The opening is at most 1.0 mm bigger than the handle sweep on each side, the handle projects 1.0 to 3.0 mm beyond the outer wall face, and the switch body is held to within 1.0 mm sideways and 3.0 mm inward.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Base and separate lid, no screws. Lid locates on the base with a sliding fit and engages at least 2 mm. At least two snap hooks hold it, each engaging 0.4 to 1.0 mm with 0.1 to 0.4 mm catch clearance and bending strain no more than 2 percent. It comes off by hand.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Closed box has no openings except the USB-C one and the switch one. Outer walls, floor and lid plate are 2.0 to 3.0 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Base and lid are each a single manifold body, FDM printable with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Closed box at most 70 x 60 x 25 mm, longest along the USB-C to switch axis. Stands flat on a desk without tipping and is stable at 5 degrees of table tilt.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Lid off: the cell, the charger board and the switch each go into place without hitting the base, and a wire can run from the cell's tabs to at least two of the charger board's pads.",
+     "method": "test"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report. The report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a rectangular USB-C opening and a switch slot through end walls, blind catch recesses for snap hooks",
+    "pocket fit: a battery pocket sized from a swell envelope with side clearance, a tab zone left free",
+    "snap-fit hooks (cantilever beams) with engagement and strain computed",
+    "board retention by supports, stops and hold-downs, checked by play sweeps",
+    "parts catalogue: load part.json models and keep-out volumes (swell, tab zone, wire pads, handle sweep) and place them by datums",
+    "interference checks against external solids: clear_of, inside, gap, play, aperture finding, wire-path search"
+   ]
+  },
+  {
+   "id": "G15",
+   "tier": 4,
+   "title": "LiPo charger pocket box with USB-C",
+   "request": "Could you design a small case for a LiPo that is 5 x 34 x 50 mm, along with a TP4056 USB-C charging board (26 x 17 mm) and a slide switch? I'll print it in PLA on an FDM printer. The cell lives in a pocket that leaves 0.5 mm of play around its sides, with headroom over it for roughly 10 percent swelling and some space by its tab end so the tabs can be wired to the charger board. It mustn't be possible for the battery to push against the charger board. The USB-C plug overmold (12.4 x 6.5 mm) needs to get to the port through one of the short ends while the lid is fitted, and the slide switch's handle should come out of the other short end so I can use it with the lid fitted. There are two pieces, a base and a lid; the lid snaps on, uses no screws and pulls off by hand. The closed case has to stay below 70 x 60 x 25 mm.",
+   "request_verbatim": "A compact box for a 5 x 34 x 50 mm LiPo, a TP4056 USB-C charger board (26 x 17 mm) and a slide switch. The battery sits in a pocket with 0.5 mm side clearance and cannot press on the charger board. The USB-C plug overmold (12.4 x 6.5 mm) must reach the port, and the lid is a snap fit.",
+   "request_notes": "Added to the brief, all from requirements.md sections 3 and 4: PLA/FDM (A7); swell 10 percent and tab room (A1, A2); ports on the two short ends (F1, F2); base + lid, no screws (F3, F5); size limit (A9). Audit 2026-10-24: judge-needed numbers (supports, wall height, mouth depth, switch hold, hook strain, lip engagement, tilt) moved into L1; L1.4 'holds the board' made precise.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Using the parts catalogue, position the charger board, the LiPo and the slide switch so that the board's USB-C port looks out of one short end and the switch handle looks out of the opposite short end. Parts may neither collide nor break their keep-outs, and the layout is to be declared.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Inside the closed box the charger board keeps 0.2 mm or more away from every printed surface, except the supports it sits on. It rests on two or more supports, is restrained so it cannot shift more than 1.0 mm sideways or rise more than 4.0 mm, and the end with the solder pads stays clear for wires.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The LiPo sits in a pocket whose walls are 0.5 mm away (anywhere from 0.40 to 0.70 mm) on its three sides that have no tabs. Above it there is 0.2 to 1.5 mm of space to swell, the pocket walls on those sides rise at least 3 mm, and the zone around its tabs has no printed material in it.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The battery can't be allowed to push on the charger board: when swollen the cell is kept 1.5 mm or more from the board, and nothing that supports, holds down or stops the board gets within 1.0 mm of the swollen cell. The pocket's partition forms the wall between the two and is at least 0.8 mm thick, otherwise the gap has to be larger than 5 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "With the lid on, a USB-C plug has to go all the way into the charger via a single opening in the end wall and not touch the box. The opening may be larger than the plug by no more than 1.5 mm on any side, and the port's mouth is no more than 4 mm behind the inside face of that wall.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "With the lid on, the slide switch handle must travel its whole range through a single opening in the end wall at the far end, without touching the box. That opening is no more than 1.0 mm larger than the handle's sweep on any side, the handle stands 1.0 to 3.0 mm proud of the outside face of the wall, and the switch body is kept within 1.0 mm sideways and 3.0 mm inward.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "The box consists of a base and a separate lid and uses no screws. The lid sits on the base with a sliding fit and goes on at least 2 mm, and is retained by two or more snap hooks which engage 0.4 to 1.0 mm, have 0.1 to 0.4 mm of catch clearance and bend by no more than 2 percent strain. You can remove it by hand.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Nothing is open on the closed box other than the USB-C opening and the switch opening, and the outer walls, floor and lid plate each measure 2.0 to 3.0 mm in thickness.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "The base and the lid should each come out as one manifold body that an FDM printer can print without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Keep the closed box inside 70 x 60 x 25 mm, with its longest side along the line from the USB-C port to the switch. It should rest flat on a desk without tipping, and stay stable when the table is tilted 5 degrees.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "With the lid removed, the cell, the charger board and the switch should each be able to be put into position without hitting the base, and it should be possible to run a wire from the cell's tabs to two or more of the charger board's pads.",
+     "method": "test"
+    },
+    {
+     "id": "L1.12",
+     "text": "The deliverables are a base STL, a lid STL, the OpenSCAD source, the layout as declared and the agent's own clearance report, and the report has to match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a rectangular USB-C opening and a switch slot through end walls, blind catch recesses for snap hooks",
+    "pocket fit: a battery pocket sized from a swell envelope with side clearance, a tab zone left free",
+    "snap-fit hooks (cantilever beams) with engagement and strain computed",
+    "board retention by supports, stops and hold-downs, checked by play sweeps",
+    "parts catalogue: load part.json models and keep-out volumes (swell, tab zone, wire pads, handle sweep) and place them by datums",
+    "interference checks against external solids: clear_of, inside, gap, play, aperture finding, wire-path search"
+   ]
+  }
+ ]
+}

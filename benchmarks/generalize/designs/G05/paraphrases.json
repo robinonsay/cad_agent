@@ -1,0 +1,160 @@
+{
+ "paraphrases": [
+  {
+   "id": "G05",
+   "tier": 4,
+   "title": "ESP32 status display with OLED window and buttons",
+   "request": "Enclosure for an ESP32 DevKitC V4 board: 54.4 x 27.9 mm, no mounting holes, micro-USB port on one short end, two rows of 19 header pins pointing up for jumper wires, PCB antenna at the opposite end. Also a 0.96 inch SSD1306 OLED module (27.3 x 27.8 mm, four 2 mm holes) visible through a front window, and two 6 mm tactile buttons next to the window (button axes at least 4 mm from the window edge, buttons at least 12 mm apart). The window shows the 21.7 x 10.9 mm active area with 1 mm margin or more on every side and does not clip the 25 x 14 mm viewing area. Each button has a printed plunger that really presses its switch and stands 1.5 to 3.5 mm proud of the lid. The USB port is reached from the back, i.e. the end wall behind the board's USB end, so a micro-USB plug seats fully with the lid on. Antenna end stays clear: no wall or lid within 8 mm of the board end above the board's top face, and nothing within 5 mm above the module there (low edge stops below the board top are allowed). With no holes on the ESP32, hold it by its underside and edges. Parts: base, removable lid with a locating lip fixed by four M3 screws, and two plungers; FDM, no supports.",
+   "request_verbatim": "Enclosure for an ESP32 DevKitC with a 0.96 inch SSD1306 OLED on the front and two 6 mm tactile buttons beside it. The window must show the 21.7 x 10.9 mm active area with at least 1 mm margin and no clipping of the viewing area, and the buttons need a plunger that actually presses the switch. The USB port stays accessible from the back.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: board and OLED numbers (esp32_devkitc_v4, oled_ssd1306_096); 'back' = the end wall at the USB end (A1); header pins up (A2); 25 x 14 viewing area (A3); antenna keep-out 8 mm beyond and 5 mm above (A7, esp32_devkitc_v4 antenna_zone); micro-USB plug (plug_microusb_b, A8); lid and four M3 screws as E1-01 (F3); OLED screws M2 x 7 (A4); FDM (A9). Audit additions: button spacing 4 and 12 mm (L3.1.3.1/2), plunger protrusion 1.5 to 3.5 (L3.6.3.3), antenna zone wording (L3.3.3.1).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the ESP32 board, OLED module and two tactile switches from the parts catalogue: USB port to the back, OLED to the front, each switch actuator pointing front, switches beside the window (axes at least 4 mm from the window edge, at least 12 mm apart), no colliding parts, and declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The ESP32 rests on printed supports under its underside, clear of the pin tails, is held against sliding along either axis by more than 0.6 mm, and drops straight onto them with the lid off.",
+     "method": "test"
+    },
+    {
+     "id": "L1.3",
+     "text": "Lid closed: no enclosure material in the board's header-pin, top-component, pin-tail or antenna keep-out volumes (antenna zone: 8 mm past the board end and 5 mm above the module, above the board's top face only), and the board is inside the enclosure.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The OLED is attached to the lid with two or more M2 x 7 screws in pilot holes at its mounting holes, plus three or more bearing contacts on its board; no printed material within 0.2 mm of the glass.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The lid has a single rectangular window containing the OLED's 25 x 14 mm viewing area, with 1 mm or more margin around the 21.7 x 10.9 mm active area, at most 1.5 mm larger than the viewing area, and nothing within 3 mm above the glass over that area.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Each button has a printed plunger, centred on the switch actuator within 0.5 mm and sitting 0 to 0.5 mm above the plunger, guided in a lid hole and retained by a flange; it stands 1.5 to 3.5 mm proud of the lid and travels far enough to click the switch, touching only the switch.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Lid closed: a micro-USB cable plugs fully into the ESP32 through one back-wall opening without touching the enclosure; the opening is at most 1.5 mm oversize on any side of the plug.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Base plus separate removable lid, located on the base by a lip, fixed with four M3 screws.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed enclosure has only the USB opening, window, two plunger holes and screw holes; walls, floor and lid 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base, lid and each plunger are each one manifold body, FDM printable without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed enclosure within 75 x 55 x 30 mm, longest along the board's length, stands flat on a desk without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliver base STL, lid STL, two plunger STLs, OpenSCAD source, declared layout and the agent's own clearance report; the report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a rectangular window and a rectangular USB opening, round plunger holes, blind pilot holes, four lid screw bosses",
+    "datum placement: put the ESP32, the OLED and the switches by their catalogue datums (USB_MOUTH, HOLE, ACTIVE_CENTER, ACTUATOR_AXIS)",
+    "a mechanism: a printed plunger with a rest gap, a guide hole, a retaining flange and a stroke checked as a sweep",
+    "holding a board that has no holes: pads under its underside outside its pin tails and edge stops",
+    "keep-out volumes from the catalogue: antenna zone, pin tails, header pins, component side, view zone, pusher stroke",
+    "plug envelope and aperture checks as E1-01, a base and a lid and two small printed parts"
+   ]
+  },
+  {
+   "id": "G05",
+   "tier": 4,
+   "title": "ESP32 status display with OLED window and buttons",
+   "request": "I'm after a housing for an ESP32 DevKitC V4 board. It's 54.4 x 27.9 mm with no mounting holes, the micro-USB port is on one short end, there are two rows of 19 header pins pointing up (jumper wires go on those), and the PCB antenna is at the other end. Alongside it goes a 0.96 inch SSD1306 OLED module, 27.3 x 27.8 mm with four 2 mm holes, which should be visible through a window in the front, and two 6 mm tactile buttons placed next to that window, with each button axis no closer than 4 mm to the window edge and the two buttons no closer than 12 mm to each other. The window has to reveal the 21.7 x 10.9 mm active area with a margin of 1 mm or more all round, without clipping the 25 x 14 mm viewing area. Give each button a printed plunger that genuinely presses its switch and protrudes 1.5 to 3.5 mm above the lid. At the back, which is the end wall behind the board's USB end, the USB port has to stay reachable so a micro-USB plug seats fully with the lid fitted. Leave the antenna end open: no wall or lid within 8 mm of the board end above the board's top face, and nothing within 5 mm above the module there (low edge stops below the board top are fine). As the ESP32 has no holes, the housing must hold it by the underside and edges. It consists of a base, a removable lid with a locating lip fastened by four M3 screws, and two plungers, all printed on an FDM printer with no supports.",
+   "request_verbatim": "Enclosure for an ESP32 DevKitC with a 0.96 inch SSD1306 OLED on the front and two 6 mm tactile buttons beside it. The window must show the 21.7 x 10.9 mm active area with at least 1 mm margin and no clipping of the viewing area, and the buttons need a plunger that actually presses the switch. The USB port stays accessible from the back.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: board and OLED numbers (esp32_devkitc_v4, oled_ssd1306_096); 'back' = the end wall at the USB end (A1); header pins up (A2); 25 x 14 viewing area (A3); antenna keep-out 8 mm beyond and 5 mm above (A7, esp32_devkitc_v4 antenna_zone); micro-USB plug (plug_microusb_b, A8); lid and four M3 screws as E1-01 (F3); OLED screws M2 x 7 (A4); FDM (A9). Audit additions: button spacing 4 and 12 mm (L3.1.3.1/2), plunger protrusion 1.5 to 3.5 (L3.6.3.3), antenna zone wording (L3.3.3.1).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Using the parts catalogue, place the ESP32 board, the OLED module and both tactile switches so the USB port faces the back, the OLED faces the front and each switch's actuator points forward. Put the switches beside the window (axes no less than 4 mm from the window edge, and no less than 12 mm from each other), keep the parts from colliding, and declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Printed supports must carry the ESP32 under its underside, away from the pin tails; it must be held against sliding along either axis by more than 0.6 mm, and with the lid off it must lower straight onto them.",
+     "method": "test"
+    },
+    {
+     "id": "L1.3",
+     "text": "With the lid on, the enclosure must keep out of the board's header-pin, top-component, pin-tail and antenna keep-out volumes (the antenna zone being 8 mm past the board end and 5 mm over the module, above the board's top face alone), and the board must sit inside the enclosure.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Fasten the OLED module to the lid with at least two M2 x 7 screws in pilot holes at its mounting holes, and give its board at least three bearing contacts; no printed material may be within 0.2 mm of the glass.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "In the lid cut one rectangular window. It must contain the OLED's 25 x 14 mm viewing area, leave a margin of at least 1 mm around the 21.7 x 10.9 mm active area, exceed the viewing area by no more than 1.5 mm, and have nothing within 3 mm above the glass over that area.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Every button gets a printed plunger, centred within 0.5 mm on its switch's actuator and sitting 0 to 0.5 mm above the plunger, running in a hole in the lid and held in by a flange. It protrudes 1.5 to 3.5 mm from the lid and has enough travel to click the switch while touching only the switch.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "When the lid is on, a micro-USB cable must plug right into the ESP32 via one opening in the back wall and not touch the enclosure, the opening being no more than 1.5 mm larger than the plug on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Build it as a base and a separate removable lid, which locates on the base by a lip and is held shut with four M3 screws.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed, the enclosure has no openings but the USB opening, the window, the two plunger holes and the screw holes, and walls, floor and lid are 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "The base, the lid and each plunger must be a single manifold body apiece, printable on an FDM printer without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed, the enclosure must be within 75 x 55 x 30 mm, with the longest side along the board's length, and stand flat on a desk without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliver the base STL, the lid STL, two plunger STLs, the OpenSCAD source, the declared layout and the agent's own clearance report, which has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a rectangular window and a rectangular USB opening, round plunger holes, blind pilot holes, four lid screw bosses",
+    "datum placement: put the ESP32, the OLED and the switches by their catalogue datums (USB_MOUTH, HOLE, ACTIVE_CENTER, ACTUATOR_AXIS)",
+    "a mechanism: a printed plunger with a rest gap, a guide hole, a retaining flange and a stroke checked as a sweep",
+    "holding a board that has no holes: pads under its underside outside its pin tails and edge stops",
+    "keep-out volumes from the catalogue: antenna zone, pin tails, header pins, component side, view zone, pusher stroke",
+    "plug envelope and aperture checks as E1-01, a base and a lid and two small printed parts"
+   ]
+  }
+ ]
+}

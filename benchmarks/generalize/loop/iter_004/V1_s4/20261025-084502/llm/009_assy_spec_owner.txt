@@ -1,0 +1,17 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n14 = 12 mm (L1.4): "...the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its undersi..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n14 state?
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+
+=== RESPONSE ===
+{ "owner": "keepout_above" }

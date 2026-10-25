@@ -1,0 +1,74 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Numbers found in the text:
+n1 = 54.4 (request): "...eed a wall-mounted enclosure for an ESP32 DevKitC V4 board (54.4 x 27.9 mm, no mounting holes, micro-USB at one short en..."
+n2 = 27.9 mm (request): "...all-mounted enclosure for an ESP32 DevKitC V4 board (54.4 x 27.9 mm, no mounting holes, micro-USB at one short end, PCB ..."
+n3 = 4.2 mm (request): "...B antenna at the other). It has two mounting ears that take 4.2 mm countersunk wood screws, the two screw slots 100 mm a..."
+n4 = 100 mm (request): "...at take 4.2 mm countersunk wood screws, the two screw slots 100 mm apart, and every slot must leave at least 3 mm to the..."
+n5 = 3 mm (request): "...crew slots 100 mm apart, and every slot must leave at least 3 mm to the edge of its ear and to the box. Three 5 mm LEDs ..."
+n6 = 5 mm (request): "...at least 3 mm to the edge of its ear and to the box. Three 5 mm LEDs shine through the lid: the LEDs sit flush with the ..."
+n7 = 8 mm (request): "...he board free: no wall or lid over the antenna and at least 8 mm of free space beyond the end of the board. The lid is h..."
+n8 = 5 mm (L1.1): "...the −X short end and its antenna toward +X, and place three 5 mm LEDs on the lid, without the parts colliding, and shall..."
+n9 = 10 (L1.2): "...ts end regions, outside the header footprint, each at least 10 mm², and be located by the walls and two antenna-end stop..."
+n10 = 0.2 (L1.2): "...mm², and be located by the walls and two antenna-end stops (0.2 to 1.0 mm from the board, stops below the board's top fa..."
+n11 = 1.0 mm (L1.2): "...d be located by the walls and two antenna-end stops (0.2 to 1.0 mm from the board, stops below the board's top face), wi..."
+n12 = 8.0 mm (L1.3): "...rd's antenna keep-out, and the cavity shall extend at least 8.0 mm beyond the board's antenna end; the keep-out is the b..."
+n13 = 6.0 mm (L1.3): "...d the board's antenna end; the keep-out is the board's last 6.0 mm plus the 8.0 mm beyond it, the full board width, up t..."
+n14 = 8.0 mm (L1.3): "...tenna end; the keep-out is the board's last 6.0 mm plus the 8.0 mm beyond it, the full board width, up to 5.0 mm above t..."
+n15 = 5.0 mm (L1.3): "...0 mm plus the 8.0 mm beyond it, the full board width, up to 5.0 mm above the module top (from the part's data)...."
+n16 = 0.3 mm (L1.4): "...board through one opening in the −X end wall with at least 0.3 mm to spare all round the plug, leaving at least 1.5 mm o..."
+n17 = 1.5 mm (L1.4): "...least 0.3 mm to spare all round the plug, leaving at least 1.5 mm of wall round the opening, and the opening shall be no..."
+n18 = 1.5 mm (L1.4): "...ll round the opening, and the opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n19 = 5 mm (L1.5): "...The lid shall hold three 5 mm LEDs in collars with their domes flush with the outside, th..."
+n20 = 5.2 (L1.5): "...der and a snap lip behind them, so each LED stays in: holes 5.2 to 5.4 mm across, flange overlap at least 0.2 mm per sid..."
+n21 = 5.4 mm (L1.5): "...a snap lip behind them, so each LED stays in: holes 5.2 to 5.4 mm across, flange overlap at least 0.2 mm per side, domes..."
+n22 = 0.2 mm (L1.5): "...ays in: holes 5.2 to 5.4 mm across, flange overlap at least 0.2 mm per side, domes within 0.3 mm of flush, snap-lip open..."
+n23 = 0.3 mm (L1.5): "...ross, flange overlap at least 0.2 mm per side, domes within 0.3 mm of flush, snap-lip opening 5.3 to 5.6 mm with at leas..."
+n24 = 5.3 (L1.5): "...mm per side, domes within 0.3 mm of flush, snap-lip opening 5.3 to 5.6 mm with at least two slits. The LEDs sit in a row..."
+n25 = 5.6 mm (L1.5): "...side, domes within 0.3 mm of flush, snap-lip opening 5.3 to 5.6 mm with at least two slits. The LEDs sit in a row at lea..."
+n26 = 10.0 mm (L1.5): "...mm with at least two slits. The LEDs sit in a row at least 10.0 mm apart, each axis at least 4.5 mm in plan from the boa..."
+n27 = 4.5 mm (L1.5): "...EDs sit in a row at least 10.0 mm apart, each axis at least 4.5 mm in plan from the board's header-pin and antenna keep-..."
+n28 = 4.2 mm (L1.6): "...box shall have two ears, each with a countersunk slot for a 4.2 mm wood screw, the two slot centres 100.0 mm apart, with..."
+n29 = 100.0 mm (L1.6): "...ntersunk slot for a 4.2 mm wood screw, the two slot centres 100.0 mm apart, with at least 3.0 mm from each countersink o..."
+n30 = 3.0 mm (L1.6): "...d screw, the two slot centres 100.0 mm apart, with at least 3.0 mm from each countersink outline to the edge of its ear ..."
+n31 = 4.5 mm (L1.6): "...tline to the edge of its ear and to the box. Each slot is a 4.5 mm wide stadium with 4.0 mm between its end centres (for..."
+n32 = 4.0 mm (L1.6): "...ear and to the box. Each slot is a 4.5 mm wide stadium with 4.0 mm between its end centres (for adjustment), under a 90 ..."
+n33 = 90 (L1.6): "...th 4.0 mm between its end centres (for adjustment), under a 90 degree countersink 8.4 mm across; the ears are 3.5 to 5.0..."
+n34 = 8.4 mm (L1.6): "...end centres (for adjustment), under a 90 degree countersink 8.4 mm across; the ears are 3.5 to 5.0 mm thick and the slot..."
+n35 = 3.5 (L1.6): "..., under a 90 degree countersink 8.4 mm across; the ears are 3.5 to 5.0 mm thick and the slot centres are symmetric about..."
+n36 = 5.0 mm (L1.6): "...a 90 degree countersink 8.4 mm across; the ears are 3.5 to 5.0 mm thick and the slot centres are symmetric about the box..."
+n37 = 0.5 mm (L1.6): "...the slot centres are symmetric about the box centre within 0.5 mm...."
+n38 = 0.3 mm (L1.7): "...flat back face, with the ears coplanar with it (flat within 0.3 mm), so it sits flat against the wall...."
+n39 = 3.5 (L1.8): "...self-tapping screws in tabs outside the cavity (screw axes 3.5 to 5.0 mm beyond the wall's outer face, pilots 2.4 to 2.6..."
+n40 = 5.0 mm (L1.8): "...apping screws in tabs outside the cavity (screw axes 3.5 to 5.0 mm beyond the wall's outer face, pilots 2.4 to 2.6 mm an..."
+n41 = 2.4 (L1.8): "...rew axes 3.5 to 5.0 mm beyond the wall's outer face, pilots 2.4 to 2.6 mm and at least 6.0 mm deep, lid holes 3.4 mm), t..."
+n42 = 2.6 mm (L1.8): "...s 3.5 to 5.0 mm beyond the wall's outer face, pilots 2.4 to 2.6 mm and at least 6.0 mm deep, lid holes 3.4 mm), the slid..."
+n43 = 6.0 mm (L1.8): "...nd the wall's outer face, pilots 2.4 to 2.6 mm and at least 6.0 mm deep, lid holes 3.4 mm), the sliding lip at least 2.0..."
+n44 = 3.4 mm (L1.8): "...e, pilots 2.4 to 2.6 mm and at least 6.0 mm deep, lid holes 3.4 mm), the sliding lip at least 2.0 mm deep with 0.15 to 0..."
+n45 = 2.0 mm (L1.8): "...st 6.0 mm deep, lid holes 3.4 mm), the sliding lip at least 2.0 mm deep with 0.15 to 0.35 mm clearance per side...."
+n46 = 0.15 (L1.8): "...id holes 3.4 mm), the sliding lip at least 2.0 mm deep with 0.15 to 0.35 mm clearance per side...."
+n47 = 0.35 mm (L1.8): "...3.4 mm), the sliding lip at least 2.0 mm deep with 0.15 to 0.35 mm clearance per side...."
+n48 = 2.0 (L1.9): "...nd the two ear slots, and its walls, floor and lid shall be 2.0 to 4.0 mm thick, with at least 1.5 mm of material round ..."
+n49 = 4.0 mm (L1.9): "...two ear slots, and its walls, floor and lid shall be 2.0 to 4.0 mm thick, with at least 1.5 mm of material round each op..."
+n50 = 1.5 mm (L1.9): "..., floor and lid shall be 2.0 to 4.0 mm thick, with at least 1.5 mm of material round each opening...."
+n51 = 125 (L1.11): "...e closed box with its ears and tabs shall be no larger than 125 x 50 x 26 mm, longest along the board's 54.4 mm side...."
+n52 = 50 (L1.11): "...ed box with its ears and tabs shall be no larger than 125 x 50 x 26 mm, longest along the board's 54.4 mm side...."
+n53 = 26 mm (L1.11): "...x with its ears and tabs shall be no larger than 125 x 50 x 26 mm, longest along the board's 54.4 mm side...."
+n54 = 54.4 mm (L1.11): "...no larger than 125 x 50 x 26 mm, longest along the board's 54.4 mm side...."
+
+The request includes a rectangular block. For each of its sizes below give the id of the number that states it, or "none".
+- size_x: request text
+- size_y: request text
+- size_z: request text
+
+=== RESPONSE ===
+{
+  "size_x": "n1",
+  "size_y": "n2",
+  "size_z": "none"
+}

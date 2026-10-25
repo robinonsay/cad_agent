@@ -1,0 +1,57 @@
+{
+ "id": "G11",
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.35,
+ "summary": "Generic jack+2 capacitor tray box. Missing fan, heatsink, fan opening, fan pilots and all exhaust slots. Gates G4 and G5 fail. base/lid are one shell each, no overlap (G1 ok). Judged without claude-context (server failed to connect).",
+ "defects": [
+  {
+   "requirement_id": "L3.7.2.1 (L2.7.2, L1.7) G5",
+   "where": "base.stl +X end wall (X~81.6..84.0 in layout frame), views/model_right.png/open_iso.png",
+   "what": "no exhaust slots; ray through +X wall at z=-8,-1.6,4.8 hits solid 81.6-84.0",
+   "expected": "open area >= 567 mm2, >=8 slots",
+   "observed": "0 slots, 0 mm2",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.6.2.1 / L3.6.4.1 (L2.6.2, L2.6.4, L1.6) G4",
+   "where": "lid.stl plate (Z 18.7..21.1, plan 88x68), views/model_iso.png",
+   "what": "no fan, no 4 pilots on 32 mm pattern, no intake opening (lid is a solid plate); layout.json has no fan reference",
+   "expected": "fan 40x40x10 on lid underside, 4 pilots d2.5, opening area 680-1158 mm2",
+   "observed": "none",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.1.1.1 / L2.1.1 (L1.1)",
+   "where": "layout.json references",
+   "what": "heatsink (generic_box 20x12x20) and M-FAN missing; only board, jack, 2 caps (at (40,30),(30,30))",
+   "expected": "board, jack, heatsink, 2 caps, fan",
+   "observed": "board, jack, 2 caps",
+   "severity": "3"
+  },
+  {
+   "requirement_id": "L3.8.4.1 (L2.8.4, L1.8)",
+   "where": "lid.stl plate",
+   "what": "plate thickness 2.4 (Z 18.7-21.1)",
+   "expected": "4.8-6.0 so fan screws have pilot depth",
+   "observed": "2.4",
+   "severity": "3"
+  },
+  {
+   "requirement_id": "L3.9.1.1 (L1.9)",
+   "where": "lid, fan region",
+   "what": "intake opening absent; no listed openings except DC cut",
+   "expected": "fan opening",
+   "observed": "closed lid",
+   "severity": "2"
+  },
+  {
+   "requirement_id": "L3.3.4.1/L3.3.3.1 pilots",
+   "where": "base standoffs at (2.5,2.5),(77.5,2.5),(2.5,57.5),(77.5,57.5)",
+   "what": "pilot d2.50 correct for M3 (ok); standoff d6.1 ok",
+   "expected": "",
+   "observed": "pass",
+   "severity": "info"
+  }
+ ]
+}

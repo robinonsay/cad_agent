@@ -1,0 +1,59 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A two-part case for a Raspberry Pi Zero 2 W, a 65 x 30 mm board. The board is held at its four 2.75 mm mounting holes, on the 58 x 23 mm pattern 3.5 mm in from the edges, by screws into printed standoffs. With the lid on, cables must plug in through openings in the walls, each with room for the plug body: the mini-HDMI port and the two micro-USB ports (data and power), which are all on one long side of the board, and the microSD card slot on a short end, so the card can be pushed in and out. The case is a base and a lid that goes on with M2.5 screws. It is printed on an FDM printer.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_zero2w": {
+    "hdmi_exposed": "yes",
+    "quantity": 1,
+    "sd_exposed": "yes",
+    "usb_data_exposed": "yes",
+    "usb_power_exposed": "yes"
+  }
+}

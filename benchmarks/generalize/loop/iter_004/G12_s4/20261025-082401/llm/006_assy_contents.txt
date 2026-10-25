@@ -1,0 +1,53 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a wall-mounted enclosure for an ESP32 DevKitC V4 board (54.4 x 27.9 mm, no mounting holes, micro-USB at one short end, PCB antenna at the other). It has two mounting ears that take 4.2 mm countersunk wood screws, the two screw slots 100 mm apart, and every slot must leave at least 3 mm to the edge of its ear and to the box. Three 5 mm LEDs shine through the lid: the LEDs sit flush with the outside of the lid and must not fall out. The micro-USB cable must plug in through one short end with the lid on. Keep the antenna end of the board free: no wall or lid over the antenna and at least 8 mm of free space beyond the end of the board. The lid is held by M3 self-tapping screws. It is printed on an FDM printer in PLA, back face down.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- tp4056_usbc_module: tp4056 (module; cable connector: usb connector (takes a usb-c plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 1
+  },
+  "generic_box": {
+    "quantity": 1
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "tp4056_usbc_module": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

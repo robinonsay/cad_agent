@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the Arduino Uno R3 from the parts catalogue, declare its pose, and put the USB-B receptacle and the DC jack, which are on the same short edge of the board, at the same short end of the case.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The 68.6 x 53.3 x 1.6 mm board shall fit inside the closed case with at least 0.5 mm clearance to every printed surface, apart from where it rests on its standoffs.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The board shall rest on exactly four standoffs, one under each of its four mounting holes, each 5 to 7 mm in outside diameter, with its top plane within 0.1 mm of the others and a pilot hole deep enough for a 10 mm M3 self-tapping screw (through the 1.6 mm board) to seat.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "With the lid closed, no part of the case shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the holes.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the lid closed, a USB-B plug (metal shell and moulded handle) shall plug fully into the receptacle through one opening in the end wall without touching the case (at least 0.3 mm clear all round), and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "With the lid closed, a 5.5 x 2.1 mm DC barrel plug (barrel and moulded handle) shall plug fully into the jack through its own opening in the same end wall, at the same time as the USB plug and without touching the case (at least 0.3 mm clear all round), and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "The lid shall carry a straight row of 5 to 9 ventilation slots (each 1.5 to 3.0 mm wide and 8 to 12 mm long, 3.5 to 6.5 mm pitch) directly over the ATmega328P, with a total open area of at least 100 mm\u00b2.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The case shall be a base and a separate removable lid: a flat plate that drops into a rebate in the top of the walls (plate 2 to 3 mm thick, 0.15 to 0.35 mm fit gap per side, upstand at least 1 mm) and is screwed down with four M3 self-tapping screws into four bosses in the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "The closed case shall have no openings other than the USB opening, the DC opening, the vent slots and the screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports (no overhang steeper than 45\u00b0 from vertical, no bridge over 15 mm).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed case shall be no larger than 100 x 70 x 35 mm, longest along the board's 68.6 mm side, and shall stand flat on a desk without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver; the lid screws and the board screws shall be separate.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared board pose and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

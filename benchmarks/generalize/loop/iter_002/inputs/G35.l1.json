@@ -1,0 +1,47 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall deliver two separate links in one print, each one connected body, not fused to each other, and shall declare the pivot axis, the straight pose and the print orientation.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Each link shall have a straight inner section 12 mm along the pivot axis by 10 mm across the bend plane, at least 20 mm long, through which a 6.5 mm cable passes with at least 0.5 mm clearance.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The two links shall be joined by a pivot pin held in a bore with 0.35 mm clearance all round and 0.35 mm clearance axially, so the pin (at least 3.0 mm in diameter, with a head overlapping the bore by at least 0.4 mm per side) cannot come out, and the joint shall have no more than 0.8 mm of sideways play and no more than 1.2 mm of axial play.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The pair shall bend freely from 30 degrees one way to 30 degrees the other with no contact between the links and at least 0.30 mm between them.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "A stop shall block the bend at 30 degrees either way, within one degree, on both sides.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "A 6.5 mm cable passing through both inner sections shall clear both links by at least 0.2 mm at every bend angle from 30 degrees one way to 30 degrees the other.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "Each link shall be 20 to 40 mm long, no wider than 20 mm across the bend plane and no taller than 25 mm along the pivot axis, with every wall at least 1.6 mm thick.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "Both links shall print flat in one go on an FDM printer without supports, with the pivot axis vertical.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The design shall be delivered as an STL of the pair, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

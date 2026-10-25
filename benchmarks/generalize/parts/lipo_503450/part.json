@@ -1,0 +1,205 @@
+{
+  "id": "lipo_503450",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "lipo 503450",
+    "503450 lipo",
+    "503450 lipo cell",
+    "503450",
+    "lipo cell",
+    "lipo battery",
+    "li-po battery",
+    "lithium polymer battery",
+    "lithium polymer cell",
+    "pouch cell",
+    "flat lipo"
+  ],
+  "kind": "power",
+  "source": "503450 LiPo pouch cell, vendor drawing (the 50 34 50 code: 5.0 mm thick, 34 mm wide, 50 mm long, maximum dimensions as printed on the code). Tabs on a short edge: tab protrusion 4 mm and tab width 10 mm are typical vendor values, assumed. Thickness can swell by about 10 percent in service (cell vendor and general LiPo guidance).",
+  "frame": "cell: origin at the pouch min corner, pouch bottom on Z = 0, length along X, width along Y, thickness along Z, tabs on the +X short edge",
+  "params": {
+    "cell_length": {
+      "default": 50.0,
+      "source": "vendor drawing: maximum length (code 50)"
+    },
+    "cell_width": {
+      "default": 34.0,
+      "source": "vendor drawing: maximum width (code 34)"
+    },
+    "cell_thickness": {
+      "default": 5.0,
+      "source": "vendor drawing: maximum thickness as built (code 50: 5.0 mm)"
+    },
+    "swell_fraction": {
+      "default": 0.1,
+      "source": "thickness can swell about 10 percent over life (plan datasheet note); keep-out margin, assumption with uncertainty +-5 percent"
+    },
+    "tab_length": {
+      "default": 4.0,
+      "source": "assumed typical tab protrusion beyond the short edge, uncertainty +-2 mm"
+    },
+    "tab_width": {
+      "default": 10.0,
+      "source": "assumed typical tab zone width (positive and negative tabs plus protection board lead), uncertainty +-3 mm"
+    },
+    "tab_height": {
+      "default": 1.5,
+      "source": "assumed tab zone height at the pouch mid-plane, uncertainty +-1 mm"
+    },
+    "tab_bend_clearance": {
+      "default": 3.0,
+      "source": "assumed free length behind the tab for the lead wire to leave and bend, uncertainty +-2 mm"
+    }
+  },
+  "datasheet_size": [
+    "cell_length",
+    "cell_width",
+    "cell_thickness"
+  ],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {
+      "id": "pouch",
+      "primitive": "box",
+      "size": [
+        "cell_length",
+        "cell_width",
+        "cell_thickness"
+      ],
+      "at": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "swell",
+      "primitive": "box",
+      "size": [
+        "cell_length",
+        "cell_width",
+        "cell_thickness * (1 + swell_fraction)"
+      ],
+      "at": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "tab_zone",
+      "primitive": "box",
+      "size": [
+        "tab_length + tab_bend_clearance",
+        "tab_width",
+        "tab_height"
+      ],
+      "at": [
+        "cell_length",
+        "(cell_width - tab_width) / 2",
+        "(cell_thickness - tab_height) / 2"
+      ]
+    }
+  ],
+  "datums": {
+    "TABS": {
+      "kind": "point",
+      "at": [
+        "cell_length + tab_length",
+        "cell_width / 2",
+        "cell_thickness / 2"
+      ]
+    },
+    "TAB_DIR": {
+      "kind": "axis",
+      "at": [
+        "cell_length",
+        "cell_width / 2",
+        "cell_thickness / 2"
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "cell_thickness"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "SWELL_TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "cell_thickness * (1 + swell_fraction)"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "notes": "The pouch geometry is the as-built maximum size; the swell keep-out covers the 10 percent growth, so a pocket must be sized from swell, not pouch. The tab zone (tabs, protection-board leads, bend room) is a keep-out: a wall or post may not enter it. A wire exit slot is a design choice, not part data. Tab size and bend clearance are assumed, not from the vendor drawing; measure the owner's cell. Never a design value: no enclosure dimension appears here.",
+  "self_checks": [
+    {
+      "name": "thickness code 5.0",
+      "expr": "pouch.size_z",
+      "value": 5.0,
+      "tol": 0.2
+    },
+    {
+      "name": "width code 34",
+      "expr": "pouch.size_y",
+      "value": 34.0,
+      "tol": 0.5
+    },
+    {
+      "name": "length code 50",
+      "expr": "pouch.size_x",
+      "value": 50.0,
+      "tol": 0.5
+    },
+    {
+      "name": "swell above the pouch",
+      "expr": "SWELL_TOP.z - TOP.z",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "tabs on the +X edge",
+      "expr": "TABS.x - pouch.max_x",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

@@ -1,0 +1,885 @@
+[
+  {
+    "l1_id": "L1.1",
+    "text": "Using catalogue parts, the layout puts the four tactile switches in a 2 x 2 grid with 19.05 mm pitch on the 70 x 50 mm board, with the Pico 2 in female sockets behind them and its USB port pointing at the rear short end. Parts must not collide or cover the corner holes, and the design has to declare this layout.",
+    "method": "inspection",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.16,
+    "checks": [
+      {
+        "id": "inside_contents",
+        "type": "inside",
+        "text": "every part the board carries lies inside the closed enclosure, at least 0.2 mm from every printed surface and from the outside",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "contents: \u2265 5.2000 mm from the enclosure (need >= 0.2)"
+      },
+      {
+        "id": "clear_module_1_1_envelope",
+        "type": "inside",
+        "text": "module_1_1_envelope (the module and its stack parts) lies inside the closed enclosure, at least 0.2 mm from every printed surface and from the outside",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "module_1_1_envelope: \u2265 5.2000 mm from the enclosure (need >= 0.2)"
+      },
+      {
+        "id": "grid_conformance",
+        "type": "grid_conformance",
+        "text": "every part pin lies within 0.15 mm of a board grid hole (parts with a connector need pin data; a pin pattern that meets no grid position is exempt)",
+        "passed": true,
+        "margin": 0.16,
+        "evidence": "worst pin-to-grid residual 0.0000 mm (max 0.15)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.2",
+    "text": "With the enclosure shut, there must be at least 0.5 mm between the 70 x 50 x 1.6 mm board and any printed surface, other than where the board sits on the standoffs.",
+    "method": "analysis",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.958231,
+    "checks": [
+      {
+        "id": "inside_board",
+        "type": "inside",
+        "text": "the board (minus the seat columns grown by the clearance (\u00d8 8)) lies inside the closed enclosure with 0.5 mm clearance",
+        "passed": true,
+        "margin": 0.958231,
+        "evidence": "board: 1.4482 mm from the enclosure (need >= 0.5)"
+      },
+      {
+        "id": "clear_board",
+        "type": "clear_of",
+        "text": "no printed surface within 0.5 mm of the board, except the standoff tops in the seat columns grown by the clearance (\u00d8 8)",
+        "passed": true,
+        "margin": 0.958231,
+        "evidence": "min gap to board 1.4482 mm (need >= 0.5)"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.3",
+    "text": "Put the board on precisely four standoffs, one beneath every corner hole. Each has an outside diameter of 5 to 7 mm and a top that is within 0.1 mm of the plane of the other three, and each includes a pilot hole so an M2 self-tapping screw can go through the board.",
+    "method": "inspection",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.01,
+    "checks": [
+      {
+        "id": "pilot_band_standoff_1",
+        "type": "pilot_band",
+        "text": "the pilot in standoff_1 is 1.6-1.8 mm across (the board screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+      },
+      {
+        "id": "pilot_band_standoff_2",
+        "type": "pilot_band",
+        "text": "the pilot in standoff_2 is 1.6-1.8 mm across (the board screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+      },
+      {
+        "id": "pilot_band_standoff_3",
+        "type": "pilot_band",
+        "text": "the pilot in standoff_3 is 1.6-1.8 mm across (the board screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+      },
+      {
+        "id": "pilot_band_standoff_4",
+        "type": "pilot_band",
+        "text": "the pilot in standoff_4 is 1.6-1.8 mm across (the board screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+      },
+      {
+        "id": "board_screw_passes_hole",
+        "type": "screw_through_hole",
+        "text": "the board screw's thread passes the board's \u00d82 mounting holes",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "thread 2 + 2 x 0 vs hole \u00d82"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.4",
+    "text": "Keep a 13.3 mm zone above the board's top face and a 4 mm zone beneath its underside free of base and lid material when the lid is closed; only the standoffs below the holes may enter. The Pico, its sockets and the switches need to be inside the enclosure.",
+    "method": "analysis",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.5",
+    "text": "A micro-USB cable has to go all the way into the Pico via a single hole in the rear end wall while the lid is on, never touching the enclosure (at least 0.3 mm of space all around). The hole can't be more than 1.5 mm bigger than the plug on any side.",
+    "method": "test",
+    "status": "PASS",
+    "passed": true,
+    "margin": -0.0,
+    "checks": [
+      {
+        "id": "clear_module_1_1_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in module_1_1 at full mate and its withdrawal path stay 0.3 mm from the enclosure",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "min gap to module_1_1_plug 0.4000 mm (need >= 0.3)"
+      },
+      {
+        "id": "plug_refs_module_1_1_plug",
+        "type": "clear_of",
+        "text": "the plug_microusb_b plug in module_1_1 at full mate and its withdrawal path (outside its mouth) clear every other reference part (the board, the other contents)",
+        "passed": true,
+        "margin": 5.01,
+        "evidence": "min gap to refs_module_1_1_plug \u2265 5.0000 mm (need >= 0)"
+      },
+      {
+        "id": "oversize_module_1_1_cut",
+        "type": "aperture_oversize",
+        "text": "the opening of module_1_1_cut is at most 1.5 mm bigger than its plug per side",
+        "passed": true,
+        "margin": 1.11,
+        "evidence": "opening 10.800 x 7.800 vs plug 10.000 x 7.000: 0.400 mm per side (max 1.5)"
+      },
+      {
+        "id": "text_coverage",
+        "type": "coverage",
+        "text": "every content connector whose mating plug the request or an L1 names is exposed (it has its plug check)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "1 named plug connection(s) covered"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.6",
+    "text": "Every switch gets a dedicated printed plunger that pokes up through a round hole in the top plate, centred on the switch axis within 0.2 mm, leaving 0.4 mm of gap all around between plunger and hole. A plunger's stem is round and 4.0 to 5.6 mm in diameter, and the face at its tip is at least 3.5 mm wide.",
+    "method": "inspection",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.7",
+    "text": "Each plunger moves 1.5 mm before it bottoms out; within that travel it must hit the switch's actuation point without crushing the switch, and at the bottom of its stroke it still sticks out of the plate by at least 0.5 mm. When the case is flipped over the plunger stays put, retained by a flange, at least 2 mm wider than the hole, that bears on the plate's underside.",
+    "method": "test",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.8",
+    "text": "Build the enclosure from a base and a detachable lid. The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base.",
+    "method": "inspection",
+    "status": "PASS",
+    "passed": true,
+    "margin": 0.0,
+    "checks": [
+      {
+        "id": "pilot_band_boss_1",
+        "type": "pilot_band",
+        "text": "the pilot in boss_1 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      {
+        "id": "pilot_band_boss_2",
+        "type": "pilot_band",
+        "text": "the pilot in boss_2 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      {
+        "id": "pilot_band_boss_3",
+        "type": "pilot_band",
+        "text": "the pilot in boss_3 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      {
+        "id": "pilot_band_boss_4",
+        "type": "pilot_band",
+        "text": "the pilot in boss_4 is 2.4-2.6 mm across (the lid screw's pilot range)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      {
+        "id": "closure_evidence",
+        "type": "closure_evidence",
+        "text": "the lid closes the way the text names (rebate)",
+        "passed": true,
+        "margin": 0.0,
+        "evidence": "closure rebate; the text names rebate (holds; L1.8: \"The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base.\")"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.9",
+    "text": "When closed, the only holes allowed are the USB opening, the four plunger holes and the screw holes; walls, floor and lid are to be between 2 and 4 mm thick.",
+    "method": "analysis",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.10",
+    "text": "Each of the base, the lid and the plunger should be a single manifold body that an FDM printer can make without supports, meaning overhangs no steeper than 45\u00b0 from vertical and bridges no longer than 15 mm.",
+    "method": "analysis",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.11",
+    "text": "The shut enclosure needs to fit in 95 x 70 x 35 mm, its longest extent running along the 70 mm side of the board, and it has to sit on a desk without tipping over.",
+    "method": "analysis",
+    "status": "FAIL",
+    "passed": false,
+    "margin": -0.69,
+    "checks": [
+      {
+        "id": "bbox",
+        "type": "bbox_within",
+        "text": "closed outside size within 95 x 70 x 35 mm",
+        "passed": false,
+        "margin": -0.69,
+        "evidence": "outside 92.40 x 58.00 x 35.70 mm, max 95 x 70 x 35 with X longest"
+      }
+    ],
+    "note": ""
+  },
+  {
+    "l1_id": "L1.12",
+    "text": "Assembly has to work: you insert the plungers into the lid from its underside, lower the populated board vertically onto the standoffs with the lid removed, then close the lid with its plungers over the board, and a screwdriver can get to each screw.",
+    "method": "test",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "L1.13",
+    "text": "Hand over three STL files (base, lid and plunger), the OpenSCAD source, the declared layout and the agent's own clearance report; an independent measurement has to confirm that report.",
+    "method": "inspection",
+    "status": "UNLINKED",
+    "passed": false,
+    "margin": null,
+    "checks": [],
+    "note": "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+  },
+  {
+    "l1_id": "rules",
+    "text": "rule-derived checks with no L1 link (generic consequences of the contents, the spec and printing)",
+    "method": "analysis",
+    "status": "PASS",
+    "passed": true,
+    "margin": -0.0,
+    "checks": [
+      {
+        "id": "separable",
+        "type": "separable",
+        "text": "base and lid are each one shell and overlap by at most 1 mm3 when closed",
+        "passed": true,
+        "margin": 1.0,
+        "evidence": "shells {'base': 1, 'lid': 1}, worst overlap 6.312e-14 mm3 (max 1)"
+      },
+      {
+        "id": "clear_keepout_top",
+        "type": "clear_of",
+        "text": "nothing printed inside the component keep-out above the board",
+        "passed": true,
+        "margin": 1.609998,
+        "evidence": "min gap to board_ko_top 1.6000 mm (need >= 0)"
+      },
+      {
+        "id": "clear_keepout_bottom",
+        "type": "clear_of",
+        "text": "nothing printed inside the solder-side keep-out, except standoffs in the seat columns",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "min gap to board_ko_bot 0.6000 mm (need >= 0)"
+      },
+      {
+        "id": "clear_hole_ko_0",
+        "type": "clear_of",
+        "text": "nothing printed inside the screw-head column hole_ko_0 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+        "passed": true,
+        "margin": 0.105779,
+        "evidence": "min gap to hole_ko_0 0.0958 mm (need >= 0)"
+      },
+      {
+        "id": "clear_hole_ko_1",
+        "type": "clear_of",
+        "text": "nothing printed inside the screw-head column hole_ko_1 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+        "passed": true,
+        "margin": 0.105779,
+        "evidence": "min gap to hole_ko_1 0.0958 mm (need >= 0)"
+      },
+      {
+        "id": "clear_hole_ko_2",
+        "type": "clear_of",
+        "text": "nothing printed inside the screw-head column hole_ko_2 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+        "passed": true,
+        "margin": 0.105777,
+        "evidence": "min gap to hole_ko_2 0.0958 mm (need >= 0)"
+      },
+      {
+        "id": "clear_hole_ko_3",
+        "type": "clear_of",
+        "text": "nothing printed inside the screw-head column hole_ko_3 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+        "passed": true,
+        "margin": 0.105777,
+        "evidence": "min gap to hole_ko_3 0.0958 mm (need >= 0)"
+      },
+      {
+        "id": "clear_driver_0",
+        "type": "clear_of",
+        "text": "the screwdriver column driver_0 is clear of the base (lid off)",
+        "passed": true,
+        "margin": 0.606382,
+        "evidence": "min gap to driver_0 0.5964 mm (need >= 0)"
+      },
+      {
+        "id": "clear_driver_1",
+        "type": "clear_of",
+        "text": "the screwdriver column driver_1 is clear of the base (lid off)",
+        "passed": true,
+        "margin": 0.606382,
+        "evidence": "min gap to driver_1 0.5964 mm (need >= 0)"
+      },
+      {
+        "id": "clear_driver_2",
+        "type": "clear_of",
+        "text": "the screwdriver column driver_2 is clear of the base (lid off)",
+        "passed": true,
+        "margin": 0.60638,
+        "evidence": "min gap to driver_2 0.5964 mm (need >= 0)"
+      },
+      {
+        "id": "clear_driver_3",
+        "type": "clear_of",
+        "text": "the screwdriver column driver_3 is clear of the base (lid off)",
+        "passed": true,
+        "margin": 0.60638,
+        "evidence": "min gap to driver_3 0.5964 mm (need >= 0)"
+      },
+      {
+        "id": "apertures_-X",
+        "type": "aperture_count",
+        "text": "wall -X has exactly 1 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall -X: 1 through opening(s), expected 1; 1 blind region(s) ()"
+      },
+      {
+        "id": "apertures_+X",
+        "type": "aperture_count",
+        "text": "wall +X has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall +X: 0 through opening(s), expected 0; 1 blind region(s) ()"
+      },
+      {
+        "id": "apertures_-Y",
+        "type": "aperture_count",
+        "text": "wall -Y has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall -Y: 0 through opening(s), expected 0; 1 blind region(s) ()"
+      },
+      {
+        "id": "apertures_+Y",
+        "type": "aperture_count",
+        "text": "wall +Y has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+        "passed": true,
+        "margin": -0.0,
+        "evidence": "wall +Y: 0 through opening(s), expected 0; 1 blind region(s) ()"
+      },
+      {
+        "id": "ligament_module_1_1_cut_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round module_1_1_cut in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 10.71,
+        "evidence": "12.2000 mm of material round module_1_1_cut toward floor_top at x = -10.000 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_standoff_1_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round standoff_1_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.206926,
+        "evidence": "1.6969 mm of material round standoff_1_pilot toward outer at z = -4.155 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_standoff_2_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round standoff_2_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.206901,
+        "evidence": "1.6969 mm of material round standoff_2_pilot toward outer at z = -4.155 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_standoff_3_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round standoff_3_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.206901,
+        "evidence": "1.6969 mm of material round standoff_3_pilot toward outer at z = -4.155 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_standoff_4_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round standoff_4_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.206906,
+        "evidence": "1.6969 mm of material round standoff_4_pilot toward outer at z = -4.155 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_1_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_1_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.556021,
+        "evidence": "2.0460 mm of material round boss_1_pilot toward outer at z = 21.845 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_1_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_1_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.65795,
+        "evidence": "2.1479 mm of material round boss_1_lid_hole toward outer at z = 26.900 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_2_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_2_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.555986,
+        "evidence": "2.0460 mm of material round boss_2_pilot toward outer at z = 21.845 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_2_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_2_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.657947,
+        "evidence": "2.1479 mm of material round boss_2_lid_hole toward outer at z = 26.900 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_3_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_3_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.555983,
+        "evidence": "2.0460 mm of material round boss_3_pilot toward outer at z = 21.845 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_3_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_3_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.65795,
+        "evidence": "2.1479 mm of material round boss_3_lid_hole toward outer at z = 26.900 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_4_pilot_base",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_4_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.555985,
+        "evidence": "2.0460 mm of material round boss_4_pilot toward outer at z = 21.845 (need >= 1.5)"
+      },
+      {
+        "id": "ligament_boss_4_lid_hole_lid",
+        "type": "ligament",
+        "text": "at least 1.5 mm of material round boss_4_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+        "passed": true,
+        "margin": 0.657947,
+        "evidence": "2.1479 mm of material round boss_4_lid_hole toward outer at z = 26.900 (need >= 1.5)"
+      },
+      {
+        "id": "seated",
+        "type": "seated",
+        "text": "the board rests on the standoff tops (gap <= 0.1 mm) with every hole on a pilot axis (offset <= 0.25 mm)",
+        "passed": true,
+        "margin": 0.1,
+        "evidence": "worst standoff gap 0.0000 mm (max 0.1), worst hole-pilot offset 0.0000 mm (max 0.25)"
+      },
+      {
+        "id": "below_split_module_1_1_cut",
+        "type": "port_below_split",
+        "text": "module_1_1_cut top plus the minimum ligament stays below the split plane",
+        "passed": true,
+        "margin": 9.41,
+        "evidence": "module_1_1_cut top 14.800 + ligament 1.5 vs split 25.700"
+      },
+      {
+        "id": "bridge_module_1_1_cut",
+        "type": "bridge",
+        "text": "the opening module_1_1_cut in wall -X bridges at most 15 mm (no flat roof wider than the bridge limit)",
+        "passed": true,
+        "margin": 4.21,
+        "evidence": "module_1_1_cut: flat roof span 10.800 vs bridge limit 15"
+      },
+      {
+        "id": "pilot_depth_standoff_1",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_1 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.1 vs standoff 3.600 + floor 2.400 - 0.8"
+      },
+      {
+        "id": "pilot_depth_standoff_2",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_2 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.1 vs standoff 3.600 + floor 2.400 - 0.8"
+      },
+      {
+        "id": "pilot_depth_standoff_3",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_3 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.1 vs standoff 3.600 + floor 2.400 - 0.8"
+      },
+      {
+        "id": "pilot_depth_standoff_4",
+        "type": "pilot_depth",
+        "text": "the pilot in standoff_4 leaves at least 0.8 mm of floor under it",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.1 vs standoff 3.600 + floor 2.400 - 0.8"
+      },
+      {
+        "id": "pilot_depth_boss_1",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_1 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 24.81,
+        "evidence": "pilot depth 7.7 vs boss height 33.300 (floor included) - 0.8"
+      },
+      {
+        "id": "pilot_depth_boss_2",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_2 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 24.81,
+        "evidence": "pilot depth 7.7 vs boss height 33.300 (floor included) - 0.8"
+      },
+      {
+        "id": "pilot_depth_boss_3",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_3 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 24.81,
+        "evidence": "pilot depth 7.7 vs boss height 33.300 (floor included) - 0.8"
+      },
+      {
+        "id": "pilot_depth_boss_4",
+        "type": "pilot_depth",
+        "text": "the pilot in boss_4 leaves at least 0.8 mm of material under it",
+        "passed": true,
+        "margin": 24.81,
+        "evidence": "pilot depth 7.7 vs boss height 33.300 (floor included) - 0.8"
+      },
+      {
+        "id": "lid_fit_x",
+        "type": "lid_fit",
+        "text": "the lid plate sits in the rebate with a 0.15-0.35 mm sliding fit per side along x",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "plate 88.900 in rebate 89.400: 0.250 per side"
+      },
+      {
+        "id": "rebate_upstand_x",
+        "type": "rebate_upstand",
+        "text": "the rebate leaves an upstand at least 1.5 mm thick along x",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "base 92.400 - rebate 89.400: upstand 1.500"
+      },
+      {
+        "id": "lid_fit_y",
+        "type": "lid_fit",
+        "text": "the lid plate sits in the rebate with a 0.15-0.35 mm sliding fit per side along y",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "plate 54.500 in rebate 55.000: 0.250 per side"
+      },
+      {
+        "id": "rebate_upstand_y",
+        "type": "rebate_upstand",
+        "text": "the rebate leaves an upstand at least 1.5 mm thick along y",
+        "passed": true,
+        "margin": 0.01,
+        "evidence": "base 58.000 - rebate 55.000: upstand 1.500"
+      },
+      {
+        "id": "lid_flush",
+        "type": "lid_flush",
+        "text": "the lid plate's top is flush with the upstand (within 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "plate top 28.100 vs upstand top 28.100"
+      },
+      {
+        "id": "boss_top_plane_boss_1",
+        "type": "boss_top_plane",
+        "text": "boss_1 ends on the rebate floor (the plate rests on it within 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "boss_1 top 25.700 vs rebate floor 25.700"
+      },
+      {
+        "id": "boss_top_plane_boss_2",
+        "type": "boss_top_plane",
+        "text": "boss_2 ends on the rebate floor (the plate rests on it within 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "boss_2 top 25.700 vs rebate floor 25.700"
+      },
+      {
+        "id": "boss_top_plane_boss_3",
+        "type": "boss_top_plane",
+        "text": "boss_3 ends on the rebate floor (the plate rests on it within 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "boss_3 top 25.700 vs rebate floor 25.700"
+      },
+      {
+        "id": "boss_top_plane_boss_4",
+        "type": "boss_top_plane",
+        "text": "boss_4 ends on the rebate floor (the plate rests on it within 0.1 mm)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "boss_4 top 25.700 vs rebate floor 25.700"
+      },
+      {
+        "id": "pilot_engagement_standoff_1",
+        "type": "pilot_engagement",
+        "text": "the pilot in standoff_1 is at least 5 mm deep (the board screw's minimum engagement)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.100 vs min_engagement 5"
+      },
+      {
+        "id": "boss_od_standoff_1",
+        "type": "boss_od",
+        "text": "standoff_1 is at least 5 mm across (the board screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "outside diameter 5.100 vs min_boss_od 5"
+      },
+      {
+        "id": "pilot_bottoming_standoff_1",
+        "type": "pilot_bottoming",
+        "text": "the pilot in standoff_1 is at least 4.4 mm deep, so the board screw (6 mm through a 1.6 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.71,
+        "evidence": "pilot depth 5.100 vs screw length 6 - clamped plate 1.600"
+      },
+      {
+        "id": "pilot_engagement_standoff_2",
+        "type": "pilot_engagement",
+        "text": "the pilot in standoff_2 is at least 5 mm deep (the board screw's minimum engagement)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.100 vs min_engagement 5"
+      },
+      {
+        "id": "boss_od_standoff_2",
+        "type": "boss_od",
+        "text": "standoff_2 is at least 5 mm across (the board screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "outside diameter 5.100 vs min_boss_od 5"
+      },
+      {
+        "id": "pilot_bottoming_standoff_2",
+        "type": "pilot_bottoming",
+        "text": "the pilot in standoff_2 is at least 4.4 mm deep, so the board screw (6 mm through a 1.6 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.71,
+        "evidence": "pilot depth 5.100 vs screw length 6 - clamped plate 1.600"
+      },
+      {
+        "id": "pilot_engagement_standoff_3",
+        "type": "pilot_engagement",
+        "text": "the pilot in standoff_3 is at least 5 mm deep (the board screw's minimum engagement)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.100 vs min_engagement 5"
+      },
+      {
+        "id": "boss_od_standoff_3",
+        "type": "boss_od",
+        "text": "standoff_3 is at least 5 mm across (the board screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "outside diameter 5.100 vs min_boss_od 5"
+      },
+      {
+        "id": "pilot_bottoming_standoff_3",
+        "type": "pilot_bottoming",
+        "text": "the pilot in standoff_3 is at least 4.4 mm deep, so the board screw (6 mm through a 1.6 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.71,
+        "evidence": "pilot depth 5.100 vs screw length 6 - clamped plate 1.600"
+      },
+      {
+        "id": "pilot_engagement_standoff_4",
+        "type": "pilot_engagement",
+        "text": "the pilot in standoff_4 is at least 5 mm deep (the board screw's minimum engagement)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 5.100 vs min_engagement 5"
+      },
+      {
+        "id": "boss_od_standoff_4",
+        "type": "boss_od",
+        "text": "standoff_4 is at least 5 mm across (the board screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "outside diameter 5.100 vs min_boss_od 5"
+      },
+      {
+        "id": "pilot_bottoming_standoff_4",
+        "type": "pilot_bottoming",
+        "text": "the pilot in standoff_4 is at least 4.4 mm deep, so the board screw (6 mm through a 1.6 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.71,
+        "evidence": "pilot depth 5.100 vs screw length 6 - clamped plate 1.600"
+      },
+      {
+        "id": "pilot_engagement_boss_1",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_1 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_1",
+        "type": "boss_od",
+        "text": "boss_1 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_1",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_1 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      {
+        "id": "pilot_engagement_boss_2",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_2 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_2",
+        "type": "boss_od",
+        "text": "boss_2 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_2",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_2 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      {
+        "id": "pilot_engagement_boss_3",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_3 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_3",
+        "type": "boss_od",
+        "text": "boss_3 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_3",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_3 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      {
+        "id": "pilot_engagement_boss_4",
+        "type": "pilot_engagement",
+        "text": "the pilot in boss_4 is at least 6 mm deep (the lid screw's minimum engagement)",
+        "passed": true,
+        "margin": 1.71,
+        "evidence": "pilot depth 7.700 vs min_engagement 6"
+      },
+      {
+        "id": "boss_od_boss_4",
+        "type": "boss_od",
+        "text": "boss_4 is at least 6 mm across (the lid screw's minimum boss diameter)",
+        "passed": true,
+        "margin": 0.61,
+        "evidence": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      {
+        "id": "pilot_bottoming_boss_4",
+        "type": "pilot_bottoming",
+        "text": "the pilot in boss_4 is at least 7.6 mm deep, so the lid screw (10 mm through a 2.4 mm plate) seats its head before its tip bottoms",
+        "passed": true,
+        "margin": 0.11,
+        "evidence": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      }
+    ],
+    "note": ""
+  }
+]

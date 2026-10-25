@@ -1,0 +1,158 @@
+{
+  "paraphrases": [
+    {
+      "id": "G29",
+      "tier": 4,
+      "title": "40 mm fan to 25 mm round duct",
+      "request": "Shroud to mount a 40 x 40 x 10 mm axial fan (3.2 mm mounting holes on a 32 mm pitch) on its blowing side, tapering smoothly into a round spigot, 25 mm outer diameter, 40 mm straight length. The duct is a plain tube, 60 mm long, 25.4 mm inside diameter, 2 mm wall, that slips over the spigot. The transition stays below 45 degrees from the airflow axis so it prints without supports, flange side down; every wall at least 1.6 mm. Four M3 socket-head bolts inserted from the fan's intake side hold the fan, screwing into the shroud. FDM, PLA.",
+      "request_verbatim": "A shroud that mounts a 40 x 40 x 10 mm fan (hole pitch 32 mm) and tapers smoothly into a 25 mm OD spigot of 40 mm length. The transition should stay below 45 degrees so it prints without supports, and the wall stays at least 1.6 mm. Four M3 bolts hold it on.",
+      "request_notes": "Added to the brief (derived, see requirements.md 3.1 and 3.2): the fan blows into the shroud (FD1); bolts from the intake side into printed pilot holes (FD2, A3); duct = 25.4 ID tube (A4, FD6); 'below 45 degrees' = half-angle from the airflow axis (FD4); 'spigot of 40 mm length' = the straight OD 25 part (FD5); FDM, PLA (A6). Audit: duct length 60 mm added to the request; pilot depth band, flange outline band, transition length band and the boss exclusion from the profile checks are now stated in the L1 text.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Place the 40 x 40 x 10 mm fan on the shroud's blowing side, airflow axis on the shroud axis, exhaust face on the flange underside. Place four M3 bolts and the 25.4 mm duct with no collisions. Declare the layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "Exactly four blind pilot holes, 2.5 mm diameter, 6.3 to 7.0 mm deep, closed floor at least 0.8 mm, opening on the flange underside on the fan's 32.0 x 32.0 mm hole pattern, each in a fused corner boss 6.0 to 8.0 mm across.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.3",
+          "text": "Four M3 socket-head bolts inserted from the fan's intake side go through the fan holes and reach at least 6.0 mm into the pilots without bottoming (at least 0.3 mm from the pilot floor) or breaking into the airflow path (at least 0.8 mm from the bore, tip at least 0.8 mm below the boss top).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The flange underside sits flat on the fan's exhaust face, 2.5 to 4.0 mm thick, within the fan's 40 mm outline (39.0 to 40.0 mm square), opening into a bore of 34.0 to 36.8 mm diameter, so the fan blows into the shroud without losing its face.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "Transition from flange bore to spigot bore: smooth, axisymmetric, 7.5 to 17.5 mm long, no radial step over 0.3 mm; inner and outer surface everywhere at no more than 45 degrees from the airflow axis. The four corner bosses are not part of the transition profile.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "The shroud ends in a round spigot, 25.0 mm outer diameter, 40.0 mm straight length, concentric with the fan axis, bore between 19.0 and 21.8 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "All shroud walls are at least 1.6 mm thick, measured normal to the surface.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "Test: the 25.4 mm duct slides freely over the spigot to a stop, 0.2 mm clearance all round, at least 35 mm of overlap.",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "The bore is unobstructed from the flange to the open end of the spigot, flow area at least 283 mm², and the shroud has no other opening into it.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "One manifold body, printed without supports, flange underside on the bed, spigot up.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "The shroud fits in 42 x 42 x 60 mm and stands on its flange without tipping.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.12",
+          "text": "Deliver the shroud STL, OpenSCAD source, declared layout (fan, bolts with length, duct, print orientation) and the agent's own clearance report; the report must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "datum placement: fan pose from the AIRFLOW / EXHAUST / HOLE datums, bolt pattern from HOLE",
+        "a revolved (lathe-like) profile: flange bore, cone, spigot, with slope and wall-thickness limits",
+        "blind pilot holes in corner bosses placed at catalogue coordinates",
+        "an assembly of printed shroud + fan + four bolts + duct, each placed and checked for interference and clearance",
+        "print-orientation reasoning: the roof angle of the inner cone, bed contact, bridges"
+      ]
+    },
+    {
+      "id": "G29",
+      "tier": 4,
+      "title": "40 mm fan to 25 mm round duct",
+      "request": "Please design a shroud that tapers down smoothly from a 40 x 40 x 10 mm axial fan (3.2 mm mounting holes, 32 mm pitch) to a round spigot with a 25 mm outer diameter and 40 mm straight length; the fan attaches on the blowing side. The duct is a simple 60 mm tube with a 25.4 mm inside diameter and 2 mm wall that fits over the spigot. To print without supports, flange side down, no part of the transition may exceed 45 degrees from the airflow axis, and walls must be at least 1.6 mm thick. The fan is held by four M3 socket-head bolts that go in from the intake side and thread into the shroud. Print on an FDM printer in PLA.",
+      "request_verbatim": "A shroud that mounts a 40 x 40 x 10 mm fan (hole pitch 32 mm) and tapers smoothly into a 25 mm OD spigot of 40 mm length. The transition should stay below 45 degrees so it prints without supports, and the wall stays at least 1.6 mm. Four M3 bolts hold it on.",
+      "request_notes": "Added to the brief (derived, see requirements.md 3.1 and 3.2): the fan blows into the shroud (FD1); bolts from the intake side into printed pilot holes (FD2, A3); duct = 25.4 ID tube (A4, FD6); 'below 45 degrees' = half-angle from the airflow axis (FD4); 'spigot of 40 mm length' = the straight OD 25 part (FD5); FDM, PLA (A6). Audit: duct length 60 mm added to the request; pilot depth band, flange outline band, transition length band and the boss exclusion from the profile checks are now stated in the L1 text.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Declare a layout in which the 40 x 40 x 10 mm fan is on the blowing side of the shroud, its airflow axis along the shroud axis and its exhaust face against the flange underside, together with four M3 bolts and the 25.4 mm duct, none of the parts colliding.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The shroud has just four blind pilot holes, each 2.5 mm in diameter and 6.3 to 7.0 mm deep with a closed floor of 0.8 mm or more. They open on the flange underside following the fan's 32.0 x 32.0 mm hole pattern, and each sits in a corner boss, fused to the body, that is 6.0 to 8.0 mm across.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.3",
+          "text": "Each of the four M3 socket-head bolts enters from the intake side of the fan, passes through the fan's holes and goes 6.0 mm or more into a pilot. It must not hit bottom (stay 0.3 mm or more off the pilot floor) and must not break into the airflow path: 0.8 mm or more from the bore, with the tip 0.8 mm or more below the top of the boss.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The flange underside lies flat against the fan's exhaust face. It is 2.5 to 4.0 mm thick and a square 39.0 to 40.0 mm, which keeps it inside the fan's 40 mm outline, and it opens to a 34.0 to 36.8 mm diameter bore, so the fan keeps its whole face and blows into the shroud.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "Between the flange bore and the spigot bore the transition has to be smooth and axisymmetric, 7.5 to 17.5 mm in length, without any radial step greater than 0.3 mm. Every point on its inner and outer surfaces must be 45 degrees or less from the airflow axis. Ignore the four corner bosses when judging the profile.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "A round spigot finishes the shroud: 25.0 mm outside diameter, a straight run of 40.0 mm, on the same axis as the fan, with a bore from 19.0 to 21.8 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "Wall thickness anywhere on the shroud, measured perpendicular to the surface, must be no less than 1.6 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "The 25.4 mm duct should slip over the spigot as far as a stop, moving freely with a 0.2 mm gap around it and overlapping by 35 mm or more.",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "Air must flow through an unobstructed bore from the flange to the open spigot end, with an area of 283 mm² or more; the shroud has no other opening into the bore.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "Print the shroud as a single manifold body with no supports, spigot pointing up and the flange underside lying on the bed.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "The shroud must stay within 42 x 42 x 60 mm and sit on its flange without tipping over.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.12",
+          "text": "Hand over the shroud STL, the OpenSCAD source, the layout declaration (fan, bolts and their length, duct, print orientation) and the agent's own clearance report, which has to agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "datum placement: fan pose from the AIRFLOW / EXHAUST / HOLE datums, bolt pattern from HOLE",
+        "a revolved (lathe-like) profile: flange bore, cone, spigot, with slope and wall-thickness limits",
+        "blind pilot holes in corner bosses placed at catalogue coordinates",
+        "an assembly of printed shroud + fan + four bolts + duct, each placed and checked for interference and clearance",
+        "print-orientation reasoning: the roof angle of the inner cone, bed contact, bridges"
+      ]
+    }
+  ]
+}

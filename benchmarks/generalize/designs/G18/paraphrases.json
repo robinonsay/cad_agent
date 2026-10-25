@@ -1,0 +1,162 @@
+{
+ "paraphrases": [
+  {
+   "id": "G18",
+   "tier": 4,
+   "title": "608 bearing split pillow block",
+   "request": "Clamped (not glued) two-part pillow block for a 608 bearing, 8 x 22 x 7 mm. Base and cap, split on a plane along the bearing axis. Two M3 bolts with captive hex nuts close the halves. With the halves shut, the bearing pocket is roughly 0.1 mm smaller than 22 mm, so the clamp grips the bearing. Base has two M4 mounting holes at 40 mm spacing. FDM print, no supports.",
+   "request_verbatim": "A two-piece pillow block for a 608 bearing (8 x 22 x 7 mm) that is clamped, not glued. Two M3 bolts with captive hex nuts pull the halves together, and the bearing bore pocket should be about 0.1 mm under 22 mm so the clamp holds it. The base has two M4 mounting holes 40 mm apart.",
+   "request_notes": "Added to the plan brief, from requirements.md section 3: the split plane contains the bearing axis, base below, cap above (D1); pocket diameter 21.9 measured with the halves closed (D2); the M4 holes are 40 mm apart along the bearing axis (D3); the nuts sit in hex pockets in the base open to the split face (D4); FDM, no supports (A8).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Two separate printed bodies, base and cap, divided on a plane containing the bearing axis; when closed they meet on that plane.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Closed, the pocket is round, centred on the bearing axis and 21.9 mm across (21.85 to 21.95 mm), giving the 22 mm bearing about 0.1 mm of squeeze.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The pocket locates the 7 mm wide bearing axially with two lips on the outer ring. No printed material may contact the inner ring or the bore.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Closed halves must contact on the split plane: gap 0.05 mm max, contact area 100 mm2 min, so the bolts clamp the bearing and not a gap between the halves.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Two M3 bolts, one either side of the bearing, go through clearance holes in the cap (heads counterbored) and into the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "Each bolt screws into an M3 hex nut trapped in a hex pocket in the base. The pocket opens to the split face; with the cap fitted the nut can neither drop out nor rotate.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "Base carries two M4 mounting holes spaced 40.0 mm, with space for heads and a hex key.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Cap off: bearing drops into the base and nuts drop into their pockets. Cap on: hex key reaches every bolt and mounting screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.9",
+     "text": "Load must travel to the mounting holes through solid material. Wall between bearing pocket and any outside surface: 2.5 mm min. Material around each hole, counterbore and nut pocket: 2.0 mm min. Base cross-section on every plane between block and each M4 hole: 100 mm2 min. Bending stress in the base under a 100 N pull on the bearing: 10 MPa max. Base is one connected body.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base and cap are each a single manifold body, printable on FDM with no supports in the stated print orientation.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed block fits within 60 x 60 x 32 mm and sits flat on its mounting face without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliverables: base STL, cap STL (closed assembly pose, mm), OpenSCAD source, declared hardware layout, and the agent's own measurement report. The report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "split body: one pocket shape cut across two bodies on the split plane, closed pose with a stated gap",
+    "press/clamp fit: pocket diameter derived from the bearing's outer diameter and a stated interference, measured on the closed bore",
+    "captive hex nut pocket (true hexagon from the nut's across-flats) open to a face, plus counterbore for the bolt head",
+    "bolt pattern: two bolt axes symmetric about the bearing, two mounting holes at a stated pitch",
+    "bearing lips and free-bore rule from the catalogue part",
+    "load path: wall and ligament thickness checks, bending of the plate section",
+    "per-body print orientation (cap flipped)"
+   ]
+  },
+  {
+   "id": "G18",
+   "tier": 4,
+   "title": "608 bearing split pillow block",
+   "request": "I'm after a pillow block for a 608 bearing (it measures 8 x 22 x 7 mm) that holds the bearing by clamping instead of glue. It comes in two halves, a base and a cap, divided along the bearing axis. A pair of M3 bolts, each with a captive hex nut, draw the halves together, and once they are closed the bearing seat is about 0.1 mm tighter than 22 mm across, which is what grips the bearing. On the underside, the base needs two M4 mounting holes set 40 mm apart. I'll print it on an FDM machine and want no supports.",
+   "request_verbatim": "A two-piece pillow block for a 608 bearing (8 x 22 x 7 mm) that is clamped, not glued. Two M3 bolts with captive hex nuts pull the halves together, and the bearing bore pocket should be about 0.1 mm under 22 mm so the clamp holds it. The base has two M4 mounting holes 40 mm apart.",
+   "request_notes": "Added to the plan brief, from requirements.md section 3: the split plane contains the bearing axis, base below, cap above (D1); pocket diameter 21.9 measured with the halves closed (D2); the M4 holes are 40 mm apart along the bearing axis (D3); the nuts sit in hex pockets in the base open to the split face (D4); FDM, no supports (A8).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "I want a base and a cap as two separate printed bodies. The split runs on a plane through the bearing axis, and with the halves closed they sit together on that plane.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "When the halves are closed the bearing seat should be round, centred on the bearing axis, and 21.9 mm in diameter (anywhere from 21.85 to 21.95 mm), so the 22 mm bearing is pinched by about 0.1 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The seat should keep the 7 mm wide bearing from sliding along its axis by using two lips against the outer ring, and no printed part may touch the bearing's bore or inner ring.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The two halves, once closed, must really touch along the split: a gap of no more than 0.05 mm across an area of at least 100 mm2, so the bolts squeeze the bearing rather than closing a gap between the halves.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Put one M3 bolt on each side of the bearing. Each passes down through a clearance hole in the cap, with the head sunk in a counterbore, and into the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "In the base each bolt threads into an M3 hex nut that sits trapped in a hex recess open to the split face, so once the cap is on the nut can't fall out or spin.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "The base gets two M4 mounting holes 40.0 mm apart, with enough room for the screw heads and for a hex key.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Take the cap off and the bearing should drop into the base and the nuts into their recesses. Put the cap on and a hex key should get at every bolt and mounting screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.9",
+     "text": "The load has to get to the mounting holes through solid material. That means a wall of at least 2.5 mm from the bearing seat to any outer surface, at least 2.0 mm around every hole, counterbore and nut recess, and at least 100 mm2 of base cross-section on each plane between the block and either M4 hole. A 100 N pull on the bearing may give no more than 10 MPa bending stress in the base, and the base must be a single connected body.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Each of the base and the cap should be one manifold body that I can print on an FDM printer, in the print orientation given, without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed up, the block has to fit inside 60 x 60 x 32 mm and sit flat on its mounting face without tipping over.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Hand over a base STL, a cap STL (closed assembly pose, in mm), the OpenSCAD source, the declared hardware layout and the agent's own measurement report. That report has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "split body: one pocket shape cut across two bodies on the split plane, closed pose with a stated gap",
+    "press/clamp fit: pocket diameter derived from the bearing's outer diameter and a stated interference, measured on the closed bore",
+    "captive hex nut pocket (true hexagon from the nut's across-flats) open to a face, plus counterbore for the bolt head",
+    "bolt pattern: two bolt axes symmetric about the bearing, two mounting holes at a stated pitch",
+    "bearing lips and free-bore rule from the catalogue part",
+    "load path: wall and ligament thickness checks, bending of the plate section",
+    "per-body print orientation (cap flipped)"
+   ]
+  }
+ ]
+}

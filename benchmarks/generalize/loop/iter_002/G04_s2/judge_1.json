@@ -1,0 +1,49 @@
+{
+ "id": "G04",
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.82,
+ "summary": "Gates G5 (SD path) and G6 (pilot dia) fail. There is no opening in the -X wall for the microSD card, and the four board standoff pilots are 1.70 mm (M2) instead of 2.0-2.2 mm (M2.5). HDMI and both USB openings are correct with 0.4 mm clearance. Closed Y size 42.2 exceeds 40. Score is an estimate.",
+ "defects": [
+  {
+   "requirement_id": "L3.7.1.1 (G5; L2.7.1, L1.7)",
+   "where": "base.stl -X wall (outer X -4.0, inner X -1.6), expected opening Y 10.9-22.9, Z 0.4-5.8 around V-SD; open_iso.png (left end wall is solid)",
+   "what": "No microSD opening; the wall is solid, ray casts at y 12, 14, 16.9, 20, 22 and z 2.1 all hit the wall at X -4.0 and -1.6",
+   "expected": "V-SD path clear, d >= 0.0",
+   "observed": "card path blocked by 2.4 mm of wall (penetration over the full section 12.0 x 5.4)",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.7.2.1, L3.7.3.1 (L2.7.2, L2.7.3)",
+   "where": "base.stl -X wall",
+   "what": "No SD opening, so there is no region inside the grown section and the end-wall opening count is 0",
+   "expected": "1 region within V-SD section + 1.5 (<= 15.0 x 8.4)",
+   "observed": "0 regions",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.3.3.1 (G6; L2.3.3, L1.3)",
+   "where": "base.stl standoff pilots at (3.5,3.5), (61.5,3.5), (3.5,26.5), (61.5,26.5), Z -5.1 to 1.0",
+   "what": "Pilots are M2-sized, not M2.5",
+   "expected": "pilot dia 2.0-2.2",
+   "observed": "section dia 1.702 on all four (margin -0.30)",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.11.1.1 (L2.11.1)",
+   "where": "both bodies, lid pads and base corner bosses at (-3.61,-3.51) (67.61,-3.51) (-3.61,32.61) (67.61,32.61)",
+   "what": "Corner bosses stick out of the walls and make the closed case too deep in Y",
+   "expected": "Y <= 40.0",
+   "observed": "closed bbox 77.32 x 42.22 x 15.9 (Y over by 2.22)",
+   "severity": "minor"
+  },
+  {
+   "requirement_id": "L3.8.5.1 (observation)",
+   "where": "lid.stl plate 72.0 x 36.9 vs base outline incl. bosses 77.3 x 42.2",
+   "what": "Plate outline matches the walls, not the boss-inclusive base outline; graded as the walls",
+   "expected": "outline +-0.5",
+   "observed": "plate narrower than boss outline by 2.66 per side",
+   "severity": "observation"
+  }
+ ]
+}

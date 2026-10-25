@@ -391,5 +391,72 @@ class TestResolverExtensions(unittest.TestCase):
         np.testing.assert_allclose(back.resolve().poses["c"], res.poses["c"])
 
 
+class TestPrism(unittest.TestCase):
+    """Generalize delta 003 C4: a convex polygon extruded along its local normal (the 45-degree roof of a wide opening;
+    GM5 gussets, chamfers and teardrops reuse it)."""
+
+    def trapezoid(self, order=1):
+        pts = [("0", "-w/2"), ("rise", "-b/2"), ("rise", "b/2"), ("0", "w/2")][::order]
+        params = {"n": 4, "w": 16.8, "b": 14.9, "rise": "(w - b)/2 / tand(45)", "h": 6.0}
+        for k, (x, y) in enumerate(pts, 1):
+            params[f"x{k}"], params[f"y{k}"] = x, y
+        return Node("roof", "cut", "prism", params, Pose(offset=(1.0, 2.0, 3.0), axis_dir=(1, 0, 0), rot_z=180),
+                    body="base", role="port_roof")
+
+    def test_prism_volume_bbox_and_orientation(self):
+        for order in (1, -1):                # a clockwise vertex list gives the same solid
+            g = FeatureGraph([self.trapezoid(order)])
+            res = g.resolve(rules=dict(RULES, fn=24))
+            p = res.params["roof"]
+            self.assertAlmostEqual(p["rise"], 0.95, places=9)
+            m = fg.solid(g.nodes["roof"], res)
+            self.assertAlmostEqual(m.volume(), (16.8 + 14.9) / 2 * 0.95 * 6.0, places=6)
+            bb = m.bounding_box()
+            # axis_dir +X with rot_z 180: local Z (the extrusion) is world +X, local X world +Z, local Y world -Y
+            np.testing.assert_allclose(bb, [1.0, 2.0 - 8.4, 3.0, 7.0, 2.0 + 8.4, 3.95], atol=1e-9)
+
+    @unittest.skipUnless(HAVE_OPENSCAD, "OpenSCAD is not installed")
+    def test_prism_parity(self):
+        # T13: a box body with a box opening and a prism roof cut on it: SCAD and manifold volume and bbox agree within the
+        # parity rules (design_rules.json parity_volume_rel, parity_bbox)
+        rules = dict(RULES, fn=24)
+        roof = self.trapezoid()
+        roof.pose = Pose(offset=(-3.0, 0.0, 10.0), axis_dir=(1, 0, 0), rot_z=180)
+        g = FeatureGraph([Node("base", "body", "box", {"x": 6.0, "y": 30.0, "z": 20.0}, Pose(offset=(0, 0, 0))),
+                          Node("open", "cut", "box", {"x": 8.0, "y": 16.8, "z": 6.0}, Pose(offset=(0, 0, 4.0)),
+                               body="base", role="port_cut"),
+                          roof])
+        res = g.resolve(rules=rules)
+        m = fg.body_solid(g, "base", res)
+        stats = fg.body_stats(m)
+        self.assertAlmostEqual(stats["volume"], 6 * 30 * 20 - 6 * 16.8 * 6 - 6 * (16.8 + 14.9) / 2 * 0.95, places=6)
+        with tempfile.TemporaryDirectory() as tmp:
+            scad = Path(tmp) / "base.scad"
+            text = fg.scad_body(g, "base", res)
+            self.assertIn("linear_extrude", text)
+            scad.write_text(text)
+            out = ca.compile_scad(scad, Path(tmp) / "base.stl")
+            self.assertTrue(out.ok, out.problems)
+            vol, _ = ca.mesh_mass(out.tris)
+            self.assertLessEqual(abs(vol - stats["volume"]), rules["parity_volume_rel"] * stats["volume"])
+            lo, hi = ca.mesh_bbox(out.tris)
+            np.testing.assert_allclose(lo, stats["bbox"][0], atol=rules["parity_bbox"])
+            np.testing.assert_allclose(hi, stats["bbox"][1], atol=rules["parity_bbox"])
+            # the roof really opens the wall: a slice just above the box opening has a hole as wide as the roof there
+            hollow = (m ^ m3d_box([-3.0, -15.0, 10.4], [3.0, 15.0, 10.5])).volume()
+            self.assertLess(hollow, 6 * 30 * 0.1 - 6 * 15.0 * 0.1)
+
+    def test_bad_prisms_are_rejected(self):
+        for params in ({"n": 2, "x1": 0, "y1": 0, "x2": 1, "y2": 0, "h": 1},
+                       {"n": 3, "x1": 0, "y1": 0, "x2": 1, "y2": 0, "x3": 2, "y3": 0, "h": 1}):
+            g = FeatureGraph([Node("p", "cut", "prism", params, body="b")])
+            with self.assertRaises(ValueError):
+                fg.solid(g.nodes["p"], g.resolve())
+
+
+def m3d_box(lo, hi):
+    return fg.m3d.Manifold.cube([h - l for l, h in zip(lo, hi)]).translate(lo)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,0 +1,80 @@
+MODEL: ornith-1.5:9b T=0.3 seed=1000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 6.5 mm (request): "...Two links of a cable chain for a 6.5 mm cable, printed in place with 0.35 mm clearance on the pivot..."
+n2 = 0.35 mm (request): "...of a cable chain for a 6.5 mm cable, printed in place with 0.35 mm clearance on the pivot. Each link has an inner sectio..."
+n3 = 12 (request): "...5 mm clearance on the pivot. Each link has an inner section 12 x 10 mm (12 mm along the pivot axis, 10 mm across the ben..."
+n4 = 10 mm (request): "...clearance on the pivot. Each link has an inner section 12 x 10 mm (12 mm along the pivot axis, 10 mm across the bend pla..."
+n5 = 12 mm (request): "...ce on the pivot. Each link has an inner section 12 x 10 mm (12 mm along the pivot axis, 10 mm across the bend plane) and..."
+n6 = 10 mm (request): "...as an inner section 12 x 10 mm (12 mm along the pivot axis, 10 mm across the bend plane) and the pair bends 30 degrees e..."
+n7 = 30 degrees (request): "...pivot axis, 10 mm across the bend plane) and the pair bends 30 degrees either way about a vertical pivot pin before a st..."
+n8 = 20 (request): "...way about a vertical pivot pin before a stop. Each link is 20 to 40 mm long. The two links are separate bodies in one pr..."
+n9 = 40 mm (request): "...bout a vertical pivot pin before a stop. Each link is 20 to 40 mm long. The two links are separate bodies in one print a..."
+n10 = 3.0 mm (request): "...nt and must not touch each other. The pivot pin is at least 3.0 mm in diameter and its head overlaps the bore by at leas..."
+n11 = 0.4 mm (request): "...0 mm in diameter and its head overlaps the bore by at least 0.4 mm per side; sideways play is at most 0.8 mm and axial p..."
+n12 = 0.8 mm (request): "...bore by at least 0.4 mm per side; sideways play is at most 0.8 mm and axial play at most 1.2 mm. Print flat without supp..."
+n13 = 1.2 mm (request): "...ide; sideways play is at most 0.8 mm and axial play at most 1.2 mm. Print flat without supports...."
+n14 = 12 mm (L1.2): "...Each link shall have a straight inner section 12 mm along the pivot axis by 10 mm across the bend plane, at lea..."
+n15 = 10 mm (L1.2): "...have a straight inner section 12 mm along the pivot axis by 10 mm across the bend plane, at least 20 mm long, through wh..."
+n16 = 20 mm (L1.2): "...ong the pivot axis by 10 mm across the bend plane, at least 20 mm long, through which a 6.5 mm cable passes with at leas..."
+n17 = 6.5 mm (L1.2): "...across the bend plane, at least 20 mm long, through which a 6.5 mm cable passes with at least 0.5 mm clearance...."
+n18 = 0.5 mm (L1.2): "...mm long, through which a 6.5 mm cable passes with at least 0.5 mm clearance...."
+n19 = 0.35 mm (L1.3): "...wo links shall be joined by a pivot pin held in a bore with 0.35 mm clearance all round and 0.35 mm clearance axially, s..."
+n20 = 0.35 mm (L1.3): "...vot pin held in a bore with 0.35 mm clearance all round and 0.35 mm clearance axially, so the pin (at least 3.0 mm in di..."
+n21 = 3.0 mm (L1.3): "...l round and 0.35 mm clearance axially, so the pin (at least 3.0 mm in diameter, with a head overlapping the bore by at l..."
+n22 = 0.4 mm (L1.3): "...m in diameter, with a head overlapping the bore by at least 0.4 mm per side) cannot come out, and the joint shall have n..."
+n23 = 0.8 mm (L1.3): "...ide) cannot come out, and the joint shall have no more than 0.8 mm of sideways play and no more than 1.2 mm of axial pla..."
+n24 = 1.2 mm (L1.3): "...have no more than 0.8 mm of sideways play and no more than 1.2 mm of axial play...."
+n25 = 30 degrees (L1.4): "...The pair shall bend freely from 30 degrees one way to 30 degrees the other with no contact between the..."
+n26 = 30 degrees (L1.4): "...The pair shall bend freely from 30 degrees one way to 30 degrees the other with no contact between the links and at leas..."
+n27 = 0.30 mm (L1.4): "...es the other with no contact between the links and at least 0.30 mm between them...."
+n28 = 30 degrees (L1.5): "...A stop shall block the bend at 30 degrees either way, within one degree, on both sides...."
+n29 = 6.5 mm (L1.6): "...A 6.5 mm cable passing through both inner sections shall clear both..."
+n30 = 0.2 mm (L1.6): "...ough both inner sections shall clear both links by at least 0.2 mm at every bend angle from 30 degrees one way to 30 deg..."
+n31 = 30 degrees (L1.6): "...lear both links by at least 0.2 mm at every bend angle from 30 degrees one way to 30 degrees the other...."
+n32 = 30 degrees (L1.6): "...least 0.2 mm at every bend angle from 30 degrees one way to 30 degrees the other...."
+n33 = 20 (L1.7): "...Each link shall be 20 to 40 mm long, no wider than 20 mm across the bend plane an..."
+n34 = 40 mm (L1.7): "...Each link shall be 20 to 40 mm long, no wider than 20 mm across the bend plane and no tall..."
+n35 = 20 mm (L1.7): "...Each link shall be 20 to 40 mm long, no wider than 20 mm across the bend plane and no taller than 25 mm along the pi..."
+n36 = 25 mm (L1.7): "...o wider than 20 mm across the bend plane and no taller than 25 mm along the pivot axis, with every wall at least 1.6 mm ..."
+n37 = 1.6 mm (L1.7): "...r than 25 mm along the pivot axis, with every wall at least 1.6 mm thick...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+Your previous answer broke these rules: board_width has no default and must be one of the numbers; board_depth has no default and must be one of the numbers. Answer again and fix that.
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "none",
+  "max_y": "none",
+  "max_z": "none",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "none"
+}

@@ -1,0 +1,75 @@
+MODEL: ornith-1.5:9b T=0.3 seed=4000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 40.7 (request): "...A heavy-duty mount for an MG996R servo (body 40.7 x 19.7 x 42.9 mm, tabs 53.6 mm long with mounting holes 49...."
+n2 = 19.7 (request): "...A heavy-duty mount for an MG996R servo (body 40.7 x 19.7 x 42.9 mm, tabs 53.6 mm long with mounting holes 49.5 mm ap..."
+n3 = 42.9 mm (request): "...A heavy-duty mount for an MG996R servo (body 40.7 x 19.7 x 42.9 mm, tabs 53.6 mm long with mounting holes 49.5 mm apart,..."
+n4 = 53.6 mm (request): "...mount for an MG996R servo (body 40.7 x 19.7 x 42.9 mm, tabs 53.6 mm long with mounting holes 49.5 mm apart, output shaft..."
+n5 = 49.5 mm (request): "...0.7 x 19.7 x 42.9 mm, tabs 53.6 mm long with mounting holes 49.5 mm apart, output shaft up) on top of a 2020 aluminium e..."
+n6 = 2020 (request): "...mounting holes 49.5 mm apart, output shaft up) on top of a 2020 aluminium extrusion at least 300 mm long. The servo drop..."
+n7 = 300 mm (request): "...put shaft up) on top of a 2020 aluminium extrusion at least 300 mm long. The servo drops straight down into a pocket in ..."
+n8 = 0.3 mm (request): "...o drops straight down into a pocket in a printed block with 0.3 mm clearance per side, its tabs rest on the top of the b..."
+n9 = 49.5 mm (request): "...head bolts fix it through the tab holes (two holes per tab, 49.5 mm apart along the tab and 10 mm apart across it). The ..."
+n10 = 10 mm (request): "...b holes (two holes per tab, 49.5 mm apart along the tab and 10 mm apart across it). The block stands on a flange that is..."
+n11 = 1.5 (request): "...ussets stiffen the block against a servo torque reaction of 1.5 N m. Show the load path from the servo to the extrusion ..."
+n12 = 0.3 mm (L1.2): "...vo shall drop straight down into a pocket in the block with 0.3 mm clearance per side around its body, clear of the pock..."
+n13 = 0.3 (L1.2): "...ance per side around its body, clear of the pocket floor by 0.3 to 2.5 mm, with its tabs resting on the top of the block..."
+n14 = 2.5 mm (L1.2): "...r side around its body, clear of the pocket floor by 0.3 to 2.5 mm, with its tabs resting on the top of the block...."
+n15 = 60 (L1.5): "...into T-nuts in the extrusion's top slot on its centreline, 60 to 110 mm apart along the slot with the servo's output spl..."
+n16 = 110 mm (L1.5): "...T-nuts in the extrusion's top slot on its centreline, 60 to 110 mm apart along the slot with the servo's output spline b..."
+n17 = 3 mm (L1.5): "...and short enough not to touch the slot floor, with at least 3 mm of flange round each bolt head...."
+n18 = 3 (L1.6): "...oin the block to the flange, one on each side of the block, 3 to 8 mm thick, at least 10 mm long along the flange and 15..."
+n19 = 8 mm (L1.6): "...he block to the flange, one on each side of the block, 3 to 8 mm thick, at least 10 mm long along the flange and 15 mm h..."
+n20 = 10 mm (L1.6): "...e, one on each side of the block, 3 to 8 mm thick, at least 10 mm long along the flange and 15 mm high up the block, and..."
+n21 = 15 mm (L1.6): "..., 3 to 8 mm thick, at least 10 mm long along the flange and 15 mm high up the block, and together giving the block-to-fl..."
+n22 = 1.25 (L1.6): "...k, and together giving the block-to-flange section at least 1.25 times the bending stiffness (second moment of area abou..."
+n23 = 1.5 (L1.7): "...The mount shall resist a servo torque reaction of 1.5 N m: the load path from the servo through the M4 bolts, the..."
+n24 = 4 (L1.7): "...t limits. Use these limits and this model: PLA thread shear 4 MPa on the pilot cylinder (tab-bolt thread strength at lea..."
+n25 = 3 (L1.7): "...Pa on the pilot cylinder (tab-bolt thread strength at least 3 times the bolt shear, bolts sharing the torque in proporti..."
+n26 = 2 (L1.7): "...ion to their distance from the centroid of the four holes), 2 MPa shear and 3 MPa bending in the block-to-flange junctio..."
+n27 = 3 (L1.7): "...tance from the centroid of the four holes), 2 MPa shear and 3 MPa bending in the block-to-flange junction, 5 MPa bearing..."
+n28 = 5 (L1.7): "...Pa shear and 3 MPa bending in the block-to-flange junction, 5 MPa bearing under an M5 head, 500 N tension per T-nut; the..."
+n29 = 500 (L1.7): "...e block-to-flange junction, 5 MPa bearing under an M5 head, 500 N tension per T-nut; the horn side force is the torque d..."
+n30 = 25 mm (L1.7): "...per T-nut; the horn side force is the torque divided by the 25 mm horn reach, acting across the extrusion at the horn pl..."
+n31 = 10 mm (L1.7): "...id-height and tipping the mount about the extrusion's edge (10 mm from the bolt line), carried by the two M5 bolts in pr..."
+n32 = 130 (L1.10): "...The mount shall be no larger than 130 x 70 x 45 mm...."
+n33 = 70 (L1.10): "...The mount shall be no larger than 130 x 70 x 45 mm...."
+n34 = 45 mm (L1.10): "...The mount shall be no larger than 130 x 70 x 45 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "none",
+  "max_y": "none",
+  "max_z": "none",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "none"
+}

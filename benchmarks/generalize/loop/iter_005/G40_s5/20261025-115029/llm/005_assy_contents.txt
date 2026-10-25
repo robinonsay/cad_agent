@@ -1,0 +1,47 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a drilling template, flat, for the Raspberry Pi Pico 2 hole pattern in a panel. The Pico 2's four mounting holes are 2.1 mm and form a 47.0 x 11.4 mm rectangle (47.0 mm apart lengthwise, 11.4 mm across). Each of the four gets a 2.3 mm guide hole in the template, so a 2.1 mm drill goes through with some play. The template registers against a straight panel edge: I hold it to the edge of the panel, a flat sheet 3 mm thick, and drill. The closest row of holes has to be 10 mm from that edge; I slide it along the edge by eye, so just the distance from the edge and the angle count. In the top face there is a pocket in the shape of the Pico's outline, so I can set a Pico in it to verify placement before I drill. Hole centres have to land within 0.1 mm of the pattern. I print it in PLA on an FDM printer.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_zero2w": {
+    "hdmi_exposed": "no",
+    "quantity": 0,
+    "sd_exposed": "no",
+    "usb_data_exposed": "no",
+    "usb_power_exposed": "no"
+  }
+}

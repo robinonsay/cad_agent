@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the ESP32 DevKitC V4 from the catalogue with its micro-USB port facing the \u2212X short end and its antenna toward +X, and place three 5 mm LEDs on the lid, without the parts colliding, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The board shall rest on four pads under its end regions, outside the header footprint, each at least 10 mm\u00b2, and be located by the walls and two antenna-end stops (0.2 to 1.0 mm from the board, stops below the board's top face), with the printed box clear of the board's keep-out volumes (header pins, tails, component side).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "No wall or lid shall enter the board's antenna keep-out, and the cavity shall extend at least 8.0 mm beyond the board's antenna end; the keep-out is the board's last 6.0 mm plus the 8.0 mm beyond it, the full board width, up to 5.0 mm above the module top (from the part's data).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "With the lid closed, a micro-USB cable shall plug fully into the board through one opening in the \u2212X end wall with at least 0.3 mm to spare all round the plug, leaving at least 1.5 mm of wall round the opening, and the opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.5",
+    "text": "The lid shall hold three 5 mm LEDs in collars with their domes flush with the outside, their flanges captured on a shoulder and a snap lip behind them, so each LED stays in: holes 5.2 to 5.4 mm across, flange overlap at least 0.2 mm per side, domes within 0.3 mm of flush, snap-lip opening 5.3 to 5.6 mm with at least two slits. The LEDs sit in a row at least 10.0 mm apart, each axis at least 4.5 mm in plan from the board's header-pin and antenna keep-outs.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "The box shall have two ears, each with a countersunk slot for a 4.2 mm wood screw, the two slot centres 100.0 mm apart, with at least 3.0 mm from each countersink outline to the edge of its ear and to the box. Each slot is a 4.5 mm wide stadium with 4.0 mm between its end centres (for adjustment), under a 90 degree countersink 8.4 mm across; the ears are 3.5 to 5.0 mm thick and the slot centres are symmetric about the box centre within 0.5 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "The box shall have a flat back face, with the ears coplanar with it (flat within 0.3 mm), so it sits flat against the wall.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The lid shall be a separate body that locates on the base with a sliding lip and is held by four M3 self-tapping screws in tabs outside the cavity (screw axes 3.5 to 5.0 mm beyond the wall's outer face, pilots 2.4 to 2.6 mm and at least 6.0 mm deep, lid holes 3.4 mm), the sliding lip at least 2.0 mm deep with 0.15 to 0.35 mm clearance per side.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "The closed box shall have no openings other than the USB opening, the three LED holes, the lid screw holes and the two ear slots, and its walls, floor and lid shall be 2.0 to 4.0 mm thick, with at least 1.5 mm of material round each opening.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The base shall print on its back face and the lid on its outer face, each as one manifold body without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed box with its ears and tabs shall be no larger than 125 x 50 x 26 mm, longest along the board's 54.4 mm side.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.12",
+    "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and the report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

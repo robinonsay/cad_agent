@@ -1,0 +1,160 @@
+{
+  "paraphrases": [
+    {
+      "id": "G47",
+      "tier": 4,
+      "title": "Gearmotor and ultrasonic sensor bracket",
+      "request": "One-piece printed robot-base bracket. It clamps an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) in a pocket and holds an HC-SR04 ultrasonic sensor (45 x 20 mm board, two 16 mm transducers at 26 mm pitch) facing forward, 40 mm forward of the motor's shaft axis. A 6 x 3 mm magnet pocket at the shaft end serves an encoder. Two M3 bolts attach the whole bracket to the chassis. FDM, no supports, printed flat on the chassis face.",
+      "request_verbatim": "A robot-base bracket holding an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) in a clamp pocket and an HC-SR04 ultrasonic sensor (45 x 20 mm, 16 mm transducers at 26 mm pitch) 40 mm forward. A 6 x 3 mm magnet pocket at the shaft end for an encoder. Two M3 bolts fix the whole bracket to the chassis.",
+      "request_notes": "Added to the plan brief, from requirements.md section 3: forward means the sensor's rear board face is 40 mm in front of the motor's shaft axis, the sensor faces forward and the shaft points sideways (A1); the magnet pocket faces the shaft tip from an encoder wall (A3, high uncertainty); one printed body, flat chassis face down (D1).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Place the N20 gearmotor and the HC-SR04 from the parts catalogue: motor shaft axis horizontal and sideways, 8 to 30 mm above the chassis face; sensor transducers facing forward; sensor rear board face 40.0 mm (39.5 to 40.5 mm) ahead of the shaft axis; no collisions between parts. Declare that layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The motor's 12 x 10 mm body sits in a clamp pocket 0.1 to 0.3 mm larger than the body on each of its two dimensions, coaxial with the shaft to 0.15 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The gearbox face rests on a stop wall with a passage for the 3 mm shaft. The shaft turns freely with nothing printed in its path, and the motor slides into the pocket from the rear with its rear terminals clear.",
+          "method": "test"
+        },
+        {
+          "id": "L1.4",
+          "text": "Pocket for one 6 x 3 mm disc magnet: 0.1 to 0.3 mm wider and 0.15 to 0.35 mm deeper than the magnet, coaxial with the shaft axis, facing the shaft tip, magnet face 2.0 mm (1.5 to 2.5 mm) from the tip.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "HC-SR04 board in a slot 0.1 to 0.6 mm deeper than the board's thickness and 0.2 to 0.6 mm wider than its length. The board rests on the slot floor at the declared pose. A front plate covering at least 200 mm2 of its front face retains it (a rear wall covers at least 400 mm2 of its back). It drops in from above.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "The plate has a window for each transducer, coaxial with it, round, 18 to 19 mm across, with a straight channel of that width running to the plate's top edge so the sensor drops in with its transducers in the windows. Nothing printed in the sound beam ahead of either transducer.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Leave a clear volume behind the board for the sensor's 4-pin header and the wires plugged into it; a window or notch in the slot's rear wall lets the header through.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "Two M3 bolts hold the bracket to the chassis: clearance holes with counterbores for the heads in a flat base plate, 20 to 60 mm apart, bolt tips protruding 5 to 15 mm past the plate, and a free hex-key column above each head.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.9",
+          "text": "Strength: walls and ligaments 2.0 mm or thicker, base plate 4.0 to 8.0 mm, at least 2.0 mm of material around each bolt hole, at least 150 mm2 of plate section between the motor pocket and the sensor slot, and the bracket is a single connected body.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "One manifold body, printed on FDM without supports with the chassis face on the bed.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "At most 60 x 60 x 35 mm; stands flat on its chassis face without tipping.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "Deliver a bracket STL (chassis face at Z = 0, mm), the OpenSCAD source, the declared layout and hardware, and the agent's own clearance report, which must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "clamp pocket (tunnel) from a catalogue motor body with a stated oversize; shaft hole and shaft path keep-out; rear install sweep",
+        "magnet pocket coaxial with a catalogue datum, with a stated recess and a measured tip gap",
+        "slot for a module without mounting holes: front plate with windows at two catalogue axes, rear wall with a window, drop-in sweep",
+        "beam and wire keep-outs from catalogue datums",
+        "two chassis bolts with counterbores, tool columns, flat base plate",
+        "a single printable body with a flat face on the bed and a layout that spans motor and sensor"
+      ]
+    },
+    {
+      "id": "G47",
+      "tier": 4,
+      "title": "Gearmotor and ultrasonic sensor bracket",
+      "request": "Looks like a robot-base bracket to me, all in one printed piece. The sensor, an HC-SR04 ultrasonic unit (45 x 20 mm board, with two 16 mm transducers at 26 mm pitch), faces forward and sits 40 mm forward of the shaft axis of the motor, which is an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) held in a clamp pocket. At the shaft end there is a 6 x 3 mm magnet pocket for an encoder. The whole bracket is fixed to the chassis with two M3 bolts. Print it on an FDM printer without supports, lying flat on its chassis face.",
+      "request_verbatim": "A robot-base bracket holding an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) in a clamp pocket and an HC-SR04 ultrasonic sensor (45 x 20 mm, 16 mm transducers at 26 mm pitch) 40 mm forward. A 6 x 3 mm magnet pocket at the shaft end for an encoder. Two M3 bolts fix the whole bracket to the chassis.",
+      "request_notes": "Added to the plan brief, from requirements.md section 3: forward means the sensor's rear board face is 40 mm in front of the motor's shaft axis, the sensor faces forward and the shaft points sideways (A1); the magnet pocket faces the shaft tip from an encoder wall (A3, high uncertainty); one printed body, flat chassis face down (D1).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Take the N20 gearmotor and the HC-SR04 from the parts catalogue and position them so they do not collide. The motor's shaft axis runs horizontal and sideways, at a height of 8 to 30 mm above the chassis face. The sensor's transducers point forward, with its rear board face 40.0 mm (39.5 to 40.5 mm) in front of the shaft axis. Declare the layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "Make the clamp pocket for the motor's 12 x 10 mm body 0.1 to 0.3 mm oversize on each of the two dimensions, and keep it coaxial with the shaft within 0.15 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "A stop wall takes the motor's gearbox face and lets the 3 mm shaft through; the shaft must spin freely with nothing printed in its way, and the motor must slide into the pocket from behind, rear terminals left clear.",
+          "method": "test"
+        },
+        {
+          "id": "L1.4",
+          "text": "Add a pocket for a single 6 x 3 mm disc magnet. It is coaxial with the shaft axis and faces the shaft tip, with the magnet's face 2.0 mm (1.5 to 2.5 mm) away from the tip. Make it wider than the magnet by 0.1 to 0.3 mm and deeper by 0.15 to 0.35 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The HC-SR04 board goes into a slot that is deeper than the board is thick by 0.1 to 0.6 mm and wider than it is long by 0.2 to 0.6 mm; it should drop in from above and rest on the slot floor at the declared pose. In front, a plate covering 200 mm2 or more of the front face holds it, and a rear wall covers at least 400 mm2 of the back.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "Cut a round window in the plate for each transducer, centred on it and 18 to 19 mm across, and continue each as a straight channel of the same width to the top edge of the plate so the sensor can be dropped in with its transducers in the windows. Keep the sound beam in front of both transducers free of any printed material.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Leave room behind the board for the 4-pin header and the wires plugged into it, and cut a window or notch through the rear wall of the slot to pass the header.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "Fasten the bracket to the chassis with two M3 bolts passing through clearance holes in a flat base plate, with the heads counterbored. Space the bolts 20 to 60 mm apart, let the tips stick out 5 to 15 mm beyond the plate, and leave a hex-key column free over each head.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.9",
+          "text": "It needs to be sturdy: keep walls and ligaments at 2.0 mm minimum, make the base plate 4.0 to 8.0 mm thick, leave at least 2.0 mm of material round every bolt hole, give the plate between the motor pocket and the sensor slot a section of 150 mm2 or more, and make sure the whole bracket is one connected body.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The bracket is a single manifold body; it prints on an FDM printer with no supports, chassis face down on the bed.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "Overall size must not exceed 60 x 60 x 35 mm, and it must sit flat on its chassis face without tipping over.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "Deliverables: the bracket as an STL with the chassis face at Z = 0 (mm), the OpenSCAD source, the declared layout and hardware, plus the agent's own clearance report that matches an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "clamp pocket (tunnel) from a catalogue motor body with a stated oversize; shaft hole and shaft path keep-out; rear install sweep",
+        "magnet pocket coaxial with a catalogue datum, with a stated recess and a measured tip gap",
+        "slot for a module without mounting holes: front plate with windows at two catalogue axes, rear wall with a window, drop-in sweep",
+        "beam and wire keep-outs from catalogue datums",
+        "two chassis bolts with counterbores, tool columns, flat base plate",
+        "a single printable body with a flat face on the bed and a layout that spans motor and sensor"
+      ]
+    }
+  ]
+}

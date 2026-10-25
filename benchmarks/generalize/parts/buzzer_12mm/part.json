@@ -1,0 +1,188 @@
+{
+  "id": "buzzer_12mm",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "buzzer",
+    "12 mm buzzer",
+    "12mm buzzer",
+    "piezo buzzer",
+    "piezo",
+    "passive buzzer",
+    "active buzzer",
+    "sounder",
+    "piezo sounder"
+  ],
+  "kind": "control",
+  "source": "12 mm piezo buzzer datasheet (e.g. 12 x 8.5 mm PCB-mount transducer): diameter 12.0 mm, height 8.5 mm, sound hole 1.5 mm on the top face. Lead pitch 6.5 mm (typical for the 12 mm case) and the acoustic gap above the top are assumed, uncertainty +-0.5 mm.",
+  "frame": "buzzer: origin at the centre of the base, axis +Z toward the sound hole",
+  "params": {
+    "diameter": {
+      "default": 12.0,
+      "source": "datasheet: case diameter"
+    },
+    "height": {
+      "default": 8.5,
+      "source": "datasheet: case height"
+    },
+    "sound_hole_diameter": {
+      "default": 1.5,
+      "source": "datasheet: sound hole"
+    },
+    "lead_pitch": {
+      "default": 6.5,
+      "source": "assumed typical 12 mm buzzer pin pitch"
+    },
+    "acoustic_gap": {
+      "default": 1.0,
+      "source": "assumed free air gap above the sound hole so a panel hole is not choked, uncertainty +-0.5 mm"
+    }
+  },
+  "datasheet_size": [
+    "diameter",
+    "diameter",
+    "height"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "diameter",
+      "h": "height",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "sound_gap",
+      "primitive": "cylinder",
+      "d": "diameter",
+      "h": "acoustic_gap",
+      "at": [
+        0,
+        0,
+        "height"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "diameter"
+    },
+    "SOUND_PORT": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        "height"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "sound_hole_diameter"
+    },
+    "PINS": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "at": [
+        [
+          "-lead_pitch / 2",
+          0,
+          0
+        ],
+        [
+          "lead_pitch / 2",
+          0,
+          0
+        ]
+      ]
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "height"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "notes": "A panel in front of the buzzer needs a hole at least the sound hole diameter and should stay within acoustic_gap of the top face; closing the hole mutes it. Active vs passive buzzers share this outline; polarity is not modelled. Lead pitch and gap are assumed, not from the vendor drawing.",
+  "self_checks": [
+    {
+      "name": "diameter 12",
+      "expr": "body.size_y",
+      "value": 12.0,
+      "tol": 0.1
+    },
+    {
+      "name": "height 8.5",
+      "expr": "TOP.z - BOTTOM.z",
+      "value": 8.5,
+      "tol": 0.1
+    },
+    {
+      "name": "sound hole 1.5",
+      "expr": "SOUND_PORT.diameter",
+      "value": 1.5,
+      "tol": 0.1
+    },
+    {
+      "name": "sound hole smaller than the case",
+      "expr": "diameter - sound_hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

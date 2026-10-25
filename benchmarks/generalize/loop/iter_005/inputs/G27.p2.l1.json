@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The declared layout must give the pose of the bearing, the axis of the rod and the poses of the nuts, with the housing for the bearing beneath the plate and the rod parallel to the 30 mm side of the plate, centred on the 40 mm side.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The bearing sits in a round 15.1 mm bore (range 15.05 to 15.15) with 0 to 0.15 mm radial gap, resting against a single shoulder that touches only its outer ring, and no printed material intrudes into the 8 mm core.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The housing carries two zip-tie grooves that squeeze the bearing. Make each groove 3.2 to 4.0 mm in width and no less than 1.0 mm deep, keeping 1.6 mm or more of wall below its floor; put their centres 2.0 mm or more inside the bearing's faces and 8.0 mm or more from each other. A 3.0 x 1.2 mm tie must be able to circle the whole way round in each groove. Cut one slit, 1.0 to 2.0 mm wide, along the underside over nearly the entire housing length, so tightening the ties preloads the bore.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "With the bearing in place the 8 mm rod must pass through freely, the printed block staying 1.0 mm or more away from it at every point, with the core open at both ends and the bore sharing an axis with the declared bearing.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The top plate is flat (to 0.2 mm), runs parallel to the rod, measures 40 x 30 mm give or take 0.2 and is 4.0 to 6.0 mm thick; it is joined to the housing through webs of 30 mm2 or more.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "Drill four 3.4 mm holes through the plate at the corners of a 30.0 x 20.0 mm rectangle (tolerance plus or minus 0.15) centred on the plate. Keep 2.0 mm or more of material around every hole and leave room for a hex key above each screw head.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "At every hole, trap an M3 nut in a hex pocket in the underside of the plate. Pocket across flats 5.6 to 6.0 mm, so the nut cannot rotate, and 2.6 to 3.2 mm deep, with space to push the nut in from below.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "Orient the carriage with the rod axis vertical (so the bore comes out round) and print it on an FDM printer with no supports; it must rest on a face of 300 mm2 or more, covering at least 30 percent of its footprint box.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "Keep the carriage to a single manifold shell that fits in 45 x 35 x 35 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Provide the STL of the carriage, the OpenSCAD source, the layout declaration and the agent's own report, which must match an independent measurement.",
+    "method": "inspection"
+  }
+]

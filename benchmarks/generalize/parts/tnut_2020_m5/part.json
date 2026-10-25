@@ -1,0 +1,171 @@
+{
+ "id": "tnut_2020_m5",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "m5 t-nut",
+  "m5 t nut",
+  "m5 tnut",
+  "m5 drop-in t-nut",
+  "m5 drop in t nut",
+  "2020 t-nut",
+  "2020 t nut",
+  "t-nut",
+  "t nut",
+  "drop-in t-nut"
+ ],
+ "kind": "mech",
+ "source": "M5 drop-in T-nut for 2020 profile (common catalogue part, e.g. Misumi HNTT5-5 / generic drop-in): about 10.0 x 9.7 x 3.5 mm plate, M5x0.8 thread. The nut's long side (10 mm) turns across the 6.2 mm slot opening and sits behind the lips in the 11 mm slot interior; plate thickness 3.5 mm is a catalogue value that varies +/-0.3 mm between vendors. Clearance hole for M5 per ISO 273 medium: 5.5 mm.",
+ "frame": "fastener: axis along Z, origin on the bearing face (the face that presses against the lips), body toward -Z (deeper in the slot), screw enters from +Z",
+ "params": {
+  "thread_diameter": {
+   "default": 5.0,
+   "source": "M5 internal thread"
+  },
+  "thread_pitch": {
+   "default": 0.8,
+   "source": "ISO 261 coarse pitch for M5"
+  },
+  "plate_length": {
+   "default": 10.0,
+   "source": "catalogue: nut length across the slot"
+  },
+  "plate_width": {
+   "default": 9.7,
+   "source": "catalogue: nut width along the slot"
+  },
+  "plate_thickness": {
+   "default": 3.5,
+   "source": "catalogue: nut thickness (assumed +/-0.3 mm between vendors)"
+  },
+  "slot_opening": {
+   "default": 6.2,
+   "source": "2020 profile slot opening (the nut must be wider than this)"
+  },
+  "slot_inner_width": {
+   "default": 11.0,
+   "source": "2020 profile slot interior width the nut must fit inside (assumed, extrusion_2020 notes)"
+  },
+  "clearance_diameter": {
+   "default": 5.5,
+   "source": "ISO 273 medium clearance hole for M5"
+  },
+  "min_engagement": {
+   "default": 5.0,
+   "source": "one thread diameter for a steel screw into a steel nut (engineering convention)"
+  }
+ },
+ "datasheet_size": [
+  "plate_length",
+  "plate_width",
+  "plate_thickness"
+ ],
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "plate",
+   "primitive": "box",
+   "size": [
+    "plate_length",
+    "plate_width",
+    "plate_thickness"
+   ],
+   "at": [
+    "-plate_length / 2",
+    "-plate_width / 2",
+    "-plate_thickness"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "screw_tip",
+   "primitive": "cylinder",
+   "d": "thread_diameter",
+   "h": "min_engagement",
+   "at": [
+    0,
+    0,
+    "-plate_thickness"
+   ],
+   "dir": [
+    0,
+    0,
+    -1
+   ]
+  }
+ ],
+ "datums": {
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "diameter": "thread_diameter"
+  },
+  "BEARING": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "BACK": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "-plate_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  }
+ },
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "nut wider than the slot opening",
+   "expr": "plate_length - slot_opening",
+   "op": "ge",
+   "value": 0.5,
+   "tol": 0
+  },
+  {
+   "name": "nut fits the slot interior",
+   "expr": "slot_inner_width - plate_length",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "clearance hole passes the thread",
+   "expr": "clearance_diameter - thread_diameter",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "thread cut fits the plate width",
+   "expr": "plate_width - thread_diameter",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

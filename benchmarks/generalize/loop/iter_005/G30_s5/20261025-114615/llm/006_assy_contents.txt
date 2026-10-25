@@ -1,0 +1,28 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a printed duct linking a fan, 60 x 60 x 25 mm with mounting holes on a 50 mm square pitch, to a heatsink measuring 50 x 20 mm and 30 mm in height. The fan is mounted above and blows straight downward onto the heatsink, whose fins run vertically; the leading face is therefore the heatsink's 50 x 20 mm top, and that is where the duct ends. The section should change smoothly from fan to heatsink, and the duct's outlet fits as a sleeve over the heatsink top, leaving 0.2 to 1 mm between it and the sides, so the side seals are no more than 1 mm. The fan is bolted down with four M4 socket-head bolts through its holes into the duct, and a hex driver has to reach all four screws from above. FDM, PLA, no supports, one part, wall of 1.6 mm minimum.
+
+Catalogue parts that may be in the request:
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+- generic_tube: tube (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {"exposed": "no", "quantity": 0},
+  "esp32_devkitc_v4": {"exposed": "no", "quantity": 0},
+  "generic_box": {"quantity": 0},
+  "generic_cylinder": {"quantity": 0},
+  "generic_tube": {"quantity": 0},
+  "jack_3p5_pj320a": {"exposed": "no", "quantity": 0}
+}

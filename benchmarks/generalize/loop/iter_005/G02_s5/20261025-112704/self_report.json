@@ -1,0 +1,2658 @@
+{
+  "source": "delivered STL files, rubric.md section 3 recipes",
+  "bodies": {
+    "base": {
+      "file": "base.stl",
+      "shells": 1,
+      "status": "NoError",
+      "volume": 35281.9513,
+      "bbox": [
+        [
+          -16.2,
+          -4.0,
+          -9.4
+        ],
+        [
+          79.8,
+          57.2,
+          18.95
+        ]
+      ]
+    },
+    "lid": {
+      "file": "lid.stl",
+      "shells": 1,
+      "status": "NoError",
+      "volume": 12290.1777,
+      "bbox": [
+        [
+          -14.45,
+          -2.25,
+          16.55
+        ],
+        [
+          78.05,
+          55.45,
+          18.95
+        ]
+      ]
+    }
+  },
+  "errors": [],
+  "all_passed": true,
+  "references": {
+    "board": {
+      "part": "arduino_uno_r3",
+      "d": 1.448197,
+      "check": "inside_board"
+    }
+  },
+  "apertures": {
+    "-X": {
+      "through": 2,
+      "blind": [
+        {
+          "nodes": [],
+          "bbox": [
+            [
+              -14.7,
+              -2.5,
+              16.55
+            ],
+            [
+              -13.81,
+              55.7,
+              18.94
+            ]
+          ]
+        }
+      ],
+      "total": 3
+    },
+    "+X": {
+      "through": 0,
+      "blind": [
+        {
+          "nodes": [],
+          "bbox": [
+            [
+              77.41,
+              -2.5,
+              16.55
+            ],
+            [
+              78.3,
+              55.7,
+              18.94
+            ]
+          ]
+        }
+      ],
+      "total": 1
+    },
+    "-Y": {
+      "through": 0,
+      "blind": [
+        {
+          "nodes": [],
+          "bbox": [
+            [
+              -14.7,
+              -2.5,
+              16.55
+            ],
+            [
+              78.3,
+              -1.61,
+              18.94
+            ]
+          ]
+        }
+      ],
+      "total": 1
+    },
+    "+Y": {
+      "through": 0,
+      "blind": [
+        {
+          "nodes": [],
+          "bbox": [
+            [
+              -14.7,
+              54.81,
+              16.55
+            ],
+            [
+              78.3,
+              55.7,
+              18.94
+            ]
+          ]
+        }
+      ],
+      "total": 1
+    }
+  },
+  "results": [
+    {
+      "check_id": "separable",
+      "l1_id": "rules",
+      "type": "separable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {
+        "bodies": [
+          "base",
+          "lid"
+        ]
+      },
+      "evidence": {
+        "shells": {
+          "base": 1,
+          "lid": 1
+        },
+        "status": {
+          "base": "NoError",
+          "lid": "NoError"
+        },
+        "overlap_mm3": {
+          "base^lid": -1.0332460891588724e-14
+        },
+        "overlap_max": 1.0,
+        "detail": "shells {'base': 1, 'lid': 1}, worst overlap -1.033e-14 mm3 (max 1)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "inside_board",
+      "l1_id": "rules",
+      "type": "inside",
+      "passed": true,
+      "margin": 0.958197,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "outside_mm3": 0.0,
+        "gap_to_solids": 1.448197,
+        "gap_to_outside": 3.900001,
+        "d": 1.448197,
+        "clearance": 0.5,
+        "detail": "board: 1.4482 mm from the enclosure (need >= 0.5)",
+        "volume_parts": {
+          "board": "arduino_uno_r3"
+        },
+        "minus": {
+          "volume": "seats@0.5",
+          "sources": [
+            "seat_0",
+            "seat_1",
+            "seat_2",
+            "seat_3"
+          ],
+          "grown_by": 0.5
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_board",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.958197,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.448197,
+        "d": 1.448197,
+        "clearance": 0.5,
+        "detail": "min gap to board 1.4482 mm (need >= 0.5)",
+        "volume_parts": {
+          "board": "arduino_uno_r3"
+        },
+        "minus": {
+          "volume": "seats@0.5",
+          "sources": [
+            "seat_0",
+            "seat_1",
+            "seat_2",
+            "seat_3"
+          ],
+          "grown_by": 0.5
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_keepout_top",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 1.31,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.3,
+        "d": 1.3,
+        "clearance": 0.0,
+        "detail": "min gap to board_ko_top 1.3000 mm (need >= 0)",
+        "volume_parts": {
+          "board_ko_top": "keepout_top"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_keepout_bottom",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.963617,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.953617,
+        "d": 0.953617,
+        "clearance": 0.0,
+        "detail": "min gap to board_ko_bot 0.9536 mm (need >= 0)",
+        "volume_parts": {
+          "board_ko_bot": "keepout_bottom"
+        },
+        "minus": {
+          "volume": "seats",
+          "sources": [
+            "seat_0",
+            "seat_1",
+            "seat_2",
+            "seat_3"
+          ],
+          "grown_by": 0.0
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_hole_ko_0",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.105176,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.095176,
+        "d": 0.095176,
+        "clearance": 0.0,
+        "detail": "min gap to hole_ko_0 0.0952 mm (need >= 0)",
+        "volume_parts": {
+          "hole_ko_0": "hole_keepout"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_hole_ko_1",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.105175,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.095175,
+        "d": 0.095175,
+        "clearance": 0.0,
+        "detail": "min gap to hole_ko_1 0.0952 mm (need >= 0)",
+        "volume_parts": {
+          "hole_ko_1": "hole_keepout"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_hole_ko_2",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 1.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.6,
+        "d": 1.6,
+        "clearance": 0.0,
+        "detail": "min gap to hole_ko_2 1.6000 mm (need >= 0)",
+        "volume_parts": {
+          "hole_ko_2": "hole_keepout"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_hole_ko_3",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 1.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.6,
+        "d": 1.6,
+        "clearance": 0.0,
+        "detail": "min gap to hole_ko_3 1.6000 mm (need >= 0)",
+        "volume_parts": {
+          "hole_ko_3": "hole_keepout"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_driver_0",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 1.106382,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.096382,
+        "d": 1.096382,
+        "clearance": 0.0,
+        "detail": "min gap to driver_0 1.0964 mm (need >= 0)",
+        "volume_parts": {
+          "driver_0": "driver"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_driver_1",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 1.106381,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.096381,
+        "d": 1.096381,
+        "clearance": 0.0,
+        "detail": "min gap to driver_1 1.0964 mm (need >= 0)",
+        "volume_parts": {
+          "driver_1": "driver"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_driver_2",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 1.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.6,
+        "d": 1.6,
+        "clearance": 0.0,
+        "detail": "min gap to driver_2 1.6000 mm (need >= 0)",
+        "volume_parts": {
+          "driver_2": "driver"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_driver_3",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 1.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 1.6,
+        "d": 1.6,
+        "clearance": 0.0,
+        "detail": "min gap to driver_3 1.6000 mm (need >= 0)",
+        "volume_parts": {
+          "driver_3": "driver"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_board_usb_plug",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.109999,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.399999,
+        "d": 0.399999,
+        "clearance": 0.3,
+        "per_source": {
+          "board_usb_plug_shell": {
+            "part": "plug_usb_b",
+            "penetration_mm3": 0.0,
+            "d": 3.999999
+          },
+          "board_usb_plug_overmold": {
+            "part": "plug_usb_b",
+            "penetration_mm3": 0.0,
+            "d": 0.399999
+          }
+        },
+        "detail": "min gap to board_usb_plug 0.4000 mm (need >= 0.3)",
+        "volume_parts": {
+          "board_usb_plug_shell": "plug_usb_b",
+          "board_usb_plug_overmold": "plug_usb_b"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_board_dc_plug",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.109977,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.399977,
+        "d": 0.399977,
+        "clearance": 0.3,
+        "per_source": {
+          "board_dc_plug_barrel": {
+            "part": "plug_dc_barrel_5p5",
+            "penetration_mm3": 0.0,
+            "d": 4.972093
+          },
+          "board_dc_plug_overmold": {
+            "part": "plug_dc_barrel_5p5",
+            "penetration_mm3": 0.0,
+            "d": 0.399977
+          }
+        },
+        "detail": "min gap to board_dc_plug 0.4000 mm (need >= 0.3)",
+        "volume_parts": {
+          "board_dc_plug_barrel": "plug_dc_barrel_5p5",
+          "board_dc_plug_overmold": "plug_dc_barrel_5p5"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "apertures_-X",
+      "l1_id": "rules",
+      "type": "aperture_count",
+      "passed": true,
+      "margin": -0.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "count": 2,
+        "through": 2,
+        "blind": [
+          {
+            "nodes": [],
+            "bbox": [
+              [
+                -14.7,
+                -2.5,
+                16.55
+              ],
+              [
+                -13.81,
+                55.7,
+                18.94
+              ]
+            ]
+          }
+        ],
+        "total": 3,
+        "expected": 2,
+        "regions": [
+          {
+            "class": "through",
+            "bbox": [
+              [
+                -16.19,
+                1.6929,
+                1.1929
+              ],
+              [
+                -13.81,
+                13.5071,
+                13.0071
+              ]
+            ],
+            "nodes": [
+              "board_dc_cut"
+            ],
+            "volume": 260.4839
+          },
+          {
+            "class": "through",
+            "bbox": [
+              [
+                -16.19,
+                29.7,
+                0.2
+              ],
+              [
+                -13.81,
+                46.5,
+                14.95
+              ]
+            ],
+            "nodes": [
+              "board_usb_cut"
+            ],
+            "volume": 587.616
+          },
+          {
+            "class": "blind",
+            "bbox": [
+              [
+                -14.7,
+                -2.5,
+                16.55
+              ],
+              [
+                -13.81,
+                55.7,
+                18.94
+              ]
+            ],
+            "nodes": [],
+            "volume": 35.5393
+          }
+        ],
+        "detail": "wall -X: 2 through opening(s), expected 2; 1 blind region(s) ()"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "oversize_board_usb_cut",
+      "l1_id": "rules",
+      "type": "aperture_oversize",
+      "passed": true,
+      "margin": 0.16,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "opening": [
+          16.8,
+          14.75
+        ],
+        "envelope": [
+          16.0,
+          13.0
+        ],
+        "excess_per_side": 1.35,
+        "max": 1.5,
+        "where": [
+          [
+            -16.19,
+            29.7,
+            0.2
+          ],
+          [
+            -13.81,
+            46.5,
+            14.95
+          ]
+        ],
+        "detail": "opening 16.800 x 14.750 vs plug 16.000 x 13.000: 1.350 mm per side (max 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "oversize_board_dc_cut",
+      "l1_id": "rules",
+      "type": "aperture_oversize",
+      "passed": true,
+      "margin": 1.10289,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "opening": [
+          11.8142,
+          11.8142
+        ],
+        "envelope": [
+          11.0,
+          11.0
+        ],
+        "excess_per_side": 0.40711,
+        "max": 1.5,
+        "where": [
+          [
+            -16.19,
+            1.6929,
+            1.1929
+          ],
+          [
+            -13.81,
+            13.5071,
+            13.0071
+          ]
+        ],
+        "detail": "opening 11.814 x 11.814 vs plug 11.000 x 11.000: 0.407 mm per side (max 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "apertures_+X",
+      "l1_id": "rules",
+      "type": "aperture_count",
+      "passed": true,
+      "margin": -0.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "count": 0,
+        "through": 0,
+        "blind": [
+          {
+            "nodes": [],
+            "bbox": [
+              [
+                77.41,
+                -2.5,
+                16.55
+              ],
+              [
+                78.3,
+                55.7,
+                18.94
+              ]
+            ]
+          }
+        ],
+        "total": 1,
+        "expected": 0,
+        "regions": [
+          {
+            "class": "blind",
+            "bbox": [
+              [
+                77.41,
+                -2.5,
+                16.55
+              ],
+              [
+                78.3,
+                55.7,
+                18.94
+              ]
+            ],
+            "nodes": [],
+            "volume": 35.5393
+          }
+        ],
+        "detail": "wall +X: 0 through opening(s), expected 0; 1 blind region(s) ()"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "apertures_-Y",
+      "l1_id": "rules",
+      "type": "aperture_count",
+      "passed": true,
+      "margin": -0.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "count": 0,
+        "through": 0,
+        "blind": [
+          {
+            "nodes": [],
+            "bbox": [
+              [
+                -14.7,
+                -2.5,
+                16.55
+              ],
+              [
+                78.3,
+                -1.61,
+                18.94
+              ]
+            ]
+          }
+        ],
+        "total": 1,
+        "expected": 0,
+        "regions": [
+          {
+            "class": "blind",
+            "bbox": [
+              [
+                -14.7,
+                -2.5,
+                16.55
+              ],
+              [
+                78.3,
+                -1.61,
+                18.94
+              ]
+            ],
+            "nodes": [],
+            "volume": 56.3323
+          }
+        ],
+        "detail": "wall -Y: 0 through opening(s), expected 0; 1 blind region(s) ()"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "apertures_+Y",
+      "l1_id": "rules",
+      "type": "aperture_count",
+      "passed": true,
+      "margin": -0.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "count": 0,
+        "through": 0,
+        "blind": [
+          {
+            "nodes": [],
+            "bbox": [
+              [
+                -14.7,
+                54.81,
+                16.55
+              ],
+              [
+                78.3,
+                55.7,
+                18.94
+              ]
+            ]
+          }
+        ],
+        "total": 1,
+        "expected": 0,
+        "regions": [
+          {
+            "class": "blind",
+            "bbox": [
+              [
+                -14.7,
+                54.81,
+                16.55
+              ],
+              [
+                78.3,
+                55.7,
+                18.94
+              ]
+            ],
+            "nodes": [],
+            "volume": 56.3323
+          }
+        ],
+        "detail": "wall +Y: 0 through opening(s), expected 0; 1 blind region(s) ()"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_board_usb_cut_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 2.510001,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": -15.0,
+        "axis": 0,
+        "ligament": 4.000001,
+        "toward": "outer",
+        "where": [
+          [
+            -15.0,
+            45.55,
+            14.95
+          ],
+          [
+            -15.0,
+            45.55,
+            18.95
+          ]
+        ],
+        "rim_samples": 622,
+        "needed": "material radius at [-15.0, 45.55, 14.95] >= hole edge + 1.5 mm",
+        "detail": "4.0000 mm of material round board_usb_cut toward outer at x = -15.000 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_board_dc_cut_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 4.202885,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": -15.0,
+        "axis": 0,
+        "ligament": 5.692885,
+        "toward": "outer",
+        "where": [
+          [
+            -15.0,
+            1.6929,
+            7.1
+          ],
+          [
+            -15.0,
+            -4.0,
+            7.1
+          ]
+        ],
+        "rim_samples": 384,
+        "needed": "material radius at [-15.0, 1.6929, 7.1] >= hole edge + 1.5 mm",
+        "detail": "5.6929 mm of material round board_dc_cut toward outer at x = -15.000 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_standoff_1_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.306312,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": -4.255,
+        "axis": 2,
+        "ligament": 1.796312,
+        "toward": "outer",
+        "where": [
+          [
+            12.8438,
+            2.0211,
+            -4.255
+          ],
+          [
+            11.1526,
+            1.4156,
+            -4.255
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [12.8438, 2.0211, -4.255] >= hole edge + 1.5 mm",
+        "detail": "1.7963 mm of material round standoff_1_pilot toward outer at z = -4.255 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_standoff_2_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.306317,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": -4.255,
+        "axis": 2,
+        "ligament": 1.796317,
+        "toward": "outer",
+        "where": [
+          [
+            15.1773,
+            51.9455,
+            -4.255
+          ],
+          [
+            15.0891,
+            53.7396,
+            -4.255
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [15.1773, 51.9455, -4.255] >= hole edge + 1.5 mm",
+        "detail": "1.7963 mm of material round standoff_2_pilot toward outer at z = -4.255 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_standoff_3_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.306312,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": -4.255,
+        "axis": 2,
+        "ligament": 1.796312,
+        "toward": "outer",
+        "where": [
+          [
+            66.2227,
+            8.8455,
+            -4.255
+          ],
+          [
+            66.4861,
+            10.6224,
+            -4.255
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [66.2227, 8.8455, -4.255] >= hole edge + 1.5 mm",
+        "detail": "1.7963 mm of material round standoff_3_pilot toward outer at z = -4.255 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_standoff_4_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.306313,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": -4.255,
+        "axis": 2,
+        "ligament": 1.796313,
+        "toward": "outer",
+        "where": [
+          [
+            66.2227,
+            36.7455,
+            -4.255
+          ],
+          [
+            66.4861,
+            38.5224,
+            -4.255
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [66.2227, 36.7455, -4.255] >= hole edge + 1.5 mm",
+        "detail": "1.7963 mm of material round standoff_4_pilot toward outer at z = -4.255 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_1_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.555979,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 12.695,
+        "axis": 2,
+        "ligament": 2.045979,
+        "toward": "outer",
+        "where": [
+          [
+            -11.7037,
+            17.4971,
+            12.695
+          ],
+          [
+            -13.4586,
+            18.5489,
+            12.695
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [-11.7037, 17.4971, 12.695] >= hole edge + 1.5 mm",
+        "detail": "2.0460 mm of material round boss_1_pilot toward outer at z = 12.695 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_1_lid_hole_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.65795,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.14795,
+        "toward": "outer",
+        "where": [
+          [
+            -12.3021,
+            16.9071,
+            17.75
+          ],
+          [
+            -14.45,
+            16.9071,
+            17.75
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [-12.3021, 16.9071, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.1479 mm of material round boss_1_lid_hole toward outer at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_2_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.555985,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 12.695,
+        "axis": 2,
+        "ligament": 2.045985,
+        "toward": "outer",
+        "where": [
+          [
+            75.2406,
+            2.2953,
+            12.695
+          ],
+          [
+            76.9955,
+            3.3472,
+            12.695
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [75.2406, 2.2953, 12.695] >= hole edge + 1.5 mm",
+        "detail": "2.0460 mm of material round boss_2_pilot toward outer at z = 12.695 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_2_lid_hole_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.65795,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.14795,
+        "toward": "outer",
+        "where": [
+          [
+            74.2,
+            -0.1021,
+            17.75
+          ],
+          [
+            74.2,
+            -2.25,
+            17.75
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [74.2, -0.1021, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.1479 mm of material round boss_2_lid_hole toward outer at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_3_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.555984,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 12.695,
+        "axis": 2,
+        "ligament": 2.045984,
+        "toward": "outer",
+        "where": [
+          [
+            -9.9047,
+            52.6406,
+            12.695
+          ],
+          [
+            -8.8528,
+            54.3955,
+            12.695
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [-9.9047, 52.6406, 12.695] >= hole edge + 1.5 mm",
+        "detail": "2.0460 mm of material round boss_3_pilot toward outer at z = 12.695 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_3_lid_hole_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.65795,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.14795,
+        "toward": "outer",
+        "where": [
+          [
+            -12.3021,
+            51.6,
+            17.75
+          ],
+          [
+            -14.45,
+            51.6,
+            17.75
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [-12.3021, 51.6, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.1479 mm of material round boss_3_lid_hole toward outer at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_4_pilot_base",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.555987,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 12.695,
+        "axis": 2,
+        "ligament": 2.045987,
+        "toward": "outer",
+        "where": [
+          [
+            73.61,
+            52.7037,
+            12.695
+          ],
+          [
+            72.5582,
+            54.4587,
+            12.695
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [73.61, 52.7037, 12.695] >= hole edge + 1.5 mm",
+        "detail": "2.0460 mm of material round boss_4_pilot toward outer at z = 12.695 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_boss_4_lid_hole_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.657951,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.147951,
+        "toward": "outer",
+        "where": [
+          [
+            74.2,
+            53.3021,
+            17.75
+          ],
+          [
+            74.2,
+            55.45,
+            17.75
+          ]
+        ],
+        "rim_samples": 128,
+        "needed": "material radius at [74.2, 53.3021, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.1480 mm of material round boss_4_lid_hole toward outer at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_1_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_2",
+        "where": [
+          [
+            33.0,
+            18.0,
+            17.75
+          ],
+          [
+            35.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [33.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_1 toward vent_2 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_2_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_3",
+        "where": [
+          [
+            37.0,
+            18.0,
+            17.75
+          ],
+          [
+            39.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [37.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_2 toward vent_3 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_3_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_4",
+        "where": [
+          [
+            41.0,
+            18.0,
+            17.75
+          ],
+          [
+            43.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [41.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_3 toward vent_4 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_4_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_5",
+        "where": [
+          [
+            45.0,
+            18.0,
+            17.75
+          ],
+          [
+            47.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [45.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_4 toward vent_5 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_5_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_6",
+        "where": [
+          [
+            49.0,
+            18.0,
+            17.75
+          ],
+          [
+            51.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [49.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_5 toward vent_6 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_6_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_7",
+        "where": [
+          [
+            53.0,
+            18.0,
+            17.75
+          ],
+          [
+            55.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [53.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_6 toward vent_7 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_7_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_8",
+        "where": [
+          [
+            57.0,
+            18.0,
+            17.75
+          ],
+          [
+            59.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [57.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_7 toward vent_8 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_8_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_9",
+        "where": [
+          [
+            61.0,
+            18.0,
+            17.75
+          ],
+          [
+            63.0,
+            18.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [61.0, 18.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_8 toward vent_9 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "ligament_vent_9_lid",
+      "l1_id": "rules",
+      "type": "ligament",
+      "passed": true,
+      "margin": 0.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "minimum": 1.5,
+        "plane": 17.75,
+        "axis": 2,
+        "ligament": 2.0,
+        "toward": "vent_8",
+        "where": [
+          [
+            63.0,
+            23.0,
+            17.75
+          ],
+          [
+            61.0,
+            23.0,
+            17.75
+          ]
+        ],
+        "rim_samples": 240,
+        "needed": "material radius at [63.0, 23.0, 17.75] >= hole edge + 1.5 mm",
+        "detail": "2.0000 mm of material round vent_9 toward vent_8 at z = 17.750 (need >= 1.5)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "seated",
+      "l1_id": "rules",
+      "type": "seated",
+      "passed": true,
+      "margin": 0.1,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "gaps": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "residuals": [
+          0.0,
+          1e-06,
+          2e-06,
+          2e-06
+        ],
+        "detail": "worst standoff gap 0.0000 mm (max 0.1), worst hole-pilot offset 0.0000 mm (max 0.25)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bbox",
+      "l1_id": "rules",
+      "type": "bbox_within",
+      "passed": true,
+      "margin": 4.009996,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "size": [
+          96.0,
+          61.2,
+          28.35
+        ],
+        "max": [
+          100.0,
+          70.0,
+          35.0
+        ],
+        "x_longest": true,
+        "detail": "outside 96.00 x 61.20 x 28.35 mm, max 100 x 70 x 35 with X longest"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "below_split_board_usb_cut",
+      "l1_id": "rules",
+      "type": "port_below_split",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 16.45,
+        "limit": 16.55,
+        "detail": "board_usb_cut top 14.950 + ligament 1.5 vs split 16.550"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "below_split_board_dc_cut",
+      "l1_id": "rules",
+      "type": "port_below_split",
+      "passed": true,
+      "margin": 2.06,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 14.5,
+        "limit": 16.55,
+        "detail": "board_dc_cut top 13.000 + ligament 1.5 vs split 16.550"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bridge_board_usb_cut",
+      "l1_id": "rules",
+      "type": "bridge",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 14.9,
+        "limit": 15.0,
+        "detail": "board_usb_cut: roof top width 14.900 vs bridge limit 15"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_standoff_1",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.6,
+        "detail": "pilot depth 8.5 vs standoff 7.000 + floor 2.400 - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_standoff_2",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.6,
+        "detail": "pilot depth 8.5 vs standoff 7.000 + floor 2.400 - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_standoff_3",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.6,
+        "detail": "pilot depth 8.5 vs standoff 7.000 + floor 2.400 - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_standoff_4",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.6,
+        "detail": "pilot depth 8.5 vs standoff 7.000 + floor 2.400 - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_boss_1",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 17.46,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 25.15,
+        "detail": "pilot depth 7.7 vs boss height 25.950 (floor included) - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_boss_2",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 17.46,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 25.15,
+        "detail": "pilot depth 7.7 vs boss height 25.950 (floor included) - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_boss_3",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 17.46,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 25.15,
+        "detail": "pilot depth 7.7 vs boss height 25.950 (floor included) - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_depth_boss_4",
+      "l1_id": "rules",
+      "type": "pilot_depth",
+      "passed": true,
+      "margin": 17.46,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 25.15,
+        "detail": "pilot depth 7.7 vs boss height 25.950 (floor included) - 0.8"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "lid_fit_x",
+      "l1_id": "rules",
+      "type": "lid_fit",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.25,
+        "lo": 0.15,
+        "hi": 0.35,
+        "detail": "plate 92.500 in rebate 93.000: 0.250 per side"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "rebate_upstand_x",
+      "l1_id": "rules",
+      "type": "rebate_upstand",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.5,
+        "limit": 1.5,
+        "detail": "base 96.000 - rebate 93.000: upstand 1.500"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "lid_fit_y",
+      "l1_id": "rules",
+      "type": "lid_fit",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.25,
+        "lo": 0.15,
+        "hi": 0.35,
+        "detail": "plate 57.700 in rebate 58.200: 0.250 per side"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "rebate_upstand_y",
+      "l1_id": "rules",
+      "type": "rebate_upstand",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.5,
+        "limit": 1.5,
+        "detail": "base 61.200 - rebate 58.200: upstand 1.500"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "lid_flush",
+      "l1_id": "rules",
+      "type": "lid_flush",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.0,
+        "limit": 0.1,
+        "detail": "plate top 18.950 vs upstand top 18.950"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_top_plane_boss_1",
+      "l1_id": "rules",
+      "type": "boss_top_plane",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.0,
+        "limit": 0.1,
+        "detail": "boss_1 top 16.550 vs rebate floor 16.550"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_top_plane_boss_2",
+      "l1_id": "rules",
+      "type": "boss_top_plane",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.0,
+        "limit": 0.1,
+        "detail": "boss_2 top 16.550 vs rebate floor 16.550"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_top_plane_boss_3",
+      "l1_id": "rules",
+      "type": "boss_top_plane",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.0,
+        "limit": 0.1,
+        "detail": "boss_3 top 16.550 vs rebate floor 16.550"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_top_plane_boss_4",
+      "l1_id": "rules",
+      "type": "boss_top_plane",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.0,
+        "limit": 0.1,
+        "detail": "boss_4 top 16.550 vs rebate floor 16.550"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "vent_count",
+      "l1_id": "rules",
+      "type": "vent_count",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 9.0,
+        "lo": 5.0,
+        "hi": 9.0,
+        "detail": "count 9 (band 5..9)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "vent_area",
+      "l1_id": "rules",
+      "type": "vent_area",
+      "passed": true,
+      "margin": 180.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 180.0,
+        "limit": 0.0,
+        "detail": "9 slots, 180.0 mm2 open (need >= 0)",
+        "quotes": [
+          {
+            "source": "request",
+            "quote": "Cut a line of ventilation slots into the cover above the ATmega328P, and fix the cover down with four M3 self-tapping screws."
+          },
+          {
+            "source": "L1.7",
+            "quote": "Fit the lid with a straight line of 5 to 9 vent slots right above the ATmega328P."
+          },
+          {
+            "source": "L1.9",
+            "quote": "When closed the case has no holes except for the USB opening, the DC opening, the vent slots and the screw holes, and the walls, floor and lid are 2 to 4 mm thick."
+          }
+        ]
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "vent_zone_mcu",
+      "l1_id": "rules",
+      "type": "vent_zone",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": -0.1,
+        "limit": 0.0,
+        "detail": "worst slot end -0.800 mm past the zone end; row 0.000 mm off the zone centre line"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_standoff_1",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 2.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 6.0,
+        "detail": "pilot depth 8.500 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_standoff_1",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.1,
+        "limit": 6.0,
+        "detail": "outside diameter 6.100 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_standoff_1",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.4,
+        "detail": "pilot depth 8.500 vs screw length 10 - clamped plate 1.600"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_standoff_2",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 2.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 6.0,
+        "detail": "pilot depth 8.500 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_standoff_2",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.1,
+        "limit": 6.0,
+        "detail": "outside diameter 6.100 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_standoff_2",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.4,
+        "detail": "pilot depth 8.500 vs screw length 10 - clamped plate 1.600"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_standoff_3",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 2.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 6.0,
+        "detail": "pilot depth 8.500 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_standoff_3",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.1,
+        "limit": 6.0,
+        "detail": "outside diameter 6.100 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_standoff_3",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.4,
+        "detail": "pilot depth 8.500 vs screw length 10 - clamped plate 1.600"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_standoff_4",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 2.51,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 6.0,
+        "detail": "pilot depth 8.500 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_standoff_4",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.1,
+        "limit": 6.0,
+        "detail": "outside diameter 6.100 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_standoff_4",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.5,
+        "limit": 8.4,
+        "detail": "pilot depth 8.500 vs screw length 10 - clamped plate 1.600"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_boss_1",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 1.71,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 6.0,
+        "detail": "pilot depth 7.700 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_boss_1",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.6,
+        "limit": 6.0,
+        "detail": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_boss_1",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 7.6,
+        "detail": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_boss_2",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 1.71,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 6.0,
+        "detail": "pilot depth 7.700 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_boss_2",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.6,
+        "limit": 6.0,
+        "detail": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_boss_2",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 7.6,
+        "detail": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_boss_3",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 1.71,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 6.0,
+        "detail": "pilot depth 7.700 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_boss_3",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.6,
+        "limit": 6.0,
+        "detail": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_boss_3",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 7.6,
+        "detail": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_engagement_boss_4",
+      "l1_id": "rules",
+      "type": "pilot_engagement",
+      "passed": true,
+      "margin": 1.71,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 6.0,
+        "detail": "pilot depth 7.700 vs min_engagement 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "boss_od_boss_4",
+      "l1_id": "rules",
+      "type": "boss_od",
+      "passed": true,
+      "margin": 0.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.6,
+        "limit": 6.0,
+        "detail": "outside diameter 6.600 vs min_boss_od 6"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_bottoming_boss_4",
+      "l1_id": "rules",
+      "type": "pilot_bottoming",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 7.7,
+        "limit": 7.6,
+        "detail": "pilot depth 7.700 vs screw length 10 - clamped plate 2.400"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_standoff_1",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_standoff_2",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_standoff_3",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_standoff_4",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_boss_1",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_boss_2",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_boss_3",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "pilot_band_boss_4",
+      "l1_id": "rules",
+      "type": "pilot_band",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 2.5,
+        "lo": 2.4,
+        "hi": 2.6,
+        "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "board_screw_passes_hole",
+      "l1_id": "rules",
+      "type": "screw_through_hole",
+      "passed": true,
+      "margin": 0.21,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 3.0,
+        "limit": 3.2,
+        "detail": "thread 3 + 2 x 0 vs hole \u00d83.2"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "text_coverage",
+      "l1_id": "rules",
+      "type": "coverage",
+      "passed": true,
+      "margin": -0.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "named": {
+          "plug_dc_barrel_5p5": [
+            {
+              "source": "L1.6",
+              "quote": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side."
+            }
+          ],
+          "plug_usb_b": [
+            {
+              "source": "L1.5",
+              "quote": "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side."
+            }
+          ]
+        },
+        "uncovered": [],
+        "covered": [
+          {
+            "item": "board",
+            "copy": "board",
+            "connector": "usb",
+            "plug": "plug_usb_b",
+            "evidence": [
+              {
+                "source": "L1.5",
+                "quote": "Case closed, a USB-B plug, shell and moulded handle both, must go right into the receptacle through a single opening in the end wall with 0.3 mm or more between it and the case on every side, and the opening can be no more than 1.5 mm larger than the plug on any side."
+              }
+            ]
+          },
+          {
+            "item": "board",
+            "copy": "board",
+            "connector": "dc",
+            "plug": "plug_dc_barrel_5p5",
+            "evidence": [
+              {
+                "source": "L1.6",
+                "quote": "Case closed, a 5.5 x 2.1 mm DC barrel plug including its moulded handle must go fully into the jack via a separate opening in that same end wall while the USB plug is in as well, keeping 0.3 mm or more clear of the case all round, and the opening can exceed the plug by 1.5 mm at most on any side."
+              }
+            ]
+          }
+        ],
+        "detail": "2 named plug connection(s) covered"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "closure_evidence",
+      "l1_id": "rules",
+      "type": "closure_evidence",
+      "passed": true,
+      "margin": 0.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "quotes": [
+          {
+            "source": "L1.8",
+            "quote": "Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held by four M3 self-tapping screws that go into four bosses in the base."
+          }
+        ],
+        "current": "rebate",
+        "expected": [
+          "rebate"
+        ],
+        "value": 0.0,
+        "limit": 0.0,
+        "detail": "closure rebate; the text names rebate (holds; L1.8: \"Build the case from a base and a separate lid that can be removed: the lid is a flat plate sitting in a rebate cut in the top of the walls (2 to 3 mm plate, 0.15 to 0.35 mm gap per side as fit, upstand of at least 1 mm), held by four M3 self-tapping screws that go into four bosses in the base.\")"
+      },
+      "layer": 1,
+      "hard": true
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the camera board from the parts catalogue in the holder, with its lens looking out of the front, and shall declare that layout, the direction the board is installed from and the tripod stud axis.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm clearance on each edge, resting on printed supports under its edges and clear of its ribbon connector, lens and every other printed surface.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The board shall be held in the pocket without screws: it shall move at most 0.8 mm sideways and 1.0 mm out of the pocket, with at least two retaining lips on opposite sides over its front face, each reaching 0.6 to 1.15 mm over the board.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The 8 mm lens window shall be clear: no printed surface within 0.5 mm of the lens barrel, and nothing inside the lens's keep-out cylinder or its field of view (the 62 degree angle taken on both axes, the sensor orientation being unknown).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The 16 mm wide ribbon cable shall leave through the back of the holder through a slot 17 mm wide and at most 10 mm long, with its straight path of 20 mm behind the connector clear of the holder by at least 0.4 mm.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "The base shall hold a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex pocket that stops it turning (0.1 to 0.3 mm over the nut on each flat), with a 6.4 to 6.8 mm stud hole, a seat 2.0 to 3.65 mm thick and room for a 10 mm stud to pass through the nut, so the holder screws onto a tripod.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The tripod stud axis shall be perpendicular to the lens axis and centred across the board, entering a flat base face at least 20 mm across.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The board shall install into the pocket by one straight movement from outside, and the hex nut shall go into its pocket by one straight movement, each without touching the holder on the way (the retaining lips may flex).",
+    "method": "test"
+  },
+  {
+    "id": "L1.9",
+    "text": "The holder shall be one manifold body that prints on an FDM printer without supports in its stated orientation, with walls 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The holder shall be no larger than 45 x 45 x 30 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The design shall be delivered as an STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

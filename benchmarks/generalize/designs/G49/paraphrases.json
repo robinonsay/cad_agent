@@ -1,0 +1,160 @@
+{
+  "paraphrases": [
+    {
+      "id": "G49",
+      "tier": 4,
+      "title": "Pan-tilt camera pod with two servos",
+      "request": "Two-axis camera pod: two SG90 servos, one turning the other, plus a Raspberry Pi camera module v2. Servo body 22.5 x 12.2 x 22.7 mm, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch. Camera: 25 x 24 mm board, lens 8 mm diameter, 9 mm overall height, four 2.2 mm holes on a 21 x 12.5 mm pattern, flat cable connector 21 mm wide on the back. The pan servo is in the base, shaft up. A two-arm horn trimmed to 10 mm reach and 7 mm wide carries the yoke in a socket 0.1 to 0.4 mm larger than the horn all round and 2.0 to 2.4 mm deep. The tilt servo is in a vertical wall of the yoke, shaft horizontal and at right angles to the pan axis; a second trimmed horn carries the camera cradle. Each servo is held by its tabs resting flat on a shelf or wall face, body in the pocket or window with 0.1 to 0.35 mm clearance per side, with two M2 x 8 self-tapping screws through the tab holes. The camera is held in the cradle by its mounting holes, not touching its flat cable connector; lens axis horizontal at the centre of the tilt range and at right angles to the tilt axis; it looks through a window in the cradle's front wall that does not clip its 62.2 x 48.8 degree field of view (62.2 along the 25 mm side, 48.8 along the 24 mm side). Pan and tilt each swing +/- 60 degrees from centre, with 0.5 mm clear of collision at every combination (checked at -60, -30, 0, 30 and 60 degrees on each axis). The pan and tilt axes meet within 5 mm; the lens axis passes within 5 mm of the tilt axis. The servo cables and the camera ribbon need a slot or a free run: the base wall slot for the pan servo at most 3 mm bigger than the lead's exit volume on any side; one slot in the yoke platform for the ribbon, at least 24 x 2 mm and within 15 mm of the pan axis. Three printed parts (base, yoke, cradle), FDM, no supports, the whole pod at its centre position within 100 x 100 x 80 mm.",
+      "request_verbatim": "A two-axis camera pod: two SG90 servos, one rotating the other, and a Pi camera v2 (25 x 24 x 9 mm) with a lens window. The pan servo sits in the base, the tilt servo in a yoke, with both ranges +/- 60 degrees clear of collision. Cable slots for each servo and the ribbon.",
+      "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: servo and camera numbers (servo_sg90, rpi_camera_v2); horns trimmed to 10 mm reach and 7 mm wide (A3, servo_sg90 horn_reach override); screws M2 x 8 for the servos (A4); landscape field of view along the 25 mm side (A6); 0.5 mm moving clearance (A7); three printed bodies (F2); no larger than 100 x 100 x 80 (A9); FDM (A8). Audit additions: snug fits, socket fit, FOV orientation, pose steps, axis distances, slot sizes, 150 mm2 contact spread.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Place the two servos, their two horns, the camera module and the screws from the parts catalogue. Pan axis vertical; tilt axis horizontal and at right angles to it; camera lens axis at right angles to the tilt axis and horizontal at the centre position. The two axes meet within 5 mm and the lens axis passes within 5 mm of the tilt axis. Declare the layout.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.2",
+          "text": "Pan servo: in a pocket in the base with 0.1 to 0.35 mm clearance per side, shaft up, tabs resting flat on a shelf, held by two M2 x 8 screws into pilot holes that stay aligned with the tab holes even at the extremes of its slack.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The pan servo's horn carries the yoke in a socket coaxial with the pan axis, 0.1 to 0.4 mm larger than the horn all round and 2.0 to 2.4 mm deep. The yoke clears the pan servo and the base.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "Tilt servo: in a window in a vertical yoke wall with 0.1 to 0.35 mm clearance per side, tabs resting flat on the wall face, held by two M2 x 8 screws into pilot holes aligned with the tab holes even at the extremes of slack. Its horn sits in a socket in the cradle, coaxial with the tilt axis.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "Camera held in the cradle by its mounting holes against at least three bearing contacts spread over at least 150 mm2. No printed material or screw touches its flat cable connector or enters the cable's bend volume.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "The cradle has one window in front of the lens, centred on the lens axis, leaving the camera's whole field of view clear and at most 3 mm bigger than the field of view at the front face.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Pan swings +/- 60 degrees; the yoke, tilt servo, cradle and camera stay at least 0.5 mm clear of the base and pan servo at every pan angle and every combined pan and tilt angle, tested at -60, -30, 0, 30 and 60 degrees on each axis.",
+          "method": "test"
+        },
+        {
+          "id": "L1.8",
+          "text": "Tilt swings +/- 60 degrees; the cradle, camera and horn stay at least 0.5 mm clear of the yoke, the tilt servo, the base and the pan servo.",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "Each servo's cable gets a clear exit and bend volume (the pan servo's is one slot through the base wall, at most 3 mm bigger than that volume on any side). The yoke has one slot to pass the camera's flat cable and the leads through the platform, at least 24 x 2 mm and within 15 mm of the pan axis.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The base, yoke and cradle are each one manifold body, printable on FDM without supports, with pocket and wall thickness at least 2 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "At the centre position the pod is at most 100 x 100 x 80 mm, stands flat on its base, and its centre of mass stays inside the base footprint at every pan angle.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "Deliver a base STL, a yoke STL and a cradle STL (all at the centre position), the OpenSCAD source, the declared layout and the agent's own clearance report, which must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: pockets, a wall window, horn sockets, windows and slots, blind pilot holes",
+        "datum placement: put each servo by TAB_BOTTOM, HOLE and SPLINE_AXIS, the camera by HOLE, LENS_AXIS and its ffc keep-out",
+        "a two-axis mechanism: rotation sweeps about two axes, evaluated as clearance at a list of poses",
+        "field of view: a frustum keep-out from the camera's lens and field-of-view angles",
+        "keep-out volumes from the catalogue: horn sweep, cable exit, ffc cable, fov aperture, hole keep-outs",
+        "three printable bodies with their own print orientations"
+      ]
+    },
+    {
+      "id": "G49",
+      "tier": 4,
+      "title": "Pan-tilt camera pod with two servos",
+      "request": "Here is what I'm after: a pan-tilt camera pod built as three printed parts (base, yoke, cradle) for an FDM printer, without supports, which at its centre position fits within 100 x 100 x 80 mm. It uses two SG90 servos (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch), one rotating the other, and a Raspberry Pi camera module v2 (25 x 24 mm board, lens 8 mm diameter, 9 mm overall height, four 2.2 mm holes on a 21 x 12.5 mm pattern, and a 21 mm wide flat cable connector on the back). The pan servo lives in the base with its shaft pointing up. A two-arm horn, trimmed to 10 mm reach and 7 mm wide, carries the yoke, which gets a socket 0.1 to 0.4 mm bigger than the horn all round and 2.0 to 2.4 mm deep. The tilt servo goes in a vertical wall of the yoke, shaft horizontal and perpendicular to the pan axis, and a second trimmed horn carries the camera cradle. Mount each servo by resting its tabs flat on a shelf or wall face, with its body in the pocket or window with 0.1 to 0.35 mm clearance per side, and fasten it with two M2 x 8 self-tapping screws through the tab holes. The camera sits in the cradle on its mounting holes and must not touch its flat cable connector. Its lens axis is horizontal at the centre of the tilt range and perpendicular to the tilt axis, and it looks out through a window in the cradle's front wall that does not clip its 62.2 x 48.8 degree field of view (62.2 along the 25 mm side, 48.8 along the 24 mm side). Pan and tilt each swing +/- 60 degrees from the centre, keeping 0.5 mm clear of collision at every combination (check -60, -30, 0, 30 and 60 degrees on each axis); the pan and tilt axes meet within 5 mm and the lens axis passes within 5 mm of the tilt axis. For cabling, each servo's lead and the camera's flat cable need a slot or a free run: the pan servo's slot in the base wall may be at most 3 mm bigger than the lead's exit volume on any side, and the yoke platform gets one slot for the ribbon, at least 24 x 2 mm, within 15 mm of the pan axis.",
+      "request_verbatim": "A two-axis camera pod: two SG90 servos, one rotating the other, and a Pi camera v2 (25 x 24 x 9 mm) with a lens window. The pan servo sits in the base, the tilt servo in a yoke, with both ranges +/- 60 degrees clear of collision. Cable slots for each servo and the ribbon.",
+      "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: servo and camera numbers (servo_sg90, rpi_camera_v2); horns trimmed to 10 mm reach and 7 mm wide (A3, servo_sg90 horn_reach override); screws M2 x 8 for the servos (A4); landscape field of view along the 25 mm side (A6); 0.5 mm moving clearance (A7); three printed bodies (F2); no larger than 100 x 100 x 80 (A9); FDM (A8). Audit additions: snug fits, socket fit, FOV orientation, pose steps, axis distances, slot sizes, 150 mm2 contact spread.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Using the parts catalogue, position the two servos, both horns, the camera module and the screws so that the pan axis is vertical, the tilt axis is horizontal and perpendicular to it, and the lens axis is horizontal at the centre position and perpendicular to the tilt axis. Make the two axes meet within 5 mm, with the lens axis passing within 5 mm of the tilt axis, and declare that layout.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.2",
+          "text": "The base holds the pan servo in a pocket, shaft pointing up, 0.1 to 0.35 mm clearance on each side. Its tabs rest flat on a shelf and two M2 x 8 screws go into pilot holes that still line up with the tab holes when the servo is at either extreme of its slack.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The yoke rides on the pan servo's horn in a socket on the pan axis, all round 0.1 to 0.4 mm bigger than the horn and 2.0 to 2.4 mm deep; it has to stay clear of both the pan servo and the base.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "Cut a window in a vertical wall of the yoke for the tilt servo, with 0.1 to 0.35 mm clearance on each side; its tabs lie flat on the face of that wall and two M2 x 8 screws go into pilot holes that line up with the tab holes even at the extremes of its slack. The servo's horn then goes in a socket in the cradle, coaxial with the tilt axis.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The cradle grips the camera through its mounting holes, with three or more bearing contacts spread across 150 mm2 or more, and neither printed material nor a screw may touch the flat cable connector or intrude on the cable's bend volume.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "In front of the lens the cradle needs a single window centred on the lens axis; it must leave the entire field of view clear, and be no more than 3 mm larger than the field of view at the front face.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Swing the pan through +/- 60 degrees and check that the yoke, tilt servo, cradle and camera keep 0.5 mm or more clearance from the base and the pan servo at each pan angle and each pan and tilt combination, testing -60, -30, 0, 30 and 60 degrees on each axis.",
+          "method": "test"
+        },
+        {
+          "id": "L1.8",
+          "text": "Through the full +/- 60 degree tilt, the cradle, camera and horn must keep 0.5 mm or more away from the yoke, tilt servo, base and pan servo.",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "Give every servo cable a clear exit and bend volume; for the pan servo that is a single slot through the base wall, no more than 3 mm larger than the volume on any side. Also cut one slot in the yoke platform for the camera's flat cable and the leads, 24 x 2 mm or bigger and within 15 mm of the pan axis.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "Each of the base, the yoke and the cradle is a single manifold body that prints on an FDM printer with no supports, with pockets and walls 2 mm thick or more.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "The pod must fit within 100 x 100 x 80 mm at its centre position and sit flat on its base, with the centre of mass over the base's footprint whatever the pan angle.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "Deliverables: STLs for the base, the yoke and the cradle, all at the centre position, along with the OpenSCAD source, the declared layout and the agent's own clearance report, matching an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: pockets, a wall window, horn sockets, windows and slots, blind pilot holes",
+        "datum placement: put each servo by TAB_BOTTOM, HOLE and SPLINE_AXIS, the camera by HOLE, LENS_AXIS and its ffc keep-out",
+        "a two-axis mechanism: rotation sweeps about two axes, evaluated as clearance at a list of poses",
+        "field of view: a frustum keep-out from the camera's lens and field-of-view angles",
+        "keep-out volumes from the catalogue: horn sweep, cable exit, ffc cable, fov aperture, hole keep-outs",
+        "three printable bodies with their own print orientations"
+      ]
+    }
+  ]
+}

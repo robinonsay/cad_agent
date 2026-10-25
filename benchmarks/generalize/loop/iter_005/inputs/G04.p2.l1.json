@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "From the parts catalogue, put the Raspberry Pi Zero 2 W into the case in its natural orientation, so that the mini-HDMI port and both micro-USB ports face a long wall and the microSD slot faces the short wall at that end, and declare this pose.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Once the case is closed, the 65 x 30 mm board needs at least 0.5 mm of space around it from all printed surfaces, with the exception of its standoffs.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "Four standoffs, exactly, carry the board; one sits under each 2.75 mm mounting hole of the 58 x 23 mm pattern and has a pilot hole to take an M2.5 screw through the board.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "Shut the lid and nothing in the case may be nearer than 5 mm above the board's top surface or 2 mm below its underside (the standoffs at the holes excepted); the board and its connectors must be inside the case.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the lid shut, a mini-HDMI plug must seat fully in the board through a single opening in the long wall and not touch the case, the opening being no more than 1.5 mm larger than the plug per side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "With the lid shut, two micro-USB plugs (data and power) must seat fully at once through two openings in that same long wall, touching neither the case nor one another, and each opening is no more than 1.5 mm larger than its plug per side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "With the lid shut, you must be able to push a microSD card in and pull it out through one opening in the end wall without touching the case, the opening being at most 1.5 mm larger than the card access zone on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "The case consists of a base and a separate lid that can be taken off; it sits on the base with a sliding fit and four M2.5 screws keep it closed.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "When closed, the only holes in the case are the HDMI opening, the two USB openings, the SD opening and the screw holes, and walls, floor and lid are between 2 and 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Base and lid should each be a single manifold body that can be printed on an FDM printer without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "Closed, the case must be no bigger than 90 x 40 x 22 mm, its long axis running along the board's 65 mm side, and it must stand flat on a desk and not tip.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "Take the lid off and the board should drop straight down on to its standoffs, with every board screw within reach of a screwdriver.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "Hand over the base STL, lid STL, OpenSCAD source, declared board pose and the agent's own clearance report, which must agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

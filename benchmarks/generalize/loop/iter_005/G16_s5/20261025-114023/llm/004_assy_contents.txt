@@ -1,0 +1,24 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Could you design a flat plate to attach a NEMA 17 stepper motor (42.3 mm square, with a 31 mm bolt pattern and a 22 mm pilot) to 2020 aluminium extrusion? It's fixed with two M5 bolts that go into drop-in T-nuts. The plate sits flat on one side of the extrusion, covering the T-slot, while the motor hangs off to the side and its shaft comes up through the plate. I want to adjust belt tension by sliding the plate, so the M5 holes are 6 mm slots, oriented across the extrusion in the direction of the belt. It's a single printed part, 5 mm thick, printed lying on its face on an FDM printer. Along the extrusion the two bolts are 20 to 40 mm apart, with the motor shaft in between them; the motor body sits 3.5 to 10 mm from the edge of the extrusion; and above the plate the shaft needs a free zone 20 mm in diameter and up to 30 mm tall for the pulley and belt.
+
+Catalogue parts that may be in the request:
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {"exposed": "no", "quantity": 0},
+  "generic_box": {"quantity": 0},
+  "generic_cylinder": {"quantity": 0},
+  "jack_3p5_pj320a": {"exposed": "no", "quantity": 0}
+}

@@ -1,0 +1,384 @@
+{
+ "id": "arduino_nano",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "arduino nano",
+  "nano board",
+  "arduino nano v3",
+  "nano v3",
+  "atmega328 nano",
+  "nano"
+ ],
+ "kind": "module",
+ "source": "Arduino Nano (A000005) datasheet / Eagle files: PCB 45 x 18 mm (the task sheet's figure, which includes the mini-USB overhang; the bare Eagle outline is 43.2 x 17.8 mm), four mounting holes about 1.7 mm (the official drawing shows 1.8 mm on a 43.2 x 15.2 mm pattern, 0.9 mm from the short edges and 1.4 mm from the long edges), two 15-pin rows at 2.54 mm pitch, rows 15.24 mm apart, mini-USB B receptacle on a short edge. ASSUMED / uncertain: PCB thickness 1.6 mm (+/-0.1), mini-USB receptacle 7.7 x 9.0 x 3.9 mm overhanging the edge by 0.7 mm (+/-0.5, clone boards differ), tallest top part 3.5 mm (reset tact switch; ATmega TQFP is 1.4), header plastic 2.5 mm on the underside with 6 mm pin tails (the header is soldered on the bottom). Check against the owner's board and the official drawing.",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, components on +Z, mini-USB end at -X, header body on the underside (-Z)",
+ "params": {
+  "pcb_length": {
+   "default": 45.0,
+   "source": "task sheet: board outline along the header rows (official bare PCB 43.2)"
+  },
+  "pcb_width": {
+   "default": 18.0,
+   "source": "task sheet / datasheet: board outline (official 17.8)"
+  },
+  "pcb_thickness": {
+   "default": 1.6,
+   "source": "assumed standard 1.6 mm FR4"
+  },
+  "hole_diameter": {
+   "default": 1.7,
+   "source": "task sheet: mounting holes about 1.7 mm (official drawing 1.8)"
+  },
+  "hole_from_short_edge": {
+   "default": 0.9,
+   "source": "official drawing: pattern 43.18 mm on a 45 mm outline -> 0.91 mm"
+  },
+  "hole_from_long_edge": {
+   "default": 1.38,
+   "source": "official drawing: pattern 15.24 mm on an 18 mm outline -> 1.38 mm"
+  },
+  "usb_width": {
+   "default": 7.7,
+   "source": "mini-USB B receptacle body width (typical SMD shell)"
+  },
+  "usb_depth": {
+   "default": 9.0,
+   "source": "mini-USB B receptacle body depth (typical SMD shell, assumed)"
+  },
+  "usb_height": {
+   "default": 3.9,
+   "source": "mini-USB B receptacle body height (typical)"
+  },
+  "usb_overhang": {
+   "default": 0.7,
+   "source": "assumed receptacle overhang beyond the PCB edge"
+  },
+  "pin_pitch": {
+   "default": 2.54,
+   "source": "datasheet: header pitch"
+  },
+  "pin_row_spacing": {
+   "default": 15.24,
+   "source": "datasheet: row spacing (0.6 in)"
+  },
+  "pin_count": {
+   "default": 15,
+   "source": "datasheet: pins per row"
+  },
+  "header_body_height": {
+   "default": 2.5,
+   "source": "standard 2.54 mm header plastic height, on the underside"
+  },
+  "pin_tail_length": {
+   "default": 6.0,
+   "source": "assumed pin length below the plastic (Nano ships with the long pins down)"
+  },
+  "top_parts_height": {
+   "default": 3.5,
+   "source": "assumed tallest top-side part (reset tact switch)"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "pcb_thickness"
+ ],
+ "size_of": "pcb",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "usb",
+   "primitive": "box",
+   "size": [
+    "usb_depth",
+    "usb_width",
+    "usb_height"
+   ],
+   "at": [
+    "-usb_overhang",
+    "(pcb_width - usb_width) / 2",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "header_a",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "header_body_height"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width - pin_row_spacing) / 2 - 1.27",
+    "-header_body_height"
+   ]
+  },
+  {
+   "id": "header_b",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "header_body_height"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width + pin_row_spacing) / 2 - 1.27",
+    "-header_body_height"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "component_side",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "top_parts_height"
+   ],
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "pin_tails_a",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "pin_tail_length"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width - pin_row_spacing) / 2 - 1.27",
+    "-header_body_height - pin_tail_length"
+   ]
+  },
+  {
+   "id": "pin_tails_b",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "pin_tail_length"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "(pcb_width + pin_row_spacing) / 2 - 1.27",
+    "-header_body_height - pin_tail_length"
+   ]
+  }
+ ],
+ "interfaces": [{"id": "mount", "kind": "mount_holes", "holes": "HOLE", "seat": "PCB_BOTTOM", "top": "PCB_TOP", "source": "catalogue data (generalize iteration 001, delta D1): the mounting-hole axis list, the plane the part rests on when seated over its holes, and the plane its component keep-out starts from"}],
+ "datums": {
+  "USB_MOUTH": {
+   "kind": "point",
+   "at": [
+    "-usb_overhang",
+    "pcb_width / 2",
+    "pcb_thickness + usb_height / 2"
+   ]
+  },
+  "USB_AXIS": {
+   "kind": "axis",
+   "at": [
+    "-usb_overhang",
+    "pcb_width / 2",
+    "pcb_thickness + usb_height / 2"
+   ],
+   "dir": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "HOLE": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "hole_diameter",
+   "keepout_diameter": 4.0,
+   "at": [
+    [
+     "hole_from_short_edge",
+     "hole_from_long_edge",
+     0
+    ],
+    [
+     "pcb_length - hole_from_short_edge",
+     "hole_from_long_edge",
+     0
+    ],
+    [
+     "hole_from_short_edge",
+     "pcb_width - hole_from_long_edge",
+     0
+    ],
+    [
+     "pcb_length - hole_from_short_edge",
+     "pcb_width - hole_from_long_edge",
+     0
+    ]
+   ]
+  },
+  "PINS_A": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": "pin_count",
+   "start": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2",
+    "(pcb_width - pin_row_spacing) / 2",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  },
+  "PINS_B": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": "pin_count",
+   "start": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2",
+    "(pcb_width + pin_row_spacing) / 2",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [
+  {
+   "name": "usb",
+   "mouth": "USB_MOUTH",
+   "axis": "USB_AXIS",
+   "mates": "plug_miniusb_b",
+   "overhang_datum": "USB_MOUTH"
+  }
+ ],
+ "notes": "Mounting holes: the 0.9 mm edge distance leaves almost no land beside the hole, so a standoff boss of the HOLE keepout_diameter (4.0, assumed: M1.6 screw head or 1.7 mm pin tip) overlaps the PCB edge by design; use pins/posts through the holes or edge ribs if a boss cannot be placed. The header body is on the underside, so the board must stand on its HOLE posts or on the long-edge strips clear of the pin tails (pin_tails_a/b keepouts, which model pins pointing down to be plugged into a breadboard; shorten pin_tail_length if the owner's pins are cut). The ATmega328 and USB-serial chip (<= 1.4 mm) lie inside component_side. Import gate: R1 matches the PCB; R2 hole diameter/pitch from the official drawing +/-0.2; R3 USB along -X; R4 receptacle overhang is an assumed value (tol 0.5); R9 is skipped (no STEP imported).",
+ "self_checks": [
+  {
+   "name": "R2 hole diameter",
+   "expr": "HOLE.diameter",
+   "value": 1.7,
+   "tol": 0.2
+  },
+  {
+   "name": "R2 hole pitch X (official 43.18)",
+   "expr": "HOLE[1].x - HOLE[0].x",
+   "value": 43.18,
+   "tol": 0.1
+  },
+  {
+   "name": "R2 hole pitch Y (official 15.24)",
+   "expr": "HOLE[2].y - HOLE[0].y",
+   "value": 15.24,
+   "tol": 0.1
+  },
+  {
+   "name": "R3 USB axis along -X",
+   "expr": "USB_AXIS.dx",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 receptacle at the -X end",
+   "expr": "usb.min_x",
+   "value": 0,
+   "tol": 0,
+   "op": "le"
+  },
+  {
+   "name": "R3 components on +Z",
+   "expr": "usb.min_z - PCB_TOP.z",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "R4 receptacle overhang",
+   "expr": "-usb.min_x",
+   "value": 0.7,
+   "tol": 0.5
+  },
+  {
+   "name": "header row spacing",
+   "expr": "PINS_B[0].y - PINS_A[0].y",
+   "value": 15.24,
+   "tol": 0.05
+  },
+  {
+   "name": "header pitch",
+   "expr": "PINS_A[1].x - PINS_A[0].x",
+   "value": 2.54,
+   "tol": 0.02
+  },
+  {
+   "name": "header pin count",
+   "expr": "PINS_A.count",
+   "value": 15,
+   "tol": 0
+  }
+ ]
+}

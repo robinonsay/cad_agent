@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the ESP32 board, the OLED module and the two tactile switches from the parts catalogue, with the USB port facing the back, the OLED facing the front and each switch's actuator pointing to the front, with the switches beside the window (each axis at least 4 mm from the window edge, the two at least 12 mm apart), without the parts colliding, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The ESP32 board shall rest on printed supports under its underside outside its pin tails, be held from sliding along either axis by more than 0.6 mm, and drop straight down onto them with the lid off.",
+    "method": "test"
+  },
+  {
+    "id": "L1.3",
+    "text": "With the lid closed, no part of the enclosure shall enter the board's header-pin, top-component, pin-tail or antenna keep-out volumes (the antenna zone is 8 mm beyond the board end and 5 mm above the module, above the board's top face only), and the board shall lie inside the enclosure.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The OLED module shall be held to the lid by at least two M2 x 7 screws in pilot holes at its mounting holes and by at least three bearing contacts on its board, with no printed material within 0.2 mm of its glass.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The lid shall have one rectangular window that contains the OLED's 25 x 14 mm viewing area, leaves at least 1 mm margin around its 21.7 x 10.9 mm active area, is no more than 1.5 mm bigger than the viewing area, and has nothing within 3 mm above the glass over that area.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "Each button shall have a printed plunger, centred on its switch's actuator within 0.5 mm, resting 0 to 0.5 mm above the plunger, guided in a lid hole and retained by a flange, that stands 1.5 to 3.5 mm proud of the lid and can move far enough to click the switch without touching anything but the switch.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "With the lid closed, a micro-USB cable shall plug fully into the ESP32 through one opening in the back wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a lip and is held closed by four M3 screws.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "The closed enclosure shall have no openings other than the USB opening, the window, the two plunger holes and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The base, the lid and each plunger shall each be one manifold body that prints on an FDM printer without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed enclosure shall be no larger than 75 x 55 x 30 mm, longest along the board's length, and shall stand flat on a desk without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "The design shall be delivered as a base STL, a lid STL, two plunger STLs, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

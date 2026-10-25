@@ -1,0 +1,274 @@
+{
+  "id": "n20_gearmotor",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "n20 gearmotor",
+    "n20 motor",
+    "n20 gear motor",
+    "n20 micro gearmotor",
+    "n20 dc gearmotor",
+    "micro gearmotor",
+    "12 mm gearmotor"
+  ],
+  "kind": "motor",
+  "source": "N20 micro gearmotor datasheet (as in plan.json): body 12 x 10 mm section, gearbox 9 mm long, motor can 15 mm long, 3 mm D-shaft 10 mm long. Faceplate tapped holes, flat depth and terminal zone are assumed (see notes).",
+  "frame": "gearmotor: axis along Z, origin on the gearbox output face at the shaft axis, gearbox and motor toward -Z, shaft toward +Z; 12 mm along X, 10 mm along Y",
+  "params": {
+    "body_width": {
+      "default": 12.0,
+      "source": "datasheet: section width (the long side)"
+    },
+    "body_height": {
+      "default": 10.0,
+      "source": "datasheet: section height (the short side)"
+    },
+    "gearbox_length": {
+      "default": 9.0,
+      "source": "datasheet: gearbox length (varies with the reduction ratio; give it in the request)"
+    },
+    "motor_length": {
+      "default": 15.0,
+      "source": "datasheet: motor can length"
+    },
+    "shaft_diameter": {
+      "default": 3.0,
+      "source": "datasheet: D-shaft diameter"
+    },
+    "shaft_length": {
+      "default": 10.0,
+      "source": "datasheet: shaft length from the gearbox face"
+    },
+    "shaft_flat_depth": {
+      "default": 0.5,
+      "source": "assumed: D flat leaves 2.5 mm across flats; +/- 0.1"
+    },
+    "hole_pitch": {
+      "default": 9.0,
+      "source": "assumed: two M1.6 tapped holes on the gearbox face, typical N20 bracket pitch; +/- 0.3, measure the owner's motor"
+    },
+    "hole_diameter": {
+      "default": 1.6,
+      "source": "assumed: M1.6 tapped holes (typical N20 face); +/- 0.1"
+    },
+    "hole_depth": {
+      "default": 2.5,
+      "source": "assumed: tapped depth; screws must not be longer than the plate plus this; +/- 0.5"
+    },
+    "terminal_clearance": {
+      "default": 4.0,
+      "source": "assumed: rear solder tabs and leads; +/- 1.5"
+    }
+  },
+  "datasheet_size": [
+    "body_width",
+    "body_height",
+    "gearbox_length + motor_length + shaft_length"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "gearbox",
+      "primitive": "box",
+      "size": [
+        "body_width",
+        "body_height",
+        "gearbox_length"
+      ],
+      "at": [
+        "-body_width / 2",
+        "-body_height / 2",
+        "-gearbox_length"
+      ]
+    },
+    {
+      "id": "motor",
+      "primitive": "box",
+      "size": [
+        "body_width",
+        "body_height",
+        "motor_length"
+      ],
+      "at": [
+        "-body_width / 2",
+        "-body_height / 2",
+        "-gearbox_length - motor_length"
+      ]
+    },
+    {
+      "id": "shaft",
+      "primitive": "cylinder",
+      "d": "shaft_diameter",
+      "h": "shaft_length",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "shaft_path",
+      "primitive": "cylinder",
+      "d": "shaft_diameter",
+      "h": "shaft_length",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "rear_terminals",
+      "primitive": "box",
+      "size": [
+        "body_width",
+        "body_height",
+        "terminal_clearance"
+      ],
+      "at": [
+        "-body_width / 2",
+        "-body_height / 2",
+        "-gearbox_length - motor_length - terminal_clearance"
+      ]
+    }
+  ],
+  "datums": {
+    "SHAFT_AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "shaft_diameter"
+    },
+    "FACE": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "BACK": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "-gearbox_length - motor_length"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "SHAFT_TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "shaft_length"
+      ]
+    },
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "hole_diameter",
+      "keepout_diameter": "2 * hole_diameter",
+      "at": [
+        [
+          "-hole_pitch / 2",
+          0,
+          0
+        ],
+        [
+          "hole_pitch / 2",
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "connectors": [],
+  "mount": {
+    "face_datum": "FACE",
+    "hole_datum": "HOLE",
+    "max_screw_engagement": "hole_depth",
+    "body_pocket": "gearbox",
+    "notes": "Held either by M1.6 screws through a plate on FACE into HOLE, or by a clamp/pocket round the 12 x 10 body (pocket = body section plus printing clearance, light press). Body in its pocket and face on the plate are designed contact."
+  },
+  "notes": "Datasheet values (12 x 10 section, gearbox 9, motor 15, 3 mm D-shaft 10 mm) come from the plan note. Assumed with uncertainty: D flat 0.5 deep (+/- 0.1); the shaft is centred on the section (real N20 shafts can sit up to about 0.5 mm off-centre); two M1.6 face holes at 9 mm, 2.5 deep (+/- 0.5); rear terminal zone 4 mm. The 4 mm output bush on some makes and the gearbox ratio-dependent length are not modelled; give gearbox_length from the request when the ratio is known. Section corners are rounded on the real motor (the box is conservative).",
+  "self_checks": [
+    {
+      "name": "section (12 x 10)",
+      "expr": "gearbox.size_x - motor.size_x",
+      "value": 0,
+      "tol": 1e-06
+    },
+    {
+      "name": "shaft (3 mm)",
+      "expr": "SHAFT_AXIS.diameter",
+      "value": 3.0,
+      "tol": 0.05
+    },
+    {
+      "name": "shaft leaves the face on +Z",
+      "expr": "SHAFT_AXIS.dz",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "gearbox behind the face",
+      "expr": "gearbox.max_z",
+      "value": 0,
+      "tol": 1e-06
+    },
+    {
+      "name": "motor behind the gearbox",
+      "expr": "motor.max_z - gearbox.min_z",
+      "value": 0,
+      "tol": 1e-06
+    },
+    {
+      "name": "holes inside the section",
+      "expr": "body_width - hole_pitch - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "shaft fits the section",
+      "expr": "body_height - shaft_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

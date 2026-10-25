@@ -671,5 +671,172 @@ class TestEnvelopes(unittest.TestCase):
             pt.plug_sweep({"mouth": pt.Point([0, 0, 0]), "axis": pt.Axis([0, 0, 0], [0, 0, 1])}, plug, 0.0, 1.0)
 
 
+GEN_PARTS = REPO / "benchmarks" / "generalize" / "parts"
+BOTH = [GEN_PARTS, PARTS]
+
+
+class TestInterfaces(unittest.TestCase):
+    """Generalize delta 001 D1 / R9: the mount_holes interface and its gate."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cat = pt.Catalog.load(BOTH)
+
+    def test_mount_holes_gate(self):
+        # T4: an interface naming a missing datum, a non-plane seat, a tilted seat or an unknown kind fails R9
+        base = self.cat.get("perfboard")
+        holes, seat, top = pt.mount_names(base)
+
+        def with_iface(**edit):
+            def fn(data):
+                data["interfaces"] = [dict(data["interfaces"][0], **edit)]
+            return mutated(base, fn)
+
+        tilted = next(n for n, d in base.data["datums"].items() if d["kind"] == "plane" and d["normal"][2] == 0)
+        bad = {"missing": with_iface(holes="NO_SUCH_DATUM"), "not_a_plane": with_iface(seat=holes),
+               "tilted": with_iface(top=tilted), "unknown_kind": with_iface(kind="no_such_kind")}
+        for name, part in bad.items():
+            with self.subTest(name=name):
+                fails = pt.gate(part)
+                self.assertTrue(any(f.rule == "R9" for f in fails), [str(f) for f in fails])
+        good = pt.gate(base)
+        self.assertEqual(good, [])
+        for pid in self.cat.ids():           # every catalogue part (both catalogues) still passes the whole gate
+            with self.subTest(pid=pid):
+                self.assertEqual([str(f) for f in pt.gate(self.cat.get(pid))], [])
+        self.assertEqual(self.cat.errors, [])
+        offered = [pid for pid in self.cat.ids() if pt.mount_interface(self.cat.get(pid)) is not None]
+        self.assertGreaterEqual(len(offered), 8, offered)
+
+    def test_perfboard_planes_equal_top_bottom(self):
+        # T5 (regression invariance): the interface's seat and top planes are the board's old BOTTOM / TOP planes at the
+        # gate sample, every specimen and every regression request size, so every derived height is unchanged
+        part = self.cat.get("perfboard")
+        holes, seat, top = pt.mount_names(part)
+        samples = [part.gate_params()] + [dict(sp["match"]) for sp in part.specimens]
+        samples += [dict(zip(("width", "depth"), board_size(request_text(rid)))) for rid in ("E1-01", "V1", "V2", "V3")]
+        for given in samples:
+            inst = pt.instantiate(part, given)
+            self.assertEqual(inst.datums[seat].at[2], inst.datums["BOTTOM"].at[2], given)
+            self.assertEqual(inst.datums[top].at[2], inst.datums["TOP"].at[2], given)
+            self.assertEqual(inst.datums[holes].at, inst.datums["HOLE"].at, given)
+        self.assertTrue(pt.is_carrier(part))
+        self.assertFalse(pt.is_carrier(self.cat.get("rpi_pico2")))
+
+    def test_thread_field(self):
+        # generalize delta 002 T8 (C1, D2): R9 accepts an optional positive number `thread` on an interface and rejects
+        # 0, a negative number, a string and a boolean; interface_thread reads it back (None when absent)
+        base = self.cat.get("perfboard")
+        self.assertNotIn("thread", pt.mount_interface(base))
+        self.assertIsNone(pt.interface_thread(base))
+
+        def with_thread(v):
+            def fn(data):
+                data["interfaces"] = [dict(data["interfaces"][0], thread=v)]
+            return mutated(base, fn)
+
+        good = with_thread(2.5)
+        self.assertEqual(pt.gate(good), [])
+        self.assertEqual(pt.interface_thread(good), 2.5)
+        for bad in (0, -2.5, "M3", True):
+            with self.subTest(thread=bad):
+                fails = pt.gate(with_thread(bad))
+                self.assertTrue(any(f.rule == "R9" and "thread" in f.detail for f in fails), [str(f) for f in fails])
+        # the catalogue data: the boards whose datasheets give a screw carry it; the family perfboard does not
+        given = {pid: pt.interface_thread(self.cat.get(pid)) for pid in self.cat.ids()
+                 if pt.interface_thread(self.cat.get(pid)) is not None}
+        self.assertGreaterEqual(len(given), 3, given)
+        for pid, thread in given.items():
+            holes = pt.instantiate(self.cat.get(pid)).datums[pt.mount_names(self.cat.get(pid))[0]]
+            self.assertLessEqual(thread, holes.diameter, pid)          # the datasheet screw passes its own holes
+
+    def test_zone_kind(self):
+        # generalize delta 003 T14 (D1): the zone interface gate: a good zone loads; a missing datum, a size that does not
+        # resolve > 0, a tilted long axis or empty names are R9 failures; a zone name that is an archetype evidence word is
+        # rejected by zone_reserved_failures; the Uno's mcu zone resolves to the ATmega328P DIP-28 footprint 35.6 x 7.6
+        uno = self.cat.get("arduino_uno_r3")
+        self.assertEqual(pt.gate(uno), [])
+        zone = next(z for z in pt.zones(uno) if z["id"] == "mcu")
+        geo = pt.zone_geometry(pt.instantiate(uno), zone)
+        self.assertEqual((round(geo["long"], 9), round(geo["short"], 9)), (35.6, 7.6))
+        self.assertEqual(geo["long_axis"], [1.0, 0.0, 0.0])
+        self.assertEqual(geo["centre"], list(pt.instantiate(uno).datums[zone["at"]].at))
+        self.assertIsNotNone(pt.mount_interface(uno))            # the zone does not displace the mount interface
+
+        def with_zone(**edit):
+            def fn(data):
+                k = next(i for i, z in enumerate(data["interfaces"]) if z.get("kind") == pt.ZONE)
+                data["interfaces"][k] = dict(data["interfaces"][k], **edit)
+            return mutated(uno, fn)
+
+        bad = {"missing_datum": with_zone(at="NO_SUCH_DATUM"), "not_a_point": with_zone(at="USB_AXIS"),
+               "empty_names": with_zone(names=[]), "no_names": with_zone(names=None),
+               "zero_size": with_zone(size=["mcu_length", "0"]), "bad_size": with_zone(size=["no_such_param", "1"]),
+               "tilted_axis": with_zone(long_axis=[0, 0, 1])}
+        for name, part in bad.items():
+            with self.subTest(name=name):
+                fails = pt.gate(part)
+                self.assertTrue(any(f.rule == "R9" for f in fails), [str(f) for f in fails])
+        rules = pt.load_rules(REPO / "design_rules.json")
+        reserved = [w for a in rules.archetypes.values() for w in a.get("evidence", [])]
+        self.assertEqual(pt.zone_reserved_failures(uno, reserved), [])
+        clash = with_zone(names=["mcu", reserved[0]])
+        self.assertTrue(pt.zone_reserved_failures(clash, reserved))
+
+
+class TestCardAccess(unittest.TestCase):
+    """Generalize delta 002 T12 (D1, RC-D): microSD card access is a connector with a mating card part."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cat = pt.Catalog.load(BOTH)
+        cls.rules = pt.load_rules(REPO / "design_rules.json").values
+
+    def card_id(self):
+        # the plug a module's microSD-slot connector takes: found from the catalogue data, never typed
+        mods = [self.cat.get(pid) for pid in self.cat.ids() if self.cat.get(pid).kind == "module"]
+        pairs = [(m, c) for m in mods for c in m.data.get("connectors", []) if c.get("mouth") and c["mates"] in self.cat
+                 and "SD" in c["mouth"]]
+        self.assertTrue(pairs)
+        return pairs[0]
+
+    def test_card_part_and_connector(self):
+        module, conn = self.card_id()
+        card = self.cat.get(conn["mates"])
+        self.assertEqual(card.kind, "plug")
+        self.assertEqual([str(f) for f in pt.gate(card)], [])
+        self.assertEqual([str(f) for f in pt.gate(module)], [])
+        # the card's names say "card", never "slot": a text that names the slot as unused must not hit it
+        self.assertTrue(all("card" in pt.tokens(n) for n in card.names), card.names)
+        self.assertFalse(any("slot" in pt.tokens(n) for n in card.names), card.names)
+        # the sweep section at the mouth is the access zone the card data declares (width x height), centred where the
+        # card data says (its zone_offset above the card axis)
+        inst = pt.instantiate(module)
+        world = {"mouth": inst.datums[conn["mouth"]], "axis": inst.datums[conn["axis"]]}
+        nodes = pt.plug_sweep(world, self.cat.instantiate(card.id), 0.0, self.rules["plug_travel"], prefix="sd_plug")
+        far = next(n for n in nodes if n.role == "plug_overmold")
+        p = card.params
+        tol = 1e-6
+        self.assertAlmostEqual(far.params["cw"], p["zone_width"]["default"], delta=tol)
+        self.assertAlmostEqual(far.params["ch"], p["zone_height"]["default"], delta=tol)
+        z_centre = far.pose.offset[2] + far.params["z"] / 2
+        self.assertAlmostEqual(z_centre - world["mouth"].at[2], p["zone_offset"]["default"], delta=tol)
+        self.assertEqual(far.params["s0"], 0.0)                              # the zone starts at the seat, outward
+        shell = next(n for n in nodes if n.role == "plug_shell")
+        self.assertAlmostEqual(shell.params["cw"], p["card_width"]["default"], delta=tol)
+
+
+class TestCatalogueVocabulary(unittest.TestCase):
+    def test_no_alias_is_archetype_vocabulary(self):
+        # T13: no part alias may equal an archetype evidence word (generic_box lost "box" and "block"), so a request
+        # that asks for a box never names a generic part by that word
+        rules = pt.load_rules(REPO / "design_rules.json")
+        words = {tuple(pt.tokens(w)) for a in rules.archetypes.values() for w in a["evidence"]}
+        self.assertIn(("box",), words)
+        cat = pt.Catalog.load(BOTH)
+        clashes = [(pid, n) for pid in cat.ids() for n in cat.get(pid).names if tuple(pt.tokens(n)) in words]
+        self.assertEqual(clashes, [])
+
+
 if __name__ == "__main__":
     unittest.main()

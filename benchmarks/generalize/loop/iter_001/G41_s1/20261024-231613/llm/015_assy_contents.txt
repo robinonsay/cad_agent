@@ -1,0 +1,44 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A soldering jig for a Raspberry Pi Pico 2. It holds two 20-pin male headers (2.54 mm pitch, 17.78 mm between the rows) vertical, long pin tails down, while I solder the Pico onto them: the pin guide holes are 1.0 mm, the headers' plastic spacers sit on a flat seat, and the Pico drops on from above onto the pins and rests on a shelf at the right standoff height (the height of the header spacer) with a little room to lift it off afterwards. The jig also has a cradle for a 70 x 50 mm perfboard (1.6 mm thick), a pocket where the board lies flat, with finger notches to lift it out. The jig is one piece printed on an FDM printer in PLA without supports, and I must be able to get a soldering iron to every pin from above.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 1
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "yes",
+    "quantity": 1
+  },
+  "rpi_zero2w": {
+    "exposed": "yes",
+    "quantity": 0
+  }
+}

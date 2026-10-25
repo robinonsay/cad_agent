@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The hose end shall be a spigot with a 16.0 mm body and exactly three barb ribs, each 0.8 mm tall, with retention flanks no steeper than 45 degrees from the axis, with the retention flank 30 to 45 degrees and the lead-in flank 10 to 30 degrees from the axis, the crests at least 5.0 mm apart, the first crest at least 3.0 mm from the tip and the last at least 4.0 mm before the end of the straight part, so a 16 mm hose pushes on and does not pull off.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The straight part of the spigot shall be at least 25 mm long and the profile shall widen behind it, so a hose pushed on has a length to grip and a stop: the straight part ends between 25.0 and 33.0 mm from the tip, and the outside radius reaches 11.0 mm (half of a 22 mm hose outside diameter) within 5.0 mm after it.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The pipe end shall be a socket 20.0 mm deep with a bore 0.15 mm bigger than the 25 mm pipe (25.15 mm), ending in a flat shoulder that stops the pipe, so the pipe slides in and seats: the bore is constant over the whole depth with no step or rib, the shoulder is square to the axis within 1.0 degree, at least 3.0 mm wide radially and backed by at least 2.0 mm of solid, and the 25 mm pipe seats with its end face within 0.10 mm of the shoulder.",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "The wall of the spigot and of the socket shall be 2.0 to 2.4 mm thick, and no wall anywhere shall be thinner than 2.0 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The adapter shall be 60.0 mm long with a through bore along its whole length, every section coaxial with the same axis, and no restriction in the bore below 11.2 mm, every section within 0.10 mm of the axis.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "The outside shall change from the 16 mm spigot to the socket in one smooth transition no steeper than 45 degrees from the axis, with no step other than the barb ribs, between 15 and 45 degrees from the axis and never narrowing, ending at the socket's outside diameter.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The adapter shall print upright with its axis vertical and the spigot end on the bed, with no overhang steeper than 45 degrees from vertical, a bed contact of at least 80 mm2 and a height of at most four times the bed face diameter, and no feature thinner than 0.8 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The adapter shall be one manifold body.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The adapter shall have no opening other than the two ends of the bore, and no internal cavity.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The design shall be delivered as an STL, the OpenSCAD source, the declared layout and the agent's own measurement report, and that report shall agree with an independent measurement to within 0.10 mm.",
+    "method": "inspection"
+  }
+]

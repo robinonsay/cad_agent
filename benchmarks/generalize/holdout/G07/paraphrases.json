@@ -1,0 +1,130 @@
+{
+ "paraphrases": [
+  {
+   "id": "G07",
+   "tier": 4,
+   "title": "Pi Zero 2 W with perfboard hat, stacked",
+   "request": "Case for a Raspberry Pi Zero 2 W with a 65 x 30 mm perfboard hat above it. The hat sits directly over the Pi on two 2 x 20 female headers (one row of 20 pins each), 9 mm apart from the Pi's top surface to the hat's underside. The hat is the same size as the Pi and carries tall parts up to 12 mm above its top surface; the lid must stay 1.5 mm clear of them. Both micro-USB ports on the Pi (data and power) must be usable through the case wall with the lid on. The stack is carried on the Pi's four mounting holes with M2.5 self-tapping screws. Case = base plus removable lid, fixed with four M3 self-tapping screws, FDM printed.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the Pi Zero 2 W, its two 2 x 20 female headers and the 65 x 30 mm hat, all from the parts catalogue, as a single stack. Hat directly over the Pi, hat underside 9 mm above the Pi's top surface, both micro-USB ports on the same long wall. No part collisions. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Exactly four standoffs carry the Pi, one under each mounting hole. Each has a pilot hole for an M2.5 self-tapping screw through the Pi, is no wider than the 6 mm hole keep-out, and is 3 to 10 mm tall.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Lid closed: no lid feature (plate, lip, anything hanging down) within 1.5 mm of the volume 12 mm above the hat's top surface, and still at least 1.0 mm away if the stack is 0.5 mm higher than nominal. Walls keep the 0.5 mm board-edge clearance from L1.4 to that volume. Nothing printed between the two boards or within 2 mm under the Pi, except the standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Pi and hat must fit in the closed case with 0.5 mm minimum from board edges to any printed surface (0.2 mm for headers, connectors and receptacles, 0.3 mm for a seated microSD card), except where the Pi sits on its standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Lid closed: two micro-USB plugs go fully into the Pi's data and power ports together, via two openings in one long wall, touching neither the case nor each other. Each opening at most 1.5 mm larger than its plug on every side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "No openings in the closed case apart from the two micro-USB openings and screw holes. Walls, floor and lid are 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "A base plus a separate removable lid. The lid locates on the base with a sliding fit and is held shut by four M3 self-tapping screws (from the parts catalogue) into bosses in the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Base and lid are each one manifold body, printable on an FDM printer with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed case at most 90 x 45 x 42 mm, longest along the Pi's 65 mm side. It must sit flat on a desk and not tip.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Lid off: the hat lifts straight up off the Pi, then the Pi drops straight down onto its standoffs. Every Pi screw can be reached with a screwdriver once the hat is off.",
+     "method": "test"
+    },
+    {
+     "id": "L1.11",
+     "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared stack layout and the agent's own clearance report. The report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  },
+  {
+   "id": "G07",
+   "tier": 4,
+   "title": "Pi Zero 2 W with perfboard hat, stacked",
+   "request": "I'm after a housing for a Raspberry Pi Zero 2 W that also takes a perfboard hat on top, 65 x 30 mm, the same footprint as the Pi. The hat sits right above the Pi, held on two 2 x 20 female headers (a single row of 20 pins on each), and there is 9 mm between the boards, taken from the Pi's top surface up to the hat's underside. Some tall components on the hat reach 12 mm over its top surface, so the cover needs 1.5 mm of room above them. I need both micro-USB ports on the Pi (data and power) open to cables through the housing wall while the cover is on. The whole stack is screwed down onto the Pi's own four mounting holes using M2.5 self-tapping screws. The housing is a base with a removable cover that four M3 self-tapping screws hold on, and I'll print it on an FDM printer.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "From the parts catalogue, assemble one stack out of the Pi Zero 2 W, its pair of 2 x 20 female headers and the 65 x 30 mm hat. The hat goes straight above the Pi with 9 mm from the Pi's top surface to the hat's underside, and the Pi's two micro-USB ports point at the same long wall. Parts must not collide, and the layout has to be declared.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The Pi sits on four standoffs and no more, one beneath each mounting hole. Every standoff has a pilot hole for an M2.5 self-tapping screw coming down through the Pi, stays within the 6 mm hole keep-out, and stands between 3 and 10 mm high.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "When the lid is on, nothing belonging to it (the plate, the lip, any piece hanging from it) may be nearer than 1.5 mm to the volume rising 12 mm above the top surface of the hat; with the stack raised 0.5 mm over nominal it must still be 1.0 mm or more away. The walls hold the 0.5 mm board-edge clearance given in L1.4 to that volume. No printed material sits between the boards or within 2 mm beneath the Pi, other than the standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "With the enclosure closed, there must be at least 0.5 mm between the edges of the Pi and the hat and every printed surface (0.2 mm for headers, connectors and receptacles; 0.3 mm for a seated microSD card). The exception is where the Pi rests on its standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Closed up, two micro-USB plugs must seat completely in the Pi's data port and power port at once, passing through two openings in a single long wall, without touching the enclosure or one another. No opening may exceed its plug by more than 1.5 mm on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Apart from the two micro-USB openings and the screw holes, the closed enclosure has no openings. Wall, floor and lid thickness all lie between 2 and 4 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "The enclosure is made of a base and a separate lid you can take off. The lid is located on the base by a sliding fit, and four M3 self-tapping screws (taken from the parts catalogue) go into bosses in the base to hold it closed.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Each of the base and the lid must be a single manifold body that can be printed on an FDM printer without any supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Keep the closed enclosure within 90 x 45 x 42 mm, with the long dimension running along the Pi's 65 mm side, and make sure it stands flat on a desk without tipping over.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Take the lid off and the hat should come straight up off the Pi; after that the Pi should drop straight down onto its standoffs. Once the hat is out you must be able to get a screwdriver to every Pi screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.11",
+     "text": "What gets delivered: a base STL, a lid STL, the OpenSCAD source, the stack layout as declared, and the agent's own clearance report, with that report agreeing with an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.3 seed=3000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n42 = 100 (request): "...DM printer, no supports, the whole pod no bigger than 100 x 100 x 80 mm at its centre position...."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n42 state?
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+
+=== RESPONSE ===
+{
+  "owner": "max_x"
+}

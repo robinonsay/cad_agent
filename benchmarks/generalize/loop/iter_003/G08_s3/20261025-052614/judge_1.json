@@ -1,0 +1,76 @@
+{
+ "id": "G08",
+ "judge": 1,
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.41,
+ "summary": "Only the Pico, its four posts, the USB opening and a two-part box were built. The 18650 cell, the cradle, the sliding door (door.stl missing, only base.stl and lid.stl delivered), the SK12D slide switch and its slot, and the wire passages are all absent. Gates G0, G1, G2, G4 and G5 fail; the Pico posts and USB opening are correct.",
+ "defects": [
+  {
+   "requirement_id": "L3.13.1.1 (L2.13.1, L1.13; gate G0) and L3.11.1.1 (L2.11.1, L1.11; gate G1)",
+   "where": "package folder: only base.stl and lid.stl; no door.stl",
+   "what": "The third body (sliding door) was not delivered or modelled.",
+   "expected": "base.stl, lid.stl, door.stl all present, one shell each, manifold",
+   "observed": "door.stl missing; 2 bodies",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.4.2.1 and L3.4.1.1, L3.4.1.2, L3.4.2.2, L3.4.2.3, L3.4.3.1, L3.4.4.1, L3.4.4.2, L3.4.4.3 (L1.4; gate G5)",
+   "where": "base.stl floor Z -6.0..-3.6 is a solid plate over the whole X -7.25..57.65, Y -5.95..26.95 footprint; no groove or +X door slot in the +X wall (wall X 52.1..54.5 solid at Y 10)",
+   "what": "No door, no door grooves, no bottom opening, no stop/detent/grip.",
+   "expected": "door slides 0..100 mm along +X, clearances 0.25-0.35, plate 2.0-3.0, protrusion 1.0-5.0",
+   "observed": "no door body; no door slot",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.2.1.1, L3.3.1.1 (L2.2.1/L2.3.1, L1.2/L1.3; gate G2) and L3.2.2.1, L3.2.2.2, L3.2.3.1, L3.3.2.1, L3.3.3.1, L3.5.1.1, L3.5.2.1",
+   "where": "layout.json references: only the board (rpi_pico2); self_report apertures; renders views/ghost_iso.png, open_iso.png show a shallow tray with no cradle",
+   "what": "No 18650 cell reference is placed and there is no cradle: the interior is a single flat floor at Z -3.6 with the Pico on Z 0..1 posts; a cell of axis Z 13.2 is not placed or held. Cell capture in +-Y/+Z, free length >= 71.2 (inner X is only -1.7..52.1 = 53.8), side gaps and drop path cannot be satisfied.",
+   "expected": "cell placed and held (capture in +-Y/+Z <= 1.0 mm), cavity length >= 71.2, drop path clear, bottom opening >= 19.2",
+   "observed": "no cell, inner length 53.8, no bottom opening",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.8.1.1, L3.8.2.1 (L2.8.1/L2.8.2, L1.8; gate G4) and L3.8.1.2, L3.8.1.3, L3.8.2.2, L3.8.3.1, L3.8.4.1, L3.1.2.2",
+   "where": "base.stl +Y wall (Y 21.4..23.8) is solid; no slot; layout.json has no slide_sk12d",
+   "what": "No slide switch placed and no switch slot in any side wall.",
+   "expected": "slot for the SK12D handle, sweep d >= 0.25, switch captive",
+   "observed": "0 slots, 0 switches",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.1.2.1, L3.1.2.3, L3.1.3.1, L3.13.1.2 (L1.1/L1.13)",
+   "where": "layout.json references",
+   "what": "Layout names only the Pico: no cell, switch, plug, no screws.",
+   "expected": "cell AXIS along X, Pico above the cell by >= 2.0, poses declared for cell and switch",
+   "observed": "Pico only",
+   "severity": "weight-3"
+  },
+  {
+   "requirement_id": "L3.6.4.1 (L2.6.4, L1.6)",
+   "where": "base.stl: no shelf, no passages",
+   "what": "No shelf and no wire passages at the cell ends.",
+   "expected": "2 passages O>=4.0 at X 4.6 and 72.0",
+   "observed": "0",
+   "severity": "weight-1"
+  },
+  {
+   "requirement_id": "L3.9.3.1 (L2.9.3, L1.9)",
+   "where": "base.stl corner bosses at (-3.95,-2.65) and 3 more, pilot top Z 7.9 bottom 0.2",
+   "what": "4 lid screws/bosses where the design fixes two M3 screws.",
+   "expected": "boss count = 2",
+   "observed": "4",
+   "severity": "weight-2"
+  },
+  {
+   "requirement_id": "L3.10.2.2 (L1.10)",
+   "where": "base.stl interior",
+   "what": "No shelf (Z between the cell chamber and the Pico storey).",
+   "expected": "shelf 2.0-4.0 thick",
+   "observed": "no shelf",
+   "severity": "weight-2"
+  }
+ ],
+ "measured_and_passing": "Pico: 4 posts at the hole datums (2,4.8),(49,4.8),(2,16.2),(49,16.2), OD 5.1, pilot O1.7 depth 5.1, tops Z 0.0; Pico wall clearance 0.40 (>=0.3), KO-TOP 0.4, KO-BOT clear; USB opening in -X wall Y5.1..15.9 Z-1.5..6.3 (10.8x7.8) plug d 0.40 -> L3.7.1.1 passes; B\u2229L 0; lid lip fit 0.25 engagement 2.2 plate 2.3; one shell each; size 64.9x32.9x16.3",
+ "note": "claude-context MCP failed to connect (tools unavailable); fell back to direct reads/targeted tooling. Measured with trimesh/manifold3d on delivered STLs; reference volumes built from requirements.md values."
+}

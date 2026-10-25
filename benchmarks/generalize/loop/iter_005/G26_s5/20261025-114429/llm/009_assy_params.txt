@@ -1,0 +1,47 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Numbers found in the text:
+n1 = 12 mm (request): "...l-mounted clip that snaps onto a tube, a rod or pipe with a 12 mm outer diameter, i.e. a 12 mm tube. It's C-shaped, held..."
+n2 = 12 mm (request): "...o a tube, a rod or pipe with a 12 mm outer diameter, i.e. a 12 mm tube. It's C-shaped, held to the wall by a pair of M3 ..."
+n3 = 30 mm (request): "...ed, held to the wall by a pair of M3 countersunk screws set 30 mm apart, side by side across the clip. The tube enters s..."
+n4 = 10.5 mm (request): "...by side across the clip. The tube enters sideways through a 10.5 mm mouth and snaps in; the arms are 2.2 mm thick. Along..."
+n5 = 2.2 mm (request): "...sideways through a 10.5 mm mouth and snaps in; the arms are 2.2 mm thick. Along the tube the clip is 12 to 30 mm wide. M..."
+n6 = 12 (request): "...s in; the arms are 2.2 mm thick. Along the tube the clip is 12 to 30 mm wide. Make it a single FDM print with the openin..."
+n7 = 30 mm (request): "...the arms are 2.2 mm thick. Along the tube the clip is 12 to 30 mm wide. Make it a single FDM print with the opening faci..."
+n8 = 12 mm (L1.1): "...Declare a layout with the catalogue's 12 mm tube seated in the round bore of the clip, mouth upward, an..."
+n9 = 12 mm (L1.2): "...The 12 mm tube sits in a round bore with a slight all-round gap of 0...."
+n10 = 0.05 (L1.2): "...mm tube sits in a round bore with a slight all-round gap of 0.05 to 0.15 mm on each side. Because the clip encloses over..."
+n11 = 0.15 mm (L1.2): "...sits in a round bore with a slight all-round gap of 0.05 to 0.15 mm on each side. Because the clip encloses over half of..."
+n12 = 10.5 mm (L1.3): "...With a mouth opening of 10.5 mm, the tube must press in along the mouth direction and conta..."
+n13 = 20 (L1.3): "...hrough. The lips' end faces form a lead-in, sloping between 20 and 60 degrees from horizontal...."
+n14 = 60 degrees (L1.3): "...The lips' end faces form a lead-in, sloping between 20 and 60 degrees from horizontal...."
+n15 = 2.2 mm (L1.4): "...Make the two arms 2.2 mm thick and free to flex, long enough that spreading by the 0..."
+n16 = 0.75 mm (L1.4): "...m thick and free to flex, long enough that spreading by the 0.75 mm per side the tube needs keeps bending strain at or b..."
+n17 = 3 (L1.4): "...mm per side the tube needs keeps bending strain at or below 3 %. In the worst tolerance case, a 12.1 mm tube and a mouth..."
+n18 = 12.1 mm (L1.4): "...ding strain at or below 3 %. In the worst tolerance case, a 12.1 mm tube and a mouth 0.1 mm smaller, strain must stay wi..."
+n19 = 0.1 mm (L1.4): "...%. In the worst tolerance case, a 12.1 mm tube and a mouth 0.1 mm smaller, strain must stay within 3.5 %...."
+n20 = 3.5 (L1.4): "...mm tube and a mouth 0.1 mm smaller, strain must stay within 3.5 %...."
+n21 = 30 mm (L1.5): "...he wall with a pair of M3 countersunk screws spaced exactly 30 mm apart. The countersinks must leave each head flush or ..."
+n22 = 1.5 mm (L1.5): "...ead flush or below the clip's surface, and every hole needs 1.5 mm or more of surrounding material on a flange that is 3..."
+n23 = 3 (L1.5): "...1.5 mm or more of surrounding material on a flange that is 3 to 4 mm thick...."
+n24 = 4 mm (L1.5): "...mm or more of surrounding material on a flange that is 3 to 4 mm thick...."
+n25 = 50 (L1.8): "...The clip must fit inside 50 x 30 x 20 mm...."
+n26 = 30 (L1.8): "...The clip must fit inside 50 x 30 x 20 mm...."
+n27 = 20 mm (L1.8): "...The clip must fit inside 50 x 30 x 20 mm...."
+
+The request includes a tube. For each of its sizes below give the id of the number that states it, or "none".
+- outer_diameter: request text
+- inner_diameter: 0 = solid; set from the request for a hollow tube
+- length: request text
+
+=== RESPONSE ===
+{
+  "inner_diameter": "none",
+  "length": "none",
+  "outer_diameter": "n1"
+}

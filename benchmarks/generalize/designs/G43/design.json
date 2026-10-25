@@ -1,0 +1,40 @@
+{
+  "about": "Generalization benchmark G43 (train), dev.json format, tier 4. A single printed part (a pipe reducer) with two concentric fits, shoulder stops, a friction-fit interference allowance and a vertical print orientation, judged by Python measurements on the delivered STL and against two reference pipes built from the catalogue (generic_tube). L1 ids match requirements.md in this folder, which holds the L2/L3 tree, reference models, assumptions, fixed decisions, feasibility sketch and traceability. Numbers that are not in the owner's words come from requirements.md section 3 and are provisional. Never put any of these numbers in agent logic: they belong in the request text and in parts/*/part.json.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G43", "tier": 4, "title": "40 to 50 mm PVC reducer with stop",
+      "request": "I need a reducer to join a 40 mm pipe to a 50 mm pipe. One end is a socket that slides over the outside of the 40 mm pipe (outside diameter 40 mm). The other end is a spigot that slides into the inside of the 50 mm pipe (inside diameter 50 mm). Each side has a shoulder stop, so a pipe end bottoms out after 15 mm of insertion. The 40 mm pipe has a 2 mm wall and the 50 mm pipe a 3 mm wall. The reducer's wall thickness is 2.4 mm, and both joints are friction fits with about 0.15 mm of interference. It will be printed vertically on an FDM printer, with the axis upright, so it must print without supports.",
+      "request_verbatim": "A reducer that slides over a 40 mm pipe on one side and into a 50 mm pipe's inside on the other, with a shoulder stop at 15 mm depth on each. Wall thickness 2.4 mm, friction fit with 0.15 mm interference allowance. Printed vertically.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3: 40 mm = outside diameter of the small pipe and 50 mm = inside diameter of the large pipe, read from 'over' and 'into the inside' (A1, A2); interference is diametral (A3); FDM, no supports (A8); the pipe walls (2 mm for the 40 mm pipe, 3 mm for the 50 mm pipe), used only to size the stops (A4).",
+      "l1": [
+        {"id": "L1.1", "text": "The reducer shall be one manifold printed body with no enclosed voids.", "method": "analysis"},
+        {"id": "L1.2", "text": "The 40 mm end shall be a socket whose bore is 0.15 mm smaller than a 40.0 mm outside diameter (39.80 to 39.87 mm), 15.0 mm deep, with a lead-in at its mouth (a chamfer or radius 0.3 to 1.0 mm in both directions).", "method": "inspection"},
+        {"id": "L1.3", "text": "The 50 mm end shall be a spigot whose outside diameter is 0.15 mm larger than a 50.0 mm inside diameter (50.13 to 50.20 mm), 15.0 mm long, with a lead-in at its end (a chamfer or radius 0.3 to 1.0 mm in both directions).", "method": "inspection"},
+        {"id": "L1.4", "text": "Each end shall have a flat annular shoulder stop at 15.0 mm depth, at least 1.0 mm wide, on which the pipe end seats.", "method": "demonstration"},
+        {"id": "L1.5", "text": "The socket wall and the spigot wall shall each be 2.4 mm thick (2.3 to 2.5 mm), and no wall anywhere shall be thinner than 2.0 mm.", "method": "inspection"},
+        {"id": "L1.6", "text": "Both joints shall be friction fits whose interference stays between 0 and 0.35 mm over the pipe and print tolerances.", "method": "analysis"},
+        {"id": "L1.7", "text": "The socket bore, the spigot outside surface and the through-bore shall be coaxial within 0.10 mm, and the stop faces shall be square to that axis within 0.5 degrees.", "method": "inspection"},
+        {"id": "L1.8", "text": "The through-bore shall be open from end to end and at least 34.0 mm in diameter everywhere.", "method": "analysis"},
+        {"id": "L1.9", "text": "The reducer shall print standing on its axis on an FDM printer without supports: flat bottom end with at least 50 percent of the end annulus on the bed, no overhang steeper than 45 degrees (a flat ledge up to 1.5 mm wide, such as a stop, is allowed), no feature thinner than 0.8 mm.", "method": "analysis"},
+        {"id": "L1.10", "text": "The reducer shall be no larger than 56 mm across and between 30 and 45 mm long.", "method": "inspection"},
+        {"id": "L1.11", "text": "With a 40 mm pipe and a 50 mm pipe both seated on their stops, the pipe ends shall be at least 1.0 mm apart, the pipes shall not touch each other, shall overlap the reducer only in the friction fit, and each shall be able to enter freely until its lead-in.", "method": "test"},
+        {"id": "L1.12", "text": "The design shall be delivered as the reducer STL, the OpenSCAD source, the declared print orientation and stop positions, and the agent's own fit report, and that report shall agree with an independent measurement.", "method": "inspection"}
+      ],
+      "beyond_library": [
+        "revolved or stepped concentric tube primitives with a shoulder: sockets, spigots and cones on one axis",
+        "concentric step generation from diameters derived from pipe sizes and an interference allowance (derived numbers, not typed constants)",
+        "tolerance-stack arithmetic on measured diameters",
+        "print-orientation reasoning: 45 degree cones in place of horizontal ledges, a flat bottom end",
+        "parts catalogue: load generic_tube models for both pipes and seat them on the stops",
+        "checks against external solids: interference depth in a friction fit, stop seating, insertion sweeps"
+      ]
+    }
+  ]
+}

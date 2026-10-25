@@ -1,0 +1,172 @@
+{
+  "id": "screw_m2_selftap",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "m2 self-tapping screw",
+    "m2 self tapping screw",
+    "m2 screw",
+    "m2 thread-forming screw",
+    "m2 pan head screw"
+  ],
+  "kind": "fastener",
+  "source": "M2 pan-head self-tapping screw driven into a printed pilot hole (the owner's board-screw specification, requirements.md A9 and L2.3.3: M2 passes the measured 2.0 board holes, pilot 1.6-1.8, depth >= 5.0): head per ISO 7045 (dk, k), clearance hole per ISO 273 medium series, standoff OD minimum per L2.3.2.",
+  "frame": "fastener: axis along Z, origin on the head bearing face, shank toward -Z, head toward +Z",
+  "params": {
+    "thread_diameter": {
+      "default": 2.0,
+      "source": "nominal thread diameter (M2)"
+    },
+    "pilot_diameter": {
+      "default": 1.7,
+      "source": "requirements.md A9 / L2.3.3: pilot 1.6-1.8, the middle of the range"
+    },
+    "pilot_min": {
+      "default": 1.6,
+      "source": "requirements.md A9 / L2.3.3: pilot range"
+    },
+    "pilot_max": {
+      "default": 1.8,
+      "source": "requirements.md A9 / L2.3.3: pilot range"
+    },
+    "clearance_diameter": {
+      "default": 2.4,
+      "source": "ISO 273 medium clearance hole for M2"
+    },
+    "head_diameter": {
+      "default": 4.0,
+      "source": "ISO 7045 M2 head diameter dk"
+    },
+    "head_height": {
+      "default": 1.6,
+      "source": "ISO 7045 M2 head height k"
+    },
+    "length": {
+      "default": 6.0,
+      "source": "stock length (common M2 length that reaches min_engagement through a 1.6 board)"
+    },
+    "min_engagement": {
+      "default": 5.0,
+      "source": "requirements.md L2.3.3 / A9: pilot depth >= 5.0 from the standoff top"
+    },
+    "min_boss_od": {
+      "default": 5.0,
+      "source": "requirements.md L2.3.2: standoff OD 5.0-7.0"
+    }
+  },
+  "datasheet_size": [
+    "head_diameter",
+    "head_diameter",
+    "length + head_height"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "shank",
+      "primitive": "cylinder",
+      "d": "thread_diameter",
+      "h": "length",
+      "at": [
+        0,
+        0,
+        "-length"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "head",
+      "primitive": "cylinder",
+      "d": "head_diameter",
+      "h": "head_height",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "thread_diameter"
+    },
+    "HEAD_BEARING": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "-length"
+      ]
+    }
+  },
+  "connectors": [],
+  "self_checks": [
+    {
+      "name": "pilot inside its range",
+      "expr": "pilot_diameter - pilot_min",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "pilot below its range maximum",
+      "expr": "pilot_max - pilot_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "pilot smaller than the thread",
+      "expr": "thread_diameter - pilot_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "clearance hole passes the thread",
+      "expr": "clearance_diameter - thread_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "head larger than the clearance hole",
+      "expr": "head_diameter - clearance_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

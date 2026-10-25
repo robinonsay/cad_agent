@@ -1,0 +1,55 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. The board has a 3 mm mounting hole in each corner, 2.5 mm in from the edges. On it are a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a heatsink 20 x 12 mm and 20 mm tall, and two electrolytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside the box, and blows down into it through an opening in the lid, held by M3 socket-head screws on its 32 mm hole pattern, and exhaust slots line the opposite end wall. A 5.5 x 2.1 mm DC plug must plug into the jack with the lid on. Keep the fan intake at least 5 mm from the nearest tall component, which I take to mean its frame stays at least 5 mm clear of every part on the board. The enclosure is a base and a removable lid held by M3 screws, printed on an FDM printer, and no larger than 100 x 80 x 40 mm. All screws are ISO 4762 M3 socket-head cap screws, which I have in the stock lengths 6, 8, 10, 12, 14, 16 and 20 mm.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_cylinder: capacitor (generic)
+- generic_box: box (generic)
+- gear_spur_generic: spur gear (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 1
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "gear_spur_generic": {
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 2
+  },"jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },"perfboard": {
+    "quantity": 1
+  }
+}

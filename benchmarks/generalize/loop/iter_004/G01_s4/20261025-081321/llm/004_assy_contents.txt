@@ -1,0 +1,58 @@
+MODEL: ornith-1.5:9b T=0.3 seed=4000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a small box for an Arduino Nano (board 45 x 18 mm) that I will leave on a shelf. The Nano's mini-USB port has to be reachable through one short end of the box with the lid on, so I can plug a cable in. Three 5 mm status LEDs, separate parts wired to the Nano, sit in the top face of the lid and must be visible from outside. The lid snaps on without screws, so the box has no fasteners at all. The Nano keeps its header pins pointing down (they stick out of the underside), so the board has to stand clear of the floor. The base is printed flat on the bed in PLA, with no supports.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- tp4056_usbc_module: tp4056 (module; cable connector: usb connector (takes a usb-c plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 1
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 1
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "tp4056_usbc_module": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

@@ -1,0 +1,30 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for an 80 x 60 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 and one 3.5 mm jack sit on the board, and both the Pico's micro-USB port and the jack must be exposed through the same short end of the enclosure so cables plug in with the lid on. The enclosure is a base and a removable lid, printed on an FDM printer.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "jack_3p5_pj320a": {
+    "exposed": "yes",
+    "quantity": 1
+  },
+  "perfboard": {
+    "quantity": 1
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 1
+  }
+}

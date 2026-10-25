@@ -1,0 +1,51 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Could you design a case in two pieces for a Raspberry Pi Zero 2 W? The board is 65 x 30 mm and is fixed at its four 2.75 mm mounting holes, which form a 58 x 23 mm pattern sitting 3.5 mm in from the edges, with screws going into printed standoffs. Cables have to reach the board through openings in the walls while the cover is on, each opening leaving room for the plug body. On one long side of the board are the mini-HDMI port and the two micro-USB ports (data and power); the microSD card slot is on a short end and the card must be able to be pushed in and out. The cover attaches to the base with M2.5 screws, and the whole thing gets printed on an FDM printer.
+
+Catalogue parts that may be in the request:
+- perfboard: perfboard (board)
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug), sd connector (takes a microsd card))
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "perfboard": {
+    "quantity": 0
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_zero2w": {
+    "hdmi_exposed": "yes",
+    "quantity": 1,
+    "sd_exposed": "yes",
+    "usb_data_exposed": "no",
+    "usb_power_exposed": "no"
+  }
+}

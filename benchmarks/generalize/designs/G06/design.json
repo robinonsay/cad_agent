@@ -1,0 +1,88 @@
+{
+  "about": "Generalisation design G06 (electronics_enclosure family), dev.json format. Tier 4: a real product with a tilted display, a stacked microcontroller board, a sloped front panel with a window, a rear connector opening and two printable bodies, judged as interference and clearance checks against reference models and keep-out volumes. L1 ids match benchmarks/generalize/designs/G06/requirements.md, which holds the L2/L3 tree, the reference models, the assumptions and the traceability. Numbers that are not in the owner's words come from requirements.md section 3 and are provisional. Never put any of these numbers in agent logic: they belong in the request text and in the parts catalogue (lcd1602_hd44780, rpi_pico2, plug_microusb_b, screw_m2_selftap).",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, lift the board out, view through the window)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G06",
+      "tier": 4,
+      "title": "Pico clock with sloped 1602 LCD",
+      "request": "A desk clock case built around a 1602 LCD module (PCB 80 x 36 mm, viewport 64.5 x 14 mm, four 2.5 mm mounting holes) and a Raspberry Pi Pico 2. The LCD is tilted 30 degrees from the table, so the front face of the case is a sloped face with a window for the LCD, and the module is fixed on its four mounting holes. The Pico 2 is mounted behind and below the LCD, partly under it, and its micro-USB port must open through the back wall so a cable plugs in with the case closed. The case is a base and a removable sloped front panel, printed on an FDM printer without supports, and it stands on a desk.",
+      "request_notes": "Added to the plan brief, all from requirements.md section 3: the face leans toward the viewer (A1, FD1); two bodies, base and removable panel (FD2, A9); 'behind' read as behind and below, stacked (A2); the micro-USB cable plug sizes (A8); FDM printing and no supports (A10).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall place the LCD module and the Pico 2 from the parts catalogue, with the LCD tilted 30 degrees and the Pico's USB port facing the back wall, without the parts colliding, with the Pico lying partly under the LCD (at least 100 mm2 of overlap seen from above), and shall declare that layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The LCD plane shall be tilted 30 degrees from the table with the display facing up and toward the front, and the case's front panel shall be a flat sloped face parallel to the LCD.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.3",
+          "text": "The sloped panel shall have a window that shows the whole 64.5 x 14 mm LCD viewport without any material in the way, and that is not oversized (0.5 to 2.0 mm bigger than the viewport on each side).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The LCD shall be fixed on four standoffs at its four 2.5 mm mounting holes with screws, with its edges at least 0.5 mm clear of the case walls.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.5",
+          "text": "The Pico 2 shall be mounted behind and below the LCD on four standoffs at its mounting holes, inside the case, with at least 1.0 mm between the Pico's top side and the back of the LCD module, taking 2.0 mm of soldered components and driver epoxy on the LCD's back across its whole PCB.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "With the case closed, a micro-USB cable shall plug fully into the Pico through one opening in the back wall without touching the case, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+          "method": "test"
+        },
+        {
+          "id": "L1.7",
+          "text": "The case shall be a base and a separate removable sloped front panel that locates on the base with a sliding fit and is held closed by two M2 self-tapping screws at its rear corners, each driven along the panel normal into a boss on the base.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.8",
+          "text": "The closed case shall have no openings other than the LCD window, the USB opening and screw holes, and its walls, floor and panel shall be 2 to 4 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The base and the panel shall each be one manifold body that prints on an FDM printer without supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The closed case shall be no larger than 100 x 80 x 70 mm and shall stand on a desk without tipping.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "With the panel off, the LCD and the Pico shall each lift out along a clear path and every board screw shall be reachable with a screwdriver.",
+          "method": "test"
+        },
+        {
+          "id": "L1.12",
+          "text": "The design shall be delivered as a base STL, a panel STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "angled datum placement: a part posed by a rotation about X from its datums, with tilted standoffs along the tilted normal",
+        "a sloped outer face with a window cut along the tilted normal and a panel body printed in a different pose from its assembly pose",
+        "stacked boards: a keep-out volume below the LCD and a clearance check against the Pico top",
+        "subtraction: rectangular USB opening, window, blind pilots on tilted axes",
+        "interference checks against reference models, a view-zone prism and a swept plug envelope"
+      ]
+    }
+  ]
+}

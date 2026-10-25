@@ -1,0 +1,14 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for an 80 x 60 mm perfboard with a mounting hole in each corner. A Raspberry Pi Pico 2 and one 3.5 mm jack sit on the board, and both the Pico's micro-USB port and the jack must be exposed through the same short end of the enclosure so cables plug in with the lid on. The enclosure is a base and a removable lid, printed on an FDM printer.
+
+Proposed arrangement on the board: raspberry pi pico 2 (usb) faces the short (60 mm) end at -X; 3.5 mm jack (jack) faces the short (60 mm) end at +X.
+Does this arrangement match the request? Answer yes or no.
+
+=== RESPONSE ===
+p_yes=0.265

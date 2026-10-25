@@ -1,0 +1,46 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Please design an L bracket for a NEMA 17 stepper motor, whose body is 42.3 mm square and 40 mm long with a 5 mm shaft. The motor bolts to the upright face using its 31 mm bolt pattern and a 22.5 mm pilot register, and the end of its shaft sticks out through that face on the same side as the flange. In the flat, horizontal flange there are two M4 holes, 40 mm apart, lying on a line parallel to the bend. The motor has a mass of 0.35 kg, and the bracket ought to withstand roughly 20 N at the shaft. I'm using ISO 4762 socket-head cap screws throughout, M3 on the motor and M4 on the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on an FDM printer as one piece, positioned so the layers won't split at the bend.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- esp32_devkitc_v4: esp32 devkitc (module; cable connector: usb connector (takes a micro-usb plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "esp32_devkitc_v4": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

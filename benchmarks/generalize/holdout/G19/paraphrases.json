@@ -1,0 +1,150 @@
+{
+ "paraphrases": [
+  {
+   "id": "G19",
+   "tier": 4,
+   "title": "625 idler block for 2020 slot",
+   "request": "Idler block carrying a 625 bearing (5 x 16 x 5 mm) on an M5 bolt, mounted in the T-slot of a 2020 aluminium extrusion. Model the extrusion as a 60 mm length with the block nominally at its middle. A single M5 button-head bolt is both the bearing axle and the clamp into a drop-in M5 T-nut in the slot. The block has a tongue for the profile's 6.2 mm slot opening, sliding along the slot with 0.2 mm clearance, so the tongue is 6.0 mm wide. The bearing outer ring spins free of the block with 1 mm side clearance, and a belt runs on that outer ring. FDM printed in PLA.",
+   "request_verbatim": "An idler block that carries a 625 bearing (5 x 16 x 5 mm) on an M5 bolt and bolts to the T-slot of a 2020 extrusion. The block needs a 6.2 mm slot-engagement tongue that slides in the slot with 0.2 mm clearance. The bearing outer ring must spin free of the block with 1 mm side clearance.",
+   "request_notes": "Added to the brief (derived, see requirements.md 3.1 and 3.2): one bolt is both axle and clamp (FD1); '6.2 mm tongue ... 0.2 mm clearance' = the slot opening is 6.2, so the tongue is 6.0 wide (FD2); the extrusion section is the catalogue 2020 profile (slot opening 6.2, depth 6.1, lip 1.8, interior 11.0) and the T-nut is the catalogue drop-in nut; FDM, PLA (A8). Audit: the extrusion length (60 mm), the belt on the outer ring and the numeric bands behind the gates were added to the request / L1 text so the agent is told every number the judge uses (requirements.md Audit).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "From the catalogue, place the block on the 2020 extrusion's slot, the 625 bearing and the M5 bolt on the block's axis, and the T-nut behind the lips. Parts must not collide. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The 625 bearing sits on the block with its bore on the M5 bolt axis, the inner ring clamped between the bolt head and a seat boss, so the bolt is the axle. The boss is 6.0 to 7.4 mm across and 0.5 to 0.8 mm high and touches only the land of the inner ring.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The bearing outer ring spins free of all printed surfaces: 1.0 mm radial clearance to the pocket wall, at least 0.5 mm to the floor and to the bolt head. Its outer cylinder stands at least 1.5 mm proud of the block's outer face so a belt can run on it.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The block has a tongue 6.0 mm wide and 1.5 mm deep, made of two pads (each at least 6.0 mm long) with a 9.0 to 12.0 mm relief between them for the bolt, about 24 mm long overall. It goes into the extrusion's 6.2 mm slot opening and stays inside the 1.8 mm lip.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "The tongue slides freely along the slot with 0.2 mm total clearance (0.1 mm each side). The block can slide at least ±15 mm along the extrusion and touches it only with its shoulder faces on the profile face.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Shoulder faces sit flat on the extrusion face, bolt axis square to it. No collision between block and profile.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "A declared-length M5 bolt passes through the bearing, the block and the slot opening, threads at least 2.4 mm into the T-nut under the lips, and ends at least 0.5 mm short of the slot floor. The T-nut is 3.5 mm thick, so engagement is at most 3.5 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "A hex key reaches the bolt head from outside with nothing blocking it.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Block fits within 30 x 30 x 12 mm. At least 2.0 mm of material round the bearing pocket and under its floor. No feature thinner than 0.8 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "One manifold body, printable in PLA on an FDM printer with no supports in its declared orientation.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Deliver a block STL, the OpenSCAD source, the declared layout (block position, bolt length, print orientation) and the agent's own clearance report. The report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the block is placed on the SLOT_PX datum of the extrusion; the T-nut, bolt and bearing are placed on its axis",
+    "a tongue (slot engagement) with a sliding-fit width derived from the slot opening and a clearance",
+    "a bearing pocket whose diameter is derived from the bearing OD plus a side clearance, with a seat boss that touches only the inner ring",
+    "a clamp stack: bolt head, bearing, boss, block, lips, T-nut, with the bolt length chosen so the thread engages the nut",
+    "interference and sweep checks against an extrusion that has real slot geometry (opening, lips, interior undercut)",
+    "print-orientation reasoning: the horizontal bearing pocket, the tongue relief"
+   ]
+  },
+  {
+   "id": "G19",
+   "tier": 4,
+   "title": "625 idler block for 2020 slot",
+   "request": "I need a belt idler mount for a 2020 aluminium extrusion. It should hold a 625 bearing (5 x 16 x 5 mm) on an M5 bolt, and attach in the extrusion's T-slot. Please treat the extrusion as a 60 mm piece, with the block sitting roughly halfway along. The one M5 button-head bolt does two things: it's the axle for the bearing and it clamps the block down onto a drop-in M5 T-nut sitting in the slot. A tongue on the block fits the profile's 6.2 mm slot opening and slides along the slot with 0.2 mm of clearance, which makes the tongue 6.0 mm wide. The outer ring of the bearing must turn freely with 1 mm of side clearance to the block, and a belt rides on that ring. I'll print it in PLA on an FDM printer.",
+   "request_verbatim": "An idler block that carries a 625 bearing (5 x 16 x 5 mm) on an M5 bolt and bolts to the T-slot of a 2020 extrusion. The block needs a 6.2 mm slot-engagement tongue that slides in the slot with 0.2 mm clearance. The bearing outer ring must spin free of the block with 1 mm side clearance.",
+   "request_notes": "Added to the brief (derived, see requirements.md 3.1 and 3.2): one bolt is both axle and clamp (FD1); '6.2 mm tongue ... 0.2 mm clearance' = the slot opening is 6.2, so the tongue is 6.0 wide (FD2); the extrusion section is the catalogue 2020 profile (slot opening 6.2, depth 6.1, lip 1.8, interior 11.0) and the T-nut is the catalogue drop-in nut; FDM, PLA (A8). Audit: the extrusion length (60 mm), the belt on the outer ring and the numeric bands behind the gates were added to the request / L1 text so the agent is told every number the judge uses (requirements.md Audit).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Using the catalogue, put the block on the slot of the 2020 extrusion, the 625 bearing and M5 bolt along the block's axis, and the T-nut behind the lips, with no collisions between parts, and declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Bearing mounting: the bore of the 625 lines up with the M5 bolt axis, and the inner ring is clamped by the bolt head on one side and a seat boss on the other, which makes the bolt the axle. That boss measures 6.0 to 7.4 mm across and 0.5 to 0.8 mm tall, and contacts nothing but the land of the inner ring.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Nothing printed may rub on the bearing's outer ring. Leave 1.0 mm of radial side clearance to the pocket wall and at least 0.5 mm to the floor and the bolt head, and let the outer cylinder stick out at least 1.5 mm past the block's outer face for the belt.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "The tongue on the block is 6.0 mm wide and 1.5 mm deep. It is built as two pads, each at least 6.0 mm long, separated by a 9.0 to 12.0 mm relief where the bolt goes, and is roughly 24 mm long in total. It enters the extrusion's 6.2 mm slot opening and stays within the 1.8 mm lip.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "Along the slot the tongue slides without binding, with a total clearance of 0.2 mm (0.1 mm per side). The block travels at least ±15 mm along the extrusion, and the only contact with it is the block's shoulder faces resting on the profile face.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "The block's shoulder faces lie flat against the face of the extrusion with the bolt axis square to it, and the block doesn't collide with the profile.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "An M5 bolt, whose length is declared, goes through the bearing, the block and the slot opening, screws at least 2.4 mm into the T-nut that sits under the lips and stops 0.5 mm or more before the slot floor. Since the T-nut is 3.5 mm thick, the most it can engage is 3.5 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "From the outside, a hex key must be able to get to the bolt head with nothing in the way.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "The block must fit inside 30 x 30 x 12 mm, keep 2.0 mm or more of material around the bearing pocket and below its floor, and contain nothing thinner than 0.8 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "The block is a single manifold body which prints in PLA on an FDM printer in its declared orientation, without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Hand over a block STL, the OpenSCAD source, the layout as declared (block position, bolt length, print orientation) and the agent's own clearance report, which has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "datum placement: the block is placed on the SLOT_PX datum of the extrusion; the T-nut, bolt and bearing are placed on its axis",
+    "a tongue (slot engagement) with a sliding-fit width derived from the slot opening and a clearance",
+    "a bearing pocket whose diameter is derived from the bearing OD plus a side clearance, with a seat boss that touches only the inner ring",
+    "a clamp stack: bolt head, bearing, boss, block, lips, T-nut, with the bolt length chosen so the thread engages the nut",
+    "interference and sweep checks against an extrusion that has real slot geometry (opening, lips, interior undercut)",
+    "print-orientation reasoning: the horizontal bearing pocket, the tongue relief"
+   ]
+  }
+ ]
+}

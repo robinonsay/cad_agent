@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the DC jack, the heatsink and the two capacitors on the 80 x 60 mm board, from the parts catalogue, with the jack facing one short end, without the parts colliding or covering the corner holes, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The 80 x 60 x 1.6 mm board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where it rests on its standoffs.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The board shall rest on exactly four standoffs, 4 to 10 mm tall, one under each corner hole, each with a pilot hole at least 5 mm deep for an M3 screw through the board, and the declared screws shall bite with at least 4 mm of thread engagement.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "With the lid closed, no printed surface shall come within 0.5 mm of any board part or within 4.0 mm below the board's underside (except the standoffs under the holes), and every part shall lie inside the enclosure.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the lid closed, a 5.5 x 2.1 mm DC plug shall plug fully into the jack through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "The 40 x 40 x 10 mm fan shall sit on the lid's underside blowing into the box, fixed on its 32 mm hole pattern by four M3 screws with at least 3 mm of thread engagement into pilot holes in the lid that leave at least 0.8 mm of skin, over an opening in the lid of at least 60 percent of its 38 mm bore, with its frame at least 5 mm from every board part.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "Exhaust slots shall line the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a total open area of at least 567 mm2.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The enclosure shall be a base and a separate removable lid, a flat plate 4.8 to 6 mm thick with a locating lip that engages the base 2 to 3 mm with a sliding fit, no more than 9 mm tall overall, held closed by four M3 screws into bosses outside the board's outline.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "The closed enclosure shall have no openings other than the DC opening, the exhaust slots, the fan opening and screw holes, and its walls and floor shall be 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed enclosure shall be no larger than 100 x 80 x 40 mm, longest along the board's 80 mm side, and shall stand flat on a desk without tipping, stable at 5 degrees of table tilt.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "With the lid off, the populated board shall drop straight down onto its standoffs and every board screw shall be reachable with a screwdriver.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

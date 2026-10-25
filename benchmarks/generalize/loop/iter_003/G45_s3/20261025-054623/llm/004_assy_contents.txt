@@ -1,0 +1,50 @@
+MODEL: ornith-1.5:9b T=0.3 seed=3000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A tray for six M6 hotend nozzles (hex 7 mm across flats, 12 mm tall, 0.3 mm clearance per side in the pocket), a 7 mm combination wrench (120 x 14 x 4 mm, same clearance) in its own pocket, and four 6 x 3 mm disc magnets in pockets underneath that keep the tray on a steel surface, one in each quarter of the tray and spread over at least half its length and a quarter of its width. Loaded, the tray's centre of mass must lie at least 2 mm inside the four magnets (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each). The magnets sit 0.5 mm above the underside of the tray, recessed from the steel. The six nozzle pockets are 6 to 10 mm deep and stand in a regular row or grid (centres within 0.1 mm of the lattice) with at least 3 mm between neighbours, so the nozzles can be picked out one at a time with the fingers. Print the tray flat on an FDM printer without supports. It is no larger than 140 x 40 x 15 mm.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

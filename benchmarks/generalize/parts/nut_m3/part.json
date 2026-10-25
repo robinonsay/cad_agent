@@ -1,0 +1,166 @@
+{
+  "id": "nut_m3",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "m3 nut",
+    "m3 hex nut",
+    "iso 4032 m3",
+    "m3 nut trap",
+    "hex nut m3"
+  ],
+  "kind": "fastener",
+  "source": "ISO 4032 style 1 hex nut M3 (coarse thread): width across flats s = 5.5 mm, thickness m = 2.4 mm (max values), across corners e min = 6.01 mm. Trap clearance and pocket depth are print conventions, assumed (see params).",
+  "frame": "fastener: axis along Z, origin on the nut's bearing face (against its pocket floor), body toward +Z",
+  "params": {
+    "thread_diameter": {
+      "default": 3.0,
+      "source": "nominal thread diameter (M3)"
+    },
+    "across_flats": {
+      "default": 5.5,
+      "source": "ISO 4032 s (max)"
+    },
+    "across_corners": {
+      "default": 6.01,
+      "source": "ISO 4032 e (min); the geometry cylinder is the circumscribed envelope of the hexagon"
+    },
+    "thickness": {
+      "default": 2.4,
+      "source": "ISO 4032 m (max)"
+    },
+    "trap_clearance": {
+      "default": 0.2,
+      "source": "ASSUMPTION: FDM slip clearance per flat side added to across_flats for a printed nut trap (uncertainty +/-0.1 mm; calibrate per printer)"
+    },
+    "pocket_depth": {
+      "default": 2.6,
+      "source": "ASSUMPTION: thickness + 0.2 mm so the nut sits just below the pocket rim (uncertainty +/-0.2 mm)"
+    },
+    "bolt_clearance_diameter": {
+      "default": 3.4,
+      "source": "ISO 273 medium-series through hole for the mating bolt"
+    },
+    "insertion_height": {
+      "default": 3.4,
+      "source": "ASSUMPTION: a side-entry slot or open top must clear the nut thickness plus 1.0 mm (uncertainty +/-0.5 mm)"
+    }
+  },
+  "datasheet_size": [
+    "across_corners",
+    "across_corners",
+    "thickness"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "across_corners",
+      "h": "thickness",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "pocket",
+      "primitive": "cylinder",
+      "d": "across_corners + 2 * trap_clearance",
+      "h": "pocket_depth",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "thread_diameter",
+      "keepout_diameter": "across_corners"
+    },
+    "SEAT": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "thickness"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "import_gate_notes": "R1: bounding box = across_corners x across_corners x thickness, tolerance 0.2 mm (cylinder envelope of the hexagon: no hex primitive exists; its true plan size is across_flats x across_corners). Datum directions are unit vectors. Designed contact (nut on its pocket floor, bolt through its thread) is not interference; the pocket keepout is the printed trap volume, not a solid.",
+  "self_checks": [
+    {
+      "name": "corners beyond flats",
+      "expr": "across_corners - across_flats",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hexagon geometry: corners at most 1.155 x flats",
+      "expr": "1.1547 * across_flats - across_corners",
+      "op": "ge",
+      "value": 0,
+      "tol": 0.02
+    },
+    {
+      "name": "bolt passes the nut bore",
+      "expr": "bolt_clearance_diameter - thread_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "pocket deep enough for the nut",
+      "expr": "pocket_depth - thickness",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+MODEL: ornith-1.5:9b T=0.3 seed=3000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A small control box for an Arduino Nano with an Alps EC11 rotary encoder (7 mm threaded bushing, 6 mm shaft) on the top panel, and a small 0.96 inch SSD1306 OLED display behind a window in the same panel, next to the encoder. The top panel is 3 mm thick, and the encoder's nut must seat flat on the panel with the bushing's thread projecting past the nut. The Nano's mini-USB port must be reachable through the back end of the box with the lid on. The top panel is the removable lid, held on by four M3 self-tapping screws; the box is a base plus that lid, printed on an FDM printer.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- tp4056_usbc_module: tp4056 (module; cable connector: usb connector (takes a usb-c plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_box: rectangular block (generic)
+- oled_ssd1306_096: 0.96 inch oled (display)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 1
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 1
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "oled_ssd1306_096": {
+    "quantity": 1
+  },
+  "tp4056_usbc_module": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

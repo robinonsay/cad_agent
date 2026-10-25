@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n19 = 1.0 mm (L1.3): "...ery printed surface apart from its standoffs, with at least 1.0 mm between its tallest part and the lid, and the inner w..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n19 state?
+- board_depth: the length of the circuit board's shorter edge (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+
+=== RESPONSE ===
+{
+  "owner": "headroom"
+}

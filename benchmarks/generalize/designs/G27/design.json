@@ -1,0 +1,80 @@
+{
+  "about": "The LM8UU linear bearing carriage design of the generalisation set (family and capabilities in benchmarks/generalize/plan.json), in dev.json format. Tier 4 = a real product: bought-in parts placed from a parts catalogue, openings and holes, printed bodies, and fit and access requirements judged as interference and clearance checks against reference models and keep-out volumes. L1 ids match requirements.md next to this file, which holds the L2/L3 tree, the reference models, the assumptions with their uncertainty, the fixed decisions, the feasibility sketch and the traceability. Numbers that are not in the brief come from requirements.md sections 3 and 4. Never put any of these numbers in agent logic: they belong in the request text and in the parts' part.json.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G27",
+      "tier": 4,
+      "title": "LM8UU linear bearing carriage",
+      "request": "A carriage block that carries one LM8UU linear bearing (8 x 15 x 24 mm) on an 8 mm smooth rod, 200 mm long. The block has a flat top plate 40 x 30 mm with four M3 holes on a 30 x 20 mm pattern, and M3 nuts held captive in pockets on the underside of the plate, with the bearing housing hanging below the plate and the top face left flat. The screws are ISO 4762 M3 socket-head screws, 10 mm long. The rod runs along the 30 mm side of the plate. The bearing is retained by 3.0 x 1.2 mm zip ties in grooves round the block and a 0.1 mm press fit in its bore (a housing bore of the bearing's 15 mm outside diameter plus the usual 0.1 mm printing allowance, since printed holes come out about that much small). The rod must slide through with the bearing seated and without touching the block. One printed part, in PLA on an FDM printer.",
+      "request_verbatim": "A carriage block carrying one LM8UU linear bearing (8 x 15 x 24 mm) on an 8 mm smooth rod, with a flat top plate 40 x 30 mm with four M3 holes on a 30 x 20 mm pattern. The bearing is retained by a zip-tie groove and a 0.1 mm press. The rod must slide through with the bearing seated, no touching the block.",
+      "request_notes": "Added to the brief, from requirements.md sections 3 and 4: captive M3 nuts on the underside (F3), rod along the 30 mm side (A12, F2), one part (F1), PLA/FDM (A10). Audit 2026-10-24: rod length (rod_8mm takes it from the request), screw type and length (bolt_m3_iso4762 likewise), tie size (A5), housing below the plate (F2) and the meaning of the 0.1 mm press (A2) added to the request; groove, slit and bed-contact numbers moved into L1.",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall declare the bearing's pose, the rod's axis and the nut poses, with the rod running along the plate's 30 mm side and centred across its 40 mm side, and the bearing housing under the plate.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The bearing shall seat in a round bore of 15.1 mm (15.05 to 15.15) with a radial gap of 0 to 0.15 mm, against one shoulder that bears on its outer ring only, with nothing printed entering its 8 mm core.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.3",
+          "text": "Two zip-tie grooves round the housing shall clamp the bearing: each 3.2 to 4.0 mm wide and at least 1.0 mm deep, leaving at least 1.6 mm of wall under the floor, centres at least 2.0 mm inside the bearing's faces and at least 8.0 mm apart, a 3.0 x 1.2 mm tie able to run all the way round in each, and one slit 1.0 to 2.0 mm wide along the bottom, nearly the full housing length, so the ties preload the bore.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The 8 mm rod shall slide through the bearing with the bearing seated and the printed block at least 1.0 mm from the rod everywhere, both ends of the core open, and the bore coaxial with the declared bearing.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The flat top plate shall be 40 x 30 mm (plus or minus 0.2) and 4.0 to 6.0 mm thick, flat to 0.2 mm and parallel to the rod, joined to the housing by webs of at least 30 mm2.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.6",
+          "text": "Four 3.4 mm holes shall lie through the plate on a 30.0 x 20.0 mm rectangle (plus or minus 0.15), centred on the plate, with at least 2.0 mm of material round each and hex-key room above each screw head.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.7",
+          "text": "An M3 nut shall be captive in a hex pocket on the underside of the plate at each hole, with the pocket's width across flats 5.6 to 6.0 mm so the nut cannot turn, depth 2.6 to 3.2 mm, and room to put the nut in from below.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.8",
+          "text": "The carriage shall print on an FDM printer without supports with the rod axis vertical so the bore prints round, resting on a face of at least 300 mm2 and 30 percent of its footprint box.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The carriage shall be one manifold body in one shell, no larger than 45 x 35 x 35 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The design shall be delivered as a carriage STL, the OpenSCAD source, the declared layout and the agent's own report, and that report shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: a press-fit bore, tie grooves, a bottom slit, hex nut pockets, plain holes",
+        "a tube housing joined to a plate by webs so that a zip tie can run all the way round",
+        "tolerance stack: bore, bearing, shoulder and rod gaps held to hundredths of a millimetre",
+        "parts catalogue: load part.json models (bearing, rod, nut, screw) and use their datums and keep-outs (housing bore, bore core, nut pocket and insertion)",
+        "print orientation chosen so a bore prints round, checked by an overhang scan",
+        "interference checks against external solids: clear_of, gap, hole and groove finding"
+      ]
+    }
+  ]
+}

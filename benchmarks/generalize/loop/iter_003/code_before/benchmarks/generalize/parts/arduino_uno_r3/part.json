@@ -1,0 +1,373 @@
+{
+ "id": "arduino_uno_r3",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "arduino uno r3",
+  "arduino uno",
+  "uno r3",
+  "uno board",
+  "arduino uno rev3",
+  "uno"
+ ],
+ "kind": "module",
+ "source": "Arduino Uno Rev3 datasheet (A000066) mechanical drawing: PCB 68.6 x 53.3 mm (2.7 x 2.1 in), four 3.2 mm holes at (14.0, 2.5), (15.3, 50.7), (66.1, 7.6), (66.1, 35.5) mm from the corner at the USB end, USB-B receptacle 12 x 16 x 11 mm and DC jack 9 x 14 x 11 mm on the same short edge. ASSUMED / uncertain: PCB thickness 1.6 mm; USB-B centre 38.1 mm and DC jack centre 7.6 mm along the short edge (+/-1.5, read from the reference board photographs; the drawing dimensions only the holes); USB-B overhang 6.0 mm and DC jack overhang 2.0 mm beyond the PCB edge (+/-1.5); tallest non-connector part 8.5 mm (female headers); solder tails 2.0 mm on the underside; ATmega328P position (+/-8 mm). Check against the owner's board.",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, components on +Z, USB-B and DC jack on the -X short edge",
+ "params": {
+  "pcb_length": {
+   "default": 68.6,
+   "source": "datasheet: board outline"
+  },
+  "pcb_width": {
+   "default": 53.3,
+   "source": "datasheet: board outline"
+  },
+  "pcb_thickness": {
+   "default": 1.6,
+   "source": "assumed standard 1.6 mm FR4"
+  },
+  "hole_diameter": {
+   "default": 3.2,
+   "source": "datasheet: mounting holes"
+  },
+  "hole_keepout": {
+   "default": 7.0,
+   "source": "assumed: M3 pan head 6 mm plus 0.5 mm margin each side"
+  },
+  "usb_depth": {
+   "default": 16.0,
+   "source": "task sheet: USB-B receptacle length along the plug axis"
+  },
+  "usb_width": {
+   "default": 12.0,
+   "source": "task sheet / USB 2.0 spec: USB-B receptacle width"
+  },
+  "usb_height": {
+   "default": 11.0,
+   "source": "task sheet / USB 2.0 spec: USB-B receptacle height"
+  },
+  "usb_overhang": {
+   "default": 6.0,
+   "source": "assumed: receptacle overhang beyond the PCB edge"
+  },
+  "usb_centre_y": {
+   "default": 38.1,
+   "source": "assumed (reference photographs): USB-B centre along the short edge"
+  },
+  "jack_depth": {
+   "default": 14.0,
+   "source": "task sheet: DC jack length along the plug axis"
+  },
+  "jack_width": {
+   "default": 9.0,
+   "source": "task sheet: DC jack width"
+  },
+  "jack_height": {
+   "default": 11.0,
+   "source": "task sheet: DC jack height"
+  },
+  "jack_overhang": {
+   "default": 2.0,
+   "source": "assumed: jack overhang beyond the PCB edge"
+  },
+  "jack_centre_y": {
+   "default": 7.6,
+   "source": "assumed (reference photographs): DC jack centre along the short edge"
+  },
+  "top_parts_height": {
+   "default": 8.5,
+   "source": "female header height (tallest non-connector part)"
+  },
+  "solder_tail_height": {
+   "default": 2.0,
+   "source": "assumed: through-hole solder tails below the PCB"
+  },
+  "mcu_centre_x": {
+   "default": 48.0,
+   "source": "assumed +/-8: ATmega328P centre from the USB end"
+  },
+  "mcu_centre_y": {
+   "default": 18.0,
+   "source": "assumed +/-8: ATmega328P centre across the board"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "pcb_thickness"
+ ],
+ "size_of": "pcb",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "usb",
+   "primitive": "box",
+   "size": [
+    "usb_depth",
+    "usb_width",
+    "usb_height"
+   ],
+   "at": [
+    "-usb_overhang",
+    "usb_centre_y - usb_width / 2",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "jack",
+   "primitive": "box",
+   "size": [
+    "jack_depth",
+    "jack_width",
+    "jack_height"
+   ],
+   "at": [
+    "-jack_overhang",
+    "jack_centre_y - jack_width / 2",
+    "pcb_thickness"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "component_side",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "top_parts_height"
+   ],
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "solder_side",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "solder_tail_height"
+   ],
+   "at": [
+    0,
+    0,
+    "-solder_tail_height"
+   ]
+  }
+ ],
+ "interfaces": [{"id": "mount", "kind": "mount_holes", "holes": "HOLE", "seat": "PCB_BOTTOM", "top": "PCB_TOP", "source": "catalogue data (generalize iteration 001, delta D1): the mounting-hole axis list, the plane the part rests on when seated over its holes, and the plane its component keep-out starts from. thread: generalize delta 002 D2, Arduino Uno Rev3 datasheet (A000066): 3.2 mm mounting holes for M3 screws", "thread": 3.0}],
+ "datums": {
+  "USB_MOUTH": {
+   "kind": "point",
+   "at": [
+    "-usb_overhang",
+    "usb_centre_y",
+    "pcb_thickness + usb_height / 2"
+   ]
+  },
+  "USB_AXIS": {
+   "kind": "axis",
+   "at": [
+    "-usb_overhang",
+    "usb_centre_y",
+    "pcb_thickness + usb_height / 2"
+   ],
+   "dir": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "JACK_MOUTH": {
+   "kind": "point",
+   "at": [
+    "-jack_overhang",
+    "jack_centre_y",
+    "pcb_thickness + jack_height / 2"
+   ]
+  },
+  "JACK_AXIS": {
+   "kind": "axis",
+   "at": [
+    "-jack_overhang",
+    "jack_centre_y",
+    "pcb_thickness + jack_height / 2"
+   ],
+   "dir": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "HOLE": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "hole_diameter",
+   "keepout_diameter": "hole_keepout",
+   "at": [
+    [
+     14.0,
+     2.5,
+     0
+    ],
+    [
+     15.3,
+     50.7,
+     0
+    ],
+    [
+     66.1,
+     7.6,
+     0
+    ],
+    [
+     66.1,
+     35.5,
+     0
+    ]
+   ]
+  },
+  "MCU": {
+   "kind": "point",
+   "at": [
+    "mcu_centre_x",
+    "mcu_centre_y",
+    "pcb_thickness"
+   ]
+  }
+ },
+ "connectors": [
+  {
+   "name": "usb",
+   "mouth": "USB_MOUTH",
+   "axis": "USB_AXIS",
+   "mates": "plug_usb_b",
+   "overhang_datum": "USB_MOUTH"
+  },
+  {
+   "name": "dc",
+   "mouth": "JACK_MOUTH",
+   "axis": "JACK_AXIS",
+   "mates": "plug_dc_barrel_5p5",
+   "overhang_datum": "JACK_MOUTH"
+  }
+ ],
+ "notes": "HOLE is the official four-hole pattern (the Uno's holes are not on a regular grid; absolute coordinates from the datasheet drawing). The USB-B and DC jack axes are both along -X on the same short edge, 30.5 mm apart (assumed centres 38.1 and 7.6), so their plug overmolds (plug_usb_b 16 x 13, plug_dc_barrel_5p5 about 11 mm handle) must both fit in that spacing: the sweep envelopes are checked by the assembly checks. MCU is a point datum for the ventilation row over the ATmega328P (a 28-pin DIP in a socket, 4.6 mm tall body, about 35 x 7.6 mm); its position is an estimate (+/-8 mm), so the slot row should span at least 40 mm along the board's long axis or be aligned in the iteration after measuring the owner's board. Header keepout: female headers (8.5 mm) run along both long edges. Import gate: R1 matches the PCB 68.6 x 53.3; R2 hole pattern from the drawing; R4 overhangs are assumed (tol 1.5); R9 skipped.",
+ "self_checks": [
+  {
+   "name": "R2 hole diameter",
+   "expr": "HOLE.diameter",
+   "value": 3.2,
+   "tol": 0.1
+  },
+  {
+   "name": "R2 hole 0 x",
+   "expr": "HOLE[0].x",
+   "value": 14.0,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 hole 1 y",
+   "expr": "HOLE[1].y",
+   "value": 50.7,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 hole 2 to 3 pitch Y",
+   "expr": "HOLE[3].y - HOLE[2].y",
+   "value": 27.9,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 holes inside the board",
+   "expr": "pcb.max_y - HOLE[1].y",
+   "value": 0,
+   "tol": 5,
+   "op": "ge"
+  },
+  {
+   "name": "R3 USB axis along -X",
+   "expr": "USB_AXIS.dx",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 jack axis along -X",
+   "expr": "JACK_AXIS.dx",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 components on +Z",
+   "expr": "usb.min_z - PCB_TOP.z",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "USB-B and jack do not overlap",
+   "expr": "(usb.min_y - jack.max_y)",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "R4 USB overhang",
+   "expr": "-usb.min_x",
+   "value": 6.0,
+   "tol": 1.5
+  },
+  {
+   "name": "R4 jack overhang",
+   "expr": "-jack.min_x",
+   "value": 2.0,
+   "tol": 1.5
+  }
+ ]
+}

@@ -1,0 +1,182 @@
+{
+ "id": "gt2_belt_6mm",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "gt2 belt",
+  "gt2 6mm belt",
+  "gt2 6 mm belt",
+  "6mm gt2 belt",
+  "6 mm gt2 belt",
+  "6mm belt",
+  "6 mm belt",
+  "gt2 timing belt",
+  "timing belt"
+ ],
+ "kind": "mech",
+ "source": "GT2 timing belt, 6 mm wide (Gates PowerGrip GT2 / common 3D-printer belt datasheets): pitch 2 mm, width 6 mm, total thickness 1.38 mm, tooth height 0.75 mm, pitch line offset about 0.254 mm from the tooth tip (Gates pitch line differential), minimum bending diameter about 20 mm for a toothed idler and about 20 mm smooth idler (assumed +/-5 mm). The belt is a closed loop; the model is one straight run (the span between two pulleys) of the requested length, with the teeth on the -Z face.",
+ "frame": "belt run: origin at the centre of the start end of the run, belt along +X, width across Y, teeth on the -Z face, back on +Z, run thickness centred on Z = 0",
+ "params": {
+  "length": {
+   "default": null,
+   "from_request": true,
+   "source": "request text: span length of the straight run"
+  },
+  "width": {
+   "default": 6.0,
+   "source": "datasheet: belt width"
+  },
+  "thickness": {
+   "default": 1.38,
+   "source": "datasheet: total thickness including teeth"
+  },
+  "pitch": {
+   "default": 2.0,
+   "source": "GT2 pitch"
+  },
+  "tooth_height": {
+   "default": 0.75,
+   "source": "datasheet: tooth height"
+  },
+  "pitch_line_offset": {
+   "default": 0.254,
+   "source": "Gates GT2 pitch line differential"
+  },
+  "min_bend_diameter": {
+   "default": 20.0,
+   "source": "assumed: minimum idler diameter for a 6 mm GT2 belt (+/-5 mm)"
+  }
+ },
+ "gate_params": {
+  "length": 100.0,
+  "source": "sample size used only by the load-time validation gate; never a design value"
+ },
+ "datasheet_size": [
+  "length",
+  "width",
+  "thickness"
+ ],
+ "size_tolerance": 0.05,
+ "geometry": [
+  {
+   "id": "run",
+   "primitive": "box",
+   "size": [
+    "length",
+    "width",
+    "thickness"
+   ],
+   "at": [
+    0,
+    "-width / 2",
+    "-thickness / 2"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "flutter_envelope",
+   "primitive": "box",
+   "size": [
+    "length",
+    "width",
+    "thickness"
+   ],
+   "at": [
+    0,
+    "-width / 2",
+    "-thickness / 2"
+   ]
+  }
+ ],
+ "datums": {
+  "BELT_AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    1,
+    0,
+    0
+   ]
+  },
+  "BELT_PLANE": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "TOOTH_FACE": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "-thickness / 2"
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "BACK_FACE": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "thickness / 2"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "PITCH_LINE": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "-thickness / 2 + pitch_line_offset"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  }
+ },
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "tooth height inside the thickness",
+   "expr": "thickness - tooth_height",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "belt width 6",
+   "expr": "run.size_y",
+   "value": 6.0,
+   "tol": 0.05
+  },
+  {
+   "name": "pitch line inside the belt",
+   "expr": "thickness - pitch_line_offset",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

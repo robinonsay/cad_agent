@@ -1,0 +1,245 @@
+{
+  "id": "lm8uu",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "lm8uu",
+    "lm8uu bearing",
+    "lm8uu linear bearing",
+    "8 mm linear bearing",
+    "linear ball bearing 8mm",
+    "8mm linear bushing"
+  ],
+  "kind": "bearing",
+  "source": "LM8UU linear ball bearing, ISO 10285 / common catalogue dimensions 8 x 15 x 24 mm (plan.json datasheet note); retaining-ring groove spacing 17.5, width 1.1, diameter 14.3 mm from the standard LM8UU catalogue tables. Printing allowances are assumptions.",
+  "frame": "bearing: axis along Z, origin at the centre of face A, face B at Z = width",
+  "params": {
+    "bore_diameter": {
+      "default": 8.0,
+      "source": "ISO 10285 (LM8UU): bore d"
+    },
+    "outer_diameter": {
+      "default": 15.0,
+      "source": "ISO 10285 (LM8UU): outside diameter D"
+    },
+    "width": {
+      "default": 24.0,
+      "source": "ISO 10285 (LM8UU): length L"
+    },
+    "housing_allowance": {
+      "default": 0.1,
+      "source": "assumed FDM convention: printed housing bore = outer diameter + this for a light press; +/- 0.1, tune with a test ring"
+    },
+    "shaft_clearance": {
+      "default": 0.1,
+      "source": "assumed FDM convention: smooth shaft is the bore size; printed shaft stub = bore diameter minus this for a slip fit; +/- 0.05"
+    },
+    "chamfer": {
+      "default": 0.3,
+      "source": "assumed: edge break; +/- 0.2"
+    },
+    "groove_spacing": {
+      "default": 17.5,
+      "source": "ISO 10285 / LM8UU catalogue: distance between the retaining-ring grooves B"
+    },
+    "groove_width": {
+      "default": 1.1,
+      "source": "LM8UU catalogue: groove width W"
+    },
+    "groove_diameter": {
+      "default": 14.3,
+      "source": "LM8UU catalogue: groove diameter D1"
+    }
+  },
+  "datasheet_size": [
+    "outer_diameter",
+    "outer_diameter",
+    "width"
+  ],
+  "size_tolerance": 0.1,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "outer_diameter",
+      "h": "width",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "bore_open",
+      "primitive": "cylinder",
+      "d": "bore_diameter",
+      "h": "width",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "bore_diameter"
+    },
+    "HOUSING_BORE": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "outer_diameter + housing_allowance"
+    },
+    "FACE_A": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "FACE_B": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "width"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "CENTRE": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "width / 2"
+      ]
+    },
+    "GROOVE_A": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "(width - groove_spacing) / 2 + groove_width / 2"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "GROOVE_B": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "(width + groove_spacing) / 2 - groove_width / 2"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "mount": {
+    "axis_datum": "AXIS",
+    "housing_datum": "HOUSING_BORE",
+    "seat_datums": [
+      "FACE_A",
+      "FACE_B"
+    ],
+    "notes": "Pressed into a printed housing bore (HOUSING_BORE.diameter) at least `width` deep, seated against a shoulder or retained by a lip on one face; the shoulder must stay on the outer ring, i.e. outside bore_diameter + (outer_diameter - bore_diameter) / 4 radius clearance round the bore, so the inner ring turns free (assumed convention, not a datasheet value). The outer ring in its housing and the shaft in the bore are designed contact; nothing printed may enter bore_open except the shaft."
+  },
+  "notes": "d 8 (shaft size), D 15, L 24 per ISO 10285 / plan note; groove spacing 17.5, groove width 1.1, groove diameter 14.3 from common LM8UU catalogue tables (+/- 0.2, makers vary). Bearing axis is the shaft axis; the shaft runs through bore_open and beyond FACE_A/FACE_B. Housing: a bore of HOUSING_BORE diameter at least 24 mm long, or two lips; retain with the grooves via circlips or end lips, or cable ties through a pocket. Housing allowance 0.1 is an FDM convention, uncertain by about 0.1 mm per printer. The caller must keep a printed shaft guide out of bore_open: shafts are 8 mm rods.",
+  "self_checks": [
+    {
+      "name": "bore (8.0 mm)",
+      "expr": "AXIS.diameter",
+      "value": 8.0,
+      "tol": 0.01
+    },
+    {
+      "name": "outside diameter (15.0 mm)",
+      "expr": "body.size_x",
+      "value": 15.0,
+      "tol": 0.01
+    },
+    {
+      "name": "width (24.0 mm)",
+      "expr": "body.size_z",
+      "value": 24.0,
+      "tol": 0.01
+    },
+    {
+      "name": "bore smaller than the outer diameter",
+      "expr": "outer_diameter - bore_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "housing bore above the outer diameter",
+      "expr": "HOUSING_BORE.diameter - outer_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "grooves inside the length",
+      "expr": "width - groove_spacing - groove_width",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "groove below the outer diameter",
+      "expr": "outer_diameter - groove_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

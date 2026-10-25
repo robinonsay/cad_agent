@@ -1,0 +1,31 @@
+{
+  "id": "header_female_2p54",
+  "schema": 1,
+  "units": "mm",
+  "names": ["female header", "female headers", "female header socket", "header socket", "socket header", "female sockets", "2.54 mm female header", "pin socket"],
+  "kind": "header",
+  "source": "Generic single-row 2.54 mm (0.1 in) female socket header, e.g. Samtec SSW / Harwin M20-78x series datasheets: insulator about 8.5 mm tall, 2.5 mm wide, pitch 2.54 mm (requirements.md A3, variant V3).",
+  "frame": "header: origin at pin 0 on the spacer bottom (Z = 0), pins along +X, spacer centred on Y = 0",
+  "params": {
+    "pins": {"default": 20, "source": "positions per row; a Pico 2 has 20 per side"},
+    "pitch": {"default": 2.54, "source": "datasheet: pitch"},
+    "spacer_height": {"default": 8.5, "source": "datasheet: insulator height (seated module underside height)"},
+    "spacer_width": {"default": 2.5, "source": "datasheet: insulator width"}
+  },
+  "datasheet_size": ["pins * pitch", "spacer_width", "spacer_height"],
+  "size_tolerance": 0.1,
+  "geometry": [
+    {"id": "spacer", "primitive": "box", "size": ["pins * pitch", "spacer_width", "spacer_height"],
+     "at": ["-pitch / 2", "-spacer_width / 2", 0]}
+  ],
+  "datums": {
+    "PINS": {"kind": "axis_list", "dir": [0, 0, -1], "count": "pins", "start": [0, 0, 0], "step": ["pitch", 0, 0]},
+    "STACK_BOTTOM": {"kind": "plane", "at": [0, 0, 0], "normal": [0, 0, -1]},
+    "STACK_TOP": {"kind": "plane", "at": [0, 0, "spacer_height"], "normal": [0, 0, 1]}
+  },
+  "connectors": [],
+  "self_checks": [
+    {"name": "R6 pitch", "expr": "PINS[1].x - PINS[0].x", "value": 2.54, "tol": 0.02},
+    {"name": "socket height", "expr": "STACK_TOP.z - STACK_BOTTOM.z", "value": 8.5, "tol": 0.2}
+  ]
+}

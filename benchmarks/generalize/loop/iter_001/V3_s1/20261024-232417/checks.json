@@ -1,0 +1,1421 @@
+[
+  {
+    "id": "separable",
+    "l1_id": "rules",
+    "type": "separable",
+    "params": {
+      "bodies": [
+        "base",
+        "lid"
+      ],
+      "overlap_max": 1.0
+    },
+    "text": "base and lid are each one shell and overlap by at most 1 mm3 when closed",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "inside_board",
+    "l1_id": "rules",
+    "type": "inside",
+    "params": {
+      "volume": "board",
+      "minus": "seats@0.5",
+      "clearance": 0.5,
+      "minus_grown_by": 0.5
+    },
+    "text": "the board (minus the seat columns grown by the clearance (\u00d8 8)) lies inside the closed enclosure with 0.5 mm clearance",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.2"
+    ]
+  },
+  {
+    "id": "inside_contents",
+    "l1_id": "rules",
+    "type": "inside",
+    "params": {
+      "volume": "contents",
+      "clearance": 0.2
+    },
+    "text": "every part the board carries lies inside the closed enclosure, at least 0.2 mm from every printed surface and from the outside",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_board",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "board",
+      "minus": "seats@0.5",
+      "clearance": 0.5,
+      "minus_grown_by": 0.5
+    },
+    "text": "no printed surface within 0.5 mm of the board, except the standoff tops in the seat columns grown by the clearance (\u00d8 8)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.2"
+    ]
+  },
+  {
+    "id": "clear_module_1_1_envelope",
+    "l1_id": "rules",
+    "type": "inside",
+    "params": {
+      "volume": "module_1_1_envelope",
+      "clearance": 0.2
+    },
+    "text": "module_1_1_envelope (the module and its stack parts) lies inside the closed enclosure, at least 0.2 mm from every printed surface and from the outside",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "clear_keepout_top",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "board_ko_top",
+      "clearance": 0.0
+    },
+    "text": "nothing printed inside the component keep-out above the board",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_keepout_bottom",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "board_ko_bot",
+      "clearance": 0.0,
+      "minus": "seats"
+    },
+    "text": "nothing printed inside the solder-side keep-out, except standoffs in the seat columns",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_hole_ko_0",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "hole_ko_0",
+      "clearance": 0.0
+    },
+    "text": "nothing printed inside the screw-head column hole_ko_0 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_hole_ko_1",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "hole_ko_1",
+      "clearance": 0.0
+    },
+    "text": "nothing printed inside the screw-head column hole_ko_1 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_hole_ko_2",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "hole_ko_2",
+      "clearance": 0.0
+    },
+    "text": "nothing printed inside the screw-head column hole_ko_2 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_hole_ko_3",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "hole_ko_3",
+      "clearance": 0.0
+    },
+    "text": "nothing printed inside the screw-head column hole_ko_3 (the larger of the board's mounting-hole keep-out and head + driver clearance, from the board top to the component keep-out height)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_driver_0",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "driver_0",
+      "clearance": 0.0,
+      "bodies": [
+        "base"
+      ]
+    },
+    "text": "the screwdriver column driver_0 is clear of the base (lid off)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "clear_driver_1",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "driver_1",
+      "clearance": 0.0,
+      "bodies": [
+        "base"
+      ]
+    },
+    "text": "the screwdriver column driver_1 is clear of the base (lid off)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "clear_driver_2",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "driver_2",
+      "clearance": 0.0,
+      "bodies": [
+        "base"
+      ]
+    },
+    "text": "the screwdriver column driver_2 is clear of the base (lid off)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "clear_driver_3",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "driver_3",
+      "clearance": 0.0,
+      "bodies": [
+        "base"
+      ]
+    },
+    "text": "the screwdriver column driver_3 is clear of the base (lid off)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "clear_module_1_1_plug",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "module_1_1_plug",
+      "clearance": 0.3
+    },
+    "text": "the plug_microusb_b plug in module_1_1 at full mate and its withdrawal path stay 0.3 mm from the enclosure",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.5"
+    ]
+  },
+  {
+    "id": "clear_connector_1_1_plug",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "connector_1_1_plug",
+      "clearance": 0.3
+    },
+    "text": "the plug_trs_3p5 plug in connector_1_1 at full mate and its withdrawal path stay 0.3 mm from the enclosure",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.6"
+    ]
+  },
+  {
+    "id": "plug_refs_module_1_1_plug",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "refs_module_1_1_plug",
+      "subject": "module_1_1_plug_outside",
+      "clearance": 0.0
+    },
+    "text": "the plug_microusb_b plug in module_1_1 at full mate and its withdrawal path (outside its mouth) clear every other reference part (the board, the other contents)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.4",
+      "L1.5"
+    ]
+  },
+  {
+    "id": "plug_refs_connector_1_1_plug",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "refs_connector_1_1_plug",
+      "subject": "connector_1_1_plug_outside",
+      "clearance": 0.0
+    },
+    "text": "the plug_trs_3p5 plug in connector_1_1 at full mate and its withdrawal path (outside its mouth) clear every other reference part (the board, the other contents)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.4",
+      "L1.6"
+    ]
+  },
+  {
+    "id": "apertures_-X",
+    "l1_id": "rules",
+    "type": "aperture_count",
+    "params": {
+      "slab": "slab_-X",
+      "n": 1,
+      "wall": "-X",
+      "normal_axis": 0,
+      "cuts": [
+        "module_1_1_cut",
+        "boss_1_pilot",
+        "boss_1_lid_hole",
+        "boss_3_pilot",
+        "boss_3_lid_hole"
+      ]
+    },
+    "text": "wall -X has exactly 1 through opening(s) (blind regions in the wall slab are listed, not counted)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "oversize_module_1_1_cut",
+    "l1_id": "rules",
+    "type": "aperture_oversize",
+    "params": {
+      "slab": "slab_-X",
+      "wall": "-X",
+      "normal_axis": 0,
+      "point": [
+        -2.3,
+        20.0,
+        10.9
+      ],
+      "env_w": 10.0,
+      "env_h": 7.0,
+      "max": 1.5
+    },
+    "text": "the opening of module_1_1_cut is at most 1.5 mm bigger than its plug per side",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.5"
+    ]
+  },
+  {
+    "id": "apertures_+X",
+    "l1_id": "rules",
+    "type": "aperture_count",
+    "params": {
+      "slab": "slab_+X",
+      "n": 1,
+      "wall": "+X",
+      "normal_axis": 0,
+      "cuts": [
+        "connector_1_1_cut",
+        "boss_2_pilot",
+        "boss_2_lid_hole",
+        "boss_4_pilot",
+        "boss_4_lid_hole"
+      ]
+    },
+    "text": "wall +X has exactly 1 through opening(s) (blind regions in the wall slab are listed, not counted)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "oversize_connector_1_1_cut",
+    "l1_id": "rules",
+    "type": "aperture_oversize",
+    "params": {
+      "slab": "slab_+X",
+      "wall": "+X",
+      "normal_axis": 0,
+      "point": [
+        82.3,
+        20.0,
+        2.5
+      ],
+      "env_w": 8.0,
+      "env_h": 8.0,
+      "max": 1.5
+    },
+    "text": "the opening of connector_1_1_cut is at most 1.5 mm bigger than its plug per side",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.5",
+      "L1.6"
+    ]
+  },
+  {
+    "id": "apertures_-Y",
+    "l1_id": "rules",
+    "type": "aperture_count",
+    "params": {
+      "slab": "slab_-Y",
+      "n": 0,
+      "wall": "-Y",
+      "normal_axis": 1,
+      "cuts": [
+        "boss_1_pilot",
+        "boss_1_lid_hole",
+        "boss_2_pilot",
+        "boss_2_lid_hole"
+      ]
+    },
+    "text": "wall -Y has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "apertures_+Y",
+    "l1_id": "rules",
+    "type": "aperture_count",
+    "params": {
+      "slab": "slab_+Y",
+      "n": 0,
+      "wall": "+Y",
+      "normal_axis": 1,
+      "cuts": [
+        "boss_3_pilot",
+        "boss_3_lid_hole",
+        "boss_4_pilot",
+        "boss_4_lid_hole"
+      ]
+    },
+    "text": "wall +Y has exactly 0 through opening(s) (blind regions in the wall slab are listed, not counted)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_module_1_1_cut_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "module_1_1_cut",
+      "axis": 0,
+      "plane": -2.3,
+      "min": 1.5,
+      "neighbours": [
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ],
+      "floor_z": -5.699999999999999
+    },
+    "text": "at least 1.5 mm of material round module_1_1_cut in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_connector_1_1_cut_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "connector_1_1_cut",
+      "axis": 0,
+      "plane": 82.3,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ],
+      "floor_z": -5.699999999999999
+    },
+    "text": "at least 1.5 mm of material round connector_1_1_cut in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_standoff_1_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "standoff_1_pilot",
+      "axis": 2,
+      "plane": -4.154999999999999,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round standoff_1_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_standoff_2_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "standoff_2_pilot",
+      "axis": 2,
+      "plane": -4.154999999999999,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round standoff_2_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_standoff_3_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "standoff_3_pilot",
+      "axis": 2,
+      "plane": -4.154999999999999,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round standoff_3_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_standoff_4_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "standoff_4_pilot",
+      "axis": 2,
+      "plane": -4.154999999999999,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round standoff_4_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_1_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "boss_1_pilot",
+      "axis": 2,
+      "plane": 39.145,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_1_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_1_lid_hole_lid",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "lid",
+      "cut": "boss_1_lid_hole",
+      "axis": 2,
+      "plane": 43.400000000000006,
+      "min": 1.5,
+      "neighbours": [
+        "boss_2_lid_hole",
+        "boss_3_lid_hole",
+        "boss_4_lid_hole"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_1_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_2_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "boss_2_pilot",
+      "axis": 2,
+      "plane": 39.145,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_3_pilot",
+        "boss_4_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_2_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_2_lid_hole_lid",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "lid",
+      "cut": "boss_2_lid_hole",
+      "axis": 2,
+      "plane": 43.400000000000006,
+      "min": 1.5,
+      "neighbours": [
+        "boss_1_lid_hole",
+        "boss_3_lid_hole",
+        "boss_4_lid_hole"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_2_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_3_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "boss_3_pilot",
+      "axis": 2,
+      "plane": 39.145,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_4_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_3_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_3_lid_hole_lid",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "lid",
+      "cut": "boss_3_lid_hole",
+      "axis": 2,
+      "plane": 43.400000000000006,
+      "min": 1.5,
+      "neighbours": [
+        "boss_1_lid_hole",
+        "boss_2_lid_hole",
+        "boss_4_lid_hole"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_3_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_4_pilot_base",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "base",
+      "cut": "boss_4_pilot",
+      "axis": 2,
+      "plane": 39.145,
+      "min": 1.5,
+      "neighbours": [
+        "module_1_1_cut",
+        "connector_1_1_cut",
+        "standoff_1_pilot",
+        "standoff_2_pilot",
+        "standoff_3_pilot",
+        "standoff_4_pilot",
+        "boss_1_pilot",
+        "boss_2_pilot",
+        "boss_3_pilot"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_4_pilot in base (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "ligament_boss_4_lid_hole_lid",
+    "l1_id": "rules",
+    "type": "ligament",
+    "params": {
+      "body": "lid",
+      "cut": "boss_4_lid_hole",
+      "axis": 2,
+      "plane": 43.400000000000006,
+      "min": 1.5,
+      "neighbours": [
+        "boss_1_lid_hole",
+        "boss_2_lid_hole",
+        "boss_3_lid_hole"
+      ]
+    },
+    "text": "at least 1.5 mm of material round boss_4_lid_hole in lid (to the outer edges, the floor top, the seam and the neighbouring openings)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "seated",
+    "l1_id": "rules",
+    "type": "seated",
+    "params": {
+      "body": "base",
+      "holes": [
+        [
+          2.5,
+          2.5
+        ],
+        [
+          77.5,
+          2.5
+        ],
+        [
+          2.5,
+          37.5
+        ],
+        [
+          77.5,
+          37.5
+        ]
+      ],
+      "board_bottom": -1.6,
+      "search_d": 3.4,
+      "z_lo": -5.699999999999999,
+      "z_hi": -0.6000000000000001,
+      "probe_depth": 2.55,
+      "gap_max": 0.1,
+      "residual_max": 0.25
+    },
+    "text": "the board rests on the standoff tops (gap <= 0.1 mm) with every hole on a pilot axis (offset <= 0.25 mm)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "bbox",
+    "l1_id": "rules",
+    "type": "bbox_within",
+    "params": {
+      "max": [
+        100.0,
+        60.0,
+        45.0
+      ],
+      "x_longest": true
+    },
+    "text": "closed outside size within 100 x 60 x 45 mm",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.10"
+    ]
+  },
+  {
+    "id": "below_split_module_1_1_cut",
+    "l1_id": "rules",
+    "type": "port_below_split",
+    "params": {
+      "value": 16.3,
+      "limit": 42.2,
+      "detail": "module_1_1_cut top 14.800 + ligament 1.5 vs split 42.200"
+    },
+    "text": "module_1_1_cut top plus the minimum ligament stays below the split plane",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "below_split_connector_1_1_cut",
+    "l1_id": "rules",
+    "type": "port_below_split",
+    "params": {
+      "value": 8.4,
+      "limit": 42.2,
+      "detail": "connector_1_1_cut top 6.900 + ligament 1.5 vs split 42.200"
+    },
+    "text": "connector_1_1_cut top plus the minimum ligament stays below the split plane",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_depth_standoff_1",
+    "l1_id": "rules",
+    "type": "pilot_depth",
+    "params": {
+      "value": 5.1,
+      "limit": 5.7,
+      "detail": "pilot depth 5.1 vs standoff 4.100 + floor 2.400 - 0.8"
+    },
+    "text": "the pilot in standoff_1 leaves at least 0.8 mm of floor under it",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_depth_standoff_2",
+    "l1_id": "rules",
+    "type": "pilot_depth",
+    "params": {
+      "value": 5.1,
+      "limit": 5.7,
+      "detail": "pilot depth 5.1 vs standoff 4.100 + floor 2.400 - 0.8"
+    },
+    "text": "the pilot in standoff_2 leaves at least 0.8 mm of floor under it",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_depth_standoff_3",
+    "l1_id": "rules",
+    "type": "pilot_depth",
+    "params": {
+      "value": 5.1,
+      "limit": 5.7,
+      "detail": "pilot depth 5.1 vs standoff 4.100 + floor 2.400 - 0.8"
+    },
+    "text": "the pilot in standoff_3 leaves at least 0.8 mm of floor under it",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_depth_standoff_4",
+    "l1_id": "rules",
+    "type": "pilot_depth",
+    "params": {
+      "value": 5.1,
+      "limit": 5.7,
+      "detail": "pilot depth 5.1 vs standoff 4.100 + floor 2.400 - 0.8"
+    },
+    "text": "the pilot in standoff_4 leaves at least 0.8 mm of floor under it",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_standoff_1",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "pilot depth 5.100 vs min_engagement 5"
+    },
+    "text": "the pilot in standoff_1 is at least 5 mm deep (the board screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_standoff_1",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "outside diameter 5.100 vs min_boss_od 5"
+    },
+    "text": "standoff_1 is at least 5 mm across (the board screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_standoff_2",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "pilot depth 5.100 vs min_engagement 5"
+    },
+    "text": "the pilot in standoff_2 is at least 5 mm deep (the board screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_standoff_2",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "outside diameter 5.100 vs min_boss_od 5"
+    },
+    "text": "standoff_2 is at least 5 mm across (the board screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_standoff_3",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "pilot depth 5.100 vs min_engagement 5"
+    },
+    "text": "the pilot in standoff_3 is at least 5 mm deep (the board screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_standoff_3",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "outside diameter 5.100 vs min_boss_od 5"
+    },
+    "text": "standoff_3 is at least 5 mm across (the board screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_standoff_4",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "pilot depth 5.100 vs min_engagement 5"
+    },
+    "text": "the pilot in standoff_4 is at least 5 mm deep (the board screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_standoff_4",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 5.1,
+      "limit": 5.0,
+      "detail": "outside diameter 5.100 vs min_boss_od 5"
+    },
+    "text": "standoff_4 is at least 5 mm across (the board screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_boss_1",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 6.1,
+      "limit": 6.0,
+      "detail": "pilot depth 6.100 vs min_engagement 6"
+    },
+    "text": "the pilot in boss_1 is at least 6 mm deep (the lid screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_boss_1",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 6.6,
+      "limit": 6.0,
+      "detail": "outside diameter 6.600 vs min_boss_od 6"
+    },
+    "text": "boss_1 is at least 6 mm across (the lid screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_boss_2",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 6.1,
+      "limit": 6.0,
+      "detail": "pilot depth 6.100 vs min_engagement 6"
+    },
+    "text": "the pilot in boss_2 is at least 6 mm deep (the lid screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_boss_2",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 6.6,
+      "limit": 6.0,
+      "detail": "outside diameter 6.600 vs min_boss_od 6"
+    },
+    "text": "boss_2 is at least 6 mm across (the lid screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_boss_3",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 6.1,
+      "limit": 6.0,
+      "detail": "pilot depth 6.100 vs min_engagement 6"
+    },
+    "text": "the pilot in boss_3 is at least 6 mm deep (the lid screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_boss_3",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 6.6,
+      "limit": 6.0,
+      "detail": "outside diameter 6.600 vs min_boss_od 6"
+    },
+    "text": "boss_3 is at least 6 mm across (the lid screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_engagement_boss_4",
+    "l1_id": "rules",
+    "type": "pilot_engagement",
+    "params": {
+      "value": 6.1,
+      "limit": 6.0,
+      "detail": "pilot depth 6.100 vs min_engagement 6"
+    },
+    "text": "the pilot in boss_4 is at least 6 mm deep (the lid screw's minimum engagement)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "boss_od_boss_4",
+    "l1_id": "rules",
+    "type": "boss_od",
+    "params": {
+      "value": 6.6,
+      "limit": 6.0,
+      "detail": "outside diameter 6.600 vs min_boss_od 6"
+    },
+    "text": "boss_4 is at least 6 mm across (the lid screw's minimum boss diameter)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "lip_engagement",
+    "l1_id": "rules",
+    "type": "lip_engagement",
+    "params": {
+      "value": 2.1000000000000014,
+      "limit": 2.0,
+      "detail": "lip engagement 2.100 vs 2"
+    },
+    "text": "the lid lip reaches at least 2 mm below the split plane",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_standoff_1",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 1.7,
+      "lo": 1.6,
+      "hi": 1.8,
+      "detail": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+    },
+    "text": "the pilot in standoff_1 is 1.6-1.8 mm across (the board screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_standoff_2",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 1.7,
+      "lo": 1.6,
+      "hi": 1.8,
+      "detail": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+    },
+    "text": "the pilot in standoff_2 is 1.6-1.8 mm across (the board screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_standoff_3",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 1.7,
+      "lo": 1.6,
+      "hi": 1.8,
+      "detail": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+    },
+    "text": "the pilot in standoff_3 is 1.6-1.8 mm across (the board screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_standoff_4",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 1.7,
+      "lo": 1.6,
+      "hi": 1.8,
+      "detail": "pilot diameter 1.700 vs [1.6, 1.8] (screw_m2_selftap)"
+    },
+    "text": "the pilot in standoff_4 is 1.6-1.8 mm across (the board screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_boss_1",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 2.5,
+      "lo": 2.4,
+      "hi": 2.6,
+      "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+    },
+    "text": "the pilot in boss_1 is 2.4-2.6 mm across (the lid screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_boss_2",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 2.5,
+      "lo": 2.4,
+      "hi": 2.6,
+      "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+    },
+    "text": "the pilot in boss_2 is 2.4-2.6 mm across (the lid screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_boss_3",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 2.5,
+      "lo": 2.4,
+      "hi": 2.6,
+      "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+    },
+    "text": "the pilot in boss_3 is 2.4-2.6 mm across (the lid screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "pilot_band_boss_4",
+    "l1_id": "rules",
+    "type": "pilot_band",
+    "params": {
+      "value": 2.5,
+      "lo": 2.4,
+      "hi": 2.6,
+      "detail": "pilot diameter 2.500 vs [2.4, 2.6] (screw_m3_selftap)"
+    },
+    "text": "the pilot in boss_4 is 2.4-2.6 mm across (the lid screw's pilot range)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "board_screw_passes_hole",
+    "l1_id": "rules",
+    "type": "screw_through_hole",
+    "params": {
+      "value": 2.0,
+      "limit": 3.0,
+      "detail": "thread 2 + 2 x 0 vs hole \u00d83"
+    },
+    "text": "the board screw's thread passes the board's \u00d83 mounting holes",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "grid_conformance",
+    "l1_id": "rules",
+    "type": "grid_conformance",
+    "params": {
+      "value": 7.944109290391274e-15,
+      "limit": 0.15,
+      "no_pin_data": [],
+      "evidence": {
+        "parts": {
+          "module_1_1": {
+            "residual": 7.944109290391274e-15,
+            "edge": "-X",
+            "tangential": 3.552713678800501e-15,
+            "normal": 7.105427357601002e-15,
+            "normal_fix": 7.105427357601002e-15,
+            "best_any": 5.924889052322839e-15,
+            "best_free": 5.924889052322839e-15,
+            "positions": 63,
+            "snap": "snapped",
+            "kind": "ok"
+          },
+          "connector_1_1": {
+            "residual": 2.7526351011349144,
+            "edge": "+X",
+            "tangential": 1.1299999999999972,
+            "normal": 2.510000000000005,
+            "normal_fix": -2.510000000000005,
+            "best_any": 0.5400000000499946,
+            "best_free": 0.5900000000499999,
+            "positions": 0,
+            "snap": "pin_pattern",
+            "kind": "pin_pattern"
+          }
+        },
+        "kinds": {
+          "module_1_1": "ok",
+          "connector_1_1": "pin_pattern"
+        },
+        "soft": false,
+        "finite": true,
+        "exempt": [
+          {
+            "part": "connector_1_1",
+            "best_any": 0.54,
+            "assumption": "connector_1_1: mounted through enlarged holes; its pin pattern meets no grid position (best 0.540 mm), so it is exempt from grid conformance"
+          }
+        ]
+      }
+    },
+    "text": "every part pin lies within 0.15 mm of a board grid hole (parts with a connector need pin data; a pin pattern that meets no grid position is exempt)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "text_coverage",
+    "l1_id": "rules",
+    "type": "coverage",
+    "params": {
+      "uncovered": [],
+      "covered": [
+        {
+          "item": "module_1",
+          "copy": "module_1_1",
+          "connector": "usb",
+          "plug": "plug_microusb_b",
+          "evidence": [
+            {
+              "source": "L1.5",
+              "quote": "With the lid closed, a micro-USB cable shall plug fully into the raised Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+            }
+          ]
+        },
+        {
+          "item": "connector_1",
+          "copy": "connector_1_1",
+          "connector": "jack",
+          "plug": "plug_trs_3p5",
+          "evidence": [
+            {
+              "source": "L1.6",
+              "quote": "With the lid closed, a 3.5 mm plug shall plug fully into the jack through one opening in the opposite end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+            }
+          ]
+        }
+      ],
+      "evidence": {
+        "named": {
+          "plug_microusb_b": [
+            {
+              "source": "L1.5",
+              "quote": "With the lid closed, a micro-USB cable shall plug fully into the raised Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+            }
+          ],
+          "plug_trs_3p5": [
+            {
+              "source": "L1.6",
+              "quote": "With the lid closed, a 3.5 mm plug shall plug fully into the jack through one opening in the opposite end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+            }
+          ]
+        }
+      }
+    },
+    "text": "every content connector whose mating plug the request or an L1 names is exposed (it has its plug check)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.5",
+      "L1.6"
+    ]
+  }
+]

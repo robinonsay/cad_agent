@@ -1,0 +1,38 @@
+{
+  "id": "E1-01_s1",
+  "meets": true,
+  "class": "CORRECT",
+  "score": 1.0,
+  "defects": [],
+  "summary": "E1-01 passes every gate and every applicable non-physical L3. USB mouth (3.12,25.0,4.9) on -X, two jack mouths (70.0,17.5/32.5,2.5) on +X, 4 standoffs at 66x46, walls/floor/lid 2.4, closed 84.17x64.17x24.70 <= 90x70x35.",
+  "observations": [
+    "Zero-defect run. Self-report agrees with judge on all clear_of/inside values within 0.01 mm (board d 1.448, Pico 4.923, jacks 1.676, plugs 0.400/0.405)."
+  ],
+  "measured": {
+    "board_clearance_d": "1.448 (E1) / 1.100 (V)",
+    "envelope": "84.17 x 64.17 x 24.70",
+    "limit": "<= 90 x 70 x 35",
+    "usb_plug_d": "0.400 (>=0.3)",
+    "jack_plug_d": "0.405 x2 (>=0.3)",
+    "usb_opening": "10.8 W x 7.8 H centred (25.0, z4.9); limit 13x10",
+    "jack_opening": "D8.81 at (17.5,2.5) and (32.5,2.5); limit D11; ligament between 6.19",
+    "walls": "2.4 all four walls, floor 2.4, lid plate 2.4",
+    "lip_gap_per_side": "0.25 (all 4 sides), engagement 2.1",
+    "shells": "base 1 / lid 1, manifold NoError, overlap 0 mm3",
+    "overhang": "only USB-opening ceiling (bridge 10.8 <= 15) and round jack holes (D8.8 <= 12): exempt",
+    "bed_contact": "base ~0.85-0.87, lid ~0.84-0.86",
+    "standoffs": "4, OD 5.1, pilot D1.702, depth 5.1, top z -1.6 (spread 0), axis offset 0",
+    "bosses": "4 lid bosses OD 6.59, pilot D2.503 depth 6.1, lid holes D3.404 coaxial offset 0",
+    "top_KO_d": 0.18,
+    "bottom_KO_d": 0.1,
+    "pico_inside_d": 4.923,
+    "jacks_inside_d": 1.676,
+    "install_sweep_d": 0.949,
+    "driver_cols_d": 0.6,
+    "opening_counts": "-X 1 / +X 2 / other 0",
+    "inner_X_length": 73.2,
+    "jack_axis_spacing": 15.0,
+    "grid_residual": 0.0
+  },
+  "note": "Judge 1, iteration 001. claude-context MCP failed to connect, so grep/ls fallback was used to locate files. Requirements per benchmarks/enclosure/requirements.md + variants.json grading_deltas (no per-design requirements.md exists under generalize/designs/). All numbers re-measured from base.stl/lid.stl with manifold3d/trimesh against catalogue references built from layout.json poses."
+}

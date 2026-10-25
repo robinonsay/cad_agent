@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n22 = 60 (L1.11): "...The closed block shall be no larger than 60 x 60 x 32 mm and shall stand flat on its mounting face with..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n22 state?
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+
+=== RESPONSE ===
+{
+  "owner": "max_x"
+}

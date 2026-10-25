@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Using the servo from the parts catalogue, set it in a pocket with the shaft up and the ears lying flat on a ledge on the bracket, with its body clear of the bracket. Say where it goes in the declaration.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.2",
+    "text": "The pocket should grip the servo body snugly, at about 0.2 mm clearance on every side, and leave between 0.3 and 1.5 mm from the servo's underside to the pocket floor.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "Two M2 x 8 self-tapping screws run through the two ear holes into two pilot holes in the ledge. Wherever the servo ends up within its play in the pocket, the pilot holes still have to line up with the ear holes.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "Within 5 mm of the output shaft, above the ears, there must be nothing in the way, and the screw heads must stay out of that area too.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The cable gets out through one slot in the end wall on the side opposite the shaft. The slot can be no more than 3 mm larger than the cable's exit and bend volume on any side, and no bracket material should reach into that volume.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "The mounting base is 40 x 25 mm seen from above and has two M3 clearance holes 30 mm apart, centres at least 3.2 mm from the edge. The plate is 2.5 to 4 mm thick at the holes, and every M3 screw head and hex key needs clear space above the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "You should be able to lower the servo straight into the pocket from the top and reach both ear screws with a screwdriver.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "Make the bracket a single manifold body that prints on an FDM printer with no supports, with walls and floor no thinner than 2 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "No more than 25 mm tall; it must sit flat on its base and stay upright when tipped 5 degrees with the servo seated.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "What I get back is a bracket STL, the OpenSCAD source, the declared servo and screw placement, and the agent's own clearance report, which must agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

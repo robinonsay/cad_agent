@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Take the NEMA 17 motor, GT2 pulley, belt and the pair of M3 bolts from the parts catalogue and position them with the hub 3 mm over the motor face; declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The cover must stay 2 mm or more away from the turning pulley and the shaft in every direction (sides, above the pulley, above the shaft end) but not by more than 3 mm radially or 3.5 mm above the shaft end, so it isn't bloated. Keep at least 0.5 mm off the belt where it wraps the pulley, treating the wrapped belt as a 6 mm tall cylinder on the pulley's belt plane whose radius equals the pulley tooth radius plus belt thickness minus belt tooth height, all taken from the catalogue.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The cover has just one slot on the belt side. Both belt runs, which leave tangentially and straight along that side on either side of the pulley, pass through with 0.5 mm or more clearance to each, and the slot is no more than 3 mm wider or taller than the two runs combined.",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "Fasten with M3 bolts through clearance holes into two of the motor's four M3 face holes; the bolts must grip the motor's thread without hitting bottom, and a screwdriver must reach the heads.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "It rests flat on the motor face, centres on the 22 mm pilot with a sliding fit of 0.15 to 0.35 mm per side, and does not extend past the 42.3 mm square of the motor face.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "Everything is enclosed apart from the belt slot and two bolt holes; walls, top and ears are 2 to 4 mm thick, ears allowed up to 5 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "It must be possible to lift it on and off along the shaft axis with no contact with the pulley or the shaft.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "A single manifold body that prints on FDM with no supports, and at least 40 percent of its plan bounding box lies on the bed.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "No larger than 45 x 45 x 35 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "The deliverables are an STL in the assembly pose, the OpenSCAD source, the declared layout and the agent's own clearance report, which has to match an independent measurement.",
+    "method": "inspection"
+  }
+]

@@ -1,0 +1,255 @@
+{
+ "id": "button_tact_6mm",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "6mm tactile button",
+  "6 mm tactile switch",
+  "tact switch",
+  "tactile switch",
+  "tactile button",
+  "6x6 tact switch",
+  "push button",
+  "pushbutton",
+  "6mm push button",
+  "b3f",
+  "momentary button"
+ ],
+ "kind": "control",
+ "source": "6 x 6 mm through-hole tactile switch (Omron B3F-class, generalize/plan.json datasheet_note): body 6 x 6 mm, overall height 4.3 mm, plunger 3.5 mm dia, travel about 0.25 mm, actuation force 1.6 N, 4 legs on a 4.5 x 6.5 mm pattern. ASSUMED split of the 4.3 mm: body 3.8 + plunger protrusion 0.5 (variants with 0.3 to 3 mm longer plungers exist); leg length below the body 3.0 mm.",
+ "frame": "control: origin at the body min corner, body bottom (PCB seat) at Z = 0, plunger toward +Z, legs toward -Z",
+ "params": {
+  "body_length": {
+   "default": 6.0,
+   "source": "datasheet: body X"
+  },
+  "body_width": {
+   "default": 6.0,
+   "source": "datasheet: body Y"
+  },
+  "body_height": {
+   "default": 3.8,
+   "source": "ASSUMED: overall 4.3 minus plunger protrusion; +/- 0.2"
+  },
+  "plunger_diameter": {
+   "default": 3.5,
+   "source": "datasheet: plunger diameter"
+  },
+  "plunger_height": {
+   "default": 0.5,
+   "source": "ASSUMED plunger protrusion above the body; +/- 0.2, long-plunger variants differ"
+  },
+  "travel": {
+   "default": 0.25,
+   "source": "datasheet: operating travel (about)"
+  },
+  "actuation_force": {
+   "default": 1.6,
+   "source": "datasheet: operating force in N (about)"
+  },
+  "leg_pitch_x": {
+   "default": 4.5,
+   "source": "datasheet: leg pattern X"
+  },
+  "leg_pitch_y": {
+   "default": 6.5,
+   "source": "datasheet: leg pattern Y"
+  },
+  "leg_length": {
+   "default": 3.0,
+   "source": "ASSUMED leg length below the body"
+  },
+  "pusher_overtravel": {
+   "default": 0.5,
+   "source": "ASSUMED extra stroke a printed pusher must have beyond the switch travel (printing tolerance); request may override"
+  }
+ },
+ "datasheet_size": [
+  "body_length",
+  "body_width",
+  "body_height + plunger_height"
+ ],
+ "size_tolerance": 0.1,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "box",
+   "size": [
+    "body_length",
+    "body_width",
+    "body_height"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "plunger",
+   "primitive": "cylinder",
+   "d": "plunger_diameter",
+   "h": "plunger_height",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "pusher_stroke",
+   "primitive": "cylinder",
+   "d": "plunger_diameter",
+   "h": "travel + pusher_overtravel",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + plunger_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "BODY_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "BODY_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "PLUNGER_TOP": {
+   "kind": "point",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + plunger_height"
+   ]
+  },
+  "ACTUATOR_AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + plunger_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "plunger_diameter"
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "at": [
+    [
+     "(body_length - leg_pitch_x) / 2",
+     "(body_width - leg_pitch_y) / 2",
+     0
+    ],
+    [
+     "(body_length + leg_pitch_x) / 2",
+     "(body_width - leg_pitch_y) / 2",
+     0
+    ],
+    [
+     "(body_length - leg_pitch_x) / 2",
+     "(body_width + leg_pitch_y) / 2",
+     0
+    ],
+    [
+     "(body_length + leg_pitch_x) / 2",
+     "(body_width + leg_pitch_y) / 2",
+     0
+    ]
+   ]
+  }
+ },
+ "connectors": [],
+ "notes": "A button 'presses' only when a pusher centred on ACTUATOR_AXIS moves at least travel (0.25) plus pusher_overtravel into the plunger without bottoming on BODY_TOP: pusher contact with PLUNGER_TOP is designed contact, never interference. PINS are 4 legs on 4.5 x 6.5 (the long pitch is along Y); the 6.5 span exceeds the 6.0 body so legs sit outside the body in Y (as on the real part, whose legs bend out of the body sides). ASSUMPTIONS and uncertainty: body/plunger split 3.8/0.5 (+/-0.2); real B3F-1000 is 6.2 x 6.2, the plan's 6.0 is kept (+/-0.2 in X/Y); force 1.6 N and travel 0.25 mm are the datasheet 'about' values. Import gate: bounding box 6 x 6 x 4.3; ACTUATOR_AXIS unit vector; pusher_stroke starts on the plunger top.",
+ "self_checks": [
+  {
+   "name": "body footprint X",
+   "expr": "body.size_x",
+   "value": 6.0,
+   "tol": 0.1
+  },
+  {
+   "name": "body footprint Y",
+   "expr": "body.size_y",
+   "value": 6.0,
+   "tol": 0.1
+  },
+  {
+   "name": "overall height",
+   "expr": "bbox.size_z",
+   "value": 4.3,
+   "tol": 0.1
+  },
+  {
+   "name": "plunger diameter",
+   "expr": "plunger.size_x",
+   "value": 3.5,
+   "tol": 0.05
+  },
+  {
+   "name": "leg pitch X",
+   "expr": "PINS[1].x - PINS[0].x",
+   "value": 4.5,
+   "tol": 0.05
+  },
+  {
+   "name": "leg pitch Y",
+   "expr": "PINS[2].y - PINS[0].y",
+   "value": 6.5,
+   "tol": 0.05
+  },
+  {
+   "name": "actuator along +Z",
+   "expr": "ACTUATOR_AXIS.dz",
+   "value": 1,
+   "tol": 1e-06
+  },
+  {
+   "name": "plunger centred",
+   "expr": "ACTUATOR_AXIS.x - body.center_x",
+   "value": 0,
+   "tol": 1e-06
+  }
+ ]
+}

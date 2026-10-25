@@ -194,6 +194,10 @@ run_one V1; run_one V2; run_one V3      # every iteration from 007 on: convergen
 
 Run requests strictly one after another, never in parallel.
 
+CLI note (2026-10-24, generalization loop setup): `--parts` is now repeatable (`--parts A --parts B`, first
+folder wins an id). The single `--parts` above behaves exactly as before. The regression runs of the
+generalization loop (`benchmarks/generalize/run_suite.py --regression`) use this command unchanged.
+
 How a run is judged:
 
 - **A package exists** (rc 0 or 3): it is judged with `../rubric.md`. rc 3 means the agent's own checks

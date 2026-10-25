@@ -1,0 +1,48 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A carriage block that carries one LM8UU linear bearing (8 x 15 x 24 mm) on an 8 mm smooth rod, 200 mm long. The block has a flat top plate 40 x 30 mm with four M3 holes on a 30 x 20 mm pattern, and M3 nuts held captive in pockets on the underside of the plate, with the bearing housing hanging below the plate and the top face left flat. The screws are ISO 4762 M3 socket-head screws, 10 mm long. The rod runs along the 30 mm side of the plate. The bearing is retained by 3.0 x 1.2 mm zip ties in grooves round the block and a 0.1 mm press fit in its bore (a housing bore of the bearing's 15 mm outside diameter plus the usual 0.1 mm printing allowance, since printed holes come out about that much small). The rod must slide through with the bearing seated and without touching the block. One printed part, in PLA on an FDM printer.
+
+Catalogue parts that may be in the request:
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },"jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

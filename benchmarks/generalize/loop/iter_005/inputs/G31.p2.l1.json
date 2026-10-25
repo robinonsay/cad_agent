@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "From the parts catalogue, put in the belt run, the two 623 bearings, the M3 bolt, the M3 nut and the M3 mounting screw. Stack the bearings on the bolt on a common axis, running across the width of the belt, and declare this layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Bearings rest directly against each other, held between the bolt head and a boss on the floor (4.6 to 5.0 mm across, 0.3 to 0.8 mm high) which touches nothing but the inner ring of the lower bearing; the bolt passes through the floor without touching.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "Outer rings must be free to turn, with 0.4 mm or more between them and the block on every side, inside a chamber not wider than 12 mm. Bearings and bolt go in from the top, the nut from the bottom, all without touching the block.",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "Channel for the belt: 7 mm wide, straight through and open at each end of the block, leaving 0.5 mm beside the belt on both sides and 0.5 mm or more on the tooth side.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The belt's smooth back must just touch the outer rings of both bearings, not pushed into them (gap between 0 and 0.3 mm). It overlaps each bearing's width by 2 mm or more, and is centred on the stack to within 0.25 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "Provide one slot, 3.3 to 3.6 mm wide, so the block can travel 5 mm along the belt on an M3 mounting screw; the head and a hex key must have room along the full travel.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "A hex pocket under the floor, opening onto the mounting face, holds the nut: 5.7 to 5.9 mm across flats and 2.6 to 3.4 mm deep, with 1.2 mm or more of floor over it. The bolt tip is at least 1.5 mm inside the nut and stays inside the block.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The block must be a single manifold body that FDM prints without supports; every wall at least 2 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "Overall dimensions no more than 40 x 40 x 25 mm, and the block sits flat on its mounting face.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Hand over the block STL, the OpenSCAD source, the declared layout and the agent's clearance report, which has to agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

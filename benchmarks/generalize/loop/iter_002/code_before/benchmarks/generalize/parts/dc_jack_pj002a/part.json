@@ -1,0 +1,183 @@
+{
+  "id": "dc_jack_pj002a",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "dc jack",
+    "dc barrel jack",
+    "barrel jack",
+    "power jack",
+    "dc power jack",
+    "dc socket",
+    "pj-002a",
+    "pj002a",
+    "5.5 mm barrel jack",
+    "5.5 x 2.1 jack",
+    "2.1 mm dc jack"
+  ],
+  "kind": "connector",
+  "source": "PJ-002A PCB-mount DC barrel jack datasheet: body 14.0 x 9.0 x 11.0 mm, 2.1 mm centre pin, 5.5 mm barrel (EIAJ RC-5320A class 2, 5.5 x 2.1 mm). Axis height (body centred, 5.5 mm), bore, and terminal positions are assumed from the common PJ-002A outline; check against the vendor drawing. Terminal positions are the least certain values here.",
+  "frame": "jack: origin at the body min corner, body bottom on Z = 0, mouth on the +X face, axis along +X",
+  "params": {
+    "body_length": {
+      "default": 14.0,
+      "source": "datasheet: body length along the plug axis"
+    },
+    "body_width": {
+      "default": 9.0,
+      "source": "datasheet: body width"
+    },
+    "body_height": {
+      "default": 11.0,
+      "source": "datasheet: body height"
+    },
+    "bore_diameter": {
+      "default": 5.5,
+      "source": "datasheet: barrel diameter the jack accepts (5.5 mm plug); socket shell opening is about 6.3, see notes"
+    },
+    "centre_pin_diameter": {
+      "default": 2.1,
+      "source": "datasheet: centre pin hole 2.1 mm"
+    },
+    "axis_height": {
+      "default": 5.5,
+      "source": "assumed: axis at mid-height of the 11 mm body, uncertainty +-0.5 mm"
+    },
+    "pin_rear_offset": {
+      "default": 3.0,
+      "source": "assumed: first terminal measured from the rear face toward the mouth, uncertainty +-1.5 mm"
+    },
+    "pin_row_offset": {
+      "default": 3.0,
+      "source": "assumed: side terminal offset from the centreline, uncertainty +-0.5 mm"
+    }
+  },
+  "datasheet_size": [
+    "body_length",
+    "body_width",
+    "body_height"
+  ],
+  "size_tolerance": 0.4,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "box",
+      "size": [
+        "body_length",
+        "body_width",
+        "body_height"
+      ],
+      "at": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "datums": {
+    "MOUTH": {
+      "kind": "point",
+      "at": [
+        "body_length",
+        "body_width / 2",
+        "axis_height"
+      ]
+    },
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        "body_length",
+        "body_width / 2",
+        "axis_height"
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ],
+      "diameter": "bore_diameter"
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "PINS": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "at": [
+        [
+          "pin_rear_offset",
+          "body_width / 2",
+          0
+        ],
+        [
+          "pin_rear_offset + 5.0",
+          "body_width / 2 - pin_row_offset",
+          0
+        ],
+        [
+          "pin_rear_offset + 2.5",
+          "body_width / 2 + pin_row_offset",
+          0
+        ]
+      ]
+    }
+  },
+  "connectors": [
+    {
+      "name": "dc_in",
+      "mouth": "MOUTH",
+      "axis": "AXIS",
+      "mates": "plug_dc_barrel_5p5",
+      "overhang_datum": "MOUTH"
+    }
+  ],
+  "notes": "The plug opening is 5.5 mm for the plug barrel; the jack bore the plug passes through is slightly larger (about 6.3 mm) so a panel opening should come from the plug envelope, not the bore. PINS are three solder tags (centre, sleeve, switch) with assumed positions and the 5.0 / 2.5 mm tag spacings assumed; they are not from the vendor drawing, flag for verification before ordering PCBs. The mouth is on the +X face of the 14 mm body; the plug inserts along -X.",
+  "self_checks": [
+    {
+      "name": "bore 5.5",
+      "expr": "AXIS.diameter",
+      "value": 5.5,
+      "tol": 0.3
+    },
+    {
+      "name": "axis height within body",
+      "expr": "body_height - AXIS.z",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "axis along +X",
+      "expr": "AXIS.dx",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "mouth on the +X face",
+      "expr": "MOUTH.x - body.max_x",
+      "value": 0,
+      "tol": 1e-06
+    },
+    {
+      "name": "centre pin smaller than the bore",
+      "expr": "bore_diameter - centre_pin_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

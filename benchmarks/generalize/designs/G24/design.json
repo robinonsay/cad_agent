@@ -1,0 +1,91 @@
+{
+  "about": "Generalisation benchmark G24 (train split), in dev.json format. Tier 4 = a real product: bought-in parts (a 2020 extrusion, a drop-in T-nut, an M5 button-head bolt, a 1/4-20 tripod stud) placed from a parts catalogue, a tongue that engages the T-slot, holes and pockets (subtraction) and strength and load-path checks computed from the measured geometry. L1 ids match benchmarks/generalize/designs/G24/requirements.md, which holds the L2/L3 tree, the reference models, the assumptions, the fixed decisions and the traceability. Numbers that are not in the owner's words (tongue size, camera base size, allowable stresses, size limit) come from requirements.md section 3. Never put any of these numbers in agent logic: they belong in the request text and in the part.json catalogue.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (connectivity, interference and clearance against reference models, sweeps, hand calculations of stress and torque capacity)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (slide the clamp along the slot, drop the T-nut in, reach the bolt with a hex key)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G24",
+      "tier": 4,
+      "title": "Camera clamp for 2020 extrusion",
+      "request": "A clamp that grips a 2020 aluminium extrusion with one M5 button-head bolt into a drop-in T-nut, and that presents a 1/4-20 tripod stud on top for a small camera whose base is about 28 mm across. The clamp has a tongue that runs in the extrusion's T-slot so it slides along the slot until the bolt is tightened. The 1/4-20 stud has a hex head held captive in a pocket so it cannot turn, with 5.5 to 8 mm of thread standing proud of the top. The stud boss must carry a 3 N m torque without cracking, and the clamp must not twist on the extrusion at that torque. A hex key must be able to reach the M5 bolt. It is one printed part in PLA without supports, no larger than 60 x 30 x 30 mm.",
+      "request_verbatim": "A clamp that grips a 2020 extrusion with an M5 bolt into a T-nut and presents a 1/4-20 tripod stud on top for a small camera. The stud boss must carry a 3 N m torque without cracking. The clamp slides along the slot until tightened.",
+      "request_notes": "Added to the brief, all from requirements.md section 3: 'grips' = a bolted block with a slot tongue on one face of the extrusion (A1, F1); stud with captive hex head (A2, F3); camera base about 28 mm (A5); stress allowables (A6); the clamp must not twist at 3 N m (A7); size limit and printing (A9, A10).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall place the 2020 extrusion, the M5 T-nut, the M5 button-head bolt and the 1/4-20 stud from the parts catalogue relative to the clamp, with the clamp on one face of the extrusion, the tongue in that face's slot and the stud pointing away from the face, with the bolt axis and the stud axis in the slot plane at least 14.0 mm apart, and shall declare that layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "A tongue on the clamp shall run in the T-slot opening with 0.2 mm clearance per side, stand clear of the T-nut, and be at least 20 mm long in total (the 0.2 mm per side clearance in the 6.2 mm opening means a tongue about 5.8 mm wide; it stands 1.2 to 1.7 mm proud of the seat, at least 0.1 mm clear of the T-nut), made of segments that leave a window at least 8.0 mm long around the bolt axis and at least 12.8 mm long around the stud axis so the bolt and the stud's hex head can be installed.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "One M5 bolt shall pass through a 5.5 mm clearance hole with a counterbore for its head into the T-nut with at least 3.0 mm of thread engagement, its tip stopping at least 0.5 mm short of the slot floor and no more than 0.6 mm beyond the back of the T-nut.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The clamp shall sit flat on the extrusion face with at least 300 mm2 of contact (seat flat within 0.2 mm) and shall not penetrate the extrusion anywhere.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The 1/4-20 stud shall stand perpendicular to the extrusion face, with its hex head captive in a pocket that holds it against turning, and 5.5 to 8.0 mm of thread proud of the top face. The hex head is 11.1 mm across flats and 5.6 mm thick (the catalogue nut size); the pocket shall measure 11.25 to 11.55 mm across flats and 5.7 to 6.2 mm deep, the stud hole 6.45 to 6.75 mm in diameter, at least 6.35 mm of material shall lie between the pocket ceiling and the top face, and the top face shall be square to the stud within 1.0 degree.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.6",
+          "text": "The stud boss shall carry a 3 N m torque: the material round the hex pocket shall be at least 4.0 mm thick and the wall shear and flat bearing stress at 3 N m shall stay within 12 and 20 MPa. With T = 3000 N mm, AF the pocket across flats, d_p its depth and t_w the least material from the pocket to any outer surface or other hole (the pocket's open mouth on the seat and the stud hole that continues from its ceiling excluded): F = T / (AF / 2); wall shear = F / (2 t_w d_p); flat bearing stress = F / (2 (AF / sqrt 3) d_p). The boss shall extend at least 6.35 mm from the stud axis to every outer surface, and the part shall be printed with its layers across the stud axis (build direction within 5 degrees of it).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "The clamp shall not twist on the extrusion at 3 N m: the slot tongue shall have a key capacity of at least 4.5 N m, computed as 15 MPa x tongue height x l_min x (S - l_min) with S the overall tongue span along the slot and l_min the shorter of the two end segments; the span shall be at least 30.0 mm and every segment at least 4.0 mm long.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "With the bolt loose, the clamp with its T-nut shall slide along the slot over a 56 mm travel on a 100 mm extrusion without touching the extrusion except on its seat and without the T-nut binding (tongue at least 0.15 mm from the lips throughout; T-nut at least 0.3 mm from the slot side walls and 0.5 mm from the slot floor).",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "A hex key shall reach the M5 bolt head from above, and a camera base of about 28 mm diameter shall sit on the top face with nothing printed above it; the top face is flat within 0.2 mm over at least a 6.0 mm radius round the stud axis.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The clamp shall be one manifold body that prints on an FDM printer without supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "The clamp shall be no larger than 60 x 30 x 30 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.12",
+          "text": "The design shall be delivered as a clamp STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement to within 0.10 mm (stresses within 5 percent).",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: a hex pocket in the contact face, a stud hole, a stepped M5 hole (clearance plus counterbore), and tongue segments with a window for the bolt",
+        "interior placement: bolt and stud positions along the slide axis derived from the boss and counterbore sizes (distance between the axes from the geometry, not typed)",
+        "parts catalogue: load part.json models (extrusion_2020, tnut_2020_m5, bolt_m5_iso7380, camera_screw_1_4_20) and read datums FACE_PX, SLOT_PX, SLOT_FLOOR_PX, BEARING, AXIS and the slot keep-outs",
+        "a slot-engaging tongue sized from the slot opening datum with a sliding clearance",
+        "strength calculations from measured geometry (pocket flats, ligaments, key moment capacity)",
+        "envelope generation: slide sweep along the slot, camera base volume, hex key access column",
+        "interference checks against external solids: clear_of with a profile that has a T-shaped void, sweeps along an axis"
+      ]
+    }
+  ]
+}

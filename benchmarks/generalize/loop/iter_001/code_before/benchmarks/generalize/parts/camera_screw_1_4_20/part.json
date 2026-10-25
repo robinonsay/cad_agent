@@ -1,0 +1,163 @@
+{
+  "id": "camera_screw_1_4_20",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "1/4-20 screw",
+    "1/4-20 tripod screw",
+    "camera screw",
+    "tripod screw",
+    "tripod mount screw",
+    "1/4 inch camera screw",
+    "1/4-20 stud",
+    "tripod thread"
+  ],
+  "kind": "fastener",
+  "source": "1/4-20 UNC-2A stud (ASME B1.1, camera/tripod standard): major dia 6.35 mm (0.250 in), 20 TPI (pitch 1.27 mm), tap drill #7 = 5.11 mm (FDM thread-forming pilot, assumed), clearance hole 6.6 mm (ASME B18.2.8 close fit, F drill 6.53 mm). Hex nut 7/16 in across flats = 11.11 mm, thickness 7/32 in = 5.56 mm (ASME B18.2.2 regular nut), across corners about 12.8 mm (derived: AF / cos 30). Stud length comes from the request.",
+  "frame": "fastener: axis along Z, origin on the bearing face, shank toward -Z; a nut seats on the opposite face of the plate",
+  "params": {
+    "thread_diameter": {
+      "default": 6.35,
+      "source": "ASME B1.1: 1/4 in major diameter"
+    },
+    "pitch": {
+      "default": 1.27,
+      "source": "ASME B1.1: 20 TPI"
+    },
+    "length": {
+      "default": null,
+      "from_request": true,
+      "source": "request text"
+    },
+    "pilot_diameter": {
+      "default": 5.1,
+      "source": "tap drill #7 (5.11 mm), assumed for a printed thread-forming hole"
+    },
+    "clearance_diameter": {
+      "default": 6.6,
+      "source": "ASME B18.2.8 close fit clearance hole"
+    },
+    "nut_across_flats": {
+      "default": 11.1,
+      "source": "ASME B18.2.2: 7/16 in"
+    },
+    "nut_across_corners": {
+      "default": 12.8,
+      "source": "derived: across flats / cos 30"
+    },
+    "nut_height": {
+      "default": 5.6,
+      "source": "ASME B18.2.2: 7/32 in"
+    },
+    "min_engagement": {
+      "default": 6.35,
+      "source": "convention: 1 x major diameter in a printed boss (assumed, +/-1 mm)"
+    },
+    "min_boss_od": {
+      "default": 12.7,
+      "source": "convention: 2 x major diameter around the hole (assumed)"
+    }
+  },
+  "gate_params": {
+    "length": 12.7,
+    "source": "sample size used only by the load-time validation gate; never a design value"
+  },
+  "datasheet_size": [
+    "thread_diameter",
+    "thread_diameter",
+    "length"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "shank",
+      "primitive": "cylinder",
+      "d": "thread_diameter",
+      "h": "length",
+      "at": [
+        0,
+        0,
+        "-length"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "thread_diameter"
+    },
+    "BEARING": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "-length"
+      ]
+    }
+  },
+  "connectors": [],
+  "self_checks": [
+    {
+      "name": "pilot smaller than the thread",
+      "expr": "thread_diameter - pilot_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "clearance hole passes the thread",
+      "expr": "clearance_diameter - thread_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "nut corners exceed flats",
+      "expr": "nut_across_corners - nut_across_flats",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "nut corners per hex geometry",
+      "expr": "nut_across_corners * 0.8660254 - nut_across_flats",
+      "value": 0,
+      "tol": 0.15
+    },
+    {
+      "name": "boss wall around the pilot",
+      "expr": "min_boss_od - pilot_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

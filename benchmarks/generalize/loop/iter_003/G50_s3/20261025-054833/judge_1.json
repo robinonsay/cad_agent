@@ -1,0 +1,49 @@
+{
+ "id": "G50",
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.3,
+ "summary": "Pi Zero 2 W tray with two rear USB cuts and 4 lid screws. Missing fan, OLED window, encoder, vents, snap latches. Gates G3, G4, G5 fail. Judged without claude-context (server failed to connect).",
+ "defects": [
+  {
+   "requirement_id": "L3.4.2.1 / L3.4.3.1 / L3.4.3.2 / L3.6.1.1 (L1.4, L1.6) G3",
+   "where": "layout.json (only 'board' rpi_zero2w) and lid/base",
+   "what": "no fan, no fan posts, no intake/exhaust paths, no side vents; rays through both long walls at z=-4.6,-0.7,3.1 hit only the solid wall",
+   "expected": "fan on 32 mm pitch above Pi, 4 posts, vents >=300 mm2 each above/below mid-plane",
+   "observed": "none",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.7.2.1 / L3.9.1.2 / L3.9.2.1 (L1.7, L1.9) G4",
+   "where": "front wall (-Y) and front panel, views/model_front.png",
+   "what": "no OLED window, no 7.3-7.5 mm encoder hole",
+   "expected": "window for 25x14 viewing area, encoder hole d7.4",
+   "observed": "solid wall",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.10.3.1 / L3.10.4.2 (L1.10) G5",
+   "where": "lid.stl / base.stl",
+   "what": "lid held by 4 M3 bosses+screws (boss_1..4, lid_lip), no snap hooks",
+   "expected": "snap hooks with engagement 0.6-1.2",
+   "observed": "0 hooks",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.1.1.1 (L2.1.1)",
+   "where": "layout.json",
+   "what": "OLED, encoder, fan not declared",
+   "expected": "Pi, fan, OLED, encoder",
+   "observed": "Pi only",
+   "severity": "3"
+  },
+  {
+   "requirement_id": "L3.3.1.1 (L1.3)",
+   "where": "rear +Y wall, two port cuts, views/model_iso.png",
+   "what": "two openings present; plug clearance/oversize not verified against plug envelopes",
+   "expected": "d>=0.30, opening <=1.5 oversize",
+   "observed": "not fully verified",
+   "severity": "info"
+  }
+ ]
+}

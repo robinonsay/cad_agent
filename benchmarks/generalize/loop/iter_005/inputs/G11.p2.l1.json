@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Using the parts catalogue, put the DC jack, the heatsink and the two capacitors on the 80 x 60 mm board and declare the layout. The jack faces one short end, no parts collide, and none covers a corner hole.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The 80 x 60 x 1.6 mm board must fit in the closed enclosure, at least 0.5 mm away from every printed surface other than the standoffs it rests on.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "Exactly four standoffs carry the board, each 4 to 10 mm tall and placed under a corner hole. Each has a pilot hole of at least 5 mm depth for an M3 screw through the board, and the declared screws must engage at least 4 mm of thread.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "When the lid is on, no printed surface may get within 0.5 mm of a board part, or within 4.0 mm under the underside of the board (apart from the standoffs below the holes), and all parts have to be inside the enclosure.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the lid on, a 5.5 x 2.1 mm DC plug must go all the way into the jack through one opening in its end wall and not touch the enclosure, and no side of that opening may be more than 1.5 mm bigger than the plug.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "Mount the 40 x 40 x 10 mm fan on the underside of the lid so it blows into the box. Four M3 screws on its 32 mm hole pattern hold it, engaging at least 3 mm of thread in pilot holes in the lid that leave at least 0.8 mm of skin. It sits over a lid opening that is at least 60 percent of its 38 mm bore, and the fan frame stays at least 5 mm from every board part.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "On the end wall facing away from the jack, cut exhaust slots: no fewer than 8 of them, each 2 to 4 mm wide and 10 mm or more tall, adding up to an open area of at least 567 mm2.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "Build the enclosure from a base and a separate lid you can remove. The lid is a flat plate between 4.8 and 6 mm thick, with a locating lip that engages the base by 2 to 3 mm in a sliding fit, no more than 9 mm tall in total, and four M3 screws going into bosses outside the board's outline hold it closed.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "The closed enclosure has no openings other than the DC opening, the exhaust slots, the fan opening and the screw holes, and its walls and floor are 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Make the base and the lid each a single manifold body that prints on an FDM printer without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed enclosure must fit in 100 x 80 x 40 mm with its longest side along the board's 80 mm edge, sit flat on a desk without tipping, and remain stable when the table is tilted 5 degrees.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "With the lid removed, the populated board must drop straight down onto its standoffs, and a screwdriver must be able to reach each board screw.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "Supply a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, the latter agreeing with an independent measurement.",
+    "method": "inspection"
+  }
+]

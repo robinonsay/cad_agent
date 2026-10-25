@@ -1,0 +1,46 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n14 = 40 (request): "...olytic capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, in..."
+n15 = 40 (request): "...c capacitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside ..."
+n16 = 10 mm (request): "...acitors, each 10 mm in diameter and 16 mm tall. A 40 x 40 x 10 mm fan is fixed to the underside of the lid, inside the b..."
+n17 = 32 mm (request): "...an opening in the lid, held by M3 socket-head screws on its 32 mm hole pattern, and exhaust slots line the opposite end ..."
+n57 = 8 (L1.7): "...t slots shall line the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a..."
+n58 = 2 (L1.7): "...line the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a total open ar..."
+n59 = 4 mm (L1.7): "...the end wall opposite the jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a total open area of..."
+n60 = 10 mm (L1.7): "...he jack: at least 8 slots, each 2 to 4 mm wide and at least 10 mm tall, with a total open area of at least 567 mm2...."
+n61 = 567 (L1.7): "...and at least 10 mm tall, with a total open area of at least 567 mm2...."
+n67 = 2 (L1.9): "...n opening and screw holes, and its walls and floor shall be 2 to 4 mm thick...."
+n68 = 4 mm (L1.9): "...ning and screw holes, and its walls and floor shall be 2 to 4 mm thick...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- vent_count_min: the fewest vent slots the row may have (count)
+- vent_count_max: the most vent slots the row may have (count)
+- vent_width_min: the smallest width of one vent slot (its narrow side) (mm)
+- vent_width_max: the largest width of one vent slot (its narrow side) (mm)
+- vent_length_min: the smallest length (or height) of one vent slot (its long side) (mm)
+- vent_length_max: the largest length (or height) of one vent slot (its long side) (mm)
+- vent_pitch_min: the smallest centre-to-centre spacing of neighbouring vent slots (mm)
+- vent_pitch_max: the largest centre-to-centre spacing of neighbouring vent slots (mm)
+- vent_area_min: the smallest total open area of all vent slots together (mm2)
+
+
+=== RESPONSE ===
+{
+  "vent_area_min": "n61",
+  "vent_count_max": "n57",
+  "vent_count_min": "n57",
+  "vent_length_max": "n60",
+  "vent_length_min": "n60",
+  "vent_pitch_max": "none",
+  "vent_pitch_min": "none",
+  "vent_width_max": "n59",
+  "vent_width_min": "n59"
+}

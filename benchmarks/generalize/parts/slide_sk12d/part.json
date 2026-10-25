@@ -1,0 +1,243 @@
+{
+ "id": "slide_sk12d",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "sk12d slide switch",
+  "sk12d07",
+  "ss12d00",
+  "slide switch",
+  "sliding switch",
+  "spdt slide switch",
+  "mini slide switch",
+  "sk12d"
+ ],
+ "kind": "control",
+ "source": "SK12D07 / SS12D00 slide switch datasheet (generalize/plan.json datasheet_note): body about 12.5 x 6 x 5.5 mm, handle about 3 x 3 mm with 3.5 mm travel. ASSUMED: handle height above the body 4.0 mm (handle options 2 to 6 mm), handle dimension along the travel 3.0, across it 3.0 mm, three pins 2.5 mm pitch, pin length 3.0 mm.",
+ "frame": "control: origin at the body min corner, body bottom (PCB seat) at Z = 0, handle toward +Z, pins toward -Z, travel along X",
+ "params": {
+  "body_length": {
+   "default": 12.5,
+   "source": "datasheet: body X (about)"
+  },
+  "body_width": {
+   "default": 6.0,
+   "source": "datasheet: body Y"
+  },
+  "body_height": {
+   "default": 5.5,
+   "source": "datasheet: body Z (about)"
+  },
+  "handle_length": {
+   "default": 3.0,
+   "source": "datasheet: handle size along the travel (about)"
+  },
+  "handle_width": {
+   "default": 3.0,
+   "source": "datasheet: handle size across the travel (about)"
+  },
+  "handle_height": {
+   "default": 4.0,
+   "source": "ASSUMED handle height above the body (VG-series 4 mm); +/- 1.0"
+  },
+  "travel": {
+   "default": 3.5,
+   "source": "datasheet: handle travel"
+  },
+  "pin_pitch": {
+   "default": 2.5,
+   "source": "ASSUMED pin pitch; +/- 0.3"
+  },
+  "pin_length": {
+   "default": 3.0,
+   "source": "ASSUMED pin length below the body"
+  }
+ },
+ "datasheet_size": [
+  "body_length",
+  "body_width",
+  "body_height"
+ ],
+ "size_of": "body",
+ "size_tolerance": 0.3,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "box",
+   "size": [
+    "body_length",
+    "body_width",
+    "body_height"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "handle",
+   "primitive": "box",
+   "size": [
+    "handle_length",
+    "handle_width",
+    "handle_height"
+   ],
+   "at": [
+    "(body_length - handle_length) / 2",
+    "(body_width - handle_width) / 2",
+    "body_height"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "handle_sweep",
+   "primitive": "box",
+   "size": [
+    "travel + handle_length",
+    "handle_width",
+    "handle_height"
+   ],
+   "at": [
+    "(body_length - travel - handle_length) / 2",
+    "(body_width - handle_width) / 2",
+    "body_height"
+   ]
+  }
+ ],
+ "datums": {
+  "BODY_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "BODY_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "HANDLE_CENTER": {
+   "kind": "point",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + handle_height"
+   ]
+  },
+  "ACTUATOR_AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  "TRAVEL_AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + handle_height"
+   ],
+   "dir": [
+    1,
+    0,
+    0
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": 3,
+   "start": [
+    "body_length / 2 - pin_pitch",
+    "body_width / 2",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [],
+ "notes": "The handle moves +/- travel/2 about the body centre along X; the opening in the case wall must be at least handle_length + travel long and handle_width wide plus rules clearance (handle_sweep keepout). The handle bearing on the slot walls is designed contact. ASSUMPTIONS and uncertainty: body 12.5 x 6 x 5.5 is 'about' (real SK12D07VG4 ~12.8 x 6.0 x 5.5, +/-0.3); handle height 4.0 (+/-1.0): the handle must protrude through the wall, so measure the owner's switch; pins 3 at 2.5 pitch with two side mount lugs not modelled. Import gate: body bounding box 12.5 x 6 x 5.5; sweep covers the travel.",
+ "self_checks": [
+  {
+   "name": "body length",
+   "expr": "body.size_x",
+   "value": 12.5,
+   "tol": 0.05
+  },
+  {
+   "name": "body width",
+   "expr": "body.size_y",
+   "value": 6.0,
+   "tol": 0.05
+  },
+  {
+   "name": "body height",
+   "expr": "body.size_z",
+   "value": 5.5,
+   "tol": 0.05
+  },
+  {
+   "name": "handle length",
+   "expr": "handle.size_x",
+   "value": 3.0,
+   "tol": 0.05
+  },
+  {
+   "name": "sweep length = travel + handle",
+   "expr": "travel + handle_length",
+   "value": 6.5,
+   "tol": 0.05
+  },
+  {
+   "name": "sweep inside the body length",
+   "expr": "body_length - travel - handle_length",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "travel direction along X",
+   "expr": "TRAVEL_AXIS.dx",
+   "value": 1,
+   "tol": 1e-06
+  },
+  {
+   "name": "handle centred",
+   "expr": "HANDLE_CENTER.x - body.center_x",
+   "value": 0,
+   "tol": 1e-06
+  }
+ ]
+}

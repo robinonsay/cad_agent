@@ -1,0 +1,42 @@
+MODEL: ornith-1.5:9b T=0.3 seed=2000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A guard housing over a 20-tooth GT2 pulley (tooth OD 16 mm, flanges 18 mm) on the 5 mm shaft of a NEMA 17 motor (42.3 mm square, M3 holes on a 31 mm square pattern, 22 mm pilot). The pulley hub sits 3 mm above the motor face and the shaft sticks out 24 mm from the face. The guard must clear the pulley and the shaft by 2 mm all around while leaving one slot on one side for the 6 mm GT2 belt, which runs off straight along that side to a second pulley 100 mm away. It is fastened to the motor with M3 bolts in two of the motor's four M3 face holes, and it is printed in PLA on an FDM printer without supports.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

@@ -1,0 +1,54 @@
+MODEL: ornith-1.5:9b T=0.7 seed=3002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An idler block for a 6 mm wide GT2 belt (1.38 mm thick) using two 623 bearings (3 x 10 x 4 mm) stacked on one M3 x 12 bolt. The bolt head sits on the top bearing and a boss on the floor carries the bottom bearing, so the inner rings are clamped between them (the boss 4.6 to 5.0 mm across and 0.3 to 0.8 mm high, clear of the outer ring), and an M3 nut is trapped in a hex pocket under the floor (5.7 to 5.9 mm across flats, 2.6 to 3.4 mm deep, at least 1.2 mm of floor above it) with the bolt tip at least 1.5 mm into the nut; the bearing outer rings turn freely as a roller, at least 0.4 mm from the block all round in a chamber no more than 12 mm across. The belt runs straight through the block on one side of the roller, standing on edge (its width along the bolt axis), with its smooth back just touching both bearings (within 0.3 mm, overlapping each by at least 2 mm and centred on the stack within 0.25 mm). It passes through a belt channel 7 mm wide, so there is 0.5 mm of clearance beside the belt on each side, and at least 0.5 mm on the tooth side. The bearings and the bolt go in from above, the nut from below. The block is slid along the belt to tension it, so it carries one slot giving 5 mm of travel for an M3 mounting screw into the machine frame (a slot 3.3 to 3.6 mm wide, with room for the head and a hex key along the travel). One printed part for an FDM printer, no supports, no bigger than 40 x 40 x 25 mm.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- gear_spur_generic: spur gear (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "gear_spur_generic": {
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  }
+}

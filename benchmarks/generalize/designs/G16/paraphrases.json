@@ -1,0 +1,120 @@
+{
+ "paraphrases": [
+  {
+   "id": "G16",
+   "tier": 4,
+   "title": "NEMA17 motor plate for 2020 extrusion",
+   "request": "Flat motor plate holding a NEMA 17 stepper (42.3 mm square, 31 mm bolt pattern, 22 mm pilot) on a 2020 aluminium extrusion, using two M5 bolts into drop-in T-nuts. Plate lies flat on one face of the extrusion over its T-slot. Motor hangs beside the extrusion, shaft up through the plate. M5 holes slotted 6 mm for belt tensioning; slots run across the extrusion, along the belt direction. Plate 5 mm thick, printed flat on its face on FDM, the only printed part. Bolts 20 to 40 mm apart along the extrusion with the motor shaft between them. Motor body 3.5 to 10 mm from the extrusion edge. Keep a 20 mm diameter zone free above the plate on the shaft, up to 30 mm high, for pulley and belt.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Assemble from the parts catalogue the NEMA 17 motor, the 2020 extrusion, two M5 T-nuts, two M5 bolts and four M3 screws. Plate on the slot face of the extrusion, motor beside it, shaft perpendicular to both the plate and the extrusion axis. No collisions. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Plate holds the NEMA 17 on its 31 mm bolt pattern with four M3 screws; a bore takes the 22 mm pilot, coaxial with the pattern.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Exactly two M5 bolts secure the plate to the extrusion, into drop-in T-nuts in the T-slot beneath it, through two slotted holes with 6 mm of travel across the extrusion. Bolts 20 to 40 mm apart along the extrusion. Each bolt engages 3 mm or more of its T-nut and stops short of the slot floor.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Over the full 6 mm of travel, each bolt stays inside its slot and each bolt head stays on the plate. Motor stays clear of the extrusion: 3.5 to 10 mm from its edge at nominal, 0.5 mm or more at the end of travel toward it. At every position, plate under each bolt head is 19 mm² or more.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "One flat plate, 5 mm thick, resting on the extrusion face. It does not enter the extrusion and touches the motor only at the motor's mounting face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Motor load and belt pull go to the two bolts through material at least 3 mm wide around every hole and edge. No cross-section under 20 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Space above the plate around the motor shaft stays empty for pulley and belt: 20 mm diameter zone from plate top up to 30 mm above. A hex key reaches every bolt and screw head from above.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "Plate is a single manifold body, printed flat on its face on FDM, no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Plate at most 60 x 75 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliver the plate STL, OpenSCAD source, declared layout and the agent's clearance report; report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ]
+  },
+  {
+   "id": "G16",
+   "tier": 4,
+   "title": "NEMA17 motor plate for 2020 extrusion",
+   "request": "Could you design a flat plate to attach a NEMA 17 stepper motor (42.3 mm square, with a 31 mm bolt pattern and a 22 mm pilot) to 2020 aluminium extrusion? It's fixed with two M5 bolts that go into drop-in T-nuts. The plate sits flat on one side of the extrusion, covering the T-slot, while the motor hangs off to the side and its shaft comes up through the plate. I want to adjust belt tension by sliding the plate, so the M5 holes are 6 mm slots, oriented across the extrusion in the direction of the belt. It's a single printed part, 5 mm thick, printed lying on its face on an FDM printer. Along the extrusion the two bolts are 20 to 40 mm apart, with the motor shaft in between them; the motor body sits 3.5 to 10 mm from the edge of the extrusion; and above the plate the shaft needs a free zone 20 mm in diameter and up to 30 mm tall for the pulley and belt.",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Using catalogue parts, the design builds one assembly of the NEMA 17 motor, the 2020 extrusion, two M5 T-nuts, two M5 bolts and four M3 screws. The plate goes on the slot face of the extrusion with the motor next to the extrusion, and the shaft stands perpendicular to the plate and to the axis of the extrusion. Parts must not collide, and the layout is to be declared.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Four M3 screws on the 31 mm bolt pattern fasten the NEMA 17 to the plate, and a bore centred on that pattern accepts the 22 mm pilot.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Two M5 bolts, no more, fix the plate to the extrusion; they thread into drop-in T-nuts sitting in the T-slot under the plate, and pass through two slotted holes allowing 6 mm of movement across the extrusion. Space the bolts 20 to 40 mm apart along the extrusion, and have each one engage at least 3 mm of its T-nut while not touching the floor of the slot.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "As the plate slides through its 6 mm range, every bolt has to remain within its slot with the head resting on the plate, and the motor must not hit the extrusion: it sits 3.5 to 10 mm from the edge at the nominal position and still at least 0.5 mm away at the far end of travel toward the extrusion. In any position, at least 19 mm² of plate must lie beneath each bolt head.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "The plate is a single flat piece 5 mm thick that lies on the face of the extrusion; it must not penetrate the extrusion, and the only contact with the motor is its mounting face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Both the motor's load and the belt tension must reach the two bolts through the plate, with at least 3 mm of material around each hole and edge and no section narrower than 20 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Leave the shaft free above the plate so a pulley and belt fit, in a zone 20 mm in diameter running from the top of the plate to 30 mm above it, and make sure you can get a hex key onto each bolt and screw head from above.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "It must be a single manifold body that an FDM printer can make lying on its face, with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Overall size of the plate must not exceed 60 x 75 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Provide the STL of the plate, the OpenSCAD source, the layout declaration and the agent's own clearance report, which an independent measurement must bear out.",
+     "method": "inspection"
+    }
+   ]
+  }
+ ]
+}

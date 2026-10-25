@@ -1,0 +1,54 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A desktop console for a Raspberry Pi Zero 2 W (65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern). A 40 x 40 x 10 mm fan sits above the Pi, fixed on its 32 mm hole pitch and blowing down onto it. A 0.96 inch SSD1306 OLED (27.3 x 27.8 mm, viewing area 25 x 14 mm) shows through a window in the front panel, with an EC11 rotary encoder beside it on the same panel. Both micro-USB ports of the Pi are exposed through the rear wall for cables. There are vents in the side walls, and the heat of the Pi must have a path out through them. The case is a base and a lid that closes with snap latches, printed on an FDM printer without supports. The mini-HDMI and the microSD slot are not used.
+
+Catalogue parts that may be in the request:
+- rpi_zero2w: raspberry pi zero 2 w (module; cable connector: hdmi connector (takes a mini-hdmi plug), usb_data connector (takes a micro-usb plug), usb_power connector (takes a micro-usb plug))
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- oled_ssd1306_096: 0.96 inch oled (display)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "oled_ssd1306_096": {
+    "quantity": 1
+  },
+  "rpi_camera_v2": {
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_zero2w": {
+    "hdmi_exposed": "no",
+    "quantity": 1,
+    "usb_data_exposed": "yes",
+    "usb_power_exposed": "yes"
+  }
+}

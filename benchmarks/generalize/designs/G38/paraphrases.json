@@ -1,0 +1,160 @@
+{
+ "paraphrases": [
+  {
+   "id": "G38",
+   "tier": 4,
+   "title": "Perfboard soldering holder",
+   "request": "Tilting holder for a 70 x 50 mm perfboard, for soldering it upside down with the component side down. The board has a 3 mm hole at each corner, centred 2.5 mm in from both edges there, and four corner pins go through those holes. Keep everything at least 10 mm below the board clear, where the component bodies hang, and leave the solder side open from above. The board rests in a cradle that tilts on two M3 bolts through the uprights of a heavy base, at least 20 degrees each way. The base is heavy enough not to tip at 20 degrees of tilt, and prints flat on an FDM printer without supports.",
+   "request_verbatim": "A tilting holder for a 70 x 50 mm perfboard so I can solder it upside down, with four corner pins at the board's 3 mm holes and a 10 mm height keep-out under the board for component bodies. The base is heavy enough not to tip at a 20 degree tilt and prints flat.",
+   "request_notes": "Added to the plan brief, from requirements.md section 3: the board's holes are 3.0 mm at 2.5 mm from each edge (A2); tilting is a cradle on two M3 pivot bolts (D2); tilt range at least 20 degrees each way (D3); solder side open above (A5); FDM, no supports (A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Holds the 70 x 50 x 1.6 mm board component side down on four corner pins (2.7 to 2.9 mm diameter, 1 to 3 mm above the solder side), one per 3 mm corner hole, with the board's underside on four seats around the pins. Declare the board's pose.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "No printed body within 10 mm below the board's underside inside the board outline, except the four seats under the holes, at any tilt from 0 to 20 degrees.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Board drops straight down onto its pins, keeps at least 0.5 mm from every printed surface other than its seats, and has an open solder side: nothing printed above the board's top surface inside its outline.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "The board's cradle tilts freely about a horizontal axis through two M3 pivot bolts, at least 20 degrees each way, never touching the base (at least 0.5 mm clearance at every angle).",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "Pivot hardware is two coaxial M3 bolts, each passing through a clearance hole in a base upright into a pilot hole in the cradle, with 5.0 mm or more thread engaged and a free hex-key column above each head.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "No tipping: at 0 and at 20 degrees of tilt either way, the centre of mass is at least 5.0 mm inside the base footprint, a 0.5 N sideways push at the board's highest edge point does not tip it, and the base is at least half the total mass (mass = printed volume x 0.45 g/cm3, plus 30 g for the populated board, plus 1 g per bolt).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Base prints flat on its largest face with at least 50% bed contact; cradle has a stated print orientation with at least 25% bed contact.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "Base and cradle are two separate printed bodies, each a single manifold body; the pivot bolts are the only other parts.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "All walls, bars, posts and ligaments must be strong: nothing printed thinner than 2.0 mm except the pins, posts at least 5.0 mm across, and at least 2.0 mm of material around each bolt and pilot hole.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Both bodies print on an FDM printer in their stated orientations without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "At zero tilt the holder fits within 120 x 100 x 50 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliver a base STL, a cradle STL (zero-tilt pose, mm), the OpenSCAD source, the declared board and pivot layout and the agent's own clearance report; the report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "pins and seats at the catalogue board's hole datums (board component side down)",
+    "keep-out volume under the board; keep-out and body rotated about a pivot axis for a tilt sweep",
+    "two bodies with a pivot: coaxial bolt holes in one body and pilot holes in the other, derived from the bolt part",
+    "rotation sweep: clearance of one body against the other over a range of angles",
+    "stability analysis: centre of mass from body volumes and an assumed density, support polygon at a tilt, push test",
+    "print orientation per body; base flat, frame-like cradle with a lower bed-contact limit"
+   ]
+  },
+  {
+   "id": "G38",
+   "tier": 4,
+   "title": "Perfboard soldering holder",
+   "request": "I want a holder that tips back and forth so I can solder a 70 x 50 mm perfboard upside down, with the components facing down. Each corner of the board has a 3 mm hole whose centre is 2.5 mm from the two nearest edges, and four pins at the corners go through them. Below the board, where the component bodies dangle, nothing may be within 10 mm, and the soldering face must be open to the top. The board lies in a cradle that swings on two M3 bolts through the uprights of a heavy base, with at least 20 degrees of swing in each direction. That base has to be weighty enough that nothing tips over at a 20 degree tilt, and I print it flat on an FDM printer with no supports.",
+   "request_verbatim": "A tilting holder for a 70 x 50 mm perfboard so I can solder it upside down, with four corner pins at the board's 3 mm holes and a 10 mm height keep-out under the board for component bodies. The base is heavy enough not to tip at a 20 degree tilt and prints flat.",
+   "request_notes": "Added to the plan brief, from requirements.md section 3: the board's holes are 3.0 mm at 2.5 mm from each edge (A2); tilting is a cradle on two M3 pivot bolts (D2); tilt range at least 20 degrees each way (D3); solder side open above (A5); FDM, no supports (A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "The board (70 x 50 x 1.6 mm) is carried component side down on four corner pins of 2.7 to 2.9 mm diameter that stand 1 to 3 mm above the solder side. One pin goes in each 3 mm corner hole and four seats around the pins support the underside of the board. The design should state the board's pose.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Under the board, within its outline, no printed body may approach closer than 10 mm to the underside, with the exception of the four seats beneath the holes, for every tilt between 0 and 20 degrees.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The board should lower straight onto the pins, stay at least 0.5 mm away from every printed surface other than its seats, and leave the solder side open, meaning nothing printed rises above the board's top surface within its outline.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "The cradle swings freely around a horizontal axis running through two M3 pivot bolts, by at least 20 degrees in each direction, and never touches the base: at least 0.5 mm of clearance at all angles.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "Two coaxial M3 bolts form the pivot. Each one runs through a clearance hole in a base upright and into a pilot hole in the cradle, engaging 5.0 mm or more of thread, and the column above each head stays free for a hex key.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "The holder must not tip over. At 0 and at 20 degrees either way the centre of mass sits at least 5.0 mm within the base's footprint, a sideways push of 0.5 N at the board's highest edge point leaves it standing, and the base weighs at least half the total (mass = printed volume x 0.45 g/cm3, plus 30 g for the populated board, plus 1 g for each bolt).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "The base is printed flat on its largest face with at least 50% of it on the bed, and the cradle gets a stated print orientation that puts at least 25% on the bed.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "There are two separate printed bodies, the base and the cradle, each one manifold body, and the only other parts are the pivot bolts.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Every wall, bar, post and ligament has to be sturdy: no printed feature under 2.0 mm thick apart from the pins, posts at least 5.0 mm across, and at least 2.0 mm of material surrounding each bolt and pilot hole.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Each body must print on an FDM printer, in the orientation stated for it, without any supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "With zero tilt, the whole holder must come in at no more than 120 x 100 x 50 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "What gets delivered: a base STL, a cradle STL (zero-tilt pose, mm), the OpenSCAD source, the declared board and pivot layout and the agent's own clearance report, which has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "pins and seats at the catalogue board's hole datums (board component side down)",
+    "keep-out volume under the board; keep-out and body rotated about a pivot axis for a tilt sweep",
+    "two bodies with a pivot: coaxial bolt holes in one body and pilot holes in the other, derived from the bolt part",
+    "rotation sweep: clearance of one body against the other over a range of angles",
+    "stability analysis: centre of mass from body volumes and an assumed density, support polygon at a tilt, push test",
+    "print orientation per body; base flat, frame-like cradle with a lower bed-contact limit"
+   ]
+  }
+ ]
+}

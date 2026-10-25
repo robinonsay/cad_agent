@@ -1,0 +1,163 @@
+{
+  "id": "plug_usb_b",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "usb-b plug",
+    "usb b plug",
+    "usb type b plug",
+    "usb-b cable",
+    "usb b cable",
+    "printer cable plug",
+    "usb 2.0 b plug"
+  ],
+  "kind": "plug",
+  "source": "USB 2.0 specification section 6.5 (Type-B plug): shell 12.0 x 10.9 mm. Mated depth about 10 mm is an assumption from the receptacle drawing (uncertainty +/-1 mm). Typical overmold 16 x 13 mm; length 30 mm assumed (+/-5). Measure the owner's cable.",
+  "frame": "plug: origin at the tip, centred in Y and Z; the plug body runs along +X; it is inserted by moving along -X (mating direction = -PLUG_AXIS)",
+  "params": {
+    "shell_width": {
+      "default": 12.0,
+      "source": "spec: plug shell width (USB 2.0 Type-B)"
+    },
+    "shell_height": {
+      "default": 10.9,
+      "source": "spec: plug shell height (USB 2.0 Type-B)"
+    },
+    "insert_depth": {
+      "default": 10.0,
+      "source": "mated depth into the receptacle (see source; assumed where the spec gives a range)"
+    },
+    "exposed_shell": {
+      "default": 1.5,
+      "source": "assumed: shell visible outside the receptacle at full mate (cable-dependent, +/-1 mm)"
+    },
+    "overmold_width": {
+      "default": 16.0,
+      "source": "typical overmold width (cable-dependent; measure the owner's cable)"
+    },
+    "overmold_height": {
+      "default": 13.0,
+      "source": "typical overmold height (cable-dependent; measure the owner's cable)"
+    },
+    "overmold_length": {
+      "default": 30.0,
+      "source": "assumed overmold length (cable-dependent, +/-5 mm; strain relief excluded)"
+    }
+  },
+  "datasheet_size": [
+    "insert_depth + exposed_shell + overmold_length",
+    "overmold_width",
+    "overmold_height"
+  ],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {
+      "id": "shell",
+      "primitive": "box",
+      "size": [
+        "insert_depth + exposed_shell",
+        "shell_width",
+        "shell_height"
+      ],
+      "at": [
+        0,
+        "-shell_width / 2",
+        "-shell_height / 2"
+      ]
+    },
+    {
+      "id": "overmold",
+      "primitive": "box",
+      "size": [
+        "overmold_length",
+        "overmold_width",
+        "overmold_height"
+      ],
+      "at": [
+        "insert_depth + exposed_shell",
+        "-overmold_width / 2",
+        "-overmold_height / 2"
+      ]
+    }
+  ],
+  "datums": {
+    "PLUG_TIP": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        0
+      ]
+    },
+    "PLUG_AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    },
+    "SEAT": {
+      "kind": "point",
+      "at": [
+        "insert_depth",
+        0,
+        0
+      ]
+    },
+    "OVERMOLD_FACE": {
+      "kind": "plane",
+      "at": [
+        "insert_depth + exposed_shell",
+        0,
+        0
+      ],
+      "normal": [
+        -1,
+        0,
+        0
+      ]
+    }
+  },
+  "connectors": [],
+  "self_checks": [
+    {
+      "name": "shell width",
+      "expr": "shell.size_y",
+      "value": 12.0,
+      "tol": 0.2
+    },
+    {
+      "name": "shell height",
+      "expr": "shell.size_z",
+      "value": 10.9,
+      "tol": 0.1
+    },
+    {
+      "name": "overmold covers the shell width",
+      "expr": "overmold_width - shell_width",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "overmold covers the shell height",
+      "expr": "overmold_height - shell_height",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "overmold face beyond the seat",
+      "expr": "OVERMOLD_FACE.x - SEAT.x",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

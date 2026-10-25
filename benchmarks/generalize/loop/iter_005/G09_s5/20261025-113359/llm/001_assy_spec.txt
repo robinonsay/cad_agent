@@ -1,0 +1,103 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 9 (request): "...I want a small holder box for a 9 V PP3 battery (26.5 x 17.5 x 48.5 mm, with the snap termina..."
+n2 = 26.5 (request): "...I want a small holder box for a 9 V PP3 battery (26.5 x 17.5 x 48.5 mm, with the snap terminals at one end). It's..."
+n3 = 17.5 (request): "...I want a small holder box for a 9 V PP3 battery (26.5 x 17.5 x 48.5 mm, with the snap terminals at one end). It's two pr..."
+n4 = 48.5 mm (request): "...ant a small holder box for a 9 V PP3 battery (26.5 x 17.5 x 48.5 mm, with the snap terminals at one end). It's two print..."
+n5 = 90 (request): "...r without supports. The box closed should be no bigger than 90 x 45 x 30 mm, not counting the switch lever, and the wall..."
+n6 = 45 (request): "...hout supports. The box closed should be no bigger than 90 x 45 x 30 mm, not counting the switch lever, and the walls, fl..."
+n7 = 30 mm (request): "...supports. The box closed should be no bigger than 90 x 45 x 30 mm, not counting the switch lever, and the walls, floor a..."
+n8 = 2 (request): "...switch lever, and the walls, floor and lid plate should be 2 to 4 mm thick. On the top sits a mini toggle switch of the..."
+n9 = 4 mm (request): "...ch lever, and the walls, floor and lid plate should be 2 to 4 mm thick. On the top sits a mini toggle switch of the MTS-..."
+n10 = 6.0 mm (request): ".... On the top sits a mini toggle switch of the MTS-102 kind (6.0 mm bushing, a lever 12 mm above the panel, panel up to 4..."
+n11 = 12 mm (request): "...toggle switch of the MTS-102 kind (6.0 mm bushing, a lever 12 mm above the panel, panel up to 4 mm thick), poking throug..."
+n12 = 4 mm (request): "...(6.0 mm bushing, a lever 12 mm above the panel, panel up to 4 mm thick), poking through a hole that is 0.2 to 0.8 mm lar..."
+n13 = 0.2 (request): "...nel, panel up to 4 mm thick), poking through a hole that is 0.2 to 0.8 mm larger than the bushing. On one end I want a p..."
+n14 = 0.8 mm (request): "...nel up to 4 mm thick), poking through a hole that is 0.2 to 0.8 mm larger than the bushing. On one end I want a panel DC..."
+n15 = 14 (request): "...On one end I want a panel DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug). The lid ..."
+n16 = 9 (request): "...e end I want a panel DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug). The lid turns..."
+n17 = 11 mm (request): "...d I want a panel DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug). The lid turns on ..."
+n18 = 5.5 (request): "...DC jack of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug). The lid turns on a 3 mm steel dowe..."
+n19 = 2.1 mm (request): "...ck of the PJ-002A kind (body 14 x 9 x 11 mm, taking a 5.5 x 2.1 mm barrel plug). The lid turns on a 3 mm steel dowel pin..."
+n20 = 3 mm (request): "...mm, taking a 5.5 x 2.1 mm barrel plug). The lid turns on a 3 mm steel dowel pin that is 24 mm long, opens up to 100 degr..."
+n21 = 24 mm (request): "...rrel plug). The lid turns on a 3 mm steel dowel pin that is 24 mm long, opens up to 100 degrees, and shuts with a snap l..."
+n22 = 100 degrees (request): "...s on a 3 mm steel dowel pin that is 24 mm long, opens up to 100 degrees, and shuts with a snap latch on the other long s..."
+n23 = 8 mm (request): "...de: a printed cantilever hook whose free length is at least 8 mm, thickness 1.2 to 2.5 mm, catch overlap 0.4 to 1.2 mm, ..."
+n24 = 1.2 (request): "...ntilever hook whose free length is at least 8 mm, thickness 1.2 to 2.5 mm, catch overlap 0.4 to 1.2 mm, with bending str..."
+n25 = 2.5 mm (request): "...r hook whose free length is at least 8 mm, thickness 1.2 to 2.5 mm, catch overlap 0.4 to 1.2 mm, with bending strain no ..."
+n26 = 0.4 (request): "...th is at least 8 mm, thickness 1.2 to 2.5 mm, catch overlap 0.4 to 1.2 mm, with bending strain no higher than 2 percent...."
+n27 = 1.2 mm (request): "...t least 8 mm, thickness 1.2 to 2.5 mm, catch overlap 0.4 to 1.2 mm, with bending strain no higher than 2 percent. The ba..."
+n28 = 2 (request): "...h overlap 0.4 to 1.2 mm, with bending strain no higher than 2 percent. The battery lies in a pocket that is 0.2 to 0.5 m..."
+n29 = 0.2 (request): "...higher than 2 percent. The battery lies in a pocket that is 0.2 to 0.5 mm oversize on each free face, mustn't rattle, an..."
+n30 = 0.5 mm (request): "...than 2 percent. The battery lies in a pocket that is 0.2 to 0.5 mm oversize on each free face, mustn't rattle, and there..."
+n31 = 5.5 mm (request): "...be room for its snap clip at the terminal end. The DC plug (5.5 mm barrel, 11 mm dia handle) has to be able to go throug..."
+n32 = 11 mm (request): "...snap clip at the terminal end. The DC plug (5.5 mm barrel, 11 mm dia handle) has to be able to go through the end wall w..."
+n33 = 26.5 (L1.2): "...The battery (26.5 x 17.5 x 48.5 mm) goes in a pocket that keeps at least 0.2..."
+n34 = 17.5 (L1.2): "...The battery (26.5 x 17.5 x 48.5 mm) goes in a pocket that keeps at least 0.2 mm from..."
+n35 = 48.5 mm (L1.2): "...The battery (26.5 x 17.5 x 48.5 mm) goes in a pocket that keeps at least 0.2 mm from all print..."
+n36 = 0.2 mm (L1.2): "...26.5 x 17.5 x 48.5 mm) goes in a pocket that keeps at least 0.2 mm from all printed surfaces, other than where it rests ..."
+n37 = 0.5 mm (L1.2): "...han where it rests on its floor, with a gap of no more than 0.5 mm on its two long sides and its top. The snap-clip zone..."
+n38 = 1.0 mm (L1.3): "...e lid is shut the battery is held so that it shifts at most 1.0 mm in total across its width and thickness, and lengthwi..."
+n39 = 1.5 mm (L1.3): "...hickness, and lengthwise no further than its clip zone plus 1.5 mm. There is a printed stop at the end away from the ter..."
+n40 = 2 (L1.4): "...Pass the toggle switch through a hole in the lid plate (2 to 4 mm thick, hole 0.2 to 0.8 mm larger than the bushing)..."
+n41 = 4 mm (L1.4): "...ass the toggle switch through a hole in the lid plate (2 to 4 mm thick, hole 0.2 to 0.8 mm larger than the bushing) with..."
+n42 = 0.2 (L1.4): "...itch through a hole in the lid plate (2 to 4 mm thick, hole 0.2 to 0.8 mm larger than the bushing) with the switch seate..."
+n43 = 0.8 mm (L1.4): "...rough a hole in the lid plate (2 to 4 mm thick, hole 0.2 to 0.8 mm larger than the bushing) with the switch seated again..."
+n44 = 5.5 (L1.5): "...With the lid shut, a 5.5 x 2.1 mm DC plug with an 11 mm dia handle must slide fully..."
+n45 = 2.1 mm (L1.5): "...With the lid shut, a 5.5 x 2.1 mm DC plug with an 11 mm dia handle must slide fully into the..."
+n46 = 11 mm (L1.5): "...With the lid shut, a 5.5 x 2.1 mm DC plug with an 11 mm dia handle must slide fully into the jack through a single..."
+n47 = 1.5 mm (L1.5): "...r touch the box. The opening may exceed the plug by at most 1.5 mm on any side, and the jack must be held in place...."
+n48 = 3 mm (L1.6): "...The lid pivots on a 3 mm steel dowel pin, 24 mm long, which stays captive in the hin..."
+n49 = 24 mm (L1.6): "...The lid pivots on a 3 mm steel dowel pin, 24 mm long, which stays captive in the hinge bores (a press fit i..."
+n50 = 100 degrees (L1.6): "...and a clearance fit in the other). The lid has to swing to 100 degrees without any part of the lid or the switch hitting..."
+n51 = 8 mm (L1.7): "...side across from the hinge, a cantilever hook with at least 8 mm free length, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch o..."
+n52 = 1.2 (L1.7): "...he hinge, a cantilever hook with at least 8 mm free length, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap and strain ..."
+n53 = 2.5 mm (L1.7): "...e, a cantilever hook with at least 8 mm free length, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap and strain of at m..."
+n54 = 0.4 (L1.7): "...r hook with at least 8 mm free length, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap and strain of at most 2 percent...."
+n55 = 1.2 mm (L1.7): "...with at least 8 mm free length, 1.2 to 2.5 mm thick, 0.4 to 1.2 mm catch overlap and strain of at most 2 percent. The li..."
+n56 = 2 (L1.7): "...mm thick, 0.4 to 1.2 mm catch overlap and strain of at most 2 percent. The lid is a flat plate with a locating lip that ..."
+n57 = 0.5 mm (L1.7): "...doesn't fuse to the base and leaves a seam of no more than 0.5 mm...."
+n58 = 2 (L1.8): "...es and the seam, and its walls, floor and lid plate measure 2 to 4 mm thick...."
+n59 = 4 mm (L1.8): "...d the seam, and its walls, floor and lid plate measure 2 to 4 mm thick...."
+n60 = 90 (L1.10): "...The shut box has to fit within 90 x 45 x 30 mm (leaving out the switch lever) and sit flat on..."
+n61 = 45 (L1.10): "...The shut box has to fit within 90 x 45 x 30 mm (leaving out the switch lever) and sit flat on a de..."
+n62 = 30 mm (L1.10): "...The shut box has to fit within 90 x 45 x 30 mm (leaving out the switch lever) and sit flat on a desk witho..."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "n36",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "n5",
+  "max_y": "n6",
+  "max_z": "n7",
+  "opening_oversize_max": "n47",
+  "wall_max": "n9",
+  "wall_min": "n8"
+}

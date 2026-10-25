@@ -95,6 +95,16 @@
       ]
     }
   ],
+  "interfaces": [
+    {
+      "id": "mount",
+      "kind": "mount_holes",
+      "holes": "HOLE",
+      "seat": "BOTTOM",
+      "top": "TOP",
+      "source": "catalogue data (generalize iteration 001, delta D1): the mounting-hole axis list, the plane the part rests on when seated over its holes, and the plane its component keep-out starts from"
+    }
+  ],
   "datums": {
     "TOP": {
       "kind": "plane",

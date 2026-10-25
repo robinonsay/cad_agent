@@ -1,0 +1,87 @@
+{
+  "about": "Generalisation design G48 (held-out), in dev.json format. Tier 4 = a combination: one printed plate that joins several bought-in parts (a stepper, a pulley with a belt, a micro switch, a T-slot extrusion with T-nuts and bolts) placed from the parts catalogue, graded by bolt-pattern, slot-engagement, load-path, belt-geometry and keep-out checks against reference models. One printed body, printed flat. L1 ids match requirements.md next to this file, which holds the L2/L3 tree, reference models, assumptions and traceability. Numbers that are not in the request words (clearance bands, belt tension, travel limits, size limit) come from requirements.md and are provisional until the owner confirms them. This design is HELD OUT: it is never used to tune the agent, and nothing in agent logic may depend on it. Never put any of these numbers in agent logic: they belong in the request text and in generalize/parts/*/part.json.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (interference and clearance against reference models, swept paths, belt and keep-out geometry, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (a trigger dog approaches the switch, a bolt is inserted, the load path is traced)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G48",
+      "tier": 4,
+      "title": "NEMA17 belt carriage with limit switch",
+      "request": "A drive end plate for a 2020 aluminium extrusion axis, modelled as 100 mm of extrusion behind its end face. The plate lies on the extrusion's T-slot face, with the slot facing up, and overhangs the end. A NEMA 17 stepper (42.3 mm square, 40 mm long, four M3 holes on a 31.0 mm square pattern, 22 mm pilot 2 mm high, 5 mm shaft 24 mm long) is bolted under the overhang with the shaft pointing up through the plate, on the extrusion's centre line. A 20-tooth GT2 pulley (5 mm bore, 17 mm tall, tooth OD 16 mm, flange OD 18 mm) is on the shaft, driving a 6 mm GT2 belt along the extrusion toward the other end. The belt pulls with 40 N in each run. The plate bolts to the extrusion's T-slot with two M5 x 8 button-head bolts (ISO 7380) into drop-in T-nuts, at least 20 mm apart, each T-nut at least 3 mm inside the extrusion's end. A KW12 micro limit switch (20 x 6.4 x 10.2 mm, two 2 mm holes 9.5 mm apart) is mounted on the plate as the end stop. Its actuator must clear the belt by 3 mm, and a carriage dog approaching from the belt side along the axis must trip it with 1.0 mm of lever over-travel, stopping against a hard stop on the plate (a face of at least 8 mm2). The dog is a bar that reaches both the hard stop and the lever: take its path as a box from the hard stop's outer edge to the lever zone's far edge across the axis, from 0.5 mm above the plate to 2.5 mm above the actuator point, running in along the axis from 60 mm out; keep that path 0.5 mm clear of the plate. The motor, pulley and belt must keep clear of the plate and the extrusion. Print the plate flat on an FDM printer without supports. It is no larger than 100 x 70 x 15 mm.",
+      "request_verbatim": "A drive end plate for a 2020 axis: NEMA 17 on the 31 mm pattern with a 20-tooth GT2 pulley, 6 mm belt, and a microswitch (KW12) limit trigger. The plate bolts to the extrusion with two M5 bolts into T-nuts. The switch actuator must clear the belt by 3 mm and trip at 1.0 mm over-travel.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3 or the catalogue datasheets: plate on the slot face, motor under the overhang with the shaft up (FD1, FD2); belt tension 40 N per run (A5); bolts M5 x 8 and at least 20 mm apart (A6); the hard stop sets the 1.0 mm over-travel (A8, FD4); dog approaches from the belt side along the axis (A9); size limit 100 x 70 x 15 (A12); FDM, flat, no supports (A11). Audit additions: dog path box and stop-face area (A9, L2.7.3, L2.7.4).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall place the extrusion end, the two T-nuts and bolts, the NEMA 17 motor, the GT2 pulley, the belt and the KW12 switch from the parts catalogue, without the parts colliding, with the shaft vertical on the extrusion's centre line and the belt parallel to the extrusion, and shall declare that layout.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The plate shall bolt to the extrusion's top T-slot with two M5 x 8 button-head bolts, at least 20 mm apart, on the slot's centre line, each T-nut at least 3.0 mm inside the extrusion's end, each through a counterbored hole into a drop-in T-nut so the bolt tip passes through the nut and stops short of the slot floor, with the plate's underside flat on the extrusion.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The motor shall be held under the plate by its four M3 holes on the 31.0 mm square pattern, with its 22 mm pilot in a hole in the plate, its face against the plate's underside, and clear of the extrusion by at least 1.0 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The pulley shall sit wholly on the 24 mm shaft, at least 1.0 mm above the plate, and its 18 mm flange circle shall clear every printed surface.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The 6 mm belt shall run from the pulley parallel to the extrusion, in the pulley's belt plane, clear of every printed surface by at least 2.0 mm and clear of the extrusion and the bolts by at least 3.0 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "The KW12 switch shall be fixed on the plate by its two holes, with printed holes in line with them, its body resting on the plate, with its actuator facing the carriage's direction of approach.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "The switch's actuator zone shall be free of printed material and at least 3.0 mm from the belt, and a printed hard stop square to the approach direction shall stand 1.0 mm beyond the actuator's free position, so a carriage dog stops after 1.0 mm of lever over-travel, with the dog's approach path clear by 0.5 mm: a box from the stop face's outer edge to the zone's far edge across the axis, from 0.5 mm above the plate to 2.5 mm above the actuator point, running in along the axis from 60 mm out to the stop, and a stop face of at least 8 mm2.",
+          "method": "test"
+        },
+        {
+          "id": "L1.8",
+          "text": "The belt pull of 40 N per run shall be carried from the motor to the bolts through one printed body, with a neck cross-section of at least 60 mm2 between the motor pilot and the bolts and a bolt load of no more than 150 N, and with at least 3.0 mm of material between every hole and the plate's edge.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The plate shall be one manifold body that prints flat on an FDM printer without supports, underside on the bed.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.10",
+          "text": "The plate shall be no larger than 100 x 70 x 15 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.11",
+          "text": "The design shall be delivered as an STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "parts catalogue: load part.json models (motor, pulley, switch, extrusion, T-nut, bolt) and place them by datums and a shared frame",
+        "bolt pattern: holes and counterbores from fastener and part datums (31.0 square, pilot, slot centre line), with a bolt tip window computed from plate thickness and counterbore depth",
+        "slot engagement: bolts and T-nuts in a T-slot, nut behind the lips, bolt passing the slot opening and stopping short of the slot floor",
+        "belt geometry: two tangent runs and a wrap around the pulley, derived from pulley and belt datums, kept clear of the plate",
+        "keep-out clearance: motor rear and screw heads, pulley rotation envelope, switch actuator zone, dog approach path",
+        "a hard stop positioned from the switch's actuator datum and lever travel",
+        "load path: continuity and neck cross-section between the motor and the bolts, bolt load from a moment",
+        "interference checks against external solids: clear_of, distance to envelopes, plane distance along an axis"
+      ]
+    }
+  ]
+}

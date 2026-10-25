@@ -1,0 +1,312 @@
+{
+ "id": "pot_rk09",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "rk09 potentiometer",
+  "rk09k",
+  "rk09k potentiometer",
+  "potentiometer",
+  "pot",
+  "rotary potentiometer",
+  "9mm potentiometer",
+  "single gang potentiometer",
+  "alps rk09",
+  "variable resistor"
+ ],
+ "kind": "control",
+ "source": "Alps RK09K single-gang potentiometer datasheet (generalize/plan.json datasheet_note): body 9.5 mm, M7 x 0.75 bushing 7 mm, 6 mm D-shaft, 15 mm shaft length. ASSUMED: body is 9.5 x 9.5 mm in plan (the sheet gives only 9.5) and 6.0 mm tall above the PCB; 3 terminals at 5.0 mm pitch along one edge, 2.5 mm beyond the body side.",
+ "frame": "panel control: origin at the body min corner, body bottom (PCB seat) at Z = 0, bushing and shaft toward +Z, pins toward -Z; shaft axis at the body centre in X, at shaft_y in Y",
+ "params": {
+  "body_length": {
+   "default": 9.5,
+   "source": "datasheet: body 9.5 mm (X)"
+  },
+  "body_width": {
+   "default": 9.5,
+   "source": "ASSUMED: body Y taken equal to 9.5; +/- 1.5 (real RK09K body is up to ~12 mm deep with its terminal lip)"
+  },
+  "body_height": {
+   "default": 6.0,
+   "source": "ASSUMED body height above the PCB; +/- 1.0"
+  },
+  "shaft_y": {
+   "default": 4.75,
+   "source": "shaft axis Y; ASSUMED at the body centre; +/- 0.5"
+  },
+  "bushing_diameter": {
+   "default": 7.0,
+   "source": "datasheet: M7 x 0.75 bushing"
+  },
+  "bushing_length": {
+   "default": 7.0,
+   "source": "datasheet: bushing length 7 mm"
+  },
+  "shaft_diameter": {
+   "default": 6.0,
+   "source": "datasheet: 6 mm D-shaft"
+  },
+  "shaft_length": {
+   "default": 15.0,
+   "source": "datasheet: shaft length from the bushing face"
+  },
+  "shaft_flat_width": {
+   "default": 4.5,
+   "source": "ASSUMED D-flat across-flats; +/- 0.2"
+  },
+  "max_panel_thickness": {
+   "default": 3.0,
+   "source": "ASSUMED panel limit: thread length minus a 3 mm-thick nut; +/- 1.0"
+  },
+  "nut_diameter": {
+   "default": 11.0,
+   "source": "ASSUMED M7 hex nut across corners (8 mm AF, 9.2 min; 11 with washer); +/- 1.0"
+  },
+  "knob_clearance": {
+   "default": 1.0,
+   "source": "ASSUMED minimum gap from the knob skirt to the panel; request/rules may override"
+  },
+  "pin_pitch": {
+   "default": 5.0,
+   "source": "ASSUMED terminal pitch (RK09K 5 mm; some variants 2.5); +/- 2.5, measure"
+  },
+  "pin_y_offset": {
+   "default": -1.5,
+   "source": "ASSUMED terminal row offset from the shaft axis (toward -Y beyond the body edge); +/- 1.0"
+  },
+  "pin_length": {
+   "default": 3.5,
+   "source": "ASSUMED terminal length below the body"
+  }
+ },
+ "datasheet_size": [
+  "body_length",
+  "body_width",
+  "body_height"
+ ],
+ "size_of": "body",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "box",
+   "size": [
+    "body_length",
+    "body_width",
+    "body_height"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "bushing",
+   "primitive": "cylinder",
+   "d": "bushing_diameter",
+   "h": "bushing_length",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "shaft",
+   "primitive": "cylinder",
+   "d": "shaft_diameter",
+   "h": "shaft_length",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "nut_zone",
+   "primitive": "cylinder",
+   "d": "nut_diameter",
+   "h": 3.0,
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length - 3.0"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "BODY_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "SHOULDER": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "BUSHING_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height + bushing_length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "bushing_diameter",
+   "keepout_diameter": "nut_diameter"
+  },
+  "SHAFT_AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "shaft_diameter"
+  },
+  "SHAFT_TIP": {
+   "kind": "point",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length + shaft_length"
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": 3,
+   "start": [
+    "body_length / 2 - pin_pitch",
+    "shaft_y + pin_y_offset - body_width / 2",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [],
+ "mount": {
+  "type": "panel",
+  "panel_datum": "BUSHING_TOP",
+  "hole_axis": "AXIS",
+  "max_panel_thickness": "max_panel_thickness",
+  "notes": "panel hole = bushing diameter plus rules clearance (M7 x 0.75 thread); panel plane lies below BUSHING_TOP by the panel thickness; the knob sits on SHAFT_AXIS above the panel"
+ },
+ "notes": "Same panel-mount convention as encoder_ec11: M7 hole, D-shaft knob, shaft tip 15 mm above BUSHING_TOP. Designed contact: bushing seat on the panel. ASSUMPTIONS and uncertainty: the plan gives only 'body 9.5 mm', so the plan view is a 9.5 x 9.5 square (the true body is deeper, +/-1.5 mm Y; the footprint reserve should be grown on measuring); body height 6.0 (+/-1.0); terminal pitch 5.0 (+/-2.5: some RK09 variants use 2.5 mm), 3 terminals on the -Y edge outside the body; shaft D flat 4.5 across flats (+/-0.2); max_panel_thickness 3.0 (+/-1.0). Import gate: body bounding box 9.5 x 9.5 x 6.0; shaft axis +Z; shaft 15 above the bushing top.",
+ "self_checks": [
+  {
+   "name": "body length",
+   "expr": "body.size_x",
+   "value": 9.5,
+   "tol": 0.05
+  },
+  {
+   "name": "bushing diameter M7",
+   "expr": "bushing.size_x",
+   "value": 7.0,
+   "tol": 0.05
+  },
+  {
+   "name": "shaft diameter",
+   "expr": "shaft.size_x",
+   "value": 6.0,
+   "tol": 0.05
+  },
+  {
+   "name": "bushing length",
+   "expr": "BUSHING_TOP.z - SHOULDER.z",
+   "value": 7.0,
+   "tol": 0.05
+  },
+  {
+   "name": "shaft length above the bushing",
+   "expr": "SHAFT_TIP.z - BUSHING_TOP.z",
+   "value": 15.0,
+   "tol": 0.05
+  },
+  {
+   "name": "terminal pitch",
+   "expr": "PINS[1].x - PINS[0].x",
+   "value": 5.0,
+   "tol": 0.01
+  },
+  {
+   "name": "shaft along +Z",
+   "expr": "SHAFT_AXIS.dz",
+   "value": 1,
+   "tol": 1e-06
+  },
+  {
+   "name": "bushing long enough for panel and nut",
+   "expr": "bushing_length - max_panel_thickness - 3.0",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  }
+ ]
+}

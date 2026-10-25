@@ -42,7 +42,11 @@ ending with a verification matrix instead of per-part yes/no verdicts.
 With --mode assembly (alias enclosure; needs --l1), assembly.py designs from a
 parts catalogue (parts.py) and a feature graph with cuts and separate printed
 bodies (feature_graph.py). It is built milestone by milestone and stops with a
-typed "not implemented: <stage>" where the tree ends today.
+typed "not implemented: <stage>" where the tree ends today. After the first
+(manifold) build, controller.py closes the loop: the local model picks typed
+corrections from Python's error vector (owner decision D1). --controller stub
+replaces the model by the authority probe (first offered option, no corrective
+steps, no LLM calls).
 
 Conventions shared by every prompt and by the geometry code: millimetres;
 X runs left -> right (width), Y runs front -> back (depth), Z runs up (height).
@@ -3049,15 +3053,24 @@ def main(argv: Optional[List[str]] = None) -> int:
                              "closed-loop design against them (needs --l1; see cascade.py); assembly (alias "
                              "enclosure): catalogue parts + feature graph, base and lid bodies (needs --l1; "
                              "see assembly.py)")
-    parser.add_argument("--parts", type=Path, default=Path(__file__).parent / "benchmarks/enclosure/parts",
-                        help="assembly mode: the parts catalogue folder (one <id>/part.json per part)")
+    parser.add_argument("--parts", type=Path, action="append", default=None, metavar="DIR",
+                        help="assembly mode: a parts catalogue folder (one <id>/part.json per part); repeat it to "
+                             "use several folders, looked up in the order given (default "
+                             "benchmarks/enclosure/parts)")
     parser.add_argument("--rules", type=Path, default=Path(__file__).parent / "design_rules.json",
                         help="assembly mode: generic design rules (FDM fits, fasteners), each value with a source")
     parser.add_argument("--with-models", action="store_true",
                         help="assembly mode: allow imported mesh models found in --parts (second arm)")
+    parser.add_argument("--controller", choices=["llm", "stub"], default="llm",
+                        help="assembly mode: the controller of the discrete choices. llm (default): the local model, "
+                             "with the closed-loop corrections; stub: the authority probe of owner decision D1 (the "
+                             "first offered option of every question, no corrective steps, no LLM calls)")
     args = parser.parse_args(argv)
     if args.mode == "enclosure":
         args.mode = "assembly"
+    if args.controller == "stub" and args.mode != "assembly":
+        parser.error("--controller stub is the assembly mode's authority probe (it needs --mode assembly)")
+    args.parts = args.parts or [Path(__file__).parent / "benchmarks/enclosure/parts"]
 
     base_request = " ".join(args.request).strip() or input("What should I build?\n> ").strip()
     if not base_request:
@@ -3074,12 +3087,16 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     py_trees.logging.level = py_trees.logging.Level.INFO
     workdir = args.out / time.strftime("%Y%m%d-%H%M%S")
-    judges = [OllamaAgent(m.strip(), args.host, think=args.think, num_ctx=args.num_ctx)
-              for m in args.judges.split(",") if m.strip()]
-    llm = OllamaAgent(args.model, args.host, log_dir=workdir / "llm", think=args.think, seed_offset=args.seed,
-                      judges=judges, num_ctx=args.num_ctx)
-    vlm = OllamaAgent(args.vision_model or args.model, args.host, log_dir=workdir / "llm",
-                      think=args.think, seed_offset=args.seed) if args.vision else None
+    if args.controller == "stub":             # D1 authority probe: no Ollama agent is created at all
+        import controller as controller_mod  # imported here: it imports assembly, which imports this module back
+        llm, vlm = controller_mod.StubController(log_dir=workdir / "llm"), None
+    else:
+        judges = [OllamaAgent(m.strip(), args.host, think=args.think, num_ctx=args.num_ctx)
+                  for m in args.judges.split(",") if m.strip()]
+        llm = OllamaAgent(args.model, args.host, log_dir=workdir / "llm", think=args.think, seed_offset=args.seed,
+                          judges=judges, num_ctx=args.num_ctx)
+        vlm = OllamaAgent(args.vision_model or args.model, args.host, log_dir=workdir / "llm",
+                          think=args.think, seed_offset=args.seed) if args.vision else None
     design = Design(request=request, workdir=workdir, seed=args.seed, l1=l1, base_request=base_request)
     cascade_mod = assy_mod = None
     if args.mode == "cascade":
@@ -3087,11 +3104,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         root = cascade_mod.build_cascade_tree(design, llm, auto_approve=args.auto)
     elif args.mode == "assembly":
         import assembly as assy_mod  # imported here: it imports this module back
-        root = assy_mod.build_assembly_tree(design, llm, parts_dir=args.parts, rules_path=args.rules,
+        root = assy_mod.build_assembly_tree(design, llm, parts_dir=list(args.parts), rules_path=args.rules,
                                             with_models=args.with_models, auto_approve=args.auto)
     else:
         root = build_tree(design, llm, vlm, auto_approve=args.auto, max_visual_rounds=args.max_visual_rounds)
-    print(f"Working in {workdir} (OpenSCAD: {OPENSCAD}, mode {args.mode})", flush=True)
+    print(f"Working in {workdir} (OpenSCAD: {OPENSCAD}, mode {args.mode}"
+          + (", controller stub" if args.controller == "stub" else "") + ")", flush=True)
     started = time.time()
     try:
         status = run(root)

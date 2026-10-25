@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Pick the LCD module and the Pico 2 from the parts catalogue and put them in the layout, then declare it. The LCD should lean 30 degrees, the Pico's USB port should point at the rear wall, nothing may collide, and the Pico should tuck partly beneath the LCD, with at least 100 mm2 of overlap when viewed from above.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Seen from the table, the LCD is inclined 30 degrees with its display looking up and toward the front, and the housing's front panel is one flat slanted face that runs parallel to the LCD.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "Cut a window in the slanted panel so the whole 64.5 x 14 mm LCD viewport is visible and nothing blocks it, but keep the cutout reasonable: each side should be 0.5 to 2.0 mm bigger than the viewport, no more.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "Hold the LCD with screws on four standoffs at its four 2.5 mm mounting holes, and keep its edges at least 0.5 mm off the housing walls.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "Put the Pico 2 inside the housing, at the back and underneath the LCD, on four standoffs at its mounting holes. Between the top of the Pico and the back of the LCD module keep a gap of at least 1.0 mm, after allowing 2.0 mm for the soldered parts and driver epoxy on the back of the LCD, which cover its whole PCB.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "When the housing is shut, a micro-USB cable has to go all the way into the Pico via a single opening in the rear wall, without rubbing the housing, and that opening may be at most 1.5 mm larger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.7",
+    "text": "Make the housing from a base and a separate, removable slanted front panel. The panel sits on the base with a sliding fit and two M2 self-tapping screws at its rear corners keep it closed, each one going along the panel normal into a boss on the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "Once shut, the housing should have only three kinds of hole: the LCD window, the USB opening and the screw holes. The walls, the floor and the panel should each be 2 to 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "Both the base and the panel should be a single manifold body, printable on an FDM printer with no supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Keep the shut housing within 100 x 80 x 70 mm, and make sure it sits on a desk without tipping over.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "With the panel taken off, you should be able to lift out the LCD and the Pico along clear paths and get a screwdriver to every board screw.",
+    "method": "test"
+  },
+  {
+    "id": "L1.12",
+    "text": "Hand over a base STL, a panel STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and the report has to match an independent measurement.",
+    "method": "inspection"
+  }
+]

@@ -1,0 +1,164 @@
+{
+ "paraphrases": [
+  {
+   "id": "G22",
+   "tier": 4,
+   "title": "2020 corner bracket with captive nuts",
+   "request": "90 degree corner bracket for 2020 aluminium T-slot extrusion (20 x 20 mm, 6.2 mm slot opening), joining the end of a horizontal extrusion to the side of a vertical one. One leg lies on the top face of the horizontal piece, the other on the side face of the vertical piece. Gussets 4 mm or thicker connect the legs. Each leg is fixed by one M5 button-head bolt running into that extrusion's T-slot and into an M5 T-nut in the slot. Pockets keep each nut captive, so the corner can be assembled from outside with nothing slid in from the extrusion ends. Bolts pull the legs off the extrusions, so choose a print orientation where this tension does not cross the layers. FDM, PLA or PETG, no supports.",
+   "request_verbatim": "A 90 degree corner bracket joining two 2020 extrusions, one bolt into each T-slot, with captive hex pockets for M5 nuts so I can assemble it from the outside. The gussets should be at least 4 mm thick. Print orientation matters because the bolt loads are tensile across the layers.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3: 2020 slot opening 6.2 mm (A3); 'joining two extrusions' read as the end of one butting the side of the other (A1, FD1); 'captive hex pockets for M5 nuts' read as pockets that keep the M5 T-nut captive (A2, uncertainty high); bolts are M5 button-head (bolt_m5_iso7380) and the nut is the catalogue T-nut (A4); FDM, PLA or PETG, no supports (A6); the layer rule is that bolt axes lie in the layer plane (A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Single printed body. Its two legs lie flat (no penetration) on the horizontal extrusion's top face and the vertical extrusion's side face. Bearing faces 90 degrees apart; each has at least 400 square mm in contact with its extrusion.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.2",
+     "text": "One M5 bolt axis per leg, on the centreline of that extrusion's T-slot, square to the leg within 1 degree, 15 to 30 mm from the corner. The two distances agree within 0.5 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Each bolt goes through a 5.5 to 5.9 mm clearance hole into a counterbore (9.9 to 10.6 mm wide, 2.95 to 3.4 mm deep) that recesses the button head below the leg face. Bolt length engages the T-nut by 3.0 mm or more and does not touch the slot floor.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Each leg keys into its T-slot with two tongues, 5.7 to 6.0 mm wide and 3.5 to 5.6 mm deep below the bearing face, staying inside the slot with 0.1 mm or more clearance. No other bracket material enters a slot.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Each T-nut is trapped between that leg's tongues, with a 0.2 to 0.5 mm gap along the slot on each side, centred on the bolt axis within 0.3 mm.",
+     "method": "demonstration"
+    },
+    {
+     "id": "L1.6",
+     "text": "With T-nuts in the slots, each bolt can be inserted and tightened from outside along its own axis using a hex key, without touching the bracket.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "A gusset 4.0 mm thick or more joins the legs (one is enough), reaching 10 mm or more from the corner along each leg, and it does not block either bolt.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Leg thickness 5.0 to 8.0 mm. Corner section carries at least 150 square mm of material. Material around each bolt hole 3.0 mm or more.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Declared print orientation keeps both bolt axes 75 degrees or more from the build direction, so bolt tension follows the layers.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Single manifold body, FDM printable in the declared orientation with no supports. At least 20 percent of the plan bounding box touches the bed; no feature under 0.8 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Width 19 to 21 mm, within 48 x 22 x 48 mm overall, and at least 0.5 mm clear of the openings of the extrusions' unused slots.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.12",
+     "text": "Deliver the bracket STL, OpenSCAD source, declared bolt axes (within 0.2 mm and 1 degree of the model), bolt length, nut positions and print orientation, plus the agent's own clearance report. Report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: clearance holes, counterbores and cavities through legs and a wedge",
+    "slot-key features: tongues that enter a T-slot opening, sized from catalogue datums (opening width, lip thickness, slot depth)",
+    "captive nut cage: pockets or tongues placed relative to a catalogue T-nut body and a bolt axis",
+    "parts catalogue: load extrusion_2020, tnut_2020_m5 and bolt_m5_iso7380, derive slot, nut and head numbers from their datums",
+    "interior and corner placement: legs on two perpendicular faces of two extrusions, with a gusset wedge in the concave corner",
+    "print orientation reasoning: the build direction perpendicular to both bolt axes, overhang-free for that direction",
+    "envelope generation: slot voids, bolt insertion sweeps, hex-key columns",
+    "checks against external solids: clear_of, inside, contact area, engagement window"
+   ]
+  },
+  {
+   "id": "G22",
+   "tier": 4,
+   "title": "2020 corner bracket with captive nuts",
+   "request": "I'd like a bracket with a 90 degree bend to connect two pieces of 2020 aluminium T-slot extrusion (each 20 x 20 mm, with a 6.2 mm slot opening). The horizontal piece ends against the side of the vertical piece. One arm of the bracket sits on the upper face of the horizontal piece and the other arm sits flat against the side of the vertical piece, and gussets of at least 4 mm thickness brace the two arms. Every arm is secured by a single M5 button-head bolt that passes into the T-slot of its extrusion and threads into an M5 T-nut inside that slot. The bracket has pockets that trap each nut, which lets me put the corner together from the outside without feeding anything in from the extrusion ends. Since the bolts try to lift the arms away from the extrusions, orient the print so that the pull doesn't run across the layers. Print on an FDM printer in PLA or PETG with no supports.",
+   "request_verbatim": "A 90 degree corner bracket joining two 2020 extrusions, one bolt into each T-slot, with captive hex pockets for M5 nuts so I can assemble it from the outside. The gussets should be at least 4 mm thick. Print orientation matters because the bolt loads are tensile across the layers.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3: 2020 slot opening 6.2 mm (A3); 'joining two extrusions' read as the end of one butting the side of the other (A1, FD1); 'captive hex pockets for M5 nuts' read as pockets that keep the M5 T-nut captive (A2, uncertainty high); bolts are M5 button-head (bolt_m5_iso7380) and the nut is the catalogue T-nut (A4); FDM, PLA or PETG, no supports (A6); the layer rule is that bolt axes lie in the layer plane (A7).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "The bracket is one printed piece. Its arms sit flat without cutting into the top face of the horizontal extrusion and the side face of the vertical extrusion; the two seating faces are 90 degrees apart, and each touches its extrusion over at least 400 square mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.2",
+     "text": "Each arm has a single M5 bolt axis lying on the centreline of its extrusion's T-slot, within 1 degree of square to the arm, between 15 and 30 mm from the corner. The two distances differ by no more than 0.5 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "A clearance hole of 5.5 to 5.9 mm takes each bolt, opening into a counterbore 9.9 to 10.6 mm wide and 2.95 to 3.4 mm deep so the button head ends up below the arm's face. Bolt length must grip the T-nut by at least 3.0 mm and stop short of the slot floor.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Each arm locates in its T-slot with a pair of tongues 5.7 to 6.0 mm wide, reaching 3.5 to 5.6 mm below the seating face, with at least 0.1 mm of clearance inside the slot. Nothing else of the bracket may go into a slot.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The tongues of each arm trap the T-nut, leaving a 0.2 to 0.5 mm gap on each side along the slot, with the nut centred on the bolt axis to within 0.3 mm.",
+     "method": "demonstration"
+    },
+    {
+     "id": "L1.6",
+     "text": "Once the T-nuts are in their slots, each bolt must be fitted and tightened from outside, along its axis, with a hex key that never touches the bracket.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "The two arms are tied by a gusset (at least one) no thinner than 4.0 mm, extending at least 10 mm from the corner along each arm, and it must leave both bolts unblocked.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Arms are 5.0 to 8.0 mm thick; the corner section has at least 150 square mm of material, and there are 3.0 mm or more of material around each bolt hole.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "The stated print orientation must put both bolt axes at least 75 degrees away from the build direction, so the bolt tension goes along the layers.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "It must be a single manifold body that prints on FDM in the stated orientation without supports, with at least 20 percent of its plan bounding box on the bed and no feature under 0.8 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "The bracket is 19 to 21 mm wide, fits inside 48 x 22 x 48 mm, and keeps at least 0.5 mm away from the openings of the extrusions' unused slots.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.12",
+     "text": "The deliverables are the bracket STL, the OpenSCAD source, the declared bolt axes (to within 0.2 mm and 1 degree of the model), bolt length, nut positions and print orientation, and the agent's own clearance report. That report has to agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: clearance holes, counterbores and cavities through legs and a wedge",
+    "slot-key features: tongues that enter a T-slot opening, sized from catalogue datums (opening width, lip thickness, slot depth)",
+    "captive nut cage: pockets or tongues placed relative to a catalogue T-nut body and a bolt axis",
+    "parts catalogue: load extrusion_2020, tnut_2020_m5 and bolt_m5_iso7380, derive slot, nut and head numbers from their datums",
+    "interior and corner placement: legs on two perpendicular faces of two extrusions, with a gusset wedge in the concave corner",
+    "print orientation reasoning: the build direction perpendicular to both bolt axes, overhang-free for that direction",
+    "envelope generation: slot voids, bolt insertion sweeps, hex-key columns",
+    "checks against external solids: clear_of, inside, contact area, engagement window"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,221 @@
+{
+  "schema": 1,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "b22e8ebda065914d",
+        "graph": "4f0742baa0ca3cef",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "rpi_pico2",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": "screw_m2_selftap",
+            "lid": "screw_m3_selftap"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "failing": [
+        "text_coverage"
+      ],
+      "terms": [
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.7"
+          ],
+          "where": "board.usb (raspberry pi pico 2) is closed, but L1.7 names a micro-usb plug: \"With the lid shut, you must be able to push a micro-USB cable all the way into the Pico via a single opening in an end wall, with at least 0.3 mm between the...\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "0 named plug connection(s) covered; uncovered: board.usb takes plug_microusb_b named by L1.7"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "b22e8ebda065914d",
+      "error_before": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "menu": [
+        {
+          "kind": "expose",
+          "target": "board.usb",
+          "value": true,
+          "words": "expose board.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.7",
+              "quote": "With the lid shut, you must be able to push a micro-USB cable all the way into the Pico via a single opening in an end wall, with at least 0.3 mm between the cable and the plug's envelope."
+            }
+          ],
+          "key": "expose:board.usb=True",
+          "letter": "A"
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "letter": "B"
+        }
+      ],
+      "votes": {
+        "A": 3
+      },
+      "action": {
+        "kind": "expose",
+        "target": "board.usb",
+        "value": true,
+        "words": "expose board.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "L1.7",
+            "quote": "With the lid shut, you must be able to push a micro-USB cable all the way into the Pico via a single opening in an end wall, with at least 0.3 mm between the cable and the plug's envelope."
+          }
+        ],
+        "key": "expose:board.usb=True"
+      },
+      "chosen": "A",
+      "accepted": true,
+      "reason": "fewer failing checks (1 -> 0)",
+      "error_after": {
+        "hard_failures": 0,
+        "violation": 0
+      },
+      "state_after": "6975da352aec6ec1",
+      "failing_after": [],
+      "llm_calls": 3,
+      "secs": 2.5
+    }
+  ],
+  "stop": {
+    "reason": "every check passes",
+    "step": 1
+  },
+  "final": {
+    "state": {
+      "decisions": "6975da352aec6ec1",
+      "graph": "9b7d64c8561abcc1",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "rpi_pico2",
+            1,
+            [
+              "usb"
+            ]
+          ]
+        ],
+        "stacks": {},
+        "faces": {
+          "wall[board.usb]": "-X"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": "screw_m2_selftap",
+          "lid": "screw_m3_selftap"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 0,
+      "violation": 0
+    },
+    "failing": [],
+    "terms": []
+  },
+  "secs": 2.95,
+  "authority": {
+    "decisions": {
+      "plant": 4,
+      "llm": 1,
+      "guardrail": 1,
+      "semantic-rule": 2
+    },
+    "proposal": {
+      "llm_slots": 10,
+      "default_slots": 0,
+      "llm_contents_items": 1
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "archetype",
+        "by": "rule:only_feasible",
+        "migration": "R07"
+      },
+      {
+        "decision": "fastener[lid]",
+        "by": "rule:text_evidence[lid]",
+        "migration": "R03"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.6316
+  },
+  "accepted": [
+    {
+      "kind": "expose",
+      "target": "board.usb",
+      "value": true,
+      "words": "expose board.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "L1.7",
+          "quote": "With the lid shut, you must be able to push a micro-USB cable all the way into the Pico via a single opening in an end wall, with at least 0.3 mm between the cable and the plug's envelope."
+        }
+      ],
+      "key": "expose:board.usb=True",
+      "step": 1
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+ "id": "gt2_pulley_20t",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "gt2 pulley",
+  "gt2 20 tooth pulley",
+  "gt2 20t pulley",
+  "20 tooth gt2 pulley",
+  "20 tooth pulley",
+  "20t pulley",
+  "gt2 timing pulley",
+  "timing pulley",
+  "belt pulley"
+ ],
+ "kind": "mech",
+ "source": "GT2 20-tooth timing pulley for 6 mm belt (typical 3D-printer part, e.g. Gates GT2 / common 20T-5 mm-bore datasheets): bore 5 mm, tooth outer diameter 16.0 mm, hub OD 16 mm, flange OD 18 mm, belt width 6 mm, pitch 2 mm so pitch diameter = 20*2/pi = 12.73 mm. Axial layout (hub 8, flange 1, teeth 7, flange 1 = 17 mm total) is the common 5 mm-bore stock part; vendors vary the hub length 7-9 mm (assumed, +/-1 mm), so measure the owner's pulley. Set screw not modelled.",
+ "frame": "module: axis along Z, origin at the centre of the shaft-entry face of the hub, hub toward +Z first, then the lower flange, the toothed band, the upper flange",
+ "params": {
+  "bore_diameter": {
+   "default": 5.0,
+   "source": "datasheet: bore for a 5 mm shaft (NEMA 17 shaft per NEMA ICS 16)"
+  },
+  "teeth": {
+   "default": 20,
+   "source": "datasheet: tooth count"
+  },
+  "pitch": {
+   "default": 2.0,
+   "source": "GT2 pitch"
+  },
+  "pitch_diameter": {
+   "default": 12.732,
+   "source": "computed: teeth * pitch / pi = 12.732"
+  },
+  "tooth_od": {
+   "default": 16.0,
+   "source": "datasheet: tooth outer diameter"
+  },
+  "hub_diameter": {
+   "default": 16.0,
+   "source": "datasheet: hub OD"
+  },
+  "flange_diameter": {
+   "default": 18.0,
+   "source": "datasheet: flange OD"
+  },
+  "belt_width": {
+   "default": 6.0,
+   "source": "datasheet: belt width"
+  },
+  "hub_length": {
+   "default": 8.0,
+   "source": "assumed from common 5 mm-bore 20T stock (+/-1 mm)"
+  },
+  "flange_thickness": {
+   "default": 1.0,
+   "source": "assumed from common 20T stock (+/-0.3 mm)"
+  },
+  "tooth_length": {
+   "default": 7.0,
+   "source": "assumed: belt width plus 1 mm band between the flanges"
+  }
+ },
+ "datasheet_size": [
+  "flange_diameter",
+  "flange_diameter",
+  "hub_length + flange_thickness * 2 + tooth_length"
+ ],
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "hub",
+   "primitive": "cylinder",
+   "d": "hub_diameter",
+   "h": "hub_length",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "flange_lower",
+   "primitive": "cylinder",
+   "d": "flange_diameter",
+   "h": "flange_thickness",
+   "at": [
+    0,
+    0,
+    "hub_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "teeth",
+   "primitive": "cylinder",
+   "d": "tooth_od",
+   "h": "tooth_length",
+   "at": [
+    0,
+    0,
+    "hub_length + flange_thickness"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "flange_upper",
+   "primitive": "cylinder",
+   "d": "flange_diameter",
+   "h": "flange_thickness",
+   "at": [
+    0,
+    0,
+    "hub_length + flange_thickness + tooth_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "rotation_envelope",
+   "primitive": "cylinder",
+   "d": "flange_diameter",
+   "h": "hub_length + flange_thickness * 2 + tooth_length",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "bore_diameter",
+   "keepout_diameter": "flange_diameter"
+  },
+  "SHAFT_ENTRY": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "BELT_PLANE": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "hub_length + flange_thickness + tooth_length / 2"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "BELT_BAND_START": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "hub_length + flange_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "BELT_BAND_END": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "hub_length + flange_thickness + tooth_length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "PITCH_CIRCLE": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    "hub_length + flange_thickness + tooth_length / 2"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "pitch_diameter"
+  },
+  "TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "hub_length + flange_thickness * 2 + tooth_length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  }
+ },
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "pitch diameter = teeth * pitch / pi",
+   "expr": "teeth * pitch / 3.14159265 - pitch_diameter",
+   "value": 0,
+   "tol": 0.01
+  },
+  {
+   "name": "tooth OD above the pitch diameter",
+   "expr": "tooth_od - pitch_diameter",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "flange clears the teeth",
+   "expr": "flange_diameter - tooth_od",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "band holds the belt",
+   "expr": "tooth_length - belt_width",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "bore inside the hub",
+   "expr": "hub_diameter - bore_diameter",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

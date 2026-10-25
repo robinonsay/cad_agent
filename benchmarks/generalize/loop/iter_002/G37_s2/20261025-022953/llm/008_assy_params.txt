@@ -1,0 +1,86 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Numbers found in the text:
+n1 = 17 (request): "...A carrier plate for a NEMA 17 stepper motor (42.3 mm square body, 40 mm long, 31 mm bolt..."
+n2 = 42.3 mm (request): "...A carrier plate for a NEMA 17 stepper motor (42.3 mm square body, 40 mm long, 31 mm bolt pattern, 22 mm pilot),..."
+n3 = 40 mm (request): "...ier plate for a NEMA 17 stepper motor (42.3 mm square body, 40 mm long, 31 mm bolt pattern, 22 mm pilot), held by four I..."
+n4 = 31 mm (request): "...r a NEMA 17 stepper motor (42.3 mm square body, 40 mm long, 31 mm bolt pattern, 22 mm pilot), held by four ISO 4762 M3 s..."
+n5 = 22 mm (request): "...motor (42.3 mm square body, 40 mm long, 31 mm bolt pattern, 22 mm pilot), held by four ISO 4762 M3 socket-head screws (I..."
+n6 = 4762 (request): "...mm long, 31 mm bolt pattern, 22 mm pilot), held by four ISO 4762 M3 socket-head screws (I have stock lengths 6, 8, 10, 1..."
+n7 = 6 (request): "...y four ISO 4762 M3 socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing thro..."
+n8 = 8 (request): "...our ISO 4762 M3 socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through..."
+n9 = 10 (request): "...ISO 4762 M3 socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through the..."
+n10 = 12 (request): "...4762 M3 socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through the pla..."
+n11 = 16 (request): "...2 M3 socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through the plate ..."
+n12 = 20 (request): "...socket-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through the plate and t..."
+n13 = 25 mm (request): "...-head screws (I have stock lengths 6, 8, 10, 12, 16, 20 and 25 mm), with the shaft passing through the plate and the mot..."
+n14 = 16 (request): "...passing through the plate and the motor behind the plate. A 16 tooth, module 1.5 pinion sits on the motor shaft and driv..."
+n15 = 1.5 (request): "...he plate and the motor behind the plate. A 16 tooth, module 1.5 pinion sits on the motor shaft and drives a 32 tooth idl..."
+n16 = 32 (request): "...oth, module 1.5 pinion sits on the motor shaft and drives a 32 tooth idler gear that turns on a 608 bearing; both gears ..."
+n17 = 608 (request): "...otor shaft and drives a 32 tooth idler gear that turns on a 608 bearing; both gears are 8 mm wide. Set the idler's centr..."
+n18 = 8 mm (request): "...ooth idler gear that turns on a 608 bearing; both gears are 8 mm wide. Set the idler's centre distance from the gear par..."
+n19 = 0.2 mm (request): "...t the idler's centre distance from the gear parameters plus 0.2 mm, and keep a 0.5 mm gap between the gears and the plat..."
+n20 = 0.5 mm (request): "...e distance from the gear parameters plus 0.2 mm, and keep a 0.5 mm gap between the gears and the plate. The motor's peak..."
+n21 = 0.4 (request): "...between the gears and the plate. The motor's peak torque is 0.4 N m. The gears, motor and bearing are bought parts; the ..."
+n22 = 608 (L1.1): "...the poses of the motor, the pinion, the idler gear and the 608 bearing, with the pinion on the shaft, the idler and bear..."
+n23 = 0.1 mm (L1.2): "...The motor shall seat on the plate's back face within 0.1 mm, its 22 mm pilot in a register of 22.3 to 22.7 mm, its shaf..."
+n24 = 22 mm (L1.2): "...otor shall seat on the plate's back face within 0.1 mm, its 22 mm pilot in a register of 22.3 to 22.7 mm, its shaft pass..."
+n25 = 22.3 (L1.2): "...s back face within 0.1 mm, its 22 mm pilot in a register of 22.3 to 22.7 mm, its shaft passing through with at least 3.0..."
+n26 = 22.7 mm (L1.2): "...ace within 0.1 mm, its 22 mm pilot in a register of 22.3 to 22.7 mm, its shaft passing through with at least 3.0 mm of c..."
+n27 = 3.0 mm (L1.2): "...of 22.3 to 22.7 mm, its shaft passing through with at least 3.0 mm of clearance, on four M3 holes on the 31 mm square pa..."
+n28 = 31 mm (L1.2): "...with at least 3.0 mm of clearance, on four M3 holes on the 31 mm square pattern counterbored from the gear side with 2.0..."
+n29 = 2.0 mm (L1.2): "...e 31 mm square pattern counterbored from the gear side with 2.0 mm of web and of edge material, heads recessed 0.2 to 1...."
+n30 = 0.2 (L1.2): "...ide with 2.0 mm of web and of edge material, heads recessed 0.2 to 1.0 mm, and the declared screws biting 3.0 to 4.5 mm...."
+n31 = 1.0 mm (L1.2): "...h 2.0 mm of web and of edge material, heads recessed 0.2 to 1.0 mm, and the declared screws biting 3.0 to 4.5 mm...."
+n32 = 3.0 (L1.2): "...eads recessed 0.2 to 1.0 mm, and the declared screws biting 3.0 to 4.5 mm...."
+n33 = 4.5 mm (L1.2): "...cessed 0.2 to 1.0 mm, and the declared screws biting 3.0 to 4.5 mm...."
+n34 = 16 (L1.3): "...The 16 tooth module 1.5 pinion (27 mm tip diameter, 8 mm wide) sha..."
+n35 = 1.5 (L1.3): "...The 16 tooth module 1.5 pinion (27 mm tip diameter, 8 mm wide) shall sit on the sha..."
+n36 = 27 mm (L1.3): "...The 16 tooth module 1.5 pinion (27 mm tip diameter, 8 mm wide) shall sit on the shaft with at lea..."
+n37 = 8 mm (L1.3): "...The 16 tooth module 1.5 pinion (27 mm tip diameter, 8 mm wide) shall sit on the shaft with at least 2.0 mm of shaft..."
+n38 = 2.0 mm (L1.3): "...p diameter, 8 mm wide) shall sit on the shaft with at least 2.0 mm of shaft showing beyond it, clear of the plate and of..."
+n39 = 0.2 mm (L1.4): "...axis shall be at the gear parameters' centre distance plus 0.2 mm from the motor axis, that is 36.2 mm (plus or minus 0...."
+n40 = 36.2 mm (L1.4): "...s' centre distance plus 0.2 mm from the motor axis, that is 36.2 mm (plus or minus 0.05), which leaves 0.50 to 0.65 mm b..."
+n41 = 0.05 (L1.4): "...0.2 mm from the motor axis, that is 36.2 mm (plus or minus 0.05), which leaves 0.50 to 0.65 mm between each gear's tip a..."
+n42 = 0.50 (L1.4): "...or axis, that is 36.2 mm (plus or minus 0.05), which leaves 0.50 to 0.65 mm between each gear's tip and the other's root..."
+n43 = 0.65 mm (L1.4): "...that is 36.2 mm (plus or minus 0.05), which leaves 0.50 to 0.65 mm between each gear's tip and the other's root...."
+n44 = 32 (L1.5): "...The 32 tooth idler (51 mm tip diameter, 8 mm wide) shall turn on a..."
+n45 = 51 mm (L1.5): "...The 32 tooth idler (51 mm tip diameter, 8 mm wide) shall turn on a 608 bearing that s..."
+n46 = 8 mm (L1.5): "...The 32 tooth idler (51 mm tip diameter, 8 mm wide) shall turn on a 608 bearing that seats on a printed s..."
+n47 = 608 (L1.5): "...tooth idler (51 mm tip diameter, 8 mm wide) shall turn on a 608 bearing that seats on a printed stub of 7.9 mm diameter ..."
+n48 = 7.9 mm (L1.5): "...shall turn on a 608 bearing that seats on a printed stub of 7.9 mm diameter (plus or minus 0.05) against a shoulder of 9..."
+n49 = 0.05 (L1.5): "...t seats on a printed stub of 7.9 mm diameter (plus or minus 0.05) against a shoulder of 9.5 to 11.5 mm diameter and 1.0 ..."
+n50 = 9.5 (L1.5): "...7.9 mm diameter (plus or minus 0.05) against a shoulder of 9.5 to 11.5 mm diameter and 1.0 mm (plus or minus 0.1) high t..."
+n51 = 11.5 mm (L1.5): "...diameter (plus or minus 0.05) against a shoulder of 9.5 to 11.5 mm diameter and 1.0 mm (plus or minus 0.1) high that bea..."
+n52 = 1.0 mm (L1.5): "...nus 0.05) against a shoulder of 9.5 to 11.5 mm diameter and 1.0 mm (plus or minus 0.1) high that bears on its inner ring..."
+n53 = 0.1 (L1.5): "...oulder of 9.5 to 11.5 mm diameter and 1.0 mm (plus or minus 0.1) high that bears on its inner ring only, with the stub 8..."
+n54 = 8.0 (L1.5): "...0.1) high that bears on its inner ring only, with the stub 8.0 to 11.0 mm proud of the plate...."
+n55 = 11.0 mm (L1.5): "...igh that bears on its inner ring only, with the stub 8.0 to 11.0 mm proud of the plate...."
+n56 = 0.48 (L1.6): "...Each gear shall keep a gap of 0.48 to 0.70 mm from the plate's front face, and nothing else pr..."
+n57 = 0.70 mm (L1.6): "...Each gear shall keep a gap of 0.48 to 0.70 mm from the plate's front face, and nothing else printed shall..."
+n58 = 0.45 mm (L1.6): "...ed shall enter either gear's rotating envelope by less than 0.45 mm...."
+n59 = 0.4 (L1.7): "...d: the bending stress at its root, for the tooth force of a 0.4 N m motor at the pinion's pitch circle, shall be no more..."
+n60 = 5.0 (L1.7): "...m motor at the pinion's pitch circle, shall be no more than 5.0 MPa, on a plate 5.0 to 8.0 mm thick with at least 3.0 mm..."
+n61 = 5.0 (L1.7): "...n's pitch circle, shall be no more than 5.0 MPa, on a plate 5.0 to 8.0 mm thick with at least 3.0 mm of plate round the ..."
+n62 = 8.0 mm (L1.7): "...ch circle, shall be no more than 5.0 MPa, on a plate 5.0 to 8.0 mm thick with at least 3.0 mm of plate round the stub's ..."
+n63 = 3.0 mm (L1.7): "...than 5.0 MPa, on a plate 5.0 to 8.0 mm thick with at least 3.0 mm of plate round the stub's shoulder...."
+n64 = 120 (L1.9): "...ier shall be one manifold body in one shell, no larger than 120 x 80 mm in plan and 30 mm high...."
+n65 = 80 mm (L1.9): "...all be one manifold body in one shell, no larger than 120 x 80 mm in plan and 30 mm high...."
+n66 = 30 mm (L1.9): "...d body in one shell, no larger than 120 x 80 mm in plan and 30 mm high...."
+
+The request includes a spur gear. For each of its sizes below give the id of the number that states it, or "none".
+- module: request text (ISO 54 module)
+- teeth: request text
+- face_width: request text
+
+=== RESPONSE ===
+{
+  "face_width": "n18",
+  "module": "n15",
+  "teeth": "n14"
+}

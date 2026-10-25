@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.7 seed=1002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n29 = 4.0 mm (L1.6): "...th a pilot hole for an M2 self-tapping screw, with at least 4.0 mm clear above its top surface and 2.0 mm clear below it..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n29 state?
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+
+=== RESPONSE ===
+{
+  "owner": "headroom"
+}

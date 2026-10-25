@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Using catalogue parts, the layout puts the four tactile switches in a 2 x 2 grid with 19.05 mm pitch on the 70 x 50 mm board, with the Pico 2 in female sockets behind them and its USB port pointing at the rear short end. Parts must not collide or cover the corner holes, and the design has to declare this layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "With the enclosure shut, there must be at least 0.5 mm between the 70 x 50 x 1.6 mm board and any printed surface, other than where the board sits on the standoffs.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "Put the board on precisely four standoffs, one beneath every corner hole. Each has an outside diameter of 5 to 7 mm and a top that is within 0.1 mm of the plane of the other three, and each includes a pilot hole so an M2 self-tapping screw can go through the board.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "Keep a 13.3 mm zone above the board's top face and a 4 mm zone beneath its underside free of base and lid material when the lid is closed; only the standoffs below the holes may enter. The Pico, its sockets and the switches need to be inside the enclosure.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "A micro-USB cable has to go all the way into the Pico via a single hole in the rear end wall while the lid is on, never touching the enclosure (at least 0.3 mm of space all around). The hole can't be more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "Every switch gets a dedicated printed plunger that pokes up through a round hole in the top plate, centred on the switch axis within 0.2 mm, leaving 0.4 mm of gap all around between plunger and hole. A plunger's stem is round and 4.0 to 5.6 mm in diameter, and the face at its tip is at least 3.5 mm wide.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "Each plunger moves 1.5 mm before it bottoms out; within that travel it must hit the switch's actuation point without crushing the switch, and at the bottom of its stroke it still sticks out of the plate by at least 0.5 mm. When the case is flipped over the plunger stays put, retained by a flange, at least 2 mm wider than the hole, that bears on the plate's underside.",
+    "method": "test"
+  },
+  {
+    "id": "L1.8",
+    "text": "Build the enclosure from a base and a detachable lid. The lid is a flat plate that sits down in a rebate cut in the tops of the walls, 2 to 3 mm thick, with a fit gap of 0.15 to 0.35 mm on each side and an upstand of at least 1 mm, and four M3 self-tapping screws hold it down in four bosses on the base.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "When closed, the only holes allowed are the USB opening, the four plunger holes and the screw holes; walls, floor and lid are to be between 2 and 4 mm thick.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Each of the base, the lid and the plunger should be a single manifold body that an FDM printer can make without supports, meaning overhangs no steeper than 45\u00b0 from vertical and bridges no longer than 15 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The shut enclosure needs to fit in 95 x 70 x 35 mm, its longest extent running along the 70 mm side of the board, and it has to sit on a desk without tipping over.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "Assembly has to work: you insert the plungers into the lid from its underside, lower the populated board vertically onto the standoffs with the lid removed, then close the lid with its plungers over the board, and a screwdriver can get to each screw.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "Hand over three STL files (base, lid and plunger), the OpenSCAD source, the declared layout and the agent's own clearance report; an independent measurement has to confirm that report.",
+    "method": "inspection"
+  }
+]

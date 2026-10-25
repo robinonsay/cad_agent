@@ -1,0 +1,136 @@
+{
+ "paraphrases": [
+  {
+   "id": "G32",
+   "tier": 4,
+   "title": "NEMA17 pulley belt guard",
+   "request": "Guard housing for a 20-tooth GT2 pulley (tooth OD 16 mm, flanges 18 mm) on the 5 mm shaft of a NEMA 17 motor (42.3 mm square, M3 holes on a 31 mm square pattern, 22 mm pilot). Pulley hub is 3 mm above the motor face; shaft projects 24 mm from the face. Guard keeps 2 mm clear of pulley and shaft all round and has a single slot on one side for the 6 mm GT2 belt, which leaves straight along that side towards a second pulley 100 mm off. Fixed to the motor with M3 bolts in two of its four M3 face holes. PLA, FDM, no supports.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: hub 3 mm above the face and the 100 mm belt run (A1, A2); M3 bolts in two of the four holes (A6); the guard locates on the motor pilot (FD2); PLA and FDM (A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the NEMA 17 motor, the GT2 pulley, the belt and two M3 bolts from the parts catalogue, with the pulley hub 3 mm above the motor face. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Guard clearance to the spinning pulley and shaft is at least 2 mm all round (sides, over the pulley, over the shaft tip), but no more than 3 mm radially and 3.5 mm over the shaft tip, so it is not oversized. It stays at least 0.5 mm from the belt where the belt wraps the pulley. Model the wrapped belt as a cylinder of radius pulley tooth radius plus belt thickness minus belt tooth height (both from the catalogue), 6 mm tall, on the pulley's belt plane.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Exactly one slot, on the belt side, through which both belt runs exit without touching the guard, at least 0.5 mm clear of each (runs leave tangentially and straight along the slot side, one each side of the pulley). The slot is at most 3 mm wider or taller than the two runs together.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "M3 bolts pass through clearance holes into two of the motor's four M3 face holes, engage the motor thread without bottoming out, and have heads a screwdriver can reach.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "Guard sits flat on the motor face, locates on the 22 mm pilot with a sliding fit (0.15 to 0.35 mm per side), and stays within the 42.3 mm square outline of the motor face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Closed on all sides except the belt slot and the two bolt holes. Walls, cap and ears are 2 to 4 mm thick (ears up to 5 mm).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "The guard slides on and off along the shaft axis without touching the pulley or shaft.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "One manifold body, FDM printable without supports, with at least 40 percent of its plan bounding box touching the print bed.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Maximum size 45 x 45 x 35 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliver an STL in assembly pose, the OpenSCAD source, the declared layout and the agent's clearance report; the report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "catalogue placement of a motor, a pulley, a belt and bolts by datums, with a rotation envelope",
+    "belt geometry: two straight runs tangent to the pulley wrap, derived from catalogue numbers",
+    "subtraction: a stepped belt slot, two clearance holes, a bore over a pilot",
+    "stepped overhang control: 45 degree corbels and ribs so that ears and the slot roof print without supports",
+    "interference checks against a rotation envelope, belt envelopes, driver columns and an install sweep"
+   ]
+  },
+  {
+   "id": "G32",
+   "tier": 4,
+   "title": "NEMA17 pulley belt guard",
+   "request": "I'm after a cover for a GT2 pulley with 20 teeth (16 mm over the teeth, 18 mm flanges) sitting on the 5 mm shaft of a NEMA 17 stepper (42.3 mm square face, a 22 mm pilot, and M3 holes on a 31 mm square). The hub is 3 mm up from the motor face and the shaft pokes out 24 mm. There needs to be 2 mm of space between the cover and the pulley and shaft everywhere, with one opening on a single side where a 6 mm GT2 belt can run straight off to another pulley 100 mm away. Screw it down with two M3 bolts into two of the four M3 holes in the motor face. Print it in PLA on a normal FDM machine, no supports.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: hub 3 mm above the face and the 100 mm belt run (A1, A2); M3 bolts in two of the four holes (A6); the guard locates on the motor pilot (FD2); PLA and FDM (A9).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Take the NEMA 17 motor, GT2 pulley, belt and the pair of M3 bolts from the parts catalogue and position them with the hub 3 mm over the motor face; declare that layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The cover must stay 2 mm or more away from the turning pulley and the shaft in every direction (sides, above the pulley, above the shaft end) but not by more than 3 mm radially or 3.5 mm above the shaft end, so it isn't bloated. Keep at least 0.5 mm off the belt where it wraps the pulley, treating the wrapped belt as a 6 mm tall cylinder on the pulley's belt plane whose radius equals the pulley tooth radius plus belt thickness minus belt tooth height, all taken from the catalogue.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "The cover has just one slot on the belt side. Both belt runs, which leave tangentially and straight along that side on either side of the pulley, pass through with 0.5 mm or more clearance to each, and the slot is no more than 3 mm wider or taller than the two runs combined.",
+     "method": "test"
+    },
+    {
+     "id": "L1.4",
+     "text": "Fasten with M3 bolts through clearance holes into two of the motor's four M3 face holes; the bolts must grip the motor's thread without hitting bottom, and a screwdriver must reach the heads.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.5",
+     "text": "It rests flat on the motor face, centres on the 22 mm pilot with a sliding fit of 0.15 to 0.35 mm per side, and does not extend past the 42.3 mm square of the motor face.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Everything is enclosed apart from the belt slot and two bolt holes; walls, top and ears are 2 to 4 mm thick, ears allowed up to 5 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "It must be possible to lift it on and off along the shaft axis with no contact with the pulley or the shaft.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "A single manifold body that prints on FDM with no supports, and at least 40 percent of its plan bounding box lies on the bed.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "No larger than 45 x 45 x 35 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.10",
+     "text": "The deliverables are an STL in the assembly pose, the OpenSCAD source, the declared layout and the agent's own clearance report, which has to match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "catalogue placement of a motor, a pulley, a belt and bolts by datums, with a rotation envelope",
+    "belt geometry: two straight runs tangent to the pulley wrap, derived from catalogue numbers",
+    "subtraction: a stepped belt slot, two clearance holes, a bore over a pilot",
+    "stepped overhang control: 45 degree corbels and ribs so that ears and the slot roof print without supports",
+    "interference checks against a rotation envelope, belt envelopes, driver columns and an install sweep"
+   ]
+  }
+ ]
+}

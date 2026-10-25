@@ -1,0 +1,45 @@
+{
+ "package": "/Users/robinonsay/python/llm-bt/benchmarks/generalize/loop/iter_003/E1-01_s3/20261025-054937",
+ "judge": "judge_1",
+ "iteration": 3,
+ "target": "E1-01",
+ "verdict": "MEETS",
+ "meets": true,
+ "class": "CORRECT",
+ "score": 1.0,
+ "worst_weight3_normalised_margin": 0.2,
+ "worst_margin_note": "smallest weight-3 margins are 0.10 mm (lid vs V-KO-TOP / V-HOLE-KO, floor vs V-KO-BOT, plug 0.4 vs 0.3, pilot D1.70 vs 1.6): 0.10 / 0.5 = 0.2",
+ "frame_transform": "delivered frame = enclosure frame, board frame origin = board min corner top; no transform. Floor underside Z=-8.1 (board frame).",
+ "gates": {
+  "G0 package (L3.12.1.1)": "PASS",
+  "G1 manifold, 2 bodies (L3.9.2.1, L3.7.1.1)": "PASS (1 shell each, NoError, overlap ~0 mm3)",
+  "G2 board fit (L3.2.1.1, L3.4.1.1, L3.4.2.1)": "PASS",
+  "G3 USB plug seats (L3.5.1.1)": "PASS d=0.400",
+  "G4 jack plugs seat (L3.6.1.1)": "PASS d=0.405",
+  "G5 board fixed (L3.3.1.1, L3.3.3.1)": "PASS (4 standoffs, pilot D1.70)"
+ },
+ "measured_values": {
+  "board_clearance L3.2.1.1": "1.448 (>=0.5)",
+  "pico_in_cavity / hdr+jacks L3.2.2.1,L3.4.3.1": "4.923 / 1.676 (>=0.2 / >=0.3)",
+  "standoffs L3.3.1.x": "4; pitch 66.0 x 46.0; axis offset 0.000",
+  "standoff OD / pilot / pilot depth": "5.10 / 1.70 / 5.1",
+  "top / bottom keepout d": "0.180 / 0.100 (>=0)",
+  "USB plug d; opening": "0.400; 10.8 x 7.8 centre (Y25.0,Z4.9) i.e. 0.4/side",
+  "jack plug d each; opening": "0.405 / 0.405; D8.81 at (Y17.5,Z2.5),(Y32.5,Z2.5)",
+  "opening counts -X/+X/other": "1 / 2 / 0",
+  "lip clearance per side; engagement": "0.25 on 4 sides; 2.1",
+  "wall/floor/lid thickness": "2.4 / 2.4 / 2.4 (range 0.0)",
+  "overhang patches; bed contact": "0 after exemptions (USB ceiling bridge 10.8, 2 round holes D8.81); base 85.5%, lid 84.9%",
+  "shells": "1 / 1",
+  "closed envelope": "84.17 x 64.17 x 24.70",
+  "install sweep d; driver d": "1.6 (standoff tops excluded) ; 0.6",
+  "self-report agreement": "all clear_of/inside within 0.005"
+ },
+ "L3_results": "all applicable non-physical L3 PASS: L3.1.x, 3.2.x, 3.3.x, 3.4.x, 3.5.x, 3.6.x, 3.7.x, 3.8.x, 3.9.x, 3.10.x, 3.11.x, 3.12.x (physical tests N/A, no print)",
+ "defects": [],
+ "observations": [
+  "Corner lid bosses (D6.6) sit outside the wall faces by 3.09 mm; closed envelope 84.17 x 64.17 is still within 90 x 70.",
+  "Margins of 0.10 mm exist on the lid-to-keep-out (X lid lip Z12.1 vs 12.0), floor-to-V-KO-BOT (0.10) and V-HOLE-KO columns; they pass but have no slack."
+ ],
+ "method": "base.stl/lid.stl measured with manifold3d/trimesh per rubric 3.1-3.7; RBA rebuilt from layout.json + catalogue; unlisted-opening probe by 0.5 mm voxel flood fill with D2.0 sphere (sealed once the listed ports are filled); renders inspected after measuring"
+}

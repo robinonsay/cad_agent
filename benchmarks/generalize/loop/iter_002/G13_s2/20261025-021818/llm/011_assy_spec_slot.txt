@@ -1,0 +1,69 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 2 (request): "...A 2 x 2 macro pad. Four 6 mm tactile switches sit on a 70 x 50..."
+n2 = 2 (request): "...A 2 x 2 macro pad. Four 6 mm tactile switches sit on a 70 x 50 mm p..."
+n3 = 6 mm (request): "...A 2 x 2 macro pad. Four 6 mm tactile switches sit on a 70 x 50 mm perfboard (a mounting..."
+n4 = 70 (request): "...A 2 x 2 macro pad. Four 6 mm tactile switches sit on a 70 x 50 mm perfboard (a mounting hole in each corner) at 19.05..."
+n5 = 50 mm (request): "...A 2 x 2 macro pad. Four 6 mm tactile switches sit on a 70 x 50 mm perfboard (a mounting hole in each corner) at 19.05 mm..."
+n6 = 19.05 mm (request): "...a 70 x 50 mm perfboard (a mounting hole in each corner) at 19.05 mm pitch in both directions, with a Raspberry Pi Pico 2..."
+n7 = 2 (request): "...19.05 mm pitch in both directions, with a Raspberry Pi Pico 2 plugged into female sockets on the same board behind them...."
+n8 = 0.4 mm (request): "...plunger that comes up through a hole in the top plate with 0.4 mm clearance all round, and the plunger has 1.5 mm of tra..."
+n9 = 1.5 mm (request): "...plate with 0.4 mm clearance all round, and the plunger has 1.5 mm of travel before it bottoms out. The Pico's micro-USB ..."
+n10 = 2 (L1.1): "...The design shall place the four tactile switches in a 2 x 2 array at 19.05 mm pitch and the Pico 2 on female socket..."
+n11 = 2 (L1.1): "...The design shall place the four tactile switches in a 2 x 2 array at 19.05 mm pitch and the Pico 2 on female sockets be..."
+n12 = 19.05 mm (L1.1): "...n shall place the four tactile switches in a 2 x 2 array at 19.05 mm pitch and the Pico 2 on female sockets behind them ..."
+n13 = 2 (L1.1): "...le switches in a 2 x 2 array at 19.05 mm pitch and the Pico 2 on female sockets behind them on the 70 x 50 mm board, fro..."
+n14 = 70 (L1.1): "...m pitch and the Pico 2 on female sockets behind them on the 70 x 50 mm board, from the parts catalogue, with the Pico's ..."
+n15 = 50 mm (L1.1): "...ch and the Pico 2 on female sockets behind them on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB p..."
+n16 = 70 (L1.2): "...The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure w..."
+n17 = 50 (L1.2): "...The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with a..."
+n18 = 1.6 mm (L1.2): "...The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with at least 0..."
+n19 = 0.5 mm (L1.2): "...m board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where ..."
+n20 = 5 (L1.3): "...on exactly four standoffs, one under each corner hole, each 5 to 7 mm in outside diameter, with its top plane within 0.1..."
+n21 = 7 mm (L1.3): "...actly four standoffs, one under each corner hole, each 5 to 7 mm in outside diameter, with its top plane within 0.1 mm o..."
+n22 = 0.1 mm (L1.3): "...ch 5 to 7 mm in outside diameter, with its top plane within 0.1 mm of the others and a pilot hole for an M2 self-tapping..."
+n24 = 4 mm (L1.4): "...shall come within 13.3 mm above the board's top surface or 4 mm below its underside, except the standoffs under the hole..."
+n25 = 0.3 mm (L1.5): "...the rear end wall without touching the enclosure (at least 0.3 mm clear all round), and that opening shall be no more th..."
+n26 = 1.5 mm (L1.5): "...mm clear all round), and that opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n27 = 0.2 mm (L1.6): "...ound hole in the top plate, coaxial with the switch (within 0.2 mm), with 0.4 mm clearance on every side between plunger..."
+n28 = 0.4 mm (L1.6): "...he top plate, coaxial with the switch (within 0.2 mm), with 0.4 mm clearance on every side between plunger and hole; eac..."
+n29 = 4.0 (L1.6): "...ide between plunger and hole; each plunger has a round stem 4.0 to 5.6 mm in diameter and a tip face at least 3.5 mm acr..."
+n30 = 5.6 mm (L1.6): "...ween plunger and hole; each plunger has a round stem 4.0 to 5.6 mm in diameter and a tip face at least 3.5 mm across...."
+n31 = 3.5 mm (L1.6): "...ound stem 4.0 to 5.6 mm in diameter and a tip face at least 3.5 mm across...."
+n32 = 1.5 mm (L1.7): "...Each plunger shall have 1.5 mm of travel before it bottoms out, shall reach the switch's a..."
+n33 = 0.5 mm (L1.7): "...shing the switch, shall stay proud of the plate by at least 0.5 mm at the end of its travel, and shall stay in the plate..."
+n34 = 2 mm (L1.7): "...ate when the case is turned over, held by a flange at least 2 mm wider than the hole that rests against the underside of..."
+n35 = 2 (L1.8): "...ate that drops into a rebate in the top of the walls (plate 2 to 3 mm thick, 0.15 to 0.35 mm fit gap per side, upstand a..."
+n36 = 3 mm (L1.8): "...hat drops into a rebate in the top of the walls (plate 2 to 3 mm thick, 0.15 to 0.35 mm fit gap per side, upstand at lea..."
+n37 = 0.15 (L1.8): "...to a rebate in the top of the walls (plate 2 to 3 mm thick, 0.15 to 0.35 mm fit gap per side, upstand at least 1 mm) and..."
+n38 = 0.35 mm (L1.8): "...ate in the top of the walls (plate 2 to 3 mm thick, 0.15 to 0.35 mm fit gap per side, upstand at least 1 mm) and is scre..."
+n39 = 1 mm (L1.8): "...m thick, 0.15 to 0.35 mm fit gap per side, upstand at least 1 mm) and is screwed down with four M3 self-tapping screws i..."
+n40 = 2 (L1.9): "...oles and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n41 = 4 mm (L1.9): "...and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n42 = 45 (L1.10): "...n an FDM printer without supports (no overhang steeper than 45° from vertical, no bridge over 15 mm)...."
+n43 = 15 mm (L1.10): "...(no overhang steeper than 45° from vertical, no bridge over 15 mm)...."
+n44 = 95 (L1.11): "...The closed enclosure shall be no larger than 95 x 70 x 35 mm, longest along the board's 70 mm side, and sha..."
+n45 = 70 (L1.11): "...The closed enclosure shall be no larger than 95 x 70 x 35 mm, longest along the board's 70 mm side, and shall st..."
+n46 = 35 mm (L1.11): "...The closed enclosure shall be no larger than 95 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat..."
+n47 = 70 mm (L1.11): "...e no larger than 95 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat on a desk without tipping...."
+
+n23 (13.3 mm) states headroom, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+
+
+=== RESPONSE ===
+{
+  "keepout_above": "n24",
+  "keepout_below": "n24"
+}

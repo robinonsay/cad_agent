@@ -54,7 +54,7 @@ Expr3 = Tuple[Expr, Expr, Expr]
 KINDS = ("reference", "body", "add", "cut", "envelope")
 NOT_PRINTED = frozenset({"reference", "envelope"})   # never part of a body's solid
 BUILD_KINDS = ("body", "add", "cut")
-PRIMITIVES = ("box", "cylinder", "tube", "shell", "part")
+PRIMITIVES = ("box", "cylinder", "tube", "shell", "part", "prism")
 DEFAULT_SEGMENTS = 64                                # used only when the rules give no "fn"
 NAMESPACES = ("spec", "rules", "frame", "fastener")  # ref prefixes that are not node ids
 BBOX_PREFIX = "bbox."                                # <reference>.bbox.min_x: world AABB of a placed part
@@ -106,7 +106,13 @@ def floor(x: float) -> float:
     return float(math.floor(x + 1e-9))
 
 
-FUNCTIONS: Dict[str, Callable[..., float]] = {"min": min, "max": max, "abs": abs, "ceil_to": ceil_to, "floor": floor}
+def tand(deg: float) -> float:
+    """The tangent of an angle in degrees (generalize delta 003 C4: a roof's rise from rules.overhang_angle_deg)."""
+    return math.tan(math.radians(deg))
+
+
+FUNCTIONS: Dict[str, Callable[..., float]] = {"min": min, "max": max, "abs": abs, "ceil_to": ceil_to, "floor": floor,
+                                              "tand": tand}
 _BINOPS = {ast.Add: lambda a, b: a + b, ast.Sub: lambda a, b: a - b,
            ast.Mult: lambda a, b: a * b, ast.Div: lambda a, b: a / b}
 
@@ -354,7 +360,7 @@ def resolve_pose(pose: Pose, ctx: PoseContext) -> np.ndarray:
 class Node:
     id: str
     kind: str                                   # reference | body | add | cut | envelope
-    primitive: str                              # box | cylinder | tube | shell | part
+    primitive: str                              # box | cylinder | tube | shell | part | prism
     params: Dict[str, Expr] = field(default_factory=dict)
     pose: Pose = field(default_factory=Pose)
     body: Optional[str] = None                  # add/cut: the body (or comma list for a port_cut); body: itself
@@ -771,10 +777,30 @@ def shell_inner(p: Mapping[str, float]) -> Tuple[float, float, float, float]:
     return x - 2 * w, y - 2 * w, z0, z1
 
 
+def prism_polygon(node: Node, p: Mapping[str, float]) -> List[Tuple[float, float]]:
+    """A prism's polygon in its local XY plane (generalize delta 003 C4): params n (vertex count), x1..xn, y1..yn, in
+    counter-clockwise order whatever order the params give (a clockwise list is reversed), so the SCAD and the manifold
+    solids are the same. A prism is extruded from local Z = 0 to h along its local normal (+Z); its pose places it."""
+    n = int(round(p["n"]))
+    if n < 3 or abs(p["n"] - n) > EPS:
+        raise ValueError(f"{node.id}: a prism needs a whole vertex count n >= 3 (got {p['n']!r})")
+    pts = [(float(p[f"x{k}"]), float(p[f"y{k}"])) for k in range(1, n + 1)]
+    area = sum(a[0] * b[1] - b[0] * a[1] for a, b in zip(pts, pts[1:] + pts[:1])) / 2
+    if abs(area) <= EPS:
+        raise ValueError(f"{node.id}: the prism polygon has no area")
+    return pts if area > 0 else pts[::-1]
+
+
+def _prism(node: Node, p: Mapping[str, float]):
+    return m3d.CrossSection([prism_polygon(node, p)]).extrude(float(p["h"]))
+
+
 def _local_solid(node: Node, p: Mapping[str, float], inst: Any, seg: int):
     prim = node.primitive
     if prim == "box":
         return _box(p["x"], p["y"], p["z"])
+    if prim == "prism":
+        return _prism(node, p)
     if prim == "cylinder":
         return _cyl(_poly_d(node, p["d"], seg), p["h"], seg)
     if prim == "tube":
@@ -918,10 +944,17 @@ def _scad_cyl(d: float, h: float, seg: int) -> str:
     return f"cylinder(h={_num(h)}, d={_num(d)}, $fn={seg});"
 
 
+def _scad_prism(node: Node, p: Mapping[str, float]) -> str:
+    pts = ", ".join(_vec(v) for v in prism_polygon(node, p))
+    return f"linear_extrude(height={_num(p['h'])}) polygon(points=[{pts}]);"
+
+
 def _scad_local(node: Node, p: Mapping[str, float], inst: Any, seg: int) -> str:
     prim = node.primitive
     if prim == "box":
         return _scad_box(p["x"], p["y"], p["z"])
+    if prim == "prism":
+        return _scad_prism(node, p)
     if prim == "cylinder":
         return _scad_cyl(_poly_d(node, p["d"], seg), p["h"], seg)
     if prim == "tube":

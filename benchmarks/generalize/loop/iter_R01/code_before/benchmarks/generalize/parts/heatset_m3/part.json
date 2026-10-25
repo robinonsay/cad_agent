@@ -1,0 +1,172 @@
+{
+  "id": "heatset_m3",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "m3 heat-set insert",
+    "m3 heat set insert",
+    "m3 threaded insert",
+    "m3 insert",
+    "m3 brass insert"
+  ],
+  "kind": "fastener",
+  "source": "M3 brass knurled heat-set insert for printed parts (supplier drawing, e.g. Ruthex / CNC Kitchen M3 x 5.7 table): OD 4.6 mm, length 5.7 mm, printed hole 4.0 mm. Hole range, boss wall and hole depth margin are assumptions from common FDM insert tables.",
+  "frame": "fastener: axis along Z, origin on the insert's top face, body toward -Z",
+  "params": {
+    "thread_diameter": {
+      "default": 3.0,
+      "source": "M3 internal thread"
+    },
+    "hole_diameter": {
+      "default": 4.0,
+      "source": "supplier drawing: printed hole 4.0 mm"
+    },
+    "hole_min": {
+      "default": 3.9,
+      "source": "ASSUMPTION: insert tables give 3.9-4.1 (uncertainty +/-0.1 mm)"
+    },
+    "hole_max": {
+      "default": 4.1,
+      "source": "ASSUMPTION: insert tables give 3.9-4.1 (uncertainty +/-0.1 mm)"
+    },
+    "outer_diameter": {
+      "default": 4.6,
+      "source": "supplier drawing: knurled OD (max)"
+    },
+    "length": {
+      "default": 5.7,
+      "source": "supplier drawing: insert length"
+    },
+    "hole_depth": {
+      "default": 7.2,
+      "source": "ASSUMPTION: length + 1.5 mm for displaced plastic below the insert (uncertainty +/-0.5 mm)"
+    },
+    "min_boss_od": {
+      "default": 7.0,
+      "source": "ASSUMPTION: hole_diameter + 2 x 1.5 mm wall, scaled from the M2.5 insert table already in the catalogue (uncertainty +/-0.5 mm)"
+    },
+    "min_edge_distance": {
+      "default": 3.0,
+      "source": "ASSUMPTION: about 3 mm from the hole centre to any free edge (uncertainty +/-1 mm); the boss wall rule covers it"
+    }
+  },
+  "datasheet_size": [
+    "outer_diameter",
+    "outer_diameter",
+    "length"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "outer_diameter",
+      "h": "length",
+      "at": [
+        0,
+        0,
+        "-length"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "hole",
+      "primitive": "cylinder",
+      "d": "hole_diameter",
+      "h": "hole_depth",
+      "at": [
+        0,
+        0,
+        "-hole_depth"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        -1
+      ],
+      "diameter": "thread_diameter",
+      "keepout_diameter": "min_boss_od"
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "HOLE_BOTTOM": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        "-hole_depth"
+      ]
+    }
+  },
+  "connectors": [],
+  "import_gate_notes": "R1: bounding box = outer_diameter x outer_diameter x length, tolerance 0.2 mm (knurl modelled as a plain cylinder). Datum directions are unit vectors. Designed contact (insert in its printed hole, a screw in its thread) is not interference; the hole keepout is the printed hole volume, not a solid.",
+  "self_checks": [
+    {
+      "name": "hole inside its range",
+      "expr": "hole_diameter - hole_min",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hole below its range maximum",
+      "expr": "hole_max - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hole smaller than the insert knurl",
+      "expr": "outer_diameter - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hole deeper than the insert",
+      "expr": "hole_depth - length",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "boss wall around the insert",
+      "expr": "min_boss_od - hole_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

@@ -1,0 +1,339 @@
+{
+ "id": "encoder_ec11",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "ec11 rotary encoder",
+  "ec11 encoder",
+  "rotary encoder",
+  "encoder",
+  "quadrature encoder",
+  "ec11",
+  "alps ec11",
+  "rotary encoder with switch",
+  "encoder knob"
+ ],
+ "kind": "control",
+ "source": "Alps EC11 rotary encoder datasheet (generalize/plan.json datasheet_note): body 12 x 13.4 x 6.5 mm, M7 x 0.75 bushing, 6 mm dia D-shaft 15 mm long (variants exist with 13, 20 mm...). ASSUMED: bushing length 7.0 mm above the body (6 mm threaded), 5 terminals (3 encoder at 2.5 mm pitch on one edge, 2 switch on the opposite edge, rows 7.5 mm apart).",
+ "frame": "panel control: origin at the body min corner, body bottom (PCB seat) at Z = 0, bushing and shaft toward +Z, pins toward -Z; shaft axis at the body centre in X, at shaft_y in Y",
+ "params": {
+  "body_length": {
+   "default": 12.0,
+   "source": "datasheet: body X"
+  },
+  "body_width": {
+   "default": 13.4,
+   "source": "datasheet: body Y"
+  },
+  "body_height": {
+   "default": 6.5,
+   "source": "datasheet: body Z"
+  },
+  "shaft_y": {
+   "default": 6.7,
+   "source": "shaft axis Y; ASSUMED at the body centre; +/- 0.5"
+  },
+  "bushing_diameter": {
+   "default": 7.0,
+   "source": "datasheet: M7 x 0.75 bushing"
+  },
+  "bushing_length": {
+   "default": 7.0,
+   "source": "datasheet: bushing length (typical, 6 mm threaded); +/- 0.5"
+  },
+  "shaft_diameter": {
+   "default": 6.0,
+   "source": "datasheet: 6 mm D-shaft"
+  },
+  "shaft_length": {
+   "default": 15.0,
+   "source": "datasheet: shaft length from the bushing face (variants 13, 15, 20, 25)"
+  },
+  "shaft_flat_width": {
+   "default": 4.5,
+   "source": "ASSUMED D-flat across-flats; +/- 0.2"
+  },
+  "max_panel_thickness": {
+   "default": 3.0,
+   "source": "ASSUMED panel limit: thread length minus a 3 mm-thick nut; +/- 1.0"
+  },
+  "nut_diameter": {
+   "default": 11.0,
+   "source": "ASSUMED M7 hex nut across corners (8 mm AF, 9.2 min; 11 with washer); +/- 1.0"
+  },
+  "knob_clearance": {
+   "default": 1.0,
+   "source": "ASSUMED minimum gap from the knob skirt to the panel; request/rules may override"
+  },
+  "pin_pitch": {
+   "default": 2.5,
+   "source": "datasheet: terminal pitch"
+  },
+  "pin_row_spacing": {
+   "default": 7.5,
+   "source": "ASSUMED terminal row spacing across the body; +/- 0.5, measure"
+  },
+  "pin_length": {
+   "default": 3.5,
+   "source": "ASSUMED terminal length below the body"
+  }
+ },
+ "datasheet_size": [
+  "body_length",
+  "body_width",
+  "body_height"
+ ],
+ "size_of": "body",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "box",
+   "size": [
+    "body_length",
+    "body_width",
+    "body_height"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "bushing",
+   "primitive": "cylinder",
+   "d": "bushing_diameter",
+   "h": "bushing_length",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "shaft",
+   "primitive": "cylinder",
+   "d": "shaft_diameter",
+   "h": "shaft_length",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "nut_zone",
+   "primitive": "cylinder",
+   "d": "nut_diameter",
+   "h": 3.0,
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length - 3.0"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "BODY_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "SHOULDER": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "BUSHING_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height + bushing_length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "bushing_diameter",
+   "keepout_diameter": "nut_diameter"
+  },
+  "SHAFT_AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "shaft_diameter"
+  },
+  "SHAFT_TIP": {
+   "kind": "point",
+   "at": [
+    "body_length / 2",
+    "shaft_y",
+    "body_height + bushing_length + shaft_length"
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "at": [
+    [
+     "body_length / 2 - pin_pitch",
+     "shaft_y - pin_row_spacing / 2",
+     0
+    ],
+    [
+     "body_length / 2",
+     "shaft_y - pin_row_spacing / 2",
+     0
+    ],
+    [
+     "body_length / 2 + pin_pitch",
+     "shaft_y - pin_row_spacing / 2",
+     0
+    ],
+    [
+     "body_length / 2 - pin_pitch",
+     "shaft_y + pin_row_spacing / 2",
+     0
+    ],
+    [
+     "body_length / 2 + pin_pitch",
+     "shaft_y + pin_row_spacing / 2",
+     0
+    ]
+   ]
+  }
+ },
+ "connectors": [],
+ "mount": {
+  "type": "panel",
+  "panel_datum": "BUSHING_TOP",
+  "hole_axis": "AXIS",
+  "max_panel_thickness": "max_panel_thickness",
+  "notes": "panel hole = bushing diameter plus rules clearance (M7 x 0.75 thread); panel plane lies below BUSHING_TOP by the panel thickness; the knob sits on SHAFT_AXIS above the panel"
+ },
+ "notes": "Panel-mounted encoder with push switch: the printed panel needs an M7 hole, and a knob on the D-shaft; the shaft tip sits shaft_length (15) above BUSHING_TOP so the knob must not reach the panel (knob_clearance). Bushing seat on the panel/nut is designed contact. ASSUMPTIONS and uncertainty: bushing length 7.0 (+/-0.5); panel limit max_panel_thickness 3.0 (+/-1.0); terminals 3 + 2 with 2.5 pitch and 7.5 row spacing (+/-0.5) with the datasheet's two side tabs omitted; shaft axis at the body centre (the real centre is within ~0.3 mm); shaft length is a variant choice (13, 15, 20 mm), the 15 mm default is from the plan. Import gate: body bounding box 12 x 13.4 x 6.5; shaft axis unit vector along +Z.",
+ "self_checks": [
+  {
+   "name": "body length",
+   "expr": "body.size_x",
+   "value": 12.0,
+   "tol": 0.05
+  },
+  {
+   "name": "body width",
+   "expr": "body.size_y",
+   "value": 13.4,
+   "tol": 0.05
+  },
+  {
+   "name": "body height",
+   "expr": "body.size_z",
+   "value": 6.5,
+   "tol": 0.05
+  },
+  {
+   "name": "bushing diameter M7",
+   "expr": "bushing.size_x",
+   "value": 7.0,
+   "tol": 0.05
+  },
+  {
+   "name": "shaft diameter",
+   "expr": "shaft.size_x",
+   "value": 6.0,
+   "tol": 0.05
+  },
+  {
+   "name": "shaft length above the bushing",
+   "expr": "SHAFT_TIP.z - BUSHING_TOP.z",
+   "value": 15.0,
+   "tol": 0.05
+  },
+  {
+   "name": "encoder terminal pitch",
+   "expr": "PINS[1].x - PINS[0].x",
+   "value": 2.5,
+   "tol": 0.05
+  },
+  {
+   "name": "terminal rows apart",
+   "expr": "PINS[3].y - PINS[0].y",
+   "value": 7.5,
+   "tol": 0.5
+  },
+  {
+   "name": "shaft along +Z",
+   "expr": "SHAFT_AXIS.dz",
+   "value": 1,
+   "tol": 1e-06
+  },
+  {
+   "name": "bushing long enough for panel and nut",
+   "expr": "bushing_length - max_panel_thickness - 3.0",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  }
+ ]
+}

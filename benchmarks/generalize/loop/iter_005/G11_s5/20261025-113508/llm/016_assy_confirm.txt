@@ -1,0 +1,14 @@
+MODEL: ornith-1.5:9b 
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a housing for a power module built on an 80 x 60 mm perfboard that gives off roughly 8 W. The board has a 3 mm hole in every corner, set 2.5 mm in from the edges. Populating it are a DC input jack (PJ-002A, 14 x 9 x 11 mm) at one short end, a 20 x 12 mm heatsink standing 20 mm tall, and a pair of electrolytic capacitors, each 10 mm in diameter and 16 mm tall. Cooling comes from a 40 x 40 x 10 mm fan attached under the lid on the inside, pushing air down into the box through an opening in the lid. It's held with M3 socket-head screws on its 32 mm hole pattern, and the opposite end wall gets exhaust slots. A 5.5 x 2.1 mm DC plug has to plug into the jack while the lid is on. Keep the fan intake 5 mm or more from the nearest tall component; I read that as the fan frame being at least 5 mm from everything on the board. The housing is a base and a removable lid fastened with M3 screws, printed on an FDM printer, and no bigger than 100 x 80 x 40 mm. Every screw is an ISO 4762 M3 socket-head cap screw, and my stock lengths are 6, 8, 10, 12, 14, 16 and 20 mm.
+
+Proposed arrangement on the board: dc jack (dc_in) faces the short (60 mm) end at -X.
+Does this arrangement match the request? Answer yes or no.
+
+=== RESPONSE ===
+p_yes=0.179

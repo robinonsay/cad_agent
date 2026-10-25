@@ -1,0 +1,1466 @@
+{
+  "schema": 1,
+  "nodes": [
+    {
+      "id": "board",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {},
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0.0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "rpi_pico2",
+      "source": "layout:board",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "board_plug_shell",
+      "kind": "envelope",
+      "primitive": "box",
+      "params": {
+        "x": 6.5,
+        "y": 6.9,
+        "z": 1.85,
+        "s0": -5.0,
+        "s1": 1.5,
+        "cw": 6.9,
+        "ch": 1.85
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          0.4500000000000002,
+          10.5,
+          1.4749999999999999
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 180.0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "plug_shell",
+      "part": "plug_microusb_b",
+      "source": "rule:plug_sweep(plug_microusb_b)",
+      "free": [],
+      "color": null,
+      "group": "board_plug"
+    },
+    {
+      "id": "board_plug_overmold",
+      "kind": "envelope",
+      "primitive": "box",
+      "params": {
+        "x": 60.0,
+        "y": 10.0,
+        "z": 7.0,
+        "s0": 1.5,
+        "s1": 61.5,
+        "cw": 10.0,
+        "ch": 7.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -32.8,
+          10.500000000000005,
+          -1.1
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 180.0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "plug_overmold",
+      "part": "plug_microusb_b",
+      "source": "rule:plug_sweep(plug_microusb_b)",
+      "free": [],
+      "color": null,
+      "group": "board_plug"
+    },
+    {
+      "id": "board_ko_top",
+      "kind": "envelope",
+      "primitive": "box",
+      "params": {
+        "x": 52.3,
+        "y": 21.0,
+        "z": 0.3
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          24.85,
+          10.5,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "keepout_top",
+      "part": null,
+      "source": "rule:board_keepout",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "board_ko_bot",
+      "kind": "envelope",
+      "primitive": "box",
+      "params": {
+        "x": 52.3,
+        "y": 21.0,
+        "z": 2.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          24.85,
+          10.5,
+          -2.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "keepout_bottom",
+      "part": null,
+      "source": "rule:board_keepout",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "seat_0",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 5.0
+      },
+      "pose": {
+        "at": "board.HOLE[0]",
+        "offset": [
+          0,
+          0,
+          -3.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "seat",
+      "part": null,
+      "source": "rule:column(seat)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "hole_ko_0",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 0.30000000000000004
+      },
+      "pose": {
+        "at": "board.HOLE[0]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "hole_keepout",
+      "part": null,
+      "source": "rule:column(hole_keepout)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "seat_1",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 5.0
+      },
+      "pose": {
+        "at": "board.HOLE[1]",
+        "offset": [
+          0,
+          0,
+          -3.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "seat",
+      "part": null,
+      "source": "rule:column(seat)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "hole_ko_1",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 0.30000000000000004
+      },
+      "pose": {
+        "at": "board.HOLE[1]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "hole_keepout",
+      "part": null,
+      "source": "rule:column(hole_keepout)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "seat_2",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 5.0
+      },
+      "pose": {
+        "at": "board.HOLE[2]",
+        "offset": [
+          0,
+          0,
+          -3.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "seat",
+      "part": null,
+      "source": "rule:column(seat)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "hole_ko_2",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 0.30000000000000004
+      },
+      "pose": {
+        "at": "board.HOLE[2]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "hole_keepout",
+      "part": null,
+      "source": "rule:column(hole_keepout)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "seat_3",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 5.0
+      },
+      "pose": {
+        "at": "board.HOLE[3]",
+        "offset": [
+          0,
+          0,
+          -3.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "seat",
+      "part": null,
+      "source": "rule:column(seat)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "hole_ko_3",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": 0.30000000000000004
+      },
+      "pose": {
+        "at": "board.HOLE[3]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "hole_keepout",
+      "part": null,
+      "source": "rule:column(hole_keepout)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "cavity",
+      "kind": "envelope",
+      "primitive": "box",
+      "params": {
+        "x0": "min(board.bbox.min_x - spec.board_clearance - rules.design_margin, board.HOLE[0].x - max(hole_ko_0.d, rules.driver_diameter)/2 - rules.design_margin, board.HOLE[1].x - max(hole_ko_1.d, rules.driver_diameter)/2 - rules.design_margin, board.HOLE[2].x - max(hole_ko_2.d, rules.driver_diameter)/2 - rules.design_margin, board.HOLE[3].x - max(hole_ko_3.d, rules.driver_diameter)/2 - rules.design_margin)",
+        "x1": "max(board.bbox.max_x + spec.board_clearance + rules.design_margin, board.HOLE[0].x + max(hole_ko_0.d, rules.driver_diameter)/2 + rules.design_margin, board.HOLE[1].x + max(hole_ko_1.d, rules.driver_diameter)/2 + rules.design_margin, board.HOLE[2].x + max(hole_ko_2.d, rules.driver_diameter)/2 + rules.design_margin, board.HOLE[3].x + max(hole_ko_3.d, rules.driver_diameter)/2 + rules.design_margin)",
+        "y0": "min(board.bbox.min_y - spec.board_clearance - rules.design_margin, board.HOLE[0].y - max(hole_ko_0.d, rules.driver_diameter)/2 - rules.design_margin, board.HOLE[1].y - max(hole_ko_1.d, rules.driver_diameter)/2 - rules.design_margin, board.HOLE[2].y - max(hole_ko_2.d, rules.driver_diameter)/2 - rules.design_margin, board.HOLE[3].y - max(hole_ko_3.d, rules.driver_diameter)/2 - rules.design_margin)",
+        "y1": "max(board.bbox.max_y + spec.board_clearance + rules.design_margin, board.HOLE[0].y + max(hole_ko_0.d, rules.driver_diameter)/2 + rules.design_margin, board.HOLE[1].y + max(hole_ko_1.d, rules.driver_diameter)/2 + rules.design_margin, board.HOLE[2].y + max(hole_ko_2.d, rules.driver_diameter)/2 + rules.design_margin, board.HOLE[3].y + max(hole_ko_3.d, rules.driver_diameter)/2 + rules.design_margin)",
+        "z0": "min(board.PCB_BOTTOM.z - spec.keepout_below - rules.design_margin, board.PCB_BOTTOM.z - ((max(fastener.board.min_engagement, fastener.board.length - (board.PCB_TOP.z - board.PCB_BOTTOM.z))) + rules.design_margin) - rules.min_feature + floor - rules.design_margin)",
+        "z1": "max(board.PCB_TOP.z + spec.keepout_above + rules.design_margin, board.bbox.max_z + spec.headroom + rules.design_margin)",
+        "wall": "min(max(rules.wall_default, spec.wall_min), spec.wall_max)",
+        "floor": "min(max(rules.floor_default, spec.wall_min), spec.wall_max)",
+        "x": "x1 - x0",
+        "y": "y1 - y0",
+        "z": "z1 - z0",
+        "cx": "(x0 + x1) / 2",
+        "cy": "(y0 + y1) / 2"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "cx",
+          "cy",
+          "z0"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "cavity",
+      "part": null,
+      "source": "rule:cavity_from_contents",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "board_cut",
+      "kind": "cut",
+      "primitive": "box",
+      "params": {
+        "x": "cavity.wall + 2*rules.cut_overrun",
+        "y": "max(board_plug_shell.cw, board_plug_overmold.cw) + 2*(rules.plug_to_opening + rules.design_margin)",
+        "z": "max(board_plug_shell.ch, board_plug_overmold.ch) + 2*(rules.plug_to_opening + rules.design_margin)",
+        "top": "board.USB_MOUTH.z + z/2",
+        "cw": "max(board_plug_shell.cw, board_plug_overmold.cw) + 2*(rules.plug_to_opening + rules.design_margin)",
+        "ch": "max(board_plug_shell.ch, board_plug_overmold.ch) + 2*(rules.plug_to_opening + rules.design_margin)"
+      },
+      "pose": {
+        "at": "board.USB_MOUTH",
+        "offset": [
+          "cavity.x0 - cavity.wall/2 - board.USB_MOUTH.x",
+          0,
+          "-z/2"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 180.0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "port_cut",
+      "part": null,
+      "source": "rule:connector_to_cut(board.usb)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "base",
+      "kind": "body",
+      "primitive": "shell",
+      "params": {
+        "wall": "cavity.wall",
+        "floor": "cavity.floor",
+        "split": "max(cavity.z1 + rules.lip_engagement + rules.design_margin, board_cut.top + rules.min_ligament + rules.design_margin)",
+        "x": "cavity.x + 2*wall",
+        "y": "cavity.y + 2*wall",
+        "z": "split - cavity.z0 + floor",
+        "open_top": 1
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "cavity.cx",
+          "cavity.cy",
+          "cavity.z0 - floor"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "tray",
+      "part": null,
+      "source": "rule:tray_lid.base",
+      "free": [],
+      "color": "#4f81bd",
+      "group": null
+    },
+    {
+      "id": "driver_0",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": "base.split + rules.driver_reach - (1.0)"
+      },
+      "pose": {
+        "at": "board.HOLE[0]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "driver",
+      "part": null,
+      "source": "rule:column(driver)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "driver_1",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": "base.split + rules.driver_reach - (1.0)"
+      },
+      "pose": {
+        "at": "board.HOLE[1]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "driver",
+      "part": null,
+      "source": "rule:column(driver)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "driver_2",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": "base.split + rules.driver_reach - (1.0)"
+      },
+      "pose": {
+        "at": "board.HOLE[2]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "driver",
+      "part": null,
+      "source": "rule:column(driver)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "driver_3",
+      "kind": "envelope",
+      "primitive": "cylinder",
+      "params": {
+        "d": 6.0,
+        "h": "base.split + rules.driver_reach - (1.0)"
+      },
+      "pose": {
+        "at": "board.HOLE[3]",
+        "offset": [
+          0,
+          0,
+          1.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "driver",
+      "part": null,
+      "source": "rule:column(driver)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_1",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.board.pilot_diameter + 2*rules.standoff_wall_min, fastener.board.min_boss_od + rules.design_margin)",
+        "h": "board.PCB_BOTTOM.z - cavity.z0 + base.floor",
+        "top": "board.PCB_BOTTOM.z",
+        "height": "board.PCB_BOTTOM.z - cavity.z0"
+      },
+      "pose": {
+        "at": "board.HOLE[0]",
+        "offset": [
+          0,
+          0,
+          "cavity.z0 - base.floor - board.HOLE[0].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "standoff",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_1_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.board.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.board.min_engagement, fastener.board.length - (board.PCB_TOP.z - board.PCB_BOTTOM.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "board.HOLE[0]",
+        "offset": [
+          0,
+          0,
+          "board.PCB_BOTTOM.z - depth - board.HOLE[0].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_2",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.board.pilot_diameter + 2*rules.standoff_wall_min, fastener.board.min_boss_od + rules.design_margin)",
+        "h": "board.PCB_BOTTOM.z - cavity.z0 + base.floor",
+        "top": "board.PCB_BOTTOM.z",
+        "height": "board.PCB_BOTTOM.z - cavity.z0"
+      },
+      "pose": {
+        "at": "board.HOLE[1]",
+        "offset": [
+          0,
+          0,
+          "cavity.z0 - base.floor - board.HOLE[1].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "standoff",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_2_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.board.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.board.min_engagement, fastener.board.length - (board.PCB_TOP.z - board.PCB_BOTTOM.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "board.HOLE[1]",
+        "offset": [
+          0,
+          0,
+          "board.PCB_BOTTOM.z - depth - board.HOLE[1].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_3",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.board.pilot_diameter + 2*rules.standoff_wall_min, fastener.board.min_boss_od + rules.design_margin)",
+        "h": "board.PCB_BOTTOM.z - cavity.z0 + base.floor",
+        "top": "board.PCB_BOTTOM.z",
+        "height": "board.PCB_BOTTOM.z - cavity.z0"
+      },
+      "pose": {
+        "at": "board.HOLE[2]",
+        "offset": [
+          0,
+          0,
+          "cavity.z0 - base.floor - board.HOLE[2].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "standoff",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_3_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.board.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.board.min_engagement, fastener.board.length - (board.PCB_TOP.z - board.PCB_BOTTOM.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "board.HOLE[2]",
+        "offset": [
+          0,
+          0,
+          "board.PCB_BOTTOM.z - depth - board.HOLE[2].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_4",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.board.pilot_diameter + 2*rules.standoff_wall_min, fastener.board.min_boss_od + rules.design_margin)",
+        "h": "board.PCB_BOTTOM.z - cavity.z0 + base.floor",
+        "top": "board.PCB_BOTTOM.z",
+        "height": "board.PCB_BOTTOM.z - cavity.z0"
+      },
+      "pose": {
+        "at": "board.HOLE[3]",
+        "offset": [
+          0,
+          0,
+          "cavity.z0 - base.floor - board.HOLE[3].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "standoff",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "standoff_4_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.board.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.board.min_engagement, fastener.board.length - (board.PCB_TOP.z - board.PCB_BOTTOM.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "board.HOLE[3]",
+        "offset": [
+          0,
+          0,
+          "board.PCB_BOTTOM.z - depth - board.HOLE[3].z"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:mount_hole_to_standoff",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "lid",
+      "kind": "body",
+      "primitive": "box",
+      "params": {
+        "x": "base.x",
+        "y": "base.y",
+        "z": "cavity.wall"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "cavity.cx",
+          "cavity.cy",
+          "base.split"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "lid_plate",
+      "part": null,
+      "source": "rule:tray_lid.lid",
+      "free": [],
+      "color": "#c0504d",
+      "group": null
+    },
+    {
+      "id": "lid_lip",
+      "kind": "add",
+      "primitive": "shell",
+      "params": {
+        "x": "cavity.x - 2*rules.sliding_fit",
+        "y": "cavity.y - 2*rules.sliding_fit",
+        "engagement": "rules.lip_engagement + rules.design_margin",
+        "z": "engagement + lid.z",
+        "wall": "rules.lip_wall",
+        "floor": 0,
+        "open_top": 1,
+        "fit": "rules.sliding_fit",
+        "bottom": "base.split - engagement"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "cavity.cx",
+          "cavity.cy",
+          "base.split - engagement"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "lip",
+      "part": null,
+      "source": "rule:lid_to_fastening.lip",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_1",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.lid.min_boss_od + rules.design_margin, fastener.lid.pilot_diameter + 2*rules.boss_wall_min, fastener.lid.clearance_diameter + 2*(rules.min_ligament + rules.design_margin))",
+        "ax": "cavity.x0 + spec.board_clearance - 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "ay": "cavity.y0 + spec.board_clearance - 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "h": "base.split - cavity.z0 + base.floor"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "ax",
+          "ay",
+          "cavity.z0 - base.floor"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "boss",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_1_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.lid.min_engagement, fastener.lid.length - (lid.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_1.ax",
+          "boss_1.ay",
+          "base.split - depth"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_1_pad",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_1.d",
+        "h": "lid.z"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_1.ax",
+          "boss_1.ay",
+          "base.split"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "pad",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_1_lid_hole",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.clearance_diameter",
+        "h": "lid.z + 2*rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_1.ax",
+          "boss_1.ay",
+          "base.split - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "screw_hole",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_1_lip_notch",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_1.d + 2*rules.sliding_fit",
+        "h": "lid_lip.engagement + rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_1.ax",
+          "boss_1.ay",
+          "base.split - lid_lip.engagement - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "lip_notch",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_2",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.lid.min_boss_od + rules.design_margin, fastener.lid.pilot_diameter + 2*rules.boss_wall_min, fastener.lid.clearance_diameter + 2*(rules.min_ligament + rules.design_margin))",
+        "ax": "cavity.x1 - spec.board_clearance + 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "ay": "cavity.y0 + spec.board_clearance - 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "h": "base.split - cavity.z0 + base.floor"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "ax",
+          "ay",
+          "cavity.z0 - base.floor"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "boss",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_2_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.lid.min_engagement, fastener.lid.length - (lid.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_2.ax",
+          "boss_2.ay",
+          "base.split - depth"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_2_pad",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_2.d",
+        "h": "lid.z"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_2.ax",
+          "boss_2.ay",
+          "base.split"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "pad",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_2_lid_hole",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.clearance_diameter",
+        "h": "lid.z + 2*rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_2.ax",
+          "boss_2.ay",
+          "base.split - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "screw_hole",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_2_lip_notch",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_2.d + 2*rules.sliding_fit",
+        "h": "lid_lip.engagement + rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_2.ax",
+          "boss_2.ay",
+          "base.split - lid_lip.engagement - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "lip_notch",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_3",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.lid.min_boss_od + rules.design_margin, fastener.lid.pilot_diameter + 2*rules.boss_wall_min, fastener.lid.clearance_diameter + 2*(rules.min_ligament + rules.design_margin))",
+        "ax": "cavity.x0 + spec.board_clearance - 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "ay": "cavity.y1 - spec.board_clearance + 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "h": "base.split - cavity.z0 + base.floor"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "ax",
+          "ay",
+          "cavity.z0 - base.floor"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "boss",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_3_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.lid.min_engagement, fastener.lid.length - (lid.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_3.ax",
+          "boss_3.ay",
+          "base.split - depth"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_3_pad",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_3.d",
+        "h": "lid.z"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_3.ax",
+          "boss_3.ay",
+          "base.split"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "pad",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_3_lid_hole",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.clearance_diameter",
+        "h": "lid.z + 2*rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_3.ax",
+          "boss_3.ay",
+          "base.split - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "screw_hole",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_3_lip_notch",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_3.d + 2*rules.sliding_fit",
+        "h": "lid_lip.engagement + rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_3.ax",
+          "boss_3.ay",
+          "base.split - lid_lip.engagement - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "lip_notch",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_4",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "max(fastener.lid.min_boss_od + rules.design_margin, fastener.lid.pilot_diameter + 2*rules.boss_wall_min, fastener.lid.clearance_diameter + 2*(rules.min_ligament + rules.design_margin))",
+        "ax": "cavity.x1 - spec.board_clearance + 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "ay": "cavity.y1 - spec.board_clearance + 0.7071067811865476*(d/2 + spec.board_clearance)",
+        "h": "base.split - cavity.z0 + base.floor"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "ax",
+          "ay",
+          "cavity.z0 - base.floor"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "boss",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_4_pilot",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.pilot_diameter",
+        "h": "depth + rules.cut_overrun",
+        "depth": "(max(fastener.lid.min_engagement, fastener.lid.length - (lid.z))) + rules.design_margin"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_4.ax",
+          "boss_4.ay",
+          "base.split - depth"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "base",
+      "role": "pilot",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_4_pad",
+      "kind": "add",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_4.d",
+        "h": "lid.z"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_4.ax",
+          "boss_4.ay",
+          "base.split"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "pad",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_4_lid_hole",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "fastener.lid.clearance_diameter",
+        "h": "lid.z + 2*rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_4.ax",
+          "boss_4.ay",
+          "base.split - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "screw_hole",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "boss_4_lip_notch",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": "boss_4.d + 2*rules.sliding_fit",
+        "h": "lid_lip.engagement + rules.cut_overrun"
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          "boss_4.ax",
+          "boss_4.ay",
+          "base.split - lid_lip.engagement - rules.cut_overrun"
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "lid",
+      "role": "lip_notch",
+      "part": null,
+      "source": "rule:lid_to_fastening.corner_pilaster",
+      "free": [],
+      "color": null,
+      "group": null
+    }
+  ]
+}

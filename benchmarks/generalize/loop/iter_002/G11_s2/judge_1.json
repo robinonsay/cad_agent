@@ -1,0 +1,81 @@
+{
+ "id": "G11",
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.55,
+ "summary": "Gates G2 (pilot dia), G4 (fan) and G5 (exhaust) fail. A plain box with one DC opening: the heatsink, the fan with its lid intake opening and fan pilots, and all exhaust slots are missing. Board standoff pilots are 1.70 mm (M2) not 2.4-2.6. Lid plate is 2.4, not 4.8-6.0. Score is an estimate.",
+ "defects": [
+  {
+   "requirement_id": "L3.3.3.1 (G2; L2.3.3, L1.3)",
+   "where": "base.stl board standoff pilots at (2.5,2.5), (77.5,2.5), (2.5,57.5), (77.5,57.5), Z -6.7 to -0.6",
+   "what": "Standoff pilots are M2-sized and shallow",
+   "expected": "dia 2.4-2.6, depth >= 5.0 from top",
+   "observed": "dia 1.702; depth 5.1 (top at Z -1.6)",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.6.2.1 (G4; L2.6.2, L1.6)",
+   "where": "lid.stl plate Z 18.7-21.1 (ray casts at X 20, 40, 60, Y 30 hit 2 faces: solid)",
+   "what": "No fan pilots in the lid and no fan placed (layout.json holds only perfboard, DC jack and 2 capacitors)",
+   "expected": "4 pilots on the 32.0 pattern, dia 2.4-2.6, depth 4.0-(lid-0.8)",
+   "observed": "0",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.6.4.1 (G4; L2.6.4)",
+   "where": "whole case",
+   "what": "No fan frame: the 5.0 mm fan-to-tall-part gap is unverified",
+   "expected": "min gap >= 5.0",
+   "observed": "n/a, UNVERIFIED counts as FAIL",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.7.2.1 (G5; L2.7.2, L1.7)",
+   "where": "base.stl +X wall (inner X 81.1, outer 83.5); expected slots Y 12-56, Z 7-27",
+   "what": "No exhaust slots; rays at Y 15, 30, 45 and Z 10 are blocked by the +X wall",
+   "expected": "sum of slot area >= 567 mm2 (at least 8 slots, 2-4 wide, >= 10 tall)",
+   "observed": "0 mm2, 0 slots",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.6.5.1 / L3.6.5.2 (L2.6.5)",
+   "where": "lid.stl",
+   "what": "No intake opening in the lid",
+   "expected": "area 680-1158 mm2 inside the bore, centre within 0.5 of the fan axis",
+   "observed": "0 mm2",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.8.4.1 (L2.8.4)",
+   "where": "lid.stl plate Z 18.7-21.1",
+   "what": "Lid plate too thin",
+   "expected": "4.8-6.0",
+   "observed": "2.4",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.1.1.1 / L3.1.4.1 (L2.1.1)",
+   "where": "layout.json",
+   "what": "Heatsink (20 x 12 x 20) and fan not declared; capacitors placed at (30,30) and (40,30), \u00d810, touching each other (centres 10.0 apart)",
+   "expected": "layout names M-HS and M-FAN",
+   "observed": "M-HS and M-FAN absent",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.6.1.1, L3.6.2.2, L3.6.3.1, L3.6.3.2, L3.6.6.1, L3.7.1.1, L3.7.1.2, L3.7.3.1",
+   "where": "whole case",
+   "what": "All remaining fan and exhaust L3s are missing or unverified",
+   "expected": "as L1.6, L1.7",
+   "observed": "absent",
+   "severity": "major"
+  },
+  {
+   "requirement_id": "L3.2.1.1 (observation)",
+   "where": "base.stl",
+   "what": "Board clearance 1.1 to walls, solder side 4.1 (floor top -5.7, board bottom -1.6), DC opening dia 11.81 centred Y 30, Z 5.5 with 0.4 plug clearance; these pass",
+   "expected": "",
+   "observed": "",
+   "severity": "observation"
+  }
+ ]
+}

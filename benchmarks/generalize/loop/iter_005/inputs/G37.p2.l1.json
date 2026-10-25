@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Please have the design state where the motor, pinion, idler gear and 608 bearing are posed. The pinion is on the shaft, the idler and bearing share one axis, every axis is parallel, and the two gears lie in a single plane. Nothing should interfere apart from the intended contacts and the gear mesh.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The motor has to sit on the back face of the plate to within 0.1 mm. Its 22 mm pilot fits a register of 22.3 to 22.7 mm, and the shaft goes through with 3.0 mm or more of clearance. There are four M3 holes on the 31 mm square pattern, counterbored from the gear side, keeping 2.0 mm of web and edge material; the heads end up recessed by 0.2 to 1.0 mm and the declared screws bite 3.0 to 4.5 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "On the shaft, the 16 tooth module 1.5 pinion (27 mm tip diameter, 8 mm wide) should leave at least 2.0 mm of bare shaft beyond it, and stay clear of the plate and of the screw heads.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "Put the idler's axis 0.2 mm beyond the centre distance given by the gear parameters, measured from the motor axis: that is 36.2 mm (plus or minus 0.05), which leaves 0.50 to 0.65 mm from each gear's tip to the other's root.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.5",
+    "text": "The 32 tooth idler (51 mm tip diameter, 8 mm wide) turns on a 608 bearing. The bearing sits on a printed stub of 7.9 mm diameter (plus or minus 0.05) and rests against a shoulder, 9.5 to 11.5 mm in diameter and 1.0 mm (plus or minus 0.1) tall, that bears only on the inner ring. The stub projects 8.0 to 11.0 mm from the plate.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "Neither gear may be nearer than 0.48 to 0.70 mm to the front face of the plate, and no other printed part may intrude on a gear's rotating envelope by less than 0.45 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The stub has to take the tooth load. Taking the tooth force from a 0.4 N m motor at the pinion's pitch circle, the bending stress at the stub root must not exceed 5.0 MPa. The plate is 5.0 to 8.0 mm thick and leaves at least 3.0 mm of plate around the stub's shoulder.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "It should print on an FDM printer without supports, lying on its back face with the stub pointing up, with no unsupported overhang and at least half of its footprint box touching the bed.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The carrier must be a single manifold body in one shell, no bigger than 120 x 80 mm in plan and 30 mm tall.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Hand over a carrier STL, the OpenSCAD source, the declared poses and the agent's own report, and make sure that report agrees with an independent measurement.",
+    "method": "inspection"
+  }
+]

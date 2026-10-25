@@ -1,0 +1,54 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: A bracket that holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm body, tabs 32.5 mm overall, tab holes 2.0 mm on a 27.5 mm pitch, shaft up) in a pocket. The servo drops into the pocket from above with its tabs resting on a shelf, snug at about 0.2 mm per side with 0.3 to 1.5 mm between its bottom and the pocket floor, and is held by two M2 x 8 self-tapping screws through the tab holes into pilot holes in the shelf. The servo's cable leaves the end of the body opposite the shaft, so the pocket needs one slot through that end wall for the lead and its bend, no more than 3 mm bigger than the cable's exit volume on any side. The output shaft must be unobstructed within a 5 mm radius. The bracket's mounting base is 40 x 25 mm and 2.5 to 4 mm thick at two M3 clearance holes 30 mm apart (centres at least 3.2 mm from the edge), each with room for a screw head and a hex key. One printed part for an FDM printer, no supports, walls and floor at least 2 mm, no taller than 25 mm, and it must stay upright when tipped 5 degrees with the servo seated.
+
+Catalogue parts that may be in the request:
+- rpi_pico2: raspberry pi pico 2 (module; cable connector: usb connector (takes a micro-usb plug))
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- generic_tube: tube (generic)
+- generic_box: rectangular block (generic)
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{
+  "arduino_nano": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "arduino_uno_r3": {
+    "dc_exposed": "no",
+    "quantity": 0,
+    "usb_exposed": "no"
+  },
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "generic_tube": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "rpi_pico2": {
+    "exposed": "yes",
+    "quantity": 0
+  }
+}

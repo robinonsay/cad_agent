@@ -1,0 +1,1249 @@
+{
+  "designs": [
+    {
+      "id": "G01",
+      "title": "Arduino Nano box with snap lid",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "datum_placement",
+        "plug_envelope_opening",
+        "snap_fit",
+        "window",
+        "standoffs"
+      ],
+      "parts": [
+        "arduino_nano",
+        "plug_miniusb_b",
+        "led_5mm"
+      ],
+      "brief": "I need a small box for an Arduino Nano that I will leave on a shelf. The mini-USB port has to be reachable through one short end with the lid on, and three 5 mm status LEDs on the top face should be visible. The lid snaps on without screws and the base is printed flat in PLA."
+    },
+    {
+      "id": "G02",
+      "title": "Arduino Uno R3 case with vented screw lid",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "datum_placement",
+        "plug_envelope_opening",
+        "standoffs",
+        "vent_pattern",
+        "screw_boss",
+        "lid_removable"
+      ],
+      "parts": [
+        "arduino_uno_r3",
+        "plug_usb_b",
+        "plug_dc_barrel_5p5",
+        "screw_m3_selftap"
+      ],
+      "brief": "Please design a case for an Arduino Uno R3 that sits on four standoffs at the board's own mounting holes. The USB-B and the 5.5 mm barrel jack are on the same short side and must both be pluggable with their cables attached. Put a row of ventilation slots over the ATmega and screw the lid down with four M3 screws."
+    },
+    {
+      "id": "G03",
+      "title": "ESP32 DevKitC box with antenna end",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "datum_placement",
+        "plug_envelope_opening",
+        "snap_fit",
+        "keepout_clearance",
+        "lid_removable"
+      ],
+      "parts": [
+        "esp32_devkitc_v4",
+        "plug_microusb_b"
+      ],
+      "brief": "I have an ESP32-DevKitC V4 (54.4 x 27.9 mm) that has no mounting holes, so the box must hold it with ribs or clips. The micro-USB end must be open for a cable, and the antenna end needs 8 mm of empty space with no wall material above the module. Lid is removable and printed separately."
+    },
+    {
+      "id": "G04",
+      "title": "Raspberry Pi Zero 2 W case",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "datum_placement",
+        "plug_envelope_opening",
+        "standoffs",
+        "screw_boss",
+        "multi_body_assembly"
+      ],
+      "parts": [
+        "rpi_zero2w",
+        "plug_microusb_b",
+        "plug_minihdmi",
+        "screw_m2p5_selftap"
+      ],
+      "brief": "A two-part case for a Raspberry Pi Zero 2 W, held at its four 2.75 mm holes on the 58 x 23 mm pattern. I need openings for the mini-HDMI, the two micro-USB ports (data and power) and the microSD card slot, each with room for the plug body. Lid goes on with M2.5 screws."
+    },
+    {
+      "id": "G05",
+      "title": "ESP32 status display with OLED window and buttons",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "datum_placement",
+        "window",
+        "button_actuation",
+        "standoffs",
+        "plug_envelope_opening"
+      ],
+      "parts": [
+        "esp32_devkitc_v4",
+        "oled_ssd1306_096",
+        "button_tact_6mm",
+        "plug_microusb_b"
+      ],
+      "brief": "Enclosure for an ESP32 DevKitC with a 0.96 inch SSD1306 OLED on the front and two 6 mm tactile buttons beside it. The window must show the 21.7 x 10.9 mm active area with at least 1 mm margin and no clipping of the viewing area, and the buttons need a plunger that actually presses the switch. The USB port stays accessible from the back."
+    },
+    {
+      "id": "G06",
+      "title": "Pico clock with sloped 1602 LCD",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "window",
+        "angled_face",
+        "stacked_boards",
+        "datum_placement",
+        "plug_envelope_opening",
+        "standoffs"
+      ],
+      "parts": [
+        "lcd1602_hd44780",
+        "rpi_pico2",
+        "plug_microusb_b",
+        "screw_m2_selftap"
+      ],
+      "brief": "I want a desk clock: a 1602 LCD module (80 x 36 mm, viewport 64.5 x 14 mm) tilted 30 degrees from the table, with a Pico 2 mounted behind it. The front face is sloped, the LCD is fixed on its four 2.5 mm holes, and the Pico's micro-USB must open through the back. It prints without supports."
+    },
+    {
+      "id": "G07",
+      "title": "Pi Zero 2 W with perfboard hat, stacked",
+      "family": "electronics_enclosure",
+      "split": "holdout",
+      "capabilities": [
+        "stacked_boards",
+        "standoffs",
+        "tolerance_stack",
+        "plug_envelope_opening",
+        "screw_boss",
+        "datum_placement"
+      ],
+      "parts": [
+        "rpi_zero2w",
+        "perfboard",
+        "header_female_2p54",
+        "plug_microusb_b",
+        "screw_m2p5_selftap"
+      ],
+      "brief": "A case holding a Raspberry Pi Zero 2 W with a 65 x 30 mm perfboard hat stacked above it on 2x20 female headers, 9 mm between the boards. The hat carries tall parts up to 12 mm so the lid must clear them by 1.5 mm. Both micro-USB ports on the Pi must stay accessible and the stack is supported on the Pi's four holes."
+    },
+    {
+      "id": "G08",
+      "title": "Pico battery node with sliding battery door",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "battery_retention",
+        "sliding_fit",
+        "datum_placement",
+        "plug_envelope_opening",
+        "multi_body_assembly"
+      ],
+      "parts": [
+        "rpi_pico2",
+        "cell_18650",
+        "slide_sk12d",
+        "plug_microusb_b"
+      ],
+      "brief": "Weatherproof-ish sensor node with a Pico 2 and one 18650 cell (18.6 x 65.2 mm). The battery sits in a printed cradle with a sliding door on the bottom that retains it, the SK12D slide switch pokes through the side, and the micro-USB opens at one end. Door clearance should be about 0.3 mm per side."
+    },
+    {
+      "id": "G09",
+      "title": "9V battery box with hinged lid and toggle",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "hinge",
+        "battery_retention",
+        "panel_mount_switch",
+        "plug_envelope_opening",
+        "multi_body_assembly"
+      ],
+      "parts": [
+        "battery_9v_pp3",
+        "toggle_mts102",
+        "dc_jack_pj002a",
+        "plug_dc_barrel_5p5",
+        "dowel_pin_generic"
+      ],
+      "brief": "A pocket box for a 9V PP3 battery (26.5 x 17.5 x 48.5 mm) with a toggle switch on top and a panel DC jack on one end. The lid is hinged with a 3 mm steel pin and closes with a snap latch. The battery must be retained, and the DC plug body has to fit when the jack is used."
+    },
+    {
+      "id": "G10",
+      "title": "Rotary encoder controller with Nano",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "panel_mount_bushing",
+        "shaft_clearance",
+        "datum_placement",
+        "window",
+        "plug_envelope_opening"
+      ],
+      "parts": [
+        "encoder_ec11",
+        "arduino_nano",
+        "plug_miniusb_b",
+        "oled_ssd1306_096",
+        "screw_m3_selftap"
+      ],
+      "brief": "A small control box for an Arduino Nano with an EC11 rotary encoder (7 mm threaded bushing, 6 mm shaft) on the top panel and a small OLED window next to it. The panel is 3 mm thick and the encoder's nut must seat on the panel with the thread projecting. Mini-USB at the back end."
+    },
+    {
+      "id": "G11",
+      "title": "Fan-cooled power module box",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "vent_pattern",
+        "thermal_airflow",
+        "bolt_pattern",
+        "plug_envelope_opening",
+        "datum_placement",
+        "standoffs"
+      ],
+      "parts": [
+        "fan_40x40x10",
+        "perfboard",
+        "dc_jack_pj002a",
+        "plug_dc_barrel_5p5",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "Enclosure for an 80 x 60 mm perfboard power module that dissipates around 8 W. A 40 x 40 x 10 mm fan blows in through the lid on its 32 mm hole pattern and exhaust slots line the opposite wall, with the DC input jack on the end. Keep the fan intake at least 5 mm from the nearest tall component."
+    },
+    {
+      "id": "G12",
+      "title": "Wall-mount ESP32 box with LED light pipes",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "wall_mount",
+        "led_lightpipe",
+        "counterbore",
+        "datum_placement",
+        "plug_envelope_opening",
+        "standoffs"
+      ],
+      "parts": [
+        "esp32_devkitc_v4",
+        "led_5mm",
+        "plug_microusb_b"
+      ],
+      "brief": "A wall-mounted ESP32 enclosure with two mounting ears taking 4.2 mm countersunk wood screws, 100 mm apart. Three 5 mm LEDs shine through the lid; the LEDs sit flush with the outside and must not fall out. The ear slots must leave at least 3 mm to the box edge."
+    },
+    {
+      "id": "G13",
+      "title": "Pico macro pad with four buttons",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "button_actuation",
+        "pattern_array",
+        "datum_placement",
+        "plug_envelope_opening",
+        "standoffs"
+      ],
+      "parts": [
+        "rpi_pico2",
+        "header_female_2p54",
+        "button_tact_6mm",
+        "perfboard",
+        "plug_microusb_b"
+      ],
+      "brief": "A 2 x 2 macro pad: four 6 mm tactile switches on a 70 x 50 perfboard at 19.05 mm pitch with a Pico 2 above them. Each button plunger comes up through a top plate hole with 0.4 mm clearance and 1.5 mm travel before bottoming. Micro-USB opens at the rear."
+    },
+    {
+      "id": "G14",
+      "title": "Nano buzzer box with dovetail slide lid",
+      "family": "electronics_enclosure",
+      "split": "train",
+      "capabilities": [
+        "sliding_fit",
+        "vent_pattern",
+        "datum_placement",
+        "plug_envelope_opening",
+        "standoffs"
+      ],
+      "parts": [
+        "arduino_nano",
+        "buzzer_12mm",
+        "plug_miniusb_b"
+      ],
+      "brief": "An alarm box with an Arduino Nano and a 12 mm piezo buzzer in a base with a dovetail rail; the lid slides on along the long axis with 0.25 mm fit clearance. A ring of sound holes on the lid sits over the buzzer. The mini-USB end stays open."
+    },
+    {
+      "id": "G15",
+      "title": "LiPo charger pocket box with USB-C",
+      "family": "electronics_enclosure",
+      "split": "holdout",
+      "capabilities": [
+        "battery_retention",
+        "plug_envelope_opening",
+        "pocket_fit",
+        "snap_fit",
+        "panel_mount_switch"
+      ],
+      "parts": [
+        "tp4056_usbc_module",
+        "lipo_503450",
+        "plug_usbc",
+        "slide_sk12d"
+      ],
+      "brief": "A compact box for a 5 x 34 x 50 mm LiPo, a TP4056 USB-C charger board (26 x 17 mm) and a slide switch. The battery sits in a pocket with 0.5 mm side clearance and cannot press on the charger board. The USB-C plug overmold (12.4 x 6.5 mm) must reach the port, and the lid is a snap fit."
+    },
+    {
+      "id": "G16",
+      "title": "NEMA17 motor plate for 2020 extrusion",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "bolt_pattern",
+        "datum_placement",
+        "slot_adjust",
+        "load_path",
+        "slot_engagement"
+      ],
+      "parts": [
+        "nema17_motor",
+        "extrusion_2020",
+        "tnut_2020_m5",
+        "bolt_m5_iso7380",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "I need a flat motor plate that mounts a NEMA 17 (42.3 mm square, 31 mm hole pattern, 22 mm pilot) to a 2020 aluminium extrusion with two M5 bolts into drop-in T-nuts. The M5 holes are slotted 6 mm so I can tension a belt. The plate is 5 mm thick and prints on its face."
+    },
+    {
+      "id": "G17",
+      "title": "NEMA17 L-bracket with pilot register",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "bolt_pattern",
+        "counterbore",
+        "load_path",
+        "print_orientation",
+        "datum_placement"
+      ],
+      "parts": [
+        "nema17_motor",
+        "bolt_m3_iso4762",
+        "bolt_m4_iso4762"
+      ],
+      "brief": "An L-shaped NEMA 17 motor bracket: vertical face takes the motor on the 31 mm pattern with a 22.5 mm pilot register, horizontal flange has two M4 holes 40 mm apart. The motor shaft end passes through the face, and the bracket should survive about 20 N at the shaft. Orient it so layers do not split at the bend."
+    },
+    {
+      "id": "G18",
+      "title": "608 bearing split pillow block",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "bearing_press_fit",
+        "captive_nut",
+        "clamp_preload",
+        "split_clamp",
+        "bolt_pattern",
+        "load_path"
+      ],
+      "parts": [
+        "bearing_608",
+        "bolt_m3_iso4762",
+        "nut_m3"
+      ],
+      "brief": "A two-piece pillow block for a 608 bearing (8 x 22 x 7 mm) that is clamped, not glued. Two M3 bolts with captive hex nuts pull the halves together, and the bearing bore pocket should be about 0.1 mm under 22 mm so the clamp holds it. The base has two M4 mounting holes 40 mm apart."
+    },
+    {
+      "id": "G19",
+      "title": "625 idler block for 2020 slot",
+      "family": "mechanical_mount",
+      "split": "holdout",
+      "capabilities": [
+        "bearing_press_fit",
+        "shaft_clearance",
+        "slot_engagement",
+        "bolt_pattern",
+        "sliding_fit"
+      ],
+      "parts": [
+        "bearing_625",
+        "extrusion_2020",
+        "tnut_2020_m5",
+        "bolt_m5_iso7380"
+      ],
+      "brief": "An idler block that carries a 625 bearing (5 x 16 x 5 mm) on an M5 bolt and bolts to the T-slot of a 2020 extrusion. The block needs a 6.2 mm slot-engagement tongue that slides in the slot with 0.2 mm clearance. The bearing outer ring must spin free of the block with 1 mm side clearance."
+    },
+    {
+      "id": "G20",
+      "title": "SG90 servo bracket",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "bolt_pattern",
+        "pocket_fit",
+        "cable_routing",
+        "tolerance_stack",
+        "datum_placement"
+      ],
+      "parts": [
+        "servo_sg90",
+        "screw_m2_selftap"
+      ],
+      "brief": "A bracket that holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm, tabs 32.5 mm overall) in a pocket with its tabs resting on a shelf and two M2 self-tappers through the tab holes. The cable exits a slot on one side and the output shaft must be unobstructed with 5 mm clear radius. Mounting base is 40 x 25 mm with two M3 holes."
+    },
+    {
+      "id": "G21",
+      "title": "MG996R servo mount with gussets",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "load_path",
+        "pocket_fit",
+        "bolt_pattern",
+        "tolerance_stack",
+        "slot_engagement"
+      ],
+      "parts": [
+        "servo_mg996r",
+        "bolt_m4_iso4762",
+        "tnut_2020_m5",
+        "extrusion_2020"
+      ],
+      "brief": "A heavy-duty mount for an MG996R servo (40.7 x 19.7 x 42.9 mm, tab hole spacing 49.5 mm) onto a 2020 extrusion, with two gussets to resist a 1.5 N m torque reaction. The servo drops in a pocket with 0.3 mm clearance and is fixed with four M4 bolts. Show the load path to the extrusion bolts."
+    },
+    {
+      "id": "G22",
+      "title": "2020 corner bracket with captive nuts",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "slot_engagement",
+        "captive_nut",
+        "load_path",
+        "bolt_pattern",
+        "print_orientation"
+      ],
+      "parts": [
+        "extrusion_2020",
+        "bolt_m5_iso7380",
+        "tnut_2020_m5"
+      ],
+      "brief": "A 90 degree corner bracket joining two 2020 extrusions, one bolt into each T-slot, with captive hex pockets for M5 nuts so I can assemble it from the outside. The gussets should be at least 4 mm thick. Print orientation matters because the bolt loads are tensile across the layers."
+    },
+    {
+      "id": "G23",
+      "title": "RPi camera pocket mount with 1/4-20 base",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "pocket_fit",
+        "window",
+        "thread_boss",
+        "captive_nut",
+        "print_orientation"
+      ],
+      "parts": [
+        "rpi_camera_v2",
+        "camera_screw_1_4_20"
+      ],
+      "brief": "A holder for a Raspberry Pi camera v2 (25 x 24 x 9 mm, holes 21 x 12.5 mm) with the lens window clear of any wall at 8 mm diameter. The base has a 1/4-20 hex nut pocket so I can put it on a tripod. The ribbon cable exits the back through a 17 mm wide slot."
+    },
+    {
+      "id": "G24",
+      "title": "Camera clamp for 2020 extrusion",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "slot_engagement",
+        "load_path",
+        "sliding_fit",
+        "bolt_pattern",
+        "thread_boss"
+      ],
+      "parts": [
+        "camera_screw_1_4_20",
+        "extrusion_2020",
+        "bolt_m5_iso7380",
+        "tnut_2020_m5"
+      ],
+      "brief": "A clamp that grips a 2020 extrusion with an M5 bolt into a T-nut and presents a 1/4-20 tripod stud on top for a small camera. The stud boss must carry a 3 N m torque without cracking. The clamp slides along the slot until tightened."
+    },
+    {
+      "id": "G25",
+      "title": "PVC pipe clamp to 2020 profile",
+      "family": "mechanical_mount",
+      "split": "holdout",
+      "capabilities": [
+        "clamp_preload",
+        "split_clamp",
+        "captive_nut",
+        "bolt_pattern",
+        "slot_engagement"
+      ],
+      "parts": [
+        "generic_tube",
+        "extrusion_2020",
+        "bolt_m4_iso4762",
+        "nut_m4"
+      ],
+      "brief": "A clamp holds a 32 mm outside diameter PVC pipe to the face of a 2020 extrusion. It is a two-piece strap with M4 bolts and captive nuts, and the clamp ID should be 32.3 mm so the bolts close a 0.5 mm gap. A back plate takes two M5 bolts into the T-slot."
+    },
+    {
+      "id": "G26",
+      "title": "Snap tube clip for 12 mm rod",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "snap_fit",
+        "wall_mount",
+        "counterbore",
+        "tolerance_stack",
+        "print_orientation"
+      ],
+      "parts": [
+        "generic_tube",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "A C-shaped snap clip for a 12 mm tube that mounts to a wall with two M3 countersunk screws 30 mm apart. The mouth opening is 10.5 mm so the tube pushes in and snaps; arm thickness 2.2 mm. The C should print with the open side up and its layer lines along the flex direction."
+    },
+    {
+      "id": "G27",
+      "title": "LM8UU linear bearing carriage",
+      "family": "mechanical_mount",
+      "split": "train",
+      "capabilities": [
+        "bearing_press_fit",
+        "sliding_fit",
+        "bolt_pattern",
+        "captive_nut",
+        "tolerance_stack",
+        "clamp_preload"
+      ],
+      "parts": [
+        "rod_8mm",
+        "lm8uu",
+        "bolt_m3_iso4762",
+        "nut_m3"
+      ],
+      "brief": "A carriage block carrying one LM8UU linear bearing (8 x 15 x 24 mm) on an 8 mm smooth rod, with a flat top plate 40 x 30 mm with four M3 holes on a 30 x 20 mm pattern. The bearing is retained by a zip-tie groove and a 0.1 mm press. The rod must slide through with the bearing seated, no touching the block."
+    },
+    {
+      "id": "G28",
+      "title": "Spur gear pair housing, 1 mm module",
+      "family": "housing_assembly",
+      "split": "holdout",
+      "capabilities": [
+        "gear_mesh_center_distance",
+        "bearing_press_fit",
+        "multi_body_assembly",
+        "tolerance_stack",
+        "rotation_clearance"
+      ],
+      "parts": [
+        "gear_spur_generic",
+        "bearing_625",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "A two-half housing for a 20 tooth and a 40 tooth module 1 spur gear pair, 6 mm face width. Center distance should come out at the pitch value plus 0.15 mm backlash allowance, each shaft carried by two 625 bearings. The gears must clear the housing walls by 2 mm and the halves are held by four M3 bolts."
+    },
+    {
+      "id": "G29",
+      "title": "40 mm fan to 25 mm round duct",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "duct_transition",
+        "bolt_pattern",
+        "thermal_airflow",
+        "concentric_step",
+        "multi_body_assembly"
+      ],
+      "parts": [
+        "fan_40x40x10",
+        "generic_tube",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "A shroud that mounts a 40 x 40 x 10 mm fan (hole pitch 32 mm) and tapers smoothly into a 25 mm OD spigot of 40 mm length. The transition should stay below 45 degrees so it prints without supports, and the wall stays at least 1.6 mm. Four M3 bolts hold it on."
+    },
+    {
+      "id": "G30",
+      "title": "60 mm fan to heatsink duct",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "thermal_airflow",
+        "duct_transition",
+        "bolt_pattern",
+        "keepout_clearance",
+        "multi_body_assembly"
+      ],
+      "parts": [
+        "fan_60x60x25",
+        "generic_box",
+        "bolt_m4_iso4762"
+      ],
+      "brief": "A duct that connects a 60 x 60 x 25 mm fan (50 mm hole pitch) to a 50 x 20 mm heatsink 30 mm tall, at the heatsink's leading face. The fan blows through a smoothly changing section into the heatsink fins with 1 mm side seals. I need to reach the fan screws with a driver from above."
+    },
+    {
+      "id": "G31",
+      "title": "GT2 idler block with two 623 bearings",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "bearing_press_fit",
+        "belt_geometry",
+        "shaft_clearance",
+        "slot_adjust",
+        "multi_body_assembly"
+      ],
+      "parts": [
+        "bearing_623",
+        "gt2_belt_6mm",
+        "bolt_m3_iso4762",
+        "nut_m3"
+      ],
+      "brief": "An idler block for a 6 mm GT2 belt using two 623 bearings (3 x 10 x 4 mm) stacked on an M3 bolt with a belt channel 7 mm wide. The belt runs straight through with 0.5 mm side clearance and the block moves in a 5 mm slot for belt tension."
+    },
+    {
+      "id": "G32",
+      "title": "NEMA17 pulley belt guard",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "belt_geometry",
+        "keepout_clearance",
+        "rotation_clearance",
+        "multi_body_assembly",
+        "bolt_pattern"
+      ],
+      "parts": [
+        "nema17_motor",
+        "gt2_pulley_20t",
+        "gt2_belt_6mm",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "A guard housing over a 20 tooth GT2 pulley (16 mm tooth OD) on a NEMA 17 shaft. The guard must clear the pulley by 2 mm all around while leaving a slot for the 6 mm belt on one side. Fasten it with two of the motor's M3 face holes on the 31 mm pattern."
+    },
+    {
+      "id": "G33",
+      "title": "Pin hinge pair, two leaves",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "hinge",
+        "rotation_clearance",
+        "multi_body_assembly",
+        "sliding_fit",
+        "bolt_pattern"
+      ],
+      "parts": [
+        "dowel_pin_generic",
+        "heatset_m3",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "Two printed hinge leaves joined by a 3 mm steel pin, 40 mm long, each leaf 25 x 40 mm with two heat-set M3 inserts. The hinge opens 0 to 180 degrees with 0.3 mm clearance between knuckles and 0.2 mm on the pin. The leaves must not collide through the whole swing."
+    },
+    {
+      "id": "G34",
+      "title": "Sliding drawer with rails and magnet detent",
+      "family": "housing_assembly",
+      "split": "holdout",
+      "capabilities": [
+        "sliding_fit",
+        "magnet_pocket",
+        "multi_body_assembly",
+        "tolerance_stack",
+        "rotation_clearance"
+      ],
+      "parts": [
+        "magnet_disc_6x3"
+      ],
+      "brief": "A small parts drawer 80 x 60 x 25 mm that slides in a housing on two dovetail rails with 0.3 mm clearance per side. A 6 x 3 mm neodymium magnet pocket in the drawer and another in the housing hold it closed with the magnets 0.5 mm apart. Stop the drawer at 70 mm travel."
+    },
+    {
+      "id": "G35",
+      "title": "Cable chain link pair",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "hinge",
+        "rotation_clearance",
+        "multi_body_assembly",
+        "print_in_place_clearance",
+        "tolerance_stack"
+      ],
+      "parts": [
+        "generic_tube"
+      ],
+      "brief": "Two links of a cable chain for a 6.5 mm cable, printed in place with 0.35 mm clearance on the pivot. Each link has an inner section 12 x 10 mm and bends 30 degrees either way before a stop. Print flat without supports."
+    },
+    {
+      "id": "G36",
+      "title": "Potentiometer knob with captive set screw",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "shaft_clearance",
+        "captive_nut",
+        "press_fit",
+        "multi_body_assembly",
+        "panel_mount_bushing"
+      ],
+      "parts": [
+        "pot_rk09",
+        "nut_m3",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "A knob 24 mm in diameter and 18 mm tall for the RK09 potentiometer (6 mm D-shaft, 7 mm bushing) with a set screw M3 radial hole and a captive hex pocket. Include the 3 mm thick panel with the 7.2 mm bushing hole. The knob skirt must clear the panel by 1 mm."
+    },
+    {
+      "id": "G37",
+      "title": "Motor pinion and idler gear carrier",
+      "family": "housing_assembly",
+      "split": "train",
+      "capabilities": [
+        "gear_mesh_center_distance",
+        "bearing_press_fit",
+        "load_path",
+        "multi_body_assembly",
+        "bolt_pattern"
+      ],
+      "parts": [
+        "nema17_motor",
+        "gear_spur_generic",
+        "bearing_608"
+      ],
+      "brief": "A carrier plate that mounts a NEMA 17 on its 31 mm pattern, with a 16 tooth module 1.5 pinion on the shaft driving a 32 tooth idler on a 608 bearing. Set the idler center distance from the gear parameters plus 0.2 mm, and include a 0.5 mm gap between gears and plate."
+    },
+    {
+      "id": "G38",
+      "title": "Perfboard soldering holder",
+      "family": "fixture_adapter",
+      "split": "train",
+      "capabilities": [
+        "pocket_fit",
+        "print_orientation",
+        "keepout_clearance",
+        "datum_placement",
+        "magnet_pocket"
+      ],
+      "parts": [
+        "perfboard",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "A tilting holder for a 70 x 50 mm perfboard so I can solder it upside down, with four corner pins at the board's 3 mm holes and a 10 mm height keep-out under the board for component bodies. The base is heavy enough not to tip at a 20 degree tilt and prints flat."
+    },
+    {
+      "id": "G39",
+      "title": "2020 end drill guide for M5 tap",
+      "family": "fixture_adapter",
+      "split": "holdout",
+      "capabilities": [
+        "drill_guide",
+        "datum_placement",
+        "slot_engagement",
+        "pocket_fit",
+        "tolerance_stack"
+      ],
+      "parts": [
+        "extrusion_2020",
+        "generic_tube"
+      ],
+      "brief": "A jig that clamps onto the end of a 2020 extrusion and centres a 4.2 mm drill on the center bore (M5 tap drill). Guide bushing hole is 4.3 mm and must be coaxial within 0.2 mm of the profile centre. The jig has a 20.2 mm square pocket 15 mm deep."
+    },
+    {
+      "id": "G40",
+      "title": "Pico mounting-hole drill guide",
+      "family": "fixture_adapter",
+      "split": "train",
+      "capabilities": [
+        "drill_guide",
+        "datum_placement",
+        "bolt_pattern",
+        "pocket_fit"
+      ],
+      "parts": [
+        "rpi_pico2"
+      ],
+      "brief": "A flat guide for drilling the Pico 2 mounting-hole pattern into a panel: two or four 2.1 mm holes 47.0 x 11.4 mm apart with guide hole 2.3 mm. The guide locates on a panel edge and has a recess for the Pico outline so I can check position. Hole centres must hit the pattern to within 0.1 mm."
+    },
+    {
+      "id": "G41",
+      "title": "Pico header soldering jig",
+      "family": "fixture_adapter",
+      "split": "train",
+      "capabilities": [
+        "pocket_fit",
+        "datum_placement",
+        "pattern_array",
+        "print_orientation",
+        "keepout_clearance"
+      ],
+      "parts": [
+        "rpi_pico2",
+        "header_male_2p54",
+        "perfboard"
+      ],
+      "brief": "A jig that holds two 20-pin male headers vertical (2.54 mm pitch, 17.78 mm between rows) while I solder a Pico onto them. Pin guide holes are 1.0 mm and the Pico rests on a shelf at the correct standoff height. The jig also has a 70 x 50 perfboard cradle."
+    },
+    {
+      "id": "G42",
+      "title": "16 mm hose to 25 mm pipe adapter",
+      "family": "fixture_adapter",
+      "split": "train",
+      "capabilities": [
+        "concentric_step",
+        "tolerance_stack",
+        "print_orientation",
+        "sliding_fit"
+      ],
+      "parts": [
+        "generic_tube"
+      ],
+      "brief": "A hose adapter from a 16 mm inner diameter hose onto a 25 mm OD pipe: a barbed 16 mm end with three ribs 0.8 mm tall, a 2 mm wall, and a socket for the 25 mm pipe 0.15 mm loose, 20 mm deep. Overall length 60 mm and it must print upright without supports."
+    },
+    {
+      "id": "G43",
+      "title": "40 to 50 mm PVC reducer with stop",
+      "family": "fixture_adapter",
+      "split": "train",
+      "capabilities": [
+        "concentric_step",
+        "tolerance_stack",
+        "print_orientation",
+        "sliding_fit"
+      ],
+      "parts": [
+        "generic_tube"
+      ],
+      "brief": "A reducer that slides over a 40 mm pipe on one side and into a 50 mm pipe's inside on the other, with a shoulder stop at 15 mm depth on each. Wall thickness 2.4 mm, friction fit with 0.15 mm interference allowance. Printed vertically."
+    },
+    {
+      "id": "G44",
+      "title": "Screwdriver rack with pocketed holders",
+      "family": "fixture_adapter",
+      "split": "holdout",
+      "capabilities": [
+        "pocket_fit",
+        "pattern_array",
+        "wall_mount",
+        "load_path"
+      ],
+      "parts": [
+        "generic_cylinder"
+      ],
+      "brief": "A wall-mounted rack holding six screwdrivers in pockets 25 mm deep with the handle diameters 20, 22, 24, 26, 28 and 30 mm at 38 mm pitch. Pocket clearance 0.4 mm per side, wall mount with two 5 mm screws and a back plate 6 mm thick. It must hold 1.5 kg in total."
+    },
+    {
+      "id": "G45",
+      "title": "Nozzle and wrench organiser with magnets",
+      "family": "fixture_adapter",
+      "split": "train",
+      "capabilities": [
+        "pocket_fit",
+        "magnet_pocket",
+        "pattern_array",
+        "tolerance_stack"
+      ],
+      "parts": [
+        "generic_cylinder",
+        "generic_box",
+        "magnet_disc_6x3"
+      ],
+      "brief": "A tray for six M6 hotend nozzles (hex 7 mm AF, 12 mm tall, pocket clearance 0.3 mm), a 7 mm combination wrench pocket 120 x 14 x 4 mm, and four 6 x 3 mm magnet pockets underneath that keep the tray on a steel surface. Magnets sit 0.5 mm below the base surface."
+    },
+    {
+      "id": "G46",
+      "title": "Handheld Pico game console",
+      "family": "combination",
+      "split": "holdout",
+      "capabilities": [
+        "window",
+        "button_actuation",
+        "battery_retention",
+        "stacked_boards",
+        "plug_envelope_opening",
+        "snap_fit",
+        "multi_body_assembly",
+        "datum_placement",
+        "panel_mount_switch"
+      ],
+      "parts": [
+        "rpi_pico2",
+        "oled_ssd1306_096",
+        "lipo_503450",
+        "tp4056_usbc_module",
+        "button_tact_6mm",
+        "slide_sk12d",
+        "plug_usbc"
+      ],
+      "brief": "A handheld device 110 x 60 x 22 mm: Pico 2 on top of a 5 x 34 x 50 mm LiPo and TP4056 board, an OLED window in front, six tactile buttons around it, a slide power switch and a USB-C port on the bottom end. The two halves snap together and the battery must not press on any solder joints."
+    },
+    {
+      "id": "G47",
+      "title": "Motor with gearbox and sensor bracket",
+      "family": "combination",
+      "split": "train",
+      "capabilities": [
+        "pocket_fit",
+        "magnet_pocket",
+        "window",
+        "bolt_pattern",
+        "tolerance_stack",
+        "load_path"
+      ],
+      "parts": [
+        "n20_gearmotor",
+        "magnet_disc_6x3",
+        "hc_sr04",
+        "bolt_m3_iso4762"
+      ],
+      "brief": "A robot-base bracket holding an N20 gearmotor (12 x 10 mm body, 3 mm D shaft) in a clamp pocket and an HC-SR04 ultrasonic sensor (45 x 20 mm, 16 mm transducers at 26 mm pitch) 40 mm forward. A 6 x 3 mm magnet pocket at the shaft end for an encoder. Two M3 bolts fix the whole bracket to the chassis."
+    },
+    {
+      "id": "G48",
+      "title": "NEMA17 belt carriage with limit switch",
+      "family": "combination",
+      "split": "holdout",
+      "capabilities": [
+        "load_path",
+        "belt_geometry",
+        "bolt_pattern",
+        "slot_engagement",
+        "keepout_clearance"
+      ],
+      "parts": [
+        "nema17_motor",
+        "gt2_pulley_20t",
+        "microswitch_kw12",
+        "extrusion_2020",
+        "tnut_2020_m5",
+        "bolt_m5_iso7380"
+      ],
+      "brief": "A drive end plate for a 2020 axis: NEMA 17 on the 31 mm pattern with a 20-tooth GT2 pulley, 6 mm belt, and a microswitch (KW12) limit trigger. The plate bolts to the extrusion with two M5 bolts into T-nuts. The switch actuator must clear the belt by 3 mm and trip at 1.0 mm over-travel."
+    },
+    {
+      "id": "G49",
+      "title": "Pan-tilt camera pod with two servos",
+      "family": "combination",
+      "split": "train",
+      "capabilities": [
+        "hinge",
+        "rotation_clearance",
+        "pocket_fit",
+        "window",
+        "cable_routing",
+        "multi_body_assembly"
+      ],
+      "parts": [
+        "servo_sg90",
+        "rpi_camera_v2",
+        "screw_m2_selftap"
+      ],
+      "brief": "A two-axis camera pod: two SG90 servos, one rotating the other, and a Pi camera v2 (25 x 24 x 9 mm) with a lens window. The pan servo sits in the base, the tilt servo in a yoke, with both ranges +/- 60 degrees clear of collision. Cable slots for each servo and the ribbon."
+    },
+    {
+      "id": "G50",
+      "title": "Fan-cooled Pi Zero 2 W console with OLED and encoder",
+      "family": "combination",
+      "split": "train",
+      "capabilities": [
+        "vent_pattern",
+        "thermal_airflow",
+        "window",
+        "panel_mount_bushing",
+        "stacked_boards",
+        "snap_fit",
+        "plug_envelope_opening",
+        "datum_placement"
+      ],
+      "parts": [
+        "rpi_zero2w",
+        "fan_40x40x10",
+        "oled_ssd1306_096",
+        "encoder_ec11",
+        "plug_microusb_b"
+      ],
+      "brief": "A desktop console: Pi Zero 2 W with a 40 mm fan above it on 32 mm pitch, OLED window and EC11 encoder on the front panel, and both micro-USB ports exposed at the rear. Vents on the sides, and the Pi's heat must have an exhaust path. The case closes with snap latches."
+    }
+  ],
+  "parts": [
+    {
+      "id": "arduino_nano",
+      "kind": "module",
+      "datasheet_note": "Arduino Nano (A000005) datasheet/Eagle files: PCB 45 x 18 mm, 4 mounting holes ~1.7 mm, mini-USB B receptacle on a short edge, 2x15 header 2.54 mm pitch 15.24 mm apart; check against official drawing."
+    },
+    {
+      "id": "arduino_uno_r3",
+      "kind": "module",
+      "datasheet_note": "Arduino Uno R3 datasheet mechanical drawing: PCB 68.6 x 53.3 mm, four 3.2 mm holes at (14.0,2.5),(15.3,50.7),(66.1,7.6),(66.1,35.5) mm, USB-B 12 x 11 x 16 mm and DC jack 9 x 14 x 11 mm on one short edge."
+    },
+    {
+      "id": "esp32_devkitc_v4",
+      "kind": "module",
+      "datasheet_note": "Espressif ESP32-DevKitC V4 guide: board 54.4 x 27.9 mm, no mounting holes, micro-USB B at one short end, 2x19 headers 25.4 mm apart, antenna keep-out at the other end."
+    },
+    {
+      "id": "rpi_zero2w",
+      "kind": "module",
+      "datasheet_note": "Raspberry Pi Zero 2 W mechanical drawing: 65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern (3.5 mm from edges), mini-HDMI, two micro-USB and microSD ports on the long/short edges, 40-pin GPIO footprint."
+    },
+    {
+      "id": "tp4056_usbc_module",
+      "kind": "module",
+      "datasheet_note": "Common TP4056 USB-C charger board (vendor datasheet/drawing): about 26 x 17 x 4 mm, USB-C receptacle on a short edge; approximate, flag uncertainty."
+    },
+    {
+      "id": "rpi_camera_v2",
+      "kind": "module",
+      "datasheet_note": "Raspberry Pi Camera Module v2 mechanical drawing: 25 x 24 x 9 mm, four 2.2 mm holes on a 21 x 12.5 mm pattern, lens 8 mm diameter, FFC connector on the rear."
+    },
+    {
+      "id": "hc_sr04",
+      "kind": "module",
+      "datasheet_note": "HC-SR04 ultrasonic sensor datasheet: PCB 45 x 20 mm, two 16 mm transducers at 26 mm centre spacing, overall height about 15 mm."
+    },
+    {
+      "id": "oled_ssd1306_096",
+      "kind": "display",
+      "datasheet_note": "SSD1306 0.96 inch 128x64 I2C module vendor drawing: board 27.3 x 27.8 mm, four 2.0 mm holes, active area 21.74 x 10.86 mm, viewing area about 25 x 14 mm, glass about 1.4 mm thick above the PCB."
+    },
+    {
+      "id": "lcd1602_hd44780",
+      "kind": "display",
+      "datasheet_note": "HD44780 1602 LCD module datasheet (e.g. Winstar WH1602): PCB 80 x 36 mm, four 2.5 mm holes on 75 x 31 mm, viewport 64.5 x 14.0 mm, active 56.2 x 11.5 mm, overall height about 13 mm."
+    },
+    {
+      "id": "button_tact_6mm",
+      "kind": "control",
+      "datasheet_note": "6 x 6 mm through-hole tactile switch datasheet (e.g. Omron B3F-class): body 6 x 6 x 4.3 mm, plunger 3.5 mm dia, travel about 0.25 mm, actuation force 1.6 N; 4 legs 4.5 x 6.5 mm."
+    },
+    {
+      "id": "toggle_mts102",
+      "kind": "control",
+      "datasheet_note": "Mini toggle switch MTS-102 datasheet: 6.0 mm (1/4 in) bushing, lever 12 mm above the panel, body 13 x 8 x 10 mm, panel up to 4 mm."
+    },
+    {
+      "id": "slide_sk12d",
+      "kind": "control",
+      "datasheet_note": "SK12D07/SS12D00 slide switch datasheet: body about 12.5 x 6 x 5.5 mm, handle about 3 x 3 mm with 3.5 mm travel."
+    },
+    {
+      "id": "encoder_ec11",
+      "kind": "control",
+      "datasheet_note": "Alps EC11 encoder datasheet: body 12 x 13.4 x 6.5 mm, M7 x 0.75 bushing, 6 mm dia D-shaft 15 mm long (variants exist)."
+    },
+    {
+      "id": "pot_rk09",
+      "kind": "control",
+      "datasheet_note": "Alps RK09K single-gang potentiometer datasheet: body 9.5 mm, M7 x 0.75 bushing 7 mm, 6 mm D-shaft, 15 mm shaft length."
+    },
+    {
+      "id": "led_5mm",
+      "kind": "control",
+      "datasheet_note": "Generic 5 mm LED (T-1 3/4) datasheet: dia 5.0 mm, flange 5.8 mm, height about 8.6 mm, leads 2.54 mm."
+    },
+    {
+      "id": "fan_40x40x10",
+      "kind": "fan",
+      "datasheet_note": "40 x 40 x 10 mm DC fan datasheet (e.g. Sunon/Delta class): 40 x 40 x 10 mm, hole pitch 32.0 mm, hole 3.2 mm, bore about 38 mm, airflow +Z."
+    },
+    {
+      "id": "fan_60x60x25",
+      "kind": "fan",
+      "datasheet_note": "60 x 60 x 25 mm DC fan datasheet: 60 x 60 x 25 mm, hole pitch 50.0 mm, hole 4.3 mm, bore about 58 mm."
+    },
+    {
+      "id": "buzzer_12mm",
+      "kind": "control",
+      "datasheet_note": "12 mm piezo buzzer datasheet: dia 12 mm, height 8.5 mm, sound hole 1.5 mm."
+    },
+    {
+      "id": "lipo_503450",
+      "kind": "power",
+      "datasheet_note": "503450 LiPo cell vendor drawing: 5.0 x 34 x 50 mm maximum, tabs on a short edge; thickness can swell 10 percent."
+    },
+    {
+      "id": "cell_18650",
+      "kind": "power",
+      "datasheet_note": "18650 Li-ion cell (IEC 61960): dia 18.6 mm max, length 65.2 mm max, button vs flat top noted."
+    },
+    {
+      "id": "battery_9v_pp3",
+      "kind": "power",
+      "datasheet_note": "9 V PP3 (IEC 6LR61) battery: 26.5 x 17.5 x 48.5 mm."
+    },
+    {
+      "id": "dc_jack_pj002a",
+      "kind": "connector",
+      "datasheet_note": "PJ-002A DC barrel jack datasheet: 14 x 9 x 11 mm, 2.1 mm centre pin, 5.5 mm barrel."
+    },
+    {
+      "id": "plug_dc_barrel_5p5",
+      "kind": "plug",
+      "datasheet_note": "Standard 5.5 x 2.1 mm DC barrel plug overmold envelope: about 11 mm dia handle, 14 mm barrel length, 30 mm total."
+    },
+    {
+      "id": "plug_usbc",
+      "kind": "plug",
+      "datasheet_note": "USB-C plug overmold envelope per USB Type-C spec: connector 8.25 x 2.4 mm, typical overmold 12.4 x 6.5 mm; receptacle 8.94 x 3.26 mm."
+    },
+    {
+      "id": "plug_usb_b",
+      "kind": "plug",
+      "datasheet_note": "USB-B plug: connector 12 x 10.9 mm, typical overmold 16 x 13 mm, per USB 2.0 spec."
+    },
+    {
+      "id": "plug_miniusb_b",
+      "kind": "plug",
+      "datasheet_note": "Mini-USB B plug per USB spec: connector 6.8 x 3.0 mm, typical overmold 11 x 8 mm."
+    },
+    {
+      "id": "plug_minihdmi",
+      "kind": "plug",
+      "datasheet_note": "Mini-HDMI type C plug: connector 10.4 x 2.4 mm, typical overmold 17 x 8 mm per HDMI spec."
+    },
+    {
+      "id": "microswitch_kw12",
+      "kind": "switch",
+      "datasheet_note": "KW12-3 micro limit switch datasheet: 20 x 6.4 x 10.2 mm, two 2.0 mm mounting holes 9.5 mm apart, lever travel 1.0 mm."
+    },
+    {
+      "id": "nema17_motor",
+      "kind": "motor",
+      "datasheet_note": "NEMA 17 (42 x 42 mm, e.g. 17HS4401) datasheet: 42.3 mm square, length 40 mm, 31.0 mm square bolt pattern M3, 22 mm pilot 2 mm high, 5 mm shaft 24 mm long with flat."
+    },
+    {
+      "id": "servo_sg90",
+      "kind": "motor",
+      "datasheet_note": "SG90 micro servo datasheet: 22.5 x 12.2 x 22.7 mm, tabs 32.5 mm overall, tab holes 2.0 mm at 27.5 mm pitch, 4.8 mm spline offset."
+    },
+    {
+      "id": "servo_mg996r",
+      "kind": "motor",
+      "datasheet_note": "MG996R servo datasheet: 40.7 x 19.7 x 42.9 mm, tabs 53.6 mm, mounting holes 49.5 mm pitch."
+    },
+    {
+      "id": "n20_gearmotor",
+      "kind": "motor",
+      "datasheet_note": "N20 micro gearmotor datasheet: body 12 x 10 mm, gearbox 9 mm long, motor 15 mm, 3 mm D-shaft 10 mm."
+    },
+    {
+      "id": "bearing_608",
+      "kind": "bearing",
+      "datasheet_note": "608 deep-groove ball bearing ISO 15: 8 x 22 x 7 mm."
+    },
+    {
+      "id": "bearing_625",
+      "kind": "bearing",
+      "datasheet_note": "625 bearing ISO 15: 5 x 16 x 5 mm."
+    },
+    {
+      "id": "bearing_623",
+      "kind": "bearing",
+      "datasheet_note": "623 bearing ISO 15: 3 x 10 x 4 mm."
+    },
+    {
+      "id": "lm8uu",
+      "kind": "bearing",
+      "datasheet_note": "LM8UU linear bearing ISO 10285: 8 x 15 x 24 mm."
+    },
+    {
+      "id": "rod_8mm",
+      "kind": "mech",
+      "datasheet_note": "8 mm precision ground steel rod, h6, length from request."
+    },
+    {
+      "id": "extrusion_2020",
+      "kind": "profile",
+      "datasheet_note": "2020 V-slot/T-slot profile (Misumi HFS5-2020 drawing): 20 x 20 mm, slot opening 6.2 mm, slot depth 6.1 mm, centre bore 4.2 mm."
+    },
+    {
+      "id": "tnut_2020_m5",
+      "kind": "mech",
+      "datasheet_note": "M5 drop-in T-nut for 2020 profile: about 10 x 9.7 x 3.5 mm; M5 thread."
+    },
+    {
+      "id": "gt2_pulley_20t",
+      "kind": "mech",
+      "datasheet_note": "GT2 20-tooth pulley datasheet: 5 mm bore, tooth OD 16.0 mm, hub OD 16 mm, belt width 6 mm, flange OD 18 mm."
+    },
+    {
+      "id": "gt2_belt_6mm",
+      "kind": "mech",
+      "datasheet_note": "GT2 belt: pitch 2 mm, width 6 mm, thickness 1.38 mm."
+    },
+    {
+      "id": "magnet_disc_6x3",
+      "kind": "mech",
+      "datasheet_note": "N35 neodymium disc magnet 6 x 3 mm (typ. tolerance +/-0.1 mm)."
+    },
+    {
+      "id": "dowel_pin_generic",
+      "kind": "mech",
+      "datasheet_note": "ISO 2338 h8 steel dowel pin, 3 mm dia (length from request)."
+    },
+    {
+      "id": "camera_screw_1_4_20",
+      "kind": "fastener",
+      "datasheet_note": "1/4-20 UNC tripod stud: major dia 6.35 mm, hex nut 11.1 mm AF x 5.6 mm, tap drill 5.1 mm."
+    },
+    {
+      "id": "bolt_m3_iso4762",
+      "kind": "fastener",
+      "datasheet_note": "ISO 4762 M3 socket-head screw: head 5.5 dia x 3.0 mm, clearance hole 3.4 mm, hex key 2.5 mm."
+    },
+    {
+      "id": "bolt_m4_iso4762",
+      "kind": "fastener",
+      "datasheet_note": "ISO 4762 M4 socket-head screw: head 7.0 dia x 4.0 mm, clearance hole 4.5 mm."
+    },
+    {
+      "id": "bolt_m5_iso7380",
+      "kind": "fastener",
+      "datasheet_note": "ISO 7380 M5 button-head screw: head 9.5 dia x 2.75 mm, clearance hole 5.5 mm."
+    },
+    {
+      "id": "nut_m3",
+      "kind": "fastener",
+      "datasheet_note": "ISO 4032 M3 hex nut: 5.5 mm AF x 2.4 mm."
+    },
+    {
+      "id": "nut_m4",
+      "kind": "fastener",
+      "datasheet_note": "ISO 4032 M4 hex nut: 7.0 mm AF x 3.2 mm."
+    },
+    {
+      "id": "heatset_m3",
+      "kind": "fastener",
+      "datasheet_note": "M3 brass heat-set insert (supplier drawing): OD 4.6 mm knurled, length 5.7 mm, printed hole 4.0 mm."
+    },
+    {
+      "id": "generic_tube",
+      "kind": "generic",
+      "datasheet_note": "Parametric stand-in for a pipe, hose, tube, rod or cable: OD, ID and length from the request (no datasheet)."
+    },
+    {
+      "id": "generic_box",
+      "kind": "generic",
+      "datasheet_note": "Parametric stand-in for any rectangular object (heatsink, wrench, tool): size from the request."
+    },
+    {
+      "id": "gear_spur_generic",
+      "kind": "generic",
+      "datasheet_note": "Involute spur gear per ISO 54 module series: module, tooth count, face width and pressure angle 20 degrees from the request; pitch dia = m*z."
+    }
+  ]
+}

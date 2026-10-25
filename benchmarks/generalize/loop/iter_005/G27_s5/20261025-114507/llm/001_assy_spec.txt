@@ -1,0 +1,99 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 8 (request): "...FDM-printed PLA part that carries an LM8UU linear bearing (8 x 15 x 24 mm) along a 200 mm long, 8 mm smooth rod. Its top..."
+n2 = 15 (request): "...-printed PLA part that carries an LM8UU linear bearing (8 x 15 x 24 mm) along a 200 mm long, 8 mm smooth rod. Its top pl..."
+n3 = 24 mm (request): "...ted PLA part that carries an LM8UU linear bearing (8 x 15 x 24 mm) along a 200 mm long, 8 mm smooth rod. Its top plate i..."
+n4 = 200 mm (request): "...at carries an LM8UU linear bearing (8 x 15 x 24 mm) along a 200 mm long, 8 mm smooth rod. Its top plate is flat and 40 x..."
+n5 = 8 mm (request): "...LM8UU linear bearing (8 x 15 x 24 mm) along a 200 mm long, 8 mm smooth rod. Its top plate is flat and 40 x 30 mm, with f..."
+n6 = 40 (request): "...g a 200 mm long, 8 mm smooth rod. Its top plate is flat and 40 x 30 mm, with four M3 holes in a 30 x 20 mm pattern; the ..."
+n7 = 30 mm (request): "...00 mm long, 8 mm smooth rod. Its top plate is flat and 40 x 30 mm, with four M3 holes in a 30 x 20 mm pattern; the beari..."
+n8 = 30 (request): "...s top plate is flat and 40 x 30 mm, with four M3 holes in a 30 x 20 mm pattern; the bearing housing hangs under the plat..."
+n9 = 20 mm (request): "...plate is flat and 40 x 30 mm, with four M3 holes in a 30 x 20 mm pattern; the bearing housing hangs under the plate, so ..."
+n10 = 30 mm (request): "...ckets on the plate's underside. The rod follows the plate's 30 mm side. Fasteners are 10 mm long ISO 4762 M3 socket-head..."
+n11 = 10 mm (request): "...side. The rod follows the plate's 30 mm side. Fasteners are 10 mm long ISO 4762 M3 socket-head screws. 3.0 x 1.2 mm zip ..."
+n12 = 4762 (request): "...ollows the plate's 30 mm side. Fasteners are 10 mm long ISO 4762 M3 socket-head screws. 3.0 x 1.2 mm zip ties in grooves..."
+n13 = 3.0 (request): "...e. Fasteners are 10 mm long ISO 4762 M3 socket-head screws. 3.0 x 1.2 mm zip ties in grooves around the block hold the b..."
+n14 = 1.2 mm (request): "...teners are 10 mm long ISO 4762 M3 socket-head screws. 3.0 x 1.2 mm zip ties in grooves around the block hold the bearing..."
+n15 = 0.1 mm (request): "...ooves around the block hold the bearing in, together with a 0.1 mm press fit in its bore: the housing bore is the bearin..."
+n16 = 15 mm (request): "...mm press fit in its bore: the housing bore is the bearing's 15 mm outside diameter plus the usual 0.1 mm printing allowa..."
+n17 = 0.1 mm (request): "...bore is the bearing's 15 mm outside diameter plus the usual 0.1 mm printing allowance, because printed holes shrink by a..."
+n18 = 30 mm (L1.1): "...r the bearing beneath the plate and the rod parallel to the 30 mm side of the plate, centred on the 40 mm side...."
+n19 = 40 mm (L1.1): "...rod parallel to the 30 mm side of the plate, centred on the 40 mm side...."
+n20 = 15.1 mm (L1.2): "...The bearing sits in a round 15.1 mm bore (range 15.05 to 15.15) with 0 to 0.15 mm radial gap, r..."
+n21 = 15.05 (L1.2): "...The bearing sits in a round 15.1 mm bore (range 15.05 to 15.15) with 0 to 0.15 mm radial gap, resting against a s..."
+n22 = 15.15 (L1.2): "...The bearing sits in a round 15.1 mm bore (range 15.05 to 15.15) with 0 to 0.15 mm radial gap, resting against a single s..."
+n23 = 0 (L1.2): "...ng sits in a round 15.1 mm bore (range 15.05 to 15.15) with 0 to 0.15 mm radial gap, resting against a single shoulder t..."
+n24 = 0.15 mm (L1.2): "...ts in a round 15.1 mm bore (range 15.05 to 15.15) with 0 to 0.15 mm radial gap, resting against a single shoulder that t..."
+n25 = 8 mm (L1.2): "...y its outer ring, and no printed material intrudes into the 8 mm core...."
+n26 = 3.2 (L1.3): "...zip-tie grooves that squeeze the bearing. Make each groove 3.2 to 4.0 mm in width and no less than 1.0 mm deep, keeping ..."
+n27 = 4.0 mm (L1.3): "...e grooves that squeeze the bearing. Make each groove 3.2 to 4.0 mm in width and no less than 1.0 mm deep, keeping 1.6 mm..."
+n28 = 1.0 mm (L1.3): "...g. Make each groove 3.2 to 4.0 mm in width and no less than 1.0 mm deep, keeping 1.6 mm or more of wall below its floor;..."
+n29 = 1.6 mm (L1.3): "....2 to 4.0 mm in width and no less than 1.0 mm deep, keeping 1.6 mm or more of wall below its floor; put their centres 2...."
+n30 = 2.0 mm (L1.3): "...g 1.6 mm or more of wall below its floor; put their centres 2.0 mm or more inside the bearing's faces and 8.0 mm or more..."
+n31 = 8.0 mm (L1.3): "...their centres 2.0 mm or more inside the bearing's faces and 8.0 mm or more from each other. A 3.0 x 1.2 mm tie must be a..."
+n32 = 3.0 (L1.3): "...e the bearing's faces and 8.0 mm or more from each other. A 3.0 x 1.2 mm tie must be able to circle the whole way round ..."
+n33 = 1.2 mm (L1.3): "...bearing's faces and 8.0 mm or more from each other. A 3.0 x 1.2 mm tie must be able to circle the whole way round in eac..."
+n34 = 1.0 (L1.3): "...to circle the whole way round in each groove. Cut one slit, 1.0 to 2.0 mm wide, along the underside over nearly the enti..."
+n35 = 2.0 mm (L1.3): "...le the whole way round in each groove. Cut one slit, 1.0 to 2.0 mm wide, along the underside over nearly the entire hous..."
+n36 = 8 mm (L1.4): "...With the bearing in place the 8 mm rod must pass through freely, the printed block staying 1.0..."
+n37 = 1.0 mm (L1.4): "...mm rod must pass through freely, the printed block staying 1.0 mm or more away from it at every point, with the core ope..."
+n38 = 0.2 mm (L1.5): "...The top plate is flat (to 0.2 mm), runs parallel to the rod, measures 40 x 30 mm give or tak..."
+n39 = 40 (L1.5): "...ate is flat (to 0.2 mm), runs parallel to the rod, measures 40 x 30 mm give or take 0.2 and is 4.0 to 6.0 mm thick; it i..."
+n40 = 30 mm (L1.5): "...s flat (to 0.2 mm), runs parallel to the rod, measures 40 x 30 mm give or take 0.2 and is 4.0 to 6.0 mm thick; it is joi..."
+n41 = 0.2 (L1.5): "...runs parallel to the rod, measures 40 x 30 mm give or take 0.2 and is 4.0 to 6.0 mm thick; it is joined to the housing t..."
+n42 = 4.0 (L1.5): "...lel to the rod, measures 40 x 30 mm give or take 0.2 and is 4.0 to 6.0 mm thick; it is joined to the housing through web..."
+n43 = 6.0 mm (L1.5): "...the rod, measures 40 x 30 mm give or take 0.2 and is 4.0 to 6.0 mm thick; it is joined to the housing through webs of 30..."
+n44 = 30 (L1.5): "...o 6.0 mm thick; it is joined to the housing through webs of 30 mm2 or more...."
+n45 = 3.4 mm (L1.6): "...Drill four 3.4 mm holes through the plate at the corners of a 30.0 x 20.0 mm..."
+n46 = 30.0 (L1.6): "...ill four 3.4 mm holes through the plate at the corners of a 30.0 x 20.0 mm rectangle (tolerance plus or minus 0.15) cent..."
+n47 = 20.0 mm (L1.6): "...r 3.4 mm holes through the plate at the corners of a 30.0 x 20.0 mm rectangle (tolerance plus or minus 0.15) centred on ..."
+n48 = 0.15 (L1.6): "...ners of a 30.0 x 20.0 mm rectangle (tolerance plus or minus 0.15) centred on the plate. Keep 2.0 mm or more of material ..."
+n49 = 2.0 mm (L1.6): "...e (tolerance plus or minus 0.15) centred on the plate. Keep 2.0 mm or more of material around every hole and leave room ..."
+n50 = 5.6 (L1.7): "...x pocket in the underside of the plate. Pocket across flats 5.6 to 6.0 mm, so the nut cannot rotate, and 2.6 to 3.2 mm d..."
+n51 = 6.0 mm (L1.7): "...t in the underside of the plate. Pocket across flats 5.6 to 6.0 mm, so the nut cannot rotate, and 2.6 to 3.2 mm deep, wi..."
+n52 = 2.6 (L1.7): "...t across flats 5.6 to 6.0 mm, so the nut cannot rotate, and 2.6 to 3.2 mm deep, with space to push the nut in from below..."
+n53 = 3.2 mm (L1.7): "...s flats 5.6 to 6.0 mm, so the nut cannot rotate, and 2.6 to 3.2 mm deep, with space to push the nut in from below...."
+n54 = 300 (L1.8): "...an FDM printer with no supports; it must rest on a face of 300 mm2 or more, covering at least 30 percent of its footprin..."
+n55 = 30 (L1.8): "...t must rest on a face of 300 mm2 or more, covering at least 30 percent of its footprint box...."
+n56 = 45 (L1.9): "...Keep the carriage to a single manifold shell that fits in 45 x 35 x 35 mm...."
+n57 = 35 (L1.9): "...p the carriage to a single manifold shell that fits in 45 x 35 x 35 mm...."
+n58 = 35 mm (L1.9): "...carriage to a single manifold shell that fits in 45 x 35 x 35 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "none",
+  "max_y": "none",
+  "max_z": "none",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "none"
+}

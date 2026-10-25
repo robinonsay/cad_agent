@@ -1,0 +1,174 @@
+{
+ "paraphrases": [
+  {
+   "id": "G03",
+   "tier": 4,
+   "title": "ESP32 DevKitC box with antenna end",
+   "request": "Box for an ESP32-DevKitC V4 board: 54.4 x 27.9 mm, 1.6 mm thick, pin headers up about 8.5 mm. No mounting holes, so hold it with ribs or clips, not screws. Micro-USB end open so a micro-USB plug can be pushed in with the lid on. Antenna end: 8 mm free space beyond the board, no wall or lid material above the module. Lid is a separate printed part, snaps on, removable. FDM, PLA, no supports. Closed box at most 75 x 45 x 25 mm.",
+   "request_verbatim": "I have an ESP32-DevKitC V4 (54.4 x 27.9 mm) that has no mounting holes, so the box must hold it with ribs or clips. The micro-USB end must be open for a cable, and the antenna end needs 8 mm of empty space with no wall material above the module. Lid is removable and printed separately.",
+   "request_notes": "Added to the brief, all from requirements.md section 3: 1.6 mm board and header pins pointing up 8.5 mm (A1, from the catalogue part); 'open for a cable' = one opening in the end wall sized from a micro-USB plug, with the lid on (A2, F1); the 8 mm is measured beyond the board end and the keep-out volume is the catalogue antenna zone (A3, F7); snap lid (capability list, F3); FDM/PLA, no supports (A9); size limit (A10).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the catalogue ESP32-DevKitC with its micro-USB end at one short end of the box and its antenna end at the opposite short end, and declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The 54.4 x 27.9 x 1.6 mm board fits in the closed box with 0.5 mm or more clearance to all printed surfaces. Holding features (supports, ribs, stops) stay 0.2 mm or more off it, except where it rests on its supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "No screws. The board is held by three or more supports below it (each 4.0 mm2 or more in plan, outside the pin-tail strips, tops level within 0.10 mm, touching the underside), two or more retention ribs over its top at the USB end (one per long edge, undersides 0.1 to 0.3 mm above the board top), and stops at all four edges (0.1 to 0.3 mm from the board edge). Movement limits: 1.0 mm along the length, 0.6 mm across, 0.5 mm up or down.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Lid closed: nothing within 10.6 mm over the board's top surface (8.5 mm header pins plus 0.5 mm, above the 1.6 mm board) or within 3.3 mm under its underside (pin tails plus 0.3 mm), apart from the supports beneath and the retention ribs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Lid closed: a micro-USB plug pushes fully into the receptacle through one end-wall opening, 0.3 mm or more clear on every side. The receptacle front is 0.5 to 3.0 mm behind the inner face of the end wall, the wall around the opening is 1.5 mm or more, and the opening is at most 1.5 mm oversize on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "At the antenna end, keep wall, lid and rib material out of the 8 mm free space past the board end and out of the volume over the antenna module; free length past the board end is at most 12.0 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Base plus separate removable lid, located on the base with a sliding fit: continuous lip, 0.15 to 0.35 mm clearance per side, 1.0 to 2.0 mm engagement, 0.8 mm or more thick.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Snap hooks on two or more opposite walls hold the lid closed, with 0.4 mm or more undercut, strain within 2 percent, hand-removable. Hook arm: 1.2 to 2.0 mm thick, 9.0 mm or more free length, 5.0 mm or more wide; undercut 1.0 mm max; retention face 45 to 65 degrees, lead-in face 20 to 40 degrees from horizontal. Every hook must still be engaged with the lid lifted 0.3 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed box: only the USB opening; walls, floor and lid 2.0 to 4.0 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base and lid are each one manifold body, FDM printable with no supports (45 degree overhang limit, half or more of each part's plan area flat on the bed, no feature under 0.8 mm).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed box within 75 x 45 x 25 mm, stands flat on a table without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Lid off: the board drops straight onto its supports touching nothing (0.2 mm or more clear), and the lid closes on the base with only the snap hooks under force.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliver base STL, lid STL, OpenSCAD source, declared board layout and the agent's own clearance report; the report must match an independent measurement within 0.10 mm.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: one rectangular opening through the end wall and the catch recesses or ridges for the snaps",
+    "interior placement: supports, stops and ribs positioned from the board datums (edges, header strips, antenna zone), not from typed coordinates",
+    "a shell / cavity primitive whose cavity length is derived from the antenna keep-out (board end plus 8 mm)",
+    "two printable bodies (base and lid) with their own print orientation, the lid carrying hooks, ribs and a lip",
+    "parts catalogue: load part.json models (esp32_devkitc_v4, plug_microusb_b) and read datums USB_MOUTH, USB_AXIS, PCB_BOTTOM, EDGE_* and the antenna_zone, header pin and pin tail keep-outs",
+    "envelope generation: antenna zone, pin and tail keep-outs, plug insertion sweep, board install sweep, board float sweeps",
+    "cantilever snap hooks with a strain check computed from their dimensions",
+    "interference checks against external solids: clear_of, inside, aperture finding, float by translation sweep"
+   ]
+  },
+  {
+   "id": "G03",
+   "tier": 4,
+   "title": "ESP32 DevKitC box with antenna end",
+   "request": "I'd like a housing for an ESP32-DevKitC V4 board, which measures 54.4 x 27.9 mm and is 1.6 mm thick, with its pin headers sticking up roughly 8.5 mm. It has no mounting holes, so rather than screws the housing needs ribs or clips to keep it in place. One end has the micro-USB connector and that end must be open so that a micro-USB plug can go in with the cover on. At the antenna end, leave 8 mm of empty room past the board, with no wall or cover material over the module. The cover should be its own printed piece that snaps on and can come off again. Print on an FDM printer in PLA, no supports, and keep the closed housing within 75 x 45 x 25 mm.",
+   "request_verbatim": "I have an ESP32-DevKitC V4 (54.4 x 27.9 mm) that has no mounting holes, so the box must hold it with ribs or clips. The micro-USB end must be open for a cable, and the antenna end needs 8 mm of empty space with no wall material above the module. Lid is removable and printed separately.",
+   "request_notes": "Added to the brief, all from requirements.md section 3: 1.6 mm board and header pins pointing up 8.5 mm (A1, from the catalogue part); 'open for a cable' = one opening in the end wall sized from a micro-USB plug, with the lid on (A2, F1); the 8 mm is measured beyond the board end and the keep-out volume is the catalogue antenna zone (A3, F7); snap lid (capability list, F3); FDM/PLA, no supports (A9); size limit (A10).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Take the ESP32-DevKitC from the parts catalogue and orient it with the micro-USB end towards one short end of the box and the antenna end towards the other short end, then declare that layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Inside the closed box, the 54.4 x 27.9 x 1.6 mm board has at least 0.5 mm clearance from all printed surfaces; the features that hold it (supports, ribs and stops) stay at least 0.2 mm from it, other than where it sits on its supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Hold the board without screws: at least three supports beneath it (each 4.0 mm2 or larger in plan view, clear of the pin-tail strips, tops level to within 0.10 mm and in contact with the underside); at least two retention ribs across its top at the USB end, one on each long edge, with undersides 0.1 to 0.3 mm over the board top; and stops at all four edges, 0.1 to 0.3 mm from the board edge. The board then moves no more than 1.0 mm lengthways, 0.6 mm sideways or 0.5 mm vertically.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "With the lid on, keep the box 10.6 mm clear above the board's top surface (8.5 mm header pins and 0.5 mm margin, over the 1.6 mm board) and 3.3 mm clear below the underside (pin tails and 0.3 mm), the only exceptions being the supports under the board and the retention ribs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "With the lid on, a micro-USB plug has to push right into the board's receptacle through one opening in the end wall, at least 0.3 mm clear of the plug all round. The receptacle front sits 0.5 to 3.0 mm back from the inside face of the end wall, the wall around the opening is at least 1.5 mm, and the opening is no more than 1.5 mm larger than the plug per side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "No wall, lid or rib may intrude into the 8 mm of free space past the board end at the antenna, or into the volume above the antenna module; the free length beyond the board end must not exceed 12.0 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.7",
+     "text": "Make a base and a separate lid that can be removed, which seats on the base with a sliding fit, using a continuous lip with 0.15 to 0.35 mm clearance each side, 1.0 to 2.0 mm of engagement and a thickness of 0.8 mm or more.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.8",
+     "text": "Snap hooks on at least two opposite walls keep the lid shut, with undercut engagement of 0.4 mm or more and flex within a 2 percent strain limit; the lid must come off by hand. A hook arm is 1.2 to 2.0 mm thick, 9.0 mm or more in free length and 5.0 mm or more wide, undercut not above 1.0 mm, retention face 45 to 65 degrees and lead-in face 20 to 40 degrees from horizontal, and each hook has to remain engaged when the lid is raised 0.3 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "The closed box has a single opening, for the USB, and 2.0 to 4.0 mm thick walls, floor and lid.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Both base and lid must be single manifold bodies that print on an FDM printer without supports: 45 degree overhang limit, over half of each part's plan area flat on the bed, nothing thinner than 0.8 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "The closed box must fit in 75 x 45 x 25 mm and rest flat on a table without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "With the lid removed, the board must drop straight down onto the supports and touch nothing (0.2 mm or more clearance), and the lid must close onto the base with nothing but the snap hooks being forced.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report; the report must agree with an independent measurement to 0.10 mm.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: one rectangular opening through the end wall and the catch recesses or ridges for the snaps",
+    "interior placement: supports, stops and ribs positioned from the board datums (edges, header strips, antenna zone), not from typed coordinates",
+    "a shell / cavity primitive whose cavity length is derived from the antenna keep-out (board end plus 8 mm)",
+    "two printable bodies (base and lid) with their own print orientation, the lid carrying hooks, ribs and a lip",
+    "parts catalogue: load part.json models (esp32_devkitc_v4, plug_microusb_b) and read datums USB_MOUTH, USB_AXIS, PCB_BOTTOM, EDGE_* and the antenna_zone, header pin and pin tail keep-outs",
+    "envelope generation: antenna zone, pin and tail keep-outs, plug insertion sweep, board install sweep, board float sweeps",
+    "cantilever snap hooks with a strain check computed from their dimensions",
+    "interference checks against external solids: clear_of, inside, aperture finding, float by translation sweep"
+   ]
+  }
+ ]
+}

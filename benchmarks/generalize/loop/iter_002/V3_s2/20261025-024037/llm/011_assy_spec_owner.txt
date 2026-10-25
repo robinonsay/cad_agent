@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.7 seed=2001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n7 = 20 mm (request): "...exposed through the other short end, and a 10 mm diameter, 20 mm tall capacitor stands upright on the board. Leave at le..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n7 state?
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- generic_1.height: the height of the capacitor (request text) (mm)
+
+=== RESPONSE ===
+{
+  "owner": "generic_1.height"
+}

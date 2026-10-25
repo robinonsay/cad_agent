@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.3 seed=1000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n16 = 5.0 mm (L1.4): "...With the lid closed, nothing shall come within 5.0 mm above the board's top surface, nor within 0.3 mm of the hea..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n16 state?
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+
+=== RESPONSE ===
+{
+  "owner": "keepout_above"
+}

@@ -1,0 +1,86 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 17 (request): "...Please design an L bracket for a NEMA 17 stepper motor, whose body is 42.3 mm square and 40 mm long..."
+n2 = 42.3 mm (request): "...ign an L bracket for a NEMA 17 stepper motor, whose body is 42.3 mm square and 40 mm long with a 5 mm shaft. The motor b..."
+n3 = 40 mm (request): "...r a NEMA 17 stepper motor, whose body is 42.3 mm square and 40 mm long with a 5 mm shaft. The motor bolts to the upright..."
+n4 = 5 mm (request): "...r motor, whose body is 42.3 mm square and 40 mm long with a 5 mm shaft. The motor bolts to the upright face using its 31..."
+n5 = 31 mm (request): "...a 5 mm shaft. The motor bolts to the upright face using its 31 mm bolt pattern and a 22.5 mm pilot register, and the end..."
+n6 = 22.5 mm (request): "...olts to the upright face using its 31 mm bolt pattern and a 22.5 mm pilot register, and the end of its shaft sticks out ..."
+n7 = 40 mm (request): "...nge. In the flat, horizontal flange there are two M4 holes, 40 mm apart, lying on a line parallel to the bend. The motor..."
+n8 = 0.35 (request): "...ing on a line parallel to the bend. The motor has a mass of 0.35 kg, and the bracket ought to withstand roughly 20 N at ..."
+n9 = 20 (request): "...mass of 0.35 kg, and the bracket ought to withstand roughly 20 N at the shaft. I'm using ISO 4762 socket-head cap screws..."
+n10 = 4762 (request): "...ought to withstand roughly 20 N at the shaft. I'm using ISO 4762 socket-head cap screws throughout, M3 on the motor and ..."
+n11 = 6 (request): "...M3 on the motor and M4 on the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on..."
+n12 = 8 (request): "...on the motor and M4 on the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on an..."
+n13 = 10 (request): "...the motor and M4 on the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on an FD..."
+n14 = 12 (request): "...motor and M4 on the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on an FDM pr..."
+n15 = 16 (request): "...r and M4 on the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on an FDM printe..."
+n16 = 20 (request): "...d M4 on the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on an FDM printer as..."
+n17 = 25 mm (request): "...the flange, from stock lengths of 6, 8, 10, 12, 16, 20 and 25 mm. It will be printed in PLA on an FDM printer as one pie..."
+n18 = 0.1 mm (L1.2): "...or flat, with the motor's face seating against it to within 0.1 mm, no part of the bracket penetrating the motor, and at..."
+n19 = 2.0 mm (L1.2): "...no part of the bracket penetrating the motor, and at least 2.0 mm of material surrounding each motor hole...."
+n20 = 22 mm (L1.3): "...Locate the motor's 22 mm pilot with a 22.5 mm register hole centred on the hole patt..."
+n21 = 22.5 mm (L1.3): "...Locate the motor's 22 mm pilot with a 22.5 mm register hole centred on the hole pattern; the pilot has to..."
+n22 = 3.0 mm (L1.3): "...o fully into it, and the shaft passes through with at least 3.0 mm to spare...."
+n23 = 31 mm (L1.4): "...Put four M3 holes on the 31 mm square pattern of the motor and counterbore them from the s..."
+n24 = 0.2 (L1.4): "...unterbore them from the shaft side, leaving the screw heads 0.2 to 1.0 mm under the face; the screws declared must reach..."
+n25 = 1.0 mm (L1.4): "...re them from the shaft side, leaving the screw heads 0.2 to 1.0 mm under the face; the screws declared must reach 3.0 to..."
+n26 = 3.0 (L1.4): "....2 to 1.0 mm under the face; the screws declared must reach 3.0 to 4.5 mm into the motor...."
+n27 = 4.5 mm (L1.4): "....0 mm under the face; the screws declared must reach 3.0 to 4.5 mm into the motor...."
+n28 = 15 mm (L1.5): "...The shaft goes through the face and projects at least 15 mm beyond it, with no printed material closer than 3.0 mm to i..."
+n29 = 3.0 mm (L1.5): "...least 15 mm beyond it, with no printed material closer than 3.0 mm to it, and the motor can be put in from the back with..."
+n30 = 40.0 mm (L1.6): "...In the horizontal flange, drill two M4 holes spaced 40.0 mm (tolerance plus or minus 0.2) and counterbore them from abo..."
+n31 = 0.2 (L1.6): "...drill two M4 holes spaced 40.0 mm (tolerance plus or minus 0.2) and counterbore them from above; they lie on a line para..."
+n32 = 20 (L1.7): "...Load case: roughly 20 N at the tip of the shaft, acting in any radial direction,..."
+n33 = 5.0 (L1.7): "...tress from bending at the root of the bend is not to exceed 5.0 MPa, the inside radius of the bend is at least 2.0 mm, p..."
+n34 = 2.0 mm (L1.7): "...o exceed 5.0 MPa, the inside radius of the bend is at least 2.0 mm, plate and flange are each between 5 and 10 mm thick,..."
+n35 = 5 (L1.7): "...bend is at least 2.0 mm, plate and flange are each between 5 and 10 mm thick, and no M4 bolt sees more than 200 N of ten..."
+n36 = 10 mm (L1.7): "...is at least 2.0 mm, plate and flange are each between 5 and 10 mm thick, and no M4 bolt sees more than 200 N of tension...."
+n37 = 200 (L1.7): "...ch between 5 and 10 mm thick, and no M4 bolt sees more than 200 N of tension...."
+n38 = 5 degrees (L1.8): "...ning parallel to the bend, meaning the bed normal is within 5 degrees of the bend axis, nothing overhangs without suppor..."
+n39 = 300 (L1.8): "..., and the bottom face is large enough to stand on: at least 300 mm2, and at least 30 percent of the footprint box...."
+n40 = 30 (L1.8): "...is large enough to stand on: at least 300 mm2, and at least 30 percent of the footprint box...."
+n41 = 40 (L1.10): "...Overall the bracket must fit in 40 x 70 x 70 mm. The plate needs enough height for all four sc..."
+n42 = 70 (L1.10): "...Overall the bracket must fit in 40 x 70 x 70 mm. The plate needs enough height for all four screws..."
+n43 = 70 mm (L1.10): "...Overall the bracket must fit in 40 x 70 x 70 mm. The plate needs enough height for all four screws with 2 m..."
+n44 = 2 mm (L1.10): "...mm. The plate needs enough height for all four screws with 2 mm of material at the edge, yet not exceed the height of th..."
+n45 = 10 mm (L1.10): "...e, yet not exceed the height of the motor body by more than 10 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "none",
+  "board_depth": "none",
+  "board_width": "none",
+  "headroom": "none",
+  "keepout_above": "none",
+  "keepout_below": "none",
+  "max_x": "none",
+  "max_y": "none",
+  "max_z": "none",
+  "opening_oversize_max": "none",
+  "wall_max": "none",
+  "wall_min": "none"
+}

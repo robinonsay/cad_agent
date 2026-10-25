@@ -1,0 +1,57 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the servo, the extrusion, two T-nuts and the bolts from the parts catalogue, with the servo's output shaft vertical, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The servo shall drop straight down into a pocket in the block with 0.3 mm clearance per side around its body, clear of the pocket floor by 0.3 to 2.5 mm, with its tabs resting on the top of the block.",
+    "method": "test"
+  },
+  {
+    "id": "L1.3",
+    "text": "The servo shall be fixed to the block by four M4 bolts through its four tab holes into pilot holes in the block, and each bolt shall be reachable with a screwdriver.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "The mount shall leave the servo's cable exit, output spline and horn sweep free of printed material.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The block shall stand on a flange that sits flat on the extrusion and is held by two M5 bolts through clearance holes into T-nuts in the extrusion's top slot on its centreline, 60 to 110 mm apart along the slot with the servo's output spline between them in X, with each bolt long enough to engage its nut and short enough not to touch the slot floor, with at least 3 mm of flange round each bolt head.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "Two gussets shall join the block to the flange, one on each side of the block, 3 to 8 mm thick, at least 10 mm long along the flange and 15 mm high up the block, and together giving the block-to-flange section at least 1.25 times the bending stiffness (second moment of area about the axis along the extrusion) of the block footprint alone.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "The mount shall resist a servo torque reaction of 1.5 N m: the load path from the servo through the M4 bolts, the block, the gussets and the flange to the two M5 extrusion bolts shall be stated and shall stay within the stress, bearing and bolt limits. Use these limits and this model: PLA thread shear 4 MPa on the pilot cylinder (tab-bolt thread strength at least 3 times the bolt shear, bolts sharing the torque in proportion to their distance from the centroid of the four holes), 2 MPa shear and 3 MPa bending in the block-to-flange junction, 5 MPa bearing under an M5 head, 500 N tension per T-nut; the horn side force is the torque divided by the 25 mm horn reach, acting across the extrusion at the horn plate mid-height and tipping the mount about the extrusion's edge (10 mm from the bolt line), carried by the two M5 bolts in proportion to their X distance from the spline.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "With the M5 bolts loosened, the T-nuts and the mount shall slide along the slot, and every M5 bolt shall be reachable with a screwdriver.",
+    "method": "test"
+  },
+  {
+    "id": "L1.9",
+    "text": "The mount shall be one manifold body that prints on an FDM printer without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The mount shall be no larger than 130 x 70 x 45 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.11",
+    "text": "The design shall be delivered as an STL (assembly pose), the OpenSCAD source, the declared layout, the load-path statement and the agent's own clearance report, and the report and statement shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

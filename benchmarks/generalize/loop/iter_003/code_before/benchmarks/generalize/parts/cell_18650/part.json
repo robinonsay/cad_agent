@@ -1,0 +1,211 @@
+{
+  "id": "cell_18650",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "18650",
+    "18650 cell",
+    "18650 battery",
+    "18650 li-ion",
+    "18650 lithium cell",
+    "li-ion 18650",
+    "lithium ion cell",
+    "round li-ion cell"
+  ],
+  "kind": "power",
+  "source": "18650 Li-ion cell, IEC 61960 / IEC 61960-3 cylindrical cell limits: diameter 18.6 mm max (18.3 nominal), length 65.2 mm max including the positive terminal. Button-top height 1.0 mm and button diameter 7.0 mm are typical cell-maker values (assumed; flat-top cells have 0 mm, so a button-top cell is the worst case for length). Spring-contact travel assumed.",
+  "frame": "cell: origin at the centre of the negative (flat) end, axis +X toward the positive terminal, centred on Y = 0 and Z = 0",
+  "params": {
+    "cell_diameter": {
+      "default": 18.6,
+      "source": "IEC 61960: maximum diameter (nominal 18.3)"
+    },
+    "cell_length": {
+      "default": 65.2,
+      "source": "IEC 61960: maximum overall length including the button"
+    },
+    "button_height": {
+      "default": 1.0,
+      "source": "assumed typical button-top terminal height, uncertainty -1 / +0.5 mm; use 0 for a flat top"
+    },
+    "button_diameter": {
+      "default": 7.0,
+      "source": "assumed typical button diameter, uncertainty +-1 mm"
+    },
+    "contact_clearance": {
+      "default": 3.0,
+      "source": "assumed holder spring/plate travel kept free at each terminal end, uncertainty +-1.5 mm"
+    },
+    "wrap_margin": {
+      "default": 0.2,
+      "source": "assumed PVC wrap and print tolerance margin per side"
+    }
+  },
+  "datasheet_size": [
+    "cell_length",
+    "cell_diameter",
+    "cell_diameter"
+  ],
+  "size_tolerance": 0.3,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "cell_diameter",
+      "h": "cell_length - button_height",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "button",
+      "primitive": "cylinder",
+      "d": "button_diameter",
+      "h": "button_height",
+      "at": [
+        "cell_length - button_height",
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "neg_contact",
+      "primitive": "cylinder",
+      "d": "cell_diameter",
+      "h": "contact_clearance",
+      "at": [
+        "-contact_clearance",
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "pos_contact",
+      "primitive": "cylinder",
+      "d": "cell_diameter",
+      "h": "contact_clearance",
+      "at": [
+        "cell_length",
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ],
+      "diameter": "cell_diameter"
+    },
+    "NEG_TERMINAL": {
+      "kind": "point",
+      "at": [
+        0,
+        0,
+        0
+      ]
+    },
+    "POS_TERMINAL": {
+      "kind": "point",
+      "at": [
+        "cell_length",
+        0,
+        0
+      ]
+    },
+    "CRADLE": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "-cell_diameter / 2"
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "RETAIN_TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "cell_diameter / 2"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "notes": "Rests on a cradle tangent to CRADLE; the cylinder touches the cradle along a line, which is designed contact. Button vs flat top: cell_length is the maximum including the button, so the body is shortened by button_height and the total stays at the IEC maximum. A holder with springs needs contact_clearance at the negative end; set it from the holder part. Protected cells run up to about 69 mm; override cell_length from the request. Cell diameters of real wrapped cells are 18.2 to 18.6.",
+  "self_checks": [
+    {
+      "name": "diameter within IEC max",
+      "expr": "body.size_y",
+      "value": 18.6,
+      "tol": 0.4
+    },
+    {
+      "name": "length within IEC max",
+      "expr": "POS_TERMINAL.x - NEG_TERMINAL.x",
+      "value": 65.2,
+      "tol": 0.3
+    },
+    {
+      "name": "axis along +X",
+      "expr": "AXIS.dx",
+      "value": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "button inside the length",
+      "expr": "button.max_x - POS_TERMINAL.x",
+      "value": 0,
+      "tol": 1e-06
+    },
+    {
+      "name": "button smaller than the body",
+      "expr": "cell_diameter - button_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

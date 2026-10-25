@@ -1,0 +1,115 @@
+{
+ "id": "G11",
+ "folder": "G11_s4/20261025-082140",
+ "meets": false,
+ "score": 0.78,
+ "summary": "WRONG: gate G4 fails. No fan and no heatsink: layout.json holds only board, DC jack and two capacitors; lid is a plain 2.4 mm plate with no intake opening and no fan pilots. Base, board retention, DC opening and exhaust slots are good.",
+ "defects": [
+  {
+   "requirement_id": "L3.6.2.1 (G4) / L2.6.2",
+   "severity": "gate, weight 3",
+   "where": "lid body underside Z 18.7, expected fan pattern 32.0 x 32.0 (fan plan X 28.7..68.7, Y 14.4..54.4 in the feasibility sketch); renders model_iso.png, ghost_front.png show only 4 corner holes",
+   "what": "No fan pilots in the lid; fan not in layout.",
+   "expected": "4 pilots dia 2.4..2.6 on 32.0 pitch, blind depth 4.0..lid-0.8",
+   "observed": "0 pilots; only 4 dia 3.404 corner holes at (-3.787,-3.787),(83.787,-3.787),(-3.787,63.787),(83.787,63.787)"
+  },
+  {
+   "requirement_id": "L3.6.4.1 (G4) / L2.6.4",
+   "severity": "gate, weight 3",
+   "where": "layout.json (no fan, no heatsink)",
+   "what": "Fan-to-part gap not measurable: no M-FAN or M-HS.",
+   "expected": "gap >= 5.0",
+   "observed": "UNVERIFIED (FAIL)"
+  },
+  {
+   "requirement_id": "L3.6.1.1",
+   "severity": "weight 3",
+   "where": "layout.json / lid underside Z 18.7",
+   "what": "No fan on the lid underside.",
+   "expected": "AIRFLOW within 2 deg of -Z; INLET within 0.2 of Z 18.7",
+   "observed": "no fan declared"
+  },
+  {
+   "requirement_id": "L3.6.5.1 / L3.6.5.2",
+   "severity": "weight 3 and 2",
+   "where": "lid plate Z 18.7..21.1 at the fan axis, bore dia 38",
+   "what": "No intake opening in the lid.",
+   "expected": "open area 680..1158 mm2 in the dia 38 bore, centre offset <= 0.5",
+   "observed": "area 0 mm2"
+  },
+  {
+   "requirement_id": "L3.8.4.1 / L2.8.4 (also L3.9.2.3)",
+   "severity": "weight 3",
+   "where": "lid plate Z 18.7..21.1; render model_iso.png",
+   "what": "Lid plate too thin.",
+   "expected": "4.8..6.0",
+   "observed": "2.4 (lip engagement 2.1, gap 0.25, height 4.5 are fine)"
+  },
+  {
+   "requirement_id": "L3.13.1.2",
+   "severity": "weight 3",
+   "where": "layout.json",
+   "what": "Declared layout cannot verify fan inlet plane and fan pilot residual.",
+   "expected": "inlet <= 0.2 from lid underside; pilot residual <= 0.25",
+   "observed": "UNVERIFIED"
+  },
+  {
+   "requirement_id": "L2.1.1 / L3.4.1.1 (heatsink)",
+   "severity": "weight 3 (L2 row)",
+   "where": "layout.json: board, dc_jack_pj002a (14,34.5) rot 180, 2 x generic_cylinder at (30,30),(40,30)",
+   "what": "Heatsink 20x12x20 from the request is omitted; headroom, collision and install checks only cover jack and capacitors.",
+   "expected": "M-HS and M-FAN named with poses",
+   "observed": "absent; a 20 mm heatsink would need lid underside >= 20.5 above board top (it is 18.7)"
+  },
+  {
+   "requirement_id": "L3.6.2.2 / L3.6.3.1 / L3.6.3.2 / L3.6.6.1",
+   "severity": "weight 2",
+   "where": "fan subsystem",
+   "what": "Fan pilot dia/depth, screw engagement, head clearance, exhaust room: nothing to measure, UNVERIFIED.",
+   "expected": "per requirements",
+   "observed": "no fan"
+  },
+  {
+   "requirement_id": "L3.3.4.1",
+   "severity": "weight 2",
+   "where": "layout.json",
+   "what": "Board screw length not declared (F6, F7).",
+   "expected": "L-1.6 in [4.0, 8.5]",
+   "observed": "none declared, UNVERIFIED"
+  },
+  {
+   "requirement_id": "L3.13.2.1",
+   "severity": "weight 1",
+   "where": "self_report.json clear_keepout_bottom, clear_hole_ko_0..3",
+   "what": "Agent d differs from judge d; all_passed True although fan and heatsink are missing.",
+   "expected": "within 0.10",
+   "observed": "KO-BOT agent 0.9536 vs judge 0.449; hole-KO agent 0.0952 vs judge 0.60"
+  }
+ ],
+ "measured": {
+  "base": "1 shell; bbox X -7.09..87.09, Y -7.09..67.09, Z -11..18.7",
+  "lid_body": "1 shell; Z 16.6..21.1",
+  "overlap_mm3": 0.0,
+  "board_clear_d": 0.949,
+  "parts_inside_d": 1.6,
+  "part_headroom_d": 1.1,
+  "KO_bot_d": 0.449,
+  "hole_KO_d": 0.6,
+  "dc_plug_d": 0.407,
+  "dc_opening": "dia 11.81 at (Y30, Z5.5) in -X wall, 1 region, ligaments 8+",
+  "exhaust": "14 slots 2.0 x 24.3, area 680 mm2, ligaments 2.0 / 1.5 floor / 1.5 seam, +X wall only",
+  "standoffs": "4 dia 6.1 height 7.0, pilot dia 2.50 depth 8.5, contact 24 mm2",
+  "bosses": "4 dia 6.6, pilot dia 2.5 depth 7.6, plan distance to board 2.06",
+  "lid_form": "plate 2.4 (FAIL), lip engagement 2.1, gap 0.25",
+  "walls": 2.4,
+  "floor": 2.4,
+  "closed_size": "94.2 x 74.2 x 32.1"
+ },
+ "renders_seen": [
+  "model_iso",
+  "open_top",
+  "ghost_front",
+  "model_right"
+ ],
+ "class": "WRONG"
+}

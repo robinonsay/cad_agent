@@ -147,11 +147,19 @@ def board_edges(board: pt.PartInstance) -> Dict[str, dict]:
     return out
 
 
+def mount_holes(board: pt.PartInstance):
+    """The primary's mounting-hole axis list, named by its mount_holes interface (generalize delta 001 C1); None when the
+    part offers no such interface."""
+    m = pt.mount_interface(board.part)
+    if m is None or m.get("holes") not in board.datums:
+        return None
+    return pt.lookup_datum(board.datums, m["holes"])
+
+
 def hole_columns(board: pt.PartInstance, diameter: float) -> List[Tuple[float, float, float]]:
-    """(x, y, radius) of the column on every board HOLE axis (V-HOLE-KO in plan)."""
-    try:
-        holes = pt.lookup_datum(board.datums, "HOLE")
-    except KeyError:
+    """(x, y, radius) of the column on every mounting-hole axis of the primary (V-HOLE-KO in plan)."""
+    holes = mount_holes(board)
+    if holes is None:
         return []
     return [(float(p[0]), float(p[1]), diameter / 2) for p in holes.at]
 
@@ -188,6 +196,7 @@ class Item:
     exposed: bool = False
     stack: Optional[str] = None
     name: str = ""
+    connectors: Optional[List[str]] = None   # the exposed connector names (None: the part's first connector)
 
 
 def plug_width(catalog: pt.Catalog, part: pt.Part) -> float:
@@ -411,7 +420,7 @@ class Placer:
         self.edges = board_edges(board.inst)
         self.columns = hole_columns(board.inst, column_d)
         self.column_h = column_h
-        self.top = float(world_datum(board, "TOP").at[2])
+        self.top = float(world_datum(board, pt.mount_names(board.inst.part)[2]).at[2])
         self.seg = int(self.rules.get("fn", fg.DEFAULT_SEGMENTS))
         self.notes: List[str] = []
         self.grid = self._grid()
@@ -421,10 +430,12 @@ class Placer:
 
     # ----- one part -----
 
-    def _connector(self, inst: pt.PartInstance) -> Tuple[dict, np.ndarray]:
+    def _connector(self, inst: pt.PartInstance, names: Optional[Sequence[str]] = None) -> Tuple[dict, np.ndarray]:
+        """The connector that faces the chosen edge: the first of `names` (the item's exposed connectors), else the
+        part's first connector."""
         if not inst.connectors:
             raise LayoutError("bad_part", f"{inst.part_id} has no connector to face an edge")
-        c = inst.connectors[0]
+        c = next((x for x in inst.connectors if names and x.get("name") in names), inst.connectors[0])
         return c, np.asarray(pt.lookup_datum(inst.datums, c["axis"]).dir, dtype=float)
 
     def _stack_height(self, item: Item, inst: pt.PartInstance) -> Tuple[float, Optional[pt.PartInstance]]:
@@ -454,7 +465,7 @@ class Placer:
     def place_on_edge(self, item: Item, copy: int, side: str, t_centre: float) -> Placed:
         inst = self.catalog.instantiate(item.part, item.params)
         edge = self.edges[side]
-        _, axis = self._connector(inst)
+        _, axis = self._connector(inst, item.connectors)
         rot = angle_of(edge["normal"]) - angle_of(axis)
         lift, _ = self._stack_height(item, inst)
         size_of = inst.part.data.get("size_of")
@@ -932,10 +943,8 @@ def board_symmetries(board: pt.PartInstance, tol: float, notes: Optional[List[st
     centre = (np.asarray(lo[:2]) + np.asarray(hi[:2])) / 2
     ext = np.asarray(hi[:2]) - np.asarray(lo[:2])
     corners = [(lo[0], lo[1]), (hi[0], lo[1]), (lo[0], hi[1]), (hi[0], hi[1])]
-    try:
-        holes = [tuple(p[:2]) for p in pt.lookup_datum(board.datums, "HOLE").at]
-    except KeyError:
-        holes = []
+    axes = mount_holes(board)
+    holes = [tuple(p[:2]) for p in axes.at] if axes is not None else []
     grid = board_grid(board)
     soft = bool((board.part.data.get("grid") or {}).get("soft"))
     turns = (0, 1, 2, 3) if abs(ext[0] - ext[1]) <= tol else (0, 2)
@@ -982,7 +991,8 @@ def describe(layout: Layout, items: Sequence[Item]) -> str:
         copies = layout.of_item(it.id)
         if not copies or copies[0].edge is None:
             continue
-        conn = copies[0].inst.connectors[0]["name"] if copies[0].inst.connectors else "connector"
+        conn = (", ".join(it.connectors) if it.connectors else            # the exposed connectors the item names
+                copies[0].inst.connectors[0]["name"] if copies[0].inst.connectors else "connector")
         count = f" x{len(copies)}" if len(copies) > 1 else ""
         verb = "face" if len(copies) > 1 else "faces"
         bits.append(f"{it.name or it.part}{count} ({conn}) {verb} {layout.edges[copies[0].edge]['words']}")

@@ -1,0 +1,190 @@
+{
+ "paraphrases": [
+  {
+   "id": "G46",
+   "tier": 4,
+   "title": "Handheld Pico game console",
+   "request": "Handheld game console built on a Raspberry Pi Pico 2. Case is 110 mm long, 60 mm wide, 22 mm thick. Inside: the Pico 2 on top of a 503450 LiPo cell (5 x 34 x 50 mm) and a TP4056 USB-C charger board; a 0.96 inch SSD1306 OLED in front of the Pico behind a window in the front face. Six 6 mm tactile buttons around the display, each with a printed cap through the front face. An SK12D-type slide switch is the power switch; the charger's USB-C port must be reachable. Both are on the bottom end of the case. Two case halves snap together, no screws, FDM, no supports. The LiPo is a pouch cell that can swell 10 percent and must not press on any solder joint: not the charger board pads, not the cell's own tab joints, not the Pico underside. Solder zones: 2 mm above and below each charger pad; a strip 14 mm wide along the cell's tab edge from 2 mm to 8 mm beyond the pouch; and the Pico underside up to 1.5 mm below the board, except two 3 x 1.6 mm squares at its USB-end corners, which have no joints and may support the board.",
+   "request_verbatim": "A handheld device 110 x 60 x 22 mm: Pico 2 on top of a 5 x 34 x 50 mm LiPo and TP4056 board, an OLED window in front, six tactile buttons around it, a slide power switch and a USB-C port on the bottom end. The two halves snap together and the battery must not press on any solder joints.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3: the bottom end is one short end of the case (A1); only the charger's USB-C is exposed, the Pico's micro-USB is not (A2); the cell swells upward by 10 percent (A4); the sizes of the solder zones, now also stated in the request (A5); the buttons are 6 mm tactile switches with printed caps (A7); the Pico is held by two M2 screws plus supports (A8); the snaps are cantilever hooks with a 2 percent strain limit (A9); FDM, no supports (A11).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the Pico 2, OLED, LiPo cell, TP4056 board, six buttons, slide switch and a USB-C plug from the parts catalogue. LiPo and charger board side by side in a lower layer, Pico stacked above the LiPo, OLED in front of the Pico. No collisions between parts. Declare the layout.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The two halves together measure 110.0 x 60.0 x 22.0 mm, tolerance plus 0.3 and minus 2.0 mm. The four outer vertical corners have a radius of at least 3.0 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Front face has one window that contains the OLED's 25.0 x 14.0 mm viewing area, centred on it within 0.5 mm, at least 1.0 mm smaller than the glass in each direction. OLED sits against the front face and is held in place.",
+     "method": "demonstration"
+    },
+    {
+     "id": "L1.4",
+     "text": "Each of the six buttons is pressed by a printed cap. The cap stem goes through a hole in the front face with 0.2 to 0.4 mm clearance per side, sits 0.0 to 0.5 mm above the plunger, pushes it through its full travel before the cap hits its stop, and stands 0.3 to 1.0 mm proud of the front face. The cap is held captive by a flange at least 1.5 mm wider than the hole. The button body is held in its seat. Buttons are at least 9.0 mm apart and at least 8.0 mm from the window, and on at least two sides of it.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "With the case closed, a USB-C cable plugs fully into the charger board through one opening in the bottom end wall without touching the case. The opening is no more than 1.5 mm bigger than the plug on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Slide switch is held captive. Its handle goes through a slot in the bottom end wall and moves through the full 3.5 mm throw with at least 0.25 mm clearance. Slot is at most 1.0 mm bigger than the handle's swept area. Handle protrudes 1.0 to 3.0 mm.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "LiPo is held in the lower layer with room for 10 percent swelling and nothing pressing on it. It stays at least 0.5 mm from the solder zones (charger board pads, cell tab joints and the Pico underside solder zone as defined in the request). None of these touches a printed body except the two joint-free squares.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "Pico is held in all directions within 1.0 mm by at least two posts with M2 pilot holes and supports. At least 2.0 mm between its underside and the swollen cell, top parts clear, at least 0.3 mm from every wall.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "TP4056 board is held in its seat with its USB-C mouth facing the bottom end wall within 2.0 mm. Its solder pads have 2.0 mm free space above and below (a 5.0 mm diameter circle around each pad).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "The halves are separate bodies locating on a lap seam with 0.10 to 0.30 mm clearance and 1.5 to 3.0 mm overlap (thinned lap parts at least 0.85 mm thick). They snap together with at least four cantilever hooks (engagement 0.3 to 0.8 mm, strain at most 2 percent) that stop the halves pulling apart. Seam gap at most 0.4 mm, outer step at most 0.3 mm, no screws.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed case has no openings besides the display window, six button holes, USB-C opening and switch slot, with at least 1.0 mm of material around each opening. Walls 2.0 to 3.0 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Front half, back half and each cap are each one manifold body, printable on FDM without supports, with at least 50 percent of the plan bounding box on the bed.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.13",
+     "text": "Case open: OLED, buttons and Pico install into the front half, cell, charger board and switch into the back half, each along its own axis. A screwdriver reaches each Pico screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.14",
+     "text": "Deliverables: front half, back half and caps STLs, OpenSCAD source, declared layout and the agent's own clearance report, which must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a display window, button holes, a USB-C opening, a switch slot and blind pilot holes",
+    "interior placement: posts, ribs, ledges, button seats and hooks at catalogue coordinates inside a shell",
+    "stacked layers: parts placed in Z from catalogue datums with keep-out and solder-joint zones between layers",
+    "retention reasoning: a part held within a stated distance in six directions by printed features",
+    "button actuation: a printed cap, a stem through a hole, a stroke computed from the button's travel",
+    "window and datum placement: an opening sized from a viewing area and centred on a datum",
+    "snap-fit design: cantilever hooks with an engagement, a length and a strain computed from measured numbers",
+    "multi-body assembly with a lap seam and several small printed bodies (caps)",
+    "parts catalogue: load part.json models and place them by datums",
+    "envelope generation: plug and handle sweeps, solder-joint zones, pin zones, install paths, driver columns",
+    "interference checks against external solids: clear_of, inside, aperture finding, gap, capture, seating verification"
+   ]
+  },
+  {
+   "id": "G46",
+   "tier": 4,
+   "title": "Handheld Pico game console",
+   "request": "So I'm making a handheld games console with a Raspberry Pi Pico 2 at the heart. The case measures 110 mm by 60 mm by 22 mm thick. Inside, the Pico 2 goes over a 503450 LiPo cell (5 x 34 x 50 mm) and a TP4056 USB-C charger board, and a 0.96 inch SSD1306 OLED goes ahead of the Pico, looking out through a window in the front face. There are six 6 mm tactile buttons placed around the screen, each one with a printed cap poking out through the front. The power switch is an SK12D-style slide switch, and you need to be able to get at the charger's USB-C port; both are at the bottom end of the case. The case comes in two halves that snap shut, no screws, printed on an FDM printer with no supports. The LiPo is a pouch cell that may swell by 10 percent, and it must not lean on any solder joint, meaning not the charger board's pads, not the cell's own tab joints and not the underside of the Pico. For this, count as solder zones: 2 mm above and below each charger pad; a strip 14 mm wide along the tab edge of the cell, from 2 mm to 8 mm past the pouch; and the Pico's underside up to 1.5 mm below the board, apart from two 3 x 1.6 mm squares at the USB-end corners, which have no joints and can hold the board up.",
+   "request_verbatim": "A handheld device 110 x 60 x 22 mm: Pico 2 on top of a 5 x 34 x 50 mm LiPo and TP4056 board, an OLED window in front, six tactile buttons around it, a slide power switch and a USB-C port on the bottom end. The two halves snap together and the battery must not press on any solder joints.",
+   "request_notes": "Added to the owner's words, all from requirements.md section 3: the bottom end is one short end of the case (A1); only the charger's USB-C is exposed, the Pico's micro-USB is not (A2); the cell swells upward by 10 percent (A4); the sizes of the solder zones, now also stated in the request (A5); the buttons are 6 mm tactile switches with printed caps (A7); the Pico is held by two M2 screws plus supports (A8); the snaps are cantilever hooks with a 2 percent strain limit (A9); FDM, no supports (A11).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Put the Pico 2, the OLED, the LiPo cell, the TP4056 board, six buttons, the slide switch and a USB-C plug, all from the parts catalogue, into the design. The LiPo and the charger board go side by side in a lower layer, the Pico stacks above the LiPo and the OLED goes in front of the Pico. Nothing may collide, and the layout has to be declared.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Together the two halves are 110.0 x 60.0 x 22.0 mm, allowing plus 0.3 and minus 2.0 mm, and the four outer vertical corners are rounded with a radius of at least 3.0 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "In the front face there's a single window around the OLED's 25.0 x 14.0 mm viewing area. It's centred on that area to within 0.5 mm and is at least 1.0 mm smaller than the glass each way, while the OLED is seated against the front face and held there.",
+     "method": "demonstration"
+    },
+    {
+     "id": "L1.4",
+     "text": "Every one of the six buttons is operated by a printed cap. The stem of the cap passes through a hole in the front face with 0.2 to 0.4 mm of clearance per side and rests 0.0 to 0.5 mm above the plunger. It pushes the plunger through its whole travel before the cap reaches its stop, and it stands 0.3 to 1.0 mm proud of the front face. A flange at least 1.5 mm wider than the hole keeps the cap captive, and the button body is held in its seat. The buttons are at least 9.0 mm from each other and at least 8.0 mm from the window, and they are on at least two sides of it.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "With the case shut, a USB-C cable should plug all the way into the charger board through one opening in the bottom end wall, never touching the case. The opening may be no more than 1.5 mm larger than the plug on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "The slide switch is held captive. Its handle goes through a slot in the bottom end wall and travels its full 3.5 mm throw with at least 0.25 mm of clearance. The slot is at most 1.0 mm larger than the area the handle sweeps, and the handle sticks out 1.0 to 3.0 mm.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "The LiPo sits in the lower layer, with space for 10 percent swelling and nothing pressing on it. It stays at least 0.5 mm away from the solder zones (the charger board's pads, the cell's tab joints and the Pico's underside solder zone as set out in the request), and none of those may touch a printed body other than the two joint-free squares.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "At least two posts with M2 pilot holes and supports hold the Pico in every direction to within 1.0 mm. Leave at least 2.0 mm between its underside and the swollen cell, keep its top parts clear, and stay at least 0.3 mm from every wall.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "The TP4056 board is held in its seat, with its USB-C mouth facing the bottom end wall to within 2.0 mm. Its solder pads each need 2.0 mm of free space above and below (a 5.0 mm diameter circle around each pad).",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "The two halves are separate bodies. They locate on a lap seam with 0.10 to 0.30 mm of clearance and 1.5 to 3.0 mm of overlap (thinned lap parts at least 0.85 mm thick), and they snap together with at least four cantilever hooks (engagement 0.3 to 0.8 mm, strain no more than 2 percent) that stop the halves pulling apart. The seam gap is at most 0.4 mm and the outer step at most 0.3 mm. No screws.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.11",
+     "text": "Once closed, the case has no openings other than the display window, the six button holes, the USB-C opening and the switch slot, each with at least 1.0 mm of material around it. Wall thickness is 2.0 to 3.0 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "The front half, the back half and every cap must each be one manifold body that prints on an FDM printer with no supports, with at least 50 percent of its plan bounding box on the bed.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.13",
+     "text": "With the case open, the OLED, buttons and Pico go into the front half and the cell, charger board and switch go into the back half, each along its own axis, and a screwdriver can reach every Pico screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.14",
+     "text": "Deliver STLs for the front half, back half and caps, the OpenSCAD source, the declared layout and your own clearance report, and the report must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a display window, button holes, a USB-C opening, a switch slot and blind pilot holes",
+    "interior placement: posts, ribs, ledges, button seats and hooks at catalogue coordinates inside a shell",
+    "stacked layers: parts placed in Z from catalogue datums with keep-out and solder-joint zones between layers",
+    "retention reasoning: a part held within a stated distance in six directions by printed features",
+    "button actuation: a printed cap, a stem through a hole, a stroke computed from the button's travel",
+    "window and datum placement: an opening sized from a viewing area and centred on a datum",
+    "snap-fit design: cantilever hooks with an engagement, a length and a strain computed from measured numbers",
+    "multi-body assembly with a lap seam and several small printed bodies (caps)",
+    "parts catalogue: load part.json models and place them by datums",
+    "envelope generation: plug and handle sweeps, solder-joint zones, pin zones, install paths, driver columns",
+    "interference checks against external solids: clear_of, inside, aperture finding, gap, capture, seating verification"
+   ]
+  }
+ ]
+}

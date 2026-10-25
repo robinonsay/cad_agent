@@ -1,0 +1,11 @@
+{
+  "about": "Run step commands for the detached launcher (scratchpad launch_suite.py ITER SEED [holdout]), migration delta R01 (owner decision D1). Each command is the argument list after the python interpreter, run in order with cwd = the repo; placeholders: {iter} (the iteration), {seed} (its seed), {para} (the paraphrase, iteration mod 3: 0 = design.json, 1 and 2 = paraphrases.json entries). commands: the train run on the iteration's wording, the regression set (no paraphrases), then the stub-controller train run on the same wording (the authority probe: no LLM, never judged). holdout_commands: the isolated held-out run on the same wording. See loop/RUN.md section 3.",
+  "commands": [
+    ["benchmarks/generalize/run_suite.py", "--iter", "{iter}", "--seed", "{seed}", "--paraphrase", "{para}"],
+    ["benchmarks/generalize/run_suite.py", "--iter", "{iter}", "--seed", "{seed}", "--regression"],
+    ["benchmarks/generalize/run_suite.py", "--iter", "{iter}", "--seed", "{seed}", "--paraphrase", "{para}", "--controller", "stub"]
+  ],
+  "holdout_commands": [
+    ["benchmarks/generalize/run_suite.py", "--split", "holdout", "--iter", "{iter}", "--seed", "{seed}", "--paraphrase", "{para}"]
+  ]
+}

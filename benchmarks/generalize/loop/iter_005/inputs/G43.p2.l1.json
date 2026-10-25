@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Make the reducer one solid manifold print, and make sure there are no sealed-in voids inside it.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.2",
+    "text": "On the 40 mm side I want a socket. Its bore should come out 0.15 mm smaller than a 40.0 mm outside diameter, i.e. 39.80 to 39.87 mm, and it should be 15.0 mm deep. Ease the mouth with a lead-in, either a chamfer or a radius, 0.3 to 1.0 mm in both directions.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The 50 mm side is a spigot. Make it 15.0 mm long with an outside diameter 0.15 mm bigger than a 50.0 mm inside diameter, so 50.13 to 50.20 mm, and put a lead-in on the tip, a chamfer or radius of 0.3 to 1.0 mm in both directions.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "A flat ring-shaped shoulder stop sits at 15.0 mm depth on each end; the pipe end seats on it, so it needs to be 1.0 mm wide or more.",
+    "method": "demonstration"
+  },
+  {
+    "id": "L1.5",
+    "text": "Keep the socket wall and the spigot wall at 2.4 mm apiece (anything from 2.3 to 2.5 mm), and nowhere should a wall drop below 2.0 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "Allowing for pipe and print tolerances, the interference on both friction-fit joints has to stay between 0 and 0.35 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "Hold the socket bore, the spigot's outer surface and the through-bore on one axis within 0.10 mm, and keep the stop faces square to that axis to within 0.5 degrees.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "Nothing should block the through-bore from end to end, and its diameter must be 34.0 mm or more at every point.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "It has to print standing on its axis on an FDM machine with no supports. That means a flat bottom end with at least 50 percent of the end annulus touching the bed, no overhang steeper than 45 degrees (apart from a flat ledge up to 1.5 mm wide, such as a stop), and no feature thinner than 0.8 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Overall, it should be between 30 and 45 mm long and no wider than 56 mm across.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.11",
+    "text": "Test with a 40 mm pipe and a 50 mm pipe both sitting on their stops. The two pipe ends must be 1.0 mm or more apart, the pipes must not touch one another, they must overlap the reducer only where the friction fit is, and each one must go in freely as far as its lead-in.",
+    "method": "test"
+  },
+  {
+    "id": "L1.12",
+    "text": "Hand over the reducer STL, the OpenSCAD source, the print orientation and stop positions as declared, and the agent's own fit report; that report has to match an independent measurement.",
+    "method": "inspection"
+  }
+]

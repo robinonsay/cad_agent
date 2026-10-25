@@ -1,0 +1,30 @@
+MODEL: ornith-1.5:9b T=0.3 seed=5000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: Could you design a case in two pieces for a Raspberry Pi Zero 2 W? The board is 65 x 30 mm and is fixed at its four 2.75 mm mounting holes, which form a 58 x 23 mm pattern sitting 3.5 mm in from the edges, with screws going into printed standoffs. Cables have to reach the board through openings in the walls while the cover is on, each opening leaving room for the plug body. On one long side of the board are the mini-HDMI port and the two micro-USB ports (data and power); the microSD card slot is on a short end and the card must be able to be pushed in and out. The cover attaches to the base with M2.5 screws, and the whole thing gets printed on an FDM printer.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. text_coverage (L1.5, L1.6, L1.7): board.usb_power (raspberry pi zero 2 w) is closed, but L1.6 names a micro-usb plug: "With the lid shut, two micro-USB plugs (data and power) must seat fully at once through two openings in that same long wall, touching neither the case nor on..."; needs: an opening for each connector whose mating plug the text names
+2. bridge_board_hdmi_cut (L1.5): board_hdmi_cut: flat roof span 17.800 vs bridge limit 15; conflict: stated oversize vs bridge limit: board_hdmi_cut is 17.800 mm wide; a roof to the 15 mm br...; off by 2.79 mm; needs: decrease the flat bridge span (typed conflict: stated oversize vs bridge limit: board_hdmi_cut is 17.800 mm wide; a roof to the 15 mm bridge lim...)
+
+The design now:
+- board (primary): raspberry pi zero 2 w x1; connectors: hdmi open through -Y, usb_data open through -Y, usb_power closed, sd open through -X
+- lid closure: lip; lid bosses: inside_band_x
+
+Earlier steps:
+- step 1: A (expose board.usb_data) was kept: violation 2 -> 1 (lower)
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- A: expose board.usb_power: open the enclosure wall for the raspberry pi zero 2 w's usb_power connector so a micro-usb plug plugs in with the enclosure closed
+- B: stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? Answer with its letter.
+
+=== RESPONSE ===
+{
+  "action": "A"
+}

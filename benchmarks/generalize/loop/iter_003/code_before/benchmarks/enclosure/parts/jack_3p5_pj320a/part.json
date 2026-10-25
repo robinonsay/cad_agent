@@ -1,0 +1,44 @@
+{
+  "id": "jack_3p5_pj320a",
+  "schema": 1,
+  "units": "mm",
+  "names": ["3.5 mm jack", "3.5 mm aux jack", "aux jack", "audio jack", "trs jack", "3.5 mm trs jack", "headphone jack", "pj-320a", "pj320a", "3.5 mm socket"],
+  "kind": "connector",
+  "source": "PJ-320A type PCB-mount 3.5 mm TRS jack. Body, bore and axis: vendor datasheet: body 12.0 x 6.0 x 5.0 mm, bore 3.6 mm, axis 2.5 mm above the PCB, mouth on the front face (requirements.md A5, M-JACK). Footprint pins (PINS): XKB Industrial Precision drawing PJ-320A rev A0, sheet 1/1 (https://atta.szlcsc.com/upload/public/pdf/source/20211009/3530D3239D5E54DF713226555EC23A50.pdf), PCB layout, front and bottom views, read in iteration 006.",
+  "frame": "jack: origin at the body min corner, body bottom on Z = 0, mouth on the +X face",
+  "params": {
+    "body_length": {"default": 12.0, "source": "datasheet: body length along the plug axis"},
+    "body_width": {"default": 6.0, "source": "datasheet: body width"},
+    "body_height": {"default": 5.0, "source": "datasheet: body height"},
+    "bore_diameter": {"default": 3.6, "source": "datasheet: barrel bore"},
+    "axis_height": {"default": 2.5, "source": "datasheet: plug axis above the PCB"}
+  },
+  "datasheet_size": [12.0, 6.0, 5.0],
+  "size_tolerance": 0.5,
+  "geometry": [
+    {"id": "body", "primitive": "box", "size": ["body_length", "body_width", "body_height"], "at": [0, 0, 0]}
+  ],
+  "datums": {
+    "MOUTH": {"kind": "point", "at": ["body_length", "body_width / 2", "axis_height"]},
+    "AXIS": {"kind": "axis", "at": ["body_length", "body_width / 2", "axis_height"], "dir": [1, 0, 0], "diameter": "bore_diameter"},
+    "BOTTOM": {"kind": "plane", "at": [0, 0, 0], "normal": [0, 0, -1]},
+    "PINS": {"kind": "axis_list", "dir": [0, 0, -1],
+             "source": "XKB drawing PJ-320A, PCB layout view: terminals 2, 3, 4 at 3.2 / 6.2 / 10.2 mm and terminal 5 at 11.2 mm behind the body's front face (pads at 5.2, +3.0, +4.0 mm from the 2.0 mm nose; 13.2 mm from the nose to terminal 5); the two terminal rows 4.8 mm apart about the body centreline (front view); terminals 2-4 on one side, 5 on the other (PCB layout view, component side, third-angle projection)",
+             "at": [["body_length - 3.2", "body_width / 2 - 2.4", 0], ["body_length - 6.2", "body_width / 2 - 2.4", 0],
+                    ["body_length - 10.2", "body_width / 2 - 2.4", 0], ["body_length - 11.2", "body_width / 2 + 2.4", 0]]}
+  },
+  "connectors": [
+    {"name": "jack", "mouth": "MOUTH", "axis": "AXIS", "mates": "plug_trs_3p5", "overhang_datum": "MOUTH"}
+  ],
+  "notes": "PINS are the four solder terminals (2, 3, 4, 5; slots 0.5 x 1.5 mm, legs 1.8 mm below the body) from the XKB PJ-320A drawing, measured from the body's front face (the mouth face, MOUTH.x) and the body centreline, so they do not depend on the body size. The two plastic locating posts (Ø0.75; PCB holes Ø1.2 at 1.6 and 8.6 mm behind the front face) are not terminals and are not in PINS. The drawing shows a 12.2 x 6.1 mm body behind a 2.0 mm Ø5 nose (the catalogue body is 12.0 x 6.0, unchanged in iteration 006). The drawing's side view dimensions terminal 5 at 11.4; the PCB layout and bottom views give 11.2, which is used. The previous source line cited LCSC C18438, which is a capacitor, not this jack.",
+  "self_checks": [
+    {"name": "R5 bore diameter", "expr": "AXIS.diameter", "value": 3.6, "tol": 0.2},
+    {"name": "R5 axis height above the board", "expr": "AXIS.z", "value": 2.5, "tol": 0.3},
+    {"name": "mouth on the +X face", "expr": "MOUTH.x - body.max_x", "value": 0, "tol": 1e-6},
+    {"name": "axis along +X", "expr": "AXIS.dx", "value": 1, "tol": 1e-6},
+    {"name": "terminal 2 to 3 spacing (drawing: 3.0)", "expr": "PINS[0].x - PINS[1].x", "value": 3.0, "tol": 0.05},
+    {"name": "terminal 3 to 4 spacing (drawing: 4.0)", "expr": "PINS[1].x - PINS[2].x", "value": 4.0, "tol": 0.05},
+    {"name": "terminal rows apart (drawing, front view: 4.8)", "expr": "PINS[3].y - PINS[0].y", "value": 4.8, "tol": 0.05},
+    {"name": "terminal 2 behind the mouth face (drawing: 3.2)", "expr": "MOUTH.x - PINS[0].x", "value": 3.2, "tol": 0.05}
+  ]
+}

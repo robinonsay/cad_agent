@@ -1,0 +1,176 @@
+{
+  "paraphrases": [
+    {
+      "id": "G08",
+      "tier": 4,
+      "title": "Pico battery node with sliding battery door",
+      "request": "Sensor node box for a Raspberry Pi Pico 2 running on a single 18650 Li-ion cell (18.6 mm diameter, 65.2 mm long). The cell rests in a printed cradle running along the box. A sliding door on the box bottom retains it, so the cell can be swapped without opening the electronics. The Pico sits over the cell on four M2 screws. An SK12D-type slide switch is the power switch, with its handle sticking out of one side wall. The Pico's micro-USB port is reachable through one end wall with the lid on. Weather-resistant as far as a printed box goes: closed everywhere except the USB opening, the switch slot and the door seam. Door clearance is about 0.3 mm per side. Three parts, base, lid and door, FDM printed with no supports.",
+      "request_verbatim": "Weatherproof-ish sensor node with a Pico 2 and one 18650 cell (18.6 x 65.2 mm). The battery sits in a printed cradle with a sliding door on the bottom that retains it, the SK12D slide switch pokes through the side, and the micro-USB opens at one end. Door clearance should be about 0.3 mm per side.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3: the Pico above the cell, lengthwise (A1); 3.0 mm of free space at each end of the cell for contact hardware (A2); the door leaves through the end opposite the USB (FD1); 'weatherproof-ish' means closed except the listed openings, no IP rating (A5); Pico on four M2 self-tapping screws (A6); lid with a locating lip and two M3 screws (A8); FDM, no supports (A9).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Place the Pico 2, the 18650 cell and the slide switch from the parts catalogue and declare the layout: Pico above the cell, both lengthwise, Pico USB port facing one end, switch handle facing one side wall, no part collisions.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "The 18.6 x 65.2 mm cell lies in a cradle inside the closed enclosure and penetrates no printed surface. Leave 3.0 mm free at each end for contacts and 0.3 to 1.0 mm side clearance at the widest point.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "Door closed: the cell moves at most 1.0 mm sideways or upward and at most 4.0 mm along its axis, and it rests on the door (within 0.3 mm of the door's upper face).",
+          "method": "demonstration"
+        },
+        {
+          "id": "L1.4",
+          "text": "The door is a separate body, 2.0 to 3.0 mm thick, on the enclosure bottom. It slides along the cell axis with 0.25 to 0.35 mm clearance per side and exits through the end opposite the USB. It has a detent (0.3 to 0.8 mm deep), an end stop, and a grip reaching 1.0 to 5.0 mm past the end wall. The door overlaps each side wall by at least 1.0 mm along at least 60 percent of its length, and its outer face sits 0.3 to 3.0 mm above the base's bottom plane.",
+          "method": "test"
+        },
+        {
+          "id": "L1.5",
+          "text": "Door removed, lid on: the cell drops straight down out of the cradle through the bottom opening, which is at least 0.3 mm wider than the cell per side, touching nothing.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "Pico on four posts under its mounting holes, each with a pilot hole for an M2 self-tapping screw. Keep at least 4.0 mm clear above its top surface, 2.0 mm clear under its underside, and at least 0.3 mm to every wall. Give the cell wires a passage at each end of the cell: a hole at least 4.0 mm across through the shelf, not open to the outside.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Lid closed: a micro-USB cable plugs fully into the Pico through one end wall opening, staying at least 0.3 mm clear of the plug's envelope. The opening is at most 1.5 mm bigger than the plug on any side.",
+          "method": "test"
+        },
+        {
+          "id": "L1.8",
+          "text": "The slide switch is held captive (within 1.0 mm in all directions except toward its wire side), with 5.0 mm free behind its terminals. Its handle passes through a side wall slot and travels its full 3.5 mm throw with at least 0.25 mm clearance to the slot. The slot is at most 1.0 mm bigger than the handle's swept area, and the handle protrudes 1.0 to 3.0 mm past the wall.",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "A base and a separate removable lid close the top. The lid locates on the base by a lip with a sliding fit and is held by two M3 screws into bosses. Lid lip clearance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, total lid height at most 6.0 mm. Lid off, the Pico and the switch install along their own axes, and a screwdriver reaches each Pico screw and each lid screw.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.10",
+          "text": "Closed enclosure openings: only the USB opening, the switch slot, the door seam (gap at most 0.4 mm) and screw holes, with at least 1.0 mm of material around each opening. Walls, shelf and lid are 2.0 to 4.0 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "Base, lid and door are each one manifold body printable on an FDM printer without supports (at least 25 percent of the base's plan bounding box, and 50 percent of the lid's and the door's, on the bed).",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "Closed enclosure at most 85 x 40 x 40 mm, longest along the cell axis, standing on its base without tipping.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.13",
+          "text": "Deliver the base, lid and door STLs, the OpenSCAD source, the declared layout and the agent's own clearance report. The report must agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: cradle channel, door grooves, wall openings (USB, switch slot, door slot) and blind pilot holes",
+        "interior placement: shelf, posts, bosses and ribs at catalogue coordinates inside a parent's footprint",
+        "sliding fit: a separate door body in grooves with a derived clearance, swept along its travel for interference",
+        "two-storey layout: parts stacked along Z from catalogue datums, with keep-out volumes between them",
+        "retention reasoning: a part held within a stated distance in six directions by printed features",
+        "three printable bodies, each with its own print orientation",
+        "parts catalogue: load part.json models (cell, Pico, switch, plug) and place them by datums",
+        "envelope generation: contact reserves, plug and handle sweeps, cell drop path, driver columns, install paths",
+        "interference checks against external solids: clear_of, inside, aperture finding, gap, seating verification"
+      ]
+    },
+    {
+      "id": "G08",
+      "tier": 4,
+      "title": "Pico battery node with sliding battery door",
+      "request": "I'd like a rugged-ish little sensor node box, and I'm keeping it weather-resistant within what a printed box can do, meaning it stays sealed except for the USB opening, the switch slot and the seam around the door. Inside goes a Raspberry Pi Pico 2 and one 18650 Li-ion cell (18.6 mm across, 65.2 mm long). The cell lies in a printed cradle along the box, and the bottom has a sliding door that keeps it in place, so I can change the cell without touching the electronics. The Pico is mounted on top of the cell with four M2 screws. For the power switch I'm using an SK12D-type slide switch whose handle sticks out of a side wall, and the Pico's micro-USB port should be reachable through an end wall while the lid is on. Aim for roughly 0.3 mm of clearance per side on the door. Everything is FDM printed without supports: a base, a lid and the door.",
+      "request_verbatim": "Weatherproof-ish sensor node with a Pico 2 and one 18650 cell (18.6 x 65.2 mm). The battery sits in a printed cradle with a sliding door on the bottom that retains it, the SK12D slide switch pokes through the side, and the micro-USB opens at one end. Door clearance should be about 0.3 mm per side.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3: the Pico above the cell, lengthwise (A1); 3.0 mm of free space at each end of the cell for contact hardware (A2); the door leaves through the end opposite the USB (FD1); 'weatherproof-ish' means closed except the listed openings, no IP rating (A5); Pico on four M2 self-tapping screws (A6); lid with a locating lip and two M3 screws (A8); FDM, no supports (A9).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "Take the Pico 2, the 18650 cell and the slide switch from the parts catalogue and set them up in a declared layout. The Pico goes over the cell with both running along the length, the Pico's USB port points at one end, the switch handle points at one side wall, and nothing collides.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "Inside the closed enclosure the 18.6 x 65.2 mm cell sits in a cradle and does not cut into any printed surface. It needs 3.0 mm of free room at both ends for the contacts and between 0.3 and 1.0 mm of side clearance where it is widest.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "With the door shut, the cell may shift no more than 1.0 mm to the side or upward, and no more than 4.0 mm along its axis. It sits on the door, within 0.3 mm of the door's upper face.",
+          "method": "demonstration"
+        },
+        {
+          "id": "L1.4",
+          "text": "The door is its own body on the bottom of the enclosure, 2.0 to 3.0 mm thick, and it slides along the cell axis, 0.25 to 0.35 mm of clearance on each side, coming out at the end away from the USB. A detent (0.3 to 0.8 mm deep) and an end stop hold it shut, and a grip sticks out 1.0 to 5.0 mm beyond the end wall. Along at least 60 percent of its length the door must overlap each side wall by 1.0 mm or more, and its outer face lies 0.3 to 3.0 mm above the bottom plane of the base.",
+          "method": "test"
+        },
+        {
+          "id": "L1.5",
+          "text": "If the door is off and the lid is on, the cell has to fall straight down out of the cradle through the bottom opening, without hitting anything. The opening is wider than the cell by at least 0.3 mm on each side.",
+          "method": "test"
+        },
+        {
+          "id": "L1.6",
+          "text": "The Pico is fixed on four posts below its mounting holes, each post having a pilot hole for an M2 self-tapping screw. Above the Pico's top surface leave at least 4.0 mm of free space, below its underside 2.0 mm, and keep it at least 0.3 mm from every wall. At each end of the cell there must be a passage for the cell wires, a hole at least 4.0 mm across through the shelf which does not open to the outside.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "With the lid shut, you must be able to push a micro-USB cable all the way into the Pico via a single opening in an end wall, with at least 0.3 mm between the cable and the plug's envelope. No side of that opening may exceed the plug by more than 1.5 mm.",
+          "method": "test"
+        },
+        {
+          "id": "L1.8",
+          "text": "Keep the slide switch captive, within 1.0 mm in every direction other than toward its wire side, and leave 5.0 mm of free room behind its terminals. The handle comes out through a slot in a side wall and moves through its whole 3.5 mm throw while staying at least 0.25 mm from the slot. The slot may be at most 1.0 mm larger than the area the handle sweeps, and the handle should stick out 1.0 to 3.0 mm past the wall.",
+          "method": "test"
+        },
+        {
+          "id": "L1.9",
+          "text": "The top is closed by the base and a separate lid that you can remove. The lid sits on the base with a lip and a sliding fit and is secured by two M3 screws into bosses: lip clearance 0.15 to 0.35 mm, engagement 2.0 to 3.0 mm, lid plate 2.0 to 3.0 mm, and a total lid height of at most 6.0 mm. With the lid removed, the Pico and the switch go in along their own axes, and a screwdriver can get to each Pico screw and each lid screw.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.10",
+          "text": "When closed, the enclosure may only have the USB opening, the switch slot, the door seam (a gap of no more than 0.4 mm) and the screw holes, and at least 1.0 mm of material must surround every opening. Walls, shelf and lid are 2.0 to 4.0 mm thick.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.11",
+          "text": "Each of the base, the lid and the door is a single manifold body that can be printed on an FDM printer with no supports. On the bed, that means at least 25 percent of the base's plan bounding box and 50 percent of the lid's and the door's.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.12",
+          "text": "The closed enclosure must fit in 85 x 40 x 40 mm, with the long direction along the cell axis, and it has to stand on its base without tipping over.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.13",
+          "text": "What I get back: base, lid and door STLs, the OpenSCAD source, the declared layout and the agent's own clearance report, with the report agreeing with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "subtraction: cradle channel, door grooves, wall openings (USB, switch slot, door slot) and blind pilot holes",
+        "interior placement: shelf, posts, bosses and ribs at catalogue coordinates inside a parent's footprint",
+        "sliding fit: a separate door body in grooves with a derived clearance, swept along its travel for interference",
+        "two-storey layout: parts stacked along Z from catalogue datums, with keep-out volumes between them",
+        "retention reasoning: a part held within a stated distance in six directions by printed features",
+        "three printable bodies, each with its own print orientation",
+        "parts catalogue: load part.json models (cell, Pico, switch, plug) and place them by datums",
+        "envelope generation: contact reserves, plug and handle sweeps, cell drop path, driver columns, install paths",
+        "interference checks against external solids: clear_of, inside, aperture finding, gap, seating verification"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+ "id": "extrusion_2020",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "2020 extrusion",
+  "2020 aluminium extrusion",
+  "2020 aluminum extrusion",
+  "2020 profile",
+  "2020 t-slot",
+  "2020 t slot extrusion",
+  "2020 v-slot",
+  "2020 aluminium profile",
+  "t-slot extrusion"
+ ],
+ "kind": "profile",
+ "source": "2020 T-slot profile, Misumi HFS5-2020 drawing and the common 2020 V-slot/T-slot catalogues: 20 x 20 mm section, slot opening 6.2 mm, slot depth 6.1 mm, centre bore 4.2 mm (M5 tap drill), slot interior width about 11 mm behind a 1.8 mm lip (assumed from the same drawings; +/-0.3 mm between vendors). Length comes from the request. The slot channels and bore are not modelled as geometry (boxes and cylinders only): they are datums, and the body is the solid 20 x 20 envelope. Treat the slot/bore datums as the real extent and never place material in a slot except a designed tongue or T-nut.",
+ "frame": "profile: axis along Z, origin at the centre of the section on the start end face, profile extends toward +Z; slots face +X, +Y, -X, -Y",
+ "params": {
+  "length": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  },
+  "width": {
+   "default": 20.0,
+   "source": "profile nominal section"
+  },
+  "slot_opening": {
+   "default": 6.2,
+   "source": "Misumi HFS5-2020 drawing: slot opening"
+  },
+  "slot_depth": {
+   "default": 6.1,
+   "source": "Misumi HFS5-2020 drawing: slot depth from the face"
+  },
+  "lip_thickness": {
+   "default": 1.8,
+   "source": "assumed from the 2020 drawings: lip each side of the opening (uncertainty +/-0.3 mm)"
+  },
+  "slot_inner_width": {
+   "default": 11.0,
+   "source": "assumed from the 2020 drawings: slot width behind the lips (uncertainty +/-0.5 mm)"
+  },
+  "bore_diameter": {
+   "default": 4.2,
+   "source": "Misumi HFS5-2020 drawing: centre bore (M5 tap drill)"
+  }
+ },
+ "gate_params": {
+  "length": 100.0,
+  "source": "sample size used only by the load-time validation gate; never a design value"
+ },
+ "datasheet_size": [
+  "width",
+  "width",
+  "length"
+ ],
+ "size_tolerance": 0.05,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "box",
+   "size": [
+    "width",
+    "width",
+    "length"
+   ],
+   "at": [
+    "-width / 2",
+    "-width / 2",
+    0
+   ]
+  }
+ ],
+ "datums": {
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "bore_diameter"
+  },
+  "END_START": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "END_FAR": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "FACE_PX": {
+   "kind": "plane",
+   "at": [
+    "width / 2",
+    0,
+    0
+   ],
+   "normal": [
+    1,
+    0,
+    0
+   ]
+  },
+  "FACE_PY": {
+   "kind": "plane",
+   "at": [
+    0,
+    "width / 2",
+    0
+   ],
+   "normal": [
+    0,
+    1,
+    0
+   ]
+  },
+  "FACE_NX": {
+   "kind": "plane",
+   "at": [
+    "-width / 2",
+    0,
+    0
+   ],
+   "normal": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "FACE_NY": {
+   "kind": "plane",
+   "at": [
+    0,
+    "-width / 2",
+    0
+   ],
+   "normal": [
+    0,
+    -1,
+    0
+   ]
+  },
+  "SLOT_PX": {
+   "kind": "axis",
+   "at": [
+    "width / 2",
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "slot_opening"
+  },
+  "SLOT_PY": {
+   "kind": "axis",
+   "at": [
+    0,
+    "width / 2",
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "slot_opening"
+  },
+  "SLOT_NX": {
+   "kind": "axis",
+   "at": [
+    "-width / 2",
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "slot_opening"
+  },
+  "SLOT_NY": {
+   "kind": "axis",
+   "at": [
+    0,
+    "-width / 2",
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "slot_opening"
+  },
+  "SLOT_FLOOR_PX": {
+   "kind": "plane",
+   "at": [
+    "width / 2 - slot_depth",
+    0,
+    0
+   ],
+   "normal": [
+    1,
+    0,
+    0
+   ]
+  }
+ },
+ "keepouts": [
+  {
+   "id": "slot_px",
+   "primitive": "box",
+   "size": [
+    "slot_depth",
+    "slot_opening",
+    "length"
+   ],
+   "at": [
+    "width / 2 - slot_depth",
+    "-slot_opening / 2",
+    0
+   ]
+  },
+  {
+   "id": "slot_nx",
+   "primitive": "box",
+   "size": [
+    "slot_depth",
+    "slot_opening",
+    "length"
+   ],
+   "at": [
+    "-width / 2",
+    "-slot_opening / 2",
+    0
+   ]
+  },
+  {
+   "id": "slot_py",
+   "primitive": "box",
+   "size": [
+    "slot_opening",
+    "slot_depth",
+    "length"
+   ],
+   "at": [
+    "-slot_opening / 2",
+    "width / 2 - slot_depth",
+    0
+   ]
+  },
+  {
+   "id": "slot_ny",
+   "primitive": "box",
+   "size": [
+    "slot_opening",
+    "slot_depth",
+    "length"
+   ],
+   "at": [
+    "-slot_opening / 2",
+    "-width / 2",
+    0
+   ]
+  }
+ ],
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "section is 20 square",
+   "expr": "body.size_x - body.size_y",
+   "value": 0,
+   "tol": 0.01
+  },
+  {
+   "name": "slot opening narrower than the section",
+   "expr": "width - slot_opening",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "slot floor clears the centre bore",
+   "expr": "width / 2 - slot_depth - bore_diameter / 2",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "lips plus opening fill the slot face less the interior",
+   "expr": "slot_inner_width - slot_opening",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "extrusion length positive",
+   "expr": "END_FAR.z - END_START.z",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

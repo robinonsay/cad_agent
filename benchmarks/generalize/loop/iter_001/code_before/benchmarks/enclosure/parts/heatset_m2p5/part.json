@@ -1,0 +1,33 @@
+{
+  "id": "heatset_m2p5",
+  "schema": 1,
+  "units": "mm",
+  "names": ["m2.5 heat-set insert", "m2.5 heat set insert", "heat-set insert", "heat set insert", "threaded insert", "m2.5 insert"],
+  "kind": "fastener",
+  "source": "M2.5 x 4 brass heat-set insert for printed parts (e.g. CNC Kitchen / Ruthex M2.5 short insert tables): printed hole 3.5-3.6 mm, length 4.0 mm, boss outer diameter at least 6.5 mm (requirements.md A9). The knurl diameter is an estimate; it only matters for ghost renders.",
+  "frame": "fastener: axis along Z, origin on the insert's top face, body toward -Z",
+  "params": {
+    "thread_diameter": {"default": 2.5, "source": "M2.5 internal thread"},
+    "hole_diameter": {"default": 3.55, "source": "insert table: printed hole 3.5-3.6"},
+    "hole_min": {"default": 3.5, "source": "insert table"},
+    "hole_max": {"default": 3.6, "source": "insert table"},
+    "outer_diameter": {"default": 3.9, "source": "estimate: knurl diameter"},
+    "length": {"default": 4.0, "source": "insert table: length (minimum hole depth)"},
+    "min_boss_od": {"default": 6.5, "source": "insert table: minimum boss outer diameter"}
+  },
+  "datasheet_size": ["outer_diameter", "outer_diameter", "length"],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {"id": "body", "primitive": "cylinder", "d": "outer_diameter", "h": "length", "at": [0, 0, "-length"], "dir": [0, 0, 1]}
+  ],
+  "datums": {
+    "AXIS": {"kind": "axis", "at": [0, 0, 0], "dir": [0, 0, -1], "diameter": "thread_diameter"},
+    "TOP": {"kind": "plane", "at": [0, 0, 0], "normal": [0, 0, 1]}
+  },
+  "connectors": [],
+  "self_checks": [
+    {"name": "hole inside its range", "expr": "hole_diameter - hole_min", "op": "ge", "value": 0, "tol": 0},
+    {"name": "hole below its range maximum", "expr": "hole_max - hole_diameter", "op": "ge", "value": 0, "tol": 0},
+    {"name": "boss wall around the insert", "expr": "min_boss_od - hole_diameter", "op": "ge", "value": 0, "tol": 0}
+  ]
+}

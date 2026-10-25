@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Declare a layout in which the 40 x 40 x 10 mm fan is on the blowing side of the shroud, its airflow axis along the shroud axis and its exhaust face against the flange underside, together with four M3 bolts and the 25.4 mm duct, none of the parts colliding.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The shroud has just four blind pilot holes, each 2.5 mm in diameter and 6.3 to 7.0 mm deep with a closed floor of 0.8 mm or more. They open on the flange underside following the fan's 32.0 x 32.0 mm hole pattern, and each sits in a corner boss, fused to the body, that is 6.0 to 8.0 mm across.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "Each of the four M3 socket-head bolts enters from the intake side of the fan, passes through the fan's holes and goes 6.0 mm or more into a pilot. It must not hit bottom (stay 0.3 mm or more off the pilot floor) and must not break into the airflow path: 0.8 mm or more from the bore, with the tip 0.8 mm or more below the top of the boss.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The flange underside lies flat against the fan's exhaust face. It is 2.5 to 4.0 mm thick and a square 39.0 to 40.0 mm, which keeps it inside the fan's 40 mm outline, and it opens to a 34.0 to 36.8 mm diameter bore, so the fan keeps its whole face and blows into the shroud.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "Between the flange bore and the spigot bore the transition has to be smooth and axisymmetric, 7.5 to 17.5 mm in length, without any radial step greater than 0.3 mm. Every point on its inner and outer surfaces must be 45 degrees or less from the airflow axis. Ignore the four corner bosses when judging the profile.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "A round spigot finishes the shroud: 25.0 mm outside diameter, a straight run of 40.0 mm, on the same axis as the fan, with a bore from 19.0 to 21.8 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "Wall thickness anywhere on the shroud, measured perpendicular to the surface, must be no less than 1.6 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The 25.4 mm duct should slip over the spigot as far as a stop, moving freely with a 0.2 mm gap around it and overlapping by 35 mm or more.",
+    "method": "test"
+  },
+  {
+    "id": "L1.9",
+    "text": "Air must flow through an unobstructed bore from the flange to the open spigot end, with an area of 283 mm\u00b2 or more; the shroud has no other opening into the bore.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Print the shroud as a single manifold body with no supports, spigot pointing up and the flange underside lying on the bed.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The shroud must stay within 42 x 42 x 60 mm and sit on its flange without tipping over.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.12",
+    "text": "Hand over the shroud STL, the OpenSCAD source, the layout declaration (fan, bolts and their length, duct, print orientation) and the agent's own clearance report, which has to agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

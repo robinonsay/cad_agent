@@ -1,0 +1,21 @@
+MODEL: ornith-1.5:9b T=0.7 seed=5001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a clamp for 2020 aluminium extrusion that uses a single M5 button-head bolt threaded into a drop-in T-nut. On top it has a 1/4-20 tripod stud for a small camera whose base measures about 28 mm. Its tongue sits in the extrusion's T-slot, which lets the clamp slide along the slot until the bolt is tightened. The stud's 1/4-20 hex head is trapped in a pocket so it can't rotate, and 5.5 to 8 mm of thread sticks out above the top. The boss around the stud has to survive 3 N m of torque without cracking, and at that torque the clamp must not rotate on the extrusion. Someone with a hex key must be able to get at the M5 bolt. Make it one PLA print, no supports, within 60 x 30 x 30 mm.
+
+Catalogue parts that may be in the request:
+- rpi_camera_v2: raspberry pi camera module 2 (module)
+- arduino_nano: arduino nano (module; cable connector: usb connector (takes a mini-usb plug))
+- arduino_uno_r3: arduino uno r3 (module; cable connector: usb connector (takes a usb-b plug), dc connector (takes a dc plug))
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_cylinder: capacitor (generic)
+
+For each part give how many the request puts inside the enclosure (0 if none), and for parts with a cable connector whether that connector must be reachable from outside (exposed). A part with several cable connectors has one answer per connector (<connector>_exposed), because each one may or may not be exposed.
+
+=== RESPONSE ===
+{"arduino_nano": {"exposed": "no", "quantity": 0}, "arduino_uno_r3": {"dc_exposed": "no", "quantity": 0, "usb_exposed": "no"}, "dc_jack_pj002a": {"exposed": "no", "quantity": 0}, "generic_cylinder": {"quantity": 0}, "jack_3p5_pj320a": {"exposed": "no", "quantity": 0}, "rpi_camera_v2": {"quantity": 0}}

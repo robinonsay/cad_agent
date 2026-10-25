@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall hold the 70 x 50 x 1.6 mm board component side down on four corner pins (2.7 to 2.9 mm diameter, standing 1 to 3 mm above the solder side), one in each of its 3 mm corner holes, with the board's underside resting on four seats around the pins, and shall declare the board's pose.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "No printed body shall come within 10 mm below the board's underside inside the board's outline, except the four seats under the holes, at every tilt from 0 to 20 degrees.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The board shall drop straight down onto its pins, shall have at least 0.5 mm clearance to every printed surface apart from its seats, and its solder side shall be open: nothing printed above the board's top surface inside its outline.",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "The board's cradle shall tilt freely about a horizontal axis through two M3 pivot bolts, at least 20 degrees each way, without touching the base (at least 0.5 mm clearance at every angle).",
+    "method": "test"
+  },
+  {
+    "id": "L1.5",
+    "text": "The pivot hardware shall be two M3 bolts, coaxial, each through a clearance hole in a base upright and into a pilot hole in the cradle, with 5.0 mm or more of thread engaged and a free hex-key column over each head.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "The holder shall not tip: at 0 and at 20 degrees of tilt either way its centre of mass shall lie at least 5.0 mm inside the base's footprint, a 0.5 N sideways push at the board's highest edge point shall not tip it, and the base shall be at least half of the total mass (mass = printed volume x 0.45 g/cm3, plus 30 g for the populated board, plus 1 g per bolt).",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The base shall print flat on its largest face with at least 50% bed contact, and the cradle shall have a stated print orientation with at least 25% bed contact.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The base and the cradle shall be two separate printed bodies, each one manifold body, and the pivot bolts shall be the only other parts.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "Every wall, bar, post and ligament shall be strong enough: no printed feature thinner than 2.0 mm except the pins, posts at least 5.0 mm across, and at least 2.0 mm of material around every bolt and pilot hole.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "Both bodies shall print on an FDM printer without supports in their stated print orientations.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The holder, at zero tilt, shall be no larger than 120 x 100 x 50 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "The design shall be delivered as a base STL, a cradle STL (zero-tilt pose, mm), the OpenSCAD source, the declared board and pivot layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

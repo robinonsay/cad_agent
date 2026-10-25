@@ -1,0 +1,141 @@
+{
+ "id": "generic_tube",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "tube",
+  "pipe",
+  "pvc pipe",
+  "hose",
+  "rod",
+  "cable",
+  "tubing",
+  "round pipe",
+  "cylindrical tube",
+  "pipe section",
+  "hose barb"
+ ],
+ "kind": "generic",
+ "source": "Parametric stand-in for a pipe, hose, tube, rod or cable: outer diameter, inner diameter and length come from the request (no datasheet). inner_diameter defaults to 0 (a solid rod or cable); give it for a hollow tube. The bore is a datum (BORE), not subtracted geometry.",
+ "frame": "generic: axis along Z, origin at the centre of the start end face, the tube extends toward +Z",
+ "params": {
+  "outer_diameter": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  },
+  "inner_diameter": {
+   "default": 0.0,
+   "source": "0 = solid; set from the request for a hollow tube",
+   "from_request": true
+  },
+  "length": {
+   "default": null,
+   "from_request": true,
+   "source": "request text"
+  }
+ },
+ "gate_params": {
+  "outer_diameter": 32.0,
+  "inner_diameter": 28.0,
+  "length": 100.0,
+  "source": "sample size used only by the load-time validation gate; never a design value"
+ },
+ "datasheet_size": [
+  "outer_diameter",
+  "outer_diameter",
+  "length"
+ ],
+ "size_tolerance": 0.05,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "cylinder",
+   "d": "outer_diameter",
+   "h": "length",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "outer_diameter"
+  },
+  "BORE": {
+   "kind": "axis",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "inner_diameter"
+  },
+  "END_START": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "END_FAR": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  }
+ },
+ "connectors": [],
+ "self_checks": [
+  {
+   "name": "outer diameter above the inner",
+   "expr": "outer_diameter - inner_diameter",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  },
+  {
+   "name": "length positive",
+   "expr": "END_FAR.z - END_START.z",
+   "op": "ge",
+   "value": 0,
+   "tol": 0
+  }
+ ]
+}

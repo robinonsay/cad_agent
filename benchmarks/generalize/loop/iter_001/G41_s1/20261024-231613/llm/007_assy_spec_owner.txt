@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.3 seed=1000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Number n47 = 100 (L1.10): "...The jig shall be no larger than 100 x 90 x 20 mm and shall stand flat on the bench...."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n47 state?
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+
+=== RESPONSE ===
+{
+  "owner": "max_x"
+}

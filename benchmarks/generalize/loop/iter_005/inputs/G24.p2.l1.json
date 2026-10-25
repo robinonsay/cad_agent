@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Using the parts catalogue, position the 2020 extrusion, the M5 T-nut, the M5 button-head bolt and the 1/4-20 stud around the clamp and declare that layout. The clamp goes on one face of the extrusion with its tongue in that face's slot, and the stud points out, away from the face. Keep the bolt axis and stud axis at least 14.0 mm apart in the slot plane.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "So the bolt and the stud's hex head can go in, split the tongue into segments with a gap at least 8.0 mm long around the bolt axis and at least 12.8 mm long around the stud axis. The tongue rides in the T-slot opening with a 0.2 mm gap on each side, keeps off the T-nut, and totals no less than 20 mm in length; with that 0.2 mm per-side gap in the 6.2 mm opening it comes to roughly 5.8 mm wide, rising 1.2 to 1.7 mm off the seat and staying at least 0.1 mm away from the T-nut.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The M5 bolt runs through a 5.5 mm clearance hole (counterbored for the head) and threads into the T-nut by 3.0 mm or more. Its tip must stop 0.5 mm or more before the slot floor, and protrude no more than 0.6 mm out of the back of the T-nut.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The clamp must lie flat against the extrusion face, touching over 300 mm2 or more (seat flatness within 0.2 mm), and must not cut into the extrusion at any point.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The 1/4-20 stud must point straight out of the extrusion face (perpendicular), with 5.5 to 8.0 mm of its thread showing above the top face and its hex head trapped in a pocket so it can't rotate. The head is 11.1 mm across flats by 5.6 mm thick, the catalogue nut size. Make the pocket 11.25 to 11.55 mm across flats and 5.7 to 6.2 mm deep, the stud hole 6.45 to 6.75 mm in diameter, leave at least 6.35 mm of material from pocket ceiling to top face, and hold the top face square to the stud to within 1.0 degree.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "Make the stud boss strong enough for 3 N m: the wall around the hex pocket must be 4.0 mm thick or more, and at 3 N m the wall shear and the flat bearing stress must stay within 12 and 20 MPa. The calculation uses T = 3000 N mm, AF for the pocket's across-flats width, d_p for its depth, and t_w for the thinnest material between the pocket and any outside surface or other hole (ignore the pocket's open mouth on the seat and the stud hole that carries on from its ceiling): F = T / (AF / 2); wall shear = F / (2 t_w d_p); flat bearing stress = F / (2 (AF / sqrt 3) d_p). From the stud axis the boss must reach at least 6.35 mm to each outer surface, and the part is printed with layers across the stud axis, build direction within 5 degrees of that axis.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "To stop the clamp rotating on the extrusion under 3 N m, the slot tongue needs a key capacity of 4.5 N m or more. Compute it as 15 MPa x tongue height x l_min x (S - l_min), where S is the full tongue span along the slot and l_min the shorter of the two end segments. The span is at least 30.0 mm and no segment is shorter than 4.0 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "Loosen the bolt and slide the clamp, T-nut included, 56 mm along the slot of a 100 mm extrusion. Nothing may touch except the seat and the T-nut must not bind: keep the tongue 0.15 mm or more away from the lips the whole way, and the T-nut 0.3 mm or more from the slot side walls and 0.5 mm from the slot floor.",
+    "method": "test"
+  },
+  {
+    "id": "L1.9",
+    "text": "From above, a hex key has to get at the head of the M5 bolt, and a camera base roughly 28 mm across must rest on the top face with no printed material over it. Keep the top face flat to 0.2 mm within a radius of at least 6.0 mm around the stud axis.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Print the clamp on an FDM printer without supports; it must be one manifold body.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The clamp has to fit within 60 x 30 x 30 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.12",
+    "text": "Hand over a clamp STL, the OpenSCAD source, the layout declaration and the agent's own clearance report. An independent measurement must agree with that report to 0.10 mm, with stresses agreeing to 5 percent.",
+    "method": "inspection"
+  }
+]

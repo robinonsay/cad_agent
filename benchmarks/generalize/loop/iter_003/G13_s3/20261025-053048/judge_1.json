@@ -1,0 +1,65 @@
+{
+ "id": "G13",
+ "meets": false,
+ "class": "WRONG",
+ "score": 0.3,
+ "summary": "Empty box with a rear USB cut: no switches, no plungers, no plunger holes in lid, no plunger.stl. Gates G0 (package, plunger.stl) and G5 (buttons) fail. Judged without claude-context (server failed to connect).",
+ "defects": [
+  {
+   "requirement_id": "L3.6.1.1 / L3.6.1.2 (L2.6.1, L1.6) G5",
+   "where": "lid.stl plate (Z 25.7-30.2), views/model_top.png / model_iso.png",
+   "what": "lid is a solid plate; no 4 plunger holes at button axes (25.475/44.525, 5.0/24.05 board frame)",
+   "expected": "4 holes dia 5.8 coaxial within 0.2",
+   "observed": "0 holes",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.1.2.1 / L3.1.2.2 (L2.1.2) G5",
+   "where": "layout.json references",
+   "what": "no button_tact_6mm placed; only board, rpi_pico2 (x45.5,y0,z8.5,rot -270) and two header_female sockets",
+   "expected": "4 buttons on 19.05 pitch",
+   "observed": "0 buttons",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.7.1.1 / L3.7.2.1 / L3.7.3.1 / L3.12.1.1 (L1.7, L1.12) G5",
+   "where": "package",
+   "what": "no plunger body at all; no travel, retention, bottoming height",
+   "expected": "plunger.stl, 4 instances, travel 1.5, flange",
+   "observed": "absent",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.13.1.1 (L2.13.1) G0",
+   "where": "package folder",
+   "what": "plunger.stl and report.json missing",
+   "expected": "6 of 6 files",
+   "observed": "base.stl, lid.stl, scad, layout.json only",
+   "severity": "gate"
+  },
+  {
+   "requirement_id": "L3.1.3.1 / L3.1.3.2 (L2.1.3)",
+   "where": "layout.json module_1_1 pose",
+   "what": "Pico placed at y=0 (spanning the board's Y 0..21) as sole content; no 'behind buttons' arrangement (no buttons exist)",
+   "expected": "Pico Y min >= button Y max + 0.5, USB -X",
+   "observed": "cannot be satisfied without buttons",
+   "severity": "3"
+  },
+  {
+   "requirement_id": "L3.8.2.1 / L2.8.2 (L1.8)",
+   "where": "lid.stl",
+   "what": "lid is a 2.4+ plate with lip, not a rebate-in-wall design; plate thickness about 2.4-4.5 incl lip, walls 2.4",
+   "expected": "rebate with upstand >=1.0, plate 2.0-3.0",
+   "observed": "lip-style lid (Z 25.7-30.2 total 4.5)",
+   "severity": "2"
+  },
+  {
+   "requirement_id": "L3.4.1.2 (L2.4.1)",
+   "where": "lid underside vs board top",
+   "what": "not verified clear to 13.3 above board; bbox shows lid Z 25.7 with board top Z 0 so ~25.7 available (pass)",
+   "expected": ">=13.3",
+   "observed": "pass",
+   "severity": "info"
+  }
+ ]
+}

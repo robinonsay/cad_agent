@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          36.0
+        ],
+        "length": 36.0,
+        "words": "the short (36 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 80.0,
+        "span": [
+          0.0,
+          36.0
+        ],
+        "length": 36.0,
+        "words": "the short (36 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": 0.0,
+        "span": [
+          0.0,
+          80.0
+        ],
+        "length": 80.0,
+        "words": "the long (80 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 36.0,
+        "span": [
+          0.0,
+          80.0
+        ],
+        "length": 80.0,
+        "words": "the long (80 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "lcd1602_hd44780",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    }
+  ],
+  "bodies": {
+    "base": {
+      "orientation": "open_side_up",
+      "source": "a tray prints on its floor without support"
+    },
+    "lid": {
+      "orientation": "outer_face_down",
+      "source": "a lid prints on its flat outer face; the lip points up"
+    }
+  },
+  "spec": {
+    "board_width": 80.0,
+    "board_depth": 36.0,
+    "keepout_above": 10.0,
+    "keepout_below": 3.0,
+    "board_clearance": 0.5,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.0,
+    "wall_max": 4.0,
+    "max_x": 70.0,
+    "max_y": 80.0,
+    "max_z": 100.0
+  },
+  "board": {
+    "part": "lcd1602_hd44780",
+    "specimen": null,
+    "params": {
+      "pcb_length": 80.0,
+      "pcb_width": 36.0,
+      "pcb_thickness": 1.6,
+      "hole_diameter": 2.5,
+      "hole_from_x_edge": 2.5,
+      "hole_from_y_edge": 2.5,
+      "overall_height": 13.0,
+      "bezel_length": 71.2,
+      "bezel_width": 24.2,
+      "view_width": 64.5,
+      "view_height": 14.0,
+      "active_width": 56.2,
+      "active_height": 11.5,
+      "view_clear_height": 3.0,
+      "pin_pitch": 2.54,
+      "pin_from_x_edge": 8.0,
+      "pin_from_y_edge": 2.5
+    },
+    "holes": [
+      [
+        2.5,
+        2.5,
+        0.0
+      ],
+      [
+        77.5,
+        2.5,
+        0.0
+      ],
+      [
+        2.5,
+        33.5,
+        0.0
+      ],
+      [
+        77.5,
+        33.5,
+        0.0
+      ]
+    ],
+    "hole_diameter": 2.5,
+    "hole_keepout_diameter": 5.0,
+    "grid": null,
+    "screw": "screw_m2_selftap"
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0,
+  "unplaced": [
+    {
+      "id": "module_1",
+      "part": "rpi_pico2",
+      "quantity": 1,
+      "reason": "lcd1602_hd44780 is not a carrier: no relation places it yet (GM2b)"
+    }
+  ]
+}

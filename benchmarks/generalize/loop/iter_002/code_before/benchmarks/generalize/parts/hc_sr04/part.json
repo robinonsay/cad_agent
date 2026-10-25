@@ -1,0 +1,311 @@
+{
+ "id": "hc_sr04",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "hc-sr04",
+  "hc sr04",
+  "hcsr04",
+  "ultrasonic sensor",
+  "ultrasonic distance sensor",
+  "ultrasonic module",
+  "sonar sensor",
+  "hc-sr04 ultrasonic"
+ ],
+ "kind": "module",
+ "source": "HC-SR04 ultrasonic ranging module data sheet (Cytron / ElecFreaks): PCB 45 x 20 mm, overall 45 x 20 x 15 mm, two 16 mm transducers (TX and RX) at 26 mm centre spacing, 4-pin 2.54 mm header (VCC, Trig, Echo, GND). ASSUMED / uncertain: PCB thickness 1.2 mm; transducers centred across the 20 mm width and symmetric about the board centre along the length (9.5 / 35.5 mm); transducer housing 16.0 mm dia (the cans are 16.2 mm on some clones); no mounting holes (vendor variants have none); the 4-pin header on the back (-Z) at the middle of the -Y long edge, body 2.5 mm with pins at the 2.54 pitch; front face of the transducers 15.0 mm above the PCB bottom including the PCB (datasheet overall height).",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, transducers look toward +Z, header on the underside at the -Y edge",
+ "params": {
+  "pcb_length": {
+   "default": 45.0,
+   "source": "datasheet: board length"
+  },
+  "pcb_width": {
+   "default": 20.0,
+   "source": "datasheet: board width"
+  },
+  "pcb_thickness": {
+   "default": 1.2,
+   "source": "assumed PCB thickness"
+  },
+  "total_height": {
+   "default": 15.0,
+   "source": "datasheet: overall height, PCB bottom to the transducer fronts"
+  },
+  "transducer_diameter": {
+   "default": 16.0,
+   "source": "datasheet: transducer diameter"
+  },
+  "transducer_spacing": {
+   "default": 26.0,
+   "source": "datasheet: centre spacing between the two transducers"
+  },
+  "transducer_clear_margin": {
+   "default": 1.0,
+   "source": "assumed: aperture margin round each transducer (the sound cone is wide, wall hole must not clip it)"
+  },
+  "pin_count": {
+   "default": 4,
+   "source": "datasheet: header positions"
+  },
+  "pin_pitch": {
+   "default": 2.54,
+   "source": "datasheet: header pitch"
+  },
+  "pin_inset": {
+   "default": 2.0,
+   "source": "assumed: header row centre from the -Y edge"
+  },
+  "header_body_height": {
+   "default": 2.5,
+   "source": "standard header plastic height"
+  },
+  "wire_clear": {
+   "default": 12.0,
+   "source": "assumed: dupont connector height behind the header"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "total_height + header_body_height"
+ ],
+ "size_tolerance": 0.3,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "tx",
+   "primitive": "cylinder",
+   "d": "transducer_diameter",
+   "h": "total_height - pcb_thickness",
+   "at": [
+    "(pcb_length - transducer_spacing) / 2",
+    "pcb_width / 2",
+    "pcb_thickness"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "rx",
+   "primitive": "cylinder",
+   "d": "transducer_diameter",
+   "h": "total_height - pcb_thickness",
+   "at": [
+    "(pcb_length + transducer_spacing) / 2",
+    "pcb_width / 2",
+    "pcb_thickness"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "header",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54",
+    2.54,
+    "header_body_height"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 1.27",
+    "pin_inset - 1.27",
+    "-header_body_height"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "header_wires",
+   "primitive": "box",
+   "size": [
+    "(pin_count - 1) * pin_pitch + 2.54 + 2.0",
+    4.54,
+    "wire_clear"
+   ],
+   "at": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2 - 2.27",
+    "pin_inset - 2.27",
+    "-header_body_height - wire_clear"
+   ]
+  }
+ ],
+ "datums": {
+  "TX_AXIS": {
+   "kind": "axis",
+   "at": [
+    "(pcb_length - transducer_spacing) / 2",
+    "pcb_width / 2",
+    "total_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "transducer_diameter",
+   "keepout_diameter": "transducer_diameter + 2 * transducer_clear_margin"
+  },
+  "RX_AXIS": {
+   "kind": "axis",
+   "at": [
+    "(pcb_length + transducer_spacing) / 2",
+    "pcb_width / 2",
+    "total_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "transducer_diameter",
+   "keepout_diameter": "transducer_diameter + 2 * transducer_clear_margin"
+  },
+  "TRANSDUCERS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "transducer_diameter",
+   "keepout_diameter": "transducer_diameter + 2 * transducer_clear_margin",
+   "at": [
+    [
+     "(pcb_length - transducer_spacing) / 2",
+     "pcb_width / 2",
+     "total_height"
+    ],
+    [
+     "(pcb_length + transducer_spacing) / 2",
+     "pcb_width / 2",
+     "total_height"
+    ]
+   ]
+  },
+  "FRONT": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "total_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": "pin_count",
+   "start": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2",
+    "pin_inset",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [],
+ "notes": "No mounting holes: the module is held by ribs/clips at the PCB edge or by a pocket behind the transducers (the cans 16.0 mm dia stand about 13.8 mm above the PCB top). The two apertures TRANSDUCERS must be open through the front wall (a hole per transducer, diameter transducer_diameter + 2 mm margin; the transducer front can sit flush in or poke through the opening); a single wide slot over both is also accepted. The header position/side is the least certain datum: some clones have the header on the front, so the owner's unit must be checked before a wire exit is committed. Import gate: R1 bbox 45 x 20 x 17.5 (the 15 mm datasheet height plus the 2.5 mm header body assumed on the back; datasheet_size = total_height + header_body_height; tol 0.3); R2 spacing 26 mm; R9 skipped.",
+ "self_checks": [
+  {
+   "name": "R2 transducer spacing",
+   "expr": "TRANSDUCERS[1].x - TRANSDUCERS[0].x",
+   "value": 26.0,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 transducer diameter",
+   "expr": "TRANSDUCERS.diameter",
+   "value": 16.0,
+   "tol": 0.3
+  },
+  {
+   "name": "R3 transducers look along +Z",
+   "expr": "TX_AXIS.dz",
+   "value": 1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R5 overall height",
+   "expr": "tx.max_z - pcb.min_z",
+   "value": 15.0,
+   "tol": 0.3
+  },
+  {
+   "name": "transducers centred across the board",
+   "expr": "TX_AXIS.y - pcb_width / 2",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "transducers inside the outline",
+   "expr": "tx.min_x - pcb.min_x",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "header pitch",
+   "expr": "PINS[1].x - PINS[0].x",
+   "value": 2.54,
+   "tol": 0.02
+  }
+ ]
+}

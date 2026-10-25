@@ -1,0 +1,170 @@
+{
+ "paraphrases": [
+  {
+   "id": "G04",
+   "tier": 4,
+   "title": "Raspberry Pi Zero 2 W case",
+   "request": "Two-part case for a Raspberry Pi Zero 2 W (65 x 30 mm board). Board mounts on four 2.75 mm holes, 58 x 23 mm pattern, 3.5 mm in from the edges, screwed into printed standoffs. Lid on, cables must plug through wall openings sized for the plug body: mini-HDMI and two micro-USB ports (data and power), all on one long side, plus the microSD slot on a short end so the card goes in and out. Base plus lid, fixed with M2.5 screws. FDM printed.",
+   "request_verbatim": "A two-part case for a Raspberry Pi Zero 2 W, held at its four 2.75 mm holes on the 58 x 23 mm pattern. I need openings for the mini-HDMI, the two micro-USB ports (data and power) and the microSD card slot, each with room for the plug body. Lid goes on with M2.5 screws.",
+   "request_notes": "Added to the plan brief, from requirements.md section 3: the board is fixed by M2.5 screws into four standoffs (A9); the lid screws are four further M2.5 screws into bosses outside the board (D3); the three cabled ports face one long wall and the card slot the short wall at the SD end (the board's own layout, A1); FDM printing (A11).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the catalogue Raspberry Pi Zero 2 W in its own orientation, with mini-HDMI and both micro-USB ports towards one long wall and the microSD slot towards the short wall at its end, and declare the pose.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "The 65 x 30 mm board fits in the closed case with 0.5 mm or more clearance to every printed surface except where it sits on its standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Exactly four standoffs support the board, one under each 2.75 mm mounting hole on the 58 x 23 mm pattern, each with a pilot hole for an M2.5 screw through the board.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Lid closed: nothing within 5 mm over the board's top face or 2 mm under its underside, except the standoffs under the holes; board and connectors are inside the case.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "Lid closed: a mini-HDMI plug goes fully in through one long-wall opening without touching the case; the opening is at most 1.5 mm oversize on any side of the plug.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "Lid closed: two micro-USB plugs (data and power) go fully in together through two openings in the same long wall, touching neither the case nor each other; each opening is at most 1.5 mm oversize on any side of the plug.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Lid closed: a microSD card can be pushed in and pulled out through one end-wall opening without touching the case; the opening is at most 1.5 mm larger than the card access zone on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Base plus separate removable lid, located by a sliding fit, held shut with four M2.5 screws.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "Closed case has only the HDMI opening, two USB openings, SD opening and screw holes; walls, floor and lid 2 to 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base and lid are each one manifold body, FDM printable with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed case within 90 x 40 x 22 mm, longest along the 65 mm board side, stands flat on a desk without tipping.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Lid off: the board drops straight onto the standoffs and a screwdriver reaches every board screw.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Deliver base STL, lid STL, OpenSCAD source, declared board pose and the agent's own clearance report; the report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: one wide rectangular HDMI opening, two narrow USB openings with a thin ligament between them, one SD opening in another wall, lid screw holes, blind pilot holes",
+    "catalogue module with five connectors on two edges: openings sized from plug envelopes and a card-access zone, derived from datums",
+    "interior placement: standoffs at the catalogue hole pattern, lid bosses outside the board outline, lip with notches at the bosses",
+    "two printable bodies (base and lid) with their own print orientation",
+    "envelope generation: plug sweeps, keep-out volumes, screwdriver columns and the board install sweep",
+    "interference checks against external solids: clear_of, inside, aperture finding, gap, seating verification"
+   ]
+  },
+  {
+   "id": "G04",
+   "tier": 4,
+   "title": "Raspberry Pi Zero 2 W case",
+   "request": "Could you design a case in two pieces for a Raspberry Pi Zero 2 W? The board is 65 x 30 mm and is fixed at its four 2.75 mm mounting holes, which form a 58 x 23 mm pattern sitting 3.5 mm in from the edges, with screws going into printed standoffs. Cables have to reach the board through openings in the walls while the cover is on, each opening leaving room for the plug body. On one long side of the board are the mini-HDMI port and the two micro-USB ports (data and power); the microSD card slot is on a short end and the card must be able to be pushed in and out. The cover attaches to the base with M2.5 screws, and the whole thing gets printed on an FDM printer.",
+   "request_verbatim": "A two-part case for a Raspberry Pi Zero 2 W, held at its four 2.75 mm holes on the 58 x 23 mm pattern. I need openings for the mini-HDMI, the two micro-USB ports (data and power) and the microSD card slot, each with room for the plug body. Lid goes on with M2.5 screws.",
+   "request_notes": "Added to the plan brief, from requirements.md section 3: the board is fixed by M2.5 screws into four standoffs (A9); the lid screws are four further M2.5 screws into bosses outside the board (D3); the three cabled ports face one long wall and the card slot the short wall at the SD end (the board's own layout, A1); FDM printing (A11).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "From the parts catalogue, put the Raspberry Pi Zero 2 W into the case in its natural orientation, so that the mini-HDMI port and both micro-USB ports face a long wall and the microSD slot faces the short wall at that end, and declare this pose.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Once the case is closed, the 65 x 30 mm board needs at least 0.5 mm of space around it from all printed surfaces, with the exception of its standoffs.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.3",
+     "text": "Four standoffs, exactly, carry the board; one sits under each 2.75 mm mounting hole of the 58 x 23 mm pattern and has a pilot hole to take an M2.5 screw through the board.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "Shut the lid and nothing in the case may be nearer than 5 mm above the board's top surface or 2 mm below its underside (the standoffs at the holes excepted); the board and its connectors must be inside the case.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "With the lid shut, a mini-HDMI plug must seat fully in the board through a single opening in the long wall and not touch the case, the opening being no more than 1.5 mm larger than the plug per side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.6",
+     "text": "With the lid shut, two micro-USB plugs (data and power) must seat fully at once through two openings in that same long wall, touching neither the case nor one another, and each opening is no more than 1.5 mm larger than its plug per side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "With the lid shut, you must be able to push a microSD card in and pull it out through one opening in the end wall without touching the case, the opening being at most 1.5 mm larger than the card access zone on any side.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "The case consists of a base and a separate lid that can be taken off; it sits on the base with a sliding fit and four M2.5 screws keep it closed.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "When closed, the only holes in the case are the HDMI opening, the two USB openings, the SD opening and the screw holes, and walls, floor and lid are between 2 and 4 mm thick.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Base and lid should each be a single manifold body that can be printed on an FDM printer without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.11",
+     "text": "Closed, the case must be no bigger than 90 x 40 x 22 mm, its long axis running along the board's 65 mm side, and it must stand flat on a desk and not tip.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.12",
+     "text": "Take the lid off and the board should drop straight down on to its standoffs, with every board screw within reach of a screwdriver.",
+     "method": "test"
+    },
+    {
+     "id": "L1.13",
+     "text": "Hand over the base STL, lid STL, OpenSCAD source, declared board pose and the agent's own clearance report, which must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: one wide rectangular HDMI opening, two narrow USB openings with a thin ligament between them, one SD opening in another wall, lid screw holes, blind pilot holes",
+    "catalogue module with five connectors on two edges: openings sized from plug envelopes and a card-access zone, derived from datums",
+    "interior placement: standoffs at the catalogue hole pattern, lid bosses outside the board outline, lip with notches at the bosses",
+    "two printable bodies (base and lid) with their own print orientation",
+    "envelope generation: plug sweeps, keep-out volumes, screwdriver columns and the board install sweep",
+    "interference checks against external solids: clear_of, inside, aperture finding, gap, seating verification"
+   ]
+  }
+ ]
+}

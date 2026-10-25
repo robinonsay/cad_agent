@@ -1,0 +1,80 @@
+{
+  "about": "Generalisation design G45 (train), in dev.json format. Tier 4 = a fixture: a printed tray with a pattern of pockets sized from bought-in or request-sized objects (hex nozzles, a wrench, disc magnets), placed from the parts catalogue, graded by clearance, depth, ligament, pattern and tolerance-stack checks against reference models. One printed body, printed flat. L1 ids match requirements.md next to this file, which holds the L2/L3 tree, reference models, assumptions and traceability. Numbers that are not in the request words (clearance bands, depth bands, ligaments, size limit) come from requirements.md and are provisional until the owner confirms them. Never put any of these numbers in agent logic: they belong in the request text and in generalize/parts/*/part.json (and benchmarks/enclosure/parts/generic_cylinder).",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (interference and clearance against reference models, ligaments, pattern fit, stability, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (lift each object straight out, push each magnet in from below)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G45",
+      "tier": 4,
+      "title": "Nozzle and wrench organiser with magnets",
+      "request": "A tray for six M6 hotend nozzles (hex 7 mm across flats, 12 mm tall, 0.3 mm clearance per side in the pocket), a 7 mm combination wrench (120 x 14 x 4 mm, same clearance) in its own pocket, and four 6 x 3 mm disc magnets in pockets underneath that keep the tray on a steel surface, one in each quarter of the tray and spread over at least half its length and a quarter of its width. Loaded, the tray's centre of mass must lie at least 2 mm inside the four magnets (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each). The magnets sit 0.5 mm above the underside of the tray, recessed from the steel. The six nozzle pockets are 6 to 10 mm deep and stand in a regular row or grid (centres within 0.1 mm of the lattice) with at least 3 mm between neighbours, so the nozzles can be picked out one at a time with the fingers. Print the tray flat on an FDM printer without supports. It is no larger than 140 x 40 x 15 mm.",
+      "request_verbatim": "A tray for six M6 hotend nozzles (hex 7 mm AF, 12 mm tall, pocket clearance 0.3 mm), a 7 mm combination wrench pocket 120 x 14 x 4 mm, and four 6 x 3 mm magnet pockets underneath that keep the tray on a steel surface. Magnets sit 0.5 mm below the base surface.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3: clearance 0.3 is per side (A2); the wrench is 120 x 14 x 4 and gets the same clearance (A3); 'sit 0.5 mm below the base surface' is read as recessed 0.5 mm inside the underside (A4, FD2); regular pattern so the nozzles can be picked out one at a time (A6); FDM, flat, no supports (A8); size limit 140 x 40 x 15 (A9). Audit additions from requirements.md: nozzle pocket depth 6 to 10 (A7), lattice residual 0.1 and finger room 3.0 (A6, L2.3.2), magnet spread (L2.5.4), masses (A10).",
+      "l1": [
+        {
+          "id": "L1.1",
+          "text": "The design shall place six hex nozzles (7 mm across flats, 12 mm tall), one 120 x 14 x 4 mm wrench and four 6 x 3 mm magnets in a tray, from the request sizes and the parts catalogue, and shall declare that layout and the print orientation.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.2",
+          "text": "Each of the six nozzle pockets shall hold its nozzle with at least 0.3 mm clearance on every side and no more than 0.45 mm at the nearest point, with the pocket 6 to 10 mm deep, the nozzle standing on the pocket floor and sticking out of the tray by at least 2 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.3",
+          "text": "The six nozzle pockets shall form a regular row or grid with equal pitch (centres within 0.1 mm of the lattice), with at least 1.6 mm of material and at least 3.0 mm of finger room between neighbouring pockets.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.4",
+          "text": "The wrench pocket shall hold the 120 x 14 x 4 mm wrench with at least 0.3 mm and at most 0.45 mm clearance per side, and be 2.5 to 4.0 mm deep so the wrench can be lifted out.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.5",
+          "text": "The four magnet pockets shall open on the underside, each 6.1 to 6.3 mm in diameter and 3.4 to 3.6 mm deep, so each magnet's face sits 0.5 mm inside the underside, with at least 1.2 mm of material between a magnet and every other pocket and the top face, one magnet in each quarter of the tray, the four spread over at least half the tray's length and a quarter of its width.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.6",
+          "text": "The tray shall have a flat underside so it sits on a steel surface, and its centre of mass, loaded with the six nozzles and the wrench (PLA 1.24 g/cm3, nozzles 3 g each, wrench 45 g, magnets 0.64 g each), shall lie inside the four magnets with a margin of at least 2 mm.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.7",
+          "text": "Every pocket shall have at least 1.6 mm of material to every other pocket, at least 2.0 mm to the outside of the tray, and at least 1.2 mm of floor under the nozzle and wrench pockets.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.8",
+          "text": "The tray shall be one manifold body that prints flat on an FDM printer without supports.",
+          "method": "analysis"
+        },
+        {
+          "id": "L1.9",
+          "text": "The tray shall be no larger than 140 x 40 x 15 mm.",
+          "method": "inspection"
+        },
+        {
+          "id": "L1.10",
+          "text": "The design shall be delivered as an STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+          "method": "inspection"
+        }
+      ],
+      "beyond_library": [
+        "pattern arrays: six pockets at an equal pitch derived from the pocket size and a ligament",
+        "hex pockets sized from across-flats with a per-side clearance, in a print orientation that needs no support",
+        "pockets from the underside (blind, open at the bed) with a recess derived from the request",
+        "tolerance stack: clearances, depths and ligaments that add up along the tray's length and height",
+        "parts catalogue: request-sized generic parts (nozzle envelope, wrench box) and a magnet placed by datums",
+        "interference checks against external solids: clear_of, lift and install sweeps, ligament, pattern fit"
+      ]
+    }
+  ]
+}

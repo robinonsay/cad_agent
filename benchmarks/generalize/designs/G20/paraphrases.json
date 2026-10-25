@@ -1,0 +1,138 @@
+{
+ "paraphrases": [
+  {
+   "id": "G20",
+   "tier": 4,
+   "title": "SG90 servo bracket",
+   "request": "Bracket for an SG90 micro servo (body 22.5 x 12.2 x 22.7 mm, 32.5 mm across the tabs, tab holes 2.0 mm on 27.5 mm centres, shaft pointing up). The servo sits in a pocket, lowered in from the top, tabs on a shelf, fit about 0.2 mm per side, 0.3 to 1.5 mm between servo bottom and pocket floor. Two M2 x 8 self-tapping screws go through the tab holes into pilot holes in the shelf. The cable exits the end of the body away from the shaft, so cut one slot through that end wall for the lead and its bend, at most 3 mm oversize on any side of the cable exit volume. Keep a 5 mm radius around the output shaft clear. Mounting base 40 x 25 mm, 2.5 to 4 mm thick at two M3 clearance holes 30 mm apart (hole centres 3.2 mm or more from the edge), each with room for screw head and hex key. Single FDM part, no supports, walls and floor 2 mm min, height 25 mm max, must not topple when tilted 5 degrees with the servo in.",
+   "request_verbatim": "A bracket that holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm, tabs 32.5 mm overall) in a pocket with its tabs resting on a shelf and two M2 self-tappers through the tab holes. The cable exits a slot on one side and the output shaft must be unobstructed with 5 mm clear radius. Mounting base is 40 x 25 mm with two M3 holes.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: servo tab holes and spline (servo_sg90 part.json); 'shaft up' and drop-in from above (F1); 0.2 mm snug fit (A8); M2 x 8 screws so that the thread reaches 5.5 mm into the shelf (A2); cable end opposite the shaft (servo_sg90 cable_exit); M3 holes 30 mm apart and clearance 3.4 (A3); FDM, 25 mm height limit (A6, A7). Audit additions: floor gap band, slot oversize limit 3 mm, base plate 2.5 to 4 mm, 3.2 mm edge distance, 5 degree tip stability (all already judged in requirements.md L2.2.2, L2.5.2, L2.6.4, L2.6.2, L2.9.2).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Place the catalogue servo in a pocket, shaft up, tabs flat on a bracket shelf, body not touching the bracket. Declare the placement.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.2",
+     "text": "Pocket fit is snug, about 0.2 mm clearance each side. Gap from servo bottom to pocket floor 0.3 to 1.5 mm.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Two M2 x 8 self-tapping screws pass through the tab holes into two shelf pilot holes. The pilot holes must align with the tab holes wherever the servo sits within its slack.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Shaft zone: nothing within 5 mm radius above the tabs, screw heads included.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "One slot in the end wall opposite the shaft lets the cable out. Slot is at most 3 mm bigger than the cable exit and bend volume on each side, and no bracket material intrudes on that volume.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "Mounting base: 40 x 25 mm in plan, two M3 clearance holes 30 mm apart (centres 3.2 mm or more from the edge), plate 2.5 to 4 mm thick at the holes, free space above the base for each M3 screw head and hex key.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "Servo goes straight down into the pocket from above. Both tab screws reachable with a screwdriver.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "One manifold body, FDM printable with no supports, walls and floor 2 mm or thicker.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "Height 25 mm max. Stands flat on its base and stays upright at a 5 degree tilt with the servo in place.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliver bracket STL, OpenSCAD source, declared servo and screw placement, and the agent's own clearance report. The report must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a blind pocket from the top, two blind pilot holes in a shelf, two through holes, a slot through an end wall",
+    "datum placement: place the servo and the screws by the catalogue's HOLE, SPLINE_AXIS and TAB_BOTTOM datums",
+    "tolerance stack: the worst-case pilot to tab-hole offset from the pocket slack",
+    "pocket fit: derive the pocket size and depth from the servo body and the clearance, not invent them",
+    "keep-out volumes: shaft zone, cable exit, screw drivers, M3 heads, install sweep"
+   ]
+  },
+  {
+   "id": "G20",
+   "tier": 4,
+   "title": "SG90 servo bracket",
+   "request": "I need a holder for an SG90 micro servo. The servo is 22.5 x 12.2 x 22.7 mm in the body; across its ears it measures 32.5 mm, with 2.0 mm holes in the ears spaced 27.5 mm apart, and the shaft should point up. It should drop into a pocket from above and rest on a ledge by its ears. The pocket is a snug fit, roughly 0.2 mm each side, leaving between 0.3 and 1.5 mm below the servo. Two self-tapping M2 x 8 screws go through the ear holes into pilot holes in the ledge. The wire comes out the end of the servo that faces away from the shaft, so that end wall needs a single slot for the wire and its bend, and the slot may exceed the wire's exit volume by no more than 3 mm on any side. Nothing may block the output shaft within 5 mm of it. The base plate of the holder is 40 x 25 mm and between 2.5 and 4 mm thick where the two M3 clearance holes are, 30 mm apart, with centres at least 3.2 mm from the edge and room for a screw head and hex key at each. It is one FDM-printed piece with no supports, walls and floor of at least 2 mm, and a height of at most 25 mm, and it has to stay upright if tilted 5 degrees with the servo in.",
+   "request_verbatim": "A bracket that holds an SG90 micro servo (22.5 x 12.2 x 22.7 mm, tabs 32.5 mm overall) in a pocket with its tabs resting on a shelf and two M2 self-tappers through the tab holes. The cable exits a slot on one side and the output shaft must be unobstructed with 5 mm clear radius. Mounting base is 40 x 25 mm with two M3 holes.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3 or part.json: servo tab holes and spline (servo_sg90 part.json); 'shaft up' and drop-in from above (F1); 0.2 mm snug fit (A8); M2 x 8 screws so that the thread reaches 5.5 mm into the shelf (A2); cable end opposite the shaft (servo_sg90 cable_exit); M3 holes 30 mm apart and clearance 3.4 (A3); FDM, 25 mm height limit (A6, A7). Audit additions: floor gap band, slot oversize limit 3 mm, base plate 2.5 to 4 mm, 3.2 mm edge distance, 5 degree tip stability (all already judged in requirements.md L2.2.2, L2.5.2, L2.6.4, L2.6.2, L2.9.2).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Using the servo from the parts catalogue, set it in a pocket with the shaft up and the ears lying flat on a ledge on the bracket, with its body clear of the bracket. Say where it goes in the declaration.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.2",
+     "text": "The pocket should grip the servo body snugly, at about 0.2 mm clearance on every side, and leave between 0.3 and 1.5 mm from the servo's underside to the pocket floor.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Two M2 x 8 self-tapping screws run through the two ear holes into two pilot holes in the ledge. Wherever the servo ends up within its play in the pocket, the pilot holes still have to line up with the ear holes.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.4",
+     "text": "Within 5 mm of the output shaft, above the ears, there must be nothing in the way, and the screw heads must stay out of that area too.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.5",
+     "text": "The cable gets out through one slot in the end wall on the side opposite the shaft. The slot can be no more than 3 mm larger than the cable's exit and bend volume on any side, and no bracket material should reach into that volume.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.6",
+     "text": "The mounting base is 40 x 25 mm seen from above and has two M3 clearance holes 30 mm apart, centres at least 3.2 mm from the edge. The plate is 2.5 to 4 mm thick at the holes, and every M3 screw head and hex key needs clear space above the base.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.7",
+     "text": "You should be able to lower the servo straight into the pocket from the top and reach both ear screws with a screwdriver.",
+     "method": "test"
+    },
+    {
+     "id": "L1.8",
+     "text": "Make the bracket a single manifold body that prints on an FDM printer with no supports, with walls and floor no thinner than 2 mm.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.9",
+     "text": "No more than 25 mm tall; it must sit flat on its base and stay upright when tipped 5 degrees with the servo seated.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "What I get back is a bracket STL, the OpenSCAD source, the declared servo and screw placement, and the agent's own clearance report, which must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: a blind pocket from the top, two blind pilot holes in a shelf, two through holes, a slot through an end wall",
+    "datum placement: place the servo and the screws by the catalogue's HOLE, SPLINE_AXIS and TAB_BOTTOM datums",
+    "tolerance stack: the worst-case pilot to tab-hole offset from the pocket slack",
+    "pocket fit: derive the pocket size and depth from the servo body and the clearance, not invent them",
+    "keep-out volumes: shaft zone, cable exit, screw drivers, M3 heads, install sweep"
+   ]
+  }
+ ]
+}

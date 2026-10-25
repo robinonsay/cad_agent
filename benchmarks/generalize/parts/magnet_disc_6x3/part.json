@@ -1,0 +1,123 @@
+{
+  "id": "magnet_disc_6x3",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "disc magnet",
+    "6x3 magnet",
+    "6 mm magnet",
+    "neodymium magnet",
+    "round magnet",
+    "magnet disc",
+    "n35 magnet"
+  ],
+  "kind": "mech",
+  "source": "N35 neodymium disc magnet 6 x 3 mm (vendor catalogue standard size, tolerance +/-0.1 mm on diameter and thickness; nickel coating adds up to 0.05 mm). Axially magnetised; pole side is not modelled. Pocket clearance is an FDM convention (assumed, +/-0.05 mm).",
+  "frame": "mech: origin at the centre of the base face, axis +Z (the magnet sits in its pocket on the base)",
+  "params": {
+    "diameter": {
+      "default": 6.0,
+      "source": "vendor catalogue: nominal diameter"
+    },
+    "thickness": {
+      "default": 3.0,
+      "source": "vendor catalogue: nominal thickness"
+    },
+    "tolerance": {
+      "default": 0.1,
+      "source": "vendor catalogue: +/- on both dimensions"
+    },
+    "pocket_clearance": {
+      "default": 0.15,
+      "source": "assumed FDM convention: diametral clearance for a glued or snug pocket"
+    }
+  },
+  "datasheet_size": [
+    "diameter",
+    "diameter",
+    "thickness"
+  ],
+  "size_tolerance": 0.1,
+  "geometry": [
+    {
+      "id": "body",
+      "primitive": "cylinder",
+      "d": "diameter",
+      "h": "thickness",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "datums": {
+    "AXIS": {
+      "kind": "axis",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "diameter"
+    },
+    "BOTTOM": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "TOP": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        "thickness"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    }
+  },
+  "connectors": [],
+  "self_checks": [
+    {
+      "name": "diameter",
+      "expr": "body.size_x",
+      "value": 6.0,
+      "tol": 0.1
+    },
+    {
+      "name": "thickness",
+      "expr": "body.size_z",
+      "value": 3.0,
+      "tol": 0.1
+    },
+    {
+      "name": "thickness positive",
+      "expr": "TOP.z - BOTTOM.z",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the 12 mm tube from the parts catalogue seated in the clip's round bore, with the mouth facing up, and the two M3 countersunk screws in the wall holes, without the parts colliding, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The clip shall hold the 12 mm tube in a round bore with a small clearance all round (0.05 to 0.15 mm per side) and wrap more than half of the tube, so that, across its axis, the tube can leave only through the mouth.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The mouth opening shall be 10.5 mm, and the tube shall push in through it along the mouth direction, touching the clip only at the two lips while it passes, with a lead-in that guides it (the lips' end faces sloping 20 to 60 degrees from horizontal).",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "The two arms shall be 2.2 mm thick, long enough to open by the 0.75 mm per side that the tube needs without exceeding 3 % bending strain (also with the worst-case tolerances: a 12.1 mm tube and a mouth 0.1 mm smaller, within 3.5 %), and free to flex.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The clip shall mount to a wall by two M3 countersunk screws exactly 30 mm apart, through countersunk holes that leave each screw head at or below the clip's surface and keep at least 1.5 mm of material around every hole on a flange 3 to 4 mm thick.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "The clip's wall face shall be flat, with nothing protruding below it, and every screw shall be reachable with a screwdriver with the tube in place.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The clip shall print with its mouth up and its wall face on the bed, as one manifold body without supports, with the arms flexing in the plane of the layers.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The clip shall be no larger than 50 x 30 x 20 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "The design shall be delivered as the clip STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

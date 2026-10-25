@@ -1,0 +1,524 @@
+{
+ "id": "rpi_zero2w",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "raspberry pi zero 2 w",
+  "raspberry pi zero 2w",
+  "pi zero 2 w",
+  "pi zero 2w",
+  "pi zero 2",
+  "rpi zero 2 w",
+  "raspberry pi zero w",
+  "pi zero"
+ ],
+ "kind": "module",
+ "source": "Raspberry Pi Zero 2 W mechanical drawing (Raspberry Pi, 'Raspberry Pi Zero 2 W mechanical specification'): PCB 65 x 30 mm, four 2.75 mm holes on a 58 x 23 mm pattern 3.5 mm from the edges, mini-HDMI centre 12.4 mm and micro-USB data / power centres 41.4 and 54.0 mm along the bottom long edge, microSD on the left short edge, camera FFC on the right short edge, 40-pin GPIO footprint (2 x 20 at 2.54 mm, centred along the board, rows 3.5 mm and 6.04 mm from the top long edge). ASSUMED / uncertain: PCB thickness 1.4 mm; connector bodies (mini-HDMI 11.2 x 7.5 x 3.2, micro-USB 7.5 x 5.9 x 2.6, microSD cage 12.0 x 14.0 x 1.4) and overhangs (HDMI 0.5, USB 0.9, SD 1.0) from vendor receptacle datasheets, +/-0.5; microSD centre 16.9 mm along the short edge (+/-1); card protrusion 2.5 mm when seated; top parts 3.2 mm (HDMI is the tallest).",
+ "frame": "module: origin at the PCB min corner, PCB bottom at Z = 0, components on +Z, HDMI and the two micro-USB ports on the -Y long edge, microSD on the -X short edge, GPIO along the +Y long edge",
+ "params": {
+  "pcb_length": {
+   "default": 65.0,
+   "source": "datasheet: board outline"
+  },
+  "pcb_width": {
+   "default": 30.0,
+   "source": "datasheet: board outline"
+  },
+  "pcb_thickness": {
+   "default": 1.4,
+   "source": "assumed: Pi Zero PCB thickness"
+  },
+  "hole_diameter": {
+   "default": 2.75,
+   "source": "datasheet: mounting holes"
+  },
+  "hole_inset": {
+   "default": 3.5,
+   "source": "datasheet: hole centres from both edges (58 x 23 pattern)"
+  },
+  "hole_keepout": {
+   "default": 6.0,
+   "source": "datasheet: Pi mechanical keep-out round each hole is 6.0 mm (M2.5 head clearance)"
+  },
+  "hdmi_centre_x": {
+   "default": 12.4,
+   "source": "datasheet: mini-HDMI centre from the SD end"
+  },
+  "hdmi_width": {
+   "default": 11.2,
+   "source": "mini-HDMI type C receptacle width (HDMI spec, assumed shell)"
+  },
+  "hdmi_depth": {
+   "default": 7.5,
+   "source": "assumed mini-HDMI receptacle depth"
+  },
+  "hdmi_height": {
+   "default": 3.2,
+   "source": "mini-HDMI receptacle height"
+  },
+  "hdmi_overhang": {
+   "default": 0.5,
+   "source": "assumed overhang beyond the long edge"
+  },
+  "usb_data_x": {
+   "default": 41.4,
+   "source": "datasheet: micro-USB (data) centre"
+  },
+  "usb_power_x": {
+   "default": 54.0,
+   "source": "datasheet: micro-USB (power) centre"
+  },
+  "usb_width": {
+   "default": 7.5,
+   "source": "micro-USB B receptacle width (typical)"
+  },
+  "usb_depth": {
+   "default": 5.9,
+   "source": "micro-USB B receptacle depth (typical)"
+  },
+  "usb_height": {
+   "default": 2.6,
+   "source": "micro-USB B receptacle height (typical)"
+  },
+  "usb_overhang": {
+   "default": 0.9,
+   "source": "assumed overhang beyond the long edge"
+  },
+  "sd_centre_y": {
+   "default": 16.9,
+   "source": "assumed: microSD slot centre along the short edge"
+  },
+  "sd_width": {
+   "default": 12.0,
+   "source": "microSD push-push cage width"
+  },
+  "sd_depth": {
+   "default": 14.0,
+   "source": "microSD cage depth"
+  },
+  "sd_height": {
+   "default": 1.4,
+   "source": "microSD cage height"
+  },
+  "sd_overhang": {
+   "default": 1.0,
+   "source": "assumed cage overhang beyond the short edge"
+  },
+  "sd_card_protrusion": {
+   "default": 2.5,
+   "source": "microSD card sticks out of a seated push-push slot by about 2.5 mm"
+  },
+  "pin_pitch": {
+   "default": 2.54,
+   "source": "datasheet: GPIO pitch"
+  },
+  "pin_count": {
+   "default": 20,
+   "source": "datasheet: 20 positions per row"
+  },
+  "gpio_row_inset": {
+   "default": 3.5,
+   "source": "datasheet: first row centre from the top long edge"
+  },
+  "top_parts_height": {
+   "default": 3.2,
+   "source": "tallest top-side part (mini-HDMI)"
+  }
+ },
+ "datasheet_size": [
+  "pcb_length",
+  "pcb_width",
+  "pcb_thickness"
+ ],
+ "size_of": "pcb",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "pcb",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "pcb_thickness"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "hdmi",
+   "primitive": "box",
+   "size": [
+    "hdmi_width",
+    "hdmi_depth",
+    "hdmi_height"
+   ],
+   "at": [
+    "hdmi_centre_x - hdmi_width / 2",
+    "-hdmi_overhang",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "usb_data",
+   "primitive": "box",
+   "size": [
+    "usb_width",
+    "usb_depth",
+    "usb_height"
+   ],
+   "at": [
+    "usb_data_x - usb_width / 2",
+    "-usb_overhang",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "usb_power",
+   "primitive": "box",
+   "size": [
+    "usb_width",
+    "usb_depth",
+    "usb_height"
+   ],
+   "at": [
+    "usb_power_x - usb_width / 2",
+    "-usb_overhang",
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "sd",
+   "primitive": "box",
+   "size": [
+    "sd_depth",
+    "sd_width",
+    "sd_height"
+   ],
+   "at": [
+    "-sd_overhang",
+    "sd_centre_y - sd_width / 2",
+    "pcb_thickness"
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "component_side",
+   "primitive": "box",
+   "size": [
+    "pcb_length",
+    "pcb_width",
+    "top_parts_height"
+   ],
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ]
+  },
+  {
+   "id": "sd_card_zone",
+   "primitive": "box",
+   "size": [
+    "sd_card_protrusion + 6.0",
+    "sd_width",
+    "sd_height + 4.0"
+   ],
+   "at": [
+    "-sd_overhang - sd_card_protrusion - 6.0 + 1.0",
+    "sd_centre_y - sd_width / 2",
+    "pcb_thickness - 1.0"
+   ]
+  }
+ ],
+ "datums": {
+  "HDMI_MOUTH": {
+   "kind": "point",
+   "at": [
+    "hdmi_centre_x",
+    "-hdmi_overhang",
+    "pcb_thickness + hdmi_height / 2"
+   ]
+  },
+  "HDMI_AXIS": {
+   "kind": "axis",
+   "at": [
+    "hdmi_centre_x",
+    "-hdmi_overhang",
+    "pcb_thickness + hdmi_height / 2"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ]
+  },
+  "USB_DATA_MOUTH": {
+   "kind": "point",
+   "at": [
+    "usb_data_x",
+    "-usb_overhang",
+    "pcb_thickness + usb_height / 2"
+   ]
+  },
+  "USB_DATA_AXIS": {
+   "kind": "axis",
+   "at": [
+    "usb_data_x",
+    "-usb_overhang",
+    "pcb_thickness + usb_height / 2"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ]
+  },
+  "USB_POWER_MOUTH": {
+   "kind": "point",
+   "at": [
+    "usb_power_x",
+    "-usb_overhang",
+    "pcb_thickness + usb_height / 2"
+   ]
+  },
+  "USB_POWER_AXIS": {
+   "kind": "axis",
+   "at": [
+    "usb_power_x",
+    "-usb_overhang",
+    "pcb_thickness + usb_height / 2"
+   ],
+   "dir": [
+    0,
+    -1,
+    0
+   ]
+  },
+  "SD_MOUTH": {
+   "kind": "point",
+   "at": [
+    "-sd_overhang",
+    "sd_centre_y",
+    "pcb_thickness + sd_height / 2"
+   ]
+  },
+  "SD_AXIS": {
+   "kind": "axis",
+   "at": [
+    "-sd_overhang",
+    "sd_centre_y",
+    "pcb_thickness + sd_height / 2"
+   ],
+   "dir": [
+    -1,
+    0,
+    0
+   ]
+  },
+  "PCB_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "PCB_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "pcb_thickness"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "HOLE": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "hole_diameter",
+   "keepout_diameter": "hole_keepout",
+   "at": [
+    [
+     "hole_inset",
+     "hole_inset",
+     0
+    ],
+    [
+     "pcb_length - hole_inset",
+     "hole_inset",
+     0
+    ],
+    [
+     "hole_inset",
+     "pcb_width - hole_inset",
+     0
+    ],
+    [
+     "pcb_length - hole_inset",
+     "pcb_width - hole_inset",
+     0
+    ]
+   ]
+  },
+  "PINS_A": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "count": "pin_count",
+   "start": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2",
+    "pcb_width - gpio_row_inset",
+    "pcb_thickness"
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  },
+  "PINS_B": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "count": "pin_count",
+   "start": [
+    "(pcb_length - (pin_count - 1) * pin_pitch) / 2",
+    "pcb_width - gpio_row_inset - pin_pitch",
+    "pcb_thickness"
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [
+  {
+   "name": "hdmi",
+   "mouth": "HDMI_MOUTH",
+   "axis": "HDMI_AXIS",
+   "mates": "plug_minihdmi",
+   "overhang_datum": "HDMI_MOUTH"
+  },
+  {
+   "name": "usb_data",
+   "mouth": "USB_DATA_MOUTH",
+   "axis": "USB_DATA_AXIS",
+   "mates": "plug_microusb_b",
+   "overhang_datum": "USB_DATA_MOUTH"
+  },
+  {
+   "name": "usb_power",
+   "mouth": "USB_POWER_MOUTH",
+   "axis": "USB_POWER_AXIS",
+   "mates": "plug_microusb_b",
+   "overhang_datum": "USB_POWER_MOUTH"
+  }
+ ],
+ "notes": "The three cabled ports (mini-HDMI at x = 12.4, micro-USB data at 41.4, power at 54.0) are all on the same long edge (-Y); the microSD slot is on the -X short edge and takes no cable plug: it is an opening sized by SD_MOUTH with sd_card_zone keepout for finger / card access (not a plug connector, so it has no entry in 'connectors'). The GPIO footprint (PINS_A / PINS_B, 20 positions, rows 2.54 mm apart) is unpopulated on a plain Zero 2 W; a stacked hat (design G07) sits ABOVE the board on header_female_2p54, so no 'mount' stack block is given here (the layout 'mount' mechanism lifts the module on headers under the PCB, which is the Pico 2 case, not this one); the hat's header base is PCB_TOP at z = pcb_thickness and the pins point +Z. HDMI to USB spacing (29 mm) leaves room for the two overmolds (about 17 and 10 mm wide). The HDMI centre x and the USB centres are measured from the SD short edge in the mechanical drawing. Import gate: R1 PCB 65 x 30; R2 hole pitch 58 x 23 and diameter 2.75; R3 axes -Y/-X; R4 overhangs assumed (tol 0.5); R9 skipped.",
+ "self_checks": [
+  {
+   "name": "R2 hole diameter",
+   "expr": "HOLE.diameter",
+   "value": 2.75,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 hole pitch X",
+   "expr": "HOLE[1].x - HOLE[0].x",
+   "value": 58.0,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 hole pitch Y",
+   "expr": "HOLE[2].y - HOLE[0].y",
+   "value": 23.0,
+   "tol": 0.05
+  },
+  {
+   "name": "R2 hole inset",
+   "expr": "HOLE[0].x",
+   "value": 3.5,
+   "tol": 0.05
+  },
+  {
+   "name": "R3 HDMI axis along -Y",
+   "expr": "HDMI_AXIS.dy",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 USB axes along -Y",
+   "expr": "USB_DATA_AXIS.dy",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 SD axis along -X",
+   "expr": "SD_AXIS.dx",
+   "value": -1,
+   "tol": 1e-06
+  },
+  {
+   "name": "R3 components on +Z",
+   "expr": "hdmi.min_z - PCB_TOP.z",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "R4 USB overhang",
+   "expr": "-usb_data.min_y",
+   "value": 0.9,
+   "tol": 0.5
+  },
+  {
+   "name": "USB data to power spacing (drawing 12.6)",
+   "expr": "USB_POWER_MOUTH.x - USB_DATA_MOUTH.x",
+   "value": 12.6,
+   "tol": 0.05
+  },
+  {
+   "name": "HDMI and USB bodies do not overlap",
+   "expr": "usb_data.min_x - hdmi.max_x",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "GPIO row spacing",
+   "expr": "PINS_A[0].y - PINS_B[0].y",
+   "value": 2.54,
+   "tol": 0.02
+  },
+  {
+   "name": "GPIO pitch",
+   "expr": "PINS_A[1].x - PINS_A[0].x",
+   "value": 2.54,
+   "tol": 0.02
+  }
+ ]
+}

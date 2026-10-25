@@ -1,0 +1,136 @@
+{
+ "paraphrases": [
+  {
+   "id": "G44",
+   "tier": 4,
+   "title": "Screwdriver rack with pocketed holders",
+   "request": "Wall rack for six upright screwdrivers, handle down, in pockets 25 mm deep. Handle diameters are 20, 22, 24, 26, 28 and 30 mm in that order along one row, pocket centres 38 mm apart, 0.4 mm clearance per side around each handle. Handles are plain cylinders, roughly 100 mm long. Rack mounts to a flat wall by a 6 mm thick back plate and two 5 mm screws (M5 button head, 9.5 mm head). Screw heads must be reachable with a screwdriver while all six screwdrivers sit in the pockets. Total load capacity 1.5 kg. Single piece, PLA, FDM printer with 256 mm bed, no supports.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: handle down and about 100 mm long (A1, A2); the 5 mm screw is the catalogue M5 button head (A5); one piece and the 256 mm bed (A9, FD4); PLA, no supports (A8). Audit: the model and limits of the load path, the screw layout bands and the minimum wall are now in the L1 text (they were judge-only numbers).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "Exactly six pockets, one for each screwdriver. Pocket diameters are the handle diameters 20, 22, 24, 26, 28 and 30 mm plus 0.4 mm clearance per side.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Every pocket is 25 mm deep. Floor and walls at least 2.4 mm thick. Pockets must not cut into the back plate.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Six pockets in one straight horizontal row, centres 38 mm apart, diameters increasing along the row.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "A screwdriver handle (plain cylinder, roughly 100 mm long) drops straight down into its pocket and rests on the pocket floor. It touches no pocket wall, no neighbouring handle and not the back plate.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "Back plate is 6 mm thick with a flat back face sitting flush on a vertical wall. It backs every pocket. Its top is 45 to 80 mm above the underside of the rack.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "Two 5 mm screws, exactly two, go through clearance holes in the back plate with recessed heads. They are at least 100 mm apart along the row and level within 1 mm, with the centre of the six pockets between them. Each axis is at least 8 mm above the top of the pocket block and at least 8 mm below the top of the plate. Counterbore 9.7 to 10.4 mm wide and 2.9 to 3.6 mm deep, leaving at least 2.4 mm of plate. Each screw can be reached with a screwdriver while all six screwdrivers are in their pockets.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "Rack holds 1.5 kg total. State the load path from pockets through shelf and back plate to the two wall screws; it must stay within stress, bearing and screw limits with a safety factor of 3. Model and limits: weight acts vertically through the six pocket axes, with the factor of 3 already in the load (1.5 kg x 9.81 x 3). The rack tips about its lower back edge; tension in the two screws is shared by the lever rule on X about the centre of the six pockets, and shear is shared in the same proportion. Limits: 150 N tension and 300 N shear per screw, T/150 + V/300 at most 1; 5 MPa bearing under the screw head; 3 MPa bending at the root of the pocket block; 1 MPa under the smallest handle on its pocket floor.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "Compact single piece that hangs flat on the wall, at most 240 mm wide, 45 mm deep and 80 mm tall, nothing behind the back face.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "One manifold body, printable on a 256 mm FDM bed without supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Deliverables: STL (assembly pose), OpenSCAD source, declared pocket layout, load-path statement and the agent's own clearance report. The report and statement must match an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: six blind round pockets of different diameters and two counterbored through holes",
+    "pattern array: six features at a fixed pitch with a different size per instance",
+    "catalogue placement: handle reference cylinders placed by datums, generated from the request text",
+    "load path: a statics calculation from measured geometry, with stated allowable stresses",
+    "interference checks against reference handles, a screw-access column and print-orientation analysis"
+   ]
+  },
+  {
+   "id": "G44",
+   "tier": 4,
+   "title": "Screwdriver rack with pocketed holders",
+   "request": "I'd like a rack to hang on the wall that keeps six screwdrivers standing handle-down in pockets. Each pocket is 25 mm deep. The handles are plain cylinders about 100 mm long with diameters of 20, 22, 24, 26, 28 and 30 mm, and they should go in that order along a single row, with 38 mm between pocket centres. Leave 0.4 mm of clearance per side around every handle. The back plate is 6 mm thick and it's held to a flat wall with two 5 mm screws (button-head M5 with a 9.5 mm head); I have to be able to get a screwdriver on those screw heads even when all six screwdrivers are sitting in the rack. The whole thing should take 1.5 kg. I'll print it in PLA as one piece on an FDM printer with a 256 mm bed, with no supports.",
+   "request_notes": "Added to the plan brief, all from requirements.md section 3: handle down and about 100 mm long (A1, A2); the 5 mm screw is the catalogue M5 button head (A5); one piece and the 256 mm bed (A9, FD4); PLA, no supports (A8). Audit: the model and limits of the load path, the screw layout bands and the minimum wall are now in the L1 text (they were judge-only numbers).",
+   "l1": [
+    {
+     "id": "L1.1",
+     "text": "There must be exactly six pockets, one per screwdriver, each with the diameter of its handle (20, 22, 24, 26, 28 or 30 mm) plus 0.4 mm of clearance per side.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.2",
+     "text": "Make each pocket 25 mm deep, with a floor and walls that are at least 2.4 mm thick, and keep the pockets from cutting into the back plate.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.3",
+     "text": "Line the six pockets up in one straight horizontal row with 38 mm between centres, the diameters getting larger along the row.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.4",
+     "text": "A handle (a plain cylinder of about 100 mm long) should drop straight down into its pocket and sit on the pocket floor, touching neither the pocket wall, nor the next handle, nor the back plate.",
+     "method": "test"
+    },
+    {
+     "id": "L1.5",
+     "text": "The back plate is 6 mm thick and its back face is flat so it sits flush on a vertical wall. It must back every pocket, and its top is between 45 and 80 mm above the underside of the rack.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.6",
+     "text": "Fix the rack to the wall with exactly two 5 mm screws through clearance holes in the back plate, heads recessed. They go at least 100 mm apart along the row and level to within 1 mm, with the centre of the six pockets lying between them. Each axis is at least 8 mm above the top of the pocket block and at least 8 mm under the top of the plate. The counterbore is 9.7 to 10.4 mm wide and 2.9 to 3.6 mm deep and leaves at least 2.4 mm of plate. With all six screwdrivers in their pockets you must still be able to reach each screw with a screwdriver.",
+     "method": "test"
+    },
+    {
+     "id": "L1.7",
+     "text": "The rack carries 1.5 kg in total. The load path from the pockets through the shelf and the back plate to the two wall screws has to be stated, and it must remain inside the stress, bearing and screw limits with a safety factor of 3. Use this model and these limits: the weight acts vertically through the six pocket axes, with the factor of 3 already included in the load (1.5 kg x 9.81 x 3); the rack tips about its lower back edge and the two screws take tension shared by the lever rule on X about the centre of the six pockets, with shear shared in the same proportion. Limits are 150 N tension and 300 N shear per screw with T/150 + V/300 no more than 1, 5 MPa bearing under the screw head, 3 MPa bending at the root of the pocket block, and 1 MPa under the smallest handle on its pocket floor.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.8",
+     "text": "Keep the rack as one compact piece that hangs flat against the wall, no wider than 240 mm, no deeper than 45 mm and no taller than 80 mm, with nothing sticking out behind the back face.",
+     "method": "inspection"
+    },
+    {
+     "id": "L1.9",
+     "text": "The rack is a single manifold body that can be printed on a 256 mm FDM bed with no supports.",
+     "method": "analysis"
+    },
+    {
+     "id": "L1.10",
+     "text": "Hand over an STL in the assembly pose, the OpenSCAD source, the declared pocket layout, the load-path statement and your own clearance report; the report and the statement must agree with an independent measurement.",
+     "method": "inspection"
+    }
+   ],
+   "beyond_library": [
+    "subtraction: six blind round pockets of different diameters and two counterbored through holes",
+    "pattern array: six features at a fixed pitch with a different size per instance",
+    "catalogue placement: handle reference cylinders placed by datums, generated from the request text",
+    "load path: a statics calculation from measured geometry, with stated allowable stresses",
+    "interference checks against reference handles, a screw-access column and print-orientation analysis"
+   ]
+  }
+ ]
+}

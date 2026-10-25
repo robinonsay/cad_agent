@@ -1,0 +1,104 @@
+MODEL: ornith-1.5:9b T=0.7 seed=4002
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 54.4 (request): "...A box for an ESP32-DevKitC V4 board (54.4 x 27.9 mm, 1.6 mm thick, pin headers pointing up about 8.5..."
+n2 = 27.9 mm (request): "...A box for an ESP32-DevKitC V4 board (54.4 x 27.9 mm, 1.6 mm thick, pin headers pointing up about 8.5 mm). The b..."
+n3 = 1.6 mm (request): "...A box for an ESP32-DevKitC V4 board (54.4 x 27.9 mm, 1.6 mm thick, pin headers pointing up about 8.5 mm). The board has..."
+n4 = 8.5 mm (request): "...54.4 x 27.9 mm, 1.6 mm thick, pin headers pointing up about 8.5 mm). The board has no mounting holes, so the box must ho..."
+n5 = 8 mm (request): "...shed in with the lid on. The antenna end of the board needs 8 mm of empty space beyond the board and no wall or lid mate..."
+n6 = 75 (request): "...thout supports, and the closed box should be no larger than 75 x 45 x 25 mm...."
+n7 = 45 (request): "...supports, and the closed box should be no larger than 75 x 45 x 25 mm...."
+n8 = 25 mm (request): "...orts, and the closed box should be no larger than 75 x 45 x 25 mm...."
+n9 = 54.4 (L1.2): "...The 54.4 x 27.9 x 1.6 mm board shall fit inside the closed box with..."
+n10 = 27.9 (L1.2): "...The 54.4 x 27.9 x 1.6 mm board shall fit inside the closed box with at leas..."
+n11 = 1.6 mm (L1.2): "...The 54.4 x 27.9 x 1.6 mm board shall fit inside the closed box with at least 0.5 mm..."
+n12 = 0.5 mm (L1.2): "...1.6 mm board shall fit inside the closed box with at least 0.5 mm clearance to every printed surface, apart from the fea..."
+n13 = 0.2 mm (L1.2): "...hat hold it (supports, ribs and stops), which stay at least 0.2 mm off it except where the board rests on its supports...."
+n14 = 4.0 (L1.3): "...t screws by at least three supports under it (each at least 4.0 mm2 in plan, outside the pin-tail strips, tops level wit..."
+n15 = 0.10 mm (L1.3): "...mm2 in plan, outside the pin-tail strips, tops level within 0.10 mm and touching its underside), at least two retention ..."
+n16 = 0.1 (L1.3): "...over its top at the USB end (one per long edge, undersides 0.1 to 0.3 mm above the board top) and stops at all four edge..."
+n17 = 0.3 mm (L1.3): "...ts top at the USB end (one per long edge, undersides 0.1 to 0.3 mm above the board top) and stops at all four edges (0.1..."
+n18 = 0.1 (L1.3): "...to 0.3 mm above the board top) and stops at all four edges (0.1 to 0.3 mm from the board edge), so that it cannot move m..."
+n19 = 0.3 mm (L1.3): "...mm above the board top) and stops at all four edges (0.1 to 0.3 mm from the board edge), so that it cannot move more tha..."
+n20 = 1.0 mm (L1.3): "...3 mm from the board edge), so that it cannot move more than 1.0 mm along its length, 0.6 mm across it or 0.5 mm up or do..."
+n21 = 0.6 mm (L1.3): "..., so that it cannot move more than 1.0 mm along its length, 0.6 mm across it or 0.5 mm up or down...."
+n22 = 0.5 mm (L1.3): "...move more than 1.0 mm along its length, 0.6 mm across it or 0.5 mm up or down...."
+n23 = 10.6 mm (L1.4): "...With the lid closed, no part of the box shall come within 10.6 mm above the board's top surface (header pins 8.5 mm plus..."
+n24 = 8.5 mm (L1.4): "...e within 10.6 mm above the board's top surface (header pins 8.5 mm plus 0.5 mm, above the 1.6 mm board) or within 3.3 mm..."
+n25 = 0.5 mm (L1.4): "...6 mm above the board's top surface (header pins 8.5 mm plus 0.5 mm, above the 1.6 mm board) or within 3.3 mm below its u..."
+n26 = 1.6 mm (L1.4): "...rd's top surface (header pins 8.5 mm plus 0.5 mm, above the 1.6 mm board) or within 3.3 mm below its underside (pin tail..."
+n27 = 3.3 mm (L1.4): "...pins 8.5 mm plus 0.5 mm, above the 1.6 mm board) or within 3.3 mm below its underside (pin tails plus 0.3 mm), except th..."
+n28 = 0.3 mm (L1.4): "...board) or within 3.3 mm below its underside (pin tails plus 0.3 mm), except the supports under the board and the retenti..."
+n29 = 0.3 mm (L1.5): "...opening in the end wall without touching the box (at least 0.3 mm clear of the plug on every side), the receptacle front..."
+n30 = 0.5 (L1.5): "...ear of the plug on every side), the receptacle front stands 0.5 to 3.0 mm behind the inner face of the end wall, at leas..."
+n31 = 3.0 mm (L1.5): "...the plug on every side), the receptacle front stands 0.5 to 3.0 mm behind the inner face of the end wall, at least 1.5 m..."
+n32 = 1.5 mm (L1.5): "...5 to 3.0 mm behind the inner face of the end wall, at least 1.5 mm of wall surrounds the opening, and that opening shall..."
+n33 = 1.5 mm (L1.5): "...rrounds the opening, and that opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n34 = 8 mm (L1.6): "...e antenna end, no wall, lid or rib material shall enter the 8 mm of free space beyond the board end or the volume above ..."
+n35 = 12.0 mm (L1.6): "...the free length beyond the board end shall be no more than 12.0 mm...."
+n36 = 0.15 (L1.7): "...cates on the base with a sliding fit (a continuous lip with 0.15 to 0.35 mm clearance per side, 1.0 to 2.0 mm engagement..."
+n37 = 0.35 mm (L1.7): "...the base with a sliding fit (a continuous lip with 0.15 to 0.35 mm clearance per side, 1.0 to 2.0 mm engagement and at l..."
+n38 = 1.0 (L1.7): "...(a continuous lip with 0.15 to 0.35 mm clearance per side, 1.0 to 2.0 mm engagement and at least 0.8 mm thickness)...."
+n39 = 2.0 mm (L1.7): "...tinuous lip with 0.15 to 0.35 mm clearance per side, 1.0 to 2.0 mm engagement and at least 0.8 mm thickness)...."
+n40 = 0.8 mm (L1.7): "...m clearance per side, 1.0 to 2.0 mm engagement and at least 0.8 mm thickness)...."
+n41 = 0.4 mm (L1.8): "...ooks on at least two opposite walls, engaging with at least 0.4 mm of undercut, flexing within a 2 percent strain limit,..."
+n42 = 2 (L1.8): "...engaging with at least 0.4 mm of undercut, flexing within a 2 percent strain limit, and shall be removable by hand. Each..."
+n43 = 1.2 (L1.8): "...mit, and shall be removable by hand. Each hook arm shall be 1.2 to 2.0 mm thick, at least 9.0 mm free length and at leas..."
+n44 = 2.0 mm (L1.8): "...d shall be removable by hand. Each hook arm shall be 1.2 to 2.0 mm thick, at least 9.0 mm free length and at least 5.0 m..."
+n45 = 9.0 mm (L1.8): "...hand. Each hook arm shall be 1.2 to 2.0 mm thick, at least 9.0 mm free length and at least 5.0 mm wide, with an undercut..."
+n46 = 5.0 mm (L1.8): "...2 to 2.0 mm thick, at least 9.0 mm free length and at least 5.0 mm wide, with an undercut of at most 1.0 mm, a retention..."
+n47 = 1.0 mm (L1.8): "...ength and at least 5.0 mm wide, with an undercut of at most 1.0 mm, a retention face 45 to 65 degrees and a lead-in face..."
+n48 = 45 (L1.8): "...wide, with an undercut of at most 1.0 mm, a retention face 45 to 65 degrees and a lead-in face 20 to 40 degrees from hor..."
+n49 = 65 degrees (L1.8): "...with an undercut of at most 1.0 mm, a retention face 45 to 65 degrees and a lead-in face 20 to 40 degrees from horizonta..."
+n50 = 20 (L1.8): "....0 mm, a retention face 45 to 65 degrees and a lead-in face 20 to 40 degrees from horizontal, and every hook shall still..."
+n51 = 40 degrees (L1.8): "...a retention face 45 to 65 degrees and a lead-in face 20 to 40 degrees from horizontal, and every hook shall still be eng..."
+n52 = 0.3 mm (L1.8): "...nd every hook shall still be engaged when the lid is lifted 0.3 mm...."
+n53 = 2.0 (L1.9): "...than the USB opening, and its walls, floor and lid shall be 2.0 to 4.0 mm thick...."
+n54 = 4.0 mm (L1.9): "...e USB opening, and its walls, floor and lid shall be 2.0 to 4.0 mm thick...."
+n55 = 45 (L1.10): "...nifold body that prints on an FDM printer without supports (45 degree overhang limit, at least half of each part's plan ..."
+n56 = 0.8 mm (L1.10): "...h part's plan area flat on the bed, no feature thinner than 0.8 mm)...."
+n57 = 75 (L1.11): "...The closed box shall be no larger than 75 x 45 x 25 mm and shall stand flat on a table without tippin..."
+n58 = 45 (L1.11): "...The closed box shall be no larger than 75 x 45 x 25 mm and shall stand flat on a table without tipping...."
+n59 = 25 mm (L1.11): "...The closed box shall be no larger than 75 x 45 x 25 mm and shall stand flat on a table without tipping...."
+n60 = 0.2 mm (L1.12): "...down onto its supports without touching anything (at least 0.2 mm clear), and the lid shall close on the base without an..."
+n61 = 0.10 mm (L1.13): "...eport shall agree with an independent measurement to within 0.10 mm...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+Your previous answer broke these rules: keepout_above and headroom both use n23 (10.6 mm, 'With the lid closed, no part of the box shall come within 10.6 mm above the board's top surface (header pins 8.5 mm plus'); each number in the text states one quantity. Answer again and fix that.
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "n12",
+  "board_depth": "n2",
+  "board_width": "n1",
+  "headroom": "n23",
+  "keepout_above": "n24",
+  "keepout_below": "n27",
+  "max_x": "n8",
+  "max_y": "n7",
+  "max_z": "n6",
+  "opening_oversize_max": "n33",
+  "wall_max": "n54",
+  "wall_min": "n53"
+}

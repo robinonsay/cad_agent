@@ -1,0 +1,1675 @@
+{
+  "iter": "001",
+  "generated": "2026-10-24T23:25:37",
+  "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+  "runs_on_one_code_version": true,
+  "code_versions": [
+    "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da"
+  ],
+  "counts": {
+    "train": {
+      "runs": 40,
+      "rc": {
+        "1": 40
+      },
+      "no_output": 40,
+      "with_renders": 0,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 0
+    },
+    "regression": {
+      "runs": 4,
+      "rc": {
+        "0": 3,
+        "3": 1
+      },
+      "no_output": 0,
+      "with_renders": 4,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 4
+    }
+  },
+  "regression": "pending",
+  "to_judge": [
+    "E1-01_s1",
+    "V1_s1",
+    "V2_s1",
+    "V3_s1"
+  ],
+  "cached": [],
+  "runs": [
+    {
+      "name": "G01_s1",
+      "id": "G01",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 57.4,
+      "package": "benchmarks/generalize/loop/iter_001/G01_s1/20261024-225737",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G01/requirements.md",
+        "benchmarks/generalize/designs/G01/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "61962a20be3e8a256a6c2b9ea7ead24c7a0b957d",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T22:58:34",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "61962a20be3e8a256a6c2b9ea7ead24c7a0b957d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G02_s1",
+      "id": "G02",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 43.4,
+      "package": "benchmarks/generalize/loop/iter_001/G02_s1/20261024-225834",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G02/requirements.md",
+        "benchmarks/generalize/designs/G02/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "a35cef3324eaa32615cdd596befb6509784a5744",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T22:59:17",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "a35cef3324eaa32615cdd596befb6509784a5744",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G03_s1",
+      "id": "G03",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 51.0,
+      "package": "benchmarks/generalize/loop/iter_001/G03_s1/20261024-225917",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G03/requirements.md",
+        "benchmarks/generalize/designs/G03/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "f08a0b4e0426e1482c3e1176b7c8c606f86d6a7c",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:00:08",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "f08a0b4e0426e1482c3e1176b7c8c606f86d6a7c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G04_s1",
+      "id": "G04",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 28.8,
+      "package": "benchmarks/generalize/loop/iter_001/G04_s1/20261024-230009",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G04/requirements.md",
+        "benchmarks/generalize/designs/G04/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0ddc3d96f7d4ddc78f61b693c5d971178dbeb1a3",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:00:37",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "0ddc3d96f7d4ddc78f61b693c5d971178dbeb1a3",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G05_s1",
+      "id": "G05",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 32.7,
+      "package": "benchmarks/generalize/loop/iter_001/G05_s1/20261024-230037",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G05/requirements.md",
+        "benchmarks/generalize/designs/G05/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "24eb74b45ee1218b3a8198d72ed29972dcff1bed",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:01:10",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "24eb74b45ee1218b3a8198d72ed29972dcff1bed",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G06_s1",
+      "id": "G06",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 14.4,
+      "package": "benchmarks/generalize/loop/iter_001/G06_s1/20261024-230110",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G06/requirements.md",
+        "benchmarks/generalize/designs/G06/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "47771895910ab10576f473b3c6d3da16bf860657",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:01:24",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "47771895910ab10576f473b3c6d3da16bf860657",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G08_s1",
+      "id": "G08",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 41.8,
+      "package": "benchmarks/generalize/loop/iter_001/G08_s1/20261024-230124",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G08/requirements.md",
+        "benchmarks/generalize/designs/G08/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "54c6a800baef4c1bd062149d13bae4f2ac4d02d5",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:02:06",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "54c6a800baef4c1bd062149d13bae4f2ac4d02d5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G09_s1",
+      "id": "G09",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.1,
+      "package": "benchmarks/generalize/loop/iter_001/G09_s1/20261024-230206",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G09/requirements.md",
+        "benchmarks/generalize/designs/G09/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "114513621dd5a85d4d1afcf7e3d0530bafee6528",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:02:37",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "114513621dd5a85d4d1afcf7e3d0530bafee6528",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G10_s1",
+      "id": "G10",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.2,
+      "package": "benchmarks/generalize/loop/iter_001/G10_s1/20261024-230237",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G10/requirements.md",
+        "benchmarks/generalize/designs/G10/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "43bce31526bb6d3e75d3b1dec7ec421721ecd887",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:03:08",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_depth (no default exists)",
+      "spec_sha1": "43bce31526bb6d3e75d3b1dec7ec421721ecd887",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G11_s1",
+      "id": "G11",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 69.3,
+      "package": "benchmarks/generalize/loop/iter_001/G11_s1/20261024-230309",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G11/requirements.md",
+        "benchmarks/generalize/designs/G11/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "e40e0acaec9ce9255ba094de4ce4ede0d7ad36ab",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:04:18",
+      "outcome": "crashed",
+      "stage": "derive_features",
+      "last_note": "hole columns: \u00d87 = max(board HOLE.keepout_diameter 7, screw_m2_selftap head + 2 x rules.driver_clearance 6) (rule:hole_column_d)",
+      "spec_sha1": "e40e0acaec9ce9255ba094de4ce4ede0d7ad36ab",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G12_s1",
+      "id": "G12",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 36.1,
+      "package": "benchmarks/generalize/loop/iter_001/G12_s1/20261024-230418",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G12/requirements.md",
+        "benchmarks/generalize/designs/G12/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "b3056723bee67008db06bc96e10ef4d276d6d92b",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:04:54",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "b3056723bee67008db06bc96e10ef4d276d6d92b",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G13_s1",
+      "id": "G13",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 60.0,
+      "package": "benchmarks/generalize/loop/iter_001/G13_s1/20261024-230454",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G13/requirements.md",
+        "benchmarks/generalize/designs/G13/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2e662ec845345b473909ac7a9abf6fdc07c3456b",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:05:54",
+      "outcome": "crashed",
+      "stage": "derive_features",
+      "last_note": "arrange: module_1_1: moved (4.42, 0) mm to put every pin on a grid hole",
+      "spec_sha1": "2e662ec845345b473909ac7a9abf6fdc07c3456b",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G14_s1",
+      "id": "G14",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 42.5,
+      "package": "benchmarks/generalize/loop/iter_001/G14_s1/20261024-230554",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G14/requirements.md",
+        "benchmarks/generalize/designs/G14/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "d97d5df3e4aedabccf9dcfad683e70554eba09b9",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:06:36",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_depth (no default exists)",
+      "spec_sha1": "d97d5df3e4aedabccf9dcfad683e70554eba09b9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G16_s1",
+      "id": "G16",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 26.0,
+      "package": "benchmarks/generalize/loop/iter_001/G16_s1/20261024-230636",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G16/requirements.md",
+        "benchmarks/generalize/designs/G16/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:07:02",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G17_s1",
+      "id": "G17",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 27.7,
+      "package": "benchmarks/generalize/loop/iter_001/G17_s1/20261024-230702",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G17/requirements.md",
+        "benchmarks/generalize/designs/G17/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "bb39b92189cd48a9a79fb6065230a21c212edef9",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:07:30",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "bb39b92189cd48a9a79fb6065230a21c212edef9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G18_s1",
+      "id": "G18",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 29.4,
+      "package": "benchmarks/generalize/loop/iter_001/G18_s1/20261024-230730",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G18/requirements.md",
+        "benchmarks/generalize/designs/G18/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0b625c3d6e3d68eea2439d5c554ce163f92aa81c",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:08:00",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "0b625c3d6e3d68eea2439d5c554ce163f92aa81c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G20_s1",
+      "id": "G20",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 34.2,
+      "package": "benchmarks/generalize/loop/iter_001/G20_s1/20261024-230800",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G20/requirements.md",
+        "benchmarks/generalize/designs/G20/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "3c5e1b5f08a91d098895a7695886a9e5adf20dd4",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:08:34",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "3c5e1b5f08a91d098895a7695886a9e5adf20dd4",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G21_s1",
+      "id": "G21",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 24.7,
+      "package": "benchmarks/generalize/loop/iter_001/G21_s1/20261024-230834",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G21/requirements.md",
+        "benchmarks/generalize/designs/G21/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "f80ca66ab36594f4951c561e30cfa88f3bcdcf7c",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:08:58",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "f80ca66ab36594f4951c561e30cfa88f3bcdcf7c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G22_s1",
+      "id": "G22",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 26.8,
+      "package": "benchmarks/generalize/loop/iter_001/G22_s1/20261024-230859",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G22/requirements.md",
+        "benchmarks/generalize/designs/G22/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "d31e04b2f284c1e4072eb70041850b00d5018cdc",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:09:25",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "d31e04b2f284c1e4072eb70041850b00d5018cdc",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G23_s1",
+      "id": "G23",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 33.6,
+      "package": "benchmarks/generalize/loop/iter_001/G23_s1/20261024-230925",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G23/requirements.md",
+        "benchmarks/generalize/designs/G23/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "83b1d744c8de210ae19e4fc6b147847d3070eb11",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:09:59",
+      "outcome": "failed",
+      "stage": "arrange_contents",
+      "last_note": "no feasible arrangement: {}: no_room: module_1: no free spot on the board for rpi_camera_v2",
+      "spec_sha1": "83b1d744c8de210ae19e4fc6b147847d3070eb11",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G24_s1",
+      "id": "G24",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 29.4,
+      "package": "benchmarks/generalize/loop/iter_001/G24_s1/20261024-230959",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G24/requirements.md",
+        "benchmarks/generalize/designs/G24/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "9d75d7cabd8b65fe04d6111ed3b0dca4ce884024",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:10:28",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "9d75d7cabd8b65fe04d6111ed3b0dca4ce884024",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G26_s1",
+      "id": "G26",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 23.4,
+      "package": "benchmarks/generalize/loop/iter_001/G26_s1/20261024-231028",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G26/requirements.md",
+        "benchmarks/generalize/designs/G26/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "468a7e53f8fe07e146f42f5f8e729adf85073347",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:10:52",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "468a7e53f8fe07e146f42f5f8e729adf85073347",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G27_s1",
+      "id": "G27",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 29.1,
+      "package": "benchmarks/generalize/loop/iter_001/G27_s1/20261024-231052",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G27/requirements.md",
+        "benchmarks/generalize/designs/G27/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "841e9079298a1e5848e70854394b7f2513001e30",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:11:21",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "841e9079298a1e5848e70854394b7f2513001e30",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G29_s1",
+      "id": "G29",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 29.8,
+      "package": "benchmarks/generalize/loop/iter_001/G29_s1/20261024-231121",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G29/requirements.md",
+        "benchmarks/generalize/designs/G29/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "31669fa0b61faaf9eb3292c74a65cf916410ace5",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:11:51",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "31669fa0b61faaf9eb3292c74a65cf916410ace5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G30_s1",
+      "id": "G30",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 27.1,
+      "package": "benchmarks/generalize/loop/iter_001/G30_s1/20261024-231151",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G30/requirements.md",
+        "benchmarks/generalize/designs/G30/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "0e5b95a47d8beb02be66b402b7ff87491df329c9",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:12:18",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "0e5b95a47d8beb02be66b402b7ff87491df329c9",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G31_s1",
+      "id": "G31",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 49.1,
+      "package": "benchmarks/generalize/loop/iter_001/G31_s1/20261024-231218",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G31/requirements.md",
+        "benchmarks/generalize/designs/G31/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2e75155870dff30f887490af3d69c9b2af5be58c",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:13:07",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "2e75155870dff30f887490af3d69c9b2af5be58c",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G32_s1",
+      "id": "G32",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 27.4,
+      "package": "benchmarks/generalize/loop/iter_001/G32_s1/20261024-231307",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G32/requirements.md",
+        "benchmarks/generalize/designs/G32/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "dfdf81c5660fbf86007bb6f552712a1616ac4024",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:13:34",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "dfdf81c5660fbf86007bb6f552712a1616ac4024",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G33_s1",
+      "id": "G33",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 28.8,
+      "package": "benchmarks/generalize/loop/iter_001/G33_s1/20261024-231334",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G33/requirements.md",
+        "benchmarks/generalize/designs/G33/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "94eb067b2e53833f2eab98cae91ff3ff47151e3e",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:14:03",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "94eb067b2e53833f2eab98cae91ff3ff47151e3e",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G35_s1",
+      "id": "G35",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 26.0,
+      "package": "benchmarks/generalize/loop/iter_001/G35_s1/20261024-231403",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G35/requirements.md",
+        "benchmarks/generalize/designs/G35/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "3e0d26cd42ea5148f700fa9c5c10fcf2c4a31955",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:14:29",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "3e0d26cd42ea5148f700fa9c5c10fcf2c4a31955",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G36_s1",
+      "id": "G36",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 24.7,
+      "package": "benchmarks/generalize/loop/iter_001/G36_s1/20261024-231429",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G36/requirements.md",
+        "benchmarks/generalize/designs/G36/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "42219e06c302c5612c7b737fed3de366db8e9fe1",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:14:54",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "42219e06c302c5612c7b737fed3de366db8e9fe1",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G37_s1",
+      "id": "G37",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.8,
+      "package": "benchmarks/generalize/loop/iter_001/G37_s1/20261024-231454",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G37/requirements.md",
+        "benchmarks/generalize/designs/G37/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "a23b6442307ef5de2f8a43026a5f019b39919297",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:15:26",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "a23b6442307ef5de2f8a43026a5f019b39919297",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G38_s1",
+      "id": "G38",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.4,
+      "package": "benchmarks/generalize/loop/iter_001/G38_s1/20261024-231526",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G38/requirements.md",
+        "benchmarks/generalize/designs/G38/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "df1171119e4cdf75e94fe9d9fc6326d6e191fb82",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:15:57",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "df1171119e4cdf75e94fe9d9fc6326d6e191fb82",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G40_s1",
+      "id": "G40",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 16.0,
+      "package": "benchmarks/generalize/loop/iter_001/G40_s1/20261024-231557",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G40/requirements.md",
+        "benchmarks/generalize/designs/G40/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "412f7b1bfa71dd35a3535a2c174b11fd5bc278bd",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:16:13",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "412f7b1bfa71dd35a3535a2c174b11fd5bc278bd",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G41_s1",
+      "id": "G41",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 50.4,
+      "package": "benchmarks/generalize/loop/iter_001/G41_s1/20261024-231613",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G41/requirements.md",
+        "benchmarks/generalize/designs/G41/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "5720a57a5d0379517a5f395da92eac0ed81ae56a",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:17:03",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "5720a57a5d0379517a5f395da92eac0ed81ae56a",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G42_s1",
+      "id": "G42",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 26.7,
+      "package": "benchmarks/generalize/loop/iter_001/G42_s1/20261024-231703",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G42/requirements.md",
+        "benchmarks/generalize/designs/G42/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "fcca2c7b9251a68d190b5e28fe3732ddfee61eaf",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:17:30",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "fcca2c7b9251a68d190b5e28fe3732ddfee61eaf",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G43_s1",
+      "id": "G43",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 33.3,
+      "package": "benchmarks/generalize/loop/iter_001/G43_s1/20261024-231730",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G43/requirements.md",
+        "benchmarks/generalize/designs/G43/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "932a3dfdea0b83cfb2c51fbcae2bebeff055761f",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:18:03",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "932a3dfdea0b83cfb2c51fbcae2bebeff055761f",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G45_s1",
+      "id": "G45",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 28.5,
+      "package": "benchmarks/generalize/loop/iter_001/G45_s1/20261024-231804",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G45/requirements.md",
+        "benchmarks/generalize/designs/G45/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "43a51bc4e14cffba4275e449df7f48b123dfc781",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:18:32",
+      "outcome": "failed",
+      "stage": "parse_spec",
+      "last_note": "no number in the text for board_width, board_depth (no default exists)",
+      "spec_sha1": "43a51bc4e14cffba4275e449df7f48b123dfc781",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G47_s1",
+      "id": "G47",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 31.4,
+      "package": "benchmarks/generalize/loop/iter_001/G47_s1/20261024-231832",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G47/requirements.md",
+        "benchmarks/generalize/designs/G47/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "2f559294de062a5d6ad04c8ffa20b51b8714cef8",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:19:03",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "2f559294de062a5d6ad04c8ffa20b51b8714cef8",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G49_s1",
+      "id": "G49",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 39.1,
+      "package": "benchmarks/generalize/loop/iter_001/G49_s1/20261024-231903",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G49/requirements.md",
+        "benchmarks/generalize/designs/G49/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "aa8ea356fa0342ff910e8c7a15b420fced44fcc2",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:19:42",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "exactly one board is needed, the answer has 0",
+      "spec_sha1": "aa8ea356fa0342ff910e8c7a15b420fced44fcc2",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "G50_s1",
+      "id": "G50",
+      "split": "train",
+      "seed": 1,
+      "rc": 1,
+      "timed_out": false,
+      "secs": 18.8,
+      "package": "benchmarks/generalize/loop/iter_001/G50_s1/20261024-231942",
+      "has_renders": false,
+      "geometry_sha1": null,
+      "stl_files": [],
+      "missing": [
+        "layout.json",
+        "self_report.json",
+        "*.stl"
+      ],
+      "spec_files": [
+        "benchmarks/generalize/designs/G50/requirements.md",
+        "benchmarks/generalize/designs/G50/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "34da2022cb5fe549c2013849cb9feda8687f3fb5",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:20:01",
+      "outcome": "failed",
+      "stage": "contents",
+      "last_note": "no catalogue board matches the request",
+      "spec_sha1": "34da2022cb5fe549c2013849cb9feda8687f3fb5",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "no_package"
+    },
+    {
+      "name": "E1-01_s1",
+      "id": "E1-01",
+      "split": "regression",
+      "seed": 1,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 81.3,
+      "package": "benchmarks/generalize/loop/iter_001/E1-01_s1/20261024-232001",
+      "has_renders": true,
+      "geometry_sha1": "f7b58689567edf598cbefed55cdf91e7ed0a3c37",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/enclosure.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:21:23",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "arrange: module_1_1: moved (4.42, 0) mm to put every pin on a grid hole",
+      "spec_sha1": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "V1_s1",
+      "id": "V1",
+      "split": "regression",
+      "seed": 1,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 85.5,
+      "package": "benchmarks/generalize/loop/iter_001/V1_s1/20261024-232123",
+      "has_renders": true,
+      "geometry_sha1": "4d2c5d4d41399ee9c3173f4756127f0e8cf378fc",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/variants.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:22:48",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "arrange: module_1_1: moved (4.34, -1.12) mm to put every pin on a grid hole",
+      "spec_sha1": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "V2_s1",
+      "id": "V2",
+      "split": "regression",
+      "seed": 1,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 88.4,
+      "package": "benchmarks/generalize/loop/iter_001/V2_s1/20261024-232248",
+      "has_renders": true,
+      "geometry_sha1": "09145ec8ef288812d168fa7dae7b48cfc97e8058",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/variants.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:24:17",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "arrange: module_1_1: moved (4.26, 0) mm to put every pin on a grid hole",
+      "spec_sha1": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "V3_s1",
+      "id": "V3",
+      "split": "regression",
+      "seed": 1,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 80.1,
+      "package": "benchmarks/generalize/loop/iter_001/V3_s1/20261024-232417",
+      "has_renders": true,
+      "geometry_sha1": "6da15f88adefaab1c019ad5e42c48c240cf9358a",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/variants.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-24T23:25:37",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "arrange: module_1_1: moved (4.34, 0) mm to put every pin on a grid hole",
+      "spec_sha1": "70ecebf79c3702de62c81592aa65ee3a8b5a8864",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    }
+  ],
+  "code": {
+    "code_sha1": "72dbcfdfb8ded658c0de36d26f0b8aadabf5a8da",
+    "files": 75,
+    "previous_iter": null,
+    "code_unchanged": null,
+    "changed_within_iteration": false
+  }
+}

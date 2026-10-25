@@ -1,0 +1,658 @@
+{
+  "request": "A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm holes on a 21 x 12.5 mm pattern and a ribbon connector on the back. The board sits in a pocket and is held without screws by lips that reach 0.6 to 1.15 mm over its front face. The 8 mm lens looks out through a window that is clear of any wall (no wall within 0.5 mm of the lens barrel, and nothing in the camera's 62 x 49 degree field of view; the board's orientation to the sensor axes is not known, so use the 62 degree angle on both axes). The 16 mm wide ribbon cable leaves through the back of the holder through a slot 17 mm wide and no more than 10 mm long. The base of the holder has a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick, held in a hex pocket 0.1 to 0.3 mm bigger than the nut on each flat, with a stud hole 6.4 to 6.8 mm in diameter and a seat 2.0 to 3.65 mm thick) so it screws onto a tripod stud 10 mm long. Print it in one piece on an FDM printer without supports, in the orientation you state. It is no larger than 45 x 45 x 30 mm. Requirements: The design shall place the camera board from the parts catalogue in the holder, with its lens looking out of the front, and shall declare that layout, the direction the board is installed from and the tripod stud axis. The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm clearance on each edge, resting on printed supports under its edges and clear of its ribbon connector, lens and every other printed surface. The board shall be held in the pocket without screws: it shall move at most 0.8 mm sideways and 1.0 mm out of the pocket, with at least two retaining lips on opposite sides over its front face, each reaching 0.6 to 1.15 mm over the board. The 8 mm lens window shall be clear: no printed surface within 0.5 mm of the lens barrel, and nothing inside the lens's keep-out cylinder or its field of view (the 62 degree angle taken on both axes, the sensor orientation being unknown). The 16 mm wide ribbon cable shall leave through the back of the holder through a slot 17 mm wide and at most 10 mm long, with its straight path of 20 mm behind the connector clear of the holder by at least 0.4 mm. The base shall hold a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex pocket that stops it turning (0.1 to 0.3 mm over the nut on each flat), with a 6.4 to 6.8 mm stud hole, a seat 2.0 to 3.65 mm thick and room for a 10 mm stud to pass through the nut, so the holder screws onto a tripod. The tripod stud axis shall be perpendicular to the lens axis and centred across the board, entering a flat base face at least 20 mm across. The board shall install into the pocket by one straight movement from outside, and the hex nut shall go into its pocket by one straight movement, each without touching the holder on the way (the retaining lips may flex). The holder shall be one manifold body that prints on an FDM printer without supports in its stated orientation, with walls 2 to 4 mm thick. The holder shall be no larger than 45 x 45 x 30 mm. The design shall be delivered as an STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+  "base_request": "A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm holes on a 21 x 12.5 mm pattern and a ribbon connector on the back. The board sits in a pocket and is held without screws by lips that reach 0.6 to 1.15 mm over its front face. The 8 mm lens looks out through a window that is clear of any wall (no wall within 0.5 mm of the lens barrel, and nothing in the camera's 62 x 49 degree field of view; the board's orientation to the sensor axes is not known, so use the 62 degree angle on both axes). The 16 mm wide ribbon cable leaves through the back of the holder through a slot 17 mm wide and no more than 10 mm long. The base of the holder has a hex pocket for a 1/4-20 nut (11.1 mm across flats, 5.6 mm thick, held in a hex pocket 0.1 to 0.3 mm bigger than the nut on each flat, with a stud hole 6.4 to 6.8 mm in diameter and a seat 2.0 to 3.65 mm thick) so it screws onto a tripod stud 10 mm long. Print it in one piece on an FDM printer without supports, in the orientation you state. It is no larger than 45 x 45 x 30 mm.",
+  "seed": 3,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "The design shall place the camera board from the parts catalogue in the holder, with its lens looking out of the front, and shall declare that layout, the direction the board is installed from and the tripod stud axis.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm clearance on each edge, resting on printed supports under its edges and clear of its ribbon connector, lens and every other printed surface.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.3",
+      "text": "The board shall be held in the pocket without screws: it shall move at most 0.8 mm sideways and 1.0 mm out of the pocket, with at least two retaining lips on opposite sides over its front face, each reaching 0.6 to 1.15 mm over the board.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.4",
+      "text": "The 8 mm lens window shall be clear: no printed surface within 0.5 mm of the lens barrel, and nothing inside the lens's keep-out cylinder or its field of view (the 62 degree angle taken on both axes, the sensor orientation being unknown).",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.5",
+      "text": "The 16 mm wide ribbon cable shall leave through the back of the holder through a slot 17 mm wide and at most 10 mm long, with its straight path of 20 mm behind the connector clear of the holder by at least 0.4 mm.",
+      "method": "test"
+    },
+    {
+      "id": "L1.6",
+      "text": "The base shall hold a 1/4-20 hex nut (11.1 mm across flats, 5.6 mm thick) in a hex pocket that stops it turning (0.1 to 0.3 mm over the nut on each flat), with a 6.4 to 6.8 mm stud hole, a seat 2.0 to 3.65 mm thick and room for a 10 mm stud to pass through the nut, so the holder screws onto a tripod.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.7",
+      "text": "The tripod stud axis shall be perpendicular to the lens axis and centred across the board, entering a flat base face at least 20 mm across.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.8",
+      "text": "The board shall install into the pocket by one straight movement from outside, and the hex nut shall go into its pocket by one straight movement, each without touching the holder on the way (the retaining lips may flex).",
+      "method": "test"
+    },
+    {
+      "id": "L1.9",
+      "text": "The holder shall be one manifold body that prints on an FDM printer without supports in its stated orientation, with walls 2 to 4 mm thick.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "The holder shall be no larger than 45 x 45 x 30 mm.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.11",
+      "text": "The design shall be delivered as an STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": "failed",
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [],
+    "all_verified": false
+  },
+  "notes": [],
+  "components": [],
+  "assembly": {
+    "stage": "choose_archetype",
+    "notes": [
+      "contents: primary by the largest catalogue plan footprint: rpi_camera_v2 600.0 mm2",
+      "hole columns: \u00d86 = max(board HOLE.keepout_diameter 5, screw_m2_selftap head + 2 x rules.driver_clearance 6) (rule:hole_column_d)",
+      "not implemented: archetype (primary rpi_camera_v2; no shell evidence; candidates for GM5: plate / bracket / block / cradle)"
+    ],
+    "parts_dir": "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts:/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts",
+    "parts_dirs": [
+      "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts",
+      "/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts"
+    ],
+    "rules_path": "/Users/robinonsay/python/llm-bt/design_rules.json",
+    "with_models": false,
+    "catalog": [
+      "arduino_nano",
+      "arduino_uno_r3",
+      "battery_9v_pp3",
+      "bearing_608",
+      "bearing_623",
+      "bearing_625",
+      "bolt_m3_iso4762",
+      "bolt_m4_iso4762",
+      "bolt_m5_iso7380",
+      "button_tact_6mm",
+      "buzzer_12mm",
+      "camera_screw_1_4_20",
+      "card_microsd",
+      "cell_18650",
+      "dc_jack_pj002a",
+      "dowel_pin_generic",
+      "encoder_ec11",
+      "esp32_devkitc_v4",
+      "extrusion_2020",
+      "fan_40x40x10",
+      "fan_60x60x25",
+      "gear_spur_generic",
+      "generic_box",
+      "generic_cylinder",
+      "generic_tube",
+      "gt2_belt_6mm",
+      "gt2_pulley_20t",
+      "hc_sr04",
+      "header_female_2p54",
+      "header_male_2p54",
+      "heatset_m2p5",
+      "heatset_m3",
+      "jack_3p5_pj320a",
+      "lcd1602_hd44780",
+      "led_5mm",
+      "lipo_503450",
+      "lm8uu",
+      "magnet_disc_6x3",
+      "microswitch_kw12",
+      "n20_gearmotor",
+      "nema17_motor",
+      "nut_m3",
+      "nut_m4",
+      "oled_ssd1306_096",
+      "perfboard",
+      "plug_dc_barrel_5p5",
+      "plug_microusb_b",
+      "plug_minihdmi",
+      "plug_miniusb_b",
+      "plug_trs_3p5",
+      "plug_usb_b",
+      "plug_usbc",
+      "pot_rk09",
+      "rod_8mm",
+      "rpi_camera_v2",
+      "rpi_pico2",
+      "rpi_zero2w",
+      "screw_m2_selftap",
+      "screw_m2p5_selftap",
+      "screw_m3_selftap",
+      "servo_mg996r",
+      "servo_sg90",
+      "slide_sk12d",
+      "tnut_2020_m5",
+      "toggle_mts102",
+      "tp4056_usbc_module"
+    ],
+    "catalog_errors": [],
+    "rules": {
+      "sliding_fit_min": 0.15,
+      "sliding_fit_max": 0.35,
+      "sliding_fit": 0.25,
+      "board_to_wall": 0.5,
+      "plug_to_opening": 0.3,
+      "opening_oversize_max": 1.5,
+      "min_ligament": 1.5,
+      "wall_default": 2.4,
+      "floor_default": 2.4,
+      "min_feature": 0.8,
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0,
+      "round_hole_exempt_max": 12.0,
+      "bed_x": 200.0,
+      "bed_y": 200.0,
+      "bed_z": 200.0,
+      "layer_height": 0.2,
+      "fn": 64.0,
+      "standoff_wall_min": 1.6,
+      "component_height_default": 10.0,
+      "solder_side_default": 3.0,
+      "keepout_margin": 1.0,
+      "plug_travel": 40.0,
+      "driver_clearance": 1.0,
+      "driver_diameter": 6.0,
+      "driver_reach": 50.0,
+      "design_margin": 0.1,
+      "grid_search_step": 0.01,
+      "grid_residual_max": 0.15,
+      "overlap_max": 1.0,
+      "interference_max": 0.01,
+      "seat_gap_max": 0.1,
+      "seat_axis_residual_max": 0.25,
+      "lip_engagement": 2.0,
+      "lip_wall": 1.2,
+      "boss_wall_min": 1.6,
+      "cut_overrun": 1.0,
+      "screw_hole_clearance_min": 0.2,
+      "given_hole_clearance_min": 0.0,
+      "max_quantity": 8.0,
+      "part_to_wall": 0.2,
+      "measure_tol": 0.01,
+      "margin_scale": 1.0,
+      "lookup_k": 3.0,
+      "view_elevation_deg": 20.0,
+      "arrange_rank_max": 16.0,
+      "layout_step": 0.5,
+      "aperture_min_volume": 1.0,
+      "parity_volume_rel": 0.005,
+      "parity_bbox": 0.05
+    },
+    "spec": {
+      "board_width": 25.0,
+      "board_depth": 24.0,
+      "keepout_above": 10.0,
+      "keepout_below": 3.0,
+      "board_clearance": 0.15,
+      "headroom": 0.5,
+      "opening_oversize_max": 0.1,
+      "wall_min": 2.0,
+      "wall_max": 4.0,
+      "max_x": 45.0,
+      "max_y": 45.0,
+      "max_z": 30.0
+    },
+    "spec_provenance": {
+      "board_width": "request:\"A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm hol\"",
+      "board_depth": "request:\"A holder for a Raspberry Pi camera v2 board: 25 x 24 mm, 9 mm tall including the lens, with four 2.2 mm holes on a\"",
+      "keepout_above": "rules:component_height_default",
+      "keepout_below": "rules:solder_side_default",
+      "board_clearance": "L1.2:\"The 25 x 24 mm board shall sit in a pocket with 0.15 to 0.35 mm clearance on each edge, resting on printed suppo\"",
+      "headroom": "rules:board_to_wall",
+      "opening_oversize_max": "request:\"t (11.1 mm across flats, 5.6 mm thick, held in a hex pocket 0.1 to 0.3 mm bigger than the nut on each flat, with a stud \"",
+      "wall_min": "L1.9:\"nter without supports in its stated orientation, with walls 2 to 4 mm thick.\"",
+      "wall_max": "L1.9:\"without supports in its stated orientation, with walls 2 to 4 mm thick.\"",
+      "max_x": "request:\"upports, in the orientation you state. It is no larger than 45 x 45 x 30 mm.\"",
+      "max_y": "request:\"ts, in the orientation you state. It is no larger than 45 x 45 x 30 mm.\"",
+      "max_z": "request:\"n the orientation you state. It is no larger than 45 x 45 x 30 mm.\""
+    },
+    "contents": [
+      {
+        "part": "rpi_camera_v2",
+        "kind": "module",
+        "quantity": 1,
+        "exposed": false,
+        "name": "raspberry pi camera module 2",
+        "exposed_connectors": [],
+        "id": "board",
+        "params": {}
+      }
+    ],
+    "layout": {
+      "board": {
+        "part": "rpi_camera_v2",
+        "params": {},
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "",
+        "copy": 0,
+        "role": "board",
+        "edge": null,
+        "of": null
+      }
+    },
+    "arrange": {
+      "candidates": [
+        {
+          "assignment": {},
+          "outcome": "scored",
+          "class": null,
+          "words": "",
+          "votes": 0,
+          "p_yes": 0.0,
+          "asked": false,
+          "chosen": true,
+          "prescore": null
+        }
+      ],
+      "classes": 0,
+      "truncated": 0,
+      "decision": "rule:no_exposed_connector"
+    },
+    "grid_report": {
+      "grid": false,
+      "soft": false,
+      "finite": false,
+      "max": 0.0,
+      "worst": null,
+      "parts": {},
+      "no_pin_data": [],
+      "exempt": []
+    },
+    "conflicts": [],
+    "coverage": [],
+    "links": {},
+    "number_owner": {
+      "n1": "board_width",
+      "n2": "board_depth",
+      "n33": "board_clearance",
+      "n21": "opening_oversize_max",
+      "n59": "wall_min",
+      "n60": "wall_max",
+      "n28": "max_x",
+      "n29": "max_y",
+      "n30": "max_z"
+    },
+    "unplaced": [],
+    "relations": [],
+    "fasteners": {
+      "fastener.board.thread_diameter": 2.0,
+      "fastener.board.pilot_diameter": 1.7,
+      "fastener.board.pilot_min": 1.6,
+      "fastener.board.pilot_max": 1.8,
+      "fastener.board.clearance_diameter": 2.4,
+      "fastener.board.head_diameter": 4.0,
+      "fastener.board.head_height": 1.6,
+      "fastener.board.length": 6.0,
+      "fastener.board.min_engagement": 5.0,
+      "fastener.board.min_boss_od": 5.0
+    },
+    "choices": {
+      "primary": {
+        "value": "rpi_camera_v2",
+        "by": "rule:primary_reference",
+        "reason": "largest plan footprint",
+        "interface": "mount"
+      },
+      "fastener[board]": {
+        "value": "screw_m2_selftap",
+        "by": "rule:smallest_thread_through_board_hole"
+      }
+    },
+    "assumptions": [
+      "keepout_above = 10 mm from rules:component_height_default (the text states no number for it)",
+      "keepout_below = 3 mm from rules:solder_side_default (the text states no number for it)",
+      "headroom = 0.5 mm from rules:board_to_wall (the text states no number for it)",
+      "fastener[board] = screw_m2_selftap: the text names no board screw and the rpi_camera_v2 datasheet gives no thread; the smallest catalogue screw that passes the board's mounting holes is used"
+    ],
+    "stl_source": {},
+    "components": [],
+    "results": [],
+    "results_manifold": [],
+    "files": [],
+    "deferred_gate_rules": {
+      "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
+      "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
+      "R10": "skipped: imported models are compared only in the --with-models arm (M14; numbered R9 before generalize delta 001, which gave R9 to the interface gate)"
+    },
+    "feature_graph": {
+      "schema": 1,
+      "nodes": [
+        {
+          "id": "board",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {},
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "rpi_camera_v2",
+          "source": "layout:board",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "board_ko_top",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 25.0,
+            "y": 24.0,
+            "z": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              12.5,
+              12.0,
+              1.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "keepout_top",
+          "part": null,
+          "source": "rule:board_keepout",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "board_ko_bot",
+          "kind": "envelope",
+          "primitive": "box",
+          "params": {
+            "x": 25.0,
+            "y": 24.0,
+            "z": 3.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              12.5,
+              12.0,
+              -3.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "keepout_bottom",
+          "part": null,
+          "source": "rule:board_keepout",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_0",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 6.0
+          },
+          "pose": {
+            "at": "board.HOLE[0]",
+            "offset": [
+              0,
+              0,
+              -4.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_0",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[0]",
+            "offset": [
+              0,
+              0,
+              1.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_1",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 6.0
+          },
+          "pose": {
+            "at": "board.HOLE[1]",
+            "offset": [
+              0,
+              0,
+              -4.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_1",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[1]",
+            "offset": [
+              0,
+              0,
+              1.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_2",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 6.0
+          },
+          "pose": {
+            "at": "board.HOLE[2]",
+            "offset": [
+              0,
+              0,
+              -4.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_2",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[2]",
+            "offset": [
+              0,
+              0,
+              1.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "seat_3",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 6.0
+          },
+          "pose": {
+            "at": "board.HOLE[3]",
+            "offset": [
+              0,
+              0,
+              -4.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "seat",
+          "part": null,
+          "source": "rule:column(seat)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "hole_ko_3",
+          "kind": "envelope",
+          "primitive": "cylinder",
+          "params": {
+            "d": 6.0,
+            "h": 10.0
+          },
+          "pose": {
+            "at": "board.HOLE[3]",
+            "offset": [
+              0,
+              0,
+              1.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "hole_keepout",
+          "part": null,
+          "source": "rule:column(hole_keepout)",
+          "free": [],
+          "color": null,
+          "group": null
+        }
+      ]
+    }
+  }
+}

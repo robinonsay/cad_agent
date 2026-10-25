@@ -1,0 +1,307 @@
+{
+ "id": "toggle_mts102",
+ "schema": 1,
+ "units": "mm",
+ "names": [
+  "mts-102 toggle switch",
+  "mts102",
+  "toggle switch",
+  "mini toggle switch",
+  "spdt toggle switch",
+  "panel toggle switch",
+  "toggle",
+  "1/4 inch toggle switch",
+  "6 mm toggle switch"
+ ],
+ "kind": "control",
+ "source": "Mini toggle switch MTS-102 datasheet (generalize/plan.json datasheet_note): 6.0 mm (1/4 in) bushing, lever 12 mm above the panel, body 13 x 8 x 10 mm, panel up to 4 mm. ASSUMED: bushing length above the body 8.0 mm, lever 3.0 mm dia, lever swing 4.0 mm radius at its tip (about +/-20 degrees), nut 9.0 mm across corners, 3 solder lugs at 4.7 mm pitch along the 13 mm side.",
+ "frame": "panel switch: origin at the body min corner, body bottom at Z = 0, bushing and lever toward +Z, solder lugs toward -Z; bushing axis at the body centre",
+ "params": {
+  "body_length": {
+   "default": 13.0,
+   "source": "datasheet: body X"
+  },
+  "body_width": {
+   "default": 8.0,
+   "source": "datasheet: body Y"
+  },
+  "body_height": {
+   "default": 10.0,
+   "source": "datasheet: body Z (seat to the bushing shoulder)"
+  },
+  "bushing_diameter": {
+   "default": 6.0,
+   "source": "datasheet: 6.0 mm (1/4 in class) bushing; M6 x 0.75 thread"
+  },
+  "bushing_length": {
+   "default": 8.0,
+   "source": "ASSUMED bushing length above the body; +/- 1.0"
+  },
+  "max_panel_thickness": {
+   "default": 4.0,
+   "source": "datasheet: panel up to 4 mm"
+  },
+  "nut_diameter": {
+   "default": 9.0,
+   "source": "ASSUMED hex nut across corners; +/- 0.5"
+  },
+  "lever_diameter": {
+   "default": 3.0,
+   "source": "ASSUMED lever mean diameter; +/- 0.5"
+  },
+  "lever_height": {
+   "default": 12.0,
+   "source": "datasheet: lever height above the panel/bushing face"
+  },
+  "lever_swing_radius": {
+   "default": 4.0,
+   "source": "ASSUMED lever tip swing radius (about +/-20 deg of a 12 mm lever); +/- 1.0"
+  },
+  "pin_pitch": {
+   "default": 4.7,
+   "source": "ASSUMED lug pitch for an MTS-102 (3 lugs); +/- 0.3"
+  },
+  "lug_length": {
+   "default": 4.0,
+   "source": "ASSUMED solder lug length below the body"
+  }
+ },
+ "datasheet_size": [
+  "body_length",
+  "body_width",
+  "body_height"
+ ],
+ "size_of": "body",
+ "size_tolerance": 0.2,
+ "geometry": [
+  {
+   "id": "body",
+   "primitive": "box",
+   "size": [
+    "body_length",
+    "body_width",
+    "body_height"
+   ],
+   "at": [
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "bushing",
+   "primitive": "cylinder",
+   "d": "bushing_diameter",
+   "h": "bushing_length",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "lever",
+   "primitive": "cylinder",
+   "d": "lever_diameter",
+   "h": "lever_height",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + bushing_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "keepouts": [
+  {
+   "id": "lever_swing",
+   "primitive": "cylinder",
+   "d": "2 * lever_swing_radius",
+   "h": "lever_height",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + bushing_length"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  },
+  {
+   "id": "nut_zone",
+   "primitive": "cylinder",
+   "d": "nut_diameter",
+   "h": 3.0,
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + bushing_length - 3.0"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ]
+  }
+ ],
+ "datums": {
+  "BODY_BOTTOM": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "normal": [
+    0,
+    0,
+    -1
+   ]
+  },
+  "SHOULDER": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "BUSHING_TOP": {
+   "kind": "plane",
+   "at": [
+    0,
+    0,
+    "body_height + bushing_length"
+   ],
+   "normal": [
+    0,
+    0,
+    1
+   ]
+  },
+  "AXIS": {
+   "kind": "axis",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height"
+   ],
+   "dir": [
+    0,
+    0,
+    1
+   ],
+   "diameter": "bushing_diameter",
+   "keepout_diameter": "nut_diameter"
+  },
+  "LEVER_TIP": {
+   "kind": "point",
+   "at": [
+    "body_length / 2",
+    "body_width / 2",
+    "body_height + bushing_length + lever_height"
+   ]
+  },
+  "PINS": {
+   "kind": "axis_list",
+   "dir": [
+    0,
+    0,
+    -1
+   ],
+   "count": 3,
+   "start": [
+    "body_length / 2 - pin_pitch",
+    "body_width / 2",
+    0
+   ],
+   "step": [
+    "pin_pitch",
+    0,
+    0
+   ]
+  }
+ },
+ "connectors": [],
+ "mount": {
+  "type": "panel",
+  "panel_datum": "BUSHING_TOP",
+  "hole_axis": "AXIS",
+  "max_panel_thickness": "max_panel_thickness",
+  "notes": "the panel hole is the bushing diameter plus rules clearance; the bushing is clamped by the nut, panel plane between SHOULDER and BUSHING_TOP"
+ },
+ "notes": "Datasheet 'lever 12 mm above the panel' is read as the lever length above the bushing face (the panel face sits about one panel thickness below BUSHING_TOP). Bushing seat/nut contact is designed contact. ASSUMPTIONS and uncertainty: bushing length 8.0 (+/-1.0) must exceed panel 4.0 + nut thickness ~2.0, check with the owner's part; lever 3.0 dia is a mean of the tapered lever; swing radius 4.0 (+/-1.0) approximates a +/-20 degree throw; lugs 3 at 4.7 pitch (a 2P ON-OFF variant has 2); nut 9.0 across corners. Import gate: body bounding box 13 x 8 x 10; lever tip above the bushing top.",
+ "self_checks": [
+  {
+   "name": "body length",
+   "expr": "body.size_x",
+   "value": 13.0,
+   "tol": 0.05
+  },
+  {
+   "name": "body width",
+   "expr": "body.size_y",
+   "value": 8.0,
+   "tol": 0.05
+  },
+  {
+   "name": "body height",
+   "expr": "body.size_z",
+   "value": 10.0,
+   "tol": 0.05
+  },
+  {
+   "name": "bushing diameter",
+   "expr": "bushing.size_x",
+   "value": 6.0,
+   "tol": 0.05
+  },
+  {
+   "name": "bushing axis at the body centre X",
+   "expr": "AXIS.x - body.center_x",
+   "value": 0,
+   "tol": 1e-06
+  },
+  {
+   "name": "bushing long enough for panel and nut (panel 4 + nut ~2)",
+   "expr": "bushing_length - max_panel_thickness - 2.0",
+   "value": 0,
+   "tol": 0,
+   "op": "ge"
+  },
+  {
+   "name": "lever above the bushing",
+   "expr": "LEVER_TIP.z - BUSHING_TOP.z",
+   "value": 12.0,
+   "tol": 0.05
+  },
+  {
+   "name": "axis along +Z",
+   "expr": "AXIS.dz",
+   "value": 1,
+   "tol": 1e-06
+  },
+  {
+   "name": "lug pitch",
+   "expr": "PINS[1].x - PINS[0].x",
+   "value": 4.7,
+   "tol": 0.3
+  }
+ ]
+}

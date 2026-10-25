@@ -1,0 +1,47 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The guide shall have four guide holes whose axes lie on the Pico 2's 47.0 x 11.4 mm mounting-hole rectangle, each within 0.1 mm of its ideal position, with the pattern rows parallel to the locating edge (within 0.1 degrees), and the layout shall be declared; the pattern's position along the edge is free, so the 0.1 mm is measured after the best shift along the edge.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.2",
+    "text": "Each guide hole shall be 2.3 mm in diameter, through the whole guide plate, and long enough to hold a 2.1 mm drill square to the panel (2.0 to 4.0 mm of guide length from the recess floor to the underside), round to within 0.1 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The guide shall have a fence whose flat inner face butts the straight edge of a 3.0 mm panel while the plate rests on the panel's top face, with the nearest hole row 10.0 mm (within 0.1 mm) from the fence face; the fence is at least 2.0 mm thick, at least 40 mm long and reaches 3.0 to 6.0 mm below the plate.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The top face shall have a recess that takes the Pico 2's outline with 0.2 mm clearance per side (corners rounded no more than 0.6 mm) and 0.8 mm depth, centred on the hole pattern, so a Pico laid in it has its holes coaxial with the guide holes.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The plate shall be 4.0 mm thick with a flat underside, and every hole and the recess shall have at least 3.0 mm of material to the plate's free edges.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "The guide shall be one manifold body that prints in PLA on an FDM printer without supports in its declared orientation.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The guide shall be no larger than 70 x 40 x 10 mm (X x Y x Z, closed assembly pose with the fence) and shall have no feature rising above the plate top face.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "A 2.1 mm drill shall reach each guide hole from above and the chuck shall have room above the plate top.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The design shall be delivered as an STL, the OpenSCAD source, the declared layout (seating pose and print orientation) and the agent's own measurement report, and the report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

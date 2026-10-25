@@ -1,0 +1,67 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Take the ESP32-DevKitC from the parts catalogue and orient it with the micro-USB end towards one short end of the box and the antenna end towards the other short end, then declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Inside the closed box, the 54.4 x 27.9 x 1.6 mm board has at least 0.5 mm clearance from all printed surfaces; the features that hold it (supports, ribs and stops) stay at least 0.2 mm from it, other than where it sits on its supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "Hold the board without screws: at least three supports beneath it (each 4.0 mm2 or larger in plan view, clear of the pin-tail strips, tops level to within 0.10 mm and in contact with the underside); at least two retention ribs across its top at the USB end, one on each long edge, with undersides 0.1 to 0.3 mm over the board top; and stops at all four edges, 0.1 to 0.3 mm from the board edge. The board then moves no more than 1.0 mm lengthways, 0.6 mm sideways or 0.5 mm vertically.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "With the lid on, keep the box 10.6 mm clear above the board's top surface (8.5 mm header pins and 0.5 mm margin, over the 1.6 mm board) and 3.3 mm clear below the underside (pin tails and 0.3 mm), the only exceptions being the supports under the board and the retention ribs.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the lid on, a micro-USB plug has to push right into the board's receptacle through one opening in the end wall, at least 0.3 mm clear of the plug all round. The receptacle front sits 0.5 to 3.0 mm back from the inside face of the end wall, the wall around the opening is at least 1.5 mm, and the opening is no more than 1.5 mm larger than the plug per side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "No wall, lid or rib may intrude into the 8 mm of free space past the board end at the antenna, or into the volume above the antenna module; the free length beyond the board end must not exceed 12.0 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "Make a base and a separate lid that can be removed, which seats on the base with a sliding fit, using a continuous lip with 0.15 to 0.35 mm clearance each side, 1.0 to 2.0 mm of engagement and a thickness of 0.8 mm or more.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "Snap hooks on at least two opposite walls keep the lid shut, with undercut engagement of 0.4 mm or more and flex within a 2 percent strain limit; the lid must come off by hand. A hook arm is 1.2 to 2.0 mm thick, 9.0 mm or more in free length and 5.0 mm or more wide, undercut not above 1.0 mm, retention face 45 to 65 degrees and lead-in face 20 to 40 degrees from horizontal, and each hook has to remain engaged when the lid is raised 0.3 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The closed box has a single opening, for the USB, and 2.0 to 4.0 mm thick walls, floor and lid.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "Both base and lid must be single manifold bodies that print on an FDM printer without supports: 45 degree overhang limit, over half of each part's plan area flat on the bed, nothing thinner than 0.8 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed box must fit in 75 x 45 x 25 mm and rest flat on a table without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "With the lid removed, the board must drop straight down onto the supports and touch nothing (0.2 mm or more clearance), and the lid must close onto the base with nothing but the snap hooks being forced.",
+    "method": "test"
+  },
+  {
+    "id": "L1.13",
+    "text": "Deliver a base STL, a lid STL, the OpenSCAD source, the declared board layout and the agent's own clearance report; the report must agree with an independent measurement to 0.10 mm.",
+    "method": "inspection"
+  }
+]

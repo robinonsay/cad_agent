@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall declare the bearing's pose, the rod's axis and the nut poses, with the rod running along the plate's 30 mm side and centred across its 40 mm side, and the bearing housing under the plate.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The bearing shall seat in a round bore of 15.1 mm (15.05 to 15.15) with a radial gap of 0 to 0.15 mm, against one shoulder that bears on its outer ring only, with nothing printed entering its 8 mm core.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "Two zip-tie grooves round the housing shall clamp the bearing: each 3.2 to 4.0 mm wide and at least 1.0 mm deep, leaving at least 1.6 mm of wall under the floor, centres at least 2.0 mm inside the bearing's faces and at least 8.0 mm apart, a 3.0 x 1.2 mm tie able to run all the way round in each, and one slit 1.0 to 2.0 mm wide along the bottom, nearly the full housing length, so the ties preload the bore.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.4",
+    "text": "The 8 mm rod shall slide through the bearing with the bearing seated and the printed block at least 1.0 mm from the rod everywhere, both ends of the core open, and the bore coaxial with the declared bearing.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The flat top plate shall be 40 x 30 mm (plus or minus 0.2) and 4.0 to 6.0 mm thick, flat to 0.2 mm and parallel to the rod, joined to the housing by webs of at least 30 mm2.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.6",
+    "text": "Four 3.4 mm holes shall lie through the plate on a 30.0 x 20.0 mm rectangle (plus or minus 0.15), centred on the plate, with at least 2.0 mm of material round each and hex-key room above each screw head.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "An M3 nut shall be captive in a hex pocket on the underside of the plate at each hole, with the pocket's width across flats 5.6 to 6.0 mm so the nut cannot turn, depth 2.6 to 3.2 mm, and room to put the nut in from below.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The carriage shall print on an FDM printer without supports with the rod axis vertical so the bore prints round, resting on a face of at least 300 mm2 and 30 percent of its footprint box.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The carriage shall be one manifold body in one shell, no larger than 45 x 35 x 35 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The design shall be delivered as a carriage STL, the OpenSCAD source, the declared layout and the agent's own report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

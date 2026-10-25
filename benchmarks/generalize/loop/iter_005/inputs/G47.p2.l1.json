@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "Take the N20 gearmotor and the HC-SR04 from the parts catalogue and position them so they do not collide. The motor's shaft axis runs horizontal and sideways, at a height of 8 to 30 mm above the chassis face. The sensor's transducers point forward, with its rear board face 40.0 mm (39.5 to 40.5 mm) in front of the shaft axis. Declare the layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "Make the clamp pocket for the motor's 12 x 10 mm body 0.1 to 0.3 mm oversize on each of the two dimensions, and keep it coaxial with the shaft within 0.15 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "A stop wall takes the motor's gearbox face and lets the 3 mm shaft through; the shaft must spin freely with nothing printed in its way, and the motor must slide into the pocket from behind, rear terminals left clear.",
+    "method": "test"
+  },
+  {
+    "id": "L1.4",
+    "text": "Add a pocket for a single 6 x 3 mm disc magnet. It is coaxial with the shaft axis and faces the shaft tip, with the magnet's face 2.0 mm (1.5 to 2.5 mm) away from the tip. Make it wider than the magnet by 0.1 to 0.3 mm and deeper by 0.15 to 0.35 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "The HC-SR04 board goes into a slot that is deeper than the board is thick by 0.1 to 0.6 mm and wider than it is long by 0.2 to 0.6 mm; it should drop in from above and rest on the slot floor at the declared pose. In front, a plate covering 200 mm2 or more of the front face holds it, and a rear wall covers at least 400 mm2 of the back.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "Cut a round window in the plate for each transducer, centred on it and 18 to 19 mm across, and continue each as a straight channel of the same width to the top edge of the plate so the sensor can be dropped in with its transducers in the windows. Keep the sound beam in front of both transducers free of any printed material.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "Leave room behind the board for the 4-pin header and the wires plugged into it, and cut a window or notch through the rear wall of the slot to pass the header.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "Fasten the bracket to the chassis with two M3 bolts passing through clearance holes in a flat base plate, with the heads counterbored. Space the bolts 20 to 60 mm apart, let the tips stick out 5 to 15 mm beyond the plate, and leave a hex-key column free over each head.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.9",
+    "text": "It needs to be sturdy: keep walls and ligaments at 2.0 mm minimum, make the base plate 4.0 to 8.0 mm thick, leave at least 2.0 mm of material round every bolt hole, give the plate between the motor pocket and the sensor slot a section of 150 mm2 or more, and make sure the whole bracket is one connected body.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The bracket is a single manifold body; it prints on an FDM printer with no supports, chassis face down on the bed.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "Overall size must not exceed 60 x 60 x 35 mm, and it must sit flat on its chassis face without tipping over.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "Deliverables: the bracket as an STL with the chassis face at Z = 0 (mm), the OpenSCAD source, the declared layout and hardware, plus the agent's own clearance report that matches an independent measurement.",
+    "method": "inspection"
+  }
+]

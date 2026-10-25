@@ -1,0 +1,62 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the Arduino Nano from the catalogue with its mini-USB port facing one short (18 mm) end and three 5 mm LEDs on the lid, without the parts colliding, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The 45 x 18 x 1.6 mm board shall fit inside the closed box with at least 0.5 mm clearance to every printed surface, except where it rests on its posts, and its USB receptacle shall be inside the box.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.3",
+    "text": "The board shall rest on exactly four posts, one under each mounting hole, each 3.0 to 4.0 mm across (the hole's own keep-out is 4.0) with a locating pin 0.1 to 0.3 mm smaller than the 1.7 mm hole going through it, with its header tails clear of the floor.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "With the lid closed, nothing shall come within 5.0 mm above the board's top surface, nor within 0.3 mm of the header bodies and pin tails below it.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.5",
+    "text": "With the lid closed, a mini-USB cable shall plug fully into the Nano through one opening in the \u2212X end wall with at least 0.3 mm to spare all round the plug, leaving at least 1.5 mm of wall between the opening and the lid seam, the floor and the corners, and the opening shall be no more than 1.5 mm bigger than the plug on any side.",
+    "method": "test"
+  },
+  {
+    "id": "L1.6",
+    "text": "The lid shall hold three 5 mm LEDs with their lenses through 5.2 to 5.4 mm holes in its top face and their flanges captured behind it, so each dome is visible from outside and the LED cannot be pulled out of the front (flange overlap on the hole at least 0.2 mm per side). The three LEDs sit in a row over the board, at least 9.0 mm apart and at least 4.0 mm from the cavity edge.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.7",
+    "text": "The lid shall be held by snap hooks only, with no screw or other fastener, with at least two hooks on each long side and none at the end walls, each hook at least 5 mm wide and engaging 0.6 to 1.0 mm, on an arm whose bending strain 1.5 t y / L^2 (thickness t, engagement y, free length L) stays at or below 0.02.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.8",
+    "text": "The lid shall be a separate body that locates on the base with a sliding lip (at least 2.0 mm deep, 0.15 to 0.35 mm per side clearance) and closes flush, without interpenetrating it.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The closed box shall have no openings other than the USB opening and the three LED holes, and its walls, floor and lid shall be 2.0 to 3.0 mm thick, with at least 1.5 mm of material round each opening.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.10",
+    "text": "The base shall print flat on its floor and the lid on its outer face, each as one manifold body without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.11",
+    "text": "The closed box, not counting the LED domes, shall be no larger than 60 x 30 x 26 mm, longest along the board's 45 mm side, and shall stand flat on a shelf without tipping.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.12",
+    "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and the report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

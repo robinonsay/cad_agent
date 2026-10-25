@@ -1,0 +1,29 @@
+{
+  "about": "Generalization benchmark G07 (held-out), in dev.json format. Tier 4 = a real product: several bought-in parts placed from a parts catalogue, openings (subtraction), two printed bodies, and fit/access requirements judged as interference and clearance checks against reference models and keep-out volumes. L1 ids match benchmarks/generalize/holdout/G07/requirements.md, which holds the L2/L3 tree, the reference models, the assumptions and the traceability. Numbers that are not in the owner's words (wall range, size limit, bottom keep-out, lid closure) come from requirements.md sections 3 and 3.1 and are provisional. Never put any of these numbers in agent logic: they belong in the request text and in the parts' part.json.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, lift the hat out)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G07", "tier": 4, "title": "Pi Zero 2 W with perfboard hat, stacked",
+      "request": "A case for a Raspberry Pi Zero 2 W with a 65 x 30 mm perfboard hat stacked above it on two 2 x 20 female headers (one row of 20 pins each), with 9 mm between the boards, measured from the Pi's top surface to the hat's underside. The hat is the same size as the Pi, sits directly above it and carries tall parts up to 12 mm above its top surface, so the lid must clear them by 1.5 mm. Both micro-USB ports on the Pi (data and power) must stay accessible with the lid on, so cables can be plugged in through the case wall. The whole stack is supported on the Pi's own four mounting holes, screwed down with M2.5 self-tapping screws. The case is a base and a removable lid held on by four M3 self-tapping screws, printed on an FDM printer.",
+      "l1": [
+        {"id": "L1.1", "text": "The design shall place the Pi Zero 2 W, its two 2 x 20 female headers and the 65 x 30 mm hat from the parts catalogue as one stack, with the hat directly above the Pi, its underside 9 mm above the Pi's top surface, the Pi's two micro-USB ports facing the same long wall, without the parts colliding, and shall declare that layout.", "method": "inspection"},
+        {"id": "L1.2", "text": "The Pi shall rest on exactly four standoffs, one under each of its mounting holes, each with a pilot hole for an M2.5 self-tapping screw through the Pi, no wider than the 6 mm hole keep-out and between 3 and 10 mm tall.", "method": "inspection"},
+        {"id": "L1.3", "text": "With the lid closed, no part of the lid (plate, lip, anything hanging from it) shall come within 1.5 mm of the volume 12 mm above the hat's top surface, and at least 1.0 mm from it if the stack sits 0.5 mm higher than nominal; the walls keep the 0.5 mm board-edge clearance of L1.4 from that volume. Nothing printed shall lie between the two boards or within 2 mm under the Pi except the standoffs.", "method": "analysis"},
+        {"id": "L1.4", "text": "The Pi and the hat shall fit inside the closed enclosure with at least 0.5 mm clearance from their board edges to every printed surface (0.2 mm for headers, connectors and receptacles, 0.3 mm for a seated microSD card), apart from where the Pi rests on its standoffs.", "method": "analysis"},
+        {"id": "L1.5", "text": "With the lid closed, two micro-USB plugs shall plug fully into the Pi's data and power ports at the same time through two openings in one long wall without touching the enclosure or each other, and each opening shall be no more than 1.5 mm bigger than its plug on any side.", "method": "test"},
+        {"id": "L1.6", "text": "The closed enclosure shall have no openings other than the two micro-USB openings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick.", "method": "analysis"},
+        {"id": "L1.7", "text": "The enclosure shall be a base and a separate removable lid that locates on the base with a sliding fit and is held closed by four M3 self-tapping screws (from the parts catalogue) into bosses in the base.", "method": "inspection"},
+        {"id": "L1.8", "text": "The base and the lid shall each be one manifold body that prints on an FDM printer without supports.", "method": "analysis"},
+        {"id": "L1.9", "text": "The closed enclosure shall be no larger than 90 x 45 x 42 mm, longest along the Pi's 65 mm side, and shall stand flat on a desk without tipping.", "method": "analysis"},
+        {"id": "L1.10", "text": "With the lid off, the hat shall lift straight up off the Pi, then the Pi shall drop straight down onto its standoffs, and every Pi screw shall be reachable with a screwdriver once the hat is off.", "method": "test"},
+        {"id": "L1.11", "text": "The design shall be delivered as a base STL, a lid STL, the OpenSCAD source, the declared stack layout and the agent's own clearance report, and that report shall agree with an independent measurement.", "method": "inspection"}
+      ]
+    }
+  ]
+}

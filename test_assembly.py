@@ -7,6 +7,7 @@ computed in the test from those texts and from part data, never typed into the a
 """
 
 import copy
+from collections import Counter
 import json
 import math
 import shutil
@@ -32,10 +33,33 @@ L1 = [{"id": "L1.1", "text": "The enclosure shall have a base and a lid.", "meth
 
 
 class FakeLLM(ScriptedLLM):
-    """ScriptedLLM that accepts assembly mode's num_predict keyword."""
+    """ScriptedLLM that accepts assembly mode's num_predict keyword.
+
+    Generalize delta 002 C0: a script with no assy_relation entry answers the face-relation question not_stated for
+    every pair (the controller reads no relation), so a scripted run keeps the arrangement it had before the question
+    existed; tests of the relation stage script assy_relation explicitly."""
 
     def chat(self, prompt, system="", images=(), schema=None, temperature=0.0, seed=0, label="ask",
              num_predict=None):
+        rel = getattr(A, "RELATION_LABEL", None)
+        if rel and label.startswith(rel) and not any(label.startswith(k) for k in self.script):
+            self.calls.append((label, prompt, list(images)))
+            return json.dumps({k: A.NOT_STATED for k in (schema or {}).get("properties", {})})
+        # changed in generalize delta 003 (C3): an unscripted vent question reads nothing (every size slot "none", the
+        # vent relation not_stated), so a scripted run of a vent text keeps the questions it had before vents existed
+        vent = [getattr(A, "VENT_RELATION_LABEL", None), getattr(A, "VENT_SPEC_LABEL", None)]
+        if any(v and label.startswith(v) for v in vent) and not any(label.startswith(k) for k in self.script):
+            self.calls.append((label, prompt, list(images)))
+            props = (schema or {}).get("properties", {})
+            return json.dumps({k: "none" if "none" in v.get("enum", []) else A.NOT_STATED for k, v in props.items()})
+        # changed in migration delta R01 (owner decision D1): an unscripted closed-loop controller question takes the
+        # first offered action (the menu lists the corrections of the worst actionable failure first and stop last), so
+        # a scripted run gets the correction the retired rules (rule:text_coverage, rule:text_evidence[closure]) made;
+        # tests of the controller itself script assy_control explicitly
+        import controller
+        if label.startswith(controller.CONTROL_LABEL) and not any(label.startswith(k) for k in self.script):
+            self.calls.append((label, prompt, list(images)))
+            return json.dumps({"action": schema["properties"]["action"]["enum"][0]})
         return super().chat(prompt, system, images, schema, temperature, seed, label)
 
 
@@ -68,6 +92,28 @@ class RankedLLM(FakeLLM):
 
 def fake_agent_factory(*args, **kwargs):
     return ScriptedLLM({})       # any LLM call raises
+
+
+class CycleReplies:
+    """A real run's recorded replies of one label, replayed per question (migration delta R01): call k gets reply
+    k mod n. Each voted question of the original run got its samples in order; when the closed-loop controller asks a
+    question again after an action (the arrangement's edge vote once the Pico is exposed), the repeat gets the same
+    samples, as the seeded 9B gives the same answers to the same prompt. ScriptedLLM's own rule (the last reply repeats)
+    would give the repeat only the last sample."""
+
+    def __init__(self, replies):
+        self.replies = list(replies)
+        self.k = 0
+
+    def __call__(self, prompt):
+        reply = self.replies[self.k % len(self.replies)]
+        self.k += 1
+        return reply(prompt) if callable(reply) else reply
+
+
+def cycled(script: dict) -> dict:
+    """A recorded script with every label of two or more replies replayed per question (CycleReplies)."""
+    return {k: ([CycleReplies(v)] if isinstance(v, list) and len(v) > 1 else v) for k, v in script.items()}
 
 
 def request(rid: str) -> dict:
@@ -236,8 +282,9 @@ class TestAssemblyCli(unittest.TestCase):
                 self.assertEqual(cm.exception.code, ca.EXIT_USAGE)
 
     def test_gate_then_a_typed_parse_spec_failure(self):
-        # A request with no board size: every slot is answered "none"; the size slots have no default, so
-        # ParseSpec re-asks once naming the violation and then fails with a typed note (exit 1).
+        # changed in generalize iteration 001 (delta 001 D4, behaviour intentionally changed): the board size slots are
+        # optional, so a request with no number passes ParseSpec without a re-ask, and the run stops at Contents with a
+        # typed note (nothing in the text names a catalogue part), exit 1.
         out = self.root / "out"
         llm = FakeLLM({"assy_spec": [lambda p: {k: "none" for k in A_SLOTS}]})
         rc = self.run_main("--mode", "assembly", "--auto", "--l1", str(self.l1), "--parts", str(self.parts),
@@ -246,9 +293,9 @@ class TestAssemblyCli(unittest.TestCase):
         rec = self.design_record(out)
         self.assertEqual(rec["outcome"], "failed")
         assy = rec["assembly"]
-        self.assertEqual(assy["stage"], "parse_spec")
-        self.assertTrue(any("no number in the text for board_width" in n for n in assy["notes"]), assy["notes"])
-        self.assertEqual(llm.labels().count("assy_spec_reask"), ca.VOTES)
+        self.assertEqual(assy["stage"], "contents")
+        self.assertTrue(any("nothing to design around" in n for n in assy["notes"]), assy["notes"])
+        self.assertEqual(llm.labels().count("assy_spec_reask"), 0)
         # the gate dropped the inch-scaled copy and said why; the good parts were kept
         self.assertNotIn("bad_scaled_module", assy["catalog"])
         self.assertIn("rpi_pico2", assy["catalog"])
@@ -263,7 +310,7 @@ class TestAssemblyCli(unittest.TestCase):
                            "--with-models", "--out", str(out), "an enclosure", llm=llm)
         self.assertEqual(rc, ca.EXIT_FAILED)
         rec = self.design_record(out)
-        self.assertEqual(rec["assembly"]["stage"], "parse_spec")
+        self.assertEqual(rec["assembly"]["stage"], "contents")      # generalize delta 001 D4: size slots are optional
         self.assertTrue(rec["assembly"]["with_models"])
 
     def test_missing_catalogue_fails_at_load(self):
@@ -491,7 +538,8 @@ class TestContents(unittest.TestCase):
         status, child = run_stages(d, FakeLLM(script), "Contents")
         self.assertEqual(status, ca.Status.FAILURE)
         self.assertEqual(d.assy.stage, "contents")
-        self.assertTrue(any("exactly one board" in n for n in d.assy.notes))
+        # generalize delta 001 C1: the rule is now "exactly one carrier" (the primary reference), still a typed failure
+        self.assertTrue(any("exactly one carrier" in n for n in d.assy.notes), d.assy.notes)
 
     def test_v3_socket_stack_and_request_sized_part(self):
         rid = "V3"
@@ -517,7 +565,7 @@ class TestContents(unittest.TestCase):
         # changed in iteration 007 (behaviour intentionally changed, ARCHITECTURE.md 7.10): the stack is a rule decision
         # from text evidence ("female header sockets", "8.5 mm"), so the scripted (wrong) answer is never asked for
         self.assertEqual(d.assy.choices["stack[module_1]"]["value"], "header_female_2p54")
-        self.assertEqual(d.assy.choices["stack[module_1]"]["by"], "rule:text_evidence")
+        self.assertEqual(d.assy.choices["stack[module_1]"]["by"], "rule:text_evidence[stack]")   # R01: per-site name
         self.assertNotIn("assy_stack", llm.labels())
 
     def test_contents_words_name_the_mating_plug(self):
@@ -553,7 +601,7 @@ class TestContents(unittest.TestCase):
         status, _ = run_stages(d, llm, "ChooseStack")
         self.assertEqual(status, ca.Status.SUCCESS, d.assy.notes)
         rec = d.assy.choices["stack[module_1]"]
-        self.assertEqual((rec["value"], rec["by"]), ("header_female_2p54", "rule:text_evidence"))
+        self.assertEqual((rec["value"], rec["by"]), ("header_female_2p54", "rule:text_evidence[stack]"))   # R01
         quotes = [e["quote"] for e in rec["evidence"]]
         self.assertTrue(any("female header" in q.lower() for q in quotes), quotes)
         self.assertTrue(all(e["option"] == "header_female_2p54" for e in rec["evidence"]))
@@ -585,10 +633,11 @@ class TestContents(unittest.TestCase):
         self.assertEqual(A.text_evidence(texts_, ["3.5 mm plug"], [8.5], tol=0.0)[1:], [])
 
     def test_coverage_infeasible_is_reported(self):
-        # Replaces test_coverage_no_is_reported (iteration 008, RC-801, behaviour intentionally changed): the LLM may no
-        # longer leave a named plug's connector unexposed; only geometric infeasibility can. Every placement holding the
-        # coverage-forced item collides, so it is reverted (rule:coverage_infeasible), the placement runs exactly once
-        # more, and the missing opening is a failing text_coverage check with a quoted `coverage` conflict.
+        # Replaces test_coverage_no_is_reported (iteration 008, RC-801). Changed in migration delta R01 (owner decision D1):
+        # no rule forces the exposure any more. The first build fails text_coverage, the controller chooses expose, every
+        # placement holding the Pico's exposed connector collides, so the action is infeasible (rejected, the design
+        # unchanged, the action tabu) and text_coverage is typed as a quoted `coverage` conflict (until R01:
+        # rule:coverage_infeasible reverted a forced exposure)
         llm = iter007_llm("V1_s5")
         forced = "module_1"
         orig = lay.Placer.place
@@ -602,20 +651,22 @@ class TestContents(unittest.TestCase):
             rc, pkg, _ = run_offline("V1", Path(tmp), test_rules(Path(tmp), fn=24), llm=llm)
             rec = json.loads((pkg / "design.json").read_text())
             matrix = json.loads((pkg / "verification_matrix.json").read_text())
+            trace = json.loads((pkg / "controller_trace.json").read_text())
         assy = rec["assembly"]
         naming = l1_with("V1", "micro-USB cable")
         self.assertNotIn("assy_expose", llm.labels())
+        self.assertEqual(llm.labels().count("assy_control"), ca.VOTES)
         self.assertEqual(llm.labels().count("assy_edge"), 2 * ca.VOTES)          # the placement ran exactly twice
-        self.assertEqual(len([n for n in assy["notes"] if "reverted to unexposed" in n]), 1, assy["notes"])
         self.assertEqual(rc, ca.EXIT_UNSATISFIED)                                 # the package is written (not rc 1)
         self.assertEqual(rec["outcome"], "unsatisfied")
+        step = trace["steps"][1]
+        self.assertEqual((step["accepted"], step["action"]["key"]), (False, f"expose:{forced}.usb=True"))
+        self.assertIn("collides", step["reason"])
+        self.assertEqual(assy["controller"]["kept"], 0)
+        self.assertIn("collides", assy["control"]["infeasible"][f"expose:{forced}.usb=True"])
         (row,) = assy["coverage"]
-        self.assertEqual(row["resolved"], "unexposed")
-        self.assertIn("collides", row["reason"])
-        self.assertEqual(row["by"], "rule:coverage_infeasible")
-        ch = assy["choices"][f"exposed[{forced}]"]
-        self.assertEqual((ch["value"], ch["by"]), (False, "rule:coverage_infeasible"))
-        self.assertIn("collides", ch["reason"])
+        self.assertEqual(row["resolved"], A.COVERAGE_OPEN)
+        self.assertNotIn(f"exposed[{forced}]", assy["choices"])
         cov = next(r for r in assy["results"] if r["check_id"] == "text_coverage")
         self.assertFalse(cov["passed"])
         self.assertEqual(cov["margin"], -1.0)
@@ -626,6 +677,7 @@ class TestContents(unittest.TestCase):
         self.assertEqual(len(conflicts), 1, assy["conflicts"])
         self.assertEqual(conflicts[0]["check_id"], "text_coverage")
         self.assertIn(l1_text("V1", naming), conflicts[0]["conflict"])
+        self.assertIn("infeasible", conflicts[0]["conflict"])
         self.assertFalse(next(c for c in assy["contents"] if c["part"] == "rpi_pico2")["exposed"])
         self.assertEqual(sorted(r["check_id"] for r in assy["results"] if not r["passed"]),
                          ["text_coverage"])     # changed in iteration 010: grid_conformance passes (C4 / C5)
@@ -1510,6 +1562,9 @@ class TestDeriveFeatures(unittest.TestCase):
                 wall = r["standoff_wall_min"] if use == "board" else r["boss_wall_min"]
                 lim, floor = f[f"fastener.{use}.min_boss_od"], f[f"fastener.{use}.pilot_diameter"] + 2 * wall
                 depth = f[f"fastener.{use}.min_engagement"]
+                # changed in generalize delta 002 (C2): the pilot also holds the screw's tip (length - clamped plate)
+                plate = A.clamped_plate_value(st, use) if use == "board" else res.params["lid"]["z"]
+                depth = max(depth, f[f"fastener.{use}.length"] - plate)
                 out[f"{n.id}.depth"] = (res.params[f"{n.id}_pilot"]["depth"], lambda mm, x=depth: [x + mm])
                 cands = (lambda mm, a=lim, b=floor: [a + mm, b]) if use == "board" else \
                     (lambda mm, a=lim, b=floor, c=f["fastener.lid.clearance_diameter"]:
@@ -1556,8 +1611,9 @@ class TestDeriveFeatures(unittest.TestCase):
         neg_rules = test_rules(self.root, design_margin=-0.2)
         st, got = measure_manifold("E1-01", self.root / "good")
         _, bad = measure_manifold("E1-01", self.root / "bad", rules_path=neg_rules)
-        ids = [c for c in got if c.startswith(("pilot_engagement_", "boss_od_", "lip_engagement"))]
-        self.assertEqual(len(ids), 2 * 8 + 1)
+        # changed in generalize delta 002 (C2): pilot_bottoming_* is a one-sided minimum too (8 more checks)
+        ids = [c for c in got if c.startswith(("pilot_engagement_", "boss_od_", "lip_engagement", "pilot_bottoming_"))]
+        self.assertEqual(len(ids), 3 * 8 + 1)
         for cid in ids:
             self.assertTrue(got[cid].passed, got[cid].evidence)
             self.assertGreaterEqual(got[cid].margin, r["design_margin"] - 1e-9, cid)
@@ -1565,11 +1621,14 @@ class TestDeriveFeatures(unittest.TestCase):
         # changed in iteration 010 (behaviour intentionally changed, C2): with the M2 board screw the standoff OD is set
         # by min_boss_od (pilot 1.7 + 2 x 1.6 = 4.9 < 5.0), so boss_od_standoff_* fails on the mutant too
         standoff_od = [c for c in ids if c.startswith("boss_od_standoff_")]
-        must_fail = [c for c in ids if c.startswith("pilot_engagement_") or c == "lip_engagement"] + lid_ligaments + \
-            standoff_od
+        # changed in generalize delta 002 (C2): a lid boss pilot's binding minimum is the screw tip (length - lid plate >
+        # min_engagement), so on the mutant pilot_bottoming_boss_* fails and pilot_engagement_boss_* passes
+        must_fail = [c for c in ids if c.startswith(("pilot_engagement_standoff_", "pilot_bottoming_boss_"))
+                     or c == "lip_engagement"] + lid_ligaments + standoff_od
         self.assertEqual(len(must_fail), 8 + 4 + 1 + 4)
         for cid in must_fail:
             self.assertFalse(bad[cid].passed, (cid, bad[cid].evidence))
+        self.assertTrue(all(bad[c].passed for c in ids if c.startswith("pilot_engagement_boss_")))
         # the lid boss OD is set by the ligament round its clearance hole, so it passes either way
         self.assertTrue(all(bad[c].passed for c in ids if c.startswith("boss_od_boss_")))
 
@@ -2566,8 +2625,19 @@ class TestReplayIter005(unittest.TestCase):
             # changed in iteration 009 (C2): the volumes are iteration 009's (wider corner columns); Z is unchanged
             # changed in iteration 010 (C1-C4): the volumes are iteration 010's (measured board, M2, on-grid Pico)
             margin = pt.load_rules(RULES_PATH).values["design_margin"]
+            # changed in generalize delta 002 (C2, geometry changed on purpose): each lid boss pilot is deeper (the lid
+            # screw's length - the lid plate, was min_engagement), so the base loses that much more pilot volume: the
+            # pilot's polygon cross-section (fn segments) x the added depth, per boss
+            r = pt.load_rules(RULES_PATH).values
+            f = assy["fasteners"]
+            pilots = [c for c in assy["components"] if c["role"] == "pilot" and c["id"].startswith("boss_")]
+            n_seg, rad = int(r["fn"]), f["fastener.lid.pilot_diameter"] / 2
+            area = n_seg / 2 * rad ** 2 * math.sin(2 * math.pi / n_seg)
+            extra = sum(c["params"]["depth"] - (f["fastener.lid.min_engagement"] + margin) for c in pilots)
+            self.assertGreater(extra, 0.0)
+            expect = {"base": ITER010_VOLUMES["base"] - area * extra, "lid": ITER010_VOLUMES["lid"]}
             for body in ("base", "lid"):
-                self.assertAlmostEqual(report["bodies"][body]["volume"], ITER010_VOLUMES[body], delta=0.01, msg=body)
+                self.assertAlmostEqual(report["bodies"][body]["volume"], expect[body], delta=0.1, msg=body)   # STL float32
                 self.assertAlmostEqual(report["bodies"][body]["bbox"][1][2] - old[body]["bbox"][1][2], margin,
                                        delta=1e-3, msg=body)
         n = requirement_reference_comparisons(self, self.pkg, pt.load_rules(RULES_PATH).values)
@@ -2615,7 +2685,7 @@ def recorded_llm(run: str, iteration_dir: Path = ITER007, cls=None, **extra):
         raise unittest.SkipTest(f"no recorded transcripts in {iteration_dir / run}")
     script.pop("assy_expose", None)
     script.update(assy_confirm=[{"answer": "yes"}])
-    return (cls or SchemaLLM)(script, **extra)
+    return (cls or SchemaLLM)(cycled(script), **extra)      # changed in migration delta R01: replayed per question
 
 
 def iter007_llm(run: str) -> SchemaLLM:
@@ -2639,8 +2709,10 @@ def check_params(pkg: Path) -> dict:
 
 class TestReplayIter007(unittest.TestCase):
     """Iteration 007's real-run answers on V1, V2 and V3 (ARCHITECTURE.md 7.6, 7.10, 7.11): the 9B said the Pico's
-    connector was not exposed (3/3) although L1.5 names a micro-USB cable. Text coverage senses it and exposes it by rule
-    (no question since iteration 008), and each variant gets its USB opening."""
+    connector was not exposed (3/3) although L1.5 names a micro-USB cable. Changed in migration delta R01: text coverage
+    is a sensor; after the first build the closed-loop controller sees the failing text_coverage and exposes the
+    connector (an unscripted controller question takes the first offered action), and each variant gets its USB
+    opening (until R01 a rule exposed it before the arrangement)."""
 
     @classmethod
     def setUpClass(cls):
@@ -2665,13 +2737,14 @@ class TestReplayIter007(unittest.TestCase):
     def test_replay_iter007_exposes_the_named_connector(self):
         for rid, (rc, pkg, llm, assy) in self.runs.items():
             with self.subTest(rid=rid):
-                # changed in iteration 008 (behaviour intentionally changed, RC-801): exposure from text coverage is a
-                # rule, so no assy_expose question is asked (was 3 voted calls and by = "llm:coverage")
+                # changed in iteration 008 (behaviour intentionally changed, RC-801): no assy_expose question is asked;
+                # changed in migration delta R01: the controller's expose action (one voted assy_control question)
                 self.assertNotIn("assy_expose", llm.labels())
+                self.assertEqual(llm.labels().count("assy_control"), ca.VOTES)
                 naming = l1_with(rid, "micro-USB cable")
                 pico = next(c for c in assy["contents"] if c["part"] == "rpi_pico2")
                 self.assertTrue(pico["exposed"])
-                self.assertEqual(assy["choices"][f"exposed[{pico['id']}]"]["by"], "rule:text_coverage")
+                self.assertEqual(assy["choices"][f"exposed[{pico['id']}]"]["by"], "llm:controller")
                 self.assertTrue(any(e["source"] == naming and e["quote"] in l1_text(rid, naming)
                                     for e in assy["coverage"][0]["evidence"]), assy["coverage"])
                 self.assertEqual([c["resolved"] for c in assy["coverage"]], ["exposed"])
@@ -2700,7 +2773,7 @@ class TestReplayIter007(unittest.TestCase):
                     self.assertEqual(len(jacks), 3)
                     self.assertEqual(len(set(jacks)), 1)
                     self.assertEqual(jacks[0][1], "Y")
-        self.assertEqual(self.runs["V3"][3]["choices"]["stack[module_1]"]["by"], "rule:text_evidence")
+        self.assertEqual(self.runs["V3"][3]["choices"]["stack[module_1]"]["by"], "rule:text_evidence[stack]")   # R01
         for rid in ("V1", "V2"):                   # no word for a mounting: male headers by default, never a coin flip
             self.assertEqual(self.runs[rid][3]["choices"]["stack[module_1]"]["by"], "rule:catalogue_default")
             self.assertNotIn("assy_stack", self.runs[rid][2].labels())
@@ -2708,8 +2781,9 @@ class TestReplayIter007(unittest.TestCase):
 
 class TestReplayIter008(unittest.TestCase):
     """Iteration 008's real-run answers (ARCHITECTURE.md 7.11): Contents said the Pico's connector was not exposed (target_s0
-    1:2, V1_s8 0:3) although L1.5 names a micro-USB cable. Exposure is now a rule (rule:text_coverage): no question is
-    asked, the votes are recorded under `overrides`, and the USB opening is there."""
+    1:2, V1_s8 0:3) although L1.5 names a micro-USB cable. Changed in migration delta R01: the closed-loop controller
+    exposes it after the first build (llm:controller, an unscripted controller question takes the first offered
+    action); the Contents votes are recorded under `overrides`, and the USB opening is there."""
 
     RUNS = (("target_s0", "E1-01"), ("V1_s8", "V1"))
 
@@ -2736,14 +2810,14 @@ class TestReplayIter008(unittest.TestCase):
         return self.runs[run]
 
     def common(self, run):
-        """Assertions shared by both runs: rule exposure with the quoted L1 and the recorded votes, coverage closed,
-        only the grid conflict failing, the USB plug check present and passing."""
+        """Assertions shared by both runs: the controller's exposure with the quoted L1 and the recorded votes, coverage
+        closed, nothing failing, the USB plug check present and passing."""
         rid, rc, pkg, llm, assy = self.get(run)
         self.assertNotIn("assy_expose", llm.labels())
         pico = next(c for c in assy["contents"] if c["part"] == "rpi_pico2")
         self.assertTrue(pico["exposed"])
         ch = assy["choices"][f"exposed[{pico['id']}]"]
-        self.assertEqual((ch["value"], ch["by"]), (True, "rule:text_coverage"))
+        self.assertEqual((ch["value"], ch["by"]), (True, "llm:controller"))      # changed in migration delta R01
         naming = l1_with(rid, "micro-USB cable")
         self.assertTrue(any(e["source"] == naming and e["quote"] in l1_text(rid, naming) for e in ch["evidence"]),
                         ch["evidence"])
@@ -3426,6 +3500,1338 @@ class TestReplayIter011(unittest.TestCase):
         for k, h in enumerate(expect):
             box = comps[f"standoff_{k + 1}"]["bbox"]
             np.testing.assert_allclose([(box[0][i] + box[1][i]) / 2 for i in (0, 1)], h, atol=1e-3)
+
+
+# ---------------------------------------------------------------------------
+# Generalize delta 001 (GM2a): primary reference, lid fastener, both catalogues, number ownership, archetype gate,
+# per-connector exposure. Train requests are loaded as data (ARCHITECTURE.md 6); nothing here is typed into the agent.
+# ---------------------------------------------------------------------------
+
+GEN_PARTS = REPO / "benchmarks" / "generalize" / "parts"
+BOTH = [GEN_PARTS, PARTS]                 # the order run_suite.py passes them (the first folder wins an id)
+GEN_DESIGNS = REPO / "benchmarks" / "generalize" / "designs"
+ITER001_GEN = REPO / "benchmarks" / "generalize" / "loop" / "iter_001"
+
+
+def gen_request(gid: str) -> dict:
+    return json.loads((GEN_DESIGNS / gid / "design.json").read_text())["requests"][0]
+
+
+def gen_texts(gid: str, l1=None):
+    r = gen_request(gid)
+    return [("request", r["request"])] + [(x["id"], x["text"]) for x in (r["l1"] if l1 is None else l1)]
+
+
+def design_for(request_text: str, l1: list, root: Path, parts=BOTH, rules_path: Path = RULES_PATH):
+    import os
+    d = ca.Design(request=ca.request_with_l1(request_text, l1), workdir=root, l1=l1, base_request=request_text)
+    dirs = [str(p) for p in parts]
+    d.assy = A.AssemblyState(parts_dir=os.pathsep.join(dirs), parts_dirs=dirs, rules_path=str(rules_path))
+    return d
+
+
+def gen_design(gid: str, root: Path, l1=None, parts=BOTH):
+    r = gen_request(gid)
+    return design_for(r["request"], r["l1"] if l1 is None else l1, root / gid, parts)
+
+
+def all_none(prompt):
+    return {k: "none" for k in A_SLOTS}
+
+
+def recorded_prompt(run_dir: Path, label: str):
+    """The PROMPT section of the first recorded transcript with this label in a package's llm/ folder (None if absent)."""
+    files = sorted(run_dir.glob(f"*/llm/*_{label}.txt"))
+    if not files:
+        return None
+    text = files[0].read_text()
+    return text.split("=== PROMPT ===\n", 1)[1].split("\n\n=== RESPONSE ===", 1)[0]
+
+
+class TestPrimaryReference(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_module_is_primary_without_board_slots(self):
+        # T1: a fixed-size module the text names is the primary; no board size slot is needed and no perfboard is
+        # invented (iteration 001 stopped at ParseSpec: "no number in the text for board_width, board_depth")
+        cat = pt.Catalog.load(BOTH)
+        module = next(pid for pid in cat.ids() if pt.mount_interface(cat.get(pid)) is not None
+                      and A.text_evidence(gen_texts("G04"), cat.get(pid).names) and not pt.is_carrier(cat.get(pid)))
+        conns = cat.get(module).data["connectors"]
+        reply = {module: dict({"quantity": 1}, **{A.exposure_key(c): "yes" for c in conns})}
+        d = gen_design("G04", self.root)
+        llm = SchemaLLM({"assy_spec": [all_none], "assy_contents": [reply]})
+        status, _ = run_stages(d, llm, "Contents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        self.assertNotIn("board_width", st.spec)
+        self.assertEqual(st.choices["primary"]["by"], "rule:primary_reference")
+        self.assertEqual(st.choices["primary"]["value"], module)
+        prim = A.primary_item(st)
+        self.assertEqual((prim["id"], prim["part"]), (A.PRIMARY, module))
+        self.assertFalse([c for c in st.contents if pt.is_carrier(cat.get(c["part"]))])
+        self.assertEqual(sorted(prim["exposed_connectors"]), sorted(c["name"] for c in conns))
+        schema = next(sc for lb, sc in llm.schemas if lb == "assy_contents")["properties"][module]["properties"]
+        self.assertEqual(set(schema), {"quantity"} | {A.exposure_key(c) for c in conns})   # one key per connector
+        self.assertEqual(st.items, [])
+        self.assertEqual(st.unplaced, [])
+
+    def test_carrier_stays_primary(self):
+        # T2: the carrier (a part with a grid block) is the primary, and the ParseSpec and Contents prompts are byte-equal
+        # to the ones iteration 001 recorded for E1-01 (so the regression set sees the same questions)
+        d = new_design("E1-01", self.root)
+        llm = FakeLLM(script_for("E1-01"))
+        status, _ = run_stages(d, llm, "Contents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        prim = A.primary_item(st)
+        self.assertTrue(pt.is_carrier(st.catalog.get(prim["part"])))
+        self.assertEqual(st.choices["primary"]["by"], "rule:primary_reference")
+        self.assertEqual(st.choices["primary"]["reason"], "carrier")
+        w, dd, _, _ = request_numbers("E1-01")
+        self.assertEqual(list(prim["params"].values()), [w, dd])
+        self.assertEqual([i.id for i in st.items], ["module_1", "connector_1"])
+        run = ITER001_GEN / "E1-01_s1"
+        for label in ("assy_spec", "assy_contents"):
+            want = recorded_prompt(run, label)
+            if want is None:
+                raise unittest.SkipTest(f"no recorded {label} transcript in {run}")
+            got = next(p for lb, p, _ in llm.calls if lb == label)
+            self.assertEqual(got, want, label)
+
+    def test_primary_without_mount_holes_stops_typed(self):
+        # T3: the largest content part offers no mount_holes interface: a typed note, no exception, no package
+        cat = pt.Catalog.load(BOTH)
+        texts_ = gen_texts("G05")
+        named = [pid for pid in cat.ids() if cat.get(pid).kind == "module" and A.text_evidence(texts_, cat.get(pid).names)]
+        holeless = [pid for pid in named if pt.mount_interface(cat.get(pid)) is None]
+        with_holes = [pid for pid in cat.ids() if pt.mount_interface(cat.get(pid)) is not None
+                      and A.text_evidence(texts_, cat.get(pid).names)]
+        self.assertTrue(holeless and with_holes, (named, with_holes))
+        reply = {pid: {"quantity": 1, "exposed": "yes"} for pid in holeless + with_holes}
+        d = gen_design("G05", self.root)
+        status, child = run_stages(d, FakeLLM({"assy_spec": [all_none], "assy_contents": [reply]}), "Contents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.FAILURE)
+        self.assertEqual(st.stage, "contents")
+        self.assertTrue(any("has no mount_holes interface" in n and holeless[0] in n for n in st.notes), st.notes)
+        self.assertFalse(any("exactly one board" in n for n in st.notes))
+
+    def test_non_carrier_primary_lists_unplaced(self):
+        # C1: a non-carrier primary carries no other contents; each other item is unplaced with a failing hard
+        # content_placed check, so the package is honest (measured on the manifold solids, no OpenSCAD)
+        cat = pt.Catalog.load(BOTH)
+        texts_ = gen_texts("G06")
+        named = [pid for pid in cat.ids() if pt.mount_interface(cat.get(pid)) is not None
+                 and A.text_evidence(texts_, cat.get(pid).names)]
+        self.assertGreaterEqual(len(named), 2, named)
+        reply = {pid: dict({"quantity": 1}, **({"exposed": "yes"} if cat.get(pid).data.get("connectors") else {}))
+                 for pid in named}
+        d = gen_design("G06", self.root)
+        status, _ = run_stages(d, FakeLLM({"assy_spec": [all_none], "assy_contents": [reply]}), "DeriveFeatures")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        prim = A.primary_item(st)
+        area = {pid: A.plan_footprint(cat, {"part": pid}) for pid in named}
+        self.assertEqual(prim["part"], max(area, key=area.get))
+        self.assertEqual(st.choices["primary"]["reason"], "largest plan footprint")
+        self.assertEqual(len(st.unplaced), len(named) - 1)
+        self.assertEqual([p.node_id for p in st.placed.placed], [A.PRIMARY])
+        st.solids = {b: fg.body_solid(st.graph, b, st.resolved) for b in st.graph.bodies()}
+        results = {r.check_id: r for r in ac.run_plan(A.build_plan(st), st.solids)}
+        for u in st.unplaced:
+            r = results[f"content_placed_{u['id']}"]
+            self.assertFalse(r.passed)
+            self.assertTrue(r.hard)
+        self.assertNotIn("inside_contents", results)
+
+
+def fastener_text(words: str):
+    return [("request", words)]
+
+
+class TestLidFastener(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.rules = pt.load_rules(RULES_PATH).values
+        cls.enc = pt.Catalog.load(PARTS)
+        cls.both = pt.Catalog.load(BOTH)
+
+    def test_unified_catalogue_default(self):
+        # T6: a text with no fastener words: the largest catalogue-complete screw, the same part the enclosure catalogue
+        # alone gives (iteration 001 picked a 1/4-20 screw whose length must come from the request)
+        texts_ = texts("E1-01")
+        one = A.lid_screw_choice(self.enc, self.rules, texts_)
+        two = A.lid_screw_choice(self.both, self.rules, texts_)
+        self.assertEqual(two["part"].id, one["part"].id)
+        self.assertEqual(two["by"], "rule:largest_complete_screw")
+        self.assertTrue(A.catalogue_complete(two["part"]))
+        incomplete = [pid for pid in self.both.ids() if self.both.get(pid).kind == "fastener"
+                      and not A.catalogue_complete(self.both.get(pid))]
+        self.assertTrue(incomplete)
+        self.assertNotIn(two["part"].id, incomplete)
+        self.assertEqual(A.lid_screw(self.both, self.rules).id, one["part"].id)
+        board = self.both.instantiate("perfboard", {"width": 70.0, "depth": 50.0})
+        self.assertEqual(A.board_screw(self.both, board, self.rules).id, A.board_screw(self.enc, board, self.rules).id)
+
+    def test_named_fastener_wins(self):
+        # T7: the text names the lid screw: that screw, by rule:text_evidence, with the quote
+        cat = self.both
+        complete = [pid for pid in cat.ids() if cat.get(pid).kind == "fastener" and A.catalogue_complete(cat.get(pid))
+                    and all(cat.get(pid).params.get(k, {}).get("default") is not None for k in A.LID_FIELDS)]
+        largest = A.lid_screw_choice(cat, self.rules, ())["part"].id
+        target = next(pid for pid in complete if pid != largest)
+        alias = cat.get(target).names[0]
+        words = f"The lid is held by four {alias}s."
+        pick = A.lid_screw_choice(cat, self.rules, fastener_text(words))
+        self.assertEqual((pick["part"].id, pick["by"]), (target, "rule:text_evidence[lid]"))   # R01: per-site name
+        self.assertEqual(pick["evidence"][0]["quote"], words)
+        # a named fastener that is not catalogue-complete is skipped and reported; the default rule then decides
+        bolt = next(pid for pid in cat.ids() if cat.get(pid).kind == "fastener" and not A.catalogue_complete(cat.get(pid))
+                    and "pilot_diameter" not in cat.get(pid).params)
+        words = f"All screws are {cat.get(bolt).names[-1]}s."
+        pick = A.lid_screw_choice(cat, self.rules, fastener_text(words))
+        self.assertIn(bolt, pick["skipped"])
+        self.assertEqual(pick["part"].id, largest)
+
+    def test_shared_alias_is_not_a_skip(self):
+        # Fix round 1 N3: an alias a complete and an incomplete fastener share names the complete one; no skip note
+        cat = self.both
+        fast = [cat.get(pid) for pid in cat.ids() if cat.get(pid).kind == "fastener"]
+        pair = next(((a, c, w) for a in fast if not A.catalogue_complete(a) for c in fast if A.catalogue_complete(c)
+                     and all(c.params.get(k, {}).get("default") is not None for k in A.LID_FIELDS)
+                     for w in a.names if w in c.names), None)
+        if pair is None:
+            self.skipTest("no alias shared by a complete and an incomplete fastener in the catalogues")
+        bolt, screw, alias = pair
+        pick = A.lid_screw_choice(cat, self.rules, fastener_text(f"The lid is held by four {alias}s."))
+        self.assertEqual((pick["part"].id, pick["by"]), (screw.id, "rule:text_evidence[lid]"))   # R01
+        self.assertNotIn(bolt.id, pick["skipped"])
+        own = next(w for w in bolt.names if w not in screw.names)       # its own alias still reports the skip
+        pick = A.lid_screw_choice(cat, self.rules, fastener_text(f"The lid is held by four {own}s."))
+        self.assertIn(bolt.id, pick["skipped"])
+
+
+def stage_through(design, llm, upto: str, parts=None):
+    tree = A.build_assembly_tree(design, llm, parts or PARTS, design.assy.rules_path)
+    for child in tree.children:
+        status = child.update()
+        if status != ca.Status.SUCCESS or type(child).__name__ == upto:
+            return status, child
+    return ca.Status.SUCCESS, None
+
+
+class TestBothCatalogues(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def built(self, parts, tag):
+        r = request("E1-01")
+        d = design_for(r["request"], r["l1"], self.root / tag, parts, test_rules(self.root, fn=24))
+        status, child = stage_through(d, FakeLLM(script_for("E1-01")), "Build")
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, d.assy.notes[-5:]))
+        return d.assy
+
+    def test_e1_01_derives(self):
+        # T8 (GM1 c): E1-01 scripted through Build on both catalogues builds, and its poses and fasteners equal the
+        # enclosure-only run (iteration 001: an uncaught MissingParam at derive_features)
+        one, two = self.built([PARTS], "enc"), self.built(BOTH, "both")
+        self.assertEqual(set(one.layout), set(two.layout))
+        for nid, ref in one.layout.items():
+            for k in ("x", "y", "z", "rot_z"):
+                self.assertAlmostEqual(two.layout[nid][k], ref[k], delta=0.01, msg=f"{nid}.{k}")
+        self.assertEqual(set(one.fasteners), set(two.fasteners))
+        for k, v in one.fasteners.items():
+            self.assertAlmostEqual(two.fasteners[k], v, delta=0.01, msg=k)
+        self.assertEqual(two.choices["fastener[lid]"]["value"], one.choices["fastener[lid]"]["value"])
+        for b in ("base", "lid"):
+            self.assertAlmostEqual(two.solids[b].volume(), one.solids[b].volume(), delta=0.01, msg=b)
+
+    def test_derive_contains_part_errors(self):
+        # T9: a fastener with an unresolved request param forced into derive: a typed note, never a traceback
+        r = request("E1-01")
+        d = design_for(r["request"], r["l1"], self.root / "t9", BOTH)
+        status, child = stage_through(d, FakeLLM(script_for("E1-01")), "ChooseArchetype")
+        self.assertEqual(status, ca.Status.SUCCESS, d.assy.notes[-3:])
+        cat = d.assy.catalog
+        bad = next(pid for pid in cat.ids() if cat.get(pid).kind == "fastener" and not A.catalogue_complete(cat.get(pid))
+                   and all(cat.get(pid).params.get(k, {}).get("default") is not None for k in A.LID_FIELDS))
+        forced = {"part": cat.get(bad), "by": "test", "evidence": [], "skipped": []}
+        with mock.patch.object(A, "lid_screw_choice", lambda *a, **k: forced):
+            err = A.derive(A.scratch_state(d.assy))
+            self.assertTrue(err and err.startswith("derivation failed:"), err)
+            self.assertIn("must come from the request", err)
+            step = A.DeriveFeatures(d)
+            self.assertEqual(step.update(), ca.Status.FAILURE)
+        self.assertTrue(d.assy.notes[-1].startswith("derivation failed:"), d.assy.notes[-1])
+        self.assertEqual(d.assy.stage, "derive_features")
+
+
+class TestNumberOwnership(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def ids(self):
+        import re
+        rid = "V3"
+        tall = cylinder_params_reply(rid)["height"]
+        head = re.search(r"at least (\d+) mm of space above the tallest part", request(rid)["request"])
+        three = number_id(rid, float(head.group(1)), "request")
+        return rid, tall, three
+
+    def test_spec_slot_and_part_param_share_a_number(self):
+        # T10 (the V3 seed-1 defect): ParseSpec maps headroom to the capacitor's "20 mm tall" and ask_params maps the
+        # capacitor height to the same occurrence. The owner question runs across the stages; the height keeps it and
+        # headroom is re-asked without it.
+        rid, tall, three = self.ids()
+        spec = dict(spec_reply(rid), headroom=tall)
+        d = new_design(rid, self.root / "a")
+        llm = SchemaLLM(script_for(rid, assy_spec=[spec], assy_spec_owner=[{"owner": "generic_1.height"}],
+                                   assy_spec_slot=[{"headroom": three}]))
+        status, _ = run_stages(d, llm, "Contents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        self.assertEqual(llm.labels().count("assy_spec_owner"), ca.VOTES)
+        owner_schema = next(sc for lb, sc in llm.schemas if lb == "assy_spec_owner")
+        self.assertEqual(owner_schema["properties"]["owner"]["enum"], ["headroom", "generic_1.height"])
+        slot_schema = next(sc for lb, sc in llm.schemas if lb == "assy_spec_slot")
+        self.assertEqual(list(slot_schema["properties"]), ["headroom"])
+        self.assertNotIn(tall, slot_schema["properties"]["headroom"]["enum"])
+        cap = next(c for c in st.contents if c["part"] == "generic_cylinder")
+        self.assertEqual(cap["params"]["height"], 20.0)
+        self.assertEqual(st.spec["headroom"], 3.0)
+        self.assertIn("space above the tallest part", st.spec_provenance["headroom"])
+        self.assertEqual((st.number_owner[tall], st.number_owner[three]), ("generic_1.height", "headroom"))
+        # the spec slot wins instead: the part size is re-asked without that occurrence (it takes the L1's 20)
+        d = new_design(rid, self.root / "b")
+        l1_tall = number_id(rid, 20.0, l1_with(rid, "tall upright capacitor"))
+        llm = SchemaLLM(script_for(rid, assy_spec=[spec], assy_spec_owner=[{"owner": "headroom"}],
+                                   assy_params_reask=[{"height": l1_tall}]))
+        status, _ = run_stages(d, llm, "Contents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, st.notes)
+        reask = next(sc for lb, sc in llm.schemas if lb == "assy_params_reask")
+        self.assertNotIn(tall, reask["properties"]["height"]["enum"])
+        self.assertEqual(st.number_owner[tall], "headroom")
+        self.assertEqual(st.number_owner[l1_tall], "generic_1.height")
+        self.assertTrue(st.spec_provenance["generic_1.height"].startswith(l1_with(rid, "tall upright capacitor")))
+
+    def test_part_size_reask_is_final(self):
+        # Fix round 1 R1: the spec slot keeps the number and the part-size re-ask picks another spec slot's number. The
+        # re-ask is final: no second owner question, a typed stop, a bounded number of owner calls (was a RecursionError).
+        import re
+        rid, tall, three = self.ids()
+        spec = spec_reply(rid)
+        other = spec["max_z"]                         # a number another spec slot owns
+        spec = dict(spec, headroom=tall)
+        reasks = []
+
+        def owner(prompt):
+            names = re.findall(r"^- ([\w.]+): ", prompt.split("Which one")[1], re.M)
+            return {"owner": next(n for n in names if "." not in n)}     # the spec slot always keeps its number
+
+        def reask(prompt):
+            reasks.append(prompt)
+            return {"height": other}
+        d = new_design(rid, self.root)
+        llm = FakeLLM(script_for(rid, assy_spec=[spec], assy_spec_owner=[owner], assy_params_reask=[reask]))
+        status, _ = run_stages(d, llm, "Contents")
+        st = d.assy
+        self.assertEqual(status, ca.Status.FAILURE, st.notes)
+        self.assertEqual(llm.labels().count("assy_spec_owner"), ca.VOTES)      # one owner question, never a second
+        self.assertEqual(llm.labels().count("assy_params_reask"), ca.VOTES)    # one re-ask
+        self.assertTrue(reasks)
+        self.assertFalse(any(re.search(rf"^{re.escape(tall)} = ", p, re.M) for p in reasks))  # the id is removed
+        stop = st.notes[-1]
+        self.assertIn("re-ask is final", stop)
+        self.assertIn(f"{other} ", stop)
+        self.assertIn("max_z", stop)
+        self.assertEqual((st.number_owner[tall], st.number_owner[other]), ("headroom", "max_z"))
+        self.assertNotIn("generic_1.height", st.number_owner.values())
+
+    def test_reasked_spec_slot_keeps_parse_spec_rules(self):
+        # Fix round 1 N2: a spec slot re-asked after ParseSpec meets the same relations (> 0, wall band) and the frame
+        # rule (board_width along the longest edge, ownership swapped with the values)
+        rules = pt.load_rules(RULES_PATH)
+        st = A.AssemblyState(rules=rules, texts=[])
+        st.spec = {"wall_min": 2.0, "wall_max": 3.0, "board_width": 50.0, "board_depth": 40.0}
+        self.assertIsNone(A.spec_relation_error(st.spec, "wall_max", 2.5))
+        self.assertIn("greater than 0", A.spec_relation_error(st.spec, "headroom", 0.0))
+        self.assertIn("must not exceed", A.spec_relation_error(st.spec, "wall_max", 1.5))
+        self.assertIn("must not exceed", A.spec_relation_error(st.spec, "wall_min", 3.5))
+        st.spec["board_depth"] = 70.0                                   # a re-asked depth now longer than the width
+        st.spec_provenance = {"board_width": "request:w", "board_depth": "request:d"}
+        st.number_owner = {"n1": "board_width", "n2": "board_depth", "n3": "wall_min"}
+        A.settle_spec(st, "contents")
+        self.assertEqual((st.spec["board_width"], st.spec["board_depth"]), (70.0, 50.0))
+        self.assertEqual(st.spec_provenance, {"board_width": "request:d", "board_depth": "request:w"})
+        self.assertEqual(st.number_owner, {"n1": "board_depth", "n2": "board_width", "n3": "wall_min"})
+        self.assertIn("contents: board_width/board_depth swapped", st.notes[-1])
+
+    def test_no_conflict_asks_nothing(self):
+        # the regression answers: no shared occurrence, so no owner question (prompts and labels as before)
+        rid = "V3"
+        d = new_design(rid, self.root)
+        llm = FakeLLM(script_for(rid))
+        status, _ = run_stages(d, llm, "Contents")
+        self.assertEqual(status, ca.Status.SUCCESS, d.assy.notes)
+        self.assertNotIn("assy_spec_owner", llm.labels())
+
+
+class TestDescribeConnectors(unittest.TestCase):
+    def test_describe_names_the_exposed_connectors(self):
+        # Fix round 1 N1: the arrangement words name the item's exposed connectors, not the part's first one
+        inst = type("Inst", (), {"connectors": [{"name": "first"}, {"name": "second"}, {"name": "third"}]})()
+        layout = lay.Layout(placed=[lay.Placed("m", "p", {}, 0.0, 0.0, 0.0, 0.0, "item_1", edge="e", inst=inst)],
+                            edges={"e": {"words": "the short end at -X"}})
+        multi = lay.Item("item_1", "p", name="module", connectors=["second", "third"])
+        self.assertEqual(lay.describe(layout, [multi]), "module (second, third) faces the short end at -X")
+        first = lay.Item("item_1", "p", name="module")                 # no names given: the first connector, as before
+        self.assertEqual(lay.describe(layout, [first]), "module (first) faces the short end at -X")
+
+
+class TestArchetypeGate(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.cat = pt.Catalog.load(BOTH)
+        cls.rules = pt.load_rules(RULES_PATH)
+
+    def state(self, texts_, part):
+        st = A.AssemblyState(catalog=self.cat, rules=self.rules, texts=list(texts_))
+        st.contents = [{"id": A.PRIMARY, "part": part, "kind": self.cat.get(part).kind, "quantity": 1}]
+        return st
+
+    def test_shell_needs_evidence(self):
+        # T11: the same mount_holes primary; a shell only with shell words in the text (G40 is a drill guide)
+        g40 = gen_texts("G40")
+        module = next(pid for pid in self.cat.ids() if pt.mount_interface(self.cat.get(pid)) is not None
+                      and A.text_evidence(g40, self.cat.get(pid).names))
+        st = self.state(g40, module)
+        self.assertEqual(A.feasible_archetypes(st), [])
+        err = A.choose_archetype_rule(st)
+        self.assertTrue(err.startswith("not implemented: archetype"), err)
+        self.assertIn("no shell evidence", err)
+        st = self.state(texts("E1-01"), "perfboard")
+        self.assertEqual(A.feasible_archetypes(st), [("tray_lid", "screws")])
+        self.assertIsNone(A.choose_archetype_rule(st))
+        self.assertEqual(st.choices["archetype"]["value"], "tray_lid+screws")
+        holeless = next(pid for pid in self.cat.ids() if self.cat.get(pid).kind == "module"
+                        and pt.mount_interface(self.cat.get(pid)) is None)
+        self.assertEqual(A.feasible_archetypes(self.state(texts("E1-01"), holeless)), [])
+
+
+class TestExposure(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_primary_connectors_and_multi_connector_parts(self):
+        # T12: a primary with three connectors; the texts name the plug that two of them take. Both are exposed (text
+        # coverage, per connector), each with its own plug sweep and port cut on the wall its axis faces, recorded
+        # rule:fixed_by_primary; the third stays closed. Iteration 001 exposed only a content part's first connector.
+        cat = pt.Catalog.load(BOTH)
+        r = dict(gen_request("G04"))
+        # changed in generalize delta 002 (D1): the module also has a microSD connector (4 connectors, was 3)
+        prim = next(pid for pid in cat.ids() if pt.mount_interface(cat.get(pid)) is not None
+                    and A.text_evidence(gen_texts("G04"), cat.get(pid).names) and len(cat.get(pid).data["connectors"]) >= 3)
+        conns = cat.get(prim).data["connectors"]
+        mates = Counter(c["mates"] for c in conns)
+        plug, n = mates.most_common(1)[0]
+        self.assertEqual(n, 2)
+        named = [x for x in r["l1"] if A.text_evidence([(x["id"], x["text"])], cat.get(plug).names)]
+        others = [c["mates"] for c in conns if c["mates"] != plug]
+        # changed in generalize delta 002 (D1): the request's sentence that names the card is left out, so only the
+        # shared plug is named (the card's own exposure is TestExposure.test_card_slot_exposed_by_text)
+        other_names = [a for o in [plug] + others for a in cat.get(o).names]
+        r["request"] = " ".join(s for s in A.sentences(r["request"]) if not A.text_evidence([("request", s)], other_names))
+        shell = [x for x in r["l1"] if A.text_evidence([(x["id"], x["text"])], ["lid"])]
+        l1 = [x for x in named + shell if not A.text_evidence([(x["id"], x["text"])],
+                                                                [a for o in others for a in cat.get(o).names])]
+        self.assertTrue(l1)
+        self.assertFalse(A.text_evidence([("request", r["request"])], [a for o in [plug] + others
+                                                                         for a in cat.get(o).names]))
+        reply = {prim: dict({"quantity": 1}, **{A.exposure_key(c): "no" for c in conns})}
+        d = design_for(r["request"], l1, self.root / "t12", BOTH)
+        # changed in migration delta R01: exposure is the controller's (one expose step per named connector, an unscripted
+        # controller question taking the first offered action), so the stages run through the controller loop
+        status, child = run_stages(d, FakeLLM({"assy_spec": [all_none], "assy_contents": [reply]}), "ControllerLoop")
+        st = d.assy
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        want = sorted(c["name"] for c in conns if c["mates"] == plug)
+        got = [(p.node_id, c["name"]) for p, c in A.exposed_connectors(st)]
+        self.assertEqual(sorted(name for _, name in got), want)
+        self.assertTrue(all(node == A.PRIMARY for node, _ in got))
+        board = st.placed.get(A.PRIMARY)
+        for c in [c for c in conns if c["name"] in want]:
+            key = f"{A.PRIMARY}_{c['name']}"
+            self.assertTrue(any(nd.id.startswith(f"{key}_plug_") for nd in st.graph), key)
+            cut = st.graph.nodes[f"{key}_cut"]
+            wall = A.wall_facing(lay.world_datum(board, c["axis"]).dir)
+            self.assertEqual(cut.wall, wall)
+            self.assertEqual(st.choices[f"wall[{A.PRIMARY}.{c['name']}]"], {"value": wall, "by": "rule:fixed_by_primary"})
+            self.assertEqual(st.choices[f"exposed[{A.PRIMARY}.{c['name']}]"]["by"], "llm:controller")   # R01
+        closed = [c["name"] for c in conns if c["name"] not in want]
+        for name in closed:
+            self.assertNotIn(f"{A.PRIMARY}_{name}_cut", st.graph.nodes)
+        st.solids = {b: fg.body_solid(st.graph, b, st.resolved) for b in st.graph.bodies()}
+        results = {x.check_id: x for x in ac.run_plan(A.build_plan(st), st.solids)}
+        self.assertTrue(results["text_coverage"].passed, results["text_coverage"].evidence)
+        for name in want:
+            self.assertIn(f"clear_{A.PRIMARY}_{name}_plug", results)
+
+
+
+# ---------------------------------------------------------------------------
+# generalize delta 002: face relations (C0), the board fastener (C1), pilots that hold their screws (C2), card access (D1)
+# ---------------------------------------------------------------------------
+
+ITER002_GEN = REPO / "benchmarks" / "generalize" / "loop" / "iter_002"
+
+
+def staged_to_derive(design, llm, upto: str = "ControllerLoop"):
+    """The assembly stages up to `upto` on a design; then the manifold bodies and the plan run on them. Returns
+    (status, child, state, {check id: result} or None). Changed in migration delta R01: by default the stages run
+    through the closed-loop controller (the initial proposal plus its corrections; an unscripted FakeLLM takes the
+    first offered action), since exposure and the closure are the controller's decisions now."""
+    status, child = run_stages(design, llm, upto)
+    st = design.assy
+    if status != ca.Status.SUCCESS or upto not in ("DeriveFeatures", "ControllerLoop"):
+        return status, child, st, None
+    st.solids = {b: fg.body_solid(st.graph, b, st.resolved) for b in st.graph.bodies()}
+    return status, child, st, {r.check_id: r for r in ac.run_plan(A.build_plan(st), st.solids)}
+
+
+def member_walls(st) -> dict:
+    """item -> the wall each exposed connector of a content item faces in the accepted layout."""
+    out = {}
+    for p, c in A.exposed_connectors(st):
+        if p.role == "content":
+            out.setdefault(p.item, set()).add(A.wall_facing(lay.world_datum(p, c["axis"]).dir))
+    return out
+
+
+def relation_state(texts_, prim: dict, items) -> "A.AssemblyState":
+    st = A.AssemblyState(catalog=pt.Catalog.load(BOTH), rules=pt.load_rules(RULES_PATH), texts=list(texts_))
+    st.contents = [prim]
+    st.items = list(items)
+    return st
+
+
+def regression_items(rid: str):
+    """The regression contents as the scripted Contents answer gives them (the Pico and the jacks, both exposed)."""
+    cat = pt.Catalog.load(PARTS)
+    jacks = SCRIPTED[rid]["jacks"]
+    return [lay.Item("module_1", "rpi_pico2", {}, 1, True, None, cat.get("rpi_pico2").names[0],
+                     [cat.get("rpi_pico2").data["connectors"][0]["name"]]),
+            lay.Item("connector_1", "jack_3p5_pj320a", {}, jacks, True, None, cat.get("jack_3p5_pj320a").names[0],
+                     [cat.get("jack_3p5_pj320a").data["connectors"][0]["name"]])]
+
+
+class TestFaceRelation(unittest.TestCase):
+    """C0 (RC-A): a stated relation between two exposed connectors becomes a controllable face_relation check that
+    prescore filters on, but only when the controller reads it unanimously and the text gates it."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.rules = test_rules(self.root, fn=24)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def v1_replay(self, relation, rid="V1"):
+        script = recorded_answers(f"{rid}_s2", ITER002_GEN)
+        if not script:
+            self.skipTest(f"no recorded transcripts in {ITER002_GEN / (rid + '_s2')}")
+        if relation is not None:
+            script["assy_relation"] = relation
+        llm = RankedLLM(cycled(script), recorded_p_yes(f"{rid}_s2", ITER002_GEN))   # R01: replayed per question
+        d = new_design(rid, self.root / f"{rid}_{len(list(self.root.iterdir()))}", rules_path=self.rules)
+        return (llm,) + staged_to_derive(d, llm)
+
+    def test_same_end_replay(self):
+        # T1: iteration 002's V1 answers (edge votes (-X, +X) twice and (+X, +X) once; the recorded p_yes ranks the
+        # opposite-ends class 0.265 over the same-end class 0.254) plus a unanimous "same": every opposite or adjacent
+        # arrangement is removed by prescore, and the same-end class ranks top among the survivors
+        llm, status, child, st, results = self.v1_replay([{"pair_1": "same"}])
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        walls = member_walls(st)
+        self.assertEqual(len(set.union(*walls.values())), 1, walls)            # both on one wall ...
+        self.assertEqual(next(iter(set.union(*walls.values())))[1], "X")       # ... a short end
+        rel = [k for k in results if k.startswith("face_relation_")]
+        self.assertEqual(len(rel), 1, rel)
+        self.assertTrue(results[rel[0]].passed, results[rel[0]].evidence)
+        self.assertEqual(st.choices["arrangement_confirmed"]["by"], "prescore+llm:vote+rank")
+        self.assertNotIn("assy_arrange_pick", llm.labels())
+        self.assertEqual(llm.labels().count(A.RELATION_LABEL), ca.VOTES)
+        name = next(k for k in st.choices if k.startswith("relation["))
+        self.assertEqual((st.choices[name]["value"], st.choices[name]["by"]), ("same", "llm:relation"))
+        self.assertTrue(st.choices[name]["evidence"])
+        filtered = st.arrange["filtered"]
+        self.assertTrue(filtered)
+        self.assertTrue(all(rel[0] in f["failing"] for f in filtered), filtered)
+        self.assertEqual(st.arrange["relations"]["constraints"], [{"pair": name[len("relation["):-1], "value": "same"}])
+
+    def test_gate_enums(self):
+        # T2: the gated enums on the four regression texts (sentence-scoped: one sentence names both parts and a relation
+        # word); no pair on texts whose exposed connectors all belong to the primary
+        want = {"V1": ["same"], "V2": ["same"], "E1-01": ["opposite"], "V3": ["opposite"]}
+        for rid, values in want.items():
+            with self.subTest(rid=rid):
+                st = relation_state(texts(rid), {"id": A.PRIMARY, "part": "perfboard", "exposed_connectors": []},
+                                    regression_items(rid))
+                pairs = A.relation_gate(st, A.relation_members(st))
+                self.assertEqual([pr["values"] for pr in pairs], [values])
+                for e in pairs[0]["evidence"]:
+                    self.assertIn(e["quote"], dict(texts(rid))[e["source"]])
+        cat = pt.Catalog.load(BOTH)
+        for gid in ("G04", "G50"):
+            with self.subTest(gid=gid):
+                prim = next(pid for pid in cat.ids() if pt.mount_interface(cat.get(pid)) is not None
+                            and A.text_evidence(gen_texts(gid), cat.get(pid).names) and cat.get(pid).data.get("connectors"))
+                conns = [c["name"] for c in cat.get(prim).data["connectors"]]
+                st = relation_state(gen_texts(gid), {"id": A.PRIMARY, "part": prim, "exposed_connectors": conns}, [])
+                members = A.relation_members(st)
+                self.assertGreaterEqual(len(members), 2)
+                self.assertEqual(A.relation_gate(st, members), [])
+
+    def test_split_vote_is_no_constraint(self):
+        # T3: V2 (its L1.1 sentence names the Pico and the jacks with "same", about the jacks' side) read "same" by 2 of 3
+        # samples: no constraint, so the layout equals the run in which the controller reads no relation
+        def run(relation, tag):
+            script = script_for("V2")
+            if relation is not None:
+                script["assy_relation"] = relation
+            llm = FakeLLM(script)
+            d = new_design("V2", self.root / tag, rules_path=self.rules)
+            status, child, st, _ = staged_to_derive(d, llm, "ArrangeContents")
+            self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+            return st, llm
+
+        split, llm = run([{"pair_1": "same"}, {"pair_1": "same"}, {"pair_1": A.NOT_STATED}], "split")
+        plain, _ = run(None, "plain")
+        self.assertEqual(llm.labels().count(A.RELATION_LABEL), ca.VOTES)
+        self.assertEqual(split.relations, [])
+        asked = split.arrange["relations"]["asked"]
+        self.assertEqual([(r["votes"], r["constraint"]) for r in asked], [({"same": 2, A.NOT_STATED: 1}, None)])
+        self.assertFalse([k for k in split.choices if k.startswith("relation[")])
+        self.assertEqual(split.layout, plain.layout)
+        walls = member_walls(split)
+        self.assertEqual(next(iter(walls["module_1"]))[1], "X")                # USB on a short end
+        self.assertEqual(len(walls["connector_1"]), 1)                        # the jacks on one ...
+        self.assertEqual(next(iter(walls["connector_1"]))[1], "Y")            # ... long side
+
+    def test_unsatisfiable_relation_is_reported(self):
+        # T4: a unanimous relation that no feasible arrangement meets removes no candidate (they all tie on it) and the
+        # package carries the failing face_relation check with the quoted sentence; the arrangement is the one the run
+        # without the relation accepts (an honest error, never a forced layout)
+        with mock.patch.dict(ac.FACE_RELATIONS, {"same": lambda a, b: False}):
+            llm, status, child, st, results = self.v1_replay([{"pair_1": "same"}])
+            self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+            rel = next(k for k in results if k.startswith("face_relation_"))
+            self.assertFalse(results[rel].passed)
+            self.assertNotIn("conflict", results[rel].evidence)               # controllable: no typed conflict
+            quotes = results[rel].evidence["quotes"]
+            self.assertTrue(quotes and all(q["quote"] in dict(texts("V1"))[q["source"]] for q in quotes), quotes)
+            self.assertFalse(any(rel in f["failing"] for f in st.arrange.get("filtered", [])))
+            with_rel = dict(st.layout)
+        _, status, _, plain, _ = self.v1_replay(None)
+        self.assertEqual(status, ca.Status.SUCCESS)
+        self.assertEqual(with_rel, plain.layout)
+
+    def test_prompts_unchanged_without_gate(self):
+        # T5: a request with no relation word in any sentence naming two exposed parts asks no relation question, and
+        # its prompt sequence is byte-equal to the run in which the relation stage does not exist
+        def run(tag, patch):
+            d = new_design("V2", self.root / tag, with_l1=False, rules_path=self.rules)
+            w, dd, _, _ = request_numbers("V2")
+            spec = dict({k: "none" for k in A_SLOTS}, board_width=number_id("V2", w, "request", with_l1=False),
+                        board_depth=number_id("V2", dd, "request", with_l1=False))
+            llm = FakeLLM(script_for("V2", assy_spec=[spec]))
+            ctx = mock.patch.object(A.ArrangeContents, "ask_relations",
+                                    lambda self, st: {"asked": [], "constraints": []}) if patch else None
+            if ctx:
+                ctx.start()
+            try:
+                status, child = run_stages(d, llm, "ArrangeContents")
+            finally:
+                if ctx:
+                    ctx.stop()
+            self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, d.assy.notes[-3:]))
+            return d.assy, llm
+
+        st, llm = run("with", False)
+        _, base = run("without", True)
+        self.assertNotIn(A.RELATION_LABEL, llm.labels())
+        self.assertEqual([(lb, p) for lb, p, _ in llm.calls], [(lb, p) for lb, p, _ in base.calls])
+        self.assertNotIn("relations", st.arrange)
+        self.assertEqual(st.relations, [])
+
+
+class TestBoardFastener(unittest.TestCase):
+    """C1 (RC-B1): the board screw from role evidence in the text, then the datasheet thread, then the smallest that
+    passes the board's holes."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cat = pt.Catalog.load(BOTH)
+        cls.rules = pt.load_rules(RULES_PATH)
+
+    def pick(self, texts_, pid, params=None):
+        inst = self.cat.instantiate(pid, params or {})
+        return A.board_screw_choice(self.cat, inst, self.rules.values, texts_, self.rules.fastener_roles)
+
+    def screw_with_thread(self, thread):
+        return next(pid for t, pid in A.board_screw_candidates(self.cat) if abs(t - thread) < 1e-9)
+
+    def test_role_evidence_and_datasheet(self):
+        # T6: the C1 table on the ten texts (request + L1s as given to the agent). The primaries and board sizes are the
+        # parts the texts name; the expected threads are each requirements.md's
+        import re
+        role, sheet, small = "rule:text_evidence[board]", "rule:interface_thread", "rule:smallest_thread_through_board_hole"
+
+        def size(texts_):
+            w, dd = re.search(r"(\d+) x (\d+) mm", texts_[0][1]).groups()
+            return {"width": float(w), "depth": float(dd)}
+
+        def named_primary(texts_):           # the agent's primary rule: the largest named part with mounting holes
+            named = [pid for pid in self.cat.ids() if pt.mount_interface(self.cat.get(pid)) is not None
+                     and not pt.is_carrier(self.cat.get(pid)) and A.text_evidence(texts_[:1], self.cat.get(pid).names)]
+            return max(named, key=lambda pid: A.plan_footprint(self.cat, {"part": pid}))
+
+        table = {"G02": (3.0, role), "G04": (2.5, role), "G11": (3.0, role), "G13": (2.0, role), "G06": (2.0, small),
+                 "G50": (2.5, sheet)}
+        for gid, (thread, by) in table.items():
+            with self.subTest(gid=gid):
+                t_ = gen_texts(gid)
+                carrier = A.text_evidence(t_, self.cat.get("perfboard").names)
+                pick = self.pick(t_, "perfboard", size(t_)) if carrier else self.pick(t_, named_primary(t_))
+                self.assertEqual((pick["part"].id, pick["by"]), (self.screw_with_thread(thread), by), pick["evidence"])
+                if by == role:
+                    self.assertTrue(pick["evidence"])
+        for rid in ("E1-01", "V1", "V2", "V3"):          # no screw named, the perfboard has no datasheet thread
+            with self.subTest(rid=rid):
+                w, dd, _, _ = request_numbers(rid)
+                pick = self.pick(texts(rid), "perfboard", {"width": w, "depth": dd})
+                self.assertEqual((pick["part"].id, pick["by"]), (self.screw_with_thread(2.0), small))
+                self.assertEqual(pick["notes"], [])
+
+    def test_named_screw_that_does_not_pass(self):
+        # T7: an M3 screw named for the board of a board whose holes are Ø2.0: noted and skipped, the smallest that passes
+        board = self.cat.instantiate("perfboard", next(sp["match"] for sp in self.cat.get("perfboard").specimens))
+        hole = pt.lookup_datum(board.datums, pt.mount_names(board.part)[0]).diameter
+        big = self.screw_with_thread(3.0)
+        self.assertGreater(3.0, hole)
+        words = f"Each standoff has a pilot hole for an {self.cat.get(big).names[0]} through the board."
+        pick = A.board_screw_choice(self.cat, board, self.rules.values, [("request", words)], self.rules.fastener_roles)
+        self.assertEqual(pick["part"].id, self.screw_with_thread(2.0))
+        self.assertEqual(pick["by"], "rule:smallest_thread_through_board_hole")
+        self.assertTrue(any(big in n and "does not pass" in n for n in pick["notes"]), pick["notes"])
+        # the same words for a part another clause names: not board evidence (clause scope)
+        other = "The display is held by M2.5 screws into posts, with its board kept 3 mm clear."
+        pick = self.pick([("request", other)], "rpi_zero2w")
+        self.assertEqual(pick["by"], "rule:interface_thread")
+
+
+class TestPilotBottoming(unittest.TestCase):
+    """C2 (RC-B2, RC-B3): a pilot is deep enough for the screw's length through its clamped plate, and the cavity floor
+    holds every standoff's pilot over rules.min_feature."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.rules = test_rules(self.root, fn=24)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def gen_run(self, gid, prim_pick):
+        cat = pt.Catalog.load(BOTH)
+        prim = next(pid for pid in cat.ids() if prim_pick(cat, pid))
+        conns = cat.get(prim).data.get("connectors", [])
+        reply = {prim: dict({"quantity": 1}, **{A.exposure_key(c): "no" for c in conns})}
+        r = gen_request(gid)
+        d = design_for(r["request"], r["l1"], self.root / gid, BOTH, self.rules)
+        status, child, st, results = staged_to_derive(d, FakeLLM({"assy_spec": [all_none], "assy_contents": [reply]}))
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        return st, results
+
+    def depth(self, st, role):
+        return [st.resolved.params[f"{n.id}_pilot"]["depth"] for n in st.graph if n.role == role]
+
+    def test_boss_pilot_clears_screw_tip(self):
+        # T9: E1-01 offline: the boss pilot holds the lid screw's tip (length - lid plate + design margin); the standoff
+        # pilot keeps min_engagement + margin (the board screw's tip through the board needs less)
+        st, results = measure_with_parts("E1-01", self.root, PARTS, self.rules)
+        f, r = st.fasteners, st.rules.values
+        lid_z = st.resolved.params["lid"]["z"]
+        tip = f["fastener.lid.length"] - lid_z
+        self.assertGreater(tip, f["fastener.lid.min_engagement"])
+        for dpt in self.depth(st, "boss"):
+            self.assertAlmostEqual(dpt, tip + r["design_margin"], places=9)
+        board_tip = f["fastener.board.length"] - A.clamped_plate_value(st, "board")
+        self.assertLess(board_tip, f["fastener.board.min_engagement"])
+        for dpt in self.depth(st, "standoff"):
+            self.assertAlmostEqual(dpt, f["fastener.board.min_engagement"] + r["design_margin"], places=9)
+        rows = [k for k in results if k.startswith("pilot_bottoming_")]
+        self.assertEqual(len(rows), 8, rows)                                  # four standoffs and four bosses
+        self.assertTrue(all(results[k].passed for k in rows), [results[k].evidence for k in rows])
+
+    def test_standoff_holds_its_pilot(self):
+        # T10: a module primary with a thin solder-side keep-out (the G04 module, M2.5 named for the board): every
+        # pilot_depth_standoff_* passes, and the standoff height is set by the pilot column
+        st, results = self.gen_run("G04", lambda cat, pid: pt.mount_interface(cat.get(pid)) is not None
+                                   and not pt.is_carrier(cat.get(pid))
+                                   and A.text_evidence(gen_texts("G04")[:1], cat.get(pid).names))
+        self.assertEqual(st.choices["fastener[board]"]["by"], "rule:text_evidence[board]")
+        r = st.rules.values
+        floor = st.resolved.params["base"]["floor"]
+        for n in [n for n in st.graph if n.role == "standoff"]:
+            self.assertTrue(results[f"pilot_depth_{n.id}"].passed, results[f"pilot_depth_{n.id}"].evidence)
+            dpt = st.resolved.params[f"{n.id}_pilot"]["depth"]
+            self.assertAlmostEqual(st.resolved.params[n.id]["height"],
+                                   dpt + r["min_feature"] - floor + r["design_margin"], places=9)
+        self.assertGreater(st.resolved.params["standoff_1"]["height"], st.spec["keepout_below"])
+
+    def test_long_screw_through_board(self):
+        # T11: a board-held 10 mm screw through a 1.6 mm board (the G02 board, M3 named for it): the standoff pilot is
+        # deeper than length - board, the lid boss pilot deeper than length - lid plate (was 5.1 / 6.1)
+        st, results = self.gen_run("G02", lambda cat, pid: pt.mount_interface(cat.get(pid)) is not None
+                                   and not pt.is_carrier(cat.get(pid))
+                                   and A.text_evidence(gen_texts("G02")[:1], cat.get(pid).names))
+        f = st.fasteners
+        self.assertEqual(f["fastener.board.thread_diameter"], 3.0)
+        board_tip = f["fastener.board.length"] - A.clamped_plate_value(st, "board")
+        lid_tip = f["fastener.lid.length"] - st.resolved.params["lid"]["z"]
+        self.assertTrue(all(d >= board_tip for d in self.depth(st, "standoff")), self.depth(st, "standoff"))
+        self.assertTrue(all(d >= lid_tip for d in self.depth(st, "boss")), self.depth(st, "boss"))
+        self.assertGreaterEqual(min(self.depth(st, "standoff")), 8.4)
+        self.assertGreaterEqual(min(self.depth(st, "boss")), 7.6)
+        for k in [k for k in results if k.startswith(("pilot_bottoming_", "pilot_depth_"))]:
+            self.assertTrue(results[k].passed, (k, results[k].evidence))
+
+
+class TestCardExposure(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def test_card_slot_exposed_by_text(self):
+        # T13 (D1): the module primary with a microSD connector and a text that names the card: the slot is exposed (by the
+        # controller from the text_coverage sensor since migration delta R01) on the wall its axis faces, with one through
+        # opening there that clears the card's access zone
+        cat = pt.Catalog.load(BOTH)
+        texts_ = gen_texts("G04")
+        prim = next(pid for pid in cat.ids() if pt.mount_interface(cat.get(pid)) is not None
+                    and A.text_evidence(texts_[:1], cat.get(pid).names) and not pt.is_carrier(cat.get(pid)))
+        conns = cat.get(prim).data["connectors"]
+        sd = next(c for c in conns if "card" in pt.tokens(cat.get(c["mates"]).names[0]))
+        self.assertTrue(A.text_evidence(texts_, cat.get(sd["mates"]).names))     # the text names the card
+        reply = {prim: dict({"quantity": 1}, **{A.exposure_key(c): "no" for c in conns})}
+        r = gen_request("G04")
+        d = design_for(r["request"], r["l1"], self.root / "g04", BOTH, test_rules(self.root, fn=24))
+        status, child, st, results = staged_to_derive(d, FakeLLM({"assy_spec": [all_none], "assy_contents": [reply]}))
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        board = st.placed.get(A.PRIMARY)
+        wall = A.wall_facing(lay.world_datum(board, sd["axis"]).dir)
+        self.assertEqual(wall, "-X")
+        self.assertEqual(st.choices[f"wall[{A.PRIMARY}.{sd['name']}]"], {"value": wall, "by": "rule:fixed_by_primary"})
+        self.assertEqual(st.choices[f"exposed[{A.PRIMARY}.{sd['name']}]"]["by"], "llm:controller")   # R01: the controller
+        ap = results[f"apertures_{wall}"]
+        self.assertTrue(ap.passed, ap.evidence)
+        self.assertEqual(ap.evidence["expected"], 1)
+        self.assertTrue(results["text_coverage"].passed, results["text_coverage"].evidence)
+        key = f"{A.PRIMARY}_{sd['name']}"
+        for cid in (f"clear_{key}_plug", f"oversize_{key}_cut", f"ligament_{key}_cut_base"):
+            self.assertTrue(results[cid].passed, (cid, results[cid].evidence.get("detail")))
+        # a text that names the slot as unused gives no coverage hit for the card
+        unused = [("request", "The mini-HDMI and the microSD slot are not used.")]
+        self.assertFalse(A.text_evidence(unused, cat.get(sd["mates"]).names))
+
+
+
+# ---------------------------------------------------------------------------
+# Generalize delta 003: boss layouts (C1), the rebate closure (C2), vent rows (C3), bridges and roofs (C4). Requests are
+# read as data from the designs and the iteration 003 transcripts; nothing here is typed into the agent.
+# ---------------------------------------------------------------------------
+
+ITER003_GEN = REPO / "benchmarks" / "generalize" / "loop" / "iter_003"
+
+
+def iter003_package(run: str) -> Path:
+    """The judged (latest) package of an iteration 003 run (G04_s3 ran twice; both runs agree)."""
+    pkgs = sorted((ITER003_GEN / run).glob("2*/"))
+    if not pkgs:
+        raise unittest.SkipTest(f"no recorded package in {ITER003_GEN / run}")
+    return pkgs[-1]
+
+
+def iter003_answers(run: str) -> dict:
+    """{label: [JSON replies in file order]} of one iteration 003 package (assy_confirm answers "yes")."""
+    out: dict = {}
+    for f in sorted(iter003_package(run).glob("llm/*.txt")):
+        body = f.read_text().split("=== RESPONSE ===", 1)[-1].strip()
+        try:
+            out.setdefault(f.stem.split("_", 1)[1], []).append(json.loads(body))
+        except ValueError:
+            continue
+    out["assy_confirm"] = [{"answer": "yes"}]
+    return cycled(out)                 # changed in migration delta R01: replayed per question (CycleReplies)
+
+
+def gen_number(gid: str, source: str, value: float) -> str:
+    return next(n["id"] for n in A.extract_numbers(gen_texts(gid)) if n["source"] == source
+                and abs(n["value"] - value) < 1e-9)
+
+
+def vent_spec_reply(gid: str, l1: str, values: dict) -> dict:
+    """An assy_vent_spec answer: each named slot -> the id of its number in the L1 sentence (values parsed by the test from
+    that sentence), every other slot none."""
+    slots = [x["name"] for x in pt.load_rules(RULES_PATH).vents["slots"]]
+    return {k: gen_number(gid, l1, values[k]) if k in values else "none" for k in slots}
+
+
+def gen_run(root: Path, gid: str, script: dict, tag: str = ""):
+    """A train design staged to DeriveFeatures with a scripted controller (fn 24 rules), then the plant on the solids."""
+    r = gen_request(gid)
+    d = design_for(r["request"], r["l1"], root / f"{gid}{tag}", BOTH, test_rules(root, fn=24))
+    llm = FakeLLM(script)
+    status, child, st, results = staged_to_derive(d, llm)
+    return llm, status, child, st, results
+
+
+def numbers_in(text: str, pattern: str):
+    import re
+    return [float(v) for v in re.search(pattern, text).groups()]
+
+
+class TestBossLayout(unittest.TestCase):
+    """C1 (RC-F): the lid boss layout is a plant-scored derivation choice; the default is kept when it passes."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_size_limit_moves_bosses_inside(self):
+        # T2: iteration 003's recorded G04_s3 answers: bbox passes (was -2.21), the bosses stand inside an X band, every boss
+        # clears the board and its connectors by spec.board_clearance, and every clear_* check passes
+        _, status, child, st, results = gen_run(self.root, "G04", iter003_answers("G04_s3"))
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        self.assertTrue(results["bbox"].passed, results["bbox"].evidence)
+        bl = st.choices["boss_layout"]
+        self.assertIn(bl["value"], A.INSIDE_LAYOUTS)
+        self.assertEqual(bl["by"], "prescore:derive")
+        self.assertIn("bbox", bl["errors"]["outside_corners"]["affected"])
+        self.assertEqual(bl["errors"][bl["value"]]["failing"], [])
+        bc = st.spec["board_clearance"]
+        board = fg.solid(st.graph.nodes[A.PRIMARY], st.resolved)
+        for n in [n for n in st.graph if n.role == "boss"]:
+            gap = fg.solid(n, st.resolved).min_gap(board, bc + 5)
+            self.assertGreaterEqual(gap, bc, n.id)
+        clear = {k: r for k, r in results.items() if k.startswith("clear_")}
+        self.assertTrue(clear)
+        self.assertTrue(all(r.passed for r in clear.values()), {k: r.evidence.get("detail") for k, r in clear.items()
+                                                                if not r.passed})
+        self.assertIn("lid_lip", st.graph.nodes)                 # G04 names no rebate: the lip closure (T7)
+        self.assertFalse([n for n in st.graph if n.role == "pad"])   # inside bosses: no lid pads
+        type(self).g04 = (st, results)
+
+    def test_band_slides_past_plug_sweeps(self):
+        # T3: a primary with a connector at a band corner (the G02 board's DC jack sits at the -X / y0 corner of the X band
+        # the rebate closure needs): that boss slides to the end of the jack's forbidden interval (the nearest free
+        # position), its plug sweep clearance passes, and moving the jack in the catalogue data moves the boss with it
+        def run(tag, shift=0.0):
+            parts = BOTH
+            if shift:
+                out = self.root / f"cat{tag}"
+                shutil.copytree(GEN_PARTS, out)
+                path = out / "arduino_uno_r3" / "part.json"
+                data = json.loads(path.read_text())
+                data["params"]["jack_centre_y"]["default"] += shift
+                path.write_text(json.dumps(data))
+                parts = [out, PARTS]
+            r = gen_request("G02")
+            script = iter003_answers("G02_s3")
+            d = design_for(r["request"], r["l1"], self.root / f"g02{tag}", parts, test_rules(self.root, fn=24))
+            status, child, st, results = staged_to_derive(d, FakeLLM(script))
+            self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+            return st, results
+
+        st, results = run("a")
+        self.assertEqual(st.choices["boss_layout"]["value"], "inside_band_x")
+        rows = A.inside_boss_positions(st, "inside_band_x", st.resolved)
+        slid = [k for k, row in enumerate(rows, 1) if row["slide"] > 0]
+        self.assertTrue(slid, rows)
+        k = slid[0]
+        self.assertTrue(any("dc" in b for b in rows[k - 1]["blocked_by"]), rows[k - 1])
+        dc = next(g for g in results if g.startswith("clear_") and "dc" in g and g.endswith("_plug"))
+        self.assertTrue(results[dc].passed, results[dc].evidence)
+        boss = fg.solid(st.graph.nodes[f"boss_{k}"], st.resolved)
+        sweep = ac.union([fg.solid(n, st.resolved) for n in st.graph if n.kind == "envelope" and n.group
+                          and "dc" in n.group])
+        r = st.rules.values
+        self.assertGreaterEqual(boss.min_gap(sweep, 10.0), r["plug_to_opening"])
+        # nearest free position: the boss edge sits one clearance (+ design margin) past the sweep's AABB, not further
+        cav, d = st.resolved.params["cavity"], st.resolved.params["cavity"]["boss_d"]
+        y = st.resolved.params[f"boss_{k}"]["ay"]
+        hi = max(fg.solid(n, st.resolved).bounding_box()[4] + (r["plug_to_opening"] if n.kind == "envelope" else 0.0)
+                 for n in st.graph if (n.kind == "envelope" and n.group and "dc" in n.group)
+                 or (n.role in ("port_cut", "port_roof") and "dc" in n.id))
+        self.assertAlmostEqual(y - d / 2, hi + r["design_margin"], places=6)
+        shifted, _ = run("b", shift=1.0)
+        y2 = shifted.resolved.params[f"boss_{k}"]["ay"]
+        self.assertAlmostEqual(y2 - y, 1.0, places=6)
+
+    def test_default_kept_when_passing(self):
+        # T4 (guard): the four regression texts with iteration 003's recorded answers keep outside_corners by rule, run no
+        # scratch derivation, and derive the very feature graph iteration 003 delivered (every node, expression and pose)
+        for rid in ("E1-01", "V1", "V2", "V3"):
+            with self.subTest(rid=rid):
+                st, results, llm, types = regression_replay(self.root, rid)
+                self.assertEqual(st.choices["boss_layout"], {"value": "outside_corners",
+                                                             "by": "rule:default_layout_passes"})
+                self.assertEqual(st.choices["closure"]["value"], "lip")
+                final = [t for stage, t in types if stage == "derive_features"]
+                # changed in migration delta R01: the Pico's USB the 9B left closed is exposed by the controller, which
+                # re-derives once on its fork; every derivation still runs only the boss-affected checks (no scratch run)
+                self.assertEqual(final, [A.BOSS_AFFECTED_TYPES] * 2, final)
+                kept = [s_["action"]["key"] for s_ in st.trajectory["steps"][1:] if s_.get("accepted")]
+                self.assertEqual(kept, ["expose:module_1.usb=True"])
+                want = json.loads((iter003_package(f"{rid}_s3") / "feature_graph.json").read_text())
+                got = json.loads(json.dumps(st.graph.to_json()))
+                self.assertEqual(got, want)
+                rec = json.loads((iter003_package(f"{rid}_s3") / "layout.json").read_text())
+                self.assertEqual([x["id"] for x in rec["references"]], list(st.layout))
+                for x in rec["references"]:
+                    for key in ("x", "y", "z", "rot_z"):
+                        if key in x:
+                            self.assertAlmostEqual(st.layout[x["id"]][key], x[key], delta=1e-6)
+
+    def test_boss_pilot_floor_sensor(self):
+        # T5: pilot_depth_boss_* exists and passes on the regression set; a mutant whose boss floor is raised to just under
+        # its pilot's bottom fails it
+        st, results, _, _ = regression_replay(self.root, "E1-01")
+        rows = [k for k in results if k.startswith("pilot_depth_boss_")]
+        self.assertEqual(len(rows), 4, rows)
+        self.assertTrue(all(results[k].passed for k in rows))
+        for rid in ("V1", "V2", "V3"):
+            _, res2, _, _ = regression_replay(self.root, rid)
+            self.assertTrue(all(res2[k].passed for k in res2 if k.startswith("pilot_depth_boss_")))
+        mut = A.scratch_state(st)                # the cached state stays untouched
+        nodes = [copy.deepcopy(n) for n in st.graph]
+        mut.graph = fg.FeatureGraph(nodes)
+        n = mut.graph.nodes["boss_1"]
+        depth = st.resolved.params["boss_1_pilot"]["depth"]
+        n.params["h"] = f"{depth!r} + rules.min_feature/2"       # the boss floor raised to just under its pilot's bottom
+        n.pose = fg.Pose(offset=("ax", "ay", "base.split - h"))
+        mut.resolved = A.resolve(mut)
+        _, mutant = A.plant_error(mut, ("pilot_depth",))
+        got = {r.check_id: r for r in mutant}
+        self.assertFalse(got["pilot_depth_boss_1"].passed, got["pilot_depth_boss_1"].evidence)
+        self.assertTrue(got["pilot_depth_boss_2"].passed)
+
+
+_REGRESSION_CACHE: dict = {}
+
+
+def regression_replay(root: Path, rid: str):
+    """iteration 003's recorded answers (and p_yes) for a regression design, staged to DeriveFeatures with the enclosure
+    catalogue (as run_suite runs it); records the check types of every plant_error call (None = a full scratch run)."""
+    if rid in _REGRESSION_CACHE:
+        return _REGRESSION_CACHE[rid]
+    run = f"{rid}_s3"
+    script = recorded_answers(run, ITER003_GEN)
+    if not script:
+        raise unittest.SkipTest(f"no recorded transcripts in {ITER003_GEN / run}")
+    llm = RankedLLM(cycled(script), recorded_p_yes(run, ITER003_GEN))   # R01: replayed per question
+    d = new_design(rid, root / f"reg_{rid}")
+    types = []
+    real = A.plant_error
+
+    def spy(st, t=None):
+        types.append((st.stage, t))
+        return real(st, t)
+
+    with mock.patch.object(A, "plant_error", spy):
+        status, child, st, results = staged_to_derive(d, llm)
+    if status != ca.Status.SUCCESS:
+        raise AssertionError((rid, type(child).__name__, st.notes[-3:]))
+    _REGRESSION_CACHE[rid] = (st, results, llm, types)
+    return _REGRESSION_CACHE[rid]
+
+
+class TestRebate(unittest.TestCase):
+    """C2 (RC-G): a text that puts the lid plate in a rebate gets the rebate closure. Changed in migration delta R01: the
+    closure_evidence sensor reports the text's closure after the first build and the controller's set_closure makes it
+    (an unscripted controller question takes the first offered action); until R01 a rule chose it."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_rebate_closure_from_text(self):
+        # T6: G02's text with iteration 003's recorded answers: no lid lip (was one), the plate fits the rebate at the
+        # sliding fit per side, the upstand is rules.rebate_upstand, the plate top is flush, every boss top is on the
+        # rebate floor, the bosses stand inside the walls, and every new check passes
+        _, status, child, st, results = gen_run(self.root, "G02", g02_script())
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        r, res = st.rules.values, st.resolved
+        self.assertEqual(st.choices["closure"]["value"], A.REBATE)
+        self.assertEqual(st.choices["closure"]["by"], "llm:controller")         # changed in migration delta R01
+        self.assertTrue(all("rebate" in e["quote"] for e in st.choices["closure"]["evidence"]))
+        self.assertNotIn("lid_lip", st.graph.nodes)
+        self.assertIn(st.choices["boss_layout"]["value"], A.INSIDE_LAYOUTS)
+        self.assertIn("infeasible", st.choices["boss_layout"]["errors"]["outside_corners"])
+        base, lid, cut = res.params["base"], res.params["lid"], res.params[A.REBATE]
+        for ax in ("x", "y"):
+            self.assertAlmostEqual((cut[ax] - lid[ax]) / 2, r["sliding_fit"], places=9)
+            self.assertAlmostEqual((base[ax] - cut[ax]) / 2, r["rebate_upstand"], places=9)
+        self.assertAlmostEqual(res.poses["lid"][2, 3] + lid["z"], res.poses["base"][2, 3] + base["z"], places=9)
+        for n in [n for n in st.graph if n.role == "boss"]:
+            self.assertAlmostEqual(res.poses[n.id][2, 3] + res.params[n.id]["h"], base["split"], places=9)
+        new = [k for k in results if k.startswith(("lid_fit_", "rebate_upstand_", "lid_flush", "boss_top_plane_"))]
+        self.assertEqual(len(new), 2 + 2 + 1 + 4, new)
+        self.assertTrue(all(results[k].passed for k in new), {k: results[k].evidence for k in new if not results[k].passed})
+        for k in ("separable", "bbox"):
+            self.assertTrue(results[k].passed, results[k].evidence)
+        lig = [k for k in results if k.startswith("ligament_")]
+        self.assertTrue(all(results[k].passed for k in lig), {k: results[k].evidence.get("detail") for k in lig
+                                                               if not results[k].passed})
+        type(self).g02 = (st, results)
+
+    def test_no_evidence_keeps_lip(self):
+        # T7 (guard): texts that name no rebate keep the lip closure (the four regression texts, G04, G11); G02 and G13 name
+        # one in a lid sentence. Changed in migration delta R01: that reading is the closure_evidence sensor's
+        # (closure_text_evidence); the proposal keeps the default lip for every text and the controller decides
+        rules = pt.load_rules(RULES_PATH)
+        cases = [(rid, texts(rid), set()) for rid in ("E1-01", "V1", "V2", "V3")]
+        cases += [(g, gen_texts(g), set()) for g in ("G04", "G11")] + [(g, gen_texts(g), {A.REBATE}) for g in ("G02", "G13")]
+        for name, t_, want in cases:
+            with self.subTest(name=name):
+                st = A.AssemblyState(rules=rules, texts=list(t_))
+                self.assertEqual(set(A.closure_text_evidence(st)), want)
+                self.assertEqual(A.closure_choice(st)["value"], "lip")
+        # a rebate word in a sentence with no lid word is no evidence
+        st = A.AssemblyState(rules=rules, texts=[("request", "The walls have a rebate for the label."),
+                                                 ("L1.1", "The lid is screwed down.")])
+        self.assertEqual(A.closure_text_evidence(st), {})
+        st, _, _, _ = regression_replay(self.root, "E1-01")
+        self.assertIn("lid_lip", st.graph.nodes)
+
+
+def g02_script() -> dict:
+    """iteration 003's recorded G02 answers plus the vent size answer a correct reading of L1.7 gives (the numbers are
+    parsed by the test from the sentence)."""
+    l17 = dict(gen_texts("G02"))["L1.7"]
+    c = numbers_in(l17, r"(\d+) to (\d+) ventilation slots")
+    w = numbers_in(l17, r"each ([\d.]+) to ([\d.]+) mm wide")
+    ln = numbers_in(l17, r"and ([\d.]+) to ([\d.]+) mm long")
+    pi = numbers_in(l17, r"([\d.]+) to ([\d.]+) mm pitch")
+    area = numbers_in(l17, r"at least ([\d.]+) mm")
+    values = {"vent_count_min": c[0], "vent_count_max": c[1], "vent_width_min": w[0], "vent_width_max": w[1],
+              "vent_length_min": ln[0], "vent_length_max": ln[1], "vent_pitch_min": pi[0], "vent_pitch_max": pi[1],
+              "vent_area_min": area[0]}
+    return dict(iter003_answers("G02_s3"), assy_vent_spec=[vent_spec_reply("G02", "L1.7", values)])
+
+
+class TestVents(unittest.TestCase):
+    """C3 (RC-E): vent slot rows over a named zone or in a wall related to an exposed connector, sized from the text."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_zone_row_in_lid(self):
+        # T8: G02 with the vent sizes of L1.7: 7 slots 2.25 x 10 at pitch 5.0 in the lid, every one inside the Uno mcu
+        # zone's long extent and the row centred across it; area >= 100; the vent checks pass and link to L1.7 (was
+        # UNLINKED: no vent_cut)
+        llm, status, child, st, results = gen_run(self.root, "G02", g02_script())
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        self.assertEqual(st.choices["vent_face"]["by"], "rule:vent_zone")
+        self.assertNotIn(A.VENT_RELATION_LABEL, llm.labels())
+        self.assertEqual(llm.labels().count(A.VENT_SPEC_LABEL), ca.VOTES)
+        slots = [n for n in st.graph if n.role == "vent_cut"]
+        self.assertEqual(len(slots), 7)
+        self.assertTrue(all(n.body == "lid" for n in slots))
+        p = [st.resolved.params[n.id] for n in slots]
+        self.assertTrue(all(abs(q["x"] - 2.25) < 1e-9 and abs(q["y"] - 10.0) < 1e-9 for q in p), p[0])
+        pos = [st.resolved.poses[n.id][:3, 3] for n in slots]
+        self.assertTrue(all(abs(np.linalg.norm(b[:2] - a[:2]) - 5.0) < 1e-9 for a, b in zip(pos, pos[1:])))
+        zone = st.vent_row["zone"]
+        e = np.asarray(zone["axis"])
+        c = np.asarray(zone["centre"][:2])
+        along = [float(np.dot(q[:2] - c, e)) for q in pos]
+        self.assertLessEqual(max(along) + 2.25 / 2, zone["long"] / 2 + 1e-9)
+        self.assertGreaterEqual(min(along) - 2.25 / 2, -zone["long"] / 2 - 1e-9)
+        self.assertAlmostEqual(zone["long"], 35.6, places=9)
+        rows = [k for k in results if k.startswith("vent_")]
+        self.assertEqual(sorted(rows), sorted(["vent_count", "vent_width", "vent_length", "vent_pitch", "vent_area",
+                                               "vent_zone_mcu"]))
+        self.assertTrue(all(results[k].passed for k in rows), {k: results[k].evidence for k in rows})
+        self.assertGreaterEqual(results["vent_area"].evidence["value"], 100.0)
+        links = A.trace_links(st, A.build_plan(st))
+        self.assertTrue(all("L1.7" in links[k] for k in rows), {k: links[k] for k in rows})
+        lig = [k for k in results if k.startswith("ligament_vent_")]
+        self.assertEqual(len(lig), 7)
+        self.assertTrue(all(results[k].passed for k in lig), {k: results[k].evidence.get("detail") for k in lig})
+
+    def test_wall_row_opposite_exposed_item(self):
+        # T9: G11 with iteration 003's answers and a unanimous "opposite the jack": the slots go in the wall opposite the
+        # jack's wall, give >= the stated area, are counted in that wall's aperture_count, and their ligaments pass
+        l17 = dict(gen_texts("G11"))["L1.7"]
+        count = numbers_in(l17, r"at least (\d+) slots")[0]
+        w = numbers_in(l17, r"each (\d+) to (\d+) mm wide")
+        tall = numbers_in(l17, r"at least (\d+) mm tall")[0]
+        area = numbers_in(l17, r"at least (\d+) mm2")[0]
+        spec = vent_spec_reply("G11", "L1.7", {"vent_count_min": count, "vent_width_min": w[0], "vent_width_max": w[1],
+                                               "vent_length_min": tall, "vent_area_min": area})
+        st0 = A.AssemblyState(catalog=pt.Catalog.load(BOTH))
+        script = iter003_answers("G11_s3")
+        jack = next(pid for pid in st0.catalog.ids() if st0.catalog.get(pid).kind == "connector"
+                    and A.text_evidence(gen_texts("G11")[:1], st0.catalog.get(pid).names))
+        conn = st0.catalog.get(jack).data["connectors"][0]["name"]
+        script.update(assy_vent_relation=[{"vents": f"connector_1.{conn}|opposite"}], assy_vent_spec=[spec])
+        llm, status, child, st, results = gen_run(self.root, "G11", script)
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        self.assertEqual(llm.labels().count(A.VENT_RELATION_LABEL), ca.VOTES)
+        p, c = next((p, c) for p, c in A.exposed_connectors(st) if p.part == jack)
+        jack_wall = A.wall_facing(lay.world_datum(p, c["axis"]).dir)
+        slots = [n for n in st.graph if n.role == "vent_cut"]
+        self.assertTrue(slots)
+        walls = {n.wall for n in slots}
+        self.assertEqual(len(walls), 1)
+        wall = walls.pop()
+        self.assertEqual((wall[1:], wall[0] != jack_wall[0]), (jack_wall[1:], True))
+        self.assertGreaterEqual(results["vent_area"].evidence["value"], area)
+        self.assertGreaterEqual(len(slots), count)
+        ap = results[f"apertures_{wall}"]
+        self.assertEqual(ap.evidence["expected"], len(slots))
+        self.assertTrue(ap.passed, ap.evidence.get("detail"))
+        for n in slots:
+            self.assertTrue(results[f"ligament_{n.id}_base"].passed, results[f"ligament_{n.id}_base"].evidence)
+            self.assertTrue(results[f"bridge_{n.id}"].passed)
+        self.assertTrue(all(results[k].passed for k in results if k.startswith("vent_")))
+
+    def test_unresolved_face_is_typed(self):
+        # T10: G50 names vents in the side walls but no zone and no relation to a connector (its only relation word,
+        # "other than", is in another clause): a note, vent_placed failing with a typed conflict, no slot, no size question
+        llm, status, child, st, results = gen_run(self.root, "G50", iter003_answers("G50_s3"))
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        self.assertIn(f"vent: face not resolved ({A.VENT_NOT_RESOLVED})", st.notes)
+        self.assertFalse(results["vent_placed"].passed)
+        self.assertTrue(results["vent_placed"].evidence.get("conflict"))
+        _, unctrl = A.controllable(list(results.values()))
+        self.assertIn("vent_placed", [r.check_id for r in unctrl])
+        self.assertFalse([n for n in st.graph if n.role == "vent_cut"])
+        self.assertNotIn(A.VENT_SPEC_LABEL, llm.labels())
+        self.assertNotIn(A.VENT_RELATION_LABEL, llm.labels())
+
+    def test_prompts_unchanged_without_vent_words(self):
+        # T11 (guard): the four regression texts ask no vent question, and every question iteration 003 recorded is asked
+        # again with the same prompt. Changed in migration delta R01: with the USB the 9B left closed, the first pass
+        # arranges the jacks alone (its own edge vote and confirm), the controller asks one question, and the arrangement
+        # re-runs with the USB exposed (iteration 003's edge, relation and confirm questions, unchanged)
+        for rid in ("E1-01", "V1", "V2", "V3"):
+            with self.subTest(rid=rid):
+                st, _, llm, _ = regression_replay(self.root, rid)
+                self.assertEqual(A.vent_sentences(st), [])
+                files = sorted(iter003_package(f"{rid}_s3").glob("llm/*.txt"))
+                want = [(f.stem.split("_", 1)[1], f.read_text().split("=== PROMPT ===\n", 1)[1].split(
+                    "\n\n=== RESPONSE ===", 1)[0]) for f in files]
+                got = [(lb, pr) for lb, pr, _ in llm.calls]
+                self.assertFalse([lb for lb, _ in got if lb.startswith(("assy_vent",))])
+                for lb, pr in want:
+                    if lb != "assy_confirm":
+                        self.assertIn((lb, pr), got, lb)
+                extra = Counter(lb for lb, _ in got) - Counter(lb for lb, _ in want)
+                self.assertLessEqual(set(extra), {"assy_control", "assy_edge", "assy_confirm"}, extra)
+                self.assertEqual(extra["assy_control"], ca.VOTES)
+
+
+class TestBridge(unittest.TestCase):
+    """C4 (RC-H): the bridge sensor, then a 45-degree roof where the stated oversize allows it."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        cls.root = Path(cls.tmp.name)
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def test_wide_opening_gets_roof(self):
+        # T12a: the G02 USB-B opening (16.8 wide) gets a roof whose top width is <= bridge_max - design_margin, and its
+        # bridge and oversize checks pass (the top excess, measured per side about the plug, stays under the oversize)
+        _, status, child, st, results = gen_run(self.root, "G02", g02_script())
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        r = st.rules.values
+        roofed = [n for n in st.graph if n.role == "port_cut" and getattr(n, "roof", None)]
+        self.assertEqual(len(roofed), 1, [n.id for n in st.graph if n.role == "port_cut"])
+        n = roofed[0]
+        w = st.resolved.params[n.id]["y"]
+        self.assertGreater(w, r["bridge_max"])
+        roof = st.resolved.params[n.roof]
+        self.assertLessEqual(roof["b"], r["bridge_max"] - r["design_margin"] + 1e-9)
+        self.assertAlmostEqual(roof["rise"], (w - roof["b"]) / 2, places=9)          # 45 degrees
+        for k in (f"bridge_{n.id}", f"oversize_{n.id}", f"ligament_{n.id}_base", f"below_split_{n.id}"):
+            self.assertTrue(results[k].passed, (k, results[k].evidence.get("detail")))
+        top = results[f"oversize_{n.id}"].evidence["excess_per_side"]
+        self.assertAlmostEqual(top, r["plug_to_opening"] + r["design_margin"] + roof["rise"], places=3)
+        self.assertTrue(all(results[k].passed for k in results if k.startswith("bridge_")))
+
+    def test_roof_yields_to_oversize(self):
+        # T12b: the G04 mini-HDMI opening (17.8 wide) under a 1.5 oversize stays flat (a roof would rise 1.45 and put its top
+        # 1.85 above the plug), and bridge_* fails with a typed conflict (uncontrollable: never steers prescore)
+        _, status, child, st, results = gen_run(self.root, "G04", iter003_answers("G04_s3"))
+        self.assertEqual(status, ca.Status.SUCCESS, (type(child).__name__, st.notes[-3:]))
+        r = st.rules.values
+        wide = [n for n in st.graph if n.role == "port_cut" and n.primitive == "box"
+                and st.resolved.params[n.id]["y"] > r["bridge_max"]]
+        self.assertEqual(len(wide), 1)
+        n = wide[0]
+        self.assertFalse(getattr(n, "roof", None))
+        self.assertFalse([m for m in st.graph if m.role == "port_roof"])
+        res = results[f"bridge_{n.id}"]
+        self.assertFalse(res.passed)
+        self.assertIn("stated oversize vs bridge limit", res.evidence["conflict"])
+        _, unctrl = A.controllable(list(results.values()))
+        self.assertIn(res.check_id, [x.check_id for x in unctrl])
+        self.assertTrue(results[f"oversize_{n.id}"].passed)
 
 
 if __name__ == "__main__":

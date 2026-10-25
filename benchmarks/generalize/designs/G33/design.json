@@ -1,0 +1,40 @@
+{
+  "about": "Generalization benchmark G33 (train), dev.json format, tier 4. A printed pin hinge: two leaves with interleaved knuckles, a steel pin, four heat-set inserts, a swing from 0 to 180 degrees that must stay collision-free, and printed-in clearances. Judged by Python measurements on the two delivered STLs, a swept rotation of one leaf about the pin axis, and reference models built from the catalogue (dowel_pin_generic, heatset_m3, bolt_m3_iso4762). L1 ids match requirements.md in this folder, which holds the L2/L3 tree, reference models, assumptions, fixed decisions, feasibility sketch and traceability. Numbers that are not in the owner's words come from requirements.md section 3 and are provisional. Never put any of these numbers in agent logic: they belong in the request text and in parts/*/part.json.",
+  "methods": {
+    "inspection": "read from the design or mesh (counts, sizes, positions, relations)",
+    "analysis": "computed by Python (stability, connectivity, interference and clearance against reference models, hand calculations)",
+    "demonstration": "a stand-in object is placed in the design (fits, rests, does not slide)",
+    "test": "a probe is applied (insert a plug along its axis, drop the board in, load path)",
+    "human": "only the person can judge"
+  },
+  "requests": [
+    {
+      "id": "G33", "tier": 4, "title": "Pin hinge pair, two leaves",
+      "request": "I need a hinge made of two printed leaves joined by a 3 mm steel pin that is 40 mm long. Each leaf is 25 mm by 40 mm in plan (the 40 mm side runs along the pin) and has two M3 heat-set inserts for mounting it to something. The hinge swings from 0 degrees, folded shut with the leaves face to face, to 180 degrees, laid flat. Neighbouring knuckles have 0.3 mm of clearance between them, and the hole in the turning leaf is 0.2 mm larger than the pin. The two leaves must not collide at any angle through the whole swing. It is printed on an FDM printer, without supports.",
+      "request_verbatim": "Two printed hinge leaves joined by a 3 mm steel pin, 40 mm long, each leaf 25 x 40 mm with two heat-set M3 inserts. The hinge opens 0 to 180 degrees with 0.3 mm clearance between knuckles and 0.2 mm on the pin. The leaves must not collide through the whole swing.",
+      "request_notes": "Added to the owner's words, all from requirements.md section 3: 0 degrees = folded shut and 180 degrees = flat (A1); 0.2 mm on the pin is a diametral clearance (hole 0.2 mm larger) and applies to the turning leaf, while the other leaf holds the pin with a press fit so the pin is retained (A2, A3); the leaf plan includes the knuckle barrel (A4); FDM, no supports (A9).",
+      "l1": [
+        {"id": "L1.1", "text": "The hinge shall be two printed leaves, each one manifold body, each 25.0 mm (plus or minus 0.3) by 40.0 mm (plus or minus 0.2) in plan and 8.4 to 10.0 mm thick, with a flat mounting face (flat within 0.2 mm).", "method": "inspection"},
+        {"id": "L1.2", "text": "The leaves shall carry alternate knuckles along the 40 mm pin axis: an odd number of at least 3, each at least 5.0 mm long, with 0.30 to 0.40 mm between neighbouring knuckle faces and the two outer knuckles flush with the 40 mm ends.", "method": "inspection"},
+        {"id": "L1.3", "text": "The 3 mm pin shall pass through every knuckle on one common axis (within 0.10 mm). The holes of the turning leaf shall be 0.20 mm larger than the pin (3.15 to 3.30 mm), and every knuckle shall have at least 2.0 mm of wall round its hole.", "method": "inspection"},
+        {"id": "L1.4", "text": "The pin shall be held by a press fit (hole 2.95 to 3.05 mm) in the outer knuckles of the other leaf, with at least 14.0 mm of engagement, and the pin ends shall lie within 0.3 mm of the 40 mm ends.", "method": "inspection"},
+        {"id": "L1.5", "text": "Each leaf shall have two M3 heat-set insert holes of 3.9 to 4.1 mm diameter, at least 7.2 mm deep with at least 1.0 mm floor, square to the mounting face within 1 degree, at least 3.0 mm from any edge or feature and at least 15.0 mm apart, and symmetric about the leaf's mid-length (within 0.5 mm).", "method": "inspection"},
+        {"id": "L1.6", "text": "Through the whole swing from 0 to 180 degrees, sampled every 5 degrees, the two leaves shall not intersect and shall stay at least 0.30 mm apart, and the turning leaf's pin holes shall stay at least 0.05 mm clear of the pin.", "method": "analysis"},
+        {"id": "L1.7", "text": "At 180 degrees the two mounting faces shall be coplanar within 0.2 mm. At 0 degrees they shall be parallel within 1 degree and the leaves shall fold face to face with 0.30 to 0.60 mm between the plates.", "method": "analysis"},
+        {"id": "L1.8", "text": "The folded hinge shall fit within 30 x 41 x 20 mm and the flat hinge within 45 x 41 x 15 mm.", "method": "inspection"},
+        {"id": "L1.9", "text": "Each leaf shall print without supports in a declared orientation, with at least 50 percent of its plan on the bed and no feature thinner than 0.8 mm.", "method": "analysis"},
+        {"id": "L1.10", "text": "With the leaves assembled, the pin shall be insertable along its axis through every knuckle, and an M3 bolt shall reach every insert from outside along its axis, both folded and flat.", "method": "test"},
+        {"id": "L1.11", "text": "The design shall be delivered as one STL per leaf in the flat pose, the OpenSCAD source, the declared pin axis, insert axes and print orientations, and the agent's own swing report, and that report shall agree with an independent measurement.", "method": "inspection"}
+      ],
+      "beyond_library": [
+        "subtraction: pin holes, insert holes and knuckle notches",
+        "interleaved knuckle generation along an axis with axial gaps derived from a clearance value",
+        "revolute joint reasoning: rotate one body about a declared axis and test interference and clearance at every angle",
+        "two printable bodies with their own print orientation, assembled by a swept pose rather than a fixed one",
+        "parts catalogue: dowel pin (press-fit and clearance hole sizes), heat-set insert (hole size, depth, edge distance), M3 bolt access",
+        "checks against external solids: clear_of over a swept pose set, pin insertion path, press-fit overlap",
+        "fold and flat pose reasoning: the axis height above the plates that lets the folded plates clear each other"
+      ]
+    }
+  ]
+}

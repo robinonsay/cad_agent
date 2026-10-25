@@ -1,0 +1,207 @@
+{
+  "id": "fan_60x60x25",
+  "schema": 1,
+  "units": "mm",
+  "names": [
+    "60 mm fan",
+    "60mm fan",
+    "60x60 fan",
+    "60x60x25 fan",
+    "60 mm case fan",
+    "dc fan 60mm",
+    "axial fan"
+  ],
+  "kind": "fan",
+  "source": "60 x 60 x 25 mm DC axial fan (Sunon/Delta/Nidec class datasheets): frame 60 x 60 x 25 mm, four mounting holes 4.3 mm on a 50.0 mm square pattern, air bore about 58 mm (frame inner opening, estimate +/-1), rounded corners ignored. Airflow direction is +Z by the common marking convention (arrow on the frame; check the owner's part). Free-air clearances are an assumed convention (about 1/4 of the fan size, +/-3 mm). Wire exit and rotor hub (about 28 mm) are not modelled.",
+  "frame": "fan: origin at the min corner of the frame, intake face at Z = 0, exhaust face at Z = thickness, airflow +Z",
+  "params": {
+    "size": {
+      "default": 60.0,
+      "source": "datasheet: frame width and depth"
+    },
+    "thickness": {
+      "default": 25.0,
+      "source": "datasheet: frame thickness"
+    },
+    "hole_pitch": {
+      "default": 50.0,
+      "source": "datasheet: mounting hole square pattern"
+    },
+    "hole_diameter": {
+      "default": 4.3,
+      "source": "datasheet: mounting hole"
+    },
+    "bore_diameter": {
+      "default": 58.0,
+      "source": "estimate: air opening in the frame (+/-1)"
+    },
+    "screw_head_keepout": {
+      "default": 8.0,
+      "source": "assumed: round the holes for a M4 pan head and driver"
+    },
+    "intake_clearance": {
+      "default": 15.0,
+      "source": "assumed convention: free space on the intake side, about size / 4 (+/-3)"
+    },
+    "exhaust_clearance": {
+      "default": 15.0,
+      "source": "assumed convention: free space on the exhaust side, about size / 4 (+/-3)"
+    }
+  },
+  "datasheet_size": [
+    "size",
+    "size",
+    "thickness"
+  ],
+  "size_tolerance": 0.2,
+  "geometry": [
+    {
+      "id": "frame",
+      "primitive": "box",
+      "size": [
+        "size",
+        "size",
+        "thickness"
+      ],
+      "at": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "keepouts": [
+    {
+      "id": "intake_side",
+      "primitive": "box",
+      "size": [
+        "bore_diameter",
+        "bore_diameter",
+        "intake_clearance"
+      ],
+      "at": [
+        "(size - bore_diameter) / 2",
+        "(size - bore_diameter) / 2",
+        "-intake_clearance"
+      ]
+    },
+    {
+      "id": "exhaust_side",
+      "primitive": "box",
+      "size": [
+        "bore_diameter",
+        "bore_diameter",
+        "exhaust_clearance"
+      ],
+      "at": [
+        "(size - bore_diameter) / 2",
+        "(size - bore_diameter) / 2",
+        "thickness"
+      ]
+    }
+  ],
+  "datums": {
+    "AIRFLOW": {
+      "kind": "axis",
+      "at": [
+        "size / 2",
+        "size / 2",
+        0
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "bore_diameter"
+    },
+    "INTAKE_FACE": {
+      "kind": "plane",
+      "at": [
+        "size / 2",
+        "size / 2",
+        0
+      ],
+      "normal": [
+        0,
+        0,
+        -1
+      ]
+    },
+    "EXHAUST_FACE": {
+      "kind": "plane",
+      "at": [
+        "size / 2",
+        "size / 2",
+        "thickness"
+      ],
+      "normal": [
+        0,
+        0,
+        1
+      ]
+    },
+    "HOLE": {
+      "kind": "axis_list",
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "diameter": "hole_diameter",
+      "keepout_diameter": "screw_head_keepout",
+      "at": [
+        [
+          "(size - hole_pitch) / 2",
+          "(size - hole_pitch) / 2",
+          0
+        ],
+        [
+          "(size + hole_pitch) / 2",
+          "(size - hole_pitch) / 2",
+          0
+        ],
+        [
+          "(size - hole_pitch) / 2",
+          "(size + hole_pitch) / 2",
+          0
+        ],
+        [
+          "(size + hole_pitch) / 2",
+          "(size + hole_pitch) / 2",
+          0
+        ]
+      ]
+    }
+  },
+  "connectors": [],
+  "self_checks": [
+    {
+      "name": "holes inside the frame",
+      "expr": "(size - hole_pitch) / 2 - hole_diameter / 2",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "bore inside the frame",
+      "expr": "size - bore_diameter",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    },
+    {
+      "name": "hole count",
+      "expr": "HOLE.count",
+      "value": 4,
+      "tol": 0
+    },
+    {
+      "name": "exhaust beyond intake",
+      "expr": "EXHAUST_FACE.z - INTAKE_FACE.z",
+      "op": "ge",
+      "value": 0,
+      "tol": 0
+    }
+  ]
+}
