@@ -1,0 +1,454 @@
+{
+  "schema": 2,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "vote_rules": {
+    "menu_orderings": 3,
+    "menu_samples": 1,
+    "menu_consistency_min": 1.0,
+    "menu_min_valid": 2
+  },
+  "search": {
+    "k": 3,
+    "depth": 1,
+    "depth_requested": 1,
+    "max_evals": 12
+  },
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "1b75ce3e7d0fd058",
+        "graph": "675bdf673b1478ae",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "perfboard",
+              1,
+              []
+            ],
+            [
+              "module_1",
+              "rpi_pico2",
+              1,
+              []
+            ],
+            [
+              "connector_1",
+              "jack_3p5_pj320a",
+              2,
+              [
+                "jack"
+              ]
+            ]
+          ],
+          "stacks": {
+            "module_1": "header_male_2p54",
+            "connector_1": null
+          },
+          "faces": {
+            "edge[connector_1]": "+X"
+          },
+          "relations": [],
+          "closure": "lip",
+          "boss_layout": "outside_corners",
+          "archetype": "tray_lid+screws",
+          "vent_face": null,
+          "fasteners": {
+            "board": "screw_m2_selftap",
+            "lid": "screw_m3_selftap"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "failing": [
+        "text_coverage"
+      ],
+      "terms": [
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5",
+            "L1.6"
+          ],
+          "where": "module_1.usb (raspberry pi pico 2) is closed, but L1.5 names a micro-usb plug: \"With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening sh...\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "2 named plug connection(s) covered; uncovered: module_1.usb takes plug_microusb_b named by L1.5"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "1b75ce3e7d0fd058",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "perfboard",
+            1,
+            []
+          ],
+          [
+            "module_1",
+            "rpi_pico2",
+            1,
+            []
+          ],
+          [
+            "connector_1",
+            "jack_3p5_pj320a",
+            2,
+            [
+              "jack"
+            ]
+          ]
+        ],
+        "stacks": {
+          "module_1": "header_male_2p54",
+          "connector_1": null
+        },
+        "faces": {
+          "edge[connector_1]": "+X"
+        },
+        "relations": [],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": "screw_m2_selftap",
+          "lid": "screw_m3_selftap"
+        }
+      },
+      "error_before": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "terms_before": [
+        {
+          "check": "text_coverage",
+          "type": "coverage",
+          "requirement": [
+            "L1.5",
+            "L1.6"
+          ],
+          "where": "module_1.usb (raspberry pi pico 2) is closed, but L1.5 names a micro-usb plug: \"With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening sh...\"",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "an opening for each connector whose mating plug the text names",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "2 named plug connection(s) covered; uncovered: module_1.usb takes plug_microusb_b named by L1.5"
+        }
+      ],
+      "menu": [
+        {
+          "kind": "expose",
+          "target": "module_1.usb",
+          "value": true,
+          "words": "expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+          "targets": [
+            "text_coverage"
+          ],
+          "invalidates": "arrange",
+          "evidence": [
+            {
+              "source": "L1.5",
+              "quote": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+            }
+          ],
+          "key": "expose:module_1.usb=True",
+          "id": "expose:module_1.usb",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "stop",
+          "expose:module_1.usb"
+        ],
+        [
+          "expose:module_1.usb",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "expose:module_1.usb",
+        "votes": {
+          "expose:module_1.usb": 2
+        },
+        "valid": 2,
+        "calls": 2,
+        "consistency": 1.0,
+        "confident": true,
+        "orders": [
+          [
+            "stop",
+            "expose:module_1.usb"
+          ],
+          [
+            "expose:module_1.usb",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "expose:module_1.usb",
+            "position": 1,
+            "reason": "The failing requirement text_coverage (L1.5) explicitly names a micro-USB plug that must plug fully into the Pico through an opening in the end wall with the lid closed, and the only unmet need is the closed USB connector\u2014exposing module_1."
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "expose:module_1.usb",
+            "position": 0,
+            "reason": "The failing requirement text_coverage (L1.5) demands an opening for the Pico's micro-USB connector so a cable can plug in with the lid closed, and exposing module_1.usb creates exactly that opening, whereas stop leaves the USB wall closed."
+          }
+        ],
+        "first_position": 1
+      },
+      "votes": {
+        "expose:module_1.usb": 2
+      },
+      "consistency": 1.0,
+      "confident": true,
+      "chosen": "expose:module_1.usb",
+      "candidates": [
+        {
+          "id": "expose:module_1.usb",
+          "action": {
+            "kind": "expose",
+            "target": "module_1.usb",
+            "value": true,
+            "words": "expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+            "targets": [
+              "text_coverage"
+            ],
+            "invalidates": "arrange",
+            "evidence": [
+              {
+                "source": "L1.5",
+                "quote": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+              }
+            ],
+            "key": "expose:module_1.usb=True",
+            "id": "expose:module_1.usb",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 20.24,
+          "outcome": "kept",
+          "reason": "fewer failing checks (1 -> 0)",
+          "error_after": {
+            "hard_failures": 0,
+            "violation": 0
+          },
+          "state_after": "3d0271edf1b7d21e",
+          "failing_after": [],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        }
+      ],
+      "evals": 1,
+      "action": {
+        "kind": "expose",
+        "target": "module_1.usb",
+        "value": true,
+        "words": "expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+        "targets": [
+          "text_coverage"
+        ],
+        "invalidates": "arrange",
+        "evidence": [
+          {
+            "source": "L1.5",
+            "quote": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+          }
+        ],
+        "key": "expose:module_1.usb=True",
+        "id": "expose:module_1.usb",
+        "ident": ""
+      },
+      "selected": "expose:module_1.usb",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (1 -> 0)",
+      "error_after": {
+        "hard_failures": 0,
+        "violation": 0
+      },
+      "state_after": "3d0271edf1b7d21e",
+      "failing_after": [],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -1.0
+      },
+      "llm_calls": 7,
+      "secs": 26.48
+    }
+  ],
+  "stop": {
+    "reason": "every check passes",
+    "step": 1
+  },
+  "evals": 1,
+  "final": {
+    "state": {
+      "decisions": "3d0271edf1b7d21e",
+      "graph": "8b92655a73358766",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "perfboard",
+            1,
+            []
+          ],
+          [
+            "module_1",
+            "rpi_pico2",
+            1,
+            [
+              "usb"
+            ]
+          ],
+          [
+            "connector_1",
+            "jack_3p5_pj320a",
+            2,
+            [
+              "jack"
+            ]
+          ]
+        ],
+        "stacks": {
+          "module_1": "header_male_2p54",
+          "connector_1": null
+        },
+        "faces": {
+          "edge[connector_1]": "+X",
+          "edge[module_1]": "-X"
+        },
+        "relations": [
+          [
+            "module_1.usb",
+            "connector_1.jack",
+            "opposite"
+          ]
+        ],
+        "closure": "lip",
+        "boss_layout": "outside_corners",
+        "archetype": "tray_lid+screws",
+        "vent_face": null,
+        "fasteners": {
+          "board": "screw_m2_selftap",
+          "lid": "screw_m3_selftap"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 0,
+      "violation": 0
+    },
+    "failing": [],
+    "terms": []
+  },
+  "secs": 26.84,
+  "authority": {
+    "decisions": {
+      "semantic-rule": 5,
+      "llm": 5,
+      "plant": 2
+    },
+    "proposal": {
+      "llm_slots": 11,
+      "default_slots": 1,
+      "llm_contents_items": 3
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "primary",
+        "by": "rule:primary_reference",
+        "migration": "R05"
+      },
+      {
+        "decision": "stack[module_1]",
+        "by": "rule:catalogue_default",
+        "migration": "R05"
+      },
+      {
+        "decision": "fastener[board]",
+        "by": "rule:smallest_thread_through_board_hole",
+        "migration": "R03"
+      },
+      {
+        "decision": "fastener[lid]",
+        "by": "rule:largest_complete_screw",
+        "migration": "R03"
+      },
+      {
+        "decision": "closure",
+        "by": "rule:default_closure",
+        "migration": "R07"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.7037
+  },
+  "accepted": [
+    {
+      "kind": "expose",
+      "target": "module_1.usb",
+      "value": true,
+      "words": "expose module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed",
+      "targets": [
+        "text_coverage"
+      ],
+      "invalidates": "arrange",
+      "evidence": [
+        {
+          "source": "L1.5",
+          "quote": "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side."
+        }
+      ],
+      "key": "expose:module_1.usb=True",
+      "id": "expose:module_1.usb",
+      "ident": "",
+      "step": 1
+    }
+  ]
+}

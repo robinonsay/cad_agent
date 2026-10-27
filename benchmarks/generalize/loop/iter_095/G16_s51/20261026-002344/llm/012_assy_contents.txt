@@ -1,0 +1,46 @@
+MODEL: ornith-1.5:9b T=0.3 seed=51000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I need a flat motor plate that mounts a NEMA 17 stepper (42.3 mm square, 31 mm bolt pattern, 22 mm pilot) to a 2020 aluminium extrusion with two M5 bolts into drop-in T-nuts. The plate lies flat on one face of the extrusion, over its T-slot; the motor hangs beside the extrusion with its shaft coming up through the plate. The M5 holes are slotted 6 mm so I can slide the plate to tension a belt, and the slots run across the extrusion, in the belt direction. The plate is 5 mm thick, prints flat on its face on an FDM printer, and is the only printed part. The two bolts sit 20 to 40 mm apart along the extrusion with the motor's shaft between them, the motor body stays 3.5 to 10 mm from the extrusion's edge, and the shaft needs a 20 mm diameter free zone above the plate, up to 30 mm high, for a pulley and belt.
+
+Catalogue parts that may be in the request:
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- tnut_2020_m5: m5 t-nut (mech)
+- extrusion_2020: 2020 extrusion (profile)
+- generic_cylinder: capacitor (generic)
+- nema17_motor: nema 17 stepper (motor)
+- generic_box: rectangular block (generic)
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+
+For each part give how many one printed copy of the design holds, carries or attaches to (for an enclosure: how many it puts inside; 0 if none; count one copy even when the request asks for several identical copies), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "dc_jack_pj002a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "extrusion_2020": {
+    "quantity": 1
+  },
+  "generic_box": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "no",
+    "quantity": 0
+  },
+  "nema17_motor": {
+    "quantity": 1
+  },
+  "tnut_2020_m5": {
+    "quantity": 2
+  }
+}

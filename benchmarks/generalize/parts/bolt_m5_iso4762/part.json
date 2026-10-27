@@ -215,5 +215,20 @@
       "value": 0,
       "tol": 0
     }
-  ]
+  ],
+  "stock_lengths": [
+    6,
+    8,
+    10,
+    12,
+    16,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+  ],
+  "stock_lengths_source": "migration delta R12: ISO 4762 preferred nominal lengths for M5 (8 to 50 mm in the standard's table; 6 mm also commonly stocked)"
 }

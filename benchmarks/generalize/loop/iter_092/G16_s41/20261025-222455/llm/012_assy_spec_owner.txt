@@ -1,0 +1,19 @@
+MODEL: ornith-1.5:9b T=0.3 seed=41000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+A printed part is being designed from this request and its requirements.
+
+Number n34 = 75 mm (L1.9): "...The plate shall be no larger than 60 x 75 mm...."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n34 state?
+- size_max: the largest allowed plan length of the printed plate or platform along each of its sides (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+
+=== RESPONSE ===
+{
+  "owner": "max_y"
+}

@@ -116,7 +116,7 @@ class TestLoop(Case):
         rc, pkg, _ = run_offline("E1-01", self.root, self.rules, llm=llm, tag="kept")
         rec = json.loads((pkg / "design.json").read_text())["assembly"]
         trace = json.loads((pkg / "controller_trace.json").read_text())
-        self.assertEqual(rc, ca.EXIT_OK)
+        self.assertEqual(rc, ca.EXIT_UNSATISFIED)   # R12 review fix N5: all pass, L1s unlinked -> unverified
         # changed in migration delta R02: one call per distinct ordering of the menu (expose + stop: two orderings)
         self.assertEqual(llm.labels().count(C.CONTROL_LABEL), 2)
         prompt = next(p for lb, p, _ in llm.calls if lb == C.CONTROL_LABEL)
@@ -141,12 +141,13 @@ class TestLoop(Case):
         self.assertEqual(len(s1["state_before"]), C.DIGEST_HEX)
         self.assertEqual(trace["final"]["failing"], [])
         self.assertEqual(trace["accepted"][0]["key"], "expose:module_1.usb=True")
-        # the authority audit: the controller's exposure is an llm decision; the archetype is the R07 semantic rule
+        # the authority audit: the controller's exposure is an llm decision; the archetype (one buildable form) is plant
+        # feasibility since migration delta R12 (it was the R07 semantic rule while the text gate decided feasibility)
         auth = trace["authority"]
         self.assertGreaterEqual(auth["decisions"]["llm"], 1)
         self.assertEqual(auth["unregistered"], [])
-        self.assertIn({"decision": "archetype", "by": "rule:only_feasible", "migration": "R07"},
-                      auth["semantic_rule_decisions"])
+        self.assertFalse(any(r["decision"] == "archetype" for r in auth["semantic_rule_decisions"]))
+        self.assertEqual(C.decision_class(rec["choices"]["archetype"]["by"], C.load_registry()), "plant")
         results = {r["check_id"]: r for r in rec["results"]}
         self.assertTrue(results["text_coverage"]["passed"])
         pico = next(r["id"] for r in json.loads((pkg / "layout.json").read_text())["references"]

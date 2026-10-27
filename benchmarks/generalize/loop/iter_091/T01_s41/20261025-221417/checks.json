@@ -1,0 +1,584 @@
+[
+  {
+    "id": "separable",
+    "l1_id": "rules",
+    "type": "separable",
+    "params": {
+      "bodies": [
+        "plate"
+      ],
+      "overlap_max": 1.0
+    },
+    "text": "the plate is one shell",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "clear_primary",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "primary",
+      "clearance": 0.0
+    },
+    "text": "the plate does not enter the cleat_shimano_sm_sh51 (its face bears on the plate: designed contact)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "clear_fasteners",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "fasteners",
+      "clearance": 0.0
+    },
+    "text": "the bolts pass their slots without entering the plate (a shank in its slot: designed contact)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "clear_recess",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "keepout_recess",
+      "clearance": 0.0
+    },
+    "text": "the cleat_shimano_sm_sh51's recess keep-out stays open at every position of its adjustment range",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "clear_mech_1",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "engaged",
+      "clearance": 0.0
+    },
+    "text": "the plate does not enter the pedal_shimano_pd_m520 (the plate's underside on its mating plane: designed contact)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_mech_1_binding_cage",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "keepout_mech_1_binding_cage",
+      "clearance": 0.0
+    },
+    "text": "nothing printed enters the pedal_shimano_pd_m520's binding_cage keep-out, swept over the adjustment range (it meets the mating plane from below: designed contact)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "clear_mech_1_crank_side",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "keepout_mech_1_crank_side",
+      "clearance": 0.0
+    },
+    "text": "the plate stays 0 mm from the pedal_shimano_pd_m520's crank_side keep-out, swept over the adjustment range and its 13-step rotation",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "handedness_plate",
+    "l1_id": "rules",
+    "type": "handedness",
+    "params": {
+      "plane": {
+        "at": [
+          0.0,
+          0.0,
+          -20.0
+        ],
+        "normal": [
+          0.0,
+          1.0,
+          0.0
+        ],
+        "part": "pedal_shimano_pd_m520"
+      },
+      "volumes": [
+        [
+          "keepout_mech_1_binding_cage",
+          0.0
+        ],
+        [
+          "keepout_mech_1_crank_side",
+          0.0
+        ]
+      ],
+      "decision": "mirror_pair"
+    },
+    "text": "one part serves both sides of the pedal_shimano_pd_m520 mirror pair (its mirror image clears the same keep-outs), or a mirror pair is declared",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "travel_x",
+    "l1_id": "rules",
+    "type": "travel",
+    "params": {
+      "volume": "travel_0",
+      "clearance": 0.0,
+      "conflict": ""
+    },
+    "text": "the bolts move through the cleat_shimano_sm_sh51's full 20 mm adjustment along x without entering the plate (slots and nut channels cover 20 mm)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "travel_y",
+    "l1_id": "rules",
+    "type": "travel",
+    "params": {
+      "volume": "travel_1",
+      "clearance": 0.0,
+      "conflict": "the cleat_shimano_sm_sh51 declares 5 mm of adjustment along y, but a captive hex nut stops turning only while it slides along one direction (the slots cover 20 mm along x); a requirement question: accept the covered axis, or a nut plate / threaded insert the catalogue does not hold"
+    },
+    "text": "the bolts move through the cleat_shimano_sm_sh51's full 5 mm adjustment along y without entering the plate (slots and nut channels cover 0 mm)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "bolt_engagement_0",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 1.1999999999999993,
+      "limit": 0.0,
+      "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)"
+    },
+    "text": "bolt_0 engages its nut over the nut's whole thickness",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "bolt_tip_0",
+    "l1_id": "rules",
+    "type": "bolt_tip",
+    "params": {
+      "value": 1.4000000000000004,
+      "limit": 0.0,
+      "detail": "design check: top face z 9.400 vs tip 8.000"
+    },
+    "text": "bolt_0's tip stays below the plate's top face",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "nut_trap_0",
+    "l1_id": "rules",
+    "type": "nut_trap",
+    "params": {
+      "body": "plate",
+      "xy": [
+        -7.5,
+        0.0
+      ],
+      "z": 4.45,
+      "across": [
+        -0.0,
+        1.0
+      ],
+      "flats": 8.0,
+      "corners": 8.79,
+      "lo": 0.1,
+      "hi": 0.4
+    },
+    "text": "nut_0 sits in a hex channel 0.1-0.4 mm per flat side, narrower than its corners (it cannot turn)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "bolt_engagement_1",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 1.1999999999999993,
+      "limit": 0.0,
+      "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)"
+    },
+    "text": "bolt_1 engages its nut over the nut's whole thickness",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "bolt_tip_1",
+    "l1_id": "rules",
+    "type": "bolt_tip",
+    "params": {
+      "value": 1.4000000000000004,
+      "limit": 0.0,
+      "detail": "design check: top face z 9.400 vs tip 8.000"
+    },
+    "text": "bolt_1's tip stays below the plate's top face",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "nut_trap_1",
+    "l1_id": "rules",
+    "type": "nut_trap",
+    "params": {
+      "body": "plate",
+      "xy": [
+        7.5,
+        0.0
+      ],
+      "z": 4.45,
+      "across": [
+        -0.0,
+        1.0
+      ],
+      "flats": 8.0,
+      "corners": 8.79,
+      "lo": 0.1,
+      "hi": 0.4
+    },
+    "text": "nut_1 sits in a hex channel 0.1-0.4 mm per flat side, narrower than its corners (it cannot turn)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "plate_size_x",
+    "l1_id": "rules",
+    "type": "plate_size",
+    "params": {
+      "body": "plate",
+      "axis": 0,
+      "lo": 80.0,
+      "hi": 105.0
+    },
+    "text": "the plate's plan length along x lies in [80.0, 105.0] mm",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.7"
+    ]
+  },
+  {
+    "id": "plate_size_y",
+    "l1_id": "rules",
+    "type": "plate_size",
+    "params": {
+      "body": "plate",
+      "axis": 1,
+      "lo": 80.0,
+      "hi": 105.0
+    },
+    "text": "the plate's plan length along y lies in [80.0, 105.0] mm",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.7"
+    ]
+  },
+  {
+    "id": "plate_thickness",
+    "l1_id": "rules",
+    "type": "plate_thickness",
+    "params": {
+      "body": "plate",
+      "z_bot": -3.0,
+      "lo": 8.0,
+      "hi": 14.0,
+      "outline": [
+        -39.99999999999999,
+        -38.74999999999999,
+        40.1,
+        41.35
+      ]
+    },
+    "text": "the plate's thickness (raised features not counted) lies in its band",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.7"
+    ]
+  },
+  {
+    "id": "bearing_area",
+    "l1_id": "rules",
+    "type": "bearing_area",
+    "params": {
+      "body": "plate",
+      "z": -3.0,
+      "limit": 600.0
+    },
+    "text": "the plate's underside bears on at least 600 mm2 of flat area",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.5"
+    ]
+  },
+  {
+    "id": "load_stress",
+    "l1_id": "rules",
+    "type": "load_stress",
+    "params": {
+      "body": "plate",
+      "case": {
+        "force": 2500.0,
+        "patch": 30.0,
+        "strength": 25.0,
+        "safety": 1.5,
+        "allow": 16.666666666666668
+      },
+      "plate": {
+        "outline": [
+          -39.99999999999999,
+          -38.74999999999999,
+          40.1,
+          41.35
+        ],
+        "adjust": [
+          {
+            "dir": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "range": 20.0,
+            "covered": 20.0
+          },
+          {
+            "dir": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "range": 5.0,
+            "covered": 0.0
+          }
+        ]
+      }
+    },
+    "text": "the load case (2500 N on a 30 mm patch at each outer edge, carried by the cleat_shimano_sm_sh51 footprint) bends the plate at most 16.67 MPa",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.9"
+    ]
+  },
+  {
+    "id": "printable",
+    "l1_id": "rules",
+    "type": "printable",
+    "params": {
+      "body": "plate",
+      "orientation": "top_face_down",
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0
+    },
+    "text": "the plate prints top face down without supports (no overhang steeper than 45 deg from vertical, no bridge longer than 15 mm)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "surface_features",
+    "l1_id": "rules",
+    "type": "surface_features",
+    "params": {
+      "features": [
+        {
+          "x": -34.8,
+          "y": -33.55,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": 34.2,
+          "y": -33.55,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": 34.2,
+          "y": 35.45,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -34.8,
+          "y": 35.45,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -0.7999999999999972,
+          "y": 9.450000000000003,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -0.7999999999999972,
+          "y": -25.549999999999997,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": 32.2,
+          "y": 0.45000000000000284,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -33.8,
+          "y": 0.45000000000000284,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        }
+      ],
+      "outline": [
+        -39.99999999999999,
+        -38.74999999999999,
+        40.1,
+        41.35
+      ],
+      "count": 8.0,
+      "h_lo": 1.5,
+      "h_hi": 5.0,
+      "edge": 3.0,
+      "coverage": 60.0,
+      "kind": "studs"
+    },
+    "text": "the free face carries the raised features the text asks for (count, height, edge distance, spread)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.8"
+    ]
+  },
+  {
+    "id": "bbox",
+    "l1_id": "rules",
+    "type": "bbox_within",
+    "params": {
+      "max": [
+        200.0,
+        200.0,
+        200.0
+      ],
+      "x_longest": false
+    },
+    "text": "the plate (with its raised features) fits within 200 x 200 x 200 mm",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "form_evidence",
+    "l1_id": "rules",
+    "type": "form_evidence",
+    "params": {
+      "current": "plate",
+      "expected": [],
+      "quotes": [
+        {
+          "source": "request",
+          "quote": "The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way).",
+          "match": "platform",
+          "form": "plate"
+        },
+        {
+          "source": "request",
+          "quote": "It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.",
+          "match": "adapter",
+          "form": "plate"
+        },
+        {
+          "source": "L1.1",
+          "quote": "The design shall carry one Shimano SM-SH51 cleat (catalogue cleat) with its mount face against the adapter's cleat seat, fastened by the cleat's own two bolt positions with standard M5 hardware (catalogue M5 socket-head bolts and M5 hex nuts), and shall declare the layout (cleat pose, bolts, nuts, grip features, print orientation).",
+          "match": "adapter",
+          "form": "plate"
+        },
+        {
+          "source": "L1.3",
+          "quote": "At every cleat position in that range the M5 hardware shall fit: each bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pedal, each bolt shall engage its nut for its whole thickness, and no bolt tip shall reach the top face of the platform.",
+          "match": "platform",
+          "form": "plate"
+        }
+      ],
+      "sources": [
+        "L1.1",
+        "L1.3",
+        "L1.4",
+        "L1.5",
+        "L1.6",
+        "L1.7",
+        "L1.8",
+        "L1.9",
+        "request"
+      ]
+    },
+    "text": "the structural form is one the text asks for (when the text names a buildable form's words, the design is that form)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.3",
+      "L1.4",
+      "L1.5",
+      "L1.6",
+      "L1.7",
+      "L1.8",
+      "L1.9"
+    ]
+  }
+]

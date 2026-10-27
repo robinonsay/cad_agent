@@ -1,0 +1,358 @@
+{
+  "schema": 2,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "vote_rules": {
+    "menu_orderings": 3,
+    "menu_samples": 1,
+    "menu_consistency_min": 1.0,
+    "menu_min_valid": 2
+  },
+  "search": {
+    "k": 3,
+    "depth": 1,
+    "depth_requested": 1,
+    "max_evals": 12
+  },
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "48641941f6c60746",
+        "graph": "52ed287524df1673",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "nema17_motor",
+              1,
+              []
+            ],
+            [
+              "mech_1",
+              "tnut_2020_m5",
+              2,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": null,
+          "boss_layout": null,
+          "archetype": "plate+bolt_through",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": null
+          },
+          "plate": {
+            "surface": "none",
+            "handedness": "single",
+            "retention": null,
+            "orientation": "contact_face_down"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 6,
+        "violation": 2.76
+      },
+      "failing": [
+        "content_placed_mech_1",
+        "content_placed_profile_1",
+        "bolt_engagement_0",
+        "bolt_engagement_1",
+        "bolt_engagement_2",
+        "bolt_engagement_3"
+      ],
+      "terms": [
+        {
+          "check": "content_placed_mech_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.1",
+            "L1.3"
+          ],
+          "where": "mech_1 (tnut_2020_m5) is not placed: nema17_motor is not a carrier: no relation places it yet (GM2b)",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mech_1 (tnut_2020_m5) is not placed: nema17_motor is not a carrier: no relation places it yet (GM2b)"
+        },
+        {
+          "check": "content_placed_profile_1",
+          "type": "content_placed",
+          "requirement": [
+            "L1.1"
+          ],
+          "where": "profile_1 (extrusion_2020) is not placed: extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "every content part placed",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "profile_1 (extrusion_2020) is not placed: extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state"
+        },
+        {
+          "check": "bolt_engagement_0",
+          "type": "bolt_engagement",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+          "deficit": 0.19,
+          "unit": "mm",
+          "direction": "increase the bolt thread through its nut",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.19,
+          "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+        },
+        {
+          "check": "bolt_engagement_1",
+          "type": "bolt_engagement",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+          "deficit": 0.19,
+          "unit": "mm",
+          "direction": "increase the bolt thread through its nut",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.19,
+          "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+        },
+        {
+          "check": "bolt_engagement_2",
+          "type": "bolt_engagement",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+          "deficit": 0.19,
+          "unit": "mm",
+          "direction": "increase the bolt thread through its nut",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.19,
+          "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+        },
+        {
+          "check": "bolt_engagement_3",
+          "type": "bolt_engagement",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+          "deficit": 0.19,
+          "unit": "mm",
+          "direction": "increase the bolt thread through its nut",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.19,
+          "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+        }
+      ]
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 0
+  },
+  "evals": 0,
+  "final": {
+    "state": {
+      "decisions": "48641941f6c60746",
+      "graph": "52ed287524df1673",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "nema17_motor",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "tnut_2020_m5",
+            2,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "single",
+          "retention": null,
+          "orientation": "contact_face_down"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 6,
+      "violation": 2.76
+    },
+    "failing": [
+      "content_placed_mech_1",
+      "content_placed_profile_1",
+      "bolt_engagement_0",
+      "bolt_engagement_1",
+      "bolt_engagement_2",
+      "bolt_engagement_3"
+    ],
+    "terms": [
+      {
+        "check": "content_placed_mech_1",
+        "type": "content_placed",
+        "requirement": [
+          "L1.1",
+          "L1.3"
+        ],
+        "where": "mech_1 (tnut_2020_m5) is not placed: nema17_motor is not a carrier: no relation places it yet (GM2b)",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": true,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "mech_1 (tnut_2020_m5) is not placed: nema17_motor is not a carrier: no relation places it yet (GM2b)"
+      },
+      {
+        "check": "content_placed_profile_1",
+        "type": "content_placed",
+        "requirement": [
+          "L1.1"
+        ],
+        "where": "profile_1 (extrusion_2020) is not placed: extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state",
+        "deficit": 1.0,
+        "unit": "count",
+        "direction": "every content part placed",
+        "controllable": true,
+        "actionable": true,
+        "hard": true,
+        "margin": -1.0,
+        "detail": "profile_1 (extrusion_2020) is not placed: extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state"
+      },
+      {
+        "check": "bolt_engagement_0",
+        "type": "bolt_engagement",
+        "requirement": [
+          "L1.1",
+          "L1.2"
+        ],
+        "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+        "deficit": 0.19,
+        "unit": "mm",
+        "direction": "increase the bolt thread through its nut",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.19,
+        "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+      },
+      {
+        "check": "bolt_engagement_1",
+        "type": "bolt_engagement",
+        "requirement": [
+          "L1.1",
+          "L1.2"
+        ],
+        "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+        "deficit": 0.19,
+        "unit": "mm",
+        "direction": "increase the bolt thread through its nut",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.19,
+        "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+      },
+      {
+        "check": "bolt_engagement_2",
+        "type": "bolt_engagement",
+        "requirement": [
+          "L1.1",
+          "L1.2"
+        ],
+        "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+        "deficit": 0.19,
+        "unit": "mm",
+        "direction": "increase the bolt thread through its nut",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.19,
+        "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+      },
+      {
+        "check": "bolt_engagement_3",
+        "type": "bolt_engagement",
+        "requirement": [
+          "L1.1",
+          "L1.2"
+        ],
+        "where": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)",
+        "deficit": 0.19,
+        "unit": "mm",
+        "direction": "increase the bolt thread through its nut",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.19,
+        "detail": "design check: engagement 2.80 mm (bolt_m3_iso4762 8 mm through 5.20 mm of plate)"
+      }
+    ]
+  },
+  "secs": 0.07,
+  "authority": {
+    "decisions": {
+      "semantic-rule": 1,
+      "plant": 2,
+      "guardrail": 1
+    },
+    "proposal": {
+      "llm_slots": 6,
+      "default_slots": 6,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "primary",
+        "by": "rule:primary_reference",
+        "migration": "R05"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.4444
+  },
+  "accepted": []
+}

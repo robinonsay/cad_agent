@@ -1,0 +1,227 @@
+{
+  "iter": "097",
+  "generated": "2026-10-26T02:11:29",
+  "code_sha1": "c831d2c8a54bbf817e02f248f18105b4979cd0f9",
+  "runs_on_one_code_version": true,
+  "code_versions": [
+    "c831d2c8a54bbf817e02f248f18105b4979cd0f9"
+  ],
+  "counts": {
+    "target": {
+      "runs": 1,
+      "rc": {
+        "3": 1
+      },
+      "outcome": {
+        "unsatisfied": 1
+      },
+      "no_output": 0,
+      "with_renders": 1,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 1
+    },
+    "regression": {
+      "runs": 1,
+      "rc": {
+        "3": 1
+      },
+      "outcome": {
+        "unverified": 1
+      },
+      "no_output": 0,
+      "with_renders": 1,
+      "timed_out": 0,
+      "judged": 1,
+      "meets": 1,
+      "correct": 1,
+      "to_judge": 0
+    }
+  },
+  "regression": "pending",
+  "paraphrase": null,
+  "stub_all_checks_pass": 0,
+  "stub_verified": 0,
+  "llm_dependent": [],
+  "stub": {
+    "runs": 0,
+    "verified": [],
+    "all_checks_pass": [],
+    "compared": 0,
+    "same_geometry": [],
+    "outcomes": {
+      "verified": [],
+      "unverified": [],
+      "unsatisfied": [],
+      "failed": []
+    },
+    "verified_share": null,
+    "all_checks_pass_share": null
+  },
+  "controller": {
+    "steps": 0,
+    "kept": 0,
+    "designs_with_kept_steps": 0,
+    "decisions": {},
+    "semantic_rule_decisions": 0,
+    "mean_llm_share": null
+  },
+  "to_judge": [
+    "T01_s61"
+  ],
+  "cached": [
+    {
+      "name": "E1-01_s61",
+      "id": "E1-01",
+      "verdict": {
+        "meets": true,
+        "class": "CORRECT",
+        "score": 1,
+        "defects": [],
+        "summary": "MEETS. All gates and all applicable non-physical L3 pass, measured on base.stl and lid.stl. Board clearance 1.448 mm (needs 0.5). Standoffs: 4 at pitch 66.0 x 46.0, OD 5.1, pilot D1.70, depth 5.1. Keep-outs: top 0.18 mm, bottom 0.10 mm. USB plug clearance 0.400 mm and jack plug clearance 0.405 mm each. Openings: 1 in the -X wall (10.8 x 7.8), 2 in the +X wall (D8.81), 0 unlisted. Lid: lip fit 0.25 mm per side, engagement 2.1 mm, plate 2.4 mm. Walls, floor and lid are all 2.4 mm. Overhang patches 0 after the bridge and round-hole exemptions. Closed envelope 84.17 x 64.17 x 24.7. The agent's self-report matches my numbers within 0.005 mm. Smallest weight-3 margins are 0.10 mm (normalised 0.2). claude-context failed to connect, so I used direct file reads and targeted shell commands instead. judge_1.json written in the package folder.",
+        "verdict": "MEETS",
+        "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "name": "T01_s61",
+      "id": "T01",
+      "split": "target",
+      "seed": 61,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 102.4,
+      "package": "benchmarks/generalize/loop/iter_097/T01_s61/20261026-020807",
+      "has_renders": true,
+      "geometry_sha1": "bae82c53ae4ebd49d039aa44c7054746df621d86",
+      "stl_files": [
+        "nut_frame.stl",
+        "plate.stl",
+        "plate_mirror.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/T01/requirements.md",
+        "benchmarks/generalize/designs/T01/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "416e408b3fdcf6a0570ca50ce4b4b17a98c7956a",
+      "code_sha1": "c831d2c8a54bbf817e02f248f18105b4979cd0f9",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-26T02:09:49",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "build: plate_mirror.stl is the declared mirror-pair part (the mirror image of the plate)",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 3,
+        "kept": 3,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "semantic-rule": 1,
+          "llm": 4,
+          "plant": 1,
+          "guardrail": 1
+        },
+        "proposal": {
+          "llm_slots": 17,
+          "default_slots": 10,
+          "llm_contents_items": 2
+        },
+        "llm_share": 0.6389,
+        "semantic_rule_decisions": 1,
+        "unregistered": 0
+      },
+      "spec_sha1": "416e408b3fdcf6a0570ca50ce4b4b17a98c7956a",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss",
+      "run_outcome": "unsatisfied"
+    },
+    {
+      "name": "E1-01_s61",
+      "id": "E1-01",
+      "split": "regression",
+      "seed": 61,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 99.9,
+      "package": "benchmarks/generalize/loop/iter_097/E1-01_s61/20261026-020949",
+      "has_renders": true,
+      "geometry_sha1": "a93f14f30874a9af7376b015cad887e4c7852494",
+      "stl_files": [
+        "base.stl",
+        "lid.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/enclosure/requirements.md",
+        "benchmarks/enclosure/enclosure.json",
+        "benchmarks/enclosure/rubric.md"
+      ],
+      "spec_sha1_at_run": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "code_sha1": "c831d2c8a54bbf817e02f248f18105b4979cd0f9",
+      "catalogues": [
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-26T02:11:29",
+      "outcome": "unverified",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: every check passes",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "semantic-rule": 5,
+          "llm": 5,
+          "plant": 2
+        },
+        "proposal": {
+          "llm_slots": 11,
+          "default_slots": 1,
+          "llm_contents_items": 3
+        },
+        "llm_share": 0.7037,
+        "semantic_rule_decisions": 5,
+        "unregistered": 0
+      },
+      "spec_sha1": "38ee68e0aaa3bc1458bb7f42f22864585ae51b57",
+      "spec_changed_since_run": false,
+      "verdict": {
+        "meets": true,
+        "class": "CORRECT",
+        "score": 1,
+        "defects": [],
+        "summary": "MEETS. All gates and all applicable non-physical L3 pass, measured on base.stl and lid.stl. Board clearance 1.448 mm (needs 0.5). Standoffs: 4 at pitch 66.0 x 46.0, OD 5.1, pilot D1.70, depth 5.1. Keep-outs: top 0.18 mm, bottom 0.10 mm. USB plug clearance 0.400 mm and jack plug clearance 0.405 mm each. Openings: 1 in the -X wall (10.8 x 7.8), 2 in the +X wall (D8.81), 0 unlisted. Lid: lip fit 0.25 mm per side, engagement 2.1 mm, plate 2.4 mm. Walls, floor and lid are all 2.4 mm. Overhang patches 0 after the bridge and round-hole exemptions. Closed envelope 84.17 x 64.17 x 24.7. The agent's self-report matches my numbers within 0.005 mm. Smallest weight-3 margins are 0.10 mm (normalised 0.2). claude-context failed to connect, so I used direct file reads and targeted shell commands instead. judge_1.json written in the package folder.",
+        "verdict": "MEETS",
+        "normalised_from": "verdicts.json (boolean meets -> verdict; gap analysis 003, P-3)"
+      },
+      "cache": "hit",
+      "run_outcome": "unverified"
+    }
+  ],
+  "code": {
+    "code_sha1": "c831d2c8a54bbf817e02f248f18105b4979cd0f9",
+    "files": 87,
+    "previous_iter": "iter_096",
+    "code_unchanged": false,
+    "changed_within_iteration": false
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": -21.15,
+        "span": [
+          -21.15,
+          21.15
+        ],
+        "length": 42.3,
+        "words": "the equal (42.3 mm) edge at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 21.15,
+        "span": [
+          -21.15,
+          21.15
+        ],
+        "length": 42.3,
+        "words": "the equal (42.3 mm) edge at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": -21.15,
+        "span": [
+          -21.15,
+          21.15
+        ],
+        "length": 42.3,
+        "words": "the equal (42.3 mm) edge at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 21.15,
+        "span": [
+          -21.15,
+          21.15
+        ],
+        "length": 42.3,
+        "words": "the equal (42.3 mm) edge at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "nema17_motor",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "bolt_0",
+      "part": "bolt_m3_iso4762",
+      "params": {
+        "length": 8.0
+      },
+      "x": -15.5,
+      "y": -15.5,
+      "z": 3.6,
+      "rot_z": 0.0,
+      "item": "bolt_0",
+      "copy": 0,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    },
+    {
+      "id": "bolt_1",
+      "part": "bolt_m3_iso4762",
+      "params": {
+        "length": 8.0
+      },
+      "x": 15.5,
+      "y": -15.5,
+      "z": 3.6,
+      "rot_z": 0.0,
+      "item": "bolt_1",
+      "copy": 1,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    },
+    {
+      "id": "bolt_2",
+      "part": "bolt_m3_iso4762",
+      "params": {
+        "length": 8.0
+      },
+      "x": -15.5,
+      "y": 15.5,
+      "z": 3.6,
+      "rot_z": 0.0,
+      "item": "bolt_2",
+      "copy": 2,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    },
+    {
+      "id": "bolt_3",
+      "part": "bolt_m3_iso4762",
+      "params": {
+        "length": 8.0
+      },
+      "x": 15.5,
+      "y": 15.5,
+      "z": 3.6,
+      "rot_z": 0.0,
+      "item": "bolt_3",
+      "copy": 3,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    }
+  ],
+  "bodies": {
+    "plate": {
+      "orientation": "contact_face_down",
+      "source": "rule:print_orientation (the flat face with the least overhang)",
+      "orientations": {
+        "contact_face_down": {
+          "violation": 0.0,
+          "worst_span": 0.0,
+          "steep_area": 0.0,
+          "bed_area": 1065.4337
+        },
+        "top_face_down": {
+          "violation": 0.0,
+          "worst_span": 0.0,
+          "steep_area": 0.0,
+          "bed_area": 1065.4337
+        }
+      }
+    }
+  },
+  "spec": {
+    "keepout_above": 30.0,
+    "keepout_below": 3.0,
+    "board_clearance": 0.5,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 3.0,
+    "wall_max": 3.0,
+    "max_x": 60.0,
+    "max_y": 75.0,
+    "max_z": 200.0,
+    "thickness_max": 5.0,
+    "bearing_area_min": 19.0,
+    "adjust_min": 6.0,
+    "adjust_cross_min": 6.0
+  },
+  "board": {
+    "part": "nema17_motor",
+    "specimen": null,
+    "params": {
+      "body_size": 42.3,
+      "body_length": 40.0,
+      "hole_pitch": 31.0,
+      "hole_diameter": 3.0,
+      "hole_thread_depth": 4.5,
+      "screw_head_diameter": 5.5,
+      "pilot_diameter": 22.0,
+      "pilot_height": 2.0,
+      "shaft_diameter": 5.0,
+      "shaft_length": 24.0,
+      "shaft_flat_depth": 0.5,
+      "shaft_flat_length": 15.0,
+      "cable_exit_clearance": 10.0
+    },
+    "holes": null,
+    "hole_diameter": null,
+    "hole_keepout_diameter": null,
+    "grid": null,
+    "screw": null
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0,
+  "unplaced": [
+    {
+      "id": "mech_1",
+      "part": "tnut_2020_m5",
+      "quantity": 2,
+      "reason": "nema17_motor is not a carrier: no relation places it yet (GM2b)"
+    },
+    {
+      "id": "profile_1",
+      "part": "extrusion_2020",
+      "quantity": 1,
+      "reason": "extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state"
+    }
+  ]
+}

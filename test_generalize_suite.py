@@ -570,6 +570,23 @@ class TestStubRuns(TreeCase):
         self.assertEqual(s["llm_dependent"], ["G90", "G91"])               # different geometry; geometry vs none
         self.assertEqual(s["stub"]["compared"], 2)
         self.assertEqual(s["stub"]["verified_share"], 0.5)
+        self.assertEqual(s["stub_all_checks_pass"], 1)                    # R12 review 2 (N2)
+        self.assertEqual(s["counts"]["train_stub"]["outcome"], {"verified": 1, "failed": 1})
+
+    def test_rc3_outcomes_are_told_apart(self):
+        """R12 review 2 (N2): rc 3 is `unverified` (every check passes, an L1 untraced) or `unsatisfied` (a check
+        fails); the authority probe counts every-check-passes runs, and verified ones apart."""
+        rows = [{"id": "G1", "split": "train", "rc": 3, "outcome": "unverified", "geometry_sha1": "a"},
+                {"id": "G2", "split": "train", "rc": 3, "outcome": "unsatisfied", "geometry_sha1": "b"},
+                {"id": "G3", "split": "train", "rc": 0, "outcome": "verified", "geometry_sha1": "c"},
+                {"id": "G4", "split": "train", "rc": 3, "geometry_sha1": "d"},          # a pre-R12 row: rc only
+                {"id": "G5", "split": "train", "rc": 1, "outcome": "unverified"}]       # no package: failed
+        self.assertEqual([rs.run_outcome(r) for r in rows],
+                         ["unverified", "unsatisfied", "verified", "unsatisfied", "failed"])
+        a = rs.authority_summary([], [dict(r, controller="stub") for r in rows])
+        self.assertEqual((a["stub_all_checks_pass"], a["stub_verified"]), (2, 1))
+        self.assertEqual(a["stub"]["all_checks_pass"], ["G1", "G3"])
+        self.assertEqual(a["stub"]["outcomes"]["unsatisfied"], ["G2", "G4"])
 
     def test_stub_preflight_needs_no_ollama(self):
         idle = mock.Mock(stdout="")

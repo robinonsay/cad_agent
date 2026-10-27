@@ -79,6 +79,8 @@ import layout as lay
 import menus
 import parts as pt
 import building_blocks as bb   # migration delta R11: generic building blocks (circular: attributes read at call time)
+import forms                   # migration delta R12: structural forms as controller choices (circular, as bb)
+import plate as pl             # migration delta R12: the plate archetype (circular, as bb)
 
 ca = cc._ca()  # cad_agent (the running script's module when cad_agent.py is __main__)
 
@@ -141,6 +143,7 @@ class AssemblyState:
     layout_grid_exempt: List[str] = field(default_factory=list)
     grid_report: Dict[str, Any] = field(default_factory=dict)  # layout.Placer.grid_report of the accepted layout
     conflicts: List[dict] = field(default_factory=list)       # typed requirement conflicts (finalize)
+    unlinked: List[str] = field(default_factory=list)         # review fix N5: L1s with no measuring check (finalize)
     arrange: Dict[str, Any] = field(default_factory=dict)     # ConfirmArrangement's whole ranking (candidates, classes)
     texts: List[Tuple[str, str]] = field(default_factory=list)  # (source, text): the request and every L1 (ParseSpec)
     coverage: List[dict] = field(default_factory=list)        # text-coverage violations and how each was resolved (7.10)
@@ -156,6 +159,8 @@ class AssemblyState:
                                                               # accepted actions, infeasible action keys
     checkpoints: Dict[str, Any] = field(default_factory=dict)  # re-runnable stage -> the state at its entry (snapshot)
     trajectory: Dict[str, Any] = field(default_factory=dict)  # the controller's trace (controller_trace.json)
+    forms: List[dict] = field(default_factory=list)           # R12: every structural form, feasible or why not
+    plate: Dict[str, Any] = field(default_factory=dict)       # R12: the derived plate (plate.py) when the form is plate
 
     def summary(self) -> dict:
         return {
@@ -175,11 +180,14 @@ class AssemblyState:
             "arrange": dict(self.arrange),
             "grid_report": dict(self.grid_report),
             "conflicts": list(self.conflicts),
+            **({"unlinked_l1": list(self.unlinked)} if self.unlinked else {}),
             "coverage": list(self.coverage),
             "links": dict(self.links),
             "number_owner": dict(self.number_owner),
             "unplaced": list(self.unplaced),
             "relations": list(self.relations),
+            **({"forms": list(self.forms)} if self.forms else {}),
+            **({"plate": pl.summary(self.plate)} if self.plate else {}),
             **({"vent": dict(self.vent), "vent_row": {k: v for k, v in self.vent_row.items()}} if self.vent else {}),
             **({"controller": controller_summary(self), "control": control_record(self.control)}
                if self.trajectory else {}),
@@ -298,8 +306,12 @@ def controller_summary(st: AssemblyState) -> dict:
 
 def control_record(control: Mapping[str, Any]) -> dict:
     """design.json assembly.control: the controller's decisions in JSON form."""
-    return {"closure": control.get("closure"), "infeasible": dict(control.get("infeasible") or {}),
-            "accepted": [dict(d["action"], step=d["record"].get("step")) for d in control.get("accepted") or []]}
+    out = {"closure": control.get("closure"), "infeasible": dict(control.get("infeasible") or {}),
+           "accepted": [dict(d["action"], step=d["record"].get("step")) for d in control.get("accepted") or []]}
+    for k in ("archetype", "surface_feature", "handedness"):     # R12: the form and plate decisions, when made
+        if control.get(k):
+            out[k] = control[k]
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -310,6 +322,7 @@ NUMBER_RE = re.compile(r"(?<![A-Za-z0-9_.\-])(\d+(?:\.\d+)?)(?:\s?(mm|cm|deg|deg
 UNIT_SCALE = {"mm": 1.0, "cm": 10.0, "deg": 1.0, "degrees": 1.0, None: 1.0}
 GROUP_SEP = re.compile(r"^\s*[x×]\s*$")
 RANGE_SEP = re.compile(r"^\s*(to|-|–)\s*$")
+WORD_AFTER = re.compile(r"\s*([A-Za-z%²][A-Za-z0-9%²/]*)")   # R12: the unit word right after a number, if any
 
 
 def extract_numbers(texts: Sequence[Tuple[str, str]]) -> List[dict]:
@@ -336,9 +349,10 @@ def extract_numbers(texts: Sequence[Tuple[str, str]]) -> List[dict]:
                 half = QUOTE_CHARS // 2
                 lo, hi = max(0, m.start() - half), min(len(text), m.end() + half)
                 quote = " ".join(text[lo:hi].split())[:QUOTE_CHARS]
+                nxt = WORD_AFTER.match(text, m.end())     # R12: the word after the number (a unit check)
                 out.append({"id": f"n{len(out) + 1}", "value": float(m.group(1)) * UNIT_SCALE[u],
                             "unit": "mm" if u == "cm" else u, "text": m.group(0).strip(), "quote": quote,
-                            "source": source, "group": gid})
+                            "source": source, "group": gid, "after": nxt.group(1).lower() if nxt else ""})
     return out
 
 
@@ -480,12 +494,13 @@ class LoadRules(AssemblyStep):
         return Status.SUCCESS
 
 
-def spec_prompt(numbers, slots, violation: str = "", note: str = "") -> str:
+def spec_prompt(numbers, slots, violation: str = "", note: str = "", subject: str = "") -> str:
     lines = "\n".join(f'- {s["name"]}: {s["meaning"]} ({s["unit"]})' for s in slots)
     again = (f"\nYour previous answer broke these rules: {violation}. Answer again and fix that.\n"
              if violation else "")
     note = f"{note}\n\n" if note else ""
-    return (f"An enclosure is being designed from this request and its requirements.\n\n"
+    subject = subject or forms.SUBJECTS[forms.SHELL]      # R12: the neutral wording when a non-shell form is a candidate
+    return (f"{subject}\n\n"
             f"Numbers found in the text (each occurrence has its own id):\n{number_lines(numbers)}\n\n"
             f"{note}"
             f"For each quantity below, give the id of the number in the text that states it, or \"none\" "
@@ -494,23 +509,24 @@ def spec_prompt(numbers, slots, violation: str = "", note: str = "") -> str:
 
 
 def ask_slots(llm, numbers, slots, violation: str = "", label: Optional[str] = None,
-              note: str = "") -> Dict[str, Optional[str]]:
+              note: str = "", subject: str = "") -> Dict[str, Optional[str]]:
     """One voted slot-mapping question (ParseSpec's, also used to re-ask a spec slot that lost a number later)."""
     ids = [n["id"] for n in numbers] + ["none"]
     schema = ca.obj_schema({s["name"]: {"type": "string", "enum": ids} for s in slots})
     label = label or ("assy_spec_reask" if violation else "assy_spec")
-    counts = tally(llm, spec_prompt(numbers, slots, violation, note), schema, label, {s["name"]: ids for s in slots})
+    counts = tally(llm, spec_prompt(numbers, slots, violation, note, subject), schema, label,
+                   {s["name"]: ids for s in slots})
     return {k: (None if majority(c) in (None, "none") else majority(c)) for k, c in counts.items()}
 
 
 def owner_question(llm, ref: str, n: dict, names: Sequence[str], meaning: Mapping[str, dict],
-                   rules: Optional[Mapping[str, Any]] = None) -> Tuple[Optional[str], Counter]:
+                   rules: Optional[Mapping[str, Any]] = None, subject: str = "") -> Tuple[Optional[str], Counter]:
     """Each number in the text states one quantity: one voted question gives number `ref` to one of `names` (spec slots
     or part sizes, each {meaning, unit}). Lifted from ParseSpec.resolve_shared (generalize delta 001 C3) so the same
     question also runs across ParseSpec and Contents.ask_params. Migration delta R02: the quantities are content-keyed
     (slot names), listed in seeded orderings and permutation-voted (`rules`: design_rules values). Returns (owner or
     None, the votes)."""
-    head = (f"An enclosure is being designed from this request and its requirements.\n\n"
+    head = (f"{subject or forms.SUBJECTS[forms.SHELL]}\n\n"
             f'Number {ref} = {n["text"]} ({n["source"]}): "...{n["quote"]}..."\n\n'
             f"Each number in the text states exactly one quantity. Which one of these quantities does "
             f"{ref} state?\n")
@@ -532,11 +548,13 @@ class ParseSpec(AssemblyStep):
         d = self.design
         return [("request", d.base_request or d.request)] + [(r["id"], r["text"]) for r in d.l1]
 
+    subject: str = ""                    # R12: the questions' first sentence (forms.subject of the candidate forms)
+
     def prompt(self, numbers, slots, violation: str = "", note: str = "") -> str:
-        return spec_prompt(numbers, slots, violation, note)
+        return spec_prompt(numbers, slots, violation, note, self.subject)
 
     def ask(self, numbers, slots, violation="", label: Optional[str] = None, note: str = "") -> Dict[str, Optional[str]]:
-        return ask_slots(self.llm, numbers, slots, violation, label, note)
+        return ask_slots(self.llm, numbers, slots, violation, label, note, self.subject)
 
     @staticmethod
     def shared(answer, slots) -> Dict[str, List[str]]:
@@ -550,13 +568,21 @@ class ParseSpec(AssemblyStep):
 
     def violations(self, answer, by_id, slots) -> List[Tuple[str, List[str]]]:
         out = []
-        val = {k: by_id[v]["value"] for k, v in answer.items() if v}
+        meaning = {s["name"]: s for s in slots}
+        val = {k: forms.slot_value(self.state.rules, meaning[k], by_id[v]) if k in meaning else by_id[v]["value"]
+               for k, v in answer.items() if v}                    # review fix N2: a unit word's factor applies
         for s in slots:
             if s.get("required", s["default_rule"] is None) and not answer.get(s["name"]):
                 out.append((f"{s['name']} has no default and must be one of the numbers", [s["name"]]))
         for k, v in val.items():
             if v <= 0:
                 out.append((f"{k} must be greater than 0 (got {v:g})", [k]))
+        for k, ref in answer.items():            # R12: a unit word of another unit, or a value outside the slot's band
+            if ref and k in meaning:
+                bad = forms.slot_violation(self.state.rules, meaning[k], by_id[ref])
+                if bad:
+                    out.append((bad, [k]))
+        out += forms.pair_violations(slots, val)
         if "wall_min" in val and "wall_max" in val and val["wall_min"] > val["wall_max"]:
             out.append((f"wall_min ({val['wall_min']:g}) must not exceed wall_max ({val['wall_max']:g})",
                         ["wall_min", "wall_max"]))
@@ -577,7 +603,7 @@ class ParseSpec(AssemblyStep):
         st = self.state
         n = by_id[ref]
         meaning = {s["name"]: s for s in slots}
-        owner, votes = owner_question(self.llm, ref, n, names, meaning, self.state.rules.values)
+        owner, votes = owner_question(self.llm, ref, n, names, meaning, self.state.rules.values, self.subject)
         if owner is None:
             st.notes.append(f"parse_spec: no valid owner for {ref} among {', '.join(names)}; they fall back")
             for k in names:
@@ -598,7 +624,12 @@ class ParseSpec(AssemblyStep):
         numbers = extract_numbers(st.texts)
         st.numbers = numbers
         by_id = {n["id"]: n for n in numbers}
-        slots = st.rules.spec_slots
+        cands = forms.candidate_forms(st)        # R12: the shell's slots always, a candidate form's slots added
+        self.subject = forms.subject(cands)
+        slots = forms.spec_slots(st.rules, cands)
+        if cands != [forms.SHELL]:
+            st.notes.append(f"parse_spec: candidate forms {', '.join(cands)} (the parts the text names): "
+                            f"{len(slots)} slots")
         answer = self.ask(numbers, slots)
         bad = self.violations(answer, by_id, slots)
         if bad:
@@ -618,7 +649,7 @@ class ParseSpec(AssemblyStep):
             k, ref = s["name"], answer.get(s["name"])
             if ref:
                 n = by_id[ref]
-                st.spec[k] = n["value"]
+                st.spec[k] = forms.slot_value(st.rules, s, n)          # review fix N2: 2.5 kN is 2500 N
                 st.spec_provenance[k] = f'{n["source"]}:"{n["quote"]}"'
                 st.number_owner.setdefault(ref, k)
             elif s["default_rule"] is None:      # an optional slot with no default (the board size): left out of the spec
@@ -629,6 +660,7 @@ class ParseSpec(AssemblyStep):
                 st.spec_provenance[k] = f"rules:{s['default_rule']}"
                 st.assumptions.append(f"{k} = {v:g} {s['unit']} from rules:{s['default_rule']} "
                                       "(the text states no number for it)")
+        forms.apply_exact_slots(st, slots)       # R12 review 2 (N6): one stated value sets both ends of a band
         settle_spec(st, "parse_spec")
         self.logger.info(f"spec: {st.spec}")
         return Status.SUCCESS
@@ -763,6 +795,12 @@ class Contents(AssemblyStep):
         words = {pid: f"- {pid}: {part_words(st.catalog.get(pid), st.catalog)}" for pid in cands}
         tail = ("For each part give how many the request puts inside the enclosure (0 if none), and for parts "
                 "with a cable connector whether that connector must be reachable from outside (exposed).")
+        if forms.candidate_forms(st) != [forms.SHELL]:
+            # R12: a non-shell form is a candidate too. Review fix N6: the enclosure wording is kept, the other form added
+            tail = ("For each part give how many one printed copy of the design holds, carries or attaches to (for an "
+                    "enclosure: how many it puts inside; 0 if none; count one copy even when the request asks for "
+                    "several identical copies), and for parts with a cable connector whether that connector must be "
+                    "reachable from outside (exposed).")
         if multi:
             tail += (" A part with several cable connectors has one answer per connector (<connector>_exposed), "
                      "because each one may or may not be exposed.")
@@ -972,7 +1010,8 @@ class Contents(AssemblyStep):
                    slot: {"meaning": f"the {param} of the {item['name']} ({part.params[param].get('source', param)})",
                           "unit": part.data.get("units", "mm")}}
         n = by_id[ref]
-        won, votes = owner_question(self.llm, ref, n, [owner, slot], meaning, self.state.rules.values)
+        won, votes = owner_question(self.llm, ref, n, [owner, slot], meaning, self.state.rules.values,
+                                    forms.subject(forms.candidate_forms(st)))
         st.notes.append(f"contents: {ref} ({n['text']}) is claimed by spec slot {owner} and by {slot}; owner vote "
                         f"{dict(votes)}")
         if won == slot:
@@ -992,7 +1031,8 @@ class Contents(AssemblyStep):
         s = st.rules.slot(name)
         n = next(x for x in st.numbers if x["id"] == ref)
         got = ask_slots(self.llm, [x for x in st.numbers if x["id"] != ref], [s], label="assy_spec_slot",
-                        note=f'{ref} ({n["text"]}) states {winner}, so it is not offered for the quantities below.')
+                        note=f'{ref} ({n["text"]}) states {winner}, so it is not offered for the quantities below.',
+                        subject=forms.subject(forms.candidate_forms(st)))
         new = got.get(name)
         if new and st.number_owner.get(new) not in (None, name):
             st.notes.append(f"contents: the re-asked {name} chose {new}, which {st.number_owner[new]} owns; not used")
@@ -2191,23 +2231,19 @@ def driver_columns(st: AssemblyState) -> List[fg.Node]:
                       prefix="driver", anchor=f"{PRIMARY}.{hole_name}[{i}]") for i in range(len(holes.at))]
 
 
-SHELL = ("tray_lid", "screws")       # the one archetype + closure the derivation rules build (ARCHITECTURE.md 4.3)
+SHELL = ("tray_lid", "screws")       # the shell archetype + closure the derivation rules build (ARCHITECTURE.md 4.3)
 
 
 def archetype_gate(st: AssemblyState) -> Tuple[List[Tuple[str, str]], str]:
-    """(feasible (archetype, closure) pairs, the typed reason when there are none). tray_lid is feasible only when (a)
-    the primary offers a mount_holes interface and (b) the request or an L1 names one of design_rules.json
-    archetypes.tray_lid.evidence (text_evidence), so a fixture or a mount never gets a box (generalize delta 001 C4)."""
-    prim = primary_item(st)
-    pid = prim["part"] if prim else None
-    if pid is None or (pt.mount_interface(st.catalog.get(pid)) is None and not bb.is_cradle(st)):
-        return [], f"not implemented: archetype (primary {pid}; no {pt.MOUNT_HOLES} interface)"
-    words = list((st.rules.archetypes.get(SHELL[0]) or {}).get("evidence", []))
-    hits = text_evidence(st.texts, words) if words else []
-    if not hits:
-        return [], (f"not implemented: archetype (primary {pid}; no shell evidence; candidates for GM5: plate / "
-                    "bracket / block / cradle)")
-    return [SHELL], ""
+    """(feasible (archetype, closure) pairs, the typed reason when there are none), from plant feasibility only
+    (forms.catalogue_options: catalogue data, no text). Migration delta R12: until R12 tray_lid also needed a sentence
+    naming an enclosure word (design_rules.json archetypes.tray_lid.evidence), a semantic gate; that reading is now the
+    form_evidence sensor's."""
+    opts = forms.catalogue_options(st)
+    pairs = [tuple(o["key"].split("+", 1)) for o in opts if o["feasible"]]
+    reason = "" if pairs else ("not implemented: archetype (" + "; ".join(f"{o['form']}: {o['reason']}" for o in opts)
+                               + ")")
+    return pairs, reason
 
 
 def feasible_archetypes(st: AssemblyState) -> List[Tuple[str, str]]:
@@ -2216,20 +2252,35 @@ def feasible_archetypes(st: AssemblyState) -> List[Tuple[str, str]]:
 
 
 def choose_archetype_rule(st: AssemblyState) -> Optional[str]:
-    """The rule half of ChooseArchetype (shared with prescore, 7.11): one feasible archetype is recorded as a rule
-    choice; with two or more, the current choice holds, else the first (prescore never asks the LLM)."""
+    """The rule half of ChooseArchetype for a scratch plant run (prescore, 7.11): the controller's set_archetype or an
+    earlier choice holds; one feasible archetype is recorded as plant feasibility (rule:only_feasible); with several,
+    a scratch run scoring arrangements derives the shell (rule:arrange_scratch_form, plant): the arrangement candidates
+    it scores are shell placements (wall edges, standoffs) and only the shell's sensors measure them; the plate places
+    its parts by its own rules after ChooseArchetype. It is a convention of the scratch measurement, not a preference
+    between forms: it never reaches the real state (scratch_state), where the controller chooses the form. R12:
+    rule:first_option[archetype] is retired; review fix N7: no longer tagged as a measured prescore decision."""
     feasible, reason = archetype_gate(st)
     options = ["+".join(o) for o in feasible]
     if not options:
         return reason or "no feasible archetype"
+    want = st.control.get("archetype") or (st.choices.get("archetype") or {}).get("value")
+    if want in options:
+        return None
     if len(options) == 1:
         choice(st, "archetype", options[0], "rule:only_feasible")
-    elif st.choices.get("archetype", {}).get("value") not in options:
-        choice(st, "archetype", options[0], "rule:first_option[archetype]")
+    else:
+        shell = "+".join(SHELL)
+        choice(st, "archetype", shell if shell in options else options[0], "rule:arrange_scratch_form")
     return None
 
 
 class ChooseArchetype(AssemblyStep):
+    """Migration delta R12 (R07 in part): Python enumerates every structural form it can build for the chosen contents
+    (forms.form_options: catalogue feasibility, each infeasible one explained, and with several a scratch derivation of
+    each); one feasible form is recorded as plant feasibility; several are a content-keyed, seeded-shuffled,
+    permutation-voted menu; no valid answer: the lowest measured error (prescore:archetype). The controller's
+    set_archetype (closed loop) is kept when this stage re-runs."""
+
     def __init__(self, design, llm):
         super().__init__("ChooseArchetype", design, llm)
 
@@ -2237,22 +2288,10 @@ class ChooseArchetype(AssemblyStep):
         st = self.state
         st.stage = "choose_archetype"
         checkpoint(st, "archetype")
-        options, _ = archetype_gate(st)
-        if len(options) <= 1:
-            err = choose_archetype_rule(st)
-            return self.fail(err) if err else Status.SUCCESS
-        keys = ["+".join(o) for o in options]
-        request = self.design.base_request
-        # migration delta R02: content-keyed, shuffled, permutation-voted
-        vote = menus.perm_vote(self.llm, "assy_archetype", lambda order: (
-            f"Request: {request}\n\nWhich enclosure type fits best?\n" + "\n".join(f"- {k}" for k in order)
-            + f"\n\n{ID_ANSWER}"), keys, menu_rules(st), question_seed(self.llm, "assy_archetype", request, keys),
-            key="archetype")
-        if vote.pick is None:
-            choice(st, "archetype", keys[0], "rule:first_option[archetype]")
-        else:
-            choice(st, "archetype", vote.pick, "llm", votes=dict(vote.votes), consistency=vote.consistency,
-                   confident=vote.confident)
+        err = forms.choose(st, self.llm, self.design.base_request or self.design.request)
+        if err:
+            return self.fail(err)
+        self.logger.info(f"archetype: {st.choices['archetype']['value']} ({st.choices['archetype']['by']})")
         return Status.SUCCESS
 
 
@@ -3144,7 +3183,10 @@ def choose_boss_layout(st: AssemblyState, closure: str) -> None:
 
 def derive(st: AssemblyState) -> Optional[str]:
     """DeriveFeatures on a state (shared with prescore, 7.11): the lid screw, the closure rule, the feature rules with the
-    boss layout choice, resolve. Returns an error message or None."""
+    boss layout choice, resolve. Returns an error message or None. Migration delta R12: the plate archetype derives
+    its own features (plate.derive_plate)."""
+    if forms.is_plate(st):
+        return pl.derive_plate(st)
     try:                                 # part errors are contained: a note and a package, never a traceback (C2)
         pick = lid_screw_choice(st.catalog, st.rules.values, st.texts)
         for pid in pick["skipped"]:
@@ -3326,6 +3368,9 @@ class Build(AssemblyStep):
             else:
                 st.stl_source[b] = "openscad"
         st.components = self.components(res)
+        mirror = pl.write_mirror(st, wd) if forms.is_plate(st) else None   # R12: a declared mirror pair's second STL
+        if mirror:
+            st.notes.append(f"build: {mirror} is the declared mirror-pair part (the mirror image of the plate)")
         return Status.SUCCESS
 
     def compile(self, body: str, solid, stl: Path) -> str:
@@ -3843,7 +3888,11 @@ def add_vent_checks(st: AssemblyState, plan: ac.Plan) -> None:
 
 
 def build_plan(st: AssemblyState) -> ac.Plan:
-    """The rule-derived check set (iteration 002 subset) and the volumes it measures against."""
+    """The rule-derived check set (iteration 002 subset) and the volumes it measures against. Migration delta R12: the
+    plate archetype has its own (plate.build_plan); the shell's adds the form_evidence sensor when two or more forms are
+    buildable (forms.add_form_checks; nothing is added for a design with one buildable form)."""
+    if forms.is_plate(st):
+        return pl.build_plan(st)
     r, s, res, g = st.rules.values, st.spec, st.resolved, st.graph
     plan = ac.Plan(tol=ac.Tol.from_rules(r), seg=res.segments())
     vols = plan.volumes
@@ -3987,12 +4036,15 @@ def build_plan(st: AssemblyState) -> ac.Plan:
     grid_check(st, plan)
     coverage_check(st, plan)
     closure_evidence_check(st, plan)
+    forms.add_form_checks(st, plan)          # R12: the form-level text sensor (only with two or more buildable forms)
     grow_exemptions(st, plan)
     add_part_maps(st, plan)
     return plan
 
 
 UNLINKED_NOTE = "no rule-derived check is traced to this requirement yet (translation to checks is milestone M10)"
+TEXT_ONLY_NOTE = ("only text sensors are traced to this requirement (they report wording, they measure nothing); no "
+                  "measuring check verifies it yet (milestone M10)")
 
 
 def trace_links(st: AssemblyState, plan: ac.Plan) -> Dict[str, List[str]]:
@@ -4009,10 +4061,29 @@ def trace_links(st: AssemblyState, plan: ac.Plan) -> Dict[str, List[str]]:
     out: Dict[str, List[str]] = {}
     for sp in plan.specs:
         found = [slot_l1[k] for k in sp.get("slots", []) if k in slot_l1]
-        found += [l for pid in sp.get("parts", []) for l in part_l1.get(pid, [])]
+        # review fix N5: a check about one feature of a part (a keep-out, its mirror pairing) carries that feature's
+        # catalogue `names`; the L1s naming the feature are its links, and only when none does it falls back to the L1s
+        # naming the whole part (a crank keep-out links the L1 about the crank, not every L1 naming the pedal)
+        names = [n for n in sp["args"].get("names") or [] if n]
+        hits = [h["source"] for h in text_evidence(st.texts, names) if h["source"] in l1_ids] if names else []
+        found += hits or [l for pid in sp.get("parts", []) for l in part_l1.get(pid, [])]
         found += [src for src in sp["args"].get("sources", []) if src in l1_ids]   # a text sensor's quoted L1s (R01)
+        # R12 review 2 (N7): a check that measures a generic property of the printed part (printability, one body, the
+        # bed, a fastener's engagement / tip / seat) also links the L1s naming that property (design_rules.json
+        # trace_names, by check type; trace only, never a decision)
+        words = (st.rules.trace_names or {}).get(sp["type"]) if st.rules is not None else None
+        if words and (sp["args"].get("basis") != TEXT_BASIS):
+            found += [h["source"] for h in text_evidence(st.texts, words) if h["source"] in l1_ids]
         out[sp["id"]] = sorted(set(found), key=l1_ids.index)
     return out
+
+
+TEXT_BASIS = "text"         # evidence basis of a text sensor: it reports wording, it measures nothing
+
+
+def unlinked_l1(rows: Sequence[Mapping[str, Any]]) -> List[str]:
+    """The L1 ids of the verification matrix with no traced measuring check (status UNLINKED)."""
+    return [r["l1_id"] for r in rows if r["l1_id"] != ac.L1_RULES and r["status"] == "UNLINKED"]
 
 
 def trace_matrix(l1: Sequence[dict], checks: Sequence[cc.Check], results: Sequence[cc.CheckResult],
@@ -4023,13 +4094,19 @@ def trace_matrix(l1: Sequence[dict], checks: Sequence[cc.Check], results: Sequen
     by_id = {r.check_id: r for r in results}
 
     def row(rid, text, method, pairs, note=""):
-        status = "UNLINKED" if not pairs else ("PASS" if all(r.passed for _, r in pairs) else "FAIL")
+        # review fix N5: a row traced only to text sensors (they report wording, they measure nothing) is UNLINKED:
+        # no measurement stands behind it, so it can never count as verified
+        measuring = [(c, r) for c, r in pairs if (r.evidence or {}).get("basis") != TEXT_BASIS]
+        if rid == ac.L1_RULES:
+            measuring = pairs
+        status = "UNLINKED" if not measuring else ("PASS" if all(r.passed for _, r in pairs) else "FAIL")
+        why = note if not pairs else (TEXT_ONLY_NOTE if not measuring else "")
         return {"l1_id": rid, "text": text, "method": method, "status": status,
-                "passed": bool(pairs) and all(r.passed for _, r in pairs),
+                "passed": bool(measuring) and all(r.passed for _, r in pairs),
                 "margin": min((r.margin for _, r in pairs), default=None),
                 "checks": [{"id": c.id, "type": c.type, "text": c.text, "passed": r.passed, "margin": r.margin,
                             "evidence": r.evidence.get("detail")} for c, r in pairs],
-                "note": note if not pairs else ""}
+                "note": why}
 
     pairs = [(c, by_id[c.id]) for c in checks if c.id in by_id]
     rows = [row(req["id"], req.get("text", ""), req.get("method"),
@@ -4124,7 +4201,7 @@ class WritePackage(AssemblyStep):
         ac.write_json(wd / "layout.json", {
             "schema": 1, "frame": st.frame, "units": "mm", "references": refs,
             "bodies": {b: dict(st.rules.print_orientation.get(b) or st.rules.print_orientation.get("default", {}))
-                       for b in st.graph.bodies()},
+                       for b in st.graph.bodies()} if not forms.is_plate(st) else pl.layout_bodies(st),
             "spec": st.spec, "board": board_block(st),
             "grid_residual": None if st.layout_grid_residual is None else round(st.layout_grid_residual, 6),
             "grid_exempt": list(st.layout_grid_exempt),
@@ -4132,13 +4209,18 @@ class WritePackage(AssemblyStep):
                                         for nid in st.layout_grid_exempt if nid in st.grid_report.get("parts", {})},
             "grid_residual_all_parts": None if st.layout_grid_residual_all is None
             else round(st.layout_grid_residual_all, 6), **({"unplaced": list(st.unplaced)} if st.unplaced else {})})
-        ac.write_json(wd / "self_report.json", st.self_report)
+        rows = trace_matrix(list(self.design.l1), st.checks, st.results, st.links)
+        unlinked = unlinked_l1(rows)
+        # review fix N5: the self-report says verified only when every check passes and every L1 has a measuring check
+        extra = {"typed_notes": pl.typed_notes(st)} if forms.is_plate(st) else {}   # R12 review 2 (N4)
+        ac.write_json(wd / "self_report.json", dict(st.self_report, unlinked_l1=unlinked,
+                                                    verified=bool(st.self_report.get("all_passed")) and not unlinked,
+                                                    **extra))
         if st.trajectory:                     # the closed-loop controller's trajectory + authority audit (R01)
             import controller
             ac.write_json(wd / "controller_trace.json", controller.trace_record(st))
         ac.write_json(wd / "feature_graph.json", st.graph.to_json())
         ac.write_json(wd / "checks.json", [dict(c.to_dict(), links=list(st.links.get(c.id, []))) for c in st.checks])
-        rows = trace_matrix(list(self.design.l1), st.checks, st.results, st.links)
         ac.write_json(wd / "verification_matrix.json", rows)
         (wd / "verification_matrix.md").write_text(
             "# Verification matrix (delivered STLs)\n\nEach requirement row lists the rule-derived checks traced to it "
@@ -4223,14 +4305,21 @@ def conflict_entries(results: Sequence[cc.CheckResult]) -> List[dict]:
 
 
 def finalize(design, llm) -> dict:
-    """verified exactly when every check passes on the delivered STLs; otherwise unsatisfied."""
+    """verified exactly when every check passes on the delivered STLs and every L1 is traced to a measuring check
+    (review fix N5: an UNLINKED requirement is unverified, whatever the checks say); otherwise unsatisfied (a failing
+    check) or unverified (every check passes, some L1 has no measuring check)."""
     st = design.assy
     failed = [r.check_id for r in st.results if not r.passed]
-    outcome = "verified" if st.results and not failed else "unsatisfied"
+    rows = trace_matrix(list(design.l1), st.checks, st.results, st.links) if st.results else []
+    unlinked = unlinked_l1(rows)
+    outcome = ("unsatisfied" if failed or not st.results else "unverified" if unlinked else "verified")
+    st.unlinked = unlinked
     st.conflicts = conflict_entries(st.results)
     for c in st.conflicts:
         print(f"assembly: requirement conflict in {c['check_id']}: {c['conflict']}", flush=True)
     st.stage = "done"
     print(f"assembly: {outcome}; {len(st.results) - len(failed)}/{len(st.results)} checks pass on the delivered STLs"
-          + (f"; failing: {', '.join(failed)}" if failed else ""), flush=True)
-    return {"outcome": outcome, "failed": failed, "checks": len(st.results), "conflicts": list(st.conflicts)}
+          + (f"; failing: {', '.join(failed)}" if failed else "")
+          + (f"; L1s with no measuring check (not verified): {', '.join(unlinked)}" if unlinked else ""), flush=True)
+    return {"outcome": outcome, "failed": failed, "checks": len(st.results), "conflicts": list(st.conflicts),
+            "unlinked": unlinked}

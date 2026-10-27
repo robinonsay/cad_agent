@@ -4,14 +4,16 @@ T01 is **Robin's own real print request**, not a synthetic design. It is the gen
 enclosure E1-01 (`benchmarks/enclosure/requirements.md`): run every iteration (`run_suite.py --target`), never as a train or a held-out design,
 and a change that makes it worse is a regression. The agent designs it; this file holds only the need, the acceptance checks and the
 catalogue references, never a solution geometry. It is graded on the cleat fastening and its fore-aft adjustment, the SPD engagement and
-crank clearances, the platform size and grip, a standing-rider load case, left/right use and printability, plus the usual evidence rows.
+crank clearances, the platform size and grip, a standing-rider load case, left/right use, printability and rounded edges, plus the usual evidence rows.
 The machine-readable request (L1 only, `dev.json` format) is `design.json` next to this file; `paraphrases.json` holds two re-wordings with the same numbers.
 
 **L0, Robin's request (verbatim):** "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes"
 
-**Request as given to the agent (L0 plus the derived facts of section 3, all of them from this file's assumptions and fixed decisions):** I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.
+**L0 addendum (Robin, 2026-10-27, verbatim):** "Let's add a requirement to the pedal that all edges/corners must have a minimum fillet."
 
-**Split:** target (Robin's own design). **Family:** mechanical_mount. **Capabilities exercised:** datum_placement, bolt_pattern, slot_adjust, captive_nut, keepout_clearance, rotation_clearance, load_path, print_orientation, pattern_array.
+**Request as given to the agent (L0 plus the derived facts of section 3, all of them from this file's assumptions and fixed decisions):** I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal. All edges and corners must have a minimum fillet of 1 mm radius.
+
+**Split:** target (Robin's own design). **Family:** mechanical_mount. **Capabilities exercised:** datum_placement, bolt_pattern, slot_adjust, captive_nut, keepout_clearance, rotation_clearance, load_path, print_orientation, pattern_array, edge_fillet.
 
 **What is and is not verified.** Several dimensions could not be confirmed from a Shimano drawing (the research tool could not read Shimano's dealer-manual PDFs). Every
 such number is marked **UNVERIFIED** in its `part.json` (`unverified` list and the `source` text) and in section 3.1 below, with a "Robin to measure" note; none is presented as sourced. The list for Robin is in section 3.3.
@@ -137,6 +139,7 @@ Each line gives the value chosen, where it comes from, and whether it is **sourc
 | A11 | Release twist? | The cleat releases by twisting the heel out through 15 degrees about the cleat's vertical axis. | **UNVERIFIED** (Shimano's release angle was not reachable). Robin to confirm; the crank check scales with it. |
 | A12 | Crank margin? | 2.0 mm between any adapter point and the crank arm's inner face. | Assumption for crank flex, washers and print tolerance (+/-1). |
 | A13 | Recess depth? | The cleat's mount face is 3.0 above the sole plane, so the cleat protrudes 4.0 below it. | **UNVERIFIED** (assumed; Robin to measure how far his cleat sticks out below the sole of his shoe). It fixes the depth of the adapter's cleat seat above the sole plane. |
+| A15 | Minimum fillet? | 1.0 mm radius on every edge and corner of every printed body, convex and concave. Exempt: the hex flats and corners of a nut trap (their shape is set by the catalogue nut, section 1.3) and the edges where a bore or slot wall runs along its own axis (they are not edges). Catalogue parts (bolts, nuts, cleat, grub screws) are not printed and are not checked. | **Assumption:** Robin asked for "a minimum fillet" without a number. 1.0 mm is the smallest radius that a 0.4 mm nozzle reproduces as a curve and that removes a sharp edge to the touch; it equals the 1.0 mm downward-step allowance of A9, so a fillet on a bed-face edge is not an overhang. Robin to give a larger radius if he wants softer edges (e.g. for shins). |
 | A14 | Stand-in for shoes? | A flat shoe (rubber sole) stands on the top face; the shoe is wider than the platform's grip region. | Context only; no check uses a shoe model. |
 
 ### 3.2 Fixed decisions (one choice, no alternatives graded)
@@ -289,11 +292,19 @@ Each line gives the value chosen, where it comes from, and whether it is **sourc
 | L2.12.2 | The agent's report agrees with the judge, including the strength number. | analysis | every clear_of / sweep number reported: pass/fail the same and \|d_agent - d_judge\| <= 0.10; the reported worst stress within 10 % of the judge's | 1 | |
 | L3.12.2.1 | Self-report against the judge. | analysis | 100 % within 0.10 mm and 10 % stress | 1 | |
 
+### L1.13 Every edge and corner has a minimum fillet
+
+| ID | Requirement | Method | Pass/fail (tolerance) | Wt | Gate |
+|---|---|---|---|---|---|
+| L2.13.1 | Every edge and corner of each printed body, convex and concave, is rounded with a radius of at least 1.0 mm (A15, its exemptions apply). | analysis | no sharp edge: no mesh edge outside the exemptions where the surface turns by more than 30 degrees; every band of faces that turns by more than 30 degrees in total has a radius (arc length / turn angle) >= 1.0 - 0.05 | 2 | |
+| L3.13.1.1 | Sharp-edge scan per body. | analysis | 0 mesh edges with a turn > 30 degrees outside the exemptions | 2 | |
+| L3.13.1.2 | Smallest fillet radius per body, and where it is. | analysis | >= 0.95 mm | 2 | |
+
 ---
 
 ## 5. Counts and gates
 
-L1: 12. L2: 29. L3: 38.
+L1: 13. L2: 30. L3: 40.
 
 Gates (a failing gate makes the design WRONG regardless of score):
 
@@ -315,6 +326,7 @@ This benchmark gives no solution geometry. The arithmetic below only shows that 
 - **Crank clearance and left/right.** The crank slab starts at Y = -53.0. Worst pose: sideways shift 2.5 toward the crank, a 15-degree twist, a corner 52.5 mm from the cleat axis along X (half of an 85 mm platform plus the 10 mm fore-aft shift): y' = -(0.966 e) - 52.5 x 0.259 - 2.5 >= -53.0, so the inboard extent e <= 38.2 mm. A symmetric part would then be at most 2 x 38.2 = 76.4 mm wide, **below the 80 mm minimum of A7**; an asymmetric part with 38.2 inboard and 41.8 outboard reaches 80.0 but is not its own mirror image. So with these numbers the expected outcome is a left/right mirror pair (FD4); the design may also pick `hands` = "single" only if it finds a symmetric answer within 80 mm, which this arithmetic says is not possible for the default numbers. If Robin's crank is farther out or the release angle is smaller, a single symmetric part becomes possible.
 - **Strength.** Platform 85 x 80 x 10, cut through the full width 85: I = 85 x 10^3 / 12 = 7083 mm4, c = 5. Outboard load: support edge at 17.0 + 2.5 = 19.5, patch centre at 41.8 - 15.0 = 26.8, lever 7.3 mm, M = 2500 x 7.3 = 18 250 N mm, sigma = 18 250 x 5 / 7083 = 12.9 MPa <= 16.67: margin 1.9. At 8 mm thickness I = 3627, sigma = 18 250 x 4 / 3627 = 20.1 MPa (fails), so the load case bites below about 10 mm.
 - **Bearing and sizes.** 600 mm2 of bearing area on the sole plane is 8.8 percent of an 80 x 85 platform's 6800 mm2 (outside the recess). Commercial adapters: Mousetrap 80 x 105 x 10, Deckster 85 x 95 x 10, both in the 80 to 105 range.
+- **Fillets.** A 1.0 mm radius fits every feature: the smallest printed widths are the 1.5 mm ligaments of L2.3.3 and the 0.8 mm thin-feature limit, and a concave 1.0 mm fillet in a hex trap corner is exempt (A15). A convex 1.0 mm fillet on the outer edge of a 10 mm plate removes (1 - pi/4) x 1.0^2 = 0.21 mm2 per corner of the section, under 0.5 % of I, so the strength line below is unchanged; rounding the plan corners also moves the worst crank-clearance corner inward.
 - **Print.** Platform plate flat on the bed (pedal-side down or top down), the nut pocket is open on the seat face (pedal side down) or bridged (<= 15, nut across corners 8.79 + 0.4 = 9.2 when top-down); grip pins vertical, or M4 grub pins in 3.3 mm pilots.
 
 The request, the L1s and the catalogue (`cleat_shimano_sm_sh51` 36 x 34 x 7, bolts 15.0; `pedal_shimano_pd_m520` stack 17.0, crank 55.0; `bolt_m5_iso4762`, `nut_m5`, `grub_m4_iso4026`) agree.
@@ -337,6 +349,7 @@ for loading, `clear_of`, `inside`, sections, thickness, overhangs and bed contac
 | bearing area (L3.5.2.1) | triangles of the adapter within 0.3 mm of Z = 17.0 and facing -Z, outside V-RECESS, summed |
 | grip count and height (L3.8.x) | connected raised components above the top-face plane (z_top is the median height of the plate): count, height = max z minus z_top |
 | bolt/nut stack (L3.3.1.x) | from the declared bolt length and the layout: tip Z = head-bearing Z + length; nut far face Z; top-face Z |
+| fillet scan (L3.13.1.x) | per printed body: for each mesh edge, the turn angle between its two face normals; drop the exempt edges (nut-trap faces, bore and slot walls along their axis); fail on any single edge turning > 30 degrees; group adjacent edges turning > 5 degrees into bands across the edge direction and report radius = arc length / total turn, smallest first, with its location |
 | mirror test (L3.10.1.1) | reflect the mesh in Y through the cleat axis plane; for `pair`, boolean symmetric difference volume |
 
 ### 7.1 Inputs

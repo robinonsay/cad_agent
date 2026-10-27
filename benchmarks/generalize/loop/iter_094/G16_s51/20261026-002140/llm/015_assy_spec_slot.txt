@@ -1,0 +1,54 @@
+MODEL: ornith-1.5:9b T=0.7 seed=51001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure, or another printed form (a plate or platform the parts bolt to), is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 17 (request): "...I need a flat motor plate that mounts a NEMA 17 stepper (42.3 mm square, 31 mm bolt pattern, 22 mm pilot) t..."
+n2 = 42.3 mm (request): "...I need a flat motor plate that mounts a NEMA 17 stepper (42.3 mm square, 31 mm bolt pattern, 22 mm pilot) to a 2020 alum..."
+n3 = 31 mm (request): "...motor plate that mounts a NEMA 17 stepper (42.3 mm square, 31 mm bolt pattern, 22 mm pilot) to a 2020 aluminium extrusio..."
+n4 = 22 mm (request): "...unts a NEMA 17 stepper (42.3 mm square, 31 mm bolt pattern, 22 mm pilot) to a 2020 aluminium extrusion with two M5 bolts..."
+n5 = 2020 (request): "...pper (42.3 mm square, 31 mm bolt pattern, 22 mm pilot) to a 2020 aluminium extrusion with two M5 bolts into drop-in T-nu..."
+n6 = 6 mm (request): "...shaft coming up through the plate. The M5 holes are slotted 6 mm so I can slide the plate to tension a belt, and the slo..."
+n7 = 5 mm (request): "...n across the extrusion, in the belt direction. The plate is 5 mm thick, prints flat on its face on an FDM printer, and i..."
+n8 = 20 (request): "...DM printer, and is the only printed part. The two bolts sit 20 to 40 mm apart along the extrusion with the motor's shaft..."
+n9 = 40 mm (request): "...nter, and is the only printed part. The two bolts sit 20 to 40 mm apart along the extrusion with the motor's shaft betwe..."
+n10 = 3.5 (request): "...n with the motor's shaft between them, the motor body stays 3.5 to 10 mm from the extrusion's edge, and the shaft needs ..."
+n11 = 10 mm (request): "...the motor's shaft between them, the motor body stays 3.5 to 10 mm from the extrusion's edge, and the shaft needs a 20 mm..."
+n12 = 20 mm (request): "...5 to 10 mm from the extrusion's edge, and the shaft needs a 20 mm diameter free zone above the plate, up to 30 mm high, ..."
+n13 = 30 mm (request): "...aft needs a 20 mm diameter free zone above the plate, up to 30 mm high, for a pulley and belt...."
+n14 = 17 (L1.1): "...The design shall place the NEMA 17 motor, the 2020 extrusion, two M5 T-nuts, two M5 bolts and..."
+n15 = 2020 (L1.1): "...The design shall place the NEMA 17 motor, the 2020 extrusion, two M5 T-nuts, two M5 bolts and four M3 screws f..."
+n16 = 17 (L1.2): "...The plate shall mount the NEMA 17 on its 31 mm bolt pattern with four M3 screws and a bore th..."
+n17 = 31 mm (L1.2): "...The plate shall mount the NEMA 17 on its 31 mm bolt pattern with four M3 screws and a bore that takes the..."
+n18 = 22 mm (L1.2): "...bolt pattern with four M3 screws and a bore that takes the 22 mm pilot, coaxial with the pattern...."
+n19 = 6 mm (L1.3): "...T-slot under the plate, through two slotted holes that give 6 mm of travel across the extrusion; the bolts shall be 20 t..."
+n20 = 20 (L1.3): "...ive 6 mm of travel across the extrusion; the bolts shall be 20 to 40 mm apart along the extrusion, and each shall engage..."
+n21 = 40 mm (L1.3): "...mm of travel across the extrusion; the bolts shall be 20 to 40 mm apart along the extrusion, and each shall engage at le..."
+n22 = 3 mm (L1.3): "...m apart along the extrusion, and each shall engage at least 3 mm of its T-nut without reaching the slot floor...."
+n23 = 6 mm (L1.4): "...Sliding the plate through its 6 mm of travel shall keep each bolt inside its slot, each bolt h..."
+n24 = 3.5 (L1.4): "...lt head on the plate, and the motor clear of the extrusion (3.5 to 10 mm from its edge at the nominal position, at least..."
+n25 = 10 mm (L1.4): "...on the plate, and the motor clear of the extrusion (3.5 to 10 mm from its edge at the nominal position, at least 0.5 mm ..."
+n26 = 0.5 mm (L1.4): "....5 to 10 mm from its edge at the nominal position, at least 0.5 mm at the end of the travel toward it), with at least 19..."
+n27 = 19 (L1.4): "...t 0.5 mm at the end of the travel toward it), with at least 19 mm² of plate under each bolt head at every position...."
+n28 = 5 mm (L1.5): "...The plate shall be one flat plate 5 mm thick resting on the extrusion's face without entering the..."
+n29 = 3 mm (L1.6): "...nd the belt pull to the two bolts through material at least 3 mm wide around every hole and edge, with no cross-section ..."
+n30 = 20 mm (L1.6): "...nd every hole and edge, with no cross-section narrower than 20 mm...."
+n31 = 20 mm (L1.7): "...t shall stay clear above the plate for a pulley and belt (a 20 mm diameter zone from the plate top to 30 mm above it), a..."
+n32 = 30 mm (L1.7): "...ulley and belt (a 20 mm diameter zone from the plate top to 30 mm above it), and every bolt and screw head shall be reac..."
+n34 = 75 mm (L1.9): "...The plate shall be no larger than 60 x 75 mm...."
+
+n33 (60) states size_max, so it is not offered for the quantities below.
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "max_y": "n34"
+}

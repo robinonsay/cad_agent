@@ -83,7 +83,29 @@
     "snap_hook_height": {"value": 1.5, "unit": "mm", "source": "migration delta R11 (cradle): height of a snap hook's head above the part's top face"},
     "snap_gap": {"value": 0.2, "unit": "mm", "source": "migration delta R11 (cradle): vertical play between a part's top face and the underside of the snap hook (FDM layer scatter)"},
     "snap_slot": {"value": 0.5, "unit": "mm", "source": "migration delta R11 (cradle): gap that frees a snap arm from the rim beside it so it can flex"},
-    "snap_strain_max": {"value": 0.025, "unit": "ratio", "source": "migration delta R11 (cradle): permissible bending strain of a printed PLA/PETG cantilever snap arm, used repeatedly (snap-fit design guides give 1.5-3 percent for brittle thermoplastics; strain = 1.5 t y / L^2)"}
+    "snap_strain_max": {"value": 0.025, "unit": "ratio", "source": "migration delta R11 (cradle): permissible bending strain of a printed PLA/PETG cantilever snap arm, used repeatedly (snap-fit design guides give 1.5-3 percent for brittle thermoplastics; strain = 1.5 t y / L^2)"},
+    "plate_wall_min": {"value": 3.0, "unit": "mm", "source": "migration delta R12 (plate): printed material kept round every cut of a load-carrying plate (slots, nut channels, recesses, stud holes) and to its outline; FDM practice for a bolted printed part, 7 to 8 perimeters at 0.4 mm (assumption, uncertainty +/-1 mm)"},
+    "plate_floor_min": {"value": 2.0, "unit": "mm", "source": "migration delta R12 (plate): printed floor between a part's bolted face and the nut a bolt clamps through it (10 layers of 0.2 mm), so the preload does not crush it (assumption, uncertainty +/-1 mm)"},
+    "bolt_tip_cover": {"value": 1.0, "unit": "mm", "source": "migration delta R12 (plate): a bolt tip stays at least this far below the plate face it must not reach (a protruding tip catches whatever touches the face; assumption)"},
+    "nut_trap_clearance_min": {"value": 0.1, "unit": "mm", "source": "migration delta R12 (plate): smallest clearance per flat side of a printed hex nut trap that still takes the nut (FDM practice; catalogue nuts give their own nominal trap_clearance)"},
+    "nut_trap_clearance_max": {"value": 0.4, "unit": "mm", "source": "migration delta R12 (plate): largest clearance per flat side at which a printed hex trap still stops the nut turning (FDM practice; the trap must stay narrower than the nut's corners)"},
+    "grip_pin_diameter": {"value": 4.0, "unit": "mm", "source": "migration delta R12 (surface features): diameter of a printed traction pin (5 extrusion widths; assumption, uncertainty +/-1 mm)"},
+    "grip_count_default": {"value": 8, "unit": "count", "source": "migration delta R12 (surface features): raised features placed when the text states no count (assumption: a few features at each corner and between them; uncertainty +/-4)"},
+    "grip_height_default": {"value": 3.0, "unit": "mm", "source": "migration delta R12 (surface features): protrusion of a raised feature when the text states no height (assumption: a few millimetres stand clear of a flat face without catching; uncertainty +/-1 mm)"},
+    "grip_edge_default": {"value": 3.0, "unit": "mm", "source": "migration delta R12 (surface features): smallest distance of a raised feature from the face's edge when the text states none (assumption)"},
+    "sweep_step_deg": {"value": 2.5, "unit": "deg", "source": "migration delta R12: angular step of a swept keep-out (a keep-out rotating about a datum through a catalogue angle); at 80 mm radius the chord error is under 0.02 mm, the judge's measurement epsilon"},
+    "position_step": {"value": 0.25, "unit": "mm", "source": "migration delta R12 (plate): grid step of the plate outline position search that clears the reference keep-outs"},
+    "tapped_engagement_ratio": {"value": 1.0, "unit": "ratio", "source": "migration delta R12 (plate): a screw threaded into a part's tapped metal hole engages at least this many thread diameters (machine-design practice: 1 x d in steel or aluminium; the part's own thread depth caps it)"},
+    "stress_sizing_iterations": {"value": 4, "unit": "count", "source": "migration delta R12 (plate): most re-sizing passes of the plate thickness against a stated bending load (each pass measures the built section)"},
+    "stress_tol": {"value": 0.05, "unit": "MPa", "source": "review fix R12 N7: tolerance of the load_stress check on the allowed bending stress (the section of a faceted mesh moves the measured stress by about 0.3 percent at 16 MPa); was a hard-coded 0.1 MPa"},
+    "clamp_bearing_ratio_min": {"value": 0.3, "unit": "ratio", "source": "review fix R12 B1 (ASSUMPTION, bolted-joint practice): smallest share of a fastener's nominal bearing face (nut flats or head, less its bolt clearance hole) that must rest on printed material, with the bolt axis inside the bearing's convex hull; a hex nut over a slot of its bolt's clearance width keeps its two side lands, about 40 percent of its face for ISO metric nuts (hand calculation in test_plate), and below 30 percent or with the lands on one side the nut tips or pulls through under preload (uncertainty +/-10 percent)"},
+    "thin_probe_step": {"value": 2.0, "unit": "mm", "source": "review fix R12 N5: spacing of the sections the thin_feature sensor cuts along x, y and z (a thin wall is long in at least one direction, so sections across it find it)"},
+    "plastic_thread_engagement_ratio": {"value": 1.5, "unit": "ratio", "source": "review fix R12 (stud engagement sensor): a screw tapped into printed plastic engages at least this many thread diameters (FDM practice 1.5 to 2 x d; the catalogue's own min_engagement may ask more)"},
+    "stress_probe_step": {"value": 1.0, "unit": "mm", "source": "R12 review 2 (N1): spacing of the load-case positions the load_stress sensor and the load sizing evaluate: the patch centre along each outline edge (both corners always included) and the bolted part's shift over its adjustment range (both extremes and the middle always included)"},
+    "fastener_preload_stress_default": {"value": 70.0, "unit": "MPa", "source": "R12 review 2 (N4), ASSUMPTION: the preload of a bolt clamping printed parts when the text states none, as a stress on the thread's core (tap drill) area: about 10 percent of an ISO 8.8 assembly preload (~600-700 MPa on the stress area), a hand-tight joint into printed material (M5: ~970 N, M3: ~340 N; uncertainty x2)"},
+    "print_strength_default": {"value": 25.0, "unit": "MPa", "source": "R12 review 2 (N4), ASSUMPTION: the in-plane strength of the printed material when the text states none (PETG / PLA FDM parts across layers, 20-40 MPa; the lower end)"},
+    "shear_strength_ratio": {"value": 0.5, "unit": "ratio", "source": "R12 review 2 (N4): the shear strength of the printed material as a share of its stated strength (Tresca; punch-through of a floor round a nut or a head is a shear failure)"},
+    "bearing_strength_ratio": {"value": 1.0, "unit": "ratio", "source": "R12 review 2 (N4), ASSUMPTION: the bearing (compressive contact) pressure the printed material carries under a nut or a head as a share of its stated strength (conservative: printed PETG / PLA compressive strength is about 1 to 1.5 times its tensile strength)"}
   },
   "spec_slots": {
     "about": "Generic enclosure spec slots. The controller maps each slot onto one number occurrence that Python extracted from the request or L1 text (or 'none'); a 'none' slot takes its default_rule value and is flagged as an assumption. A slot whose default_rule is null must come from the text unless it says \"required\": false (the board size slots: a primary reference that is not request-sized needs no number, and a request-sized one takes its size from them when they are filled, else from the part-size question; generalize delta 001 D4). The required flag is never shown to the controller.",
@@ -100,11 +122,59 @@
       {"name": "max_x", "meaning": "the largest allowed outside length of the closed enclosure (its longest side)", "unit": "mm", "default_rule": "bed_x"},
       {"name": "max_y", "meaning": "the largest allowed outside width of the closed enclosure", "unit": "mm", "default_rule": "bed_y"},
       {"name": "max_z", "meaning": "the largest allowed outside height of the closed enclosure", "unit": "mm", "default_rule": "bed_z"}
-    ]
+    ],
+    "forms": {
+      "about": "Migration delta R12: the spec slots of each non-shell archetype (structural form). ParseSpec asks the shell slots above always (unchanged, so the enclosure regression parses as before) and adds a form's slots when a part the text names can anchor that form (catalogue data: a bolt_face interface for the plate). Every slot is optional (no default: a silent slot sets no limit and no sensor). `range` is the plausible band Python checks a mapped number against; `pair`/`side` tie a lo/hi band; `sets` (R12 review 2, N6) makes a slot one stated value that sets both ends of a band (Python copies it to each end the text left unmapped: slot semantics, no text rule); the unit is checked against the word after the number (unit_words).",
+      "plate": [
+        {"name": "size_min", "meaning": "the smallest allowed plan length of the printed plate or platform along each of its sides", "unit": "mm", "pair": "size_max", "side": "lo"},
+        {"name": "size_max", "meaning": "the largest allowed plan length of the printed plate or platform along each of its sides", "unit": "mm", "pair": "size_min", "side": "hi"},
+        {"name": "thickness_min", "meaning": "the smallest allowed thickness of the printed plate or platform (not counting raised features)", "unit": "mm", "pair": "thickness_max", "side": "lo"},
+        {"name": "thickness_max", "meaning": "the largest allowed thickness of the printed plate or platform (not counting raised features)", "unit": "mm", "pair": "thickness_min", "side": "hi"},
+        {"name": "size_exact", "meaning": "the plan length of the printed plate or platform along each of its sides, when the text states one value and not a range", "unit": "mm", "sets": ["size_min", "size_max"]},
+        {"name": "thickness_exact", "meaning": "the thickness of the printed plate or platform (not counting raised features), when the text states one value and not a range", "unit": "mm", "sets": ["thickness_min", "thickness_max"]},
+        {"name": "ref_clearance", "meaning": "the smallest gap the printed part must keep from a neighbouring part or its keep-out zone", "unit": "mm"},
+        {"name": "load_force", "meaning": "the force of the load case the printed part must carry", "unit": "N", "range": [0, 100000]},
+        {"name": "load_patch", "meaning": "the side length of the square patch the load case acts on", "unit": "mm"},
+        {"name": "strength", "meaning": "the strength of the printed material used for the load case", "unit": "MPa", "range": [0, 2000]},
+        {"name": "safety_factor", "meaning": "the safety factor the load case stress must keep below the material strength", "unit": "ratio", "range": [1, 20]},
+        {"name": "bearing_area_min", "meaning": "the smallest flat area the printed part must bear on", "unit": "mm2"},
+        {"name": "feature_count_min", "meaning": "the fewest raised grip features (pins, studs or ridges) on the face", "unit": "count", "range": [1, 500]},
+        {"name": "feature_height_min", "meaning": "the smallest height of each raised grip feature", "unit": "mm", "pair": "feature_height_max", "side": "lo"},
+        {"name": "feature_height_max", "meaning": "the largest height of each raised grip feature", "unit": "mm", "pair": "feature_height_min", "side": "hi"},
+        {"name": "feature_edge_min", "meaning": "the smallest distance of the raised grip features from the edge of the face", "unit": "mm"},
+        {"name": "feature_coverage_min", "meaning": "the smallest share of the face's plan area the raised grip features must spread over", "unit": "percent", "range": [0, 100]},
+        {"name": "adjust_min", "meaning": "the smallest adjustment range of a bolted part's position along its main adjustment direction", "unit": "mm", "range": [0, 500]},
+        {"name": "adjust_cross_min", "meaning": "the smallest adjustment range of a bolted part's position across its main adjustment direction", "unit": "mm", "range": [0, 500]},
+        {"name": "feature_min", "meaning": "the thinnest printed feature or wall allowed anywhere in the printed part", "unit": "mm", "range": [0.1, 10]},
+        {"name": "fastener_preload", "meaning": "the clamping force (preload) of each bolt or screw that fastens a part to the printed part", "unit": "N", "range": [0, 100000]}
+      ]
+    }
+  },
+  "unit_words": {
+    "about": "Migration delta R12, review fix N2: the words that state a unit right after a number in the text (lower case), each with its scale factor to the unit (a prefixed unit is the word with its factor: 2.5 kN states 2500 N). ParseSpec scales a mapped number by its word's factor and rejects a mapping whose number carries a word of another unit than the slot's (a number with no unit word is accepted unscaled: the text does not say). The regex units mm / cm / deg of extract_numbers are already scaled there (their factor here is not applied twice).",
+    "source": "SI prefixes and common engineering units (1 psi = 0.00689476 MPa, 1 ksi = 6.89476 MPa)",
+    "mm": {"mm": 1, "millimetre": 1, "millimetres": 1, "millimeter": 1, "millimeters": 1, "cm": 10},
+    "deg": {"deg": 1, "degree": 1, "degrees": 1},
+    "N": {"n": 1, "newton": 1, "newtons": 1, "kn": 1000, "kilonewton": 1000, "kilonewtons": 1000},
+    "MPa": {"mpa": 1, "n/mm2": 1, "n/mm²": 1, "gpa": 1000, "kpa": 0.001, "psi": 0.00689476, "ksi": 6.89476},
+    "mm2": {"mm2": 1, "mm²": 1, "cm2": 100, "cm²": 100},
+    "percent": {"percent": 1, "%": 1, "per": 1},
+    "kg": {"kg": 1, "g": 0.001}
+  },
+  "trace_names": {
+    "about": "R12 review 2 (N7): the deterministic L1 trace (assembly.trace_links) for checks that measure a generic property of the printed part rather than a catalogue part or a mapped number: a check of this type also links every L1 that names one of these words (token runs, as catalogue `names`). Trace only: it never decides geometry, a choice or a pass; a check's own measurement decides PASS / FAIL.",
+    "source": "the vocabulary of FDM printing and bolted joints",
+    "printable": ["supports", "support material", "overhang", "overhangs", "bridge", "bridges"],
+    "separable": ["manifold", "one body", "single body", "watertight"],
+    "bbox_within": ["bed", "build plate", "build volume", "print bed"],
+    "bolt_engagement": ["engage", "engages", "engagement", "thread engagement"],
+    "bolt_tip": ["tip", "tips", "bolt tip", "screw tip"],
+    "fastener_bearing": ["clamp", "clamps", "tightened", "preload", "pull through", "punch through"]
   },
   "archetypes": {
-    "about": "Evidence gates for the archetypes the derivation rules can build (generalize delta 001 D5): an archetype is feasible only when its `needs` hold and the request or an L1 names one of its `evidence` words (text_evidence token runs). Generic vocabulary only; no design names. housing and block are left out on purpose: they name bearing housings and pillow blocks (block archetype, GM5).",
-    "tray_lid": {"evidence": ["enclosure", "box", "case", "lid"], "lid_words": ["lid"], "needs": "mount_holes primary", "source": "words that ask for a body enclosing its contents; a generic vocabulary, no design names. lid_words (generalize delta 003 C2): the evidence words that name the lid, so a closure word gates only in a sentence about the lid"}
+    "about": "The archetypes (structural forms) the derivation rules can build. Since migration delta R12 an archetype is feasible when its `needs` hold in the catalogue data (plant feasibility, forms.py) and the controller chooses among the feasible ones (a content-keyed, permutation-voted menu, then set_archetype in the closed loop); the `evidence` words are only the form_evidence sensor's vocabulary (a text naming another buildable form's words and none of the current one's is reported, never decided). Until R12 they were a gate (generalize delta 001 D5). `meaning` is the controller's gloss. Generic vocabulary only; no design names. housing and block are left out on purpose: they name bearing housings and pillow blocks (block archetype, GM5).",
+    "tray_lid": {"evidence": ["enclosure", "box", "case", "lid"], "lid_words": ["lid"], "needs": "mount_holes primary", "form": "shell", "meaning": "an enclosure: a printed tray and lid closed round the contents, which are held inside on standoffs or in a cradle", "source": "words that ask for a body enclosing its contents; a generic vocabulary, no design names. lid_words (generalize delta 003 C2): the evidence words that name the lid, so a closure word gates only in a sentence about the lid"},
+    "plate": {"evidence": ["plate", "platform", "baseplate", "base plate", "mounting plate"], "needs": "a content part with a bolt_face interface", "form": "plate", "closure": "bolt_through", "meaning": "a flat printed plate or platform that the parts bolt to face-on (bolts through slots or holes into captive nuts, or screws into tapped parts), keeping clear of the parts it sits on or next to", "source": "migration delta R12: words that ask for a flat body parts are bolted to; a generic vocabulary, no design names (form_evidence sensor only, never a gate)"}
   },
   "closures": {
     "about": "How the lid of a tray_lid closes on the base (generalize delta 003 C2). The default closure is used unless one sentence of the request or an L1 names a closure's evidence word and a lid word (archetypes.tray_lid.lid_words; text_evidence token runs). The form is a rule: no controller question. Generic vocabulary only.",
@@ -144,6 +214,28 @@
         "pocket": {"default": true, "holds": ["-z", "x", "y"], "meaning": "a locating pocket: ledges under the part's edges and a rim round it with a sliding fit; nothing holds it down", "source": "plant default (reads no text): the minimal cradle"},
         "crush_ribs": {"holds": ["-z", "x", "y", "+z"], "meaning": "the pocket with vertical crush ribs on the rim that press on the part's edges, so friction holds it in every direction", "source": "FDM practice: crush ribs give a press fit that tolerates print scatter"},
         "snap_clips": {"holds": ["-z", "x", "y", "+z"], "meaning": "the pocket with two cantilever snap clips whose hooks reach over the part's top face at opposite edges", "source": "snap-fit design guides (cantilever hook)"}
+      }
+    },
+    "surface_feature": {
+      "about": "Migration delta R12: raised features on a plate's free face (traction or locating features). The default is none (the plant adds nothing on its own); the surface_features sensor reports a count, height, edge distance or spread the text's mapped numbers ask for, and the controller adds a feature kind with add_surface_feature. Python lays the features out and sizes them within the mapped bands.",
+      "options": {
+        "none": {"default": true, "meaning": "a plain face with no raised features", "source": "plant default (reads no text)"},
+        "studs": {"needs": "stud", "meaning": "threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)", "source": "mechanical practice: replaceable steel studs are set screws in tapped holes"},
+        "pins": {"meaning": "printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)", "source": "FDM practice: printed traction pins"}
+      }
+    },
+    "nut_retention": {
+      "about": "Migration delta R12: how a plate holds the nuts of a bolt-through chain. The default is the plant's proposal (reads no text); the travel sensors report each declared adjustment axis the bolts cannot move along, and the controller may choose another option with set_nut_retention. A hex trap stops a nut turning only while it slides along one direction, so a part adjustable along two directions needs the frame.",
+      "options": {
+        "channel": {"default": true, "meaning": "hex nut channels in the plate, open to its free face, along the largest adjustment range (the nuts slide one way only)", "source": "plant default (reads no text): FDM practice, captive hex nut channels"},
+        "frame": {"needs": "two holes", "meaning": "a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots", "source": "bolted-joint practice: a floating nut carrier (a nut plate) slides in a pocket so a fastened part can be set along two directions; a carrier holding two nuts cannot turn in a pocket narrower than its diagonal"}
+      }
+    },
+    "handedness": {
+      "about": "Migration delta R12: when a reference part the design attaches to is used in left/right mirror pairs (part.json mirror_pair), the design either serves both with one part (its mirror image passes too) or is delivered as a declared mirror pair. The default is one part; the handedness sensor measures the mirror image, and the controller may declare a pair with set_handedness.",
+      "options": {
+        "single": {"default": true, "meaning": "one printed part serves both sides (it must pass on the mirrored reference too)", "source": "plant default (reads no text)"},
+        "mirror_pair": {"meaning": "a declared left/right pair: the part and its mirror image, each for its own side", "source": "mechanical practice: handed parts are made as mirror pairs"}
       }
     }
   },

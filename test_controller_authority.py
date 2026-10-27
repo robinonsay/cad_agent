@@ -20,7 +20,8 @@ REGISTRY = REPO / "controller_rules.json"
 ARCHITECTURE = REPO / "benchmarks" / "generalize" / "loop" / "ARCHITECTURE.md"
 MODULES = ("assembly.py", "assembly_checks.py", "feature_graph.py", "layout.py", "parts.py", "controller.py",
            "cad_agent.py", "menus.py",     # changed in migration delta R02: menus.py (the shared menu plumbing) is scanned
-           "building_blocks.py")   # changed in migration delta R11 (building blocks): building_blocks.py is agent code
+           "building_blocks.py",   # changed in migration delta R11 (building blocks): building_blocks.py is agent code
+           "forms.py", "plate.py")  # changed in migration delta R12: the structural forms and the plate archetype
 RULE_RE = re.compile(r"rule:([A-Za-z_][A-Za-z0-9_]*)(\[[A-Za-z0-9_]+\])?")
 CLASSES = {"sensor", "actuator", "controller-information", "guardrail", "plant", "semantic-rule"}
 STATUSES = {"active", "pending_migration", "retired"}

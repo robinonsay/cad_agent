@@ -1,0 +1,66 @@
+MODEL: ornith-1.5:9b T=0.7 seed=61001
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure is being designed from this request and its requirements.
+
+Numbers found in the text (each occurrence has its own id):
+n1 = 70 (request): "...An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW r..."
+n2 = 50 mm (request): "...An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio key..."
+n3 = 2 (request): "...r a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corn..."
+n4 = 2 (request): "...yer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long w..."
+n5 = 3.5 mm (request): "...oard has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the P..."
+n6 = 2 (L1.1): "...The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the..."
+n7 = 3.5 mm (L1.1): "...The design shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, wi..."
+n8 = 70 (L1.1): "...sign shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's ..."
+n9 = 50 mm (L1.1): "...shall place the Pico 2 and the two 3.5 mm jacks on the 70 x 50 mm board, from the parts catalogue, with the Pico's USB p..."
+n10 = 50 mm (L1.1): "...parts catalogue, with the Pico's USB port facing one short (50 mm) end and both jacks facing the other short end, withou..."
+n11 = 70 (L1.2): "...The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure w..."
+n12 = 50 (L1.2): "...The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with a..."
+n13 = 1.6 mm (L1.2): "...The 70 x 50 x 1.6 mm board shall fit inside the closed enclosure with at least 0..."
+n14 = 0.5 mm (L1.2): "...m board shall fit inside the closed enclosure with at least 0.5 mm clearance to every printed surface, apart from where ..."
+n15 = 12 mm (L1.4): "...the lid closed, no part of the enclosure shall come within 12 mm above the board's top surface or 4 mm below its undersi..."
+n16 = 4 mm (L1.4): "...re shall come within 12 mm above the board's top surface or 4 mm below its underside, except the standoffs under the hol..."
+n17 = 1.5 mm (L1.5): "...ching the enclosure, and that opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n18 = 3.5 mm (L1.6): "...With the lid closed, two 3.5 mm plugs shall plug fully into the two jacks at the same time..."
+n19 = 1.5 mm (L1.6): "...ching the enclosure, and each opening shall be no more than 1.5 mm bigger than the plug on any side...."
+n20 = 2 (L1.8): "...ings and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n21 = 4 mm (L1.8): "...and screw holes, and its walls, floor and lid shall be 2 to 4 mm thick...."
+n22 = 90 (L1.10): "...The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and sha..."
+n23 = 70 (L1.10): "...The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall st..."
+n24 = 35 mm (L1.10): "...The closed enclosure shall be no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat..."
+n25 = 70 mm (L1.10): "...e no larger than 90 x 70 x 35 mm, longest along the board's 70 mm side, and shall stand flat on a desk without tipping...."
+
+For each quantity below, give the id of the number in the text that states it, or "none" if the text does not state it. Never use a number for something it does not describe.
+- board_width: the length of the circuit board's longer edge (mm)
+- board_depth: the length of the circuit board's shorter edge (mm)
+- keepout_above: the free height that must stay clear above the board's top surface (component keep-out) (mm)
+- keepout_below: the free height that must stay clear below the board's underside (solder side) (mm)
+- board_clearance: the minimum gap between the board and any printed surface (mm)
+- headroom: the minimum free space required above the tallest part on the board (mm)
+- opening_oversize_max: the most a wall opening may be bigger than its cable plug, per side (mm)
+- wall_min: the minimum wall, floor and lid thickness (mm)
+- wall_max: the maximum wall, floor and lid thickness (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- max_z: the largest allowed outside height of the closed enclosure (mm)
+
+
+=== RESPONSE ===
+{
+  "board_clearance": "n14",
+  "board_depth": "n2",
+  "board_width": "n1",
+  "headroom": "none",
+  "keepout_above": "n15",
+  "keepout_below": "n15",
+  "max_x": "n22",
+  "max_y": "n23",
+  "max_z": "n24",
+  "opening_oversize_max": "n17",
+  "wall_max": "n21",
+  "wall_min": "n20"
+}

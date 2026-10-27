@@ -317,5 +317,16 @@
       "value": 0,
       "tol": 1e-06
     }
+  ],
+  "interfaces": [
+    {
+      "id": "face",
+      "kind": "bolt_face",
+      "holes": "HOLE",
+      "face": "FACE",
+      "thread": 3.0,
+      "thread_depth": "hole_thread_depth",
+      "source": "migration delta R12: the motor bolts face-on (FACE) to a plate by four M3 screws from the plate's far side into its tapped HOLE pattern, at most hole_thread_depth deep (the catalogue's mount block says the same: mount.face_datum, hole_datum, max_screw_engagement)"
+    }
   ]
 }

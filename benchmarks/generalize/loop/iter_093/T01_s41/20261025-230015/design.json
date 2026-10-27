@@ -1,0 +1,4317 @@
+{
+  "request": "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal. Requirements: The design shall carry one Shimano SM-SH51 cleat (catalogue cleat) with its mount face against the adapter's cleat seat, fastened by the cleat's own two bolt positions with standard M5 hardware (catalogue M5 socket-head bolts and M5 hex nuts), and shall declare the layout (cleat pose, bolts, nuts, grip features, print orientation). The cleat shall be adjustable fore-aft by at least 20 mm and sideways by at least 5 mm, as on a shoe, and shall clamp firmly at any position in that range; each nut shall be held captive so that it does not turn when a bolt is tightened with a 4 mm hex key. At every cleat position in that range the M5 hardware shall fit: each bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pedal, each bolt shall engage its nut for its whole thickness, and no bolt tip shall reach the top face of the platform. The adapter shall let the cleat clip into the SPD pedal: with the adapter on the pedal in the engaged pose, nothing but the cleat shall enter the pedal's binding space or the cleat's recess space, at every cleat position in the adjustment range. The adapter's pedal-side face shall sit on the pedal's sole plane like a shoe sole: no adapter material below that plane outside the cleat, and a flat bearing area of at least 600 mm2 on it. The adapter shall clear the crank arm: with the cleat at any position in its sideways range, and the adapter twisted about the cleat axis through the release angle either way, every point of the adapter shall stay at least 2.0 mm from the crank arm's inner face. The platform shall be sized like a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of 8 to 14 mm, not counting the grip features. The top face shall carry grip features for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the platform's plan area and kept at least 3 mm from its edge. The adapter shall carry a standing rider: a 2500 N load on a 30 x 30 mm patch at the outer edge of the platform, with only the cleat clamp footprint as support, shall give a bending stress at most 1/1.5 of the printed material's 25 MPa in-plane strength. One printed part shall serve both pedals: the part and its mirror image shall both pass every check above (or the design shall declare a left/right pair of two mirror-image parts, each passing every check on its own pedal). Each printed body shall be one manifold body that prints in PETG on an FDM printer without supports in its declared orientation, with no feature thinner than 0.8 mm, and fit a 200 x 200 x 200 mm bed. The design shall be delivered as the STL of each printed body, the OpenSCAD source, the declared layout and the agent's own clearance and strength report, and that report shall agree with an independent measurement.",
+  "base_request": "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.",
+  "seed": 41,
+  "l1": [
+    {
+      "id": "L1.1",
+      "text": "The design shall carry one Shimano SM-SH51 cleat (catalogue cleat) with its mount face against the adapter's cleat seat, fastened by the cleat's own two bolt positions with standard M5 hardware (catalogue M5 socket-head bolts and M5 hex nuts), and shall declare the layout (cleat pose, bolts, nuts, grip features, print orientation).",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.2",
+      "text": "The cleat shall be adjustable fore-aft by at least 20 mm and sideways by at least 5 mm, as on a shoe, and shall clamp firmly at any position in that range; each nut shall be held captive so that it does not turn when a bolt is tightened with a 4 mm hex key.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.3",
+      "text": "At every cleat position in that range the M5 hardware shall fit: each bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pedal, each bolt shall engage its nut for its whole thickness, and no bolt tip shall reach the top face of the platform.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.4",
+      "text": "The adapter shall let the cleat clip into the SPD pedal: with the adapter on the pedal in the engaged pose, nothing but the cleat shall enter the pedal's binding space or the cleat's recess space, at every cleat position in the adjustment range.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.5",
+      "text": "The adapter's pedal-side face shall sit on the pedal's sole plane like a shoe sole: no adapter material below that plane outside the cleat, and a flat bearing area of at least 600 mm2 on it.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.6",
+      "text": "The adapter shall clear the crank arm: with the cleat at any position in its sideways range, and the adapter twisted about the cleat axis through the release angle either way, every point of the adapter shall stay at least 2.0 mm from the crank arm's inner face.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.7",
+      "text": "The platform shall be sized like a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of 8 to 14 mm, not counting the grip features.",
+      "method": "inspection"
+    },
+    {
+      "id": "L1.8",
+      "text": "The top face shall carry grip features for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the platform's plan area and kept at least 3 mm from its edge.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.9",
+      "text": "The adapter shall carry a standing rider: a 2500 N load on a 30 x 30 mm patch at the outer edge of the platform, with only the cleat clamp footprint as support, shall give a bending stress at most 1/1.5 of the printed material's 25 MPa in-plane strength.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.10",
+      "text": "One printed part shall serve both pedals: the part and its mirror image shall both pass every check above (or the design shall declare a left/right pair of two mirror-image parts, each passing every check on its own pedal).",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.11",
+      "text": "Each printed body shall be one manifold body that prints in PETG on an FDM printer without supports in its declared orientation, with no feature thinner than 0.8 mm, and fit a 200 x 200 x 200 mm bed.",
+      "method": "analysis"
+    },
+    {
+      "id": "L1.12",
+      "text": "The design shall be delivered as the STL of each printed body, the OpenSCAD source, the declared layout and the agent's own clearance and strength report, and that report shall agree with an independent measurement.",
+      "method": "inspection"
+    }
+  ],
+  "outcome": "verified",
+  "verification": {
+    "verified": [],
+    "unsatisfied": [],
+    "unchecked": [],
+    "all_verified": false
+  },
+  "notes": [],
+  "components": [],
+  "assembly": {
+    "stage": "done",
+    "notes": [
+      "parse_spec: candidate forms shell, plate (the parts the text names): 27 slots",
+      "contents: orderings 3, consistency 0.67 (lowest key)",
+      "contents: primary by the largest catalogue plan footprint: cleat_shimano_sm_sh51 1224.0 mm2, pedal_shimano_pd_m520 9000.0 mm2",
+      "contents: mech_1 (pedal_shimano_pd_m520) is unplaced: cleat_shimano_sm_sh51 is not a carrier: no relation places it yet (GM2b)",
+      "arrange: primary cleat_shimano_sm_sh51 is not screwed down (no mounting holes, or no catalogue screw passes them); it rests on its seat plane in a cradle (building_blocks)",
+      "controller: 3 step(s), 3 kept; stop: every check passes",
+      "build: plate_mirror.stl is the declared mirror-pair part (the mirror image of the plate)"
+    ],
+    "parts_dir": "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts:/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts",
+    "parts_dirs": [
+      "/Users/robinonsay/python/llm-bt/benchmarks/generalize/parts",
+      "/Users/robinonsay/python/llm-bt/benchmarks/enclosure/parts"
+    ],
+    "rules_path": "/Users/robinonsay/python/llm-bt/design_rules.json",
+    "with_models": false,
+    "catalog": [
+      "arduino_nano",
+      "arduino_uno_r3",
+      "battery_9v_pp3",
+      "bearing_608",
+      "bearing_623",
+      "bearing_625",
+      "bolt_m3_iso4762",
+      "bolt_m4_iso4762",
+      "bolt_m5_iso4762",
+      "bolt_m5_iso7380",
+      "button_tact_6mm",
+      "buzzer_12mm",
+      "camera_screw_1_4_20",
+      "card_microsd",
+      "cell_18650",
+      "cleat_shimano_sm_sh51",
+      "dc_jack_pj002a",
+      "dowel_pin_generic",
+      "encoder_ec11",
+      "esp32_devkitc_v4",
+      "extrusion_2020",
+      "fan_40x40x10",
+      "fan_60x60x25",
+      "gear_spur_generic",
+      "generic_box",
+      "generic_cylinder",
+      "generic_tube",
+      "grub_m4_iso4026",
+      "gt2_belt_6mm",
+      "gt2_pulley_20t",
+      "hc_sr04",
+      "header_female_2p54",
+      "header_male_2p54",
+      "heatset_m2p5",
+      "heatset_m3",
+      "jack_3p5_pj320a",
+      "lcd1602_hd44780",
+      "led_5mm",
+      "lipo_503450",
+      "lm8uu",
+      "magnet_disc_6x3",
+      "microswitch_kw12",
+      "n20_gearmotor",
+      "nema17_motor",
+      "nut_m3",
+      "nut_m4",
+      "nut_m5",
+      "oled_ssd1306_096",
+      "pedal_shimano_pd_m520",
+      "perfboard",
+      "plug_dc_barrel_5p5",
+      "plug_microusb_b",
+      "plug_minihdmi",
+      "plug_miniusb_b",
+      "plug_trs_3p5",
+      "plug_usb_b",
+      "plug_usbc",
+      "pot_rk09",
+      "rod_8mm",
+      "rpi_camera_v2",
+      "rpi_pico2",
+      "rpi_zero2w",
+      "screw_m2_selftap",
+      "screw_m2p5_selftap",
+      "screw_m3_selftap",
+      "servo_mg996r",
+      "servo_sg90",
+      "slide_sk12d",
+      "tnut_2020_m5",
+      "toggle_mts102",
+      "tp4056_usbc_module"
+    ],
+    "catalog_errors": [],
+    "rules": {
+      "sliding_fit_min": 0.15,
+      "sliding_fit_max": 0.35,
+      "sliding_fit": 0.25,
+      "board_to_wall": 0.5,
+      "plug_to_opening": 0.3,
+      "opening_oversize_max": 1.5,
+      "min_ligament": 1.5,
+      "wall_default": 2.4,
+      "floor_default": 2.4,
+      "min_feature": 0.8,
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0,
+      "round_hole_exempt_max": 12.0,
+      "bed_x": 200.0,
+      "bed_y": 200.0,
+      "bed_z": 200.0,
+      "layer_height": 0.2,
+      "fn": 64.0,
+      "standoff_wall_min": 1.6,
+      "component_height_default": 10.0,
+      "solder_side_default": 3.0,
+      "keepout_margin": 1.0,
+      "plug_travel": 40.0,
+      "driver_clearance": 1.0,
+      "driver_diameter": 6.0,
+      "driver_reach": 50.0,
+      "design_margin": 0.1,
+      "grid_search_step": 0.01,
+      "grid_residual_max": 0.15,
+      "overlap_max": 1.0,
+      "interference_max": 0.01,
+      "seat_gap_max": 0.1,
+      "seat_axis_residual_max": 0.25,
+      "lip_engagement": 2.0,
+      "lip_wall": 1.2,
+      "boss_wall_min": 1.6,
+      "cut_overrun": 1.0,
+      "screw_hole_clearance_min": 0.2,
+      "given_hole_clearance_min": 0.0,
+      "max_quantity": 8.0,
+      "part_to_wall": 0.2,
+      "measure_tol": 0.01,
+      "margin_scale": 1.0,
+      "lookup_k": 3.0,
+      "view_elevation_deg": 20.0,
+      "arrange_rank_max": 16.0,
+      "layout_step": 0.5,
+      "aperture_min_volume": 1.0,
+      "parity_volume_rel": 0.005,
+      "parity_bbox": 0.05,
+      "rebate_upstand": 1.5,
+      "vent_slot_width": 2.0,
+      "vent_slot_length": 10.0,
+      "controller_step_budget": 6.0,
+      "controller_trust_region": 0.05,
+      "controller_error_terms": 6.0,
+      "controller_menu_max": 8.0,
+      "menu_orderings": 3.0,
+      "menu_samples": 1.0,
+      "menu_consistency_min": 1.0,
+      "menu_min_valid": 2.0,
+      "controller_search_k": 3.0,
+      "controller_search_depth": 1.0,
+      "controller_search_max_evals": 12.0,
+      "support_ledge_width": 1.2,
+      "support_min_length": 3.0,
+      "retention_wall": 1.2,
+      "pocket_rim_height": 3.0,
+      "retention_play_max": 0.5,
+      "crush_rib_width": 1.0,
+      "crush_rib_pitch": 15.0,
+      "crush_rib_interference": 0.15,
+      "crush_rib_interference_min": 0.05,
+      "crush_rib_interference_max": 0.3,
+      "snap_arm_thickness": 1.5,
+      "snap_clip_width": 5.0,
+      "snap_overlap": 1.0,
+      "snap_overlap_min": 0.5,
+      "snap_hook_height": 1.5,
+      "snap_gap": 0.2,
+      "snap_slot": 0.5,
+      "snap_strain_max": 0.025,
+      "plate_wall_min": 3.0,
+      "plate_floor_min": 2.0,
+      "bolt_tip_cover": 1.0,
+      "nut_trap_clearance_min": 0.1,
+      "nut_trap_clearance_max": 0.4,
+      "grip_pin_diameter": 4.0,
+      "grip_count_default": 8.0,
+      "grip_height_default": 3.0,
+      "grip_edge_default": 3.0,
+      "sweep_step_deg": 2.5,
+      "position_step": 0.25,
+      "tapped_engagement_ratio": 1.0,
+      "stress_sizing_iterations": 4.0
+    },
+    "spec": {
+      "keepout_above": 10.0,
+      "keepout_below": 3.0,
+      "board_clearance": 0.5,
+      "headroom": 0.5,
+      "opening_oversize_max": 1.5,
+      "wall_min": 2.4,
+      "wall_max": 2.4,
+      "max_x": 200.0,
+      "max_y": 200.0,
+      "max_z": 200.0,
+      "size_min": 80.0,
+      "size_max": 105.0,
+      "thickness_min": 8.0,
+      "thickness_max": 14.0,
+      "load_force": 2500.0,
+      "load_patch": 30.0,
+      "strength": 25.0,
+      "safety_factor": 1.5,
+      "bearing_area_min": 600.0,
+      "feature_count_min": 8.0,
+      "feature_height_min": 1.5,
+      "feature_height_max": 5.0,
+      "feature_edge_min": 3.0,
+      "feature_coverage_min": 60.0
+    },
+    "spec_provenance": {
+      "keepout_above": "rules:component_height_default",
+      "keepout_below": "rules:solder_side_default",
+      "board_clearance": "rules:board_to_wall",
+      "headroom": "rules:board_to_wall",
+      "opening_oversize_max": "rules:opening_oversize_max",
+      "wall_min": "rules:wall_default",
+      "wall_max": "rules:wall_default",
+      "max_x": "rules:bed_x",
+      "max_y": "rules:bed_y",
+      "max_z": "rules:bed_z",
+      "size_min": "L1.7:\"d like a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of\"",
+      "size_max": "L1.7:\"a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of 8 to 1\"",
+      "thickness_min": "L1.7:\"0 and 105 mm, with a thickness above the pedal-side face of 8 to 14 mm, not counting the grip features.\"",
+      "thickness_max": "L1.7:\"105 mm, with a thickness above the pedal-side face of 8 to 14 mm, not counting the grip features.\"",
+      "load_force": "L1.9:\"The adapter shall carry a standing rider: a 2500 N load on a 30 x 30 mm patch at the outer edge of the platf\"",
+      "load_patch": "L1.9:\"he adapter shall carry a standing rider: a 2500 N load on a 30 x 30 mm patch at the outer edge of the platform, with onl\"",
+      "strength": "L1.9:\"ve a bending stress at most 1/1.5 of the printed material's 25 MPa in-plane strength.\"",
+      "safety_factor": "L1.9:\"footprint as support, shall give a bending stress at most 1/1.5 of the printed material's 25 MPa in-plane strength.\"",
+      "bearing_area_min": "L1.5:\"lane outside the cleat, and a flat bearing area of at least 600 mm2 on it.\"",
+      "feature_count_min": "L1.8:\"The top face shall carry grip features for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over\"",
+      "feature_height_min": "L1.8:\"features for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the pl\"",
+      "feature_height_max": "L1.8:\"es for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the platform\"",
+      "feature_edge_min": "L1.8:\"st 60 percent of the platform's plan area and kept at least 3 mm from its edge.\"",
+      "feature_coverage_min": "L1.8:\"ns or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the platform's plan area and kept at least 3 m\""
+    },
+    "contents": [
+      {
+        "part": "cleat_shimano_sm_sh51",
+        "kind": "mech",
+        "quantity": 1,
+        "exposed": false,
+        "name": "shimano spd cleat",
+        "exposed_connectors": [],
+        "id": "board",
+        "params": {}
+      },
+      {
+        "part": "pedal_shimano_pd_m520",
+        "kind": "mech",
+        "quantity": 1,
+        "exposed": false,
+        "name": "shimano pd-m520",
+        "exposed_connectors": [],
+        "id": "mech_1",
+        "params": {}
+      }
+    ],
+    "layout": {
+      "board": {
+        "part": "cleat_shimano_sm_sh51",
+        "params": {},
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "rot_z": 0.0,
+        "item": "",
+        "copy": 0,
+        "role": "board",
+        "edge": null,
+        "of": null
+      },
+      "mech_1": {
+        "part": "pedal_shimano_pd_m520",
+        "params": {},
+        "x": 0.0,
+        "y": 0.0,
+        "z": -20.0,
+        "rot_z": 0.0,
+        "item": "mech_1",
+        "copy": 0,
+        "role": "engaged",
+        "edge": null,
+        "of": "board",
+        "relation": "cleat_shimano_sm_sh51.SOLE_PLANE on pedal_shimano_pd_m520.SOLE_PLANE"
+      },
+      "bolt_0": {
+        "part": "bolt_m5_iso4762",
+        "params": {
+          "length": 10.0
+        },
+        "x": -7.5,
+        "y": 0.0,
+        "z": -2.0,
+        "rot_z": 0.0,
+        "axis_dir": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "item": "bolt_0",
+        "copy": 0,
+        "role": "fastener",
+        "edge": null,
+        "of": "board"
+      },
+      "nut_0": {
+        "part": "nut_m5",
+        "params": {},
+        "x": -7.5,
+        "y": 0.0,
+        "z": 2.1,
+        "rot_z": 0.0,
+        "item": "nut_0",
+        "copy": 0,
+        "role": "fastener",
+        "edge": null,
+        "of": "board"
+      },
+      "bolt_1": {
+        "part": "bolt_m5_iso4762",
+        "params": {
+          "length": 10.0
+        },
+        "x": 7.5,
+        "y": 0.0,
+        "z": -2.0,
+        "rot_z": 0.0,
+        "axis_dir": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "item": "bolt_1",
+        "copy": 1,
+        "role": "fastener",
+        "edge": null,
+        "of": "board"
+      },
+      "nut_1": {
+        "part": "nut_m5",
+        "params": {},
+        "x": 7.5,
+        "y": 0.0,
+        "z": 2.1,
+        "rot_z": 0.0,
+        "item": "nut_1",
+        "copy": 1,
+        "role": "fastener",
+        "edge": null,
+        "of": "board"
+      },
+      "stud_0": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": -34.8,
+        "y": -33.55,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_0",
+        "copy": 0,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      },
+      "stud_1": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": 34.2,
+        "y": -33.55,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_1",
+        "copy": 1,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      },
+      "stud_2": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": 34.2,
+        "y": 35.45,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_2",
+        "copy": 2,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      },
+      "stud_3": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": -34.8,
+        "y": 35.45,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_3",
+        "copy": 3,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      },
+      "stud_4": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": -0.7999999999999972,
+        "y": 15.450000000000003,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_4",
+        "copy": 4,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      },
+      "stud_5": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": -0.7999999999999972,
+        "y": -21.549999999999997,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_5",
+        "copy": 5,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      },
+      "stud_6": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": -31.799999999999997,
+        "y": 0.45000000000000284,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_6",
+        "copy": 6,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      },
+      "stud_7": {
+        "part": "grub_m4_iso4026",
+        "params": {
+          "length": 10.0
+        },
+        "x": 31.200000000000003,
+        "y": 0.45000000000000284,
+        "z": 12.65,
+        "rot_z": 0.0,
+        "item": "stud_7",
+        "copy": 7,
+        "role": "surface_feature",
+        "edge": null,
+        "of": "plate"
+      }
+    },
+    "arrange": {
+      "candidates": [
+        {
+          "assignment": {},
+          "outcome": "scored",
+          "class": null,
+          "words": "",
+          "votes": 0,
+          "class_votes": null,
+          "asked": false,
+          "chosen": true,
+          "prescore": null
+        }
+      ],
+      "classes": 0,
+      "truncated": 0,
+      "decision": "rule:no_exposed_connector"
+    },
+    "grid_report": {
+      "grid": false,
+      "soft": false,
+      "finite": false,
+      "max": 0.0,
+      "worst": null,
+      "parts": {},
+      "no_pin_data": [],
+      "exempt": []
+    },
+    "conflicts": [],
+    "coverage": [],
+    "links": {
+      "separable": [],
+      "clear_primary": [
+        "L1.1"
+      ],
+      "clear_fasteners": [],
+      "clear_recess": [
+        "L1.1"
+      ],
+      "clear_mech_1": [
+        "L1.4"
+      ],
+      "clear_mech_1_binding_cage": [
+        "L1.4"
+      ],
+      "clear_mech_1_crank_side": [
+        "L1.4"
+      ],
+      "handedness_plate": [
+        "L1.4"
+      ],
+      "travel_x": [
+        "L1.1"
+      ],
+      "travel_y": [
+        "L1.1"
+      ],
+      "bolt_engagement_0": [
+        "L1.1"
+      ],
+      "bolt_tip_0": [],
+      "nut_trap_0": [
+        "L1.1"
+      ],
+      "bolt_engagement_1": [
+        "L1.1"
+      ],
+      "bolt_tip_1": [],
+      "nut_trap_1": [
+        "L1.1"
+      ],
+      "nut_frame_turn": [
+        "L1.1"
+      ],
+      "printable_nut_frame": [],
+      "plate_size_x": [
+        "L1.7"
+      ],
+      "plate_size_y": [
+        "L1.7"
+      ],
+      "plate_thickness": [
+        "L1.7"
+      ],
+      "bearing_area": [
+        "L1.5"
+      ],
+      "load_stress": [
+        "L1.9"
+      ],
+      "printable": [],
+      "surface_features": [
+        "L1.8"
+      ],
+      "bbox": [],
+      "form_evidence": [
+        "L1.1",
+        "L1.3",
+        "L1.4",
+        "L1.5",
+        "L1.6",
+        "L1.7",
+        "L1.8",
+        "L1.9"
+      ]
+    },
+    "number_owner": {
+      "n9": "size_min",
+      "n10": "size_max",
+      "n11": "thickness_min",
+      "n12": "thickness_max",
+      "n18": "load_force",
+      "n19": "load_patch",
+      "n23": "strength",
+      "n22": "safety_factor",
+      "n7": "bearing_area_min",
+      "n13": "feature_count_min",
+      "n14": "feature_height_min",
+      "n15": "feature_height_max",
+      "n17": "feature_edge_min",
+      "n16": "feature_coverage_min"
+    },
+    "unplaced": [],
+    "relations": [],
+    "forms": [
+      {
+        "form": "shell",
+        "key": "tray_lid+screws",
+        "meaning": "an enclosure: a printed tray and lid closed round the contents, which are held inside on standoffs or in a cradle",
+        "feasible": true,
+        "reason": ""
+      },
+      {
+        "form": "plate",
+        "key": "plate+bolt_through",
+        "meaning": "a flat printed plate or platform that the parts bolt to face-on (bolts through slots or holes into captive nuts, or screws into tapped parts), keeping clear of the parts it sits on or next to",
+        "feasible": true,
+        "reason": ""
+      }
+    ],
+    "plate": {
+      "chain": {
+        "kind": "bolt_through",
+        "bolt": "bolt_m5_iso4762",
+        "nut": "nut_m5",
+        "bolt_params": {
+          "thread_diameter": 5.0,
+          "head_diameter": 8.5,
+          "head_height": 5.0,
+          "clearance_diameter": 5.5,
+          "counterbore_diameter": 8.9,
+          "counterbore_depth": 5.2,
+          "tap_diameter": 4.2,
+          "key_size": 4.0,
+          "tool_access_height": 25.0
+        },
+        "nut_params": {
+          "thread_diameter": 5.0,
+          "across_flats": 8.0,
+          "across_corners": 8.79,
+          "thickness": 4.7,
+          "trap_clearance": 0.2,
+          "pocket_depth": 4.9,
+          "bolt_clearance_diameter": 5.5,
+          "insertion_height": 5.7
+        },
+        "lengths": [
+          6.0,
+          8.0,
+          10.0,
+          12.0,
+          16.0,
+          20.0,
+          25.0,
+          30.0,
+          35.0,
+          40.0,
+          45.0,
+          50.0
+        ],
+        "thread": 5.0,
+        "length": 10.0
+      },
+      "into": false,
+      "z_face": 0.0,
+      "z_bot": -3.0,
+      "z_nut": 2.1,
+      "nut_top": 6.800000000000001,
+      "seat_z": -2.0,
+      "tip": 8.0,
+      "outline": [
+        -39.99999999999999,
+        -38.74999999999999,
+        40.1,
+        41.35
+      ],
+      "size": [
+        80.1,
+        80.1
+      ],
+      "need_size": [
+        66.2,
+        49.2
+      ],
+      "thickness": 12.4,
+      "z_top": 9.4,
+      "slide": {
+        "dir": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "range": 20.0
+      },
+      "adjust": [
+        {
+          "dir": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "range": 20.0,
+          "covered": 20.0
+        },
+        {
+          "dir": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "range": 5.0,
+          "covered": 5.0
+        }
+      ],
+      "holes": [
+        [
+          -7.5,
+          0.0,
+          0.0
+        ],
+        [
+          7.5,
+          0.0,
+          0.0
+        ]
+      ],
+      "cuts": [
+        {
+          "id": "nut_pocket",
+          "centre": [
+            0.0,
+            0.0
+          ],
+          "angle": 0.0,
+          "z0": 2.1,
+          "z1": null,
+          "role": "nut_pocket"
+        },
+        {
+          "id": "slot_0",
+          "centre": [
+            -7.5,
+            0.0
+          ],
+          "angle": 0.0,
+          "z0": -4.0,
+          "z1": 3.1,
+          "role": "bolt_slot"
+        },
+        {
+          "id": "frame_trap_0",
+          "centre": [
+            -7.5,
+            0.0
+          ],
+          "angle": 0.0,
+          "z0": 1.1,
+          "z1": 7.800000000000001,
+          "role": "nut_trap",
+          "body": "nut_frame"
+        },
+        {
+          "id": "slot_1",
+          "centre": [
+            7.5,
+            0.0
+          ],
+          "angle": 0.0,
+          "z0": -4.0,
+          "z1": 3.1,
+          "role": "bolt_slot"
+        },
+        {
+          "id": "frame_trap_1",
+          "centre": [
+            7.5,
+            0.0
+          ],
+          "angle": 0.0,
+          "z0": 1.1,
+          "z1": 7.800000000000001,
+          "role": "nut_trap",
+          "body": "nut_frame"
+        }
+      ],
+      "recess": [
+        {
+          "id": "recess_recess",
+          "lo": [
+            -30.0,
+            -21.5,
+            -3.0
+          ],
+          "hi": [
+            30.0,
+            21.5,
+            0.0
+          ],
+          "z0": -4.0,
+          "z1": 0.0,
+          "keepout": "recess"
+        }
+      ],
+      "own": [],
+      "mate": {
+        "id": "mech_1",
+        "part": "pedal_shimano_pd_m520",
+        "pose": [
+          [
+            1.0,
+            -0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            -20.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "plane_z": -3.0
+      },
+      "notes": [],
+      "conflicts": [],
+      "clearance": 0.1,
+      "gap": 0.18872550494392656,
+      "flats": 8.4,
+      "surface": "studs",
+      "handedness": "mirror_pair",
+      "retention": "frame",
+      "frame": {
+        "local": [
+          [
+            -15.349742261192857,
+            -7.2
+          ],
+          [
+            15.349742261192857,
+            -7.2
+          ],
+          [
+            15.349742261192857,
+            7.2
+          ],
+          [
+            -15.349742261192857,
+            7.2
+          ]
+        ],
+        "centre": [
+          0.0,
+          0.0
+        ],
+        "angle": 0.0,
+        "z0": 2.1,
+        "h": 4.7,
+        "size": [
+          30.699484522385713,
+          14.4
+        ],
+        "pocket": [
+          51.19948452238572,
+          19.9
+        ]
+      },
+      "features": [
+        {
+          "x": -34.8,
+          "y": -33.55,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": 34.2,
+          "y": -33.55,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": 34.2,
+          "y": 35.45,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -34.8,
+          "y": 35.45,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -0.7999999999999972,
+          "y": 15.450000000000003,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -0.7999999999999972,
+          "y": -21.549999999999997,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": -31.799999999999997,
+          "y": 0.45000000000000284,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        },
+        {
+          "x": 31.200000000000003,
+          "y": 0.45000000000000284,
+          "d": 4.0,
+          "h": 3.25,
+          "kind": "studs"
+        }
+      ],
+      "feature_spec": {
+        "kind": "studs",
+        "count": 8,
+        "height": 3.25,
+        "edge": 3.1,
+        "diameter": 4.0,
+        "part": "grub_m4_iso4026",
+        "length": 10.0,
+        "depth": 6.75
+      },
+      "orientation": "top_face_down",
+      "orientations": {
+        "contact_face_down": {
+          "violation": 1.9456,
+          "worst_span": 16.9456,
+          "steep_area": 0.0,
+          "bed_area": 3836.0098
+        },
+        "top_face_down": {
+          "violation": 0.0,
+          "worst_span": 6.8337,
+          "steep_area": 0.0,
+          "bed_area": 5328.6611
+        }
+      }
+    },
+    "controller": {
+      "kind": "llm",
+      "budget": 6,
+      "steps": 3,
+      "kept": 3,
+      "stop": "every check passes"
+    },
+    "control": {
+      "closure": null,
+      "infeasible": {},
+      "accepted": [
+        {
+          "kind": "set_nut_retention",
+          "target": "plate",
+          "value": "frame",
+          "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap, sliding in a pocket of the plate that covers the adjustment in every declared direction (like the nut plate inside a cycling shoe)",
+          "targets": [
+            "travel_y"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_nut_retention:plate=frame",
+          "id": "set_nut_retention:plate=frame",
+          "ident": "",
+          "step": 1
+        },
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": "",
+          "step": 2
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": "",
+          "step": 3
+        }
+      ],
+      "surface_feature": "studs",
+      "handedness": "mirror_pair"
+    },
+    "fasteners": {
+      "fastener.plate.thread_diameter": 5.0,
+      "fastener.plate.head_diameter": 8.5,
+      "fastener.plate.head_height": 5.0,
+      "fastener.plate.clearance_diameter": 5.5,
+      "fastener.plate.counterbore_diameter": 8.9,
+      "fastener.plate.counterbore_depth": 5.2,
+      "fastener.plate.tap_diameter": 4.2,
+      "fastener.plate.key_size": 4.0,
+      "fastener.plate.tool_access_height": 25.0
+    },
+    "choices": {
+      "primary": {
+        "value": "cleat_shimano_sm_sh51",
+        "by": "rule:primary_reference",
+        "reason": "largest plan footprint",
+        "interface": "seat"
+      },
+      "archetype": {
+        "value": "plate+bolt_through",
+        "by": "llm",
+        "votes": {
+          "plate": 2
+        },
+        "consistency": 1.0,
+        "confident": true,
+        "options": [
+          "shell",
+          "plate"
+        ]
+      },
+      "nut_retention[plate]": {
+        "value": "frame",
+        "by": "search:controller",
+        "step": 1,
+        "votes": {
+          "add_surface_feature:top=studs": 1,
+          "add_surface_feature:top=pins": 2
+        },
+        "consistency": 0.6667,
+        "confident": false,
+        "evidence": [],
+        "menu": 5
+      },
+      "handedness[plate]": {
+        "value": "mirror_pair",
+        "by": "llm:controller",
+        "step": 2,
+        "votes": {
+          "set_handedness:plate=mirror_pair": 2,
+          "add_surface_feature:top=studs": 1
+        },
+        "consistency": 0.6667,
+        "confident": false,
+        "evidence": [],
+        "menu": 3
+      },
+      "surface_feature[top]": {
+        "value": "studs",
+        "by": "llm:controller",
+        "step": 3,
+        "votes": {
+          "add_surface_feature:top=studs": 2
+        },
+        "consistency": 1.0,
+        "confident": true,
+        "evidence": [],
+        "menu": 2
+      },
+      "print_orientation[plate]": {
+        "value": "top_face_down",
+        "by": "rule:print_orientation",
+        "violation": {
+          "contact_face_down": 1.9456,
+          "top_face_down": 0.0
+        }
+      }
+    },
+    "assumptions": [
+      "keepout_above = 10 mm from rules:component_height_default (the text states no number for it)",
+      "keepout_below = 3 mm from rules:solder_side_default (the text states no number for it)",
+      "board_clearance = 0.5 mm from rules:board_to_wall (the text states no number for it)",
+      "headroom = 0.5 mm from rules:board_to_wall (the text states no number for it)",
+      "opening_oversize_max = 1.5 mm from rules:opening_oversize_max (the text states no number for it)",
+      "wall_min = 2.4 mm from rules:wall_default (the text states no number for it)",
+      "wall_max = 2.4 mm from rules:wall_default (the text states no number for it)",
+      "max_x = 200 mm from rules:bed_x (the text states no number for it)",
+      "max_y = 200 mm from rules:bed_y (the text states no number for it)",
+      "max_z = 200 mm from rules:bed_z (the text states no number for it)"
+    ],
+    "stl_source": {
+      "plate": "openscad",
+      "nut_frame": "openscad"
+    },
+    "components": [
+      {
+        "id": "plate",
+        "kind": "body",
+        "role": "plate",
+        "body": "plate",
+        "primitive": "box",
+        "params": {
+          "x": 80.1,
+          "y": 80.1,
+          "z": 12.4
+        },
+        "bbox": [
+          [
+            -40.0,
+            -38.75,
+            -3.0
+          ],
+          [
+            40.1,
+            41.35,
+            9.4
+          ]
+        ],
+        "source": "rule:plate"
+      },
+      {
+        "id": "nut_frame",
+        "kind": "body",
+        "role": "nut_frame",
+        "body": "nut_frame",
+        "primitive": "prism",
+        "params": {
+          "n": 4.0,
+          "h": 4.7,
+          "x1": -15.3497,
+          "y1": -7.2,
+          "x2": 15.3497,
+          "y2": -7.2,
+          "x3": 15.3497,
+          "y3": 7.2,
+          "x4": -15.3497,
+          "y4": 7.2
+        },
+        "bbox": [
+          [
+            -15.3497,
+            -7.2,
+            2.1
+          ],
+          [
+            15.3497,
+            7.2,
+            6.8
+          ]
+        ],
+        "source": "rule:nut_frame"
+      },
+      {
+        "id": "nut_pocket",
+        "kind": "cut",
+        "role": "nut_pocket",
+        "body": "plate",
+        "primitive": "prism",
+        "params": {
+          "n": 4.0,
+          "h": 8.3,
+          "x1": -25.5997,
+          "y1": -9.95,
+          "x2": 25.5997,
+          "y2": -9.95,
+          "x3": 25.5997,
+          "y3": 9.95,
+          "x4": -25.5997,
+          "y4": 9.95
+        },
+        "bbox": [
+          [
+            -25.5997,
+            -9.95,
+            2.1
+          ],
+          [
+            25.5997,
+            9.95,
+            10.4
+          ]
+        ],
+        "source": "rule:nut_frame"
+      },
+      {
+        "id": "slot_0",
+        "kind": "cut",
+        "role": "bolt_slot",
+        "body": "plate",
+        "primitive": "prism",
+        "params": {
+          "n": 68.0,
+          "h": 7.1,
+          "x1": 10.0,
+          "y1": -5.2533,
+          "x2": 10.2699,
+          "y2": -5.2401,
+          "x3": 10.5371,
+          "y3": -5.2004,
+          "x4": 10.7992,
+          "y4": -5.1348,
+          "x5": 11.0536,
+          "y5": -5.0437,
+          "x6": 11.2979,
+          "y6": -4.9282,
+          "x7": 11.5297,
+          "y7": -4.7893,
+          "x8": 11.7467,
+          "y8": -4.6283,
+          "x9": 11.9469,
+          "y9": -4.4469,
+          "x10": 12.1283,
+          "y10": -4.2467,
+          "x11": 12.2893,
+          "y11": -4.0297,
+          "x12": 12.4282,
+          "y12": -3.7979,
+          "x13": 12.5437,
+          "y13": -3.5536,
+          "x14": 12.6348,
+          "y14": -3.2992,
+          "x15": 12.7004,
+          "y15": -3.0371,
+          "x16": 12.7401,
+          "y16": -2.7699,
+          "x17": 12.7533,
+          "y17": -2.5,
+          "x18": 12.7533,
+          "y18": 2.5,
+          "x19": 12.7401,
+          "y19": 2.7699,
+          "x20": 12.7004,
+          "y20": 3.0371,
+          "x21": 12.6348,
+          "y21": 3.2992,
+          "x22": 12.5437,
+          "y22": 3.5536,
+          "x23": 12.4282,
+          "y23": 3.7979,
+          "x24": 12.2893,
+          "y24": 4.0297,
+          "x25": 12.1283,
+          "y25": 4.2467,
+          "x26": 11.9469,
+          "y26": 4.4469,
+          "x27": 11.7467,
+          "y27": 4.6283,
+          "x28": 11.5297,
+          "y28": 4.7893,
+          "x29": 11.2979,
+          "y29": 4.9282,
+          "x30": 11.0536,
+          "y30": 5.0437,
+          "x31": 10.7992,
+          "y31": 5.1348,
+          "x32": 10.5371,
+          "y32": 5.2004,
+          "x33": 10.2699,
+          "y33": 5.2401,
+          "x34": 10.0,
+          "y34": 5.2533,
+          "x35": -10.0,
+          "y35": 5.2533,
+          "x36": -10.2699,
+          "y36": 5.2401,
+          "x37": -10.5371,
+          "y37": 5.2004,
+          "x38": -10.7992,
+          "y38": 5.1348,
+          "x39": -11.0536,
+          "y39": 5.0437,
+          "x40": -11.2979,
+          "y40": 4.9282,
+          "x41": -11.5297,
+          "y41": 4.7893,
+          "x42": -11.7467,
+          "y42": 4.6283,
+          "x43": -11.9469,
+          "y43": 4.4469,
+          "x44": -12.1283,
+          "y44": 4.2467,
+          "x45": -12.2893,
+          "y45": 4.0297,
+          "x46": -12.4282,
+          "y46": 3.7979,
+          "x47": -12.5437,
+          "y47": 3.5536,
+          "x48": -12.6348,
+          "y48": 3.2992,
+          "x49": -12.7004,
+          "y49": 3.0371,
+          "x50": -12.7401,
+          "y50": 2.7699,
+          "x51": -12.7533,
+          "y51": 2.5,
+          "x52": -12.7533,
+          "y52": -2.5,
+          "x53": -12.7401,
+          "y53": -2.7699,
+          "x54": -12.7004,
+          "y54": -3.0371,
+          "x55": -12.6348,
+          "y55": -3.2992,
+          "x56": -12.5437,
+          "y56": -3.5536,
+          "x57": -12.4282,
+          "y57": -3.7979,
+          "x58": -12.2893,
+          "y58": -4.0297,
+          "x59": -12.1283,
+          "y59": -4.2467,
+          "x60": -11.9469,
+          "y60": -4.4469,
+          "x61": -11.7467,
+          "y61": -4.6283,
+          "x62": -11.5297,
+          "y62": -4.7893,
+          "x63": -11.2979,
+          "y63": -4.9282,
+          "x64": -11.0536,
+          "y64": -5.0437,
+          "x65": -10.7992,
+          "y65": -5.1348,
+          "x66": -10.5371,
+          "y66": -5.2004,
+          "x67": -10.2699,
+          "y67": -5.2401,
+          "x68": -10.0,
+          "y68": -5.2533
+        },
+        "bbox": [
+          [
+            -20.2533,
+            -5.2533,
+            -4.0
+          ],
+          [
+            5.2533,
+            5.2533,
+            3.1
+          ]
+        ],
+        "source": "rule:adjust_slot"
+      },
+      {
+        "id": "frame_trap_0",
+        "kind": "cut",
+        "role": "nut_trap",
+        "body": "nut_frame",
+        "primitive": "prism",
+        "params": {
+          "n": 6.0,
+          "h": 6.7,
+          "x1": -4.8497,
+          "y1": 0.0,
+          "x2": -2.4249,
+          "y2": -4.2,
+          "x3": 2.4249,
+          "y3": -4.2,
+          "x4": 4.8497,
+          "y4": 0.0,
+          "x5": 2.4249,
+          "y5": 4.2,
+          "x6": -2.4249,
+          "y6": 4.2
+        },
+        "bbox": [
+          [
+            -12.3497,
+            -4.2,
+            1.1
+          ],
+          [
+            -2.6503,
+            4.2,
+            7.8
+          ]
+        ],
+        "source": "rule:nut_frame"
+      },
+      {
+        "id": "slot_1",
+        "kind": "cut",
+        "role": "bolt_slot",
+        "body": "plate",
+        "primitive": "prism",
+        "params": {
+          "n": 68.0,
+          "h": 7.1,
+          "x1": 10.0,
+          "y1": -5.2533,
+          "x2": 10.2699,
+          "y2": -5.2401,
+          "x3": 10.5371,
+          "y3": -5.2004,
+          "x4": 10.7992,
+          "y4": -5.1348,
+          "x5": 11.0536,
+          "y5": -5.0437,
+          "x6": 11.2979,
+          "y6": -4.9282,
+          "x7": 11.5297,
+          "y7": -4.7893,
+          "x8": 11.7467,
+          "y8": -4.6283,
+          "x9": 11.9469,
+          "y9": -4.4469,
+          "x10": 12.1283,
+          "y10": -4.2467,
+          "x11": 12.2893,
+          "y11": -4.0297,
+          "x12": 12.4282,
+          "y12": -3.7979,
+          "x13": 12.5437,
+          "y13": -3.5536,
+          "x14": 12.6348,
+          "y14": -3.2992,
+          "x15": 12.7004,
+          "y15": -3.0371,
+          "x16": 12.7401,
+          "y16": -2.7699,
+          "x17": 12.7533,
+          "y17": -2.5,
+          "x18": 12.7533,
+          "y18": 2.5,
+          "x19": 12.7401,
+          "y19": 2.7699,
+          "x20": 12.7004,
+          "y20": 3.0371,
+          "x21": 12.6348,
+          "y21": 3.2992,
+          "x22": 12.5437,
+          "y22": 3.5536,
+          "x23": 12.4282,
+          "y23": 3.7979,
+          "x24": 12.2893,
+          "y24": 4.0297,
+          "x25": 12.1283,
+          "y25": 4.2467,
+          "x26": 11.9469,
+          "y26": 4.4469,
+          "x27": 11.7467,
+          "y27": 4.6283,
+          "x28": 11.5297,
+          "y28": 4.7893,
+          "x29": 11.2979,
+          "y29": 4.9282,
+          "x30": 11.0536,
+          "y30": 5.0437,
+          "x31": 10.7992,
+          "y31": 5.1348,
+          "x32": 10.5371,
+          "y32": 5.2004,
+          "x33": 10.2699,
+          "y33": 5.2401,
+          "x34": 10.0,
+          "y34": 5.2533,
+          "x35": -10.0,
+          "y35": 5.2533,
+          "x36": -10.2699,
+          "y36": 5.2401,
+          "x37": -10.5371,
+          "y37": 5.2004,
+          "x38": -10.7992,
+          "y38": 5.1348,
+          "x39": -11.0536,
+          "y39": 5.0437,
+          "x40": -11.2979,
+          "y40": 4.9282,
+          "x41": -11.5297,
+          "y41": 4.7893,
+          "x42": -11.7467,
+          "y42": 4.6283,
+          "x43": -11.9469,
+          "y43": 4.4469,
+          "x44": -12.1283,
+          "y44": 4.2467,
+          "x45": -12.2893,
+          "y45": 4.0297,
+          "x46": -12.4282,
+          "y46": 3.7979,
+          "x47": -12.5437,
+          "y47": 3.5536,
+          "x48": -12.6348,
+          "y48": 3.2992,
+          "x49": -12.7004,
+          "y49": 3.0371,
+          "x50": -12.7401,
+          "y50": 2.7699,
+          "x51": -12.7533,
+          "y51": 2.5,
+          "x52": -12.7533,
+          "y52": -2.5,
+          "x53": -12.7401,
+          "y53": -2.7699,
+          "x54": -12.7004,
+          "y54": -3.0371,
+          "x55": -12.6348,
+          "y55": -3.2992,
+          "x56": -12.5437,
+          "y56": -3.5536,
+          "x57": -12.4282,
+          "y57": -3.7979,
+          "x58": -12.2893,
+          "y58": -4.0297,
+          "x59": -12.1283,
+          "y59": -4.2467,
+          "x60": -11.9469,
+          "y60": -4.4469,
+          "x61": -11.7467,
+          "y61": -4.6283,
+          "x62": -11.5297,
+          "y62": -4.7893,
+          "x63": -11.2979,
+          "y63": -4.9282,
+          "x64": -11.0536,
+          "y64": -5.0437,
+          "x65": -10.7992,
+          "y65": -5.1348,
+          "x66": -10.5371,
+          "y66": -5.2004,
+          "x67": -10.2699,
+          "y67": -5.2401,
+          "x68": -10.0,
+          "y68": -5.2533
+        },
+        "bbox": [
+          [
+            -5.2533,
+            -5.2533,
+            -4.0
+          ],
+          [
+            20.2533,
+            5.2533,
+            3.1
+          ]
+        ],
+        "source": "rule:adjust_slot"
+      },
+      {
+        "id": "frame_trap_1",
+        "kind": "cut",
+        "role": "nut_trap",
+        "body": "nut_frame",
+        "primitive": "prism",
+        "params": {
+          "n": 6.0,
+          "h": 6.7,
+          "x1": -4.8497,
+          "y1": 0.0,
+          "x2": -2.4249,
+          "y2": -4.2,
+          "x3": 2.4249,
+          "y3": -4.2,
+          "x4": 4.8497,
+          "y4": 0.0,
+          "x5": 2.4249,
+          "y5": 4.2,
+          "x6": -2.4249,
+          "y6": 4.2
+        },
+        "bbox": [
+          [
+            2.6503,
+            -4.2,
+            1.1
+          ],
+          [
+            12.3497,
+            4.2,
+            7.8
+          ]
+        ],
+        "source": "rule:nut_frame"
+      },
+      {
+        "id": "recess_recess",
+        "kind": "cut",
+        "role": "recess",
+        "body": "plate",
+        "primitive": "box",
+        "params": {
+          "x": 60.0,
+          "y": 43.0,
+          "z": 4.0
+        },
+        "bbox": [
+          [
+            -30.0,
+            -21.5,
+            -4.0
+          ],
+          [
+            30.0,
+            21.5,
+            0.0
+          ]
+        ],
+        "source": "rule:recess"
+      },
+      {
+        "id": "stud_hole_0",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            -36.452,
+            -35.202,
+            2.65
+          ],
+          [
+            -33.148,
+            -31.898,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      },
+      {
+        "id": "stud_hole_1",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            32.548,
+            -35.202,
+            2.65
+          ],
+          [
+            35.852,
+            -31.898,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      },
+      {
+        "id": "stud_hole_2",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            32.548,
+            33.798,
+            2.65
+          ],
+          [
+            35.852,
+            37.102,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      },
+      {
+        "id": "stud_hole_3",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            -36.452,
+            33.798,
+            2.65
+          ],
+          [
+            -33.148,
+            37.102,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      },
+      {
+        "id": "stud_hole_4",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            -2.452,
+            13.798,
+            2.65
+          ],
+          [
+            0.852,
+            17.102,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      },
+      {
+        "id": "stud_hole_5",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            -2.452,
+            -23.202,
+            2.65
+          ],
+          [
+            0.852,
+            -19.898,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      },
+      {
+        "id": "stud_hole_6",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            -33.452,
+            -1.202,
+            2.65
+          ],
+          [
+            -30.148,
+            2.102,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      },
+      {
+        "id": "stud_hole_7",
+        "kind": "cut",
+        "role": "tap_hole",
+        "body": "plate",
+        "primitive": "cylinder",
+        "params": {
+          "d": 3.3,
+          "h": 7.75
+        },
+        "bbox": [
+          [
+            29.548,
+            -1.202,
+            2.65
+          ],
+          [
+            32.852,
+            2.102,
+            10.4
+          ]
+        ],
+        "source": "rule:surface_feature(studs)"
+      }
+    ],
+    "results": [
+      {
+        "check_id": "separable",
+        "l1_id": "rules",
+        "type": "separable",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {
+          "bodies": [
+            "plate",
+            "nut_frame"
+          ]
+        },
+        "evidence": {
+          "shells": {
+            "plate": 1,
+            "nut_frame": 1
+          },
+          "status": {
+            "plate": "NoError",
+            "nut_frame": "NoError"
+          },
+          "overlap_mm3": {
+            "plate^nut_frame": -1.7763568394002505e-15
+          },
+          "overlap_max": 1.0,
+          "detail": "shells {'plate': 1, 'nut_frame': 1}, worst overlap -1.776e-15 mm3 (max 1)"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_primary",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to primary 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "board": "cleat_shimano_sm_sh51"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_fasteners",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 1.71,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 1.7,
+          "d": 1.7,
+          "clearance": 0.0,
+          "per_source": {
+            "bolt_0": {
+              "part": "bolt_m5_iso4762",
+              "penetration_mm3": 0.0,
+              "d": 1.7
+            },
+            "bolt_1": {
+              "part": "bolt_m5_iso4762",
+              "penetration_mm3": 0.0,
+              "d": 1.7
+            }
+          },
+          "detail": "min gap to fasteners 1.7000 mm (need >= 0)",
+          "volume_parts": {
+            "bolt_0": "bolt_m5_iso4762",
+            "bolt_1": "bolt_m5_iso4762"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_recess",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to keepout_recess 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "board": "cleat_shimano_sm_sh51"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_mech_1",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": -0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to engaged 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "mech_1": "pedal_shimano_pd_m520"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_mech_1_binding_cage",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to keepout_mech_1_binding_cage 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "mech_1": "pedal_shimano_pd_m520"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_mech_1_crank_side",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.198726,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.188726,
+          "d": 0.188726,
+          "clearance": 0.0,
+          "detail": "min gap to keepout_mech_1_crank_side 0.1887 mm (need >= 0)",
+          "volume_parts": {
+            "mech_1": "pedal_shimano_pd_m520"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "handedness_plate",
+        "l1_id": "rules",
+        "type": "handedness",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {},
+        "evidence": {
+          "value": -265.6191,
+          "declared": "mirror_pair",
+          "basis": "design",
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3); a mirror pair is declared (the left part is the exact mirror image)",
+          "where": "keepout_mech_1_crank_side"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "travel_x",
+        "l1_id": "rules",
+        "type": "travel",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to travel_0 0.0000 mm (need >= 0)",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "travel_y",
+        "l1_id": "rules",
+        "type": "travel",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to travel_1 0.0000 mm (need >= 0)",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_engagement_0",
+        "l1_id": "rules",
+        "type": "bolt_engagement",
+        "passed": true,
+        "margin": 1.21,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.2,
+          "limit": 0.0,
+          "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_tip_0",
+        "l1_id": "rules",
+        "type": "bolt_tip",
+        "passed": true,
+        "margin": 1.41,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.4,
+          "limit": 0.0,
+          "detail": "design check: top face z 9.400 vs tip 8.000",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "nut_trap_0",
+        "l1_id": "rules",
+        "type": "nut_trap",
+        "passed": true,
+        "margin": 0.1,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 0.2,
+          "width": 8.4,
+          "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_engagement_1",
+        "l1_id": "rules",
+        "type": "bolt_engagement",
+        "passed": true,
+        "margin": 1.21,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.2,
+          "limit": 0.0,
+          "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_tip_1",
+        "l1_id": "rules",
+        "type": "bolt_tip",
+        "passed": true,
+        "margin": 1.41,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.4,
+          "limit": 0.0,
+          "detail": "design check: top face z 9.400 vs tip 8.000",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "nut_trap_1",
+        "l1_id": "rules",
+        "type": "nut_trap",
+        "passed": true,
+        "margin": 0.1,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 0.2,
+          "width": 8.4,
+          "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "nut_frame_turn",
+        "l1_id": "rules",
+        "type": "nut_frame_turn",
+        "passed": true,
+        "margin": 14.018972,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 14.008972,
+          "limit": 0.0,
+          "detail": "design check: frame diagonal 33.91 mm vs pocket width 19.90 mm",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "printable_nut_frame",
+        "l1_id": "rules",
+        "type": "printable",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 0.0,
+          "limit": 15.0,
+          "steep_area": 0.0,
+          "regions": [],
+          "orientation": "contact_face_down",
+          "basis": "measured",
+          "detail": "contact_face_down: longest bridge 0.00 mm (max 15), steep overhang area 0.00 mm2"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "plate_size_x",
+        "l1_id": "rules",
+        "type": "plate_size",
+        "passed": true,
+        "margin": 0.109998,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 80.099998,
+          "lo": 80.0,
+          "hi": 105.0,
+          "detail": "plan length 80.100 mm",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "plate_size_y",
+        "l1_id": "rules",
+        "type": "plate_size",
+        "passed": true,
+        "margin": 0.109998,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 80.099998,
+          "lo": 80.0,
+          "hi": 105.0,
+          "detail": "plan length 80.100 mm",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "plate_thickness",
+        "l1_id": "rules",
+        "type": "plate_thickness",
+        "passed": true,
+        "margin": 1.61,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 12.4,
+          "lo": 8.0,
+          "hi": 14.0,
+          "detail": "thickness 12.400 mm at the corners",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bearing_area",
+        "l1_id": "rules",
+        "type": "bearing_area",
+        "passed": true,
+        "margin": 3236.019756,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 3836.009756,
+          "limit": 600.0,
+          "detail": "underside area 3836.0 mm2",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "load_stress",
+        "l1_id": "rules",
+        "type": "load_stress",
+        "passed": true,
+        "margin": 0.038272,
+        "unit": "ratio",
+        "depends_on": {},
+        "evidence": {
+          "value": 16.0288,
+          "limit": 16.6667,
+          "edges": [
+            {
+              "edge": "+x",
+              "arm": -2.9,
+              "stress": 0.0
+            },
+            {
+              "edge": "-x",
+              "arm": -3.0,
+              "stress": 0.0
+            },
+            {
+              "edge": "+y",
+              "arm": 6.85,
+              "stress": 16.0288,
+              "I": 7735.43,
+              "c": 7.2403,
+              "area": 813.24,
+              "at": 19.5
+            },
+            {
+              "edge": "-y",
+              "arm": 4.25,
+              "stress": 9.9449,
+              "I": 7735.43,
+              "c": 7.2403,
+              "area": 813.24,
+              "at": -19.5
+            }
+          ],
+          "basis": "measured",
+          "detail": "worst bending stress 16.03 MPa at edge +y (arm 6.85 mm) vs 16.67 MPa"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "printable",
+        "l1_id": "rules",
+        "type": "printable",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 6.8337,
+          "limit": 15.0,
+          "steep_area": 0.0,
+          "regions": [
+            {
+              "span": 6.8337,
+              "area": 599.8264,
+              "z": -2.1
+            },
+            {
+              "span": 3.2999,
+              "area": 8.5597,
+              "z": -2.65
+            },
+            {
+              "span": 3.2999,
+              "area": 8.5598,
+              "z": -2.65
+            },
+            {
+              "span": 3.2999,
+              "area": 8.5598,
+              "z": -2.65
+            },
+            {
+              "span": 3.2999,
+              "area": 8.5597,
+              "z": -2.65
+            },
+            {
+              "span": 3.2999,
+              "area": 8.5598,
+              "z": -2.65
+            }
+          ],
+          "orientation": "top_face_down",
+          "basis": "measured",
+          "detail": "top_face_down: longest bridge 6.83 mm (max 15), steep overhang area 0.00 mm2"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "surface_features",
+        "l1_id": "rules",
+        "type": "surface_features",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {},
+        "evidence": {
+          "value": 8,
+          "coverage": 74.2,
+          "edge": 3.2,
+          "kind": "studs",
+          "basis": "design",
+          "detail": "8 studs features, spread 74.2 %"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bbox",
+        "l1_id": "rules",
+        "type": "bbox_within",
+        "passed": true,
+        "margin": 119.910002,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "size": [
+            80.1,
+            80.1,
+            12.4
+          ],
+          "max": [
+            200.0,
+            200.0,
+            200.0
+          ],
+          "x_longest": false,
+          "detail": "outside 80.10 x 80.10 x 12.40 mm, max 200 x 200 x 200"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "form_evidence",
+        "l1_id": "rules",
+        "type": "form_evidence",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {},
+        "evidence": {
+          "current": "plate",
+          "expected": [],
+          "quotes": [
+            {
+              "source": "request",
+              "quote": "The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way).",
+              "match": "platform",
+              "form": "plate"
+            },
+            {
+              "source": "request",
+              "quote": "It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.",
+              "match": "adapter",
+              "form": "plate"
+            },
+            {
+              "source": "L1.1",
+              "quote": "The design shall carry one Shimano SM-SH51 cleat (catalogue cleat) with its mount face against the adapter's cleat seat, fastened by the cleat's own two bolt positions with standard M5 hardware (catalogue M5 socket-head bolts and M5 hex nuts), and shall declare the layout (cleat pose, bolts, nuts, grip features, print orientation).",
+              "match": "adapter",
+              "form": "plate"
+            },
+            {
+              "source": "L1.3",
+              "quote": "At every cleat position in that range the M5 hardware shall fit: each bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pedal, each bolt shall engage its nut for its whole thickness, and no bolt tip shall reach the top face of the platform.",
+              "match": "platform",
+              "form": "plate"
+            }
+          ],
+          "detail": "the design is a plate; request names it",
+          "basis": "text"
+        },
+        "layer": 1,
+        "hard": true
+      }
+    ],
+    "results_manifold": [
+      {
+        "check_id": "separable",
+        "l1_id": "rules",
+        "type": "separable",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {
+          "bodies": [
+            "plate",
+            "nut_frame"
+          ]
+        },
+        "evidence": {
+          "shells": {
+            "plate": 1,
+            "nut_frame": 1
+          },
+          "status": {
+            "plate": "NoError",
+            "nut_frame": "NoError"
+          },
+          "overlap_mm3": {
+            "plate^nut_frame": -1.5543122344752192e-15
+          },
+          "overlap_max": 1.0,
+          "detail": "shells {'plate': 1, 'nut_frame': 1}, worst overlap -1.554e-15 mm3 (max 1)"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_primary",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to primary 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "board": "cleat_shimano_sm_sh51"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_fasteners",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 1.71,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 1.7,
+          "d": 1.7,
+          "clearance": 0.0,
+          "per_source": {
+            "bolt_0": {
+              "part": "bolt_m5_iso4762",
+              "penetration_mm3": 0.0,
+              "d": 1.7
+            },
+            "bolt_1": {
+              "part": "bolt_m5_iso4762",
+              "penetration_mm3": 0.0,
+              "d": 1.7
+            }
+          },
+          "detail": "min gap to fasteners 1.7000 mm (need >= 0)",
+          "volume_parts": {
+            "bolt_0": "bolt_m5_iso4762",
+            "bolt_1": "bolt_m5_iso4762"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_recess",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to keepout_recess 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "board": "cleat_shimano_sm_sh51"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_mech_1",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to engaged 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "mech_1": "pedal_shimano_pd_m520"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_mech_1_binding_cage",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to keepout_mech_1_binding_cage 0.0000 mm (need >= 0)",
+          "volume_parts": {
+            "mech_1": "pedal_shimano_pd_m520"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "clear_mech_1_crank_side",
+        "l1_id": "rules",
+        "type": "clear_of",
+        "passed": true,
+        "margin": 0.198726,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": 0.0,
+          "gap": 0.188726,
+          "d": 0.188726,
+          "clearance": 0.0,
+          "detail": "min gap to keepout_mech_1_crank_side 0.1887 mm (need >= 0)",
+          "volume_parts": {
+            "mech_1": "pedal_shimano_pd_m520"
+          }
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "handedness_plate",
+        "l1_id": "rules",
+        "type": "handedness",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {},
+        "evidence": {
+          "value": -265.6194,
+          "declared": "mirror_pair",
+          "basis": "design",
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3); a mirror pair is declared (the left part is the exact mirror image)",
+          "where": "keepout_mech_1_crank_side"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "travel_x",
+        "l1_id": "rules",
+        "type": "travel",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": -0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to travel_0 0.0000 mm (need >= 0)",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "travel_y",
+        "l1_id": "rules",
+        "type": "travel",
+        "passed": true,
+        "margin": 0.01,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "penetration_mm3": -0.0,
+          "gap": 0.0,
+          "d": 0.0,
+          "clearance": 0.0,
+          "detail": "min gap to travel_1 0.0000 mm (need >= 0)",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_engagement_0",
+        "l1_id": "rules",
+        "type": "bolt_engagement",
+        "passed": true,
+        "margin": 1.21,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.2,
+          "limit": 0.0,
+          "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_tip_0",
+        "l1_id": "rules",
+        "type": "bolt_tip",
+        "passed": true,
+        "margin": 1.41,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.4,
+          "limit": 0.0,
+          "detail": "design check: top face z 9.400 vs tip 8.000",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "nut_trap_0",
+        "l1_id": "rules",
+        "type": "nut_trap",
+        "passed": true,
+        "margin": 0.1,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 0.2,
+          "width": 8.4,
+          "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_engagement_1",
+        "l1_id": "rules",
+        "type": "bolt_engagement",
+        "passed": true,
+        "margin": 1.21,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.2,
+          "limit": 0.0,
+          "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bolt_tip_1",
+        "l1_id": "rules",
+        "type": "bolt_tip",
+        "passed": true,
+        "margin": 1.41,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 1.4,
+          "limit": 0.0,
+          "detail": "design check: top face z 9.400 vs tip 8.000",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "nut_trap_1",
+        "l1_id": "rules",
+        "type": "nut_trap",
+        "passed": true,
+        "margin": 0.1,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 0.2,
+          "width": 8.4,
+          "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "nut_frame_turn",
+        "l1_id": "rules",
+        "type": "nut_frame_turn",
+        "passed": true,
+        "margin": 14.018972,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 14.008972,
+          "limit": 0.0,
+          "detail": "design check: frame diagonal 33.91 mm vs pocket width 19.90 mm",
+          "basis": "design"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "printable_nut_frame",
+        "l1_id": "rules",
+        "type": "printable",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 0.0,
+          "limit": 15.0,
+          "steep_area": 0.0,
+          "regions": [],
+          "orientation": "contact_face_down",
+          "basis": "measured",
+          "detail": "contact_face_down: longest bridge 0.00 mm (max 15), steep overhang area 0.00 mm2"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "plate_size_x",
+        "l1_id": "rules",
+        "type": "plate_size",
+        "passed": true,
+        "margin": 0.11,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 80.1,
+          "lo": 80.0,
+          "hi": 105.0,
+          "detail": "plan length 80.100 mm",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "plate_size_y",
+        "l1_id": "rules",
+        "type": "plate_size",
+        "passed": true,
+        "margin": 0.11,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 80.1,
+          "lo": 80.0,
+          "hi": 105.0,
+          "detail": "plan length 80.100 mm",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "plate_thickness",
+        "l1_id": "rules",
+        "type": "plate_thickness",
+        "passed": true,
+        "margin": 1.61,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 12.4,
+          "lo": 8.0,
+          "hi": 14.0,
+          "detail": "thickness 12.400 mm at the corners",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bearing_area",
+        "l1_id": "rules",
+        "type": "bearing_area",
+        "passed": true,
+        "margin": 3236.02,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 3836.01,
+          "limit": 600.0,
+          "detail": "underside area 3836.0 mm2",
+          "basis": "measured"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "load_stress",
+        "l1_id": "rules",
+        "type": "load_stress",
+        "passed": true,
+        "margin": 0.038272,
+        "unit": "ratio",
+        "depends_on": {},
+        "evidence": {
+          "value": 16.0288,
+          "limit": 16.6667,
+          "edges": [
+            {
+              "edge": "+x",
+              "arm": -2.9,
+              "stress": 0.0
+            },
+            {
+              "edge": "-x",
+              "arm": -3.0,
+              "stress": 0.0
+            },
+            {
+              "edge": "+y",
+              "arm": 6.85,
+              "stress": 16.0288,
+              "I": 7735.44,
+              "c": 7.2403,
+              "area": 813.24,
+              "at": 19.5
+            },
+            {
+              "edge": "-y",
+              "arm": 4.25,
+              "stress": 9.9449,
+              "I": 7735.44,
+              "c": 7.2403,
+              "area": 813.24,
+              "at": -19.5
+            }
+          ],
+          "basis": "measured",
+          "detail": "worst bending stress 16.03 MPa at edge +y (arm 6.85 mm) vs 16.67 MPa"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "printable",
+        "l1_id": "rules",
+        "type": "printable",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "value": 6.8337,
+          "limit": 15.0,
+          "steep_area": 0.0,
+          "regions": [
+            {
+              "span": 6.8337,
+              "area": 599.8273,
+              "z": -2.1
+            },
+            {
+              "span": 3.3,
+              "area": 8.5599,
+              "z": -2.65
+            },
+            {
+              "span": 3.3,
+              "area": 8.5599,
+              "z": -2.65
+            },
+            {
+              "span": 3.3,
+              "area": 8.5599,
+              "z": -2.65
+            },
+            {
+              "span": 3.3,
+              "area": 8.5599,
+              "z": -2.65
+            },
+            {
+              "span": 3.3,
+              "area": 8.5599,
+              "z": -2.65
+            }
+          ],
+          "orientation": "top_face_down",
+          "basis": "measured",
+          "detail": "top_face_down: longest bridge 6.83 mm (max 15), steep overhang area 0.00 mm2"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "surface_features",
+        "l1_id": "rules",
+        "type": "surface_features",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {},
+        "evidence": {
+          "value": 8,
+          "coverage": 74.2,
+          "edge": 3.2,
+          "kind": "studs",
+          "basis": "design",
+          "detail": "8 studs features, spread 74.2 %"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "bbox",
+        "l1_id": "rules",
+        "type": "bbox_within",
+        "passed": true,
+        "margin": 119.91,
+        "unit": "mm",
+        "depends_on": {},
+        "evidence": {
+          "size": [
+            80.1,
+            80.1,
+            12.4
+          ],
+          "max": [
+            200.0,
+            200.0,
+            200.0
+          ],
+          "x_longest": false,
+          "detail": "outside 80.10 x 80.10 x 12.40 mm, max 200 x 200 x 200"
+        },
+        "layer": 1,
+        "hard": true
+      },
+      {
+        "check_id": "form_evidence",
+        "l1_id": "rules",
+        "type": "form_evidence",
+        "passed": true,
+        "margin": 1.0,
+        "unit": "count",
+        "depends_on": {},
+        "evidence": {
+          "current": "plate",
+          "expected": [],
+          "quotes": [
+            {
+              "source": "request",
+              "quote": "The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way).",
+              "match": "platform",
+              "form": "plate"
+            },
+            {
+              "source": "request",
+              "quote": "It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.",
+              "match": "adapter",
+              "form": "plate"
+            },
+            {
+              "source": "L1.1",
+              "quote": "The design shall carry one Shimano SM-SH51 cleat (catalogue cleat) with its mount face against the adapter's cleat seat, fastened by the cleat's own two bolt positions with standard M5 hardware (catalogue M5 socket-head bolts and M5 hex nuts), and shall declare the layout (cleat pose, bolts, nuts, grip features, print orientation).",
+              "match": "adapter",
+              "form": "plate"
+            },
+            {
+              "source": "L1.3",
+              "quote": "At every cleat position in that range the M5 hardware shall fit: each bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pedal, each bolt shall engage its nut for its whole thickness, and no bolt tip shall reach the top face of the platform.",
+              "match": "platform",
+              "form": "plate"
+            }
+          ],
+          "detail": "the design is a plate; request names it",
+          "basis": "text"
+        },
+        "layer": 1,
+        "hard": true
+      }
+    ],
+    "files": [
+      "checks.json",
+      "controller_trace.json",
+      "feature_graph.json",
+      "ghost.scad",
+      "layout.json",
+      "model.3mf",
+      "model.scad",
+      "nut_frame.scad",
+      "nut_frame.stl",
+      "plate.scad",
+      "plate.stl",
+      "plate_mirror.stl",
+      "self_report.json",
+      "verification_matrix.json",
+      "verification_matrix.md",
+      "views.scad",
+      "views/ghost_back.png",
+      "views/ghost_front.png",
+      "views/ghost_iso.png",
+      "views/ghost_left.png",
+      "views/ghost_right.png",
+      "views/ghost_top.png",
+      "views/model_back.png",
+      "views/model_front.png",
+      "views/model_iso.png",
+      "views/model_left.png",
+      "views/model_right.png",
+      "views/model_top.png"
+    ],
+    "deferred_gate_rules": {
+      "R7": "checked after placement: layout.place rejects pairwise interference > interference_max",
+      "R8": "by construction: envelopes are generated from the placed datums (test_parts.TestEnvelopes)",
+      "R10": "skipped: imported models are compared only in the --with-models arm (M14; numbered R9 before generalize delta 001, which gave R9 to the interface gate)"
+    },
+    "feature_graph": {
+      "schema": 1,
+      "nodes": [
+        {
+          "id": "board",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {},
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "cleat_shimano_sm_sh51",
+          "source": "layout:board",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "mech_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {},
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              -20.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "pedal_shimano_pd_m520",
+          "source": "rule:engage_pose",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "plate",
+          "kind": "body",
+          "primitive": "box",
+          "params": {
+            "x": 80.1,
+            "y": 80.1,
+            "z": 12.4
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.05000000000000426,
+              1.3000000000000043,
+              -3.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "plate",
+          "part": null,
+          "source": "rule:plate",
+          "free": [],
+          "color": "#4f81bd",
+          "group": null
+        },
+        {
+          "id": "nut_frame",
+          "kind": "body",
+          "primitive": "prism",
+          "params": {
+            "n": 4.0,
+            "h": 4.7,
+            "x1": -15.349742261192857,
+            "y1": -7.2,
+            "x2": 15.349742261192857,
+            "y2": -7.2,
+            "x3": 15.349742261192857,
+            "y3": 7.2,
+            "x4": -15.349742261192857,
+            "y4": 7.2
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              2.1
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": "nut_frame",
+          "role": "nut_frame",
+          "part": null,
+          "source": "rule:nut_frame",
+          "free": [],
+          "color": "#c0504d",
+          "group": null
+        },
+        {
+          "id": "nut_pocket",
+          "kind": "cut",
+          "primitive": "prism",
+          "params": {
+            "n": 4.0,
+            "h": 8.3,
+            "x1": -25.59974226119286,
+            "y1": -9.95,
+            "x2": 25.59974226119286,
+            "y2": -9.95,
+            "x3": 25.59974226119286,
+            "y3": 9.95,
+            "x4": -25.59974226119286,
+            "y4": 9.95
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              2.1
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "nut_pocket",
+          "part": null,
+          "source": "rule:nut_frame",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "slot_0",
+          "kind": "cut",
+          "primitive": "prism",
+          "params": {
+            "n": 68.0,
+            "h": 7.1,
+            "x1": 10.0,
+            "y1": -5.25331649029358,
+            "x2": 10.2698722088008,
+            "y2": -5.240058518834868,
+            "x3": 10.537145400703691,
+            "y3": -5.200412285971427,
+            "x4": 10.799245588764261,
+            "y4": -5.134759606598565,
+            "x5": 11.053648604892949,
+            "y5": -5.043732751908049,
+            "x6": 11.297904408973602,
+            "y6": -4.928208360270889,
+            "x7": 11.529660684089118,
+            "y7": -4.789298994730608,
+            "x8": 11.746685490619265,
+            "y8": -4.628342428412941,
+            "x9": 11.946888761039336,
+            "y9": -4.446888761039335,
+            "x10": 12.12834242841294,
+            "y10": -4.246685490619266,
+            "x11": 12.289298994730608,
+            "y11": -4.029660684089118,
+            "x12": 12.42820836027089,
+            "y12": -3.7979044089736025,
+            "x13": 12.543732751908049,
+            "y13": -3.5536486048929494,
+            "x14": 12.634759606598566,
+            "y14": -3.2992455887642604,
+            "x15": 12.700412285971428,
+            "y15": -3.0371454007036904,
+            "x16": 12.740058518834868,
+            "y16": -2.769872208800799,
+            "x17": 12.75331649029358,
+            "y17": -2.5,
+            "x18": 12.75331649029358,
+            "y18": 2.5,
+            "x19": 12.740058518834868,
+            "y19": 2.769872208800799,
+            "x20": 12.700412285971428,
+            "y20": 3.0371454007036904,
+            "x21": 12.634759606598564,
+            "y21": 3.299245588764261,
+            "x22": 12.543732751908049,
+            "y22": 3.5536486048929494,
+            "x23": 12.42820836027089,
+            "y23": 3.797904408973602,
+            "x24": 12.289298994730608,
+            "y24": 4.029660684089118,
+            "x25": 12.12834242841294,
+            "y25": 4.246685490619266,
+            "x26": 11.946888761039336,
+            "y26": 4.446888761039335,
+            "x27": 11.746685490619265,
+            "y27": 4.628342428412941,
+            "x28": 11.529660684089118,
+            "y28": 4.789298994730608,
+            "x29": 11.297904408973602,
+            "y29": 4.928208360270889,
+            "x30": 11.053648604892949,
+            "y30": 5.043732751908049,
+            "x31": 10.799245588764261,
+            "y31": 5.134759606598565,
+            "x32": 10.537145400703691,
+            "y32": 5.200412285971427,
+            "x33": 10.2698722088008,
+            "y33": 5.240058518834868,
+            "x34": 10.0,
+            "y34": 5.25331649029358,
+            "x35": -10.0,
+            "y35": 5.25331649029358,
+            "x36": -10.269872208800798,
+            "y36": 5.240058518834869,
+            "x37": -10.53714540070369,
+            "y37": 5.200412285971427,
+            "x38": -10.79924558876426,
+            "y38": 5.134759606598566,
+            "x39": -11.053648604892949,
+            "y39": 5.043732751908049,
+            "x40": -11.297904408973602,
+            "y40": 4.928208360270889,
+            "x41": -11.529660684089116,
+            "y41": 4.789298994730608,
+            "x42": -11.746685490619265,
+            "y42": 4.628342428412941,
+            "x43": -11.946888761039336,
+            "y43": 4.446888761039336,
+            "x44": -12.12834242841294,
+            "y44": 4.246685490619266,
+            "x45": -12.289298994730608,
+            "y45": 4.029660684089118,
+            "x46": -12.42820836027089,
+            "y46": 3.7979044089736025,
+            "x47": -12.543732751908049,
+            "y47": 3.55364860489295,
+            "x48": -12.634759606598564,
+            "y48": 3.299245588764261,
+            "x49": -12.700412285971428,
+            "y49": 3.0371454007036913,
+            "x50": -12.740058518834868,
+            "y50": 2.7698722088007997,
+            "x51": -12.75331649029358,
+            "y51": 2.5000000000000004,
+            "x52": -12.75331649029358,
+            "y52": -2.4999999999999996,
+            "x53": -12.740058518834868,
+            "y53": -2.769872208800799,
+            "x54": -12.700412285971428,
+            "y54": -3.037145400703691,
+            "x55": -12.634759606598566,
+            "y55": -3.2992455887642604,
+            "x56": -12.543732751908049,
+            "y56": -3.553648604892949,
+            "x57": -12.42820836027089,
+            "y57": -3.797904408973602,
+            "x58": -12.289298994730608,
+            "y58": -4.029660684089117,
+            "x59": -12.12834242841294,
+            "y59": -4.2466854906192655,
+            "x60": -11.946888761039336,
+            "y60": -4.446888761039335,
+            "x61": -11.746685490619267,
+            "y61": -4.628342428412939,
+            "x62": -11.529660684089118,
+            "y62": -4.789298994730608,
+            "x63": -11.297904408973602,
+            "y63": -4.928208360270889,
+            "x64": -11.05364860489295,
+            "y64": -5.043732751908049,
+            "x65": -10.799245588764261,
+            "y65": -5.134759606598565,
+            "x66": -10.537145400703691,
+            "y66": -5.200412285971426,
+            "x67": -10.269872208800798,
+            "y67": -5.240058518834869,
+            "x68": -10.0,
+            "y68": -5.25331649029358
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -7.5,
+              0.0,
+              -4.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "bolt_slot",
+          "part": null,
+          "source": "rule:adjust_slot",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "frame_trap_0",
+          "kind": "cut",
+          "primitive": "prism",
+          "params": {
+            "n": 6.0,
+            "h": 6.700000000000001,
+            "x1": -4.849742261192857,
+            "y1": 0.0,
+            "x2": -2.4248711305964283,
+            "y2": -4.2,
+            "x3": 2.4248711305964283,
+            "y3": -4.2,
+            "x4": 4.849742261192857,
+            "y4": 0.0,
+            "x5": 2.4248711305964283,
+            "y5": 4.2,
+            "x6": -2.4248711305964283,
+            "y6": 4.2
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -7.5,
+              0.0,
+              1.1
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": "nut_frame",
+          "role": "nut_trap",
+          "part": null,
+          "source": "rule:nut_frame",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "slot_1",
+          "kind": "cut",
+          "primitive": "prism",
+          "params": {
+            "n": 68.0,
+            "h": 7.1,
+            "x1": 10.0,
+            "y1": -5.25331649029358,
+            "x2": 10.2698722088008,
+            "y2": -5.240058518834868,
+            "x3": 10.537145400703691,
+            "y3": -5.200412285971427,
+            "x4": 10.799245588764261,
+            "y4": -5.134759606598565,
+            "x5": 11.053648604892949,
+            "y5": -5.043732751908049,
+            "x6": 11.297904408973602,
+            "y6": -4.928208360270889,
+            "x7": 11.529660684089118,
+            "y7": -4.789298994730608,
+            "x8": 11.746685490619265,
+            "y8": -4.628342428412941,
+            "x9": 11.946888761039336,
+            "y9": -4.446888761039335,
+            "x10": 12.12834242841294,
+            "y10": -4.246685490619266,
+            "x11": 12.289298994730608,
+            "y11": -4.029660684089118,
+            "x12": 12.42820836027089,
+            "y12": -3.7979044089736025,
+            "x13": 12.543732751908049,
+            "y13": -3.5536486048929494,
+            "x14": 12.634759606598566,
+            "y14": -3.2992455887642604,
+            "x15": 12.700412285971428,
+            "y15": -3.0371454007036904,
+            "x16": 12.740058518834868,
+            "y16": -2.769872208800799,
+            "x17": 12.75331649029358,
+            "y17": -2.5,
+            "x18": 12.75331649029358,
+            "y18": 2.5,
+            "x19": 12.740058518834868,
+            "y19": 2.769872208800799,
+            "x20": 12.700412285971428,
+            "y20": 3.0371454007036904,
+            "x21": 12.634759606598564,
+            "y21": 3.299245588764261,
+            "x22": 12.543732751908049,
+            "y22": 3.5536486048929494,
+            "x23": 12.42820836027089,
+            "y23": 3.797904408973602,
+            "x24": 12.289298994730608,
+            "y24": 4.029660684089118,
+            "x25": 12.12834242841294,
+            "y25": 4.246685490619266,
+            "x26": 11.946888761039336,
+            "y26": 4.446888761039335,
+            "x27": 11.746685490619265,
+            "y27": 4.628342428412941,
+            "x28": 11.529660684089118,
+            "y28": 4.789298994730608,
+            "x29": 11.297904408973602,
+            "y29": 4.928208360270889,
+            "x30": 11.053648604892949,
+            "y30": 5.043732751908049,
+            "x31": 10.799245588764261,
+            "y31": 5.134759606598565,
+            "x32": 10.537145400703691,
+            "y32": 5.200412285971427,
+            "x33": 10.2698722088008,
+            "y33": 5.240058518834868,
+            "x34": 10.0,
+            "y34": 5.25331649029358,
+            "x35": -10.0,
+            "y35": 5.25331649029358,
+            "x36": -10.269872208800798,
+            "y36": 5.240058518834869,
+            "x37": -10.53714540070369,
+            "y37": 5.200412285971427,
+            "x38": -10.79924558876426,
+            "y38": 5.134759606598566,
+            "x39": -11.053648604892949,
+            "y39": 5.043732751908049,
+            "x40": -11.297904408973602,
+            "y40": 4.928208360270889,
+            "x41": -11.529660684089116,
+            "y41": 4.789298994730608,
+            "x42": -11.746685490619265,
+            "y42": 4.628342428412941,
+            "x43": -11.946888761039336,
+            "y43": 4.446888761039336,
+            "x44": -12.12834242841294,
+            "y44": 4.246685490619266,
+            "x45": -12.289298994730608,
+            "y45": 4.029660684089118,
+            "x46": -12.42820836027089,
+            "y46": 3.7979044089736025,
+            "x47": -12.543732751908049,
+            "y47": 3.55364860489295,
+            "x48": -12.634759606598564,
+            "y48": 3.299245588764261,
+            "x49": -12.700412285971428,
+            "y49": 3.0371454007036913,
+            "x50": -12.740058518834868,
+            "y50": 2.7698722088007997,
+            "x51": -12.75331649029358,
+            "y51": 2.5000000000000004,
+            "x52": -12.75331649029358,
+            "y52": -2.4999999999999996,
+            "x53": -12.740058518834868,
+            "y53": -2.769872208800799,
+            "x54": -12.700412285971428,
+            "y54": -3.037145400703691,
+            "x55": -12.634759606598566,
+            "y55": -3.2992455887642604,
+            "x56": -12.543732751908049,
+            "y56": -3.553648604892949,
+            "x57": -12.42820836027089,
+            "y57": -3.797904408973602,
+            "x58": -12.289298994730608,
+            "y58": -4.029660684089117,
+            "x59": -12.12834242841294,
+            "y59": -4.2466854906192655,
+            "x60": -11.946888761039336,
+            "y60": -4.446888761039335,
+            "x61": -11.746685490619267,
+            "y61": -4.628342428412939,
+            "x62": -11.529660684089118,
+            "y62": -4.789298994730608,
+            "x63": -11.297904408973602,
+            "y63": -4.928208360270889,
+            "x64": -11.05364860489295,
+            "y64": -5.043732751908049,
+            "x65": -10.799245588764261,
+            "y65": -5.134759606598565,
+            "x66": -10.537145400703691,
+            "y66": -5.200412285971426,
+            "x67": -10.269872208800798,
+            "y67": -5.240058518834869,
+            "x68": -10.0,
+            "y68": -5.25331649029358
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              7.5,
+              0.0,
+              -4.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "bolt_slot",
+          "part": null,
+          "source": "rule:adjust_slot",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "frame_trap_1",
+          "kind": "cut",
+          "primitive": "prism",
+          "params": {
+            "n": 6.0,
+            "h": 6.700000000000001,
+            "x1": -4.849742261192857,
+            "y1": 0.0,
+            "x2": -2.4248711305964283,
+            "y2": -4.2,
+            "x3": 2.4248711305964283,
+            "y3": -4.2,
+            "x4": 4.849742261192857,
+            "y4": 0.0,
+            "x5": 2.4248711305964283,
+            "y5": 4.2,
+            "x6": -2.4248711305964283,
+            "y6": 4.2
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              7.5,
+              0.0,
+              1.1
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0.0,
+            "axis_dir": null
+          },
+          "body": "nut_frame",
+          "role": "nut_trap",
+          "part": null,
+          "source": "rule:nut_frame",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "recess_recess",
+          "kind": "cut",
+          "primitive": "box",
+          "params": {
+            "x": 60.0,
+            "y": 43.0,
+            "z": 4.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              0.0,
+              0.0,
+              -4.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "recess",
+          "part": null,
+          "source": "rule:recess",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "bolt_0",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -7.5,
+              0.0,
+              -2.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          },
+          "body": null,
+          "role": "",
+          "part": "bolt_m5_iso4762",
+          "source": "rule:plate_fastener(bolt)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "nut_0",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {},
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -7.5,
+              0.0,
+              2.1
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "nut_m5",
+          "source": "rule:plate_fastener(nut)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "bolt_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              7.5,
+              0.0,
+              -2.0
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": [
+              0.0,
+              0.0,
+              -1.0
+            ]
+          },
+          "body": null,
+          "role": "",
+          "part": "bolt_m5_iso4762",
+          "source": "rule:plate_fastener(bolt)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "nut_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {},
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              7.5,
+              0.0,
+              2.1
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "nut_m5",
+          "source": "rule:plate_fastener(nut)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_0",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -34.8,
+              -33.55,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_0",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -34.8,
+              -33.55,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_1",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              34.2,
+              -33.55,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_1",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              34.2,
+              -33.55,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_2",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              34.2,
+              35.45,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_2",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              34.2,
+              35.45,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_3",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -34.8,
+              35.45,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_3",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -34.8,
+              35.45,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_4",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -0.7999999999999972,
+              15.450000000000003,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_4",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -0.7999999999999972,
+              15.450000000000003,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_5",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -0.7999999999999972,
+              -21.549999999999997,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_5",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -0.7999999999999972,
+              -21.549999999999997,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_6",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -31.799999999999997,
+              0.45000000000000284,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_6",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              -31.799999999999997,
+              0.45000000000000284,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_hole_7",
+          "kind": "cut",
+          "primitive": "cylinder",
+          "params": {
+            "d": 3.3,
+            "h": 7.75
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              31.200000000000003,
+              0.45000000000000284,
+              2.6500000000000004
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": "plate",
+          "role": "tap_hole",
+          "part": null,
+          "source": "rule:surface_feature(studs)",
+          "free": [],
+          "color": null,
+          "group": null
+        },
+        {
+          "id": "stud_7",
+          "kind": "reference",
+          "primitive": "part",
+          "params": {
+            "length": 10.0
+          },
+          "pose": {
+            "at": "frame.origin",
+            "offset": [
+              31.200000000000003,
+              0.45000000000000284,
+              12.65
+            ],
+            "axis": null,
+            "project_to": null,
+            "rot_z": 0,
+            "axis_dir": null
+          },
+          "body": null,
+          "role": "",
+          "part": "grub_m4_iso4026",
+          "source": "rule:surface_feature(stud)",
+          "free": [],
+          "color": null,
+          "group": null
+        }
+      ]
+    }
+  }
+}

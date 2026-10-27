@@ -1,0 +1,21 @@
+MODEL: ornith-1.5:9b T=0.3 seed=51000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+An enclosure, or another printed form (a plate or platform the parts bolt to), is being designed from this request and its requirements.
+
+Number n9 = 80 (L1.7): "...d like a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of..."
+
+Each number in the text states exactly one quantity. Which one of these quantities does n9 state?
+- max_y: the largest allowed outside width of the closed enclosure (mm)
+- size_max: the largest allowed plan length of the printed plate or platform along each of its sides (mm)
+- max_x: the largest allowed outside length of the closed enclosure (its longest side) (mm)
+- size_min: the smallest allowed plan length of the printed plate or platform along each of its sides (mm)
+
+=== RESPONSE ===
+{
+  "owner": "max_x"
+}

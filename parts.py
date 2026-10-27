@@ -135,6 +135,19 @@ INTERFACE_KINDS[ZONE] = {"at": Point}
 # Optional numeric fields an interface may carry (generalize delta 002 C1): field -> what it means. R9 accepts each only
 # as a positive number. `thread`: the nominal thread (mm) of the screw the part's datasheet gives for these holes.
 INTERFACE_NUMBERS: Dict[str, str] = {"thread": "nominal screw thread of the holes (mm), from the part's datasheet"}
+# Migration delta R12 (plate archetype): a part whose `face` bolts flat against a printed plate through its `holes`.
+# Optional fields: `head_seat` (a plane datum: a bolt's head bears on the part there, so the bolt passes through the
+# part and its nut sits in the plate), `thread_depth` (an expression: the holes are tapped that deep, so a screw from the
+# plate's far side threads into the part), `adjust` ([{dir: unit vector across the hole axes, range: expression}]: the
+# part is designed to be set anywhere in that range along dir, like a slotted clamp).
+BOLT_FACE = "bolt_face"
+INTERFACE_KINDS[BOLT_FACE] = {"holes": AxisList, "face": Plane}
+# Migration delta R12: a part that engages a catalogue reference part (`mates`, e.g. a clip-in part in its holder): its `plane`
+# lies on the reference's `mate_plane` (normals opposite) and its `centre` axis passes through the reference's
+# `mate_point`; `keepouts` names the part's own keep-outs a printed body must leave open round it (a recess).
+ENGAGE = "engage"
+INTERFACE_KINDS[ENGAGE] = {"plane": Plane, "centre": Axis}
+INTERFACE_OPTIONAL: Dict[str, Dict[str, type]] = {BOLT_FACE: {"head_seat": Plane}}
 
 
 def pose_matrix(translation: Sequence[float] = (0, 0, 0), rot_z_deg: float = 0.0,
@@ -499,6 +512,7 @@ def validate(inst: PartInstance) -> List[GateFailure]:
                 if n < 1 or abs(n - round(n)) > UNIT_TOL:
                     fails.append(GateFailure(part.id, "grid", f"count along {axis} is {n:.6g}, not a whole number >= 1"))
     fails += interface_failures(inst)
+    fails += keepout_failures(inst)          # migration delta R12: keep-out sweeps and the mirror_pair plane
     # Part-specific sanity checks (R2, R4, R5, R6 ...) are data.
     for chk in data.get("self_checks", []):
         try:
@@ -657,6 +671,164 @@ def _zone_failures(inst: PartInstance, it: Mapping[str, Any], name: str) -> List
     return fails
 
 
+def _expr_value(inst: PartInstance, e: Any) -> Optional[float]:
+    try:
+        return float(fg.evaluate(e, inst.env))
+    except (fg.ExprError, fg.MissingRefError, KeyError, TypeError, ValueError):
+        return None
+
+
+def _bolt_face_failures(inst: PartInstance, it: Mapping[str, Any], name: str, found: Mapping[str, Any]
+                        ) -> List[GateFailure]:
+    """R9 for a bolt_face interface (migration delta R12): the face (and a head_seat) perpendicular to the hole axes;
+    thread_depth an expression > 0; every adjust entry a unit dir across the hole axes and a range expression >= 0."""
+    part, fails = inst.part, []
+    if "holes" not in found:
+        return fails
+    axis = np.asarray(found["holes"].dir, dtype=float)
+    for fld in ("face", "head_seat"):
+        if fld in found and abs(abs(float(np.dot(axis, np.asarray(found[fld].normal, dtype=float)))) - 1.0) > UNIT_TOL:
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} is not perpendicular to the hole axes"))
+    if "thread_depth" in it:
+        v = _expr_value(inst, it["thread_depth"])
+        if v is None or not v > 0:
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: thread_depth must resolve > 0"))
+    adjust = it.get("adjust", [])
+    if not isinstance(adjust, list):
+        return fails + [GateFailure(part.id, "R9", f"interface {name}: adjust must be a list")]
+    for k, a in enumerate(adjust):
+        d = a.get("dir") if isinstance(a, dict) else None
+        ok = isinstance(d, list) and len(d) == 3 and all(isinstance(v, (int, float)) and not isinstance(v, bool)
+                                                         for v in d)
+        if not ok or abs(float(np.linalg.norm(d)) - 1.0) > UNIT_TOL or abs(float(np.dot(d, axis))) > UNIT_TOL:
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: adjust[{k}].dir must be a unit vector across "
+                                     f"the hole axes (got {d!r})"))
+        v = _expr_value(inst, (a or {}).get("range")) if isinstance(a, dict) else None
+        if v is None or v < 0:
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: adjust[{k}].range must resolve >= 0"))
+    return fails
+
+
+def _engage_failures(inst: PartInstance, it: Mapping[str, Any], name: str, found: Mapping[str, Any]
+                     ) -> List[GateFailure]:
+    """R9 for an engage interface (migration delta R12): `mates` a part id, `mate_plane` and `mate_point` datum names
+    (checked against the mate in Catalog.cross_references), the centre axis perpendicular to the plane, and every
+    `keepouts` id one of the part's own keep-outs."""
+    part, fails = inst.part, []
+    for fld in ("mates", "mate_plane", "mate_point"):
+        if not isinstance(it.get(fld), str) or not it.get(fld):
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} must name a part or datum"))
+    if "plane" in found and "centre" in found:
+        if abs(abs(float(np.dot(found["plane"].normal, found["centre"].dir))) - 1.0) > UNIT_TOL:
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: centre is not perpendicular to plane"))
+    own = {k.id for k in inst.keepouts}
+    for kid in it.get("keepouts", []) or []:
+        if kid not in own:
+            fails.append(GateFailure(part.id, "R9", f"interface {name}: keepout {kid!r} is not a keep-out of the part"))
+    return fails
+
+
+def keepout_failures(inst: PartInstance) -> List[GateFailure]:
+    """Migration delta R12: a keep-out's `sweep` ({about: a point or axis datum, axis: unit vector, angle: expression
+    >= 0}) and the part's `mirror_pair` ({plane: a plane datum}) name real datums."""
+    part, fails = inst.part, []
+    for k in part.data.get("keepouts", []) or []:
+        if isinstance(k, dict) and "margin" in k:       # review fix N6: the clearance already built into the keep-out
+            m = _expr_value(inst, k.get("margin"))
+            if m is None or m < 0:
+                fails.append(GateFailure(part.id, "R9", f"keepout {k.get('id')}: margin must be an expression >= 0"))
+        if isinstance(k, dict) and "names" in k and not (isinstance(k["names"], list)
+                                                         and all(isinstance(n, str) and n for n in k["names"])):
+            fails.append(GateFailure(part.id, "R9", f"keepout {k.get('id')}: names must be a list of words"))
+        sw = k.get("sweep") if isinstance(k, dict) else None
+        if sw is None:
+            continue
+        d = inst.datums.get(sw.get("about")) if isinstance(sw, dict) else None
+        axis = sw.get("axis") if isinstance(sw, dict) else None
+        ang = _expr_value(inst, sw.get("angle")) if isinstance(sw, dict) else None
+        if not isinstance(d, (Point, Axis)) or not isinstance(axis, list) or len(axis) != 3 \
+                or abs(float(np.linalg.norm(axis)) - 1.0) > UNIT_TOL or ang is None or ang < 0:
+            fails.append(GateFailure(part.id, "R9", f"keepout {k.get('id')}: sweep needs about (a point or axis datum), "
+                                     "a unit axis and an angle >= 0"))
+    mp = part.data.get("mirror_pair")
+    if mp is not None and not isinstance(inst.datums.get((mp or {}).get("plane")), Plane):
+        fails.append(GateFailure(part.id, "R9", "mirror_pair.plane must name a plane datum"))
+    if isinstance(mp, dict) and "names" in mp and not (isinstance(mp["names"], list)
+                                                       and all(isinstance(n, str) and n for n in mp["names"])):
+        fails.append(GateFailure(part.id, "R9", "mirror_pair.names must be a list of words"))
+    return fails
+
+
+def bolt_face_interface(part: Part) -> Optional[dict]:
+    """The part's first bolt_face interface (migration delta R12), or None."""
+    return next((i for i in interfaces(part) if i.get("kind") == BOLT_FACE), None)
+
+
+def engage_interface(part: Part) -> Optional[dict]:
+    """The part's first engage interface (migration delta R12), or None."""
+    return next((i for i in interfaces(part) if i.get("kind") == ENGAGE), None)
+
+
+def keepout_entry(part: Part, kid: str) -> dict:
+    """The raw part.json keep-out entry with this id ({} when absent): its `sweep` is read from here."""
+    return next((k for k in part.data.get("keepouts", []) or [] if isinstance(k, dict) and k.get("id") == kid), {})
+
+
+def keepout_margin(inst: PartInstance, kid: str) -> float:
+    """The clearance (mm) the catalogue already built into a keep-out (its entry's `margin` expression, review fix N6),
+    so a mapped clearance to it is not counted twice; 0 when it declares none."""
+    m = keepout_entry(inst.part, kid).get("margin")
+    return 0.0 if m is None else float(fg.evaluate(m, inst.env))
+
+
+def keepout_names(part: Part, kid: str) -> List[str]:
+    """The words a text uses for a keep-out (its entry's `names`, catalogue aliases like a part's `names`): only the
+    deterministic L1 trace reads them (assembly.trace_links), never a decision."""
+    return [str(n) for n in keepout_entry(part, kid).get("names") or []]
+
+
+def mirror_names(part: Part) -> List[str]:
+    """The words a text uses for the part's mirror pairing (mirror_pair `names`; trace only, like keepout_names)."""
+    mp = part.data.get("mirror_pair") or {}
+    return [str(n) for n in mp.get("names") or []] if isinstance(mp, dict) else []
+
+
+def adjust_axes(inst: PartInstance, iface: Mapping[str, Any]) -> List[Tuple[np.ndarray, float]]:
+    """[(unit dir in the part frame, range mm)] of a bolt_face interface's `adjust` entries (R12)."""
+    out = []
+    for a in iface.get("adjust", []) or []:
+        out.append((np.asarray(a["dir"], dtype=float), float(fg.evaluate(a["range"], inst.env))))
+    return out
+
+
+FASTENER_ROLES = {   # R12: a catalogue fastener's role read from the params it declares (no part id)
+    "bolt": ("thread_diameter", "head_diameter", "head_height", "clearance_diameter"),
+    "nut": ("thread_diameter", "across_flats", "across_corners", "thickness"),
+}
+
+
+def fastener_role(part: Part) -> Optional[str]:
+    """bolt (a head and a request-sized length), nut (flats, corners, thickness), stud (a request-sized length with no
+    head: a set screw) or None; read from the part's declared params only (migration delta R12)."""
+    if part.kind != "fastener":
+        return None
+    have = set(part.params)
+    if set(FASTENER_ROLES["nut"]) <= have:
+        return "nut"
+    if set(FASTENER_ROLES["bolt"]) <= have and "length" in part.request_params():
+        return "bolt"
+    if {"thread_diameter", "tap_diameter"} <= have and "length" in part.request_params() and "head_diameter" not in have:
+        return "stud"
+    return None
+
+
+def stock_lengths(part: Part) -> List[float]:
+    """The stock lengths a request-sized fastener is sold in (part.json `stock_lengths`, R12), ascending; [] if none."""
+    raw = part.data.get("stock_lengths") or []
+    vals = sorted(float(v) for v in raw if isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0)
+    return vals
+
+
 def interface_failures(inst: PartInstance) -> List[GateFailure]:
     """R9: every `interfaces` entry has an id and a known kind, and each field of that kind names an existing datum of
     the declared class (INTERFACE_KINDS). For mount_holes, the seat and top planes are perpendicular to the hole axes.
@@ -696,8 +868,20 @@ def interface_failures(inst: PartInstance) -> List[GateFailure]:
                 if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v <= 0:
                     fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} must be a positive number "
                                              f"(got {v!r})"))
+        for fld, cls in INTERFACE_OPTIONAL.get(kind, {}).items():     # R12: optional datum fields
+            if fld in it:
+                d = inst.datums.get(it[fld]) if isinstance(it[fld], str) else None
+                if not isinstance(d, cls):
+                    fails.append(GateFailure(part.id, "R9", f"interface {name}: {fld} {it[fld]!r} names no "
+                                             f"{cls.__name__} datum"))
+                else:
+                    found[fld] = d
         if kind == ZONE:
             fails += _zone_failures(inst, it, name)
+        if kind == BOLT_FACE:
+            fails += _bolt_face_failures(inst, it, name, found)
+        if kind == ENGAGE:
+            fails += _engage_failures(inst, it, name, found)
         if kind == MOUNT_HOLES and "holes" in found:
             axis = np.asarray(found["holes"].dir, dtype=float)
             for fld in ("seat", "top"):
@@ -895,6 +1079,18 @@ class Catalog:
             named = [c.get("mates") for c in part.data.get("connectors", [])]
             named += list(part.data.get("mount", {}).get("stack_options", []))
             out += [f"{pid}: refers to missing part {n!r}" for n in named if n and n not in self.parts]
+            eng = engage_interface(part)             # migration delta R12: an engaged reference and its datums
+            if eng and eng.get("mates") in self.parts:
+                try:
+                    datums = self.instantiate(eng["mates"]).datums
+                except (PartError, fg.ExprError, fg.MissingRefError, KeyError, ValueError) as e:
+                    out.append(f"{pid}: engage mate {eng['mates']!r} cannot be instantiated ({e})")
+                    continue
+                for fld, cls in (("mate_plane", Plane), ("mate_point", (Point, Axis))):
+                    if not isinstance(datums.get(eng.get(fld)), cls):
+                        out.append(f"{pid}: engage {fld} {eng.get(fld)!r} is not a datum of {eng['mates']}")
+            elif eng and eng.get("mates"):
+                out.append(f"{pid}: refers to missing part {eng['mates']!r}")
         return out
 
 
@@ -916,9 +1112,13 @@ class Rules:
     closures: Dict[str, dict] = field(default_factory=dict)   # closure -> {default | evidence, meaning, source} (delta 003)
     vents: Dict[str, Any] = field(default_factory=dict)       # {evidence: [words], slots: [{name, meaning, unit}], source}
     building_blocks: Dict[str, Any] = field(default_factory=dict)   # R11: building-block vocabularies (retention, ...)
+    form_slots: Dict[str, List[dict]] = field(default_factory=dict)  # R12: archetype -> its extra spec slots
+    unit_words: Dict[str, List[str]] = field(default_factory=dict)   # R12: unit name -> the words that state it
+    unit_scales: Dict[str, Dict[str, float]] = field(default_factory=dict)   # review fix N2: unit -> {word: factor}
+    trace_names: Dict[str, List[str]] = field(default_factory=dict)   # R12 review 2 (N7): check type -> trace words
 
     def slot(self, name: str) -> dict:
-        return next(s for s in self.spec_slots if s["name"] == name)
+        return next(s for s in self.spec_slots + [x for v in self.form_slots.values() for x in v] if s["name"] == name)
 
 
 def load_rules(path: Union[str, Path]) -> Rules:
@@ -944,6 +1144,47 @@ def load_rules(path: Union[str, Path]) -> Rules:
             raise PartError(f"{path}: spec slot {slot['name']!r} defaults to unknown rule {default!r}")
         slots.append({"name": str(slot["name"]), "meaning": str(slot["meaning"]), "unit": str(slot["unit"]),
                       "default_rule": default, "required": default is None and slot.get("required", True) is not False})
+    form_slots: Dict[str, List[dict]] = {}                  # migration delta R12: slots of the non-shell archetypes
+    for form, rows in ((data.get("spec_slots") or {}).get("forms") or {}).items():
+        if form == "about":
+            continue
+        out_rows = []
+        for slot in rows or []:
+            if not isinstance(slot, dict) or not all(slot.get(k) for k in ("name", "meaning", "unit")):
+                raise PartError(f"{path}: spec slot {slot!r} of {form} needs a name, a meaning and a unit")
+            default = slot.get("default_rule")
+            if default is not None and default not in values:
+                raise PartError(f"{path}: spec slot {slot['name']!r} defaults to unknown rule {default!r}")
+            rng = slot.get("range")
+            if rng is not None and (not isinstance(rng, list) or len(rng) != 2 or not rng[0] < rng[1]):
+                raise PartError(f"{path}: spec slot {slot['name']!r} range must be [lo, hi] with lo < hi")
+            row = {"name": str(slot["name"]), "meaning": str(slot["meaning"]), "unit": str(slot["unit"]),
+                   "default_rule": default, "required": False, "form": form}
+            for k in ("range", "pair", "side", "sets"):
+                if k in slot:
+                    row[k] = slot[k]
+            out_rows.append(row)
+        names_ = {r["name"] for r in out_rows}
+        for row in out_rows:                # R12 review 2 (N6): one stated value setting both ends of a band
+            sets = row.get("sets")
+            if sets is not None and (not isinstance(sets, list) or not sets or not all(t in names_ for t in sets)):
+                raise PartError(f"{path}: spec slot {row['name']!r} sets unknown slots {sets!r}")
+        form_slots[str(form)] = out_rows
+    names = [s["name"] for s in slots] + [s["name"] for rows in form_slots.values() for s in rows]
+    if len(names) != len(set(names)):
+        raise PartError(f"{path}: spec slot names must be unique across the archetypes")
+    unit_words = {}
+    unit_scales: Dict[str, Dict[str, float]] = {}
+    for unit, words in (data.get("unit_words") or {}).items():
+        if unit in ("about", "source"):
+            continue
+        # review fix N2: {word: scale to the unit} (a prefixed unit is a word with its factor: kN 1000 N)
+        if not isinstance(words, dict) or not words or not all(
+                isinstance(w, str) and w.strip() and isinstance(f, (int, float)) and not isinstance(f, bool) and f > 0
+                for w, f in words.items()):
+            raise PartError(f"{path}: unit_words {unit!r} must map each word to its scale factor (> 0)")
+        unit_words[str(unit)] = [w.strip().lower() for w in words]
+        unit_scales[str(unit)] = {w.strip().lower(): float(f) for w, f in words.items()}
     archetypes = {}
     for key, entry in (data.get("archetypes") or {}).items():
         if key == "about":
@@ -1000,8 +1241,16 @@ def load_rules(path: Union[str, Path]) -> Rules:
         if sum(bool(o.get("default")) for o in options.values()) != 1:
             raise PartError(f"{path}: building block {key!r} needs exactly one default option")
         blocks[key] = dict(entry)
+    trace_names: Dict[str, List[str]] = {}                  # R12 review 2 (N7): trace-only words per check type
+    for key, words in (data.get("trace_names") or {}).items():
+        if key in ("about", "source"):
+            continue
+        if not isinstance(words, list) or not words or not all(isinstance(w, str) and w.strip() for w in words):
+            raise PartError(f"{path}: trace_names {key!r} must be a non-empty word list")
+        trace_names[str(key)] = [w.strip().lower() for w in words]
     return Rules(values, sources, dict(data.get("print_orientation", {})), path, slots, archetypes,
-                 vocab["face_relations"], vocab["fastener_roles"], closures, vents, blocks)
+                 vocab["face_relations"], vocab["fastener_roles"], closures, vents, blocks, form_slots, unit_words,
+                 unit_scales, trace_names)
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "L1.1",
+    "text": "The design shall place the NEMA 17 motor, the 2020 extrusion, two M5 T-nuts, two M5 bolts and four M3 screws from the parts catalogue as one assembly, with the plate on the extrusion's slot face, the motor beside the extrusion and its shaft perpendicular to the plate and to the extrusion's axis, without the parts colliding, and shall declare that layout.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.2",
+    "text": "The plate shall mount the NEMA 17 on its 31 mm bolt pattern with four M3 screws and a bore that takes the 22 mm pilot, coaxial with the pattern.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.3",
+    "text": "The plate shall be bolted to the extrusion by exactly two M5 bolts into drop-in T-nuts in the T-slot under the plate, through two slotted holes that give 6 mm of travel across the extrusion; the bolts shall be 20 to 40 mm apart along the extrusion, and each shall engage at least 3 mm of its T-nut without reaching the slot floor.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.4",
+    "text": "Sliding the plate through its 6 mm of travel shall keep each bolt inside its slot, each bolt head on the plate, and the motor clear of the extrusion (3.5 to 10 mm from its edge at the nominal position, at least 0.5 mm at the end of the travel toward it), with at least 19 mm\u00b2 of plate under each bolt head at every position.",
+    "method": "test"
+  },
+  {
+    "id": "L1.5",
+    "text": "The plate shall be one flat plate 5 mm thick resting on the extrusion's face without entering the extrusion or touching the motor anywhere except the motor's mounting face.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.6",
+    "text": "The plate shall carry the motor and the belt pull to the two bolts through material at least 3 mm wide around every hole and edge, with no cross-section narrower than 20 mm.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.7",
+    "text": "The motor shaft shall stay clear above the plate for a pulley and belt (a 20 mm diameter zone from the plate top to 30 mm above it), and every bolt and screw head shall be reachable with a hex key from above.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.8",
+    "text": "The plate shall be one manifold body that prints flat on its face on an FDM printer without supports.",
+    "method": "analysis"
+  },
+  {
+    "id": "L1.9",
+    "text": "The plate shall be no larger than 60 x 75 mm.",
+    "method": "inspection"
+  },
+  {
+    "id": "L1.10",
+    "text": "The design shall be delivered as the plate STL, the OpenSCAD source, the declared layout and the agent's own clearance report, and that report shall agree with an independent measurement.",
+    "method": "inspection"
+  }
+]

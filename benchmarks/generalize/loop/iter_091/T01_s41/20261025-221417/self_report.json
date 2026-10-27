@@ -1,0 +1,693 @@
+{
+  "source": "delivered STL files, rubric.md section 3 recipes",
+  "bodies": {
+    "plate": {
+      "file": "plate.stl",
+      "shells": 1,
+      "status": "NoError",
+      "volume": 68307.7549,
+      "bbox": [
+        [
+          -40.0,
+          -38.75,
+          -3.0
+        ],
+        [
+          40.1,
+          41.35,
+          9.4
+        ]
+      ]
+    }
+  },
+  "errors": [],
+  "all_passed": false,
+  "references": {
+    "board": {
+      "part": "cleat_shimano_sm_sh51",
+      "d": 0.0,
+      "check": "clear_primary"
+    },
+    "mech_1": {
+      "part": "pedal_shimano_pd_m520",
+      "d": 0.0,
+      "check": "clear_mech_1"
+    },
+    "bolt_0": {
+      "part": "bolt_m5_iso4762",
+      "d": 0.26331,
+      "check": "clear_fasteners"
+    },
+    "nut_0": {
+      "part": "nut_m5",
+      "d": null,
+      "check": null
+    },
+    "bolt_1": {
+      "part": "bolt_m5_iso4762",
+      "d": 0.26331,
+      "check": "clear_fasteners"
+    },
+    "nut_1": {
+      "part": "nut_m5",
+      "d": null,
+      "check": null
+    },
+    "stud_0": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_1": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_2": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_3": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_4": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_5": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_6": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_7": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    }
+  },
+  "apertures": {},
+  "results": [
+    {
+      "check_id": "separable",
+      "l1_id": "rules",
+      "type": "separable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {
+        "bodies": [
+          "plate"
+        ]
+      },
+      "evidence": {
+        "shells": {
+          "plate": 1
+        },
+        "status": {
+          "plate": "NoError"
+        },
+        "overlap_mm3": {},
+        "overlap_max": 1.0,
+        "detail": "shells {'plate': 1}, worst overlap 0 mm3 (max 1)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_primary",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to primary 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "board": "cleat_shimano_sm_sh51"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_fasteners",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.27331,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.26331,
+        "d": 0.26331,
+        "clearance": 0.0,
+        "per_source": {
+          "bolt_0": {
+            "part": "bolt_m5_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.26331
+          },
+          "bolt_1": {
+            "part": "bolt_m5_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.26331
+          }
+        },
+        "detail": "min gap to fasteners 0.2633 mm (need >= 0)",
+        "volume_parts": {
+          "bolt_0": "bolt_m5_iso4762",
+          "bolt_1": "bolt_m5_iso4762"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_recess",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to keepout_recess 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "board": "cleat_shimano_sm_sh51"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_mech_1",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to engaged 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "mech_1": "pedal_shimano_pd_m520"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_mech_1_binding_cage",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to keepout_mech_1_binding_cage 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "mech_1": "pedal_shimano_pd_m520"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_mech_1_crank_side",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.198726,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.188726,
+        "d": 0.188726,
+        "clearance": 0.0,
+        "detail": "min gap to keepout_mech_1_crank_side 0.1887 mm (need >= 0)",
+        "volume_parts": {
+          "mech_1": "pedal_shimano_pd_m520"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "handedness_plate",
+      "l1_id": "rules",
+      "type": "handedness",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "value": -265.6191,
+        "declared": "mirror_pair",
+        "basis": "design",
+        "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3); a mirror pair is declared (the left part is the exact mirror image)",
+        "where": "keepout_mech_1_crank_side"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "travel_x",
+      "l1_id": "rules",
+      "type": "travel",
+      "passed": true,
+      "margin": 0.259964,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.249964,
+        "d": 0.249964,
+        "clearance": 0.0,
+        "detail": "min gap to travel_0 0.2500 mm (need >= 0)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "travel_y",
+      "l1_id": "rules",
+      "type": "travel",
+      "passed": false,
+      "margin": -4.918232,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 118.967118,
+        "gap": null,
+        "d": null,
+        "clearance": 0.0,
+        "where": [
+          [
+            -9.9853,
+            -5.0,
+            0.0
+          ],
+          [
+            9.9853,
+            5.0,
+            8.0
+          ]
+        ],
+        "detail": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]; conflict: the cleat_shimano_sm_sh51 declares 5 mm of adjustment along y, but a captive hex nut stops turning only while it slides along one direction (the slots cover 20 mm along x); a requirement question: accept the covered axis, or a nut plate / threaded insert the catalogue does not hold",
+        "basis": "measured",
+        "conflict": "the cleat_shimano_sm_sh51 declares 5 mm of adjustment along y, but a captive hex nut stops turning only while it slides along one direction (the slots cover 20 mm along x); a requirement question: accept the covered axis, or a nut plate / threaded insert the catalogue does not hold",
+        "competing_rule": "nut_trap"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_0",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.21,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.2,
+        "limit": 0.0,
+        "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_tip_0",
+      "l1_id": "rules",
+      "type": "bolt_tip",
+      "passed": true,
+      "margin": 1.41,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.4,
+        "limit": 0.0,
+        "detail": "design check: top face z 9.400 vs tip 8.000",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "nut_trap_0",
+      "l1_id": "rules",
+      "type": "nut_trap",
+      "passed": true,
+      "margin": 0.1,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.2,
+        "width": 8.4,
+        "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_1",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.21,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.2,
+        "limit": 0.0,
+        "detail": "design check: tip z 8.000 vs nut top 6.800 (bolt_m5_iso4762 10 mm)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_tip_1",
+      "l1_id": "rules",
+      "type": "bolt_tip",
+      "passed": true,
+      "margin": 1.41,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.4,
+        "limit": 0.0,
+        "detail": "design check: top face z 9.400 vs tip 8.000",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "nut_trap_1",
+      "l1_id": "rules",
+      "type": "nut_trap",
+      "passed": true,
+      "margin": 0.1,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.2,
+        "width": 8.4,
+        "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "plate_size_x",
+      "l1_id": "rules",
+      "type": "plate_size",
+      "passed": true,
+      "margin": 0.109998,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 80.099998,
+        "lo": 80.0,
+        "hi": 105.0,
+        "detail": "plan length 80.100 mm",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "plate_size_y",
+      "l1_id": "rules",
+      "type": "plate_size",
+      "passed": true,
+      "margin": 0.109998,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 80.099998,
+        "lo": 80.0,
+        "hi": 105.0,
+        "detail": "plan length 80.100 mm",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "plate_thickness",
+      "l1_id": "rules",
+      "type": "plate_thickness",
+      "passed": true,
+      "margin": 1.61,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 12.4,
+        "lo": 8.0,
+        "hi": 14.0,
+        "detail": "thickness 12.400 mm at the corners",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bearing_area",
+      "l1_id": "rules",
+      "type": "bearing_area",
+      "passed": true,
+      "margin": 3236.019756,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 3836.009756,
+        "limit": 600.0,
+        "detail": "underside area 3836.0 mm2",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "load_stress",
+      "l1_id": "rules",
+      "type": "load_stress",
+      "passed": true,
+      "margin": 0.038272,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 16.0288,
+        "limit": 16.6667,
+        "edges": [
+          {
+            "edge": "+x",
+            "arm": -2.9,
+            "stress": 0.0
+          },
+          {
+            "edge": "-x",
+            "arm": -3.0,
+            "stress": 0.0
+          },
+          {
+            "edge": "+y",
+            "arm": 6.85,
+            "stress": 16.0288,
+            "I": 7735.43,
+            "c": 7.2403,
+            "area": 813.24,
+            "at": 19.5
+          },
+          {
+            "edge": "-y",
+            "arm": 4.25,
+            "stress": 9.9449,
+            "I": 7735.43,
+            "c": 7.2403,
+            "area": 813.24,
+            "at": -19.5
+          }
+        ],
+        "basis": "measured",
+        "detail": "worst bending stress 16.03 MPa at edge +y (arm 6.85 mm) vs 16.67 MPa"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "printable",
+      "l1_id": "rules",
+      "type": "printable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 8.4,
+        "limit": 15.0,
+        "steep_area": 0.0,
+        "regions": [
+          {
+            "span": 8.4,
+            "area": 137.8405,
+            "z": -2.1
+          },
+          {
+            "span": 3.3,
+            "area": 8.5598,
+            "z": -2.65
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5597,
+            "z": -2.65
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5598,
+            "z": -2.65
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5598,
+            "z": -2.65
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5597,
+            "z": -2.65
+          }
+        ],
+        "orientation": "top_face_down",
+        "basis": "measured",
+        "detail": "top_face_down: longest bridge 8.40 mm (max 15), steep overhang area 0.00 mm2"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "surface_features",
+      "l1_id": "rules",
+      "type": "surface_features",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "value": 8,
+        "coverage": 74.2,
+        "edge": 3.2,
+        "kind": "studs",
+        "basis": "design",
+        "detail": "8 studs features, spread 74.2 %"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bbox",
+      "l1_id": "rules",
+      "type": "bbox_within",
+      "passed": true,
+      "margin": 119.910002,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "size": [
+          80.1,
+          80.1,
+          12.4
+        ],
+        "max": [
+          200.0,
+          200.0,
+          200.0
+        ],
+        "x_longest": false,
+        "detail": "outside 80.10 x 80.10 x 12.40 mm, max 200 x 200 x 200"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "form_evidence",
+      "l1_id": "rules",
+      "type": "form_evidence",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "current": "plate",
+        "expected": [],
+        "quotes": [
+          {
+            "source": "request",
+            "quote": "The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way).",
+            "match": "platform",
+            "form": "plate"
+          },
+          {
+            "source": "request",
+            "quote": "It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.",
+            "match": "adapter",
+            "form": "plate"
+          },
+          {
+            "source": "L1.1",
+            "quote": "The design shall carry one Shimano SM-SH51 cleat (catalogue cleat) with its mount face against the adapter's cleat seat, fastened by the cleat's own two bolt positions with standard M5 hardware (catalogue M5 socket-head bolts and M5 hex nuts), and shall declare the layout (cleat pose, bolts, nuts, grip features, print orientation).",
+            "match": "adapter",
+            "form": "plate"
+          },
+          {
+            "source": "L1.3",
+            "quote": "At every cleat position in that range the M5 hardware shall fit: each bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pedal, each bolt shall engage its nut for its whole thickness, and no bolt tip shall reach the top face of the platform.",
+            "match": "platform",
+            "form": "plate"
+          }
+        ],
+        "detail": "the design is a plate; request names it",
+        "basis": "text"
+      },
+      "layer": 1,
+      "hard": true
+    }
+  ]
+}

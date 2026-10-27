@@ -112,6 +112,10 @@
         "-cage_half_x",
         "-cage_half_y",
         "stack_height - cage_depth"
+      ],
+      "names": [
+        "binding space",
+        "binding cage"
       ]
     },
     {
@@ -126,6 +130,21 @@
         "-crank_slab_extent",
         "-crank_to_centre + crank_margin - crank_slab_extent",
         "-crank_slab_extent"
+      ],
+      "sweep": {
+        "about": "CLEAT_CENTRE",
+        "axis": [
+          0,
+          0,
+          1
+        ],
+        "angle": "release_angle",
+        "source": "migration delta R12 ASSUMPTION: releasing, the shoe (here the adapter) twists heel-out about the vertical axis through the cleat centre by up to release_angle either way, so the crank-side keep-out sweeps that rotation relative to the adapter (release_angle UNVERIFIED)"
+      },
+      "margin": "crank_margin",
+      "names": [
+        "crank arm",
+        "crank"
       ]
     }
   ],
@@ -177,6 +196,19 @@
         1,
         0
       ]
+    },
+    "CENTRE_PLANE": {
+      "kind": "plane",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ]
     }
   },
   "connectors": [],
@@ -188,7 +220,8 @@
     "cage_half_y",
     "cage_depth",
     "release_angle",
-    "crank_to_centre (confirm with his crank)"
+    "crank_to_centre (confirm with his crank)",
+    "mirror_pair / crank_side sweep (R12 assumptions): the release twist is about the cleat's vertical axis by release_angle (UNVERIFIED angle)"
   ],
   "notes": "Envelope only, for clearance and engagement checks: the body is a plain box (the real PD-M520 is open and much smaller in volume), so every clearance against it is conservative. Both sides of the real pedal are binding sides; only the +Z side is modelled as used. 'binding_cage' is the volume below the sole plane that the cleat and the pedal jaws occupy: only the cleat may enter it. 'crank_side' is the slab behind the crank-arm face (offset by crank_margin) that no adapter material may enter, for any rotation about the cleat axis up to the release angle and any lateral cleat setting. The clip-in motion (shoe tipped about the cleat's front hook) is not modelled: the hook position is not catalogued.",
   "import_gate_notes": "R1: bounding box = body_fore_aft x (crank_to_centre + body_axle_length / 2) x (2 * stack_height), tolerance 0.2 mm (plain box body; the spindle lies inside this extent in X and Z). Datum directions are unit vectors. Designed contact (the adapter's pedal-side face on the sole plane) is not interference. The keepouts are reserved volumes, not solids.",
@@ -233,5 +266,16 @@
       "value": 17.0,
       "tol": 0.01
     }
-  ]
+  ],
+  "mirror_pair": {
+    "plane": "CENTRE_PLANE",
+    "source": "migration delta R12: pedals are fitted to both cranks; the left-side assembly is the mirror image of the right-side one across the plane through the pedal centre perpendicular to the spindle (CENTRE_PLANE), so a part attached to this pedal must also work mirrored (one part serving both, or a mirror pair)",
+    "names": [
+      "mirror image",
+      "mirror-image",
+      "left/right pair",
+      "mirror pair"
+    ],
+    "names_source": "review fix R12 N5: the words a text uses for the left/right pairing (trace only, never a decision)"
+  }
 }

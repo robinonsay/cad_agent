@@ -620,17 +620,38 @@ def is_stub(row: Mapping[str, Any]) -> bool:
     return row.get("controller") == "stub"
 
 
+OUTCOMES = ("verified", "unverified", "unsatisfied")
+
+
+def run_outcome(row: Mapping[str, Any]) -> str:
+    """The agent's own outcome of a run (R12 review 2, N2): `verified` (rc 0: every check passes and every L1 is traced
+    to a measuring check), `unverified` (rc 3: every check passes, some L1 has no measuring check), `unsatisfied` (rc 3:
+    a check fails), or `failed` (no package: any other rc). rc 3 alone cannot tell the two rc-3 outcomes apart, so the
+    package's design.json `outcome` decides; a row without it (before R12) reads rc 0 as verified, rc 3 as
+    unsatisfied."""
+    rc = row.get("rc")
+    if rc not in (0, 3):
+        return "failed"
+    o = row.get("outcome")
+    if o in OUTCOMES:
+        return str(o)
+    return "verified" if rc == 0 else "unsatisfied"
+
+
 def authority_summary(llm_rows: Sequence[dict], stub_rows: Sequence[dict]) -> dict:
-    """D1 authority measurement for one iteration: `stub_verified` (train designs the stub run self-verifies, rc 0),
-    `llm_dependent` (train designs, run under both controllers, whose LLM-run geometry hash differs from the stub's; two
-    runs without geometry are the same), and the closed-loop record summed over the LLM train runs (steps, kept steps,
-    decisions by class, semantic-rule decisions)."""
+    """D1 authority measurement for one iteration: `stub_all_checks_pass` (train designs whose stub run passes every
+    one of its own checks: outcome verified or unverified; the headline authority probe since R12 review 2, N2, because
+    `verified` also needs every L1 traced, which no train design has until M10), `stub_verified` (outcome verified,
+    reported apart), `llm_dependent` (train designs, run under both controllers, whose LLM-run geometry hash differs
+    from the stub's; two runs without geometry are the same), and the closed-loop record summed over the LLM train runs
+    (steps, kept steps, decisions by class, semantic-rule decisions)."""
     train = [r for r in llm_rows if r.get("split") == "train"]
     stub = {r["id"]: r for r in stub_rows if r.get("split") == "train"}
     llm = {r["id"]: r for r in train}
     both = sorted(set(stub) & set(llm))
     dependent = [i for i in both if llm[i].get("geometry_sha1") != stub[i].get("geometry_sha1")]
-    verified = sorted(i for i, r in stub.items() if r.get("rc") == 0)
+    verified = sorted(i for i, r in stub.items() if run_outcome(r) == "verified")
+    all_pass = sorted(i for i, r in stub.items() if run_outcome(r) in ("verified", "unverified"))
     decisions: Dict[str, int] = {}
     steps = kept = semantic = with_steps = 0
     shares = []
@@ -646,11 +667,15 @@ def authority_summary(llm_rows: Sequence[dict], stub_rows: Sequence[dict]) -> di
         if auth.get("llm_share") is not None:
             shares.append(float(auth["llm_share"]))
     designs = sorted(llm)
-    return {"stub_verified": len(verified),
+    return {"stub_all_checks_pass": len(all_pass),
+            "stub_verified": len(verified),
             "llm_dependent": dependent,
-            "stub": {"runs": len(stub), "verified": verified, "compared": len(both),
+            "stub": {"runs": len(stub), "verified": verified, "all_checks_pass": all_pass, "compared": len(both),
                      "same_geometry": [i for i in both if i not in dependent],
-                     "verified_share": (len(verified) / len(designs)) if designs else None},
+                     "outcomes": {o: sorted(i for i, r in stub.items() if run_outcome(r) == o)
+                                  for o in OUTCOMES + ("failed",)},
+                     "verified_share": (len(verified) / len(designs)) if designs else None,
+                     "all_checks_pass_share": (len(all_pass) / len(designs)) if designs else None},
             "controller": {"steps": steps, "kept": kept, "designs_with_kept_steps": with_steps,
                            "decisions": decisions, "semantic_rule_decisions": semantic,
                            "mean_llm_share": round(sum(shares) / len(shares), 4) if shares else None}}
@@ -708,10 +733,12 @@ def build_summary(paths: Paths, split_root: str, nnn: str, code_info: Optional[d
     counts: Dict[str, dict] = {}
     for r in rows:
         key = r["split"] + (STUB_SUFFIX if is_stub(r) else "")     # stub rows count apart (train_stub)
-        c = counts.setdefault(key, {"runs": 0, "rc": {}, "no_output": 0, "with_renders": 0, "timed_out": 0,
-                                    "judged": 0, "meets": 0, "correct": 0, "to_judge": 0})
+        c = counts.setdefault(key, {"runs": 0, "rc": {}, "outcome": {}, "no_output": 0, "with_renders": 0,
+                                    "timed_out": 0, "judged": 0, "meets": 0, "correct": 0, "to_judge": 0})
         c["runs"] += 1
         c["rc"][str(r.get("rc"))] = c["rc"].get(str(r.get("rc")), 0) + 1
+        r["run_outcome"] = run_outcome(r)      # R12 review 2 (N2): rc 3 is two outcomes; counted apart
+        c["outcome"][r["run_outcome"]] = c["outcome"].get(r["run_outcome"], 0) + 1
         c["no_output"] += 0 if r.get("geometry_sha1") else 1
         c["with_renders"] += 1 if r.get("has_renders") else 0
         c["timed_out"] += 1 if r.get("timed_out") else 0

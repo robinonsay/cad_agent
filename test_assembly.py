@@ -32,6 +32,13 @@ RULES_PATH = REPO / "design_rules.json"
 L1 = [{"id": "L1.1", "text": "The enclosure shall have a base and a lid.", "method": "inspection"}]
 
 
+# Changed in the R12 review fix (N5): a package whose every check passes is "verified" only when every L1 is traced to a
+# measuring check. The regression requests (E1-01, V1-V3) and their replays have L1s no check traces yet (M10), so the
+# all-pass outcome is "unverified" with exit code 3; the geometry is unchanged (TestRegressionInvariance, regress.py).
+ALL_PASS_RC = ca.EXIT_UNSATISFIED
+ALL_PASS = "unverified"
+
+
 class FakeLLM(ScriptedLLM):
     """ScriptedLLM that accepts assembly mode's num_predict keyword.
 
@@ -2172,8 +2179,8 @@ class TestEndToEnd(unittest.TestCase):
                 grid = grid_expectation(pkg, pt.load_rules(self.rules).values)
                 expected_failed = ["grid_conformance"] if grid["fails"] else []
                 self.assertEqual(failing, expected_failed)
-                self.assertEqual(rc, ca.EXIT_UNSATISFIED if expected_failed else ca.EXIT_OK, failing)
-                self.assertEqual(rec["outcome"], "unsatisfied" if expected_failed else "verified")
+                self.assertEqual(rc, ca.EXIT_UNSATISFIED if expected_failed else ALL_PASS_RC, failing)
+                self.assertEqual(rec["outcome"], "unsatisfied" if expected_failed else ALL_PASS)
                 if Path(ca.OPENSCAD).exists():      # the delivered meshes are OpenSCAD's and agree with manifold3d
                     self.assertEqual(rec["assembly"]["stl_source"], {"base": "openscad", "lid": "openscad"})
                 counts = {r["check_id"]: r["evidence"]["count"] for r in results if r["type"] == "aperture_count"}
@@ -2407,7 +2414,13 @@ class TestEndToEnd(unittest.TestCase):
         linked = {i for v in links.values() for i in v}
         plug_l1 = {i for k in plugs for i in links[k]}
         over = {i for k in checks if k.startswith("oversize_") for i in links[k]}
-        self.assertEqual(linked, {clearance, size, keep} | plug_l1 | set(content_l1) | over)
+        # R12 review 2 (N7): printability / one-body checks also trace to the L1 naming those properties
+        # (design_rules.json trace_names, by check type): E1-01's "one manifold body ... without supports" L1
+        words = pt.load_rules(RULES_PATH).trace_names
+        prop = {i for k, c in checks.items() if c["type"] in ("printable", "separable") for i in links[k]}
+        self.assertEqual(prop, {l1_with(rid, "without supports")})
+        self.assertTrue(words["printable"] and words["separable"])
+        self.assertEqual(linked, {clearance, size, keep} | plug_l1 | set(content_l1) | over | prop)
         rows = {r["l1_id"]: r for r in matrix}
         self.assertEqual(set(rows), {x["id"] for x in l1} | {ac.L1_RULES})
         for x in l1:
@@ -2421,9 +2434,10 @@ class TestEndToEnd(unittest.TestCase):
         self.assertNotIn("no check covers", md)
         self.assertFalse(any(r["status"] == "FAIL" and not r["checks"] for r in matrix))
         self.assertEqual({c["id"] for c in rows[ac.L1_RULES]["checks"]}, {k for k, v in links.items() if not v})
-        # E1-01: six L1s traced, six UNLINKED until M10 (no check consumes the wall band yet: a gap for M5 / M10)
-        self.assertEqual(len(linked), 6)
-        self.assertEqual(sum(r["status"] == "UNLINKED" for r in matrix), 6)
+        # E1-01: seven L1s traced, five UNLINKED until M10 (no check consumes the wall band yet: a gap for M5 / M10).
+        # Changed in the R12 review 2 (N7): was six / six; the printability L1 (L1.9) is now traced by trace_names
+        self.assertEqual(len(linked), 7)
+        self.assertEqual(sum(r["status"] == "UNLINKED" for r in matrix), 5)
 
     def test_v1_socket_stack_apertures(self):
         # iteration 007 (C1, RC-704): V1 on a socket stack with the Pico left unexposed (the iteration 007 run: split on an
@@ -2514,7 +2528,7 @@ class TestEndToEnd(unittest.TestCase):
             # changed in iteration 004 (grid conformance is now a check): only grid_conformance fails
             # changed in iteration 010 (C1-C5): nothing fails, the manifold-mesh package verifies
             self.assertEqual([r["check_id"] for r in rec["results"] if not r["passed"]], [])
-            self.assertEqual(rc, ca.EXIT_OK)
+            self.assertEqual(rc, ALL_PASS_RC)
 
 
 class TestReplayIter003(unittest.TestCase):
@@ -2549,8 +2563,8 @@ class TestReplayIter003(unittest.TestCase):
         # jacks are exempt (pin_pattern), so no check fails and the package verifies (was: grid_conformance only, rc 3)
         assy = self.rec["assembly"]
         self.assertEqual([r["check_id"] for r in assy["results"] if not r["passed"]], [])
-        self.assertEqual(self.rc, ca.EXIT_OK, assy["notes"])
-        self.assertEqual(self.rec["outcome"], "verified")
+        self.assertEqual(self.rc, ALL_PASS_RC, assy["notes"])
+        self.assertEqual(self.rec["outcome"], ALL_PASS)
         self.assertEqual(assy["choices"]["arrangement_confirmed"]["by"], "llm:vote+menu")   # R02: the class menu replaced the p_yes rank
         self.assertNotIn("assy_arrange_pick", self.llm.labels())
         results = assy["results"]
@@ -2620,7 +2634,7 @@ class TestReplayIter004(unittest.TestCase):
         # changed in iteration 010 (behaviour intentionally changed, C1-C5): the Pico sits on the measured finite grid and the
         # jacks are exempt (pin_pattern), so no check fails and the package verifies (was: grid_conformance only, rc 3)
         self.assertEqual([k for k, r in results.items() if not r["passed"]], [], assy["notes"])
-        self.assertEqual(self.rc, ca.EXIT_OK)
+        self.assertEqual(self.rc, ALL_PASS_RC)
         # changed in iteration 006, then iteration 010: no conflicts (the jacks are an exemption, not a conflict)
         self.assertEqual(assy["conflicts"], [])
         self.assertEqual(assy["choices"]["arrangement_confirmed"]["by"], "llm:vote+menu")   # R02: the class menu replaced the p_yes rank
@@ -2684,7 +2698,7 @@ class TestReplayIter005(unittest.TestCase):
         # changed in iteration 010 (behaviour intentionally changed, C1-C5): the Pico sits on the measured finite grid and the
         # jacks are exempt (pin_pattern), so no check fails and the package verifies (was: grid_conformance only, rc 3)
         self.assertEqual([r["check_id"] for r in assy["results"] if not r["passed"]], [], assy["notes"])
-        self.assertEqual(self.rc, ca.EXIT_OK)
+        self.assertEqual(self.rc, ALL_PASS_RC)
         self.assertEqual(assy["conflicts"], [])
         report = json.loads((self.pkg / "self_report.json").read_text())
         recorded = ITER005_PKG / "self_report.json"
@@ -2822,7 +2836,7 @@ class TestReplayIter007(unittest.TestCase):
                 self.assertTrue(results["text_coverage"]["passed"], results["text_coverage"]["evidence"])
                 # changed in iteration 010 (C1-C5): nothing fails any more (was grid_conformance only, rc 3)
                 self.assertEqual([k for k, r in results.items() if not r["passed"]], [], assy["notes"])
-                self.assertEqual(rc, ca.EXIT_OK)
+                self.assertEqual(rc, ALL_PASS_RC)
                 walls = self.walls(pkg)
                 usb = [w for cut, w in walls.items() if cut.startswith(pico["id"])]
                 jacks = [w for cut, w in walls.items() if not cut.startswith(pico["id"])]
@@ -2897,7 +2911,7 @@ class TestReplayIter008(unittest.TestCase):
         self.assertTrue(results["text_coverage"]["passed"], results["text_coverage"]["evidence"])
         # changed in iteration 010 (C1-C5): nothing fails any more (was grid_conformance only, rc 3)
         self.assertEqual([k for k, r in results.items() if not r["passed"]], [], assy["notes"])
-        self.assertEqual(rc, ca.EXIT_OK)
+        self.assertEqual(rc, ALL_PASS_RC)
         refs = {r["id"]: r for r in json.loads((pkg / "layout.json").read_text())["references"]}
         pico_id = next(k for k, r in refs.items() if r["part"] == "rpi_pico2")
         plug = f"clear_{pico_id}_plug"
@@ -3330,7 +3344,7 @@ class TestEndToEndIter010(unittest.TestCase):
                 rec = json.loads((pkg / "design.json").read_text())
                 assy = rec["assembly"]
                 self.assertEqual([r["check_id"] for r in assy["results"] if not r["passed"]], [], assy["notes"][-5:])
-                self.assertEqual((rc, rec["outcome"]), (ca.EXIT_OK, "verified"))
+                self.assertEqual((rc, rec["outcome"]), (ALL_PASS_RC, ALL_PASS))
                 self.assertEqual(assy["conflicts"], [])
                 report = json.loads((pkg / "self_report.json").read_text())
                 self.assertTrue(report["all_passed"])
@@ -3384,7 +3398,7 @@ class TestReplayIter010(unittest.TestCase):
     def test_replay_iter010_answers_verify(self):
         assy = self.rec["assembly"]
         self.assertEqual([r["check_id"] for r in assy["results"] if not r["passed"]], [], assy["notes"][-5:])
-        self.assertEqual((self.rc, self.rec["outcome"]), (ca.EXIT_OK, "verified"))
+        self.assertEqual((self.rc, self.rec["outcome"]), (ALL_PASS_RC, ALL_PASS))
         self.assertEqual(assy["conflicts"], [])
         self.assertEqual(assy["choices"]["fastener[board]"]["value"], "screw_m2_selftap")
         refs = {r["id"]: r for r in json.loads((self.pkg / "layout.json").read_text())["references"]}
@@ -3453,7 +3467,7 @@ class TestEndToEndIter011(unittest.TestCase):
             with self.subTest(rid=rid):
                 rc, pkg, rec, assy, lay_json = self.package(rid)
                 self.assertEqual([r["check_id"] for r in assy["results"] if not r["passed"]], [], assy["notes"][-5:])
-                self.assertEqual((rc, rec["outcome"]), (ca.EXIT_OK, "verified"))
+                self.assertEqual((rc, rec["outcome"]), (ALL_PASS_RC, ALL_PASS))
                 self.assertEqual(assy["conflicts"], [])
                 w, d, _, _ = request_numbers(rid)
                 expect = np.array([(2.5, 2.5), (w - 2.5, 2.5), (2.5, d - 2.5), (w - 2.5, d - 2.5)])
@@ -3507,7 +3521,7 @@ class TestEndToEndIter011(unittest.TestCase):
 
     def test_e1_unchanged(self):
         rc, pkg, rec, assy, lay_json = self.package("E1-01")
-        self.assertEqual((rc, rec["outcome"]), (ca.EXIT_OK, "verified"))
+        self.assertEqual((rc, rec["outcome"]), (ALL_PASS_RC, ALL_PASS))
         self.assertEqual(lay_json["board"]["specimen"], "photo_70x50")
         self.assertEqual(lay_json["board"]["hole_diameter"], 2.0)
         comps = {c["id"]: c for c in assy["components"]}
@@ -3556,8 +3570,14 @@ class TestReplayIter011(unittest.TestCase):
         if not delivered:
             raise unittest.SkipTest(f"no delivered package in {ITER011 / 'target_s0'}")
         rc, pkg, _ = run_offline("E1-01", self.root, RULES_PATH, llm=recorded_llm("target_s0", ITER011))
-        self.assertEqual(rc, ca.EXIT_OK)
+        self.assertEqual(rc, ALL_PASS_RC)
         report = json.loads((pkg / "self_report.json").read_text())
+        # R12 review 2 (N3): rc 3 is also "unsatisfied"; this replay passes every check and is only unverified (its
+        # untraced L1s), so both are asserted
+        self.assertEqual(json.loads((pkg / "design.json").read_text())["outcome"], ALL_PASS)
+        self.assertEqual([r["check_id"] for r in report["results"] if not r["passed"]], [])
+        self.assertTrue(report["all_passed"])
+        self.assertTrue(report["unlinked_l1"])
         old = json.loads(delivered[-1].read_text())["bodies"]
         for body in ("base", "lid"):
             self.assertAlmostEqual(report["bodies"][body]["volume"], old[body]["volume"],
@@ -3565,7 +3585,7 @@ class TestReplayIter011(unittest.TestCase):
         rules = test_rules(self.root, fn=24)
         rc, pkg, _ = run_offline("V1", self.root, rules, llm=recorded_llm("V1_s0", ITER011))
         rec = json.loads((pkg / "design.json").read_text())
-        self.assertEqual((rc, rec["outcome"]), (ca.EXIT_OK, "verified"), rec["assembly"]["notes"][-5:])
+        self.assertEqual((rc, rec["outcome"]), (ALL_PASS_RC, ALL_PASS), rec["assembly"]["notes"][-5:])
         w, d, _, _ = request_numbers("V1")
         comps = {c["id"]: c for c in rec["assembly"]["components"]}
         expect = [(2.5, 2.5), (w - 2.5, 2.5), (2.5, d - 2.5), (w - 2.5, d - 2.5)]
@@ -4040,16 +4060,18 @@ class TestArchetypeGate(unittest.TestCase):
         st.contents = [{"id": A.PRIMARY, "part": part, "kind": self.cat.get(part).kind, "quantity": 1}]
         return st
 
-    def test_shell_needs_evidence(self):
-        # T11: the same mount_holes primary; a shell only with shell words in the text (G40 is a drill guide)
+    def test_shell_feasibility_is_plant_data(self):
+        # changed in migration delta R12 (was test_shell_needs_evidence, T11: a shell only with shell words in the text,
+        # a semantic gate): feasibility reads catalogue data only, so the same mount_holes primary of a text with no
+        # shell word (G40, a drill guide) gets a buildable shell; the form_evidence sensor reports the text's words and
+        # the controller decides (test_plate.TestForms)
         g40 = gen_texts("G40")
         module = next(pid for pid in self.cat.ids() if pt.mount_interface(self.cat.get(pid)) is not None
                       and A.text_evidence(g40, self.cat.get(pid).names))
         st = self.state(g40, module)
-        self.assertEqual(A.feasible_archetypes(st), [])
-        err = A.choose_archetype_rule(st)
-        self.assertTrue(err.startswith("not implemented: archetype"), err)
-        self.assertIn("no shell evidence", err)
+        self.assertEqual(A.feasible_archetypes(st), [("tray_lid", "screws")])
+        self.assertIsNone(A.choose_archetype_rule(st))
+        self.assertEqual(st.choices["archetype"]["by"], "rule:only_feasible")
         st = self.state(texts("E1-01"), "perfboard")
         self.assertEqual(A.feasible_archetypes(st), [("tray_lid", "screws")])
         self.assertIsNone(A.choose_archetype_rule(st))

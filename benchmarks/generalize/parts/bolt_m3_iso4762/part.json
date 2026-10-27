@@ -216,5 +216,17 @@
       "value": 0,
       "tol": 0
     }
-  ]
+  ],
+  "stock_lengths": [
+    5,
+    6,
+    8,
+    10,
+    12,
+    16,
+    20,
+    25,
+    30
+  ],
+  "stock_lengths_source": "migration delta R12: ISO 4762 preferred nominal lengths for M3 (5 to 30 mm)"
 }

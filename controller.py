@@ -43,6 +43,8 @@ from py_trees.common import Status
 
 import assembly as A
 import building_blocks as BB    # migration delta R11 (building blocks): actions register through ACTUATORS / APPLIERS
+import forms as FM              # migration delta R12: set_archetype registers through ACTUATORS / APPLIERS
+import plate as PL              # migration delta R12: the plate's actions (add_surface_feature, set_handedness)
 import cad_checks as cc
 import feature_graph as fg
 import menus
@@ -369,6 +371,14 @@ ACTUATORS: Dict[str, Callable[["A.AssemblyState", cc.CheckResult], List[Action]]
 # their appliers join APPLIERS below
 ACTUATORS.update(BB.ACTUATORS)
 DIRECTIONS.update(BB.DIRECTIONS)
+# migration delta R12: the form sensor's set_archetype, the plate's actions; a failing content_placed check offers the
+# panel mount (R11) and set_archetype to a form that would place the item (an engaged reference part)
+ACTUATORS.update(PL.ACTUATORS)
+ACTUATORS[FM.FORM_EVIDENCE] = FM.archetype_actions
+_PANEL_ACTIONS = ACTUATORS["content_placed"]
+ACTUATORS["content_placed"] = lambda st, r: _PANEL_ACTIONS(st, r) + FM.placing_actions(st, r)
+DIRECTIONS.update(PL.DIRECTIONS)
+DIRECTIONS.update(FM.DIRECTIONS)
 
 
 def menu(st: "A.AssemblyState", results: Sequence[cc.CheckResult], tabu: Sequence[str]) -> List[Action]:
@@ -403,6 +413,8 @@ APPLIERS: Dict[str, Callable[["A.AssemblyState", Action, Mapping[str, Any], str]
     "set_closure": _apply_closure,
 }
 APPLIERS.update(BB.APPLIERS)    # migration delta R11 (building blocks): set_retention, set_panel plug into R02's table
+APPLIERS.update(PL.APPLIERS)    # migration delta R12: add_surface_feature, set_handedness
+APPLIERS[FM.SET_ARCHETYPE] = FM.apply_archetype      # migration delta R12: set_archetype (invalidates the archetype stage)
 
 
 def apply_action(st: "A.AssemblyState", action: Action, record: Mapping[str, Any], by: str = CONTROLLER_BY) -> None:
@@ -483,6 +495,7 @@ def decision_vector(st: "A.AssemblyState") -> dict:
         "archetype": (ch.get("archetype") or {}).get("value"), "vent_face": (ch.get("vent_face") or {}).get("value"),
         "fasteners": {u: (ch.get(f"fastener[{u}]") or {}).get("value") for u in ("board", "lid")},
         **BB.decisions(st),                          # R11: building-block decisions (only when a block decided)
+        **PL.decisions(st),                          # R12: the plate's decisions (only for a plate)
     }
 
 
@@ -515,10 +528,12 @@ def state_words(st: "A.AssemblyState") -> str:
         lines.append(f"- {it['id']}{role}: {_part_name(st, it['part'])} x{it.get('quantity', 1)}"
                      + (f"; connectors: {', '.join(bits)}" if bits else ""))
     ch = st.choices
+    if FM.is_plate(st):                  # R12: a plate has no lid; its own words
+        return "\n".join(lines + FM.state_lines(st) + PL.state_lines(st))
     tail = [f"lid closure: {(ch.get('closure') or {}).get('value', '?')}"]
     if ch.get("boss_layout"):
         tail.append(f"lid bosses: {ch['boss_layout']['value']}")
-    return "\n".join(lines + ["- " + "; ".join(tail)] + BB.state_lines(st))   # R11: block decisions
+    return "\n".join(lines + ["- " + "; ".join(tail)] + BB.state_lines(st) + FM.state_lines(st))   # R11, R12
 
 
 ACTIONS_LINE = "Actions you can take now (one per step; Python applies it, rebuilds and measures again):"

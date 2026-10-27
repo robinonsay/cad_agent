@@ -148,5 +148,16 @@
       "value": 0,
       "tol": 0
     }
-  ]
+  ],
+  "stock_lengths": [
+    4,
+    5,
+    6,
+    8,
+    10,
+    12,
+    16,
+    20
+  ],
+  "stock_lengths_source": "migration delta R12: ISO 4026 M4 stock lengths 4 to 20 mm (the part's source text)"
 }

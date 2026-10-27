@@ -4,9 +4,9 @@
    "id": "T01",
    "tier": 4,
    "title": "SPD clip-in flat pedal adapter",
-   "request": "Conversion kit: flat platforms that clip onto my clipless SPD mountain bike pedals. Each platform takes the standard Shimano SM-SH51 two-bolt cleat, bolted on with M5 bolts and nuts, and the cleat has to slide fore-aft for adjustment as in a shoe, so that my shoes can use the pedals as flat pedals with grip. Pedals are Shimano PD-M520-type SPD pedals. Platform size like a normal flat pedal: 80 to 105 mm in each plan direction. Print it on an FDM printer in PETG without supports; a single design for both pedals, or a left/right pair.",
+   "request": "Conversion kit: flat platforms that clip onto my clipless SPD mountain bike pedals. Each platform takes the standard Shimano SM-SH51 two-bolt cleat, bolted on with M5 bolts and nuts, and the cleat has to slide fore-aft for adjustment as in a shoe, so that my shoes can use the pedals as flat pedals with grip. Pedals are Shimano PD-M520-type SPD pedals. Platform size like a normal flat pedal: 80 to 105 mm in each plan direction. Print it on an FDM printer in PETG without supports; a single design for both pedals, or a left/right pair. Every edge and corner needs a fillet of at least 1 mm radius.",
    "request_verbatim": "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes",
-   "request_notes": "Added to Robin's words (requirements.md section 3): pedal = Shimano PD-M520-type SPD (A1), cleat = SM-SH51 two-bolt (A2), M5 bolts and nuts (A4), fore-aft adjustment like a shoe (A6), platform 80 to 105 mm each way from commercial SPD-to-flat adapters (A7), FDM PETG without supports (A9), one part or an L/R pair (FD4). Dimensions marked UNVERIFIED in the catalogue (cleat size, bolt pitch, pedal body) are for Robin to measure on his own cleat and pedal.",
+   "request_notes": "Added to Robin's words (requirements.md section 3): pedal = Shimano PD-M520-type SPD (A1), cleat = SM-SH51 two-bolt (A2), M5 bolts and nuts (A4), fore-aft adjustment like a shoe (A6), platform 80 to 105 mm each way from commercial SPD-to-flat adapters (A7), FDM PETG without supports (A9), one part or an L/R pair (FD4). Dimensions marked UNVERIFIED in the catalogue (cleat size, bolt pitch, pedal body) are for Robin to measure on his own cleat and pedal. Robin added on 2026-10-27: \"all edges/corners must have a minimum fillet\"; the 1 mm radius is an assumption (A15).",
    "l1": [
     {
      "id": "L1.1",
@@ -67,6 +67,11 @@
      "id": "L1.12",
      "text": "Deliver an STL for each printed body, the OpenSCAD source, the declared layout and the agent's own clearance and strength report; the report must match an independent measurement.",
      "method": "inspection"
+    },
+    {
+     "id": "L1.13",
+     "text": "Round every edge and corner of each printed body, inside and outside, with a fillet of 1.0 mm radius or more; nut-trap hex faces and the walls of bores and slots along their axis are the only exceptions.",
+     "method": "analysis"
     }
    ],
    "beyond_library": [
@@ -77,16 +82,17 @@
     "a load-path hand calculation from the delivered mesh (section modulus at the support edge, bending stress against a stated allowable)",
     "grip features: pins (optionally catalogue M4 grub screws in tapped bosses) or ridges, counted and located on the top face",
     "mirror symmetry: the same part on the left and right pedal, or a declared mirror pair",
-    "print orientation: pedal-side face on the bed, no supports"
+    "print orientation: pedal-side face on the bed, no supports",
+    "edge fillets: every edge and corner of a printed body rounded to a minimum radius, measured on the delivered mesh"
    ]
   },
   {
    "id": "T01",
    "tier": 4,
    "title": "SPD clip-in flat pedal adapter",
-   "request": "I need to 3D print an adapter that turns my SPD clipless mountain bike pedals into flat pedals (a conversion kit). The standard Shimano SM-SH51 two-bolt SPD cleat bolts onto the adapter with M5 bolts and nuts, the adapter clips into the pedal, and the top has grip for my shoes. The cleat must be adjustable fore-aft like on a shoe. The pedals are Shimano PD-M520-type SPD pedals. Make the platform an ordinary flat-pedal size, 80 to 105 mm each way, printable in PETG on an FDM printer without supports, as one part for both pedals or as a left/right pair.",
+   "request": "I need to 3D print an adapter that turns my SPD clipless mountain bike pedals into flat pedals (a conversion kit). The standard Shimano SM-SH51 two-bolt SPD cleat bolts onto the adapter with M5 bolts and nuts, the adapter clips into the pedal, and the top has grip for my shoes. The cleat must be adjustable fore-aft like on a shoe. The pedals are Shimano PD-M520-type SPD pedals. Make the platform an ordinary flat-pedal size, 80 to 105 mm each way, printable in PETG on an FDM printer without supports, as one part for both pedals or as a left/right pair. No sharp edges or corners: a fillet of 1 mm radius or more on all of them.",
    "request_verbatim": "I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes",
-   "request_notes": "Added to Robin's words (requirements.md section 3): pedal = Shimano PD-M520-type SPD (A1), cleat = SM-SH51 two-bolt (A2), M5 bolts and nuts (A4), fore-aft adjustment like a shoe (A6), platform 80 to 105 mm each way from commercial SPD-to-flat adapters (A7), FDM PETG without supports (A9), one part or an L/R pair (FD4). Dimensions marked UNVERIFIED in the catalogue (cleat size, bolt pitch, pedal body) are for Robin to measure on his own cleat and pedal.",
+   "request_notes": "Added to Robin's words (requirements.md section 3): pedal = Shimano PD-M520-type SPD (A1), cleat = SM-SH51 two-bolt (A2), M5 bolts and nuts (A4), fore-aft adjustment like a shoe (A6), platform 80 to 105 mm each way from commercial SPD-to-flat adapters (A7), FDM PETG without supports (A9), one part or an L/R pair (FD4). Dimensions marked UNVERIFIED in the catalogue (cleat size, bolt pitch, pedal body) are for Robin to measure on his own cleat and pedal. Robin added on 2026-10-27: \"all edges/corners must have a minimum fillet\"; the 1 mm radius is an assumption (A15).",
    "l1": [
     {
      "id": "L1.1",
@@ -147,6 +153,11 @@
      "id": "L1.12",
      "text": "Hand over the STL of every printed body, the OpenSCAD source, the declared layout and the agent's own clearance and strength report, which has to agree with an independent measurement.",
      "method": "inspection"
+    },
+    {
+     "id": "L1.13",
+     "text": "Each printed body has no sharp edges or corners: every one, convex or concave, carries a fillet of at least 1.0 mm radius, except the hex faces of a nut trap and bore and slot walls along their own axis.",
+     "method": "analysis"
     }
    ],
    "beyond_library": [
@@ -157,7 +168,8 @@
     "a load-path hand calculation from the delivered mesh (section modulus at the support edge, bending stress against a stated allowable)",
     "grip features: pins (optionally catalogue M4 grub screws in tapped bosses) or ridges, counted and located on the top face",
     "mirror symmetry: the same part on the left and right pedal, or a declared mirror pair",
-    "print orientation: pedal-side face on the bed, no supports"
+    "print orientation: pedal-side face on the bed, no supports",
+    "edge fillets: every edge and corner of a printed body rounded to a minimum radius, measured on the delivered mesh"
    ]
   }
  ]

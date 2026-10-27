@@ -1,0 +1,1022 @@
+{
+  "source": "delivered STL files, rubric.md section 3 recipes",
+  "bodies": {
+    "plate": {
+      "file": "plate.stl",
+      "shells": 1,
+      "status": "NoError",
+      "volume": 68438.7065,
+      "bbox": [
+        [
+          -40.0,
+          -38.75,
+          -3.0
+        ],
+        [
+          40.1,
+          41.35,
+          11.0
+        ]
+      ]
+    },
+    "nut_frame": {
+      "file": "nut_frame.stl",
+      "shells": 1,
+      "status": "NoError",
+      "volume": 3813.7452,
+      "bbox": [
+        [
+          -15.3497,
+          -10.75,
+          2.1
+        ],
+        [
+          15.3497,
+          10.75,
+          8.9
+        ]
+      ]
+    }
+  },
+  "errors": [],
+  "all_passed": false,
+  "references": {
+    "board": {
+      "part": "cleat_shimano_sm_sh51",
+      "d": 0.0,
+      "check": "clear_primary"
+    },
+    "mech_1": {
+      "part": "pedal_shimano_pd_m520",
+      "d": 0.0,
+      "check": "clear_mech_1"
+    },
+    "bolt_0": {
+      "part": "bolt_m5_iso4762",
+      "d": 0.249961,
+      "check": "clear_fasteners"
+    },
+    "nut_0": {
+      "part": "nut_m5",
+      "d": null,
+      "check": null
+    },
+    "bolt_1": {
+      "part": "bolt_m5_iso4762",
+      "d": 0.249961,
+      "check": "clear_fasteners"
+    },
+    "nut_1": {
+      "part": "nut_m5",
+      "d": null,
+      "check": null
+    },
+    "stud_0": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_1": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_2": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_3": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_4": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_5": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_6": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    },
+    "stud_7": {
+      "part": "grub_m4_iso4026",
+      "d": null,
+      "check": null
+    }
+  },
+  "apertures": {},
+  "results": [
+    {
+      "check_id": "separable",
+      "l1_id": "rules",
+      "type": "separable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {
+        "bodies": [
+          "plate",
+          "nut_frame"
+        ]
+      },
+      "evidence": {
+        "shells": {
+          "plate": 1,
+          "nut_frame": 1
+        },
+        "status": {
+          "plate": "NoError",
+          "nut_frame": "NoError"
+        },
+        "overlap_mm3": {
+          "plate^nut_frame": 0.0
+        },
+        "overlap_max": 1.0,
+        "detail": "shells {'plate': 1, 'nut_frame': 1}, worst overlap 0 mm3 (max 1)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_primary",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to primary 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "board": "cleat_shimano_sm_sh51"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_fasteners",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.259961,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.249961,
+        "d": 0.249961,
+        "clearance": 0.0,
+        "per_source": {
+          "bolt_0": {
+            "part": "bolt_m5_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.249961
+          },
+          "bolt_1": {
+            "part": "bolt_m5_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.249961
+          }
+        },
+        "detail": "min gap to fasteners 0.2500 mm (need >= 0)",
+        "volume_parts": {
+          "bolt_0": "bolt_m5_iso4762",
+          "bolt_1": "bolt_m5_iso4762"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_recess",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to keepout_recess 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "board": "cleat_shimano_sm_sh51"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_mech_1",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": -0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to engaged 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "mech_1": "pedal_shimano_pd_m520"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_mech_1_binding_cage",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to keepout_mech_1_binding_cage 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "mech_1": "pedal_shimano_pd_m520"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_mech_1_crank_side",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.198726,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.188726,
+        "d": 0.188726,
+        "clearance": 0.0,
+        "detail": "min gap to keepout_mech_1_crank_side 0.1887 mm (need >= 0)",
+        "volume_parts": {
+          "mech_1": "pedal_shimano_pd_m520"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "handedness_plate",
+      "l1_id": "rules",
+      "type": "handedness",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "value": -299.7635,
+        "declared": "mirror_pair",
+        "basis": "design",
+        "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3); a mirror pair is declared (the left part is the exact mirror image)",
+        "where": "keepout_mech_1_crank_side"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "travel_x",
+      "l1_id": "rules",
+      "type": "travel",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to travel_0 0.0000 mm (need >= 0)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "travel_y",
+      "l1_id": "rules",
+      "type": "travel",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to travel_1 0.0000 mm (need >= 0)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_0",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.1,
+        "limit": 0.0,
+        "detail": "design check: tip z 10.000 vs nut top 8.900 (bolt_m5_iso4762 12 mm)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_tip_0",
+      "l1_id": "rules",
+      "type": "bolt_tip",
+      "passed": true,
+      "margin": 1.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.0,
+        "limit": 0.0,
+        "detail": "design check: top face z 11.000 vs tip 10.000",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "nut_trap_0",
+      "l1_id": "rules",
+      "type": "nut_trap",
+      "passed": true,
+      "margin": 0.1,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.2,
+        "width": 8.4,
+        "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_1",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.1,
+        "limit": 0.0,
+        "detail": "design check: tip z 10.000 vs nut top 8.900 (bolt_m5_iso4762 12 mm)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_tip_1",
+      "l1_id": "rules",
+      "type": "bolt_tip",
+      "passed": true,
+      "margin": 1.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.0,
+        "limit": 0.0,
+        "detail": "design check: top face z 11.000 vs tip 10.000",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "nut_trap_1",
+      "l1_id": "rules",
+      "type": "nut_trap",
+      "passed": true,
+      "margin": 0.1,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.2,
+        "width": 8.4,
+        "detail": "channel width 8.400 mm across the slide at the nut axis: 0.200 per flat side (band 0.1-0.4), corners 8.79",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "nut_frame_turn",
+      "l1_id": "rules",
+      "type": "nut_frame_turn",
+      "passed": true,
+      "margin": 10.489439,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 10.479439,
+        "limit": 0.0,
+        "detail": "design check: frame diagonal 37.48 mm vs pocket width 27.00 mm",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "printable_nut_frame",
+      "l1_id": "rules",
+      "type": "printable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.0,
+        "limit": 15.0,
+        "steep_area": 0.0,
+        "regions": [],
+        "orientation": "contact_face_down",
+        "basis": "measured",
+        "detail": "contact_face_down: longest bridge 0.00 mm (max 15), steep overhang area 0.00 mm2"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_seat_0",
+      "l1_id": "rules",
+      "type": "clamp_seat",
+      "passed": true,
+      "margin": 0.697512,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.9975,
+        "limit": 0.3,
+        "area": 31.591,
+        "positions": 1,
+        "basis": "measured",
+        "detail": "fastener seat: worst 100% of the nominal bearing (31.6 of 31.7 mm2) at shift [0.0, 0.0], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_seat_1",
+      "l1_id": "rules",
+      "type": "clamp_seat",
+      "passed": true,
+      "margin": 0.697512,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.9975,
+        "limit": 0.3,
+        "area": 31.591,
+        "positions": 1,
+        "basis": "measured",
+        "detail": "fastener seat: worst 100% of the nominal bearing (31.6 of 31.7 mm2) at shift [0.0, 0.0], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_frame",
+      "l1_id": "rules",
+      "type": "clamp_frame",
+      "passed": true,
+      "margin": 5.028247,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 5.3282,
+        "limit": 0.3,
+        "area": 337.488,
+        "positions": 9,
+        "basis": "measured",
+        "detail": "nut frame on the pocket floor: worst 533% of the nominal bearing (337.5 of 63.3 mm2) at shift [0.0, -2.5], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_face",
+      "l1_id": "rules",
+      "type": "clamp_face",
+      "passed": true,
+      "margin": 12.521547,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 12.8215,
+        "limit": 0.3,
+        "area": 845.797,
+        "positions": 9,
+        "basis": "measured",
+        "detail": "bolted face on the plate: worst 1282% of the nominal bearing (845.8 of 66.0 mm2) at shift [0.0, -2.5], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "thin_feature_plate",
+      "l1_id": "rules",
+      "type": "thin_feature",
+      "passed": true,
+      "margin": 0.39,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": null,
+        "limit": 0.8,
+        "basis": "measured",
+        "sections": 84,
+        "detail": "no feature thinner than 0.8 mm (84 sections)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "thin_feature_nut_frame",
+      "l1_id": "rules",
+      "type": "thin_feature",
+      "passed": true,
+      "margin": 0.39,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": null,
+        "limit": 0.8,
+        "basis": "measured",
+        "sections": 27,
+        "detail": "no feature thinner than 0.8 mm (27 sections)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_0",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688395,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678395,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_1",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688411,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678411,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_2",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688424,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678424,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_3",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688408,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678408,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_4",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688283,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678283,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_5",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688283,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678283,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_6",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688279,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678279,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "stud_engagement_7",
+      "l1_id": "rules",
+      "type": "stud_engagement",
+      "passed": true,
+      "margin": 0.688275,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 6.678275,
+        "limit": 6.0,
+        "detail": "thread engagement in printed material 6.68 mm (need 6)",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "plate_size_x",
+      "l1_id": "rules",
+      "type": "plate_size",
+      "passed": true,
+      "margin": 0.109998,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 80.099998,
+        "lo": 80.0,
+        "hi": 105.0,
+        "detail": "plan length 80.100 mm",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "plate_size_y",
+      "l1_id": "rules",
+      "type": "plate_size",
+      "passed": true,
+      "margin": 0.109998,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 80.099998,
+        "lo": 80.0,
+        "hi": 105.0,
+        "detail": "plan length 80.100 mm",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "plate_thickness",
+      "l1_id": "rules",
+      "type": "plate_thickness",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 14.0,
+        "lo": 8.0,
+        "hi": 14.0,
+        "detail": "thickness 14.000 mm at the corners",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bearing_area",
+      "l1_id": "rules",
+      "type": "bearing_area",
+      "passed": true,
+      "margin": 2427.009893,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 3026.999893,
+        "limit": 600.0,
+        "detail": "underside area on the engaged part 3027.0 mm2",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "load_stress",
+      "l1_id": "rules",
+      "type": "load_stress",
+      "passed": false,
+      "margin": -1.986488,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 49.7748,
+        "limit": 16.6667,
+        "edges": [
+          {
+            "edge": "+x",
+            "arm": 7.1,
+            "stress": 49.7748,
+            "I": 2728.59,
+            "c": 7.6516,
+            "area": 229.74,
+            "at": 18.0,
+            "width": 44.2,
+            "shift": [
+              0.0,
+              -2.5
+            ]
+          },
+          {
+            "edge": "-x",
+            "arm": 7.0,
+            "stress": 49.7172,
+            "I": 2693.25,
+            "c": 7.6515,
+            "area": 227.24,
+            "at": -18.0,
+            "width": 44.0,
+            "shift": [
+              0.0,
+              -2.5
+            ]
+          },
+          {
+            "edge": "+y",
+            "arm": 11.85,
+            "stress": 27.3558,
+            "I": 5956.23,
+            "c": 5.5,
+            "area": 590.7,
+            "at": 14.5,
+            "width": 53.7,
+            "shift": [
+              -10.0,
+              -2.5
+            ]
+          },
+          {
+            "edge": "-y",
+            "arm": 9.25,
+            "stress": 23.6432,
+            "I": 5379.46,
+            "c": 5.5,
+            "area": 533.5,
+            "at": -14.5,
+            "width": 48.5,
+            "shift": [
+              -10.0,
+              2.5
+            ]
+          }
+        ],
+        "basis": "measured",
+        "detail": "worst bending stress 49.77 MPa at edge +x (arm 7.10 mm, section width 44.2 mm, part shifted [0.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (14 mm, thickness_max) the worst case over the adjustment range is 49.77 MPa: a requirement question (a thicker plate, a stronger material, a smaller load or patch, or a larger support)",
+        "conflict": "the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (14 mm, thickness_max) the worst case over the adjustment range is 49.77 MPa: a requirement question (a thicker plate, a stronger material, a smaller load or patch, or a larger support)",
+        "competing_rule": "thickness_max"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "printable",
+      "l1_id": "rules",
+      "type": "printable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 9.1499,
+        "limit": 15.0,
+        "steep_area": 0.0,
+        "regions": [
+          {
+            "span": 9.1499,
+            "area": 963.3421,
+            "z": -2.1
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5597,
+            "z": -4.25
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5598,
+            "z": -4.25
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5598,
+            "z": -4.25
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5597,
+            "z": -4.25
+          },
+          {
+            "span": 3.2999,
+            "area": 8.5598,
+            "z": -4.25
+          }
+        ],
+        "orientation": "top_face_down",
+        "basis": "measured",
+        "detail": "top_face_down: longest bridge 9.15 mm (max 15), steep overhang area 0.00 mm2"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "surface_features",
+      "l1_id": "rules",
+      "type": "surface_features",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "value": 8,
+        "coverage": 74.2,
+        "edge": 3.2,
+        "kind": "studs",
+        "basis": "design",
+        "detail": "8 studs features, spread 74.2 %"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bbox",
+      "l1_id": "rules",
+      "type": "bbox_within",
+      "passed": true,
+      "margin": 119.910002,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "size": [
+          80.1,
+          80.1,
+          14.0
+        ],
+        "max": [
+          200.0,
+          200.0,
+          200.0
+        ],
+        "x_longest": false,
+        "detail": "outside 80.10 x 80.10 x 14.00 mm, max 200 x 200 x 200"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "form_evidence",
+      "l1_id": "rules",
+      "type": "form_evidence",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "current": "plate",
+        "expected": [],
+        "quotes": [
+          {
+            "source": "request",
+            "quote": "The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way).",
+            "match": "platform",
+            "form": "plate"
+          },
+          {
+            "source": "L1.3",
+            "quote": "At every cleat position in that range the M5 hardware shall fit: each bolt head shall seat on the cleat and be reachable with a 4 mm hex key from the pedal side with the adapter off the pedal, each bolt shall engage its nut for its whole thickness, and no bolt tip shall reach the top face of the platform.",
+            "match": "platform",
+            "form": "plate"
+          },
+          {
+            "source": "L1.7",
+            "quote": "The platform shall be sized like a commercial flat pedal: each plan dimension between 80 and 105 mm, with a thickness above the pedal-side face of 8 to 14 mm, not counting the grip features.",
+            "match": "platform",
+            "form": "plate"
+          },
+          {
+            "source": "L1.8",
+            "quote": "The top face shall carry grip features for shoes: at least 8 raised pins or ridges, each 1.5 to 5.0 mm tall, spread over at least 60 percent of the platform's plan area and kept at least 3 mm from its edge.",
+            "match": "platform",
+            "form": "plate"
+          }
+        ],
+        "detail": "the design is a plate; request names it",
+        "basis": "text"
+      },
+      "layer": 1,
+      "hard": true
+    }
+  ],
+  "unlinked_l1": [
+    "L1.3",
+    "L1.12"
+  ],
+  "verified": false
+}

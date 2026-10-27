@@ -1385,3 +1385,79 @@ documented and None never wins a perm_tally tie, stale param_stop reset, `search
 largest-supportable primary documented as extending `rule:primary_reference` (R05), a replay test whose arrangement
 menu overrides the edge vote. Full suite 544 tests OK (1714 s); offline regression E1-01 / V1-V3 hashes identical.
 Nothing committed.
+
+## R12 (2026-10-25): structural forms as controller choices, the plate archetype, spec slots by form (migration delta R12, owner decision D1)
+
+**Delta:** `iter_R12/delta.md`. **Revert:** `git checkout d2d5fcd -- assembly.py controller.py parts.py design_rules.json
+controller_rules.json test_assembly.py test_controller.py test_controller_authority.py test_no_hardcoding.py
+benchmarks/generalize/loop/ARCHITECTURE.md benchmarks/generalize/loop/LEDGER.md benchmarks/generalize/loop/RUN.md` plus
+the seven part.json files listed in delta.md section 6; delete `forms.py`, `plate.py`, `test_plate.py`, `loop/iter_R12/`.
+claude-context failed to connect; targeted reads and grep. Nothing under the held-out folders opened; no commit.
+
+### Why
+Iteration 090's T01 and 14 train designs stopped at ChooseArchetype ("no shell evidence"): the archetype was gated by
+reading the text (semantic), and ParseSpec forced every request into enclosure slots.
+
+### What changed (classified in delta.md section 3)
+- **Item 1 (R07, archetype half):** forms are enumerated from catalogue data with reasons and scratch derivations; the
+  controller picks via R02's permutation-voted menu (`assy_archetype`); no valid vote → measured error
+  (`prescore:archetype`); `form_evidence` sensor + `set_archetype` action. Retired `rule:first_option[archetype]` and the
+  text gate; `rule:only_feasible` reclassified plant. R07's closure half (`rule:default_closure`) still pending.
+- **Item 2:** `plate.py`: bolt-through plate (and screws into tapped parts), engaged reference placed by catalogue
+  datums, slots + captive nut channels or a sliding nut frame, recess cut, outline sized and positioned against swept
+  keep-outs, thickness by fastener stack and measured load-case stress, print orientation by measured overhang; actions
+  `add_surface_feature`, `set_handedness`, `set_nut_retention`; 15 sensor types. Catalogue: cleat / pedal interfaces,
+  sweep and mirror pair (marked assumptions, UNVERIFIED kept), stock lengths, NEMA 17 bolt_face.
+- **Item 3:** spec slots by candidate form (catalogue-driven), unit-word / band / pair validation, neutral wording when a
+  non-shell form is a candidate; E1-01 unchanged.
+
+### Measured
+- Full RUN.md section 2 suite (16 modules incl. test_plate): **565 tests, OK (1722 s)**.
+- Offline regression E1-01 / V1–V3: hashes identical to `reg_fix.json`. Live E1-01 (iter 091, seed 41): rc 0, verified,
+  graph 8b92655a7335 / layout 4536c7e83718 (the regression values), judge-cache hit.
+- **T01 live:** iter 091 rc 3 (only `travel_y`, typed conflict: hex channels cannot give the cleat's 5 mm lateral
+  adjustment) → diagnosed, generic nut-frame option added → **iter 092 and iter 093: rc 0, verified, 27/27** (plate
+  chosen 2/2; frame by verifier search, mirror pair and studs by the 9B's votes).
+- G16 live once (iter 092): a plate package (was stopped at the gate), rc 3: unplaced T-nuts / unsized extrusion and an
+  M3 engagement near-conflict with the mapped 5 mm plate.
+
+### Notes for the next gap analyst / Robin
+- T01's verdict needs the judges (requirements.md section 7). The judge may disagree with the agent on the nut frame
+  (a second printed body) and the set-screw studs; both are within FD2/FD3 ("the mechanism is the design's").
+- Owner questions: none. Assumptions (delta.md 2 and design_rules.json sources): plate wall 3 mm, nut floor 2 mm, tip
+  cover 1 mm, trap clearance band 0.1–0.4, grip defaults, 1.0 d tapped engagement, the cleat/pedal interface data.
+
+## R12 review fixes (2026-10-26)
+
+**Delta:** `iter_R12/delta.md` section 7. The review found T01's "verified 27/27" (iter 093) false: the nut frame gave
+the nuts no seat, the load case was measured at the shortest lever arm, thin features were unchecked and UNLINKED L1s
+were ignored. Sensors fixed first (clamp path, worst-case 45-degree load stress, thin features, stud engagement, bearing
+on the engaged part, unlinked / text-only L1s never verified), then generic plant fixes (frame floor and flange, unit
+factors, keep-out margins, part-shaped seat, required adjustment on declared axes). No T01 numbers or names in code.
+- Full RUN.md section 2 suite: **578 tests, OK (1727 s)**; offline regression hashes
+  identical, rc 0 -> 3 (E1-01's six UNLINKED L1s make it `unverified`; geometry unchanged).
+- Live seed 51: iter 094 (T01 rc 3, E1-01 rc 3 unverified / cache hit, G16 rc 1 Contents), iter 095 (G16 intermediate
+  code), iter 096 final: **T01 rc 3, not verified**: only `load_stress` fails, a typed requirement conflict (worst case
+  49.77 MPa vs 16.67 allowed at the 14 mm thickness limit), L1.3 and L1.12 unlinked; G16 rc 3 (unplaced T-nuts and
+  extrusion); E1-01 rc 3 unverified, graph 8b92655a7335 / layout 4536c7e83718.
+- Owner question raised by T01: the stated load case cannot be carried by a 14 mm PETG plate supported only by the cleat
+  footprint (the nut pocket and cleat recess sit at the support section); relax thickness/load/material, or accept.
+
+## R12 second review fixes (2026-10-26)
+
+**Delta:** `iter_R12/delta.md` section 8. Re-review verdict ACCEPT-WITH-NITS (N1-N9), all fixed generically: the load
+case now moves the patch along each edge (corners included) and the bolted part over its whole adjustment range
+(1 mm steps), and reports what each cut costs at the worst section; a measured fastener bearing / punch-through sensor
+(preload from the text or a documented default, `rule:default_preload` plant); a typed note for a cut open on a contact
+face; run_suite reports verified / unverified / unsatisfied apart (`stub_all_checks_pass` is the authority headline);
+one stated value sets both band ends (`sets` slots); trace_names link generic checks to the L1s naming them; stale shell
+notes dropped; setpoint wording fixed.
+- Full RUN.md section 2 suite: **584 tests, OK (1739 s)**; offline regression hashes identical to `reg_fix.json`.
+- Live seed 61, iter 097: E1-01 rc 3 `unverified` (every check passes; 5 L1s untraced, L1.9 now traced), graph
+  8b92655a7335 / layout 4536c7e83718, cache hit MEETS. **T01 rc 3 `unsatisfied`, 40/43**: plate (9B), nut frame, studs,
+  mirror pair (3 kept steps); failing only typed requirement conflicts: `load_stress` 58.59 MPa vs 16.67 (edge +x, patch
+  near the corner, cleat at the far fore-aft end; recess +11.2, nut pocket +10.5, slots +3.6 over the uncut 27.79) and
+  `fastener_bearing_0/1` (970 N default preload: 30.7 MPa bearing vs 16.67, 16.7 MPa punch-through vs 8.33 on the 2.1 mm
+  frame floor). Typed note: nut pocket open on the grip face (1382 mm2).
+- Owner questions raised by T01 (unchanged in kind, sharper in evidence): the load case at 14 mm, and now the nut seat
+  under a realistic preload (state a preload, accept washers / a metal nut plate, or a stronger material).

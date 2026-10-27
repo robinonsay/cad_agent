@@ -1,0 +1,1163 @@
+{
+  "schema": 2,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "vote_rules": {
+    "menu_orderings": 3,
+    "menu_samples": 1,
+    "menu_consistency_min": 1.0,
+    "menu_min_valid": 2
+  },
+  "search": {
+    "k": 3,
+    "depth": 1,
+    "depth_requested": 1,
+    "max_evals": 12
+  },
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "01341be091834057",
+        "graph": "a9db4daed327a889",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "cleat_shimano_sm_sh51",
+              1,
+              []
+            ],
+            [
+              "mech_1",
+              "pedal_shimano_pd_m520",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": null,
+          "boss_layout": null,
+          "archetype": "plate+bolt_through",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": null
+          },
+          "plate": {
+            "surface": "none",
+            "handedness": "single",
+            "retention": "channel",
+            "orientation": "top_face_down"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 3,
+        "violation": 6.918234
+      },
+      "failing": [
+        "travel_y",
+        "handedness_plate",
+        "surface_features"
+      ],
+      "terms": [
+        {
+          "check": "travel_y",
+          "type": "travel",
+          "requirement": [
+            "L1.1"
+          ],
+          "where": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]] at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]",
+          "deficit": 4.9182,
+          "unit": "mm",
+          "direction": "increase the bolt travel through the declared adjustment range",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -4.918234,
+          "detail": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]"
+        },
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.4"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "01341be091834057",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "single",
+          "retention": "channel",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 3,
+        "violation": 6.918234
+      },
+      "terms_before": [
+        {
+          "check": "travel_y",
+          "type": "travel",
+          "requirement": [
+            "L1.1"
+          ],
+          "where": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]] at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]",
+          "deficit": 4.9182,
+          "unit": "mm",
+          "direction": "increase the bolt travel through the declared adjustment range",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -4.918234,
+          "detail": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]"
+        },
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.4"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_nut_retention",
+          "target": "plate",
+          "value": "frame",
+          "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap, sliding in a pocket of the plate that covers the adjustment in every declared direction (like the nut plate inside a cycling shoe)",
+          "targets": [
+            "travel_y"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_nut_retention:plate=frame",
+          "id": "set_nut_retention:plate=frame",
+          "ident": ""
+        },
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "pins",
+          "words": "add_surface_feature top=pins: put raised features on the plate's free face: printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=pins",
+          "id": "add_surface_feature:top=pins",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "set_handedness:plate=mirror_pair",
+          "stop",
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins",
+          "set_nut_retention:plate=frame"
+        ],
+        [
+          "stop",
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins",
+          "set_nut_retention:plate=frame",
+          "set_handedness:plate=mirror_pair"
+        ],
+        [
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins",
+          "set_nut_retention:plate=frame",
+          "set_handedness:plate=mirror_pair",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "add_surface_feature:top=pins",
+        "votes": {
+          "add_surface_feature:top=studs": 1,
+          "add_surface_feature:top=pins": 2
+        },
+        "valid": 3,
+        "calls": 3,
+        "consistency": 0.6667,
+        "confident": false,
+        "orders": [
+          [
+            "set_handedness:plate=mirror_pair",
+            "stop",
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins",
+            "set_nut_retention:plate=frame"
+          ],
+          [
+            "stop",
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins",
+            "set_nut_retention:plate=frame",
+            "set_handedness:plate=mirror_pair"
+          ],
+          [
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins",
+            "set_nut_retention:plate=frame",
+            "set_handedness:plate=mirror_pair",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 2,
+            "reason": "The request explicitly asks for 'grips for my shoes' on a flat-pedal platform, and the only failing requirement is surface_features (L1.8) demanding raised features with count, height, edge distance, and spread \u2014 studs (threaded set screws)"
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "add_surface_feature:top=pins",
+            "position": 2,
+            "reason": "The request explicitly asks for grips on the shoe-sole side of the flat pedal platform, and pins are the only option that prints as part of the plate so the grip face can print facing up (the requested orientation), whereas studs would need"
+          },
+          {
+            "ordering": 2,
+            "sample": 0,
+            "answer": "add_surface_feature:top=pins",
+            "position": 1,
+            "reason": "The request explicitly asks for flat pedals that act as grips for shoes, and the only way to get printed raised features on the free face (which prints up) is via printed cylindrical pins, since studs are not printed and would leave the top"
+          }
+        ],
+        "first_position": 0
+      },
+      "votes": {
+        "add_surface_feature:top=studs": 1,
+        "add_surface_feature:top=pins": 2
+      },
+      "consistency": 0.6667,
+      "confident": false,
+      "chosen": "add_surface_feature:top=pins",
+      "candidates": [
+        {
+          "id": "add_surface_feature:top=pins",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "pins",
+            "words": "add_surface_feature top=pins: put raised features on the plate's free face: printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=pins",
+            "id": "add_surface_feature:top=pins",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 0.44,
+          "outcome": "undone",
+          "reason": "violation rose 6.918 -> 9.993 (trust region 0.05)",
+          "error_after": {
+            "hard_failures": 3,
+            "violation": 9.992934
+          },
+          "state_after": "819c36d8bbd8c4c1",
+          "failing_after": [
+            "handedness_plate",
+            "travel_y",
+            "printable"
+          ],
+          "sensor_delta": {
+            "hard_failures": 0,
+            "violation": 3.0747
+          }
+        },
+        {
+          "id": "add_surface_feature:top=studs",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "studs",
+            "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=studs",
+            "id": "add_surface_feature:top=studs",
+            "ident": ""
+          },
+          "votes": 1,
+          "rank": 1,
+          "by": "llm:controller",
+          "secs": 0.42,
+          "outcome": "not_selected",
+          "reason": "fewer failing checks (3 -> 2)",
+          "error_after": {
+            "hard_failures": 2,
+            "violation": 5.918234
+          },
+          "state_after": "97f9a40777d32984",
+          "failing_after": [
+            "handedness_plate",
+            "travel_y"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        },
+        {
+          "id": "set_nut_retention:plate=frame",
+          "action": {
+            "kind": "set_nut_retention",
+            "target": "plate",
+            "value": "frame",
+            "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap, sliding in a pocket of the plate that covers the adjustment in every declared direction (like the nut plate inside a cycling shoe)",
+            "targets": [
+              "travel_y"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_nut_retention:plate=frame",
+            "id": "set_nut_retention:plate=frame",
+            "ident": ""
+          },
+          "votes": 0,
+          "rank": 2,
+          "by": "search:controller",
+          "secs": 0.35,
+          "outcome": "kept",
+          "reason": "fewer failing checks (3 -> 2)",
+          "error_after": {
+            "hard_failures": 2,
+            "violation": 2.0
+          },
+          "state_after": "9c9dd0607db1df9f",
+          "failing_after": [
+            "handedness_plate",
+            "surface_features"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -4.918234
+          }
+        }
+      ],
+      "evals": 3,
+      "action": {
+        "kind": "set_nut_retention",
+        "target": "plate",
+        "value": "frame",
+        "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap, sliding in a pocket of the plate that covers the adjustment in every declared direction (like the nut plate inside a cycling shoe)",
+        "targets": [
+          "travel_y"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_nut_retention:plate=frame",
+        "id": "set_nut_retention:plate=frame",
+        "ident": ""
+      },
+      "selected": "set_nut_retention:plate=frame",
+      "selected_by": "search",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (3 -> 2)",
+      "error_after": {
+        "hard_failures": 2,
+        "violation": 2.0
+      },
+      "state_after": "9c9dd0607db1df9f",
+      "failing_after": [
+        "handedness_plate",
+        "surface_features"
+      ],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -4.918234
+      },
+      "llm_calls": 3,
+      "secs": 13.07
+    },
+    {
+      "step": 2,
+      "state_before": "9c9dd0607db1df9f",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "single",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 2,
+        "violation": 2.0
+      },
+      "terms_before": [
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.4"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "set_handedness:plate=mirror_pair",
+          "stop",
+          "add_surface_feature:top=studs"
+        ],
+        [
+          "stop",
+          "add_surface_feature:top=studs",
+          "set_handedness:plate=mirror_pair"
+        ],
+        [
+          "add_surface_feature:top=studs",
+          "set_handedness:plate=mirror_pair",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "set_handedness:plate=mirror_pair",
+        "votes": {
+          "set_handedness:plate=mirror_pair": 2,
+          "add_surface_feature:top=studs": 1
+        },
+        "valid": 3,
+        "calls": 3,
+        "consistency": 0.6667,
+        "confident": false,
+        "orders": [
+          [
+            "set_handedness:plate=mirror_pair",
+            "stop",
+            "add_surface_feature:top=studs"
+          ],
+          [
+            "stop",
+            "add_surface_feature:top=studs",
+            "set_handedness:plate=mirror_pair"
+          ],
+          [
+            "add_surface_feature:top=studs",
+            "set_handedness:plate=mirror_pair",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "set_handedness:plate=mirror_pair",
+            "position": 0,
+            "reason": "The request is explicitly for a two-sided SPD pedal where each side needs its own mirror-image plate so the cleat sits correctly on either side of the crank; the current single-part design fails handedness_plate because the mirror image of "
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "set_handedness:plate=mirror_pair",
+            "position": 2,
+            "reason": "The request calls for one printed adapter that mounts to both sides of the two-sided pedal, so the mirror-pair declaration satisfies handedness_plate (L1.4) and clears keepout_mech_1_crank_side, while studs only address the surface_features"
+          },
+          {
+            "ordering": 2,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 0,
+            "reason": "The request explicitly asks for flat pedals with grips for the shoes, and studs (catalogue set screws standing proud of the printed face) provide the raised tread features the surface_features check requires while keeping the face flat for "
+          }
+        ],
+        "first_position": 2
+      },
+      "votes": {
+        "set_handedness:plate=mirror_pair": 2,
+        "add_surface_feature:top=studs": 1
+      },
+      "consistency": 0.6667,
+      "confident": false,
+      "chosen": "set_handedness:plate=mirror_pair",
+      "candidates": [
+        {
+          "id": "set_handedness:plate=mirror_pair",
+          "action": {
+            "kind": "set_handedness",
+            "target": "plate",
+            "value": "mirror_pair",
+            "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+            "targets": [
+              "handedness_plate"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_handedness:plate=mirror_pair",
+            "id": "set_handedness:plate=mirror_pair",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 0.35,
+          "outcome": "kept",
+          "reason": "fewer failing checks (2 -> 1)",
+          "error_after": {
+            "hard_failures": 1,
+            "violation": 1.0
+          },
+          "state_after": "e3bc5be67201b166",
+          "failing_after": [
+            "surface_features"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        },
+        {
+          "id": "add_surface_feature:top=studs",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "studs",
+            "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=studs",
+            "id": "add_surface_feature:top=studs",
+            "ident": ""
+          },
+          "votes": 1,
+          "rank": 1,
+          "by": "llm:controller",
+          "secs": 0.44,
+          "outcome": "not_selected",
+          "reason": "fewer failing checks (2 -> 1)",
+          "error_after": {
+            "hard_failures": 1,
+            "violation": 1.0
+          },
+          "state_after": "9da573f3fd65ee26",
+          "failing_after": [
+            "handedness_plate"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        },
+        {
+          "id": "stop",
+          "action": {
+            "kind": "stop",
+            "target": "",
+            "value": null,
+            "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+            "targets": [],
+            "invalidates": "",
+            "evidence": [],
+            "key": "stop:=None",
+            "id": "stop",
+            "ident": "stop"
+          },
+          "votes": 0,
+          "rank": 2,
+          "outcome": "stop",
+          "error_after": {
+            "hard_failures": 2,
+            "violation": 2.0
+          },
+          "reason": "keep the design as it is"
+        }
+      ],
+      "evals": 2,
+      "action": {
+        "kind": "set_handedness",
+        "target": "plate",
+        "value": "mirror_pair",
+        "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+        "targets": [
+          "handedness_plate"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_handedness:plate=mirror_pair",
+        "id": "set_handedness:plate=mirror_pair",
+        "ident": ""
+      },
+      "selected": "set_handedness:plate=mirror_pair",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (2 -> 1)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "state_after": "e3bc5be67201b166",
+      "failing_after": [
+        "surface_features"
+      ],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -1.0
+      },
+      "llm_calls": 3,
+      "secs": 11.97
+    },
+    {
+      "step": 3,
+      "state_before": "e3bc5be67201b166",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "mirror_pair",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "terms_before": [
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        }
+      ],
+      "menu": [
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "stop",
+          "add_surface_feature:top=studs"
+        ],
+        [
+          "add_surface_feature:top=studs",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "add_surface_feature:top=studs",
+        "votes": {
+          "add_surface_feature:top=studs": 2
+        },
+        "valid": 2,
+        "calls": 2,
+        "consistency": 1.0,
+        "confident": true,
+        "orders": [
+          [
+            "stop",
+            "add_surface_feature:top=studs"
+          ],
+          [
+            "add_surface_feature:top=studs",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 1,
+            "reason": "The request explicitly requires flat-pedal grips on the printed face, and the only failing requirement is surface_features (L1.8) demanding raised features with count, height, edge distance, and spread \u226560%\u2014the studs action adds threaded, t"
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 0,
+            "reason": "The request explicitly asks for flat pedals with grips for the shoes, and the only failing requirement (surface_features) demands raised features on the plate's free face; adding threaded set-screw studs standing proud of the top face both "
+          }
+        ],
+        "first_position": 1
+      },
+      "votes": {
+        "add_surface_feature:top=studs": 2
+      },
+      "consistency": 1.0,
+      "confident": true,
+      "chosen": "add_surface_feature:top=studs",
+      "candidates": [
+        {
+          "id": "add_surface_feature:top=studs",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "studs",
+            "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=studs",
+            "id": "add_surface_feature:top=studs",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 0.46,
+          "outcome": "kept",
+          "reason": "fewer failing checks (1 -> 0)",
+          "error_after": {
+            "hard_failures": 0,
+            "violation": 0
+          },
+          "state_after": "357965e6a978659d",
+          "failing_after": [],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        }
+      ],
+      "evals": 1,
+      "action": {
+        "kind": "add_surface_feature",
+        "target": "top",
+        "value": "studs",
+        "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+        "targets": [
+          "surface_features"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "add_surface_feature:top=studs",
+        "id": "add_surface_feature:top=studs",
+        "ident": ""
+      },
+      "selected": "add_surface_feature:top=studs",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (1 -> 0)",
+      "error_after": {
+        "hard_failures": 0,
+        "violation": 0
+      },
+      "state_after": "357965e6a978659d",
+      "failing_after": [],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -1.0
+      },
+      "llm_calls": 2,
+      "secs": 7.7
+    }
+  ],
+  "stop": {
+    "reason": "every check passes",
+    "step": 3
+  },
+  "evals": 6,
+  "final": {
+    "state": {
+      "decisions": "357965e6a978659d",
+      "graph": "209541f386722d13",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "studs",
+          "handedness": "mirror_pair",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 0,
+      "violation": 0
+    },
+    "failing": [],
+    "terms": []
+  },
+  "secs": 32.92,
+  "authority": {
+    "decisions": {
+      "semantic-rule": 1,
+      "llm": 3,
+      "guardrail": 2
+    },
+    "proposal": {
+      "llm_slots": 14,
+      "default_slots": 10,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "primary",
+        "by": "rule:primary_reference",
+        "migration": "R05"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.5938
+  },
+  "accepted": [
+    {
+      "kind": "set_nut_retention",
+      "target": "plate",
+      "value": "frame",
+      "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap, sliding in a pocket of the plate that covers the adjustment in every declared direction (like the nut plate inside a cycling shoe)",
+      "targets": [
+        "travel_y"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_nut_retention:plate=frame",
+      "id": "set_nut_retention:plate=frame",
+      "ident": "",
+      "step": 1
+    },
+    {
+      "kind": "set_handedness",
+      "target": "plate",
+      "value": "mirror_pair",
+      "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+      "targets": [
+        "handedness_plate"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_handedness:plate=mirror_pair",
+      "id": "set_handedness:plate=mirror_pair",
+      "ident": "",
+      "step": 2
+    },
+    {
+      "kind": "add_surface_feature",
+      "target": "top",
+      "value": "studs",
+      "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+      "targets": [
+        "surface_features"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "add_surface_feature:top=studs",
+      "id": "add_surface_feature:top=studs",
+      "ident": "",
+      "step": 3
+    }
+  ]
+}

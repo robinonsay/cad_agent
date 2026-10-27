@@ -1,0 +1,1308 @@
+{
+  "schema": 2,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "vote_rules": {
+    "menu_orderings": 3,
+    "menu_samples": 1,
+    "menu_consistency_min": 1.0,
+    "menu_min_valid": 2
+  },
+  "search": {
+    "k": 3,
+    "depth": 1,
+    "depth_requested": 1,
+    "max_evals": 12
+  },
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "01341be091834057",
+        "graph": "92bba5e6647cffbd",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "cleat_shimano_sm_sh51",
+              1,
+              []
+            ],
+            [
+              "mech_1",
+              "pedal_shimano_pd_m520",
+              1,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": null,
+          "boss_layout": null,
+          "archetype": "plate+bolt_through",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": null
+          },
+          "plate": {
+            "surface": "none",
+            "handedness": "single",
+            "retention": "channel",
+            "orientation": "top_face_down"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 4,
+        "violation": 7.008234
+      },
+      "failing": [
+        "travel_y",
+        "handedness_plate",
+        "surface_features",
+        "bbox",
+        "load_stress"
+      ],
+      "terms": [
+        {
+          "check": "travel_y",
+          "type": "travel",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]] at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]",
+          "deficit": 4.9182,
+          "unit": "mm",
+          "direction": "increase the bolt travel through the declared adjustment range",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -4.918234,
+          "detail": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]"
+        },
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        },
+        {
+          "check": "bbox",
+          "type": "bbox_within",
+          "requirement": [
+            "L1.7"
+          ],
+          "where": "outside 80.10 x 80.10 x 13.80 mm, max 80 x 200 x 200",
+          "deficit": 0.09,
+          "unit": "mm",
+          "direction": "decrease the outside size",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.09,
+          "detail": "outside 80.10 x 80.10 x 13.80 mm, max 80 x 200 x 200"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 37.75 MPa at edge +x (arm 17.10 mm, section width 64.2 mm, part shifted [-10.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a ben...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.265294,
+          "detail": "worst bending stress 37.75 MPa at edge +x (arm 17.10 mm, section width 64.2 mm, part shifted [-10.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a ben..."
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "01341be091834057",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "single",
+          "retention": "channel",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 4,
+        "violation": 7.008234
+      },
+      "terms_before": [
+        {
+          "check": "travel_y",
+          "type": "travel",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]] at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]",
+          "deficit": 4.9182,
+          "unit": "mm",
+          "direction": "increase the bolt travel through the declared adjustment range",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -4.918234,
+          "detail": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]"
+        },
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        },
+        {
+          "check": "bbox",
+          "type": "bbox_within",
+          "requirement": [
+            "L1.7"
+          ],
+          "where": "outside 80.10 x 80.10 x 13.80 mm, max 80 x 200 x 200",
+          "deficit": 0.09,
+          "unit": "mm",
+          "direction": "decrease the outside size",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.09,
+          "detail": "outside 80.10 x 80.10 x 13.80 mm, max 80 x 200 x 200"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 37.75 MPa at edge +x (arm 17.10 mm, section width 64.2 mm, part shifted [-10.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a ben...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.265294,
+          "detail": "worst bending stress 37.75 MPa at edge +x (arm 17.10 mm, section width 64.2 mm, part shifted [-10.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a ben..."
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_nut_retention",
+          "target": "plate",
+          "value": "frame",
+          "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+          "targets": [
+            "travel_y"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_nut_retention:plate=frame",
+          "id": "set_nut_retention:plate=frame",
+          "ident": ""
+        },
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "pins",
+          "words": "add_surface_feature top=pins: put raised features on the plate's free face: printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=pins",
+          "id": "add_surface_feature:top=pins",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "set_handedness:plate=mirror_pair",
+          "set_nut_retention:plate=frame",
+          "stop",
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins"
+        ],
+        [
+          "set_nut_retention:plate=frame",
+          "stop",
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins",
+          "set_handedness:plate=mirror_pair"
+        ],
+        [
+          "stop",
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins",
+          "set_handedness:plate=mirror_pair",
+          "set_nut_retention:plate=frame"
+        ]
+      ],
+      "vote": {
+        "pick": "add_surface_feature:top=studs",
+        "votes": {
+          "add_surface_feature:top=studs": 2,
+          "set_nut_retention:plate=frame": 1
+        },
+        "valid": 3,
+        "calls": 3,
+        "consistency": 0.6667,
+        "confident": false,
+        "orders": [
+          [
+            "set_handedness:plate=mirror_pair",
+            "set_nut_retention:plate=frame",
+            "stop",
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins"
+          ],
+          [
+            "set_nut_retention:plate=frame",
+            "stop",
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins",
+            "set_handedness:plate=mirror_pair"
+          ],
+          [
+            "stop",
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins",
+            "set_handedness:plate=mirror_pair",
+            "set_nut_retention:plate=frame"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 3,
+            "reason": "The request explicitly asks for 'grips for my shoes' on the free face, and the surface_features check (L1.8) demands raised features with count/height/edge distance/spread \u2014 studs (threaded set screws in tapped holes) are the catalogue set\u2011"
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "set_nut_retention:plate=frame",
+            "position": 0,
+            "reason": "The worst failing requirement is travel_y, where the M5 nuts are being crushed into the plate because the plate's own floor can't hold them; a separate printed nut frame that traps each nut in a hex pocket on its own floor and slides in a 2"
+          },
+          {
+            "ordering": 2,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 1,
+            "reason": "The request explicitly asks for flat pedals with grips for the shoes, and the only failing requirement that addresses this is surface_features (L1.8), which requires raised features on the plate's free face; studs satisfy this by adding the"
+          }
+        ],
+        "first_position": 1
+      },
+      "votes": {
+        "add_surface_feature:top=studs": 2,
+        "set_nut_retention:plate=frame": 1
+      },
+      "consistency": 0.6667,
+      "confident": false,
+      "chosen": "add_surface_feature:top=studs",
+      "candidates": [
+        {
+          "id": "add_surface_feature:top=studs",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "studs",
+            "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=studs",
+            "id": "add_surface_feature:top=studs",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 0.52,
+          "outcome": "not_selected",
+          "reason": "fewer failing checks (4 -> 3)",
+          "error_after": {
+            "hard_failures": 3,
+            "violation": 6.008234
+          },
+          "state_after": "97f9a40777d32984",
+          "failing_after": [
+            "handedness_plate",
+            "travel_y",
+            "load_stress",
+            "bbox"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        },
+        {
+          "id": "set_nut_retention:plate=frame",
+          "action": {
+            "kind": "set_nut_retention",
+            "target": "plate",
+            "value": "frame",
+            "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+            "targets": [
+              "travel_y"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_nut_retention:plate=frame",
+            "id": "set_nut_retention:plate=frame",
+            "ident": ""
+          },
+          "votes": 1,
+          "rank": 1,
+          "by": "llm:controller",
+          "secs": 0.38,
+          "outcome": "kept",
+          "reason": "fewer failing checks (4 -> 3)",
+          "error_after": {
+            "hard_failures": 3,
+            "violation": 2.09
+          },
+          "state_after": "9c9dd0607db1df9f",
+          "failing_after": [
+            "handedness_plate",
+            "load_stress",
+            "surface_features",
+            "bbox"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -4.918234
+          }
+        },
+        {
+          "id": "set_handedness:plate=mirror_pair",
+          "action": {
+            "kind": "set_handedness",
+            "target": "plate",
+            "value": "mirror_pair",
+            "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+            "targets": [
+              "handedness_plate"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_handedness:plate=mirror_pair",
+            "id": "set_handedness:plate=mirror_pair",
+            "ident": ""
+          },
+          "votes": 0,
+          "rank": 2,
+          "by": "search:controller",
+          "secs": 0.34,
+          "outcome": "not_selected",
+          "reason": "fewer failing checks (4 -> 3)",
+          "error_after": {
+            "hard_failures": 3,
+            "violation": 6.008234
+          },
+          "state_after": "8ee443c034c456fb",
+          "failing_after": [
+            "travel_y",
+            "load_stress",
+            "surface_features",
+            "bbox"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        }
+      ],
+      "evals": 3,
+      "action": {
+        "kind": "set_nut_retention",
+        "target": "plate",
+        "value": "frame",
+        "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+        "targets": [
+          "travel_y"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_nut_retention:plate=frame",
+        "id": "set_nut_retention:plate=frame",
+        "ident": ""
+      },
+      "selected": "set_nut_retention:plate=frame",
+      "selected_by": "search_among_votes",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (4 -> 3)",
+      "error_after": {
+        "hard_failures": 3,
+        "violation": 2.09
+      },
+      "state_after": "9c9dd0607db1df9f",
+      "failing_after": [
+        "handedness_plate",
+        "load_stress",
+        "surface_features",
+        "bbox"
+      ],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -4.918234
+      },
+      "llm_calls": 3,
+      "secs": 14.79
+    },
+    {
+      "step": 2,
+      "state_before": "9c9dd0607db1df9f",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "single",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 3,
+        "violation": 2.09
+      },
+      "terms_before": [
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        },
+        {
+          "check": "bbox",
+          "type": "bbox_within",
+          "requirement": [
+            "L1.7"
+          ],
+          "where": "outside 80.10 x 80.10 x 14.00 mm, max 80 x 200 x 200",
+          "deficit": 0.09,
+          "unit": "mm",
+          "direction": "decrease the outside size",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.09,
+          "detail": "outside 80.10 x 80.10 x 14.00 mm, max 80 x 200 x 200"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 49.77 MPa at edge +x (arm 7.10 mm, section width 44.2 mm, part shifted [0.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a bendin...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.986488,
+          "detail": "worst bending stress 49.77 MPa at edge +x (arm 7.10 mm, section width 44.2 mm, part shifted [0.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a bendin..."
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "pins",
+          "words": "add_surface_feature top=pins: put raised features on the plate's free face: printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=pins",
+          "id": "add_surface_feature:top=pins",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "add_surface_feature:top=pins",
+          "stop",
+          "set_handedness:plate=mirror_pair",
+          "add_surface_feature:top=studs"
+        ],
+        [
+          "stop",
+          "set_handedness:plate=mirror_pair",
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins"
+        ],
+        [
+          "set_handedness:plate=mirror_pair",
+          "add_surface_feature:top=studs",
+          "add_surface_feature:top=pins",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "add_surface_feature:top=studs",
+        "votes": {
+          "add_surface_feature:top=studs": 3
+        },
+        "valid": 3,
+        "calls": 3,
+        "consistency": 1.0,
+        "confident": true,
+        "orders": [
+          [
+            "add_surface_feature:top=pins",
+            "stop",
+            "set_handedness:plate=mirror_pair",
+            "add_surface_feature:top=studs"
+          ],
+          [
+            "stop",
+            "set_handedness:plate=mirror_pair",
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins"
+          ],
+          [
+            "set_handedness:plate=mirror_pair",
+            "add_surface_feature:top=studs",
+            "add_surface_feature:top=pins",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 3,
+            "reason": "The request asks for flat pedals with grips and adjustable cleat position; studs provide the raised grip features on the free face while printing flat on the bed (satisfying surface_features), and the sliding nut frame already handles cleat"
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 2,
+            "reason": "The request explicitly asks for grips on the shoe-contact face, and the surface_features check (L1.8) requires raised features on the top face with spread \u226560% \u2014 studs (threaded set screws in tapped holes) are the only option that can stand"
+          },
+          {
+            "ordering": 2,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 1,
+            "reason": "The request explicitly asks for flat-pedal grips on the shoe-contact face, and studs are the only option that provides those raised features while still allowing the plate to print flat on the bed (the cleat is printed top-face-down, so the"
+          }
+        ],
+        "first_position": 0
+      },
+      "votes": {
+        "add_surface_feature:top=studs": 3
+      },
+      "consistency": 1.0,
+      "confident": true,
+      "chosen": "add_surface_feature:top=studs",
+      "candidates": [
+        {
+          "id": "add_surface_feature:top=studs",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "studs",
+            "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=studs",
+            "id": "add_surface_feature:top=studs",
+            "ident": ""
+          },
+          "votes": 3,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 0.54,
+          "outcome": "kept",
+          "reason": "fewer failing checks (3 -> 2)",
+          "error_after": {
+            "hard_failures": 2,
+            "violation": 1.09
+          },
+          "state_after": "9da573f3fd65ee26",
+          "failing_after": [
+            "handedness_plate",
+            "load_stress",
+            "bbox"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        }
+      ],
+      "evals": 1,
+      "action": {
+        "kind": "add_surface_feature",
+        "target": "top",
+        "value": "studs",
+        "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+        "targets": [
+          "surface_features"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "add_surface_feature:top=studs",
+        "id": "add_surface_feature:top=studs",
+        "ident": ""
+      },
+      "selected": "add_surface_feature:top=studs",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (3 -> 2)",
+      "error_after": {
+        "hard_failures": 2,
+        "violation": 1.09
+      },
+      "state_after": "9da573f3fd65ee26",
+      "failing_after": [
+        "handedness_plate",
+        "load_stress",
+        "bbox"
+      ],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -1.0
+      },
+      "llm_calls": 3,
+      "secs": 13.36
+    },
+    {
+      "step": 3,
+      "state_before": "9da573f3fd65ee26",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "studs",
+          "handedness": "single",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 2,
+        "violation": 1.09
+      },
+      "terms_before": [
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3)"
+        },
+        {
+          "check": "bbox",
+          "type": "bbox_within",
+          "requirement": [
+            "L1.7"
+          ],
+          "where": "outside 80.10 x 80.10 x 14.00 mm, max 80 x 200 x 200",
+          "deficit": 0.09,
+          "unit": "mm",
+          "direction": "decrease the outside size",
+          "controllable": true,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.09,
+          "detail": "outside 80.10 x 80.10 x 14.00 mm, max 80 x 200 x 200"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 49.77 MPa at edge +x (arm 7.10 mm, section width 44.2 mm, part shifted [0.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a bendin...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -1.986488,
+          "detail": "worst bending stress 49.77 MPa at edge +x (arm 7.10 mm, section width 44.2 mm, part shifted [0.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a bendin..."
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "stop",
+          "set_handedness:plate=mirror_pair"
+        ],
+        [
+          "set_handedness:plate=mirror_pair",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "set_handedness:plate=mirror_pair",
+        "votes": {
+          "set_handedness:plate=mirror_pair": 2
+        },
+        "valid": 2,
+        "calls": 2,
+        "consistency": 1.0,
+        "confident": true,
+        "orders": [
+          [
+            "stop",
+            "set_handedness:plate=mirror_pair"
+          ],
+          [
+            "set_handedness:plate=mirror_pair",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "set_handedness:plate=mirror_pair",
+            "position": 1,
+            "reason": "The request needs one printed adapter that serves both sides of the pedal, and the failing check L1.10 explicitly states the part must be a declared pair to satisfy the mirror-image keepout conflict, which this action provides."
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "set_handedness:plate=mirror_pair",
+            "position": 0,
+            "reason": "The request needs a working pedal for both sides of the bike, but the current single-part design's mirror image penetrates the crank-side keepout by 298.8 mm\u00b3, so declaring a left/right mirror pair gives each side its own correctly-oriented"
+          }
+        ],
+        "first_position": 1
+      },
+      "votes": {
+        "set_handedness:plate=mirror_pair": 2
+      },
+      "consistency": 1.0,
+      "confident": true,
+      "chosen": "set_handedness:plate=mirror_pair",
+      "candidates": [
+        {
+          "id": "set_handedness:plate=mirror_pair",
+          "action": {
+            "kind": "set_handedness",
+            "target": "plate",
+            "value": "mirror_pair",
+            "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+            "targets": [
+              "handedness_plate"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_handedness:plate=mirror_pair",
+            "id": "set_handedness:plate=mirror_pair",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 0.54,
+          "outcome": "kept",
+          "reason": "fewer failing checks (2 -> 1)",
+          "error_after": {
+            "hard_failures": 1,
+            "violation": 0.09
+          },
+          "state_after": "357965e6a978659d",
+          "failing_after": [
+            "load_stress",
+            "bbox"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        }
+      ],
+      "evals": 1,
+      "action": {
+        "kind": "set_handedness",
+        "target": "plate",
+        "value": "mirror_pair",
+        "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+        "targets": [
+          "handedness_plate"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_handedness:plate=mirror_pair",
+        "id": "set_handedness:plate=mirror_pair",
+        "ident": ""
+      },
+      "selected": "set_handedness:plate=mirror_pair",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (2 -> 1)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 0.09
+      },
+      "state_after": "357965e6a978659d",
+      "failing_after": [
+        "load_stress",
+        "bbox"
+      ],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -1.0
+      },
+      "llm_calls": 2,
+      "secs": 8.33
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 3
+  },
+  "evals": 5,
+  "final": {
+    "state": {
+      "decisions": "357965e6a978659d",
+      "graph": "573fa7f0ef6133b1",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            1,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "studs",
+          "handedness": "mirror_pair",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 1,
+      "violation": 0.09
+    },
+    "failing": [
+      "bbox",
+      "load_stress"
+    ],
+    "terms": [
+      {
+        "check": "bbox",
+        "type": "bbox_within",
+        "requirement": [
+          "L1.7"
+        ],
+        "where": "outside 80.10 x 80.10 x 14.00 mm, max 80 x 200 x 200",
+        "deficit": 0.09,
+        "unit": "mm",
+        "direction": "decrease the outside size",
+        "controllable": true,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.09,
+        "detail": "outside 80.10 x 80.10 x 14.00 mm, max 80 x 200 x 200"
+      },
+      {
+        "check": "load_stress",
+        "type": "load_stress",
+        "requirement": [
+          "L1.9"
+        ],
+        "where": "worst bending stress 49.77 MPa at edge +x (arm 7.10 mm, section width 44.2 mm, part shifted [0.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a bendin...",
+        "deficit": null,
+        "unit": "ratio",
+        "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+        "controllable": false,
+        "actionable": false,
+        "hard": true,
+        "margin": -1.986488,
+        "detail": "worst bending stress 49.77 MPa at edge +x (arm 7.10 mm, section width 44.2 mm, part shifted [0.0, -2.5]) vs 16.67 MPa; conflict: the load case needs a bendin..."
+      }
+    ]
+  },
+  "secs": 36.69,
+  "authority": {
+    "decisions": {
+      "semantic-rule": 1,
+      "llm": 4,
+      "guardrail": 1
+    },
+    "proposal": {
+      "llm_slots": 18,
+      "default_slots": 9,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "primary",
+        "by": "rule:primary_reference",
+        "migration": "R05"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.6857
+  },
+  "accepted": [
+    {
+      "kind": "set_nut_retention",
+      "target": "plate",
+      "value": "frame",
+      "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+      "targets": [
+        "travel_y"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_nut_retention:plate=frame",
+      "id": "set_nut_retention:plate=frame",
+      "ident": "",
+      "step": 1
+    },
+    {
+      "kind": "add_surface_feature",
+      "target": "top",
+      "value": "studs",
+      "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+      "targets": [
+        "surface_features"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "add_surface_feature:top=studs",
+      "id": "add_surface_feature:top=studs",
+      "ident": "",
+      "step": 2
+    },
+    {
+      "kind": "set_handedness",
+      "target": "plate",
+      "value": "mirror_pair",
+      "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+      "targets": [
+        "handedness_plate"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_handedness:plate=mirror_pair",
+      "id": "set_handedness:plate=mirror_pair",
+      "ident": "",
+      "step": 3
+    }
+  ]
+}

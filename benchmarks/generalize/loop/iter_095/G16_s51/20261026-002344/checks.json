@@ -1,0 +1,595 @@
+[
+  {
+    "id": "separable",
+    "l1_id": "rules",
+    "type": "separable",
+    "params": {
+      "bodies": [
+        "plate"
+      ],
+      "overlap_max": 1.0
+    },
+    "text": "plate is one shell",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "content_placed_mech_1",
+    "l1_id": "rules",
+    "type": "content_placed",
+    "params": {
+      "item": "mech_1",
+      "part": "tnut_2020_m5",
+      "reason": "nema17_motor is not a carrier: no relation places it yet (GM2b)"
+    },
+    "text": "mech_1 (tnut_2020_m5 x2) is placed in the design",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.3"
+    ]
+  },
+  {
+    "id": "content_placed_profile_1",
+    "l1_id": "rules",
+    "type": "content_placed",
+    "params": {
+      "item": "profile_1",
+      "part": "extrusion_2020",
+      "reason": "extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state"
+    },
+    "text": "profile_1 (extrusion_2020 x1) is placed in the design",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "clear_primary",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "primary",
+      "clearance": 0.0
+    },
+    "text": "the plate does not enter the nema17_motor (its face bears on the plate: designed contact)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1"
+    ]
+  },
+  {
+    "id": "clear_fasteners",
+    "l1_id": "rules",
+    "type": "clear_of",
+    "params": {
+      "volume": "fasteners",
+      "clearance": 0.0
+    },
+    "text": "the bolts pass their slots without entering the plate (a shank in its slot: designed contact)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "travel_x",
+    "l1_id": "rules",
+    "type": "travel",
+    "params": {
+      "volume": "travel_0",
+      "clearance": 0.0,
+      "conflict": ""
+    },
+    "text": "the bolts move through the nema17_motor's full 6 mm adjustment along x without entering the plate (slots and nut channels cover 6 mm)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2",
+      "L1.3"
+    ]
+  },
+  {
+    "id": "travel_y",
+    "l1_id": "rules",
+    "type": "travel",
+    "params": {
+      "volume": "travel_1",
+      "clearance": 0.0,
+      "conflict": ""
+    },
+    "text": "the bolts move through the nema17_motor's full 6 mm adjustment along y without entering the plate (slots and nut channels cover 6 mm)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2",
+      "L1.3"
+    ]
+  },
+  {
+    "id": "bolt_engagement_0",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 1.4000000000000004,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)"
+    },
+    "text": "bolt_0 engages at least 3 mm of the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "bolt_bottoming_0",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 0.09999999999999964,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm"
+    },
+    "text": "bolt_0 does not bottom in the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "bolt_engagement_1",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 1.4000000000000004,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)"
+    },
+    "text": "bolt_1 engages at least 3 mm of the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "bolt_bottoming_1",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 0.09999999999999964,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm"
+    },
+    "text": "bolt_1 does not bottom in the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "bolt_engagement_2",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 1.4000000000000004,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)"
+    },
+    "text": "bolt_2 engages at least 3 mm of the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "bolt_bottoming_2",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 0.09999999999999964,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm"
+    },
+    "text": "bolt_2 does not bottom in the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "bolt_engagement_3",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 1.4000000000000004,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)"
+    },
+    "text": "bolt_3 engages at least 3 mm of the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "bolt_bottoming_3",
+    "l1_id": "rules",
+    "type": "bolt_engagement",
+    "params": {
+      "value": 0.09999999999999964,
+      "limit": 0.0,
+      "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm"
+    },
+    "text": "bolt_3 does not bottom in the part's tapped hole",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2"
+    ]
+  },
+  {
+    "id": "clamp_seat_0",
+    "l1_id": "rules",
+    "type": "clamp_seat",
+    "params": {
+      "xy": [
+        -15.5,
+        -15.5
+      ],
+      "z": 3.6,
+      "side": "below",
+      "face": "circle",
+      "size": 5.5,
+      "hole": 3.4,
+      "angle": 0.0,
+      "shifts": [
+        [
+          -3.0,
+          -3.0
+        ],
+        [
+          -3.0,
+          0.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          -3.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          3.0,
+          -3.0
+        ],
+        [
+          3.0,
+          0.0
+        ],
+        [
+          3.0,
+          3.0
+        ]
+      ],
+      "ratio": 0.3
+    },
+    "text": "bolt_0's head bears on the plate's free face at every position of the adjustment (at least 30% of its bearing face, round the axis)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2",
+      "L1.3"
+    ]
+  },
+  {
+    "id": "clamp_seat_1",
+    "l1_id": "rules",
+    "type": "clamp_seat",
+    "params": {
+      "xy": [
+        15.5,
+        -15.5
+      ],
+      "z": 3.6,
+      "side": "below",
+      "face": "circle",
+      "size": 5.5,
+      "hole": 3.4,
+      "angle": 0.0,
+      "shifts": [
+        [
+          -3.0,
+          -3.0
+        ],
+        [
+          -3.0,
+          0.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          -3.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          3.0,
+          -3.0
+        ],
+        [
+          3.0,
+          0.0
+        ],
+        [
+          3.0,
+          3.0
+        ]
+      ],
+      "ratio": 0.3
+    },
+    "text": "bolt_1's head bears on the plate's free face at every position of the adjustment (at least 30% of its bearing face, round the axis)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2",
+      "L1.3"
+    ]
+  },
+  {
+    "id": "clamp_seat_2",
+    "l1_id": "rules",
+    "type": "clamp_seat",
+    "params": {
+      "xy": [
+        -15.5,
+        15.5
+      ],
+      "z": 3.6,
+      "side": "below",
+      "face": "circle",
+      "size": 5.5,
+      "hole": 3.4,
+      "angle": 0.0,
+      "shifts": [
+        [
+          -3.0,
+          -3.0
+        ],
+        [
+          -3.0,
+          0.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          -3.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          3.0,
+          -3.0
+        ],
+        [
+          3.0,
+          0.0
+        ],
+        [
+          3.0,
+          3.0
+        ]
+      ],
+      "ratio": 0.3
+    },
+    "text": "bolt_2's head bears on the plate's free face at every position of the adjustment (at least 30% of its bearing face, round the axis)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2",
+      "L1.3"
+    ]
+  },
+  {
+    "id": "clamp_seat_3",
+    "l1_id": "rules",
+    "type": "clamp_seat",
+    "params": {
+      "xy": [
+        15.5,
+        15.5
+      ],
+      "z": 3.6,
+      "side": "below",
+      "face": "circle",
+      "size": 5.5,
+      "hole": 3.4,
+      "angle": 0.0,
+      "shifts": [
+        [
+          -3.0,
+          -3.0
+        ],
+        [
+          -3.0,
+          0.0
+        ],
+        [
+          -3.0,
+          3.0
+        ],
+        [
+          0.0,
+          -3.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          3.0
+        ],
+        [
+          3.0,
+          -3.0
+        ],
+        [
+          3.0,
+          0.0
+        ],
+        [
+          3.0,
+          3.0
+        ]
+      ],
+      "ratio": 0.3
+    },
+    "text": "bolt_3's head bears on the plate's free face at every position of the adjustment (at least 30% of its bearing face, round the axis)",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.1",
+      "L1.2",
+      "L1.3"
+    ]
+  },
+  {
+    "id": "thin_feature_plate",
+    "l1_id": "rules",
+    "type": "thin_feature",
+    "params": {
+      "body": "plate",
+      "limit": 0.8,
+      "step": 2.0
+    },
+    "text": "no feature of plate is thinner than 0.8 mm (sections along x, y and z)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "plate_thickness",
+    "l1_id": "rules",
+    "type": "plate_thickness",
+    "params": {
+      "body": "plate",
+      "z_bot": 0.0,
+      "lo": null,
+      "hi": 5.0,
+      "outline": [
+        -23.30205019399967,
+        -23.30205019399967,
+        23.30205019399967,
+        23.30205019399967
+      ]
+    },
+    "text": "the plate's thickness (raised features not counted) lies in its band",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "bearing_area",
+    "l1_id": "rules",
+    "type": "bearing_area",
+    "params": {
+      "body": "plate",
+      "z": 0.0,
+      "limit": 19.0,
+      "engaged": false
+    },
+    "text": "the plate's underside bears on at least 19 mm2 of flat area",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.4"
+    ]
+  },
+  {
+    "id": "printable",
+    "l1_id": "rules",
+    "type": "printable",
+    "params": {
+      "body": "plate",
+      "orientation": "contact_face_down",
+      "overhang_angle_deg": 45.0,
+      "bridge_max": 15.0
+    },
+    "text": "the plate prints contact face down without supports (no overhang steeper than 45 deg from vertical, no bridge longer than 15 mm)",
+    "hard": true,
+    "level": 1,
+    "links": []
+  },
+  {
+    "id": "bbox",
+    "l1_id": "rules",
+    "type": "bbox_within",
+    "params": {
+      "max": [
+        60.0,
+        75.0,
+        200.0
+      ],
+      "x_longest": false
+    },
+    "text": "the plate (with its raised features) fits within 60 x 75 x 200 mm",
+    "hard": true,
+    "level": 1,
+    "links": [
+      "L1.9"
+    ]
+  }
+]

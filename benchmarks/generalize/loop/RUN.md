@@ -55,6 +55,13 @@ Per-iteration notes from the gap analyst (subset, extra seeds) go here, newest l
   names (offline they are byte-identical, `iter_R01/delta.md`); a train run on a paraphrase (K > 0) is never a cache hit
   for a verdict given on another wording.
 
+- from migration delta R12 on: `test_plate` is in the unit line; T01 and other designs naming a `bolt_face` part get
+  the plate's spec slots and an archetype question (`assy_archetype`); the plate package has `plate.stl` (plus
+  `nut_frame.stl` / `plate_mirror.stl` when the controller chose them). E1-01's prompts are unchanged.
+- from the R12 review fix on: an UNLINKED L1 (no measuring check traced to it; text sensors do not count) makes a
+  run `unverified` (rc 3) even when every check passes. E1-01 and V1-V3 have L1s no check traces yet (M10), so their
+  live rc is 3 with geometry unchanged; the judges' verdict is unaffected.
+
 ## 2. Preflight (every iteration)
 
 ```sh
@@ -66,7 +73,7 @@ curl -s http://localhost:11434/api/tags | "$PY" -c 'import json,sys; m=[x["name"
 # the full unit suite is green before spending hours of runs (about 20 minutes; no Ollama)
 cd "$REPO" && "$PY" -m unittest test_cascade test_cad_checks test_review_fixes test_cad_agent test_benchmark_runner \
     test_parts test_feature_graph test_assembly test_assembly_checks test_no_hardcoding test_generalize_suite \
-    test_controller test_controller_authority test_menus test_building_blocks
+    test_controller test_controller_authority test_menus test_building_blocks test_plate
 ```
 
 `run_suite.py` repeats the first three checks itself and stops with exit 2 if one fails (a `--controller stub` run
@@ -115,9 +122,12 @@ checks that every command parses with `run_suite.py`'s own command line.
 - `--controller stub` (owner decision D1, authority probe): `cad_agent.py --controller stub` answers every question
   with its first offered option, takes no corrective step and makes no LLM call (a run takes seconds). Rows and
   folders are `<id>_s<SEED>_stub`; they are never judged (`cache: "stub"`, `counts.train_stub`). `summary.json`
-  gives `stub_verified` (train designs the stub run self-verifies, rc 0), `llm_dependent` (train designs whose LLM-run
-  geometry differs from the stub's; two runs without geometry are the same) and `stub` (verified ids, compared,
-  same_geometry, verified_share). Known at R01: every Contents quantity's first option is 0, so the stub stops at
+  gives `stub_all_checks_pass` (train designs whose stub run passes every one of its own checks: outcome `verified`
+  or `unverified`; the headline authority probe since the R12 review 2, N2), `stub_verified` (outcome `verified`:
+  every check passes **and** every L1 is traced, reported apart, since no train design has every L1 traced before
+  M10), `llm_dependent` (train designs whose LLM-run geometry differs from the stub's; two runs without geometry are
+  the same) and `stub` (verified and all_checks_pass ids, `outcomes` by outcome, compared, same_geometry,
+  verified_share, all_checks_pass_share). Known at R01: every Contents quantity's first option is 0, so the stub stops at
   Contents on every design (stub_verified 0); the per-run authority audit (`summary.json` `controller`, section 5)
   covers the rules further down until migration delta R05.
 
@@ -152,9 +162,16 @@ What `run_suite.py` does for each design, strictly one after another:
    30 s (OpenSCAD children included), and the run is recorded with rc 124.
 4. It appends one row to `$ITER/runs.jsonl` and rebuilds `$ITER/summary.json` (section 5).
 
-Exit codes of `cad_agent.py`: 0 = verified by its own checks, 3 = built but its own checks fail (NOT a pass),
+Exit codes of `cad_agent.py`: 0 = verified by its own checks (every check passes **and**, since the R12 review fix
+N5, every L1 is traced to a measuring check), 3 = built but its own checks fail, or every check passes while some L1
+has no measuring check (outcome `unverified`, the L1 ids in `design.json` `assembly.unlinked_l1` and
+`self_report.json` `unlinked_l1`) (NOT a pass),
 1 = failed, 2 = usage error, 130 = interrupted, 124 = killed by the timeout. The agent's own verdict is never
-the loop's verdict. The judges decide. A stub run's rc 0 is what `stub_verified` counts (its own verification only).
+the loop's verdict. The judges decide. Because rc 3 is two outcomes, `run_suite.py` reads each run's outcome from
+its package (`design.json` `outcome`; R12 review 2, N2): `verified` (rc 0), `unverified` (rc 3, every check passes),
+`unsatisfied` (rc 3, a check fails) or `failed` (any other rc); a row without an outcome (before R12) reads rc 0 as
+verified and rc 3 as unsatisfied. Each summary row carries `run_outcome`. A stub run's outcome is what
+`stub_all_checks_pass` (verified or unverified) and `stub_verified` (verified) count (its own checks only).
 
 Useful flags: `--dry-run` prints the commands and runs nothing. `--summarize` only rebuilds `summary.json`
 (after verdicts are cached, or after a rubric edit). `--timeout S` overrides the 1200 s (only with a ledger
@@ -187,11 +204,13 @@ Check a frozen version by hand: `cd "$REPO" && shasum -c benchmarks/generalize/l
   requirements.md, enclosure.json or variants.json, and the enclosure rubric.md), plus `|p<K>` for a paraphrase run
   (K > 0; since R01): a verdict is reused only for the wording it was given for, so MEETS across the paraphrases is
   measured, never inherited. Paraphrase-0 keys are unchanged, so every earlier verdict stays valid.
-- `counts` per split: runs, rc histogram, `no_output` (no STL), `with_renders`, `timed_out`, `judged`,
+- `counts` per split: runs, rc histogram, `outcome` histogram (verified / unverified / unsatisfied / failed, section
+  3; since the R12 review 2), `no_output` (no STL), `with_renders`, `timed_out`, `judged`,
   `meets`, `correct` (MEETS counts as CORRECT), `to_judge`.
 - `regression`: `pass` (E1-01 MEETS and V1–V3 at least CORRECT), `fail`, `pending` (not all judged) or
   `not_run`.
-- Since R01 (owner decision D1): `paraphrase` (the train runs' wording K, or a list when mixed), `stub_verified`,
+- Since R01 (owner decision D1): `paraphrase` (the train runs' wording K, or a list when mixed),
+  `stub_all_checks_pass` (since the R12 review 2), `stub_verified`,
   `llm_dependent`, `stub` (section 3), and `controller`: the closed-loop record summed over the LLM train runs (steps,
   kept steps, designs with a kept step, decisions by class, semantic-rule decisions, the mean `llm_share`; from each
   package's `controller_trace.json` `authority`). Stub rows are listed in `runs` with `cache: "stub"` and are never in

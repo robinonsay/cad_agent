@@ -20,7 +20,8 @@ CATALOGUES = (PARTS, REPO / "benchmarks" / "generalize" / "parts")
 MODULES = ("assembly.py", "parts.py", "feature_graph.py", "assembly_checks.py", "layout.py",
            "controller.py",   # changed in migration delta R01: the closed-loop controller is agent logic too
            "menus.py",        # changed in migration delta R02: the content-keyed menus and permutation voting
-           "building_blocks.py")   # changed in migration delta R11 (building blocks): the generic building blocks are agent logic too
+           "building_blocks.py",   # changed in migration delta R11 (building blocks): the generic building blocks are agent logic too
+           "forms.py", "plate.py")  # changed in migration delta R12: the structural forms and the plate archetype are agent logic
 BANNED_NUMBERS = (70, 50, 51, 21, 4.9, 17.5, 32.5, 65, 45, 80, 60, 90, 40, 47, 11.4, 1.3, 1.6, 2.54, 12,
                   35, 8.5, 10.9, 6.9, 1.85)
 

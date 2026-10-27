@@ -216,5 +216,18 @@
       "value": 0,
       "tol": 0
     }
-  ]
+  ],
+  "stock_lengths": [
+    6,
+    8,
+    10,
+    12,
+    16,
+    20,
+    25,
+    30,
+    35,
+    40
+  ],
+  "stock_lengths_source": "migration delta R12: ISO 4762 preferred nominal lengths for M4 (6 to 40 mm)"
 }

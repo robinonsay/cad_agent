@@ -1,0 +1,499 @@
+{
+  "source": "delivered STL files, rubric.md section 3 recipes",
+  "bodies": {
+    "plate": {
+      "file": "plate.stl",
+      "shells": 1,
+      "status": "NoError",
+      "volume": 4384.5895,
+      "bbox": [
+        [
+          -20.302,
+          -20.302,
+          0.0
+        ],
+        [
+          20.302,
+          20.302,
+          3.6
+        ]
+      ]
+    }
+  },
+  "errors": [],
+  "all_passed": false,
+  "references": {
+    "board": {
+      "part": "nema17_motor",
+      "d": 0.0,
+      "check": "clear_primary"
+    },
+    "bolt_0": {
+      "part": "bolt_m3_iso4762",
+      "d": 0.0,
+      "check": "clear_fasteners"
+    },
+    "bolt_1": {
+      "part": "bolt_m3_iso4762",
+      "d": 0.0,
+      "check": "clear_fasteners"
+    },
+    "bolt_2": {
+      "part": "bolt_m3_iso4762",
+      "d": 0.0,
+      "check": "clear_fasteners"
+    },
+    "bolt_3": {
+      "part": "bolt_m3_iso4762",
+      "d": 0.0,
+      "check": "clear_fasteners"
+    }
+  },
+  "apertures": {},
+  "results": [
+    {
+      "check_id": "separable",
+      "l1_id": "rules",
+      "type": "separable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "count",
+      "depends_on": {
+        "bodies": [
+          "plate"
+        ]
+      },
+      "evidence": {
+        "shells": {
+          "plate": 1
+        },
+        "status": {
+          "plate": "NoError"
+        },
+        "overlap_mm3": {},
+        "overlap_max": 1.0,
+        "detail": "shells {'plate': 1}, worst overlap 0 mm3 (max 1)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "content_placed_mech_1",
+      "l1_id": "rules",
+      "type": "content_placed",
+      "passed": false,
+      "margin": -1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "item": "mech_1",
+        "part": "tnut_2020_m5",
+        "reason": "nema17_motor is not a carrier: no relation places it yet (GM2b)",
+        "detail": "mech_1 (tnut_2020_m5) is not placed: nema17_motor is not a carrier: no relation places it yet (GM2b)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "content_placed_profile_1",
+      "l1_id": "rules",
+      "type": "content_placed",
+      "passed": false,
+      "margin": -1.0,
+      "unit": "count",
+      "depends_on": {},
+      "evidence": {
+        "item": "profile_1",
+        "part": "extrusion_2020",
+        "reason": "extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state",
+        "detail": "profile_1 (extrusion_2020) is not placed: extrusion_2020: no number in the text for length; the plant cannot build a part whose size the text does not state"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_primary",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "detail": "min gap to primary 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "board": "nema17_motor"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clear_fasteners",
+      "l1_id": "rules",
+      "type": "clear_of",
+      "passed": true,
+      "margin": 0.01,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "penetration_mm3": 0.0,
+        "gap": 0.0,
+        "d": 0.0,
+        "clearance": 0.0,
+        "per_source": {
+          "bolt_0": {
+            "part": "bolt_m3_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.0
+          },
+          "bolt_1": {
+            "part": "bolt_m3_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.0
+          },
+          "bolt_2": {
+            "part": "bolt_m3_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.0
+          },
+          "bolt_3": {
+            "part": "bolt_m3_iso4762",
+            "penetration_mm3": 0.0,
+            "d": 0.0
+          }
+        },
+        "detail": "min gap to fasteners 0.0000 mm (need >= 0)",
+        "volume_parts": {
+          "bolt_0": "bolt_m3_iso4762",
+          "bolt_1": "bolt_m3_iso4762",
+          "bolt_2": "bolt_m3_iso4762",
+          "bolt_3": "bolt_m3_iso4762"
+        }
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_0",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.41,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.4,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_bottoming_0",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.1,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_1",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.41,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.4,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_bottoming_1",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.1,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_2",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.41,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.4,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_bottoming_2",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.1,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_engagement_3",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 1.41,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1.4,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm (bolt_m3_iso4762 8 mm through 3.60 mm of plate)",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bolt_bottoming_3",
+      "l1_id": "rules",
+      "type": "bolt_engagement",
+      "passed": true,
+      "margin": 0.11,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.1,
+        "limit": 0.0,
+        "detail": "design check: engagement 4.40 mm vs thread depth 4.5 mm",
+        "basis": "design"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_seat_0",
+      "l1_id": "rules",
+      "type": "clamp_seat",
+      "passed": true,
+      "margin": 0.69945,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.9995,
+        "limit": 0.3,
+        "area": 14.67,
+        "positions": 1,
+        "basis": "measured",
+        "detail": "fastener seat: worst 100% of the nominal bearing (14.7 of 14.7 mm2) at shift [0.0, 0.0], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_seat_1",
+      "l1_id": "rules",
+      "type": "clamp_seat",
+      "passed": true,
+      "margin": 0.69945,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.9995,
+        "limit": 0.3,
+        "area": 14.67,
+        "positions": 1,
+        "basis": "measured",
+        "detail": "fastener seat: worst 100% of the nominal bearing (14.7 of 14.7 mm2) at shift [0.0, 0.0], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_seat_2",
+      "l1_id": "rules",
+      "type": "clamp_seat",
+      "passed": true,
+      "margin": 0.69945,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.9995,
+        "limit": 0.3,
+        "area": 14.67,
+        "positions": 1,
+        "basis": "measured",
+        "detail": "fastener seat: worst 100% of the nominal bearing (14.7 of 14.7 mm2) at shift [0.0, 0.0], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "clamp_seat_3",
+      "l1_id": "rules",
+      "type": "clamp_seat",
+      "passed": true,
+      "margin": 0.69945,
+      "unit": "ratio",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.9995,
+        "limit": 0.3,
+        "area": 14.67,
+        "positions": 1,
+        "basis": "measured",
+        "detail": "fastener seat: worst 100% of the nominal bearing (14.7 of 14.7 mm2) at shift [0.0, 0.0], axis inside the bearing (need >= 30%, axis inside)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "thin_feature_plate",
+      "l1_id": "rules",
+      "type": "thin_feature",
+      "passed": true,
+      "margin": 0.39,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": null,
+        "limit": 0.8,
+        "basis": "measured",
+        "sections": 41,
+        "detail": "no feature thinner than 0.8 mm (41 sections)"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "plate_thickness",
+      "l1_id": "rules",
+      "type": "plate_thickness",
+      "passed": true,
+      "margin": 1.41,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 3.6,
+        "limit": 5.0,
+        "detail": "thickness 3.600 mm at the corners",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bearing_area",
+      "l1_id": "rules",
+      "type": "bearing_area",
+      "passed": true,
+      "margin": 1198.951566,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 1217.941566,
+        "limit": 19.0,
+        "detail": "underside area 1217.9 mm2",
+        "basis": "measured"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "printable",
+      "l1_id": "rules",
+      "type": "printable",
+      "passed": true,
+      "margin": 1.0,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "value": 0.0,
+        "limit": 15.0,
+        "steep_area": 0.0,
+        "regions": [],
+        "orientation": "contact_face_down",
+        "basis": "measured",
+        "detail": "contact_face_down: longest bridge 0.00 mm (max 15), steep overhang area 0.00 mm2"
+      },
+      "layer": 1,
+      "hard": true
+    },
+    {
+      "check_id": "bbox",
+      "l1_id": "rules",
+      "type": "bbox_within",
+      "passed": true,
+      "margin": 19.406,
+      "unit": "mm",
+      "depends_on": {},
+      "evidence": {
+        "size": [
+          40.604,
+          40.604,
+          3.6
+        ],
+        "max": [
+          60.0,
+          75.0,
+          200.0
+        ],
+        "x_longest": false,
+        "detail": "outside 40.60 x 40.60 x 3.60 mm, max 60 x 75 x 200"
+      },
+      "layer": 1,
+      "hard": true
+    }
+  ],
+  "unlinked_l1": [
+    "L1.5",
+    "L1.6",
+    "L1.7",
+    "L1.8",
+    "L1.10"
+  ],
+  "verified": false
+}

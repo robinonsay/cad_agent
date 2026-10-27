@@ -109,6 +109,10 @@
         "-length / 2 - recess_margin",
         "-width / 2 - recess_margin",
         "-recess_depth"
+      ],
+      "names": [
+        "recess space",
+        "cleat recess"
       ]
     },
     {
@@ -226,7 +230,8 @@
     "bolt_seat_depth",
     "recess_depth",
     "orientation of the bolt line (assumed along the travel direction X)",
-    "the cleat's engagement surface profile (not modelled)"
+    "the cleat's engagement surface profile (not modelled)",
+    "interfaces mount / clip (R12 assumptions): the head seat inside the cleat, the engaged pose on the pedal and the adjustment directions are assumed from the values above, not measured"
   ],
   "notes": "Envelope only: the cleat body is a plain box, the clip-in hooks and bearing surfaces are not modelled. The bolt line is assumed along the travel direction (X); the 15 mm pitch is for the two cleat bolts. The keepout 'recess' is the cavity the adapter must leave open round the cleat between its mount face and the sole plane; 'bolt_travel' is the swept plan area of the two bolt axes (+ head) over the full fore-aft and lateral adjustment ranges, which the adapter's bolt slots and nut seats must cover. Standard cleat hardware for the adapter is catalogue bolt_m5_iso4762 and nut_m5; the Shimano cleat nut plate is not used. The bolt heads bear on BOLT_SEAT (counterbored into the cleat's lower face); the bolt shank then runs +Z through the mount face into the adapter.",
   "import_gate_notes": "R1: bounding box = length x width x height, tolerance 0.2 mm (plain box envelope). Datum directions are unit vectors. Designed contact (cleat mount face against the adapter, bolts in their holes) is not interference. The recess and bolt_travel keepouts are reserved volumes, not solids.",
@@ -275,6 +280,48 @@
       "op": "ge",
       "value": 0,
       "tol": 0
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "mount",
+      "kind": "bolt_face",
+      "holes": "BOLT",
+      "face": "MOUNT_FACE",
+      "head_seat": "BOLT_SEAT",
+      "thread": 5.0,
+      "adjust": [
+        {
+          "dir": [
+            1,
+            0,
+            0
+          ],
+          "range": "fore_aft_range"
+        },
+        {
+          "dir": [
+            0,
+            1,
+            0
+          ],
+          "range": "lateral_range"
+        }
+      ],
+      "source": "migration delta R12 (plate archetype) ASSUMPTION from the catalogue data above: the cleat bolts face-on (MOUNT_FACE) to the body it is fixed to, by two M5 bolts through its BOLT holes whose heads bear on BOLT_SEAT inside the cleat (so the nuts sit in the body), and it is set anywhere in the 20 mm fore-aft x 5 mm lateral range (Shimano PD-M520 dealer text). The hole diameter, seat depth and pitch stay UNVERIFIED as listed below."
+    },
+    {
+      "id": "clip",
+      "kind": "engage",
+      "plane": "SOLE_PLANE",
+      "centre": "CENTRE",
+      "mates": "pedal_shimano_pd_m520",
+      "mate_plane": "SOLE_PLANE",
+      "mate_point": "CLEAT_CENTRE",
+      "keepouts": [
+        "recess"
+      ],
+      "source": "migration delta R12 ASSUMPTION (Robin: 'make assumptions about the shimano SPD pedals'): engaged, the cleat's SOLE_PLANE lies on the pedal's SOLE_PLANE and its CENTRE axis passes through the pedal's CLEAT_CENTRE, with the cleat and pedal frames aligned (X fore-aft, Y along the spindle); the recess keep-out round the cleat stays open in the body it is bolted to. UNVERIFIED: the clip-in hook geometry and the recess depth (see unverified)."
     }
   ]
 }

@@ -1,0 +1,20 @@
+MODEL: ornith-1.5:9b T=0.3 seed=61000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.
+
+The parts can be built into these structural forms. Which form does the request ask for?
+- shell: an enclosure: a printed tray and lid closed round the contents, which are held inside on standoffs or in a cradle
+- plate: a flat printed plate or platform that the parts bolt to face-on (bolts through slots or holes into captive nuts, or screws into tapped parts), keeping clear of the parts it sits on or next to
+
+First give a one-sentence reason, then the option's id exactly as listed.
+
+=== RESPONSE ===
+{
+  "archetype": "plate",
+  "reason": "The design is a flat platform that the cleat bolts to face-on through slots or holes, keeping clear of the parts it sits on, rather than an enclosure with a lid and standoffs holding contents inside."
+}

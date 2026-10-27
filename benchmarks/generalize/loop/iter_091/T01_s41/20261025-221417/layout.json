@@ -1,0 +1,383 @@
+{
+  "schema": 1,
+  "frame": {
+    "origin": "board min corner on its top surface",
+    "x": "along the board's longest edge",
+    "z": "up",
+    "edges": {
+      "-X": {
+        "side": "-X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": -1.0,
+        "coord": -18.0,
+        "span": [
+          -17.0,
+          17.0
+        ],
+        "length": 34.0,
+        "words": "the short (34 mm) end at -X"
+      },
+      "+X": {
+        "side": "+X",
+        "axis": 0,
+        "tangent": 1,
+        "sign": 1.0,
+        "coord": 18.0,
+        "span": [
+          -17.0,
+          17.0
+        ],
+        "length": 34.0,
+        "words": "the short (34 mm) end at +X"
+      },
+      "-Y": {
+        "side": "-Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": -1.0,
+        "coord": -17.0,
+        "span": [
+          -18.0,
+          18.0
+        ],
+        "length": 36.0,
+        "words": "the long (36 mm) side at -Y"
+      },
+      "+Y": {
+        "side": "+Y",
+        "axis": 1,
+        "tangent": 0,
+        "sign": 1.0,
+        "coord": 17.0,
+        "span": [
+          -18.0,
+          18.0
+        ],
+        "length": 36.0,
+        "words": "the long (36 mm) side at +Y"
+      }
+    }
+  },
+  "units": "mm",
+  "references": [
+    {
+      "id": "board",
+      "part": "cleat_shimano_sm_sh51",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": 0.0,
+      "rot_z": 0.0,
+      "item": "",
+      "copy": 0,
+      "role": "board",
+      "edge": null,
+      "of": null
+    },
+    {
+      "id": "mech_1",
+      "part": "pedal_shimano_pd_m520",
+      "params": {},
+      "x": 0.0,
+      "y": 0.0,
+      "z": -20.0,
+      "rot_z": 0.0,
+      "item": "mech_1",
+      "copy": 0,
+      "role": "engaged",
+      "edge": null,
+      "of": "board",
+      "relation": "cleat_shimano_sm_sh51.SOLE_PLANE on pedal_shimano_pd_m520.SOLE_PLANE"
+    },
+    {
+      "id": "bolt_0",
+      "part": "bolt_m5_iso4762",
+      "params": {
+        "length": 10.0
+      },
+      "x": -7.5,
+      "y": 0.0,
+      "z": -2.0,
+      "rot_z": 0.0,
+      "axis_dir": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "item": "bolt_0",
+      "copy": 0,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    },
+    {
+      "id": "nut_0",
+      "part": "nut_m5",
+      "params": {},
+      "x": -7.5,
+      "y": 0.0,
+      "z": 2.1,
+      "rot_z": 0.0,
+      "item": "nut_0",
+      "copy": 0,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    },
+    {
+      "id": "bolt_1",
+      "part": "bolt_m5_iso4762",
+      "params": {
+        "length": 10.0
+      },
+      "x": 7.5,
+      "y": 0.0,
+      "z": -2.0,
+      "rot_z": 0.0,
+      "axis_dir": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "item": "bolt_1",
+      "copy": 1,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    },
+    {
+      "id": "nut_1",
+      "part": "nut_m5",
+      "params": {},
+      "x": 7.5,
+      "y": 0.0,
+      "z": 2.1,
+      "rot_z": 0.0,
+      "item": "nut_1",
+      "copy": 1,
+      "role": "fastener",
+      "edge": null,
+      "of": "board"
+    },
+    {
+      "id": "stud_0",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": -34.8,
+      "y": -33.55,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_0",
+      "copy": 0,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    },
+    {
+      "id": "stud_1",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": 34.2,
+      "y": -33.55,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_1",
+      "copy": 1,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    },
+    {
+      "id": "stud_2",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": 34.2,
+      "y": 35.45,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_2",
+      "copy": 2,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    },
+    {
+      "id": "stud_3",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": -34.8,
+      "y": 35.45,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_3",
+      "copy": 3,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    },
+    {
+      "id": "stud_4",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": -0.7999999999999972,
+      "y": 9.450000000000003,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_4",
+      "copy": 4,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    },
+    {
+      "id": "stud_5",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": -0.7999999999999972,
+      "y": -25.549999999999997,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_5",
+      "copy": 5,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    },
+    {
+      "id": "stud_6",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": 32.2,
+      "y": 0.45000000000000284,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_6",
+      "copy": 6,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    },
+    {
+      "id": "stud_7",
+      "part": "grub_m4_iso4026",
+      "params": {
+        "length": 10.0
+      },
+      "x": -33.8,
+      "y": 0.45000000000000284,
+      "z": 12.65,
+      "rot_z": 0.0,
+      "item": "stud_7",
+      "copy": 7,
+      "role": "surface_feature",
+      "edge": null,
+      "of": "plate"
+    }
+  ],
+  "bodies": {
+    "plate": {
+      "orientation": "top_face_down",
+      "source": "rule:print_orientation (the flat face with the least overhang)",
+      "orientations": {
+        "contact_face_down": {
+          "violation": 28.0,
+          "worst_span": 43.0,
+          "steep_area": 0.0,
+          "bed_area": 3836.0098
+        },
+        "top_face_down": {
+          "violation": 0.0,
+          "worst_span": 8.4,
+          "steep_area": 0.0,
+          "bed_area": 5992.4241
+        }
+      },
+      "mirror_pair": {
+        "file": "plate_mirror.stl",
+        "plane": {
+          "at": [
+            0.0,
+            0.0,
+            -20.0
+          ],
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "part": "pedal_shimano_pd_m520"
+        }
+      }
+    }
+  },
+  "spec": {
+    "keepout_above": 10.0,
+    "keepout_below": 3.0,
+    "board_clearance": 0.5,
+    "headroom": 0.5,
+    "opening_oversize_max": 1.5,
+    "wall_min": 2.4,
+    "wall_max": 2.4,
+    "max_x": 200.0,
+    "max_y": 200.0,
+    "max_z": 200.0,
+    "size_min": 80.0,
+    "size_max": 105.0,
+    "thickness_min": 8.0,
+    "thickness_max": 14.0,
+    "load_force": 2500.0,
+    "load_patch": 30.0,
+    "strength": 25.0,
+    "safety_factor": 1.5,
+    "bearing_area_min": 600.0,
+    "feature_count_min": 8.0,
+    "feature_height_min": 1.5,
+    "feature_height_max": 5.0,
+    "feature_edge_min": 3.0,
+    "feature_coverage_min": 60.0
+  },
+  "board": {
+    "part": "cleat_shimano_sm_sh51",
+    "specimen": null,
+    "params": {
+      "length": 36.0,
+      "width": 34.0,
+      "height": 7.0,
+      "bolt_pitch": 15.0,
+      "bolt_thread_diameter": 5.0,
+      "bolt_standard_length": 10.0,
+      "bolt_head_diameter": 8.5,
+      "bolt_hex_key": 4.0,
+      "fore_aft_range": 20.0,
+      "lateral_range": 5.0,
+      "bolt_torque_final": 5.5,
+      "recess_depth": 3.0,
+      "recess_margin": 2.0,
+      "bolt_seat_depth": 2.0
+    },
+    "holes": null,
+    "hole_diameter": null,
+    "hole_keepout_diameter": null,
+    "grid": null,
+    "screw": null
+  },
+  "grid_residual": 0.0,
+  "grid_exempt": [],
+  "grid_exempt_assumptions": {},
+  "grid_residual_all_parts": 0.0
+}

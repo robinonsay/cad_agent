@@ -1,0 +1,193 @@
+{
+  "iter": "092",
+  "generated": "2026-10-25T22:26:24",
+  "code_sha1": "9cfab2a240acd54ca282e5514f88f2a68ffe068c",
+  "runs_on_one_code_version": false,
+  "code_versions": [
+    "9cfab2a240acd54ca282e5514f88f2a68ffe068c",
+    "f1a755b0da77ae9ccf5152df958bae34b3674a47"
+  ],
+  "counts": {
+    "target": {
+      "runs": 1,
+      "rc": {
+        "0": 1
+      },
+      "no_output": 0,
+      "with_renders": 1,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 1
+    },
+    "train": {
+      "runs": 1,
+      "rc": {
+        "3": 1
+      },
+      "no_output": 0,
+      "with_renders": 1,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 1
+    }
+  },
+  "regression": "not_run",
+  "paraphrase": 0,
+  "stub_verified": 0,
+  "llm_dependent": [],
+  "stub": {
+    "runs": 0,
+    "verified": [],
+    "compared": 0,
+    "same_geometry": [],
+    "verified_share": 0.0
+  },
+  "controller": {
+    "steps": 0,
+    "kept": 0,
+    "designs_with_kept_steps": 0,
+    "decisions": {
+      "semantic-rule": 1,
+      "plant": 2,
+      "guardrail": 1
+    },
+    "semantic_rule_decisions": 1,
+    "mean_llm_share": 0.4444
+  },
+  "to_judge": [
+    "T01_s41",
+    "G16_s41"
+  ],
+  "cached": [],
+  "runs": [
+    {
+      "name": "T01_s41",
+      "id": "T01",
+      "split": "target",
+      "seed": 41,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 0,
+      "timed_out": false,
+      "secs": 88.8,
+      "package": "benchmarks/generalize/loop/iter_092/T01_s41/20261025-222031",
+      "has_renders": true,
+      "geometry_sha1": "94f2007bfaf006326aeab34fa312a34f2b23ec47",
+      "stl_files": [
+        "nut_frame.stl",
+        "plate.stl",
+        "plate_mirror.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/T01/requirements.md",
+        "benchmarks/generalize/designs/T01/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "416e408b3fdcf6a0570ca50ce4b4b17a98c7956a",
+      "code_sha1": "f1a755b0da77ae9ccf5152df958bae34b3674a47",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T22:22:00",
+      "outcome": "verified",
+      "stage": "done",
+      "last_note": "build: plate_mirror.stl is the declared mirror-pair part (the mirror image of the plate)",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 3,
+        "kept": 3,
+        "stop": "every check passes"
+      },
+      "authority": {
+        "decisions": {
+          "semantic-rule": 1,
+          "llm": 3,
+          "guardrail": 2
+        },
+        "proposal": {
+          "llm_slots": 14,
+          "default_slots": 10,
+          "llm_contents_items": 2
+        },
+        "llm_share": 0.5938,
+        "semantic_rule_decisions": 1,
+        "unregistered": 0
+      },
+      "spec_sha1": "416e408b3fdcf6a0570ca50ce4b4b17a98c7956a",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    },
+    {
+      "name": "G16_s41",
+      "id": "G16",
+      "split": "train",
+      "seed": 41,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 89.4,
+      "package": "benchmarks/generalize/loop/iter_092/G16_s41/20261025-222455",
+      "has_renders": true,
+      "geometry_sha1": "0e2393a79085fb10f72e9e8d76b2f6d5f38b46c3",
+      "stl_files": [
+        "plate.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G16/requirements.md",
+        "benchmarks/generalize/designs/G16/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "code_sha1": "9cfab2a240acd54ca282e5514f88f2a68ffe068c",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-25T22:26:24",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "controller: 0 step(s), 0 kept; stop: no failing check has an action",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 0,
+        "kept": 0,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "semantic-rule": 1,
+          "plant": 2,
+          "guardrail": 1
+        },
+        "proposal": {
+          "llm_slots": 6,
+          "default_slots": 6,
+          "llm_contents_items": 2
+        },
+        "llm_share": 0.4444,
+        "semantic_rule_decisions": 1,
+        "unregistered": 0
+      },
+      "spec_sha1": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    }
+  ],
+  "code": {
+    "code_sha1": "9cfab2a240acd54ca282e5514f88f2a68ffe068c",
+    "files": 87,
+    "previous_iter": "iter_091",
+    "code_unchanged": false,
+    "changed_within_iteration": true
+  }
+}

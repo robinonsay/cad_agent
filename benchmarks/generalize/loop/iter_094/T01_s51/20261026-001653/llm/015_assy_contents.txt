@@ -1,0 +1,46 @@
+MODEL: ornith-1.5:9b T=0.3 seed=51000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.
+
+Catalogue parts that may be in the request:
+- dc_jack_pj002a: dc jack (connector; cable connector: dc_in connector (takes a dc plug))
+- pedal_shimano_pd_m520: shimano pd-m520 (mech)
+- gear_spur_generic: spur gear (generic)
+- cleat_shimano_sm_sh51: shimano spd cleat (mech)
+- jack_3p5_pj320a: 3.5 mm jack (connector; cable connector: jack connector (takes a 3.5 mm plug))
+- generic_cylinder: capacitor (generic)
+- perfboard: perfboard (board)
+
+For each part give how many the request puts inside the enclosure, or, when the design is another printed form, how many one printed copy carries or attaches to (0 if none; count one copy even when the request asks for several identical copies), and for parts with a cable connector whether that connector must be reachable from outside (exposed).
+
+=== RESPONSE ===
+{
+  "cleat_shimano_sm_sh51": {
+    "quantity": 1
+  },
+  "dc_jack_pj002a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "gear_spur_generic": {
+    "quantity": 0
+  },
+  "generic_cylinder": {
+    "quantity": 0
+  },
+  "jack_3p5_pj320a": {
+    "exposed": "yes",
+    "quantity": 0
+  },
+  "pedal_shimano_pd_m520": {
+    "quantity": 1
+  },
+  "perfboard": {
+    "quantity": 0
+  }
+}

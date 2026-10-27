@@ -1,0 +1,36 @@
+MODEL: ornith-1.5:9b T=0.3 seed=41000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. travel_y (L1.1): bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]] at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]; off by 4.92 mm; needs: increase the bolt travel through the declared adjustment range
+2. handedness_plate (L1.4): mirror image does not clear keepout_mech_1_crank_side (penetrates it by 264.6 mm3) at keepout_mech_1_crank_side; needs: one part for both sides of the mirror pair, or a declared pair
+3. surface_features (L1.8): no raised features on the face (kind none); spread 0.0 % < 60 %; needs: the raised features the text asks for (count, height, edge distance, spread)
+
+The design now:
+- board (primary): shimano spd cleat x1
+- mech_1: shimano pd-m520 x1
+- structural form: plate (also buildable: shell)
+- plate: 80.1 x 80.1 x 12.4 mm, printed top face down; 2 x bolt_m5_iso4762 10 mm through slots into nut_m5 held in hex channels (adjustment covered: x 20 of 20 mm, y 0 of 5 mm)
+- raised features on the free face: none
+- handedness: single
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- set_handedness:plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side
+- stop: keep the design as it is (the failing requirements above stay failing)
+- add_surface_feature:top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)
+- add_surface_feature:top=pins: put raised features on the plate's free face: printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)
+- set_nut_retention:plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap, sliding in a pocket of the plate that covers the adjustment in every declared direction (like the nut plate inside a cycling shoe)
+
+Which one action makes the design do what the request asks? First give a one-sentence reason, then the action's id exactly as listed.
+
+=== RESPONSE ===
+{
+  "action": "add_surface_feature:top=studs",
+  "reason": "The request explicitly asks for 'grips for my shoes' on a flat-pedal platform, and the only failing requirement is surface_features (L1.8) demanding raised features with count, height, edge distance, and spread — studs (threaded set screws)"
+}

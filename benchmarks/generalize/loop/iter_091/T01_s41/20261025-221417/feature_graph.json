@@ -1,0 +1,937 @@
+{
+  "schema": 1,
+  "nodes": [
+    {
+      "id": "board",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {},
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0.0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "cleat_shimano_sm_sh51",
+      "source": "layout:board",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "mech_1",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {},
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          0.0,
+          0.0,
+          -20.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0.0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "pedal_shimano_pd_m520",
+      "source": "rule:engage_pose",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "plate",
+      "kind": "body",
+      "primitive": "box",
+      "params": {
+        "x": 80.1,
+        "y": 80.1,
+        "z": 12.4
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          0.05000000000000426,
+          1.3000000000000043,
+          -3.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "plate",
+      "part": null,
+      "source": "rule:plate",
+      "free": [],
+      "color": "#4f81bd",
+      "group": null
+    },
+    {
+      "id": "slot_0",
+      "kind": "cut",
+      "primitive": "prism",
+      "params": {
+        "n": 34.0,
+        "h": 7.1,
+        "x1": 10.0,
+        "y1": -2.763306074034856,
+        "x2": 10.539094271812584,
+        "y2": -2.710209922662226,
+        "x3": 11.05747145308696,
+        "y3": -2.5529619238649217,
+        "x4": 11.535210599456027,
+        "y4": -2.29760503005103,
+        "x5": 11.953952463444022,
+        "y5": -1.9539524634440224,
+        "x6": 12.297605030051031,
+        "y6": -1.535210599456027,
+        "x7": 12.552961923864922,
+        "y7": -1.0574714530869596,
+        "x8": 12.710209922662226,
+        "y8": -0.5390942718125832,
+        "x9": 12.763306074034857,
+        "y9": 0.0,
+        "x10": 12.710209922662226,
+        "y10": 0.5390942718125832,
+        "x11": 12.552961923864922,
+        "y11": 1.0574714530869596,
+        "x12": 12.297605030051031,
+        "y12": 1.5352105994560268,
+        "x13": 11.953952463444022,
+        "y13": 1.9539524634440224,
+        "x14": 11.535210599456027,
+        "y14": 2.2976050300510305,
+        "x15": 11.05747145308696,
+        "y15": 2.5529619238649217,
+        "x16": 10.539094271812584,
+        "y16": 2.710209922662226,
+        "x17": 10.0,
+        "y17": 2.763306074034856,
+        "x18": -10.0,
+        "y18": 2.763306074034856,
+        "x19": -10.539094271812584,
+        "y19": 2.710209922662226,
+        "x20": -11.05747145308696,
+        "y20": 2.5529619238649217,
+        "x21": -11.535210599456025,
+        "y21": 2.2976050300510305,
+        "x22": -11.953952463444022,
+        "y22": 1.9539524634440228,
+        "x23": -12.297605030051031,
+        "y23": 1.535210599456027,
+        "x24": -12.552961923864922,
+        "y24": 1.05747145308696,
+        "x25": -12.710209922662226,
+        "y25": 0.5390942718125842,
+        "x26": -12.763306074034857,
+        "y26": 3.3840739386312254e-16,
+        "x27": -12.710209922662226,
+        "y27": -0.5390942718125835,
+        "x28": -12.552961923864922,
+        "y28": -1.0574714530869593,
+        "x29": -12.297605030051031,
+        "y29": -1.5352105994560263,
+        "x30": -11.953952463444024,
+        "y30": -1.9539524634440224,
+        "x31": -11.535210599456027,
+        "y31": -2.29760503005103,
+        "x32": -11.057471453086961,
+        "y32": -2.5529619238649213,
+        "x33": -10.539094271812584,
+        "y33": -2.710209922662226,
+        "x34": -10.0,
+        "y34": -2.763306074034856
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -7.5,
+          0.0,
+          -4.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0.0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "bolt_slot",
+      "part": null,
+      "source": "rule:adjust_slot",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "nut_channel_0",
+      "kind": "cut",
+      "primitive": "prism",
+      "params": {
+        "n": 6.0,
+        "h": 8.3,
+        "x1": -14.849742261192857,
+        "y1": 0.0,
+        "x2": -12.42487113059643,
+        "y2": -4.2,
+        "x3": 12.42487113059643,
+        "y3": -4.2,
+        "x4": 14.849742261192857,
+        "y4": 0.0,
+        "x5": 12.42487113059643,
+        "y5": 4.2,
+        "x6": -12.42487113059643,
+        "y6": 4.2
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -7.5,
+          0.0,
+          2.1
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0.0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "nut_channel",
+      "part": null,
+      "source": "rule:adjust_slot",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "slot_1",
+      "kind": "cut",
+      "primitive": "prism",
+      "params": {
+        "n": 34.0,
+        "h": 7.1,
+        "x1": 10.0,
+        "y1": -2.763306074034856,
+        "x2": 10.539094271812584,
+        "y2": -2.710209922662226,
+        "x3": 11.05747145308696,
+        "y3": -2.5529619238649217,
+        "x4": 11.535210599456027,
+        "y4": -2.29760503005103,
+        "x5": 11.953952463444022,
+        "y5": -1.9539524634440224,
+        "x6": 12.297605030051031,
+        "y6": -1.535210599456027,
+        "x7": 12.552961923864922,
+        "y7": -1.0574714530869596,
+        "x8": 12.710209922662226,
+        "y8": -0.5390942718125832,
+        "x9": 12.763306074034857,
+        "y9": 0.0,
+        "x10": 12.710209922662226,
+        "y10": 0.5390942718125832,
+        "x11": 12.552961923864922,
+        "y11": 1.0574714530869596,
+        "x12": 12.297605030051031,
+        "y12": 1.5352105994560268,
+        "x13": 11.953952463444022,
+        "y13": 1.9539524634440224,
+        "x14": 11.535210599456027,
+        "y14": 2.2976050300510305,
+        "x15": 11.05747145308696,
+        "y15": 2.5529619238649217,
+        "x16": 10.539094271812584,
+        "y16": 2.710209922662226,
+        "x17": 10.0,
+        "y17": 2.763306074034856,
+        "x18": -10.0,
+        "y18": 2.763306074034856,
+        "x19": -10.539094271812584,
+        "y19": 2.710209922662226,
+        "x20": -11.05747145308696,
+        "y20": 2.5529619238649217,
+        "x21": -11.535210599456025,
+        "y21": 2.2976050300510305,
+        "x22": -11.953952463444022,
+        "y22": 1.9539524634440228,
+        "x23": -12.297605030051031,
+        "y23": 1.535210599456027,
+        "x24": -12.552961923864922,
+        "y24": 1.05747145308696,
+        "x25": -12.710209922662226,
+        "y25": 0.5390942718125842,
+        "x26": -12.763306074034857,
+        "y26": 3.3840739386312254e-16,
+        "x27": -12.710209922662226,
+        "y27": -0.5390942718125835,
+        "x28": -12.552961923864922,
+        "y28": -1.0574714530869593,
+        "x29": -12.297605030051031,
+        "y29": -1.5352105994560263,
+        "x30": -11.953952463444024,
+        "y30": -1.9539524634440224,
+        "x31": -11.535210599456027,
+        "y31": -2.29760503005103,
+        "x32": -11.057471453086961,
+        "y32": -2.5529619238649213,
+        "x33": -10.539094271812584,
+        "y33": -2.710209922662226,
+        "x34": -10.0,
+        "y34": -2.763306074034856
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          7.5,
+          0.0,
+          -4.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0.0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "bolt_slot",
+      "part": null,
+      "source": "rule:adjust_slot",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "nut_channel_1",
+      "kind": "cut",
+      "primitive": "prism",
+      "params": {
+        "n": 6.0,
+        "h": 8.3,
+        "x1": -14.849742261192857,
+        "y1": 0.0,
+        "x2": -12.42487113059643,
+        "y2": -4.2,
+        "x3": 12.42487113059643,
+        "y3": -4.2,
+        "x4": 14.849742261192857,
+        "y4": 0.0,
+        "x5": 12.42487113059643,
+        "y5": 4.2,
+        "x6": -12.42487113059643,
+        "y6": 4.2
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          7.5,
+          0.0,
+          2.1
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0.0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "nut_channel",
+      "part": null,
+      "source": "rule:adjust_slot",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "recess_recess",
+      "kind": "cut",
+      "primitive": "box",
+      "params": {
+        "x": 60.0,
+        "y": 43.0,
+        "z": 4.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          0.0,
+          0.0,
+          -4.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "recess",
+      "part": null,
+      "source": "rule:recess",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "bolt_0",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -7.5,
+          0.0,
+          -2.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": [
+          0.0,
+          0.0,
+          -1.0
+        ]
+      },
+      "body": null,
+      "role": "",
+      "part": "bolt_m5_iso4762",
+      "source": "rule:plate_fastener(bolt)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "nut_0",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {},
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -7.5,
+          0.0,
+          2.1
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "nut_m5",
+      "source": "rule:plate_fastener(nut)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "bolt_1",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          7.5,
+          0.0,
+          -2.0
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": [
+          0.0,
+          0.0,
+          -1.0
+        ]
+      },
+      "body": null,
+      "role": "",
+      "part": "bolt_m5_iso4762",
+      "source": "rule:plate_fastener(bolt)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "nut_1",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {},
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          7.5,
+          0.0,
+          2.1
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "nut_m5",
+      "source": "rule:plate_fastener(nut)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_0",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -34.8,
+          -33.55,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_0",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -34.8,
+          -33.55,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_1",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          34.2,
+          -33.55,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_1",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          34.2,
+          -33.55,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_2",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          34.2,
+          35.45,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_2",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          34.2,
+          35.45,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_3",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -34.8,
+          35.45,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_3",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -34.8,
+          35.45,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_4",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -0.7999999999999972,
+          9.450000000000003,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_4",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -0.7999999999999972,
+          9.450000000000003,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_5",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -0.7999999999999972,
+          -25.549999999999997,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_5",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -0.7999999999999972,
+          -25.549999999999997,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_6",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          32.2,
+          0.45000000000000284,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_6",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          32.2,
+          0.45000000000000284,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_hole_7",
+      "kind": "cut",
+      "primitive": "cylinder",
+      "params": {
+        "d": 3.3,
+        "h": 7.75
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -33.8,
+          0.45000000000000284,
+          2.6500000000000004
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": "plate",
+      "role": "tap_hole",
+      "part": null,
+      "source": "rule:surface_feature(studs)",
+      "free": [],
+      "color": null,
+      "group": null
+    },
+    {
+      "id": "stud_7",
+      "kind": "reference",
+      "primitive": "part",
+      "params": {
+        "length": 10.0
+      },
+      "pose": {
+        "at": "frame.origin",
+        "offset": [
+          -33.8,
+          0.45000000000000284,
+          12.65
+        ],
+        "axis": null,
+        "project_to": null,
+        "rot_z": 0,
+        "axis_dir": null
+      },
+      "body": null,
+      "role": "",
+      "part": "grub_m4_iso4026",
+      "source": "rule:surface_feature(stud)",
+      "free": [],
+      "color": null,
+      "group": null
+    }
+  ]
+}

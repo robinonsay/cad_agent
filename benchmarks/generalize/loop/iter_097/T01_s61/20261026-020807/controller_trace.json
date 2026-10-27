@@ -1,0 +1,1450 @@
+{
+  "schema": 2,
+  "controller": "llm",
+  "budget": 6,
+  "trust_region": 0.05,
+  "vote_rules": {
+    "menu_orderings": 3,
+    "menu_samples": 1,
+    "menu_consistency_min": 1.0,
+    "menu_min_valid": 2
+  },
+  "search": {
+    "k": 3,
+    "depth": 1,
+    "depth_requested": 1,
+    "max_evals": 12
+  },
+  "steps": [
+    {
+      "step": 0,
+      "kind": "initial",
+      "state": {
+        "decisions": "99cc64ddb3597bc1",
+        "graph": "92bba5e6647cffbd",
+        "summary": {
+          "contents": [
+            [
+              "board",
+              "cleat_shimano_sm_sh51",
+              1,
+              []
+            ],
+            [
+              "mech_1",
+              "pedal_shimano_pd_m520",
+              2,
+              []
+            ]
+          ],
+          "stacks": {},
+          "faces": {},
+          "relations": [],
+          "closure": null,
+          "boss_layout": null,
+          "archetype": "plate+bolt_through",
+          "vent_face": null,
+          "fasteners": {
+            "board": null,
+            "lid": null
+          },
+          "plate": {
+            "surface": "none",
+            "handedness": "single",
+            "retention": "channel",
+            "orientation": "top_face_down"
+          }
+        }
+      },
+      "error": {
+        "hard_failures": 5,
+        "violation": 13.741304
+      },
+      "failing": [
+        "travel_y",
+        "fastener_bearing_0",
+        "fastener_bearing_1",
+        "handedness_plate",
+        "surface_features",
+        "load_stress"
+      ],
+      "terms": [
+        {
+          "check": "travel_y",
+          "type": "travel",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]] at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]",
+          "deficit": 4.9182,
+          "unit": "mm",
+          "direction": "increase the bolt travel through the declared adjustment range",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -4.918234,
+          "detail": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]"
+        },
+        {
+          "check": "fastener_bearing_0",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -3.411535,
+          "detail": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t..."
+        },
+        {
+          "check": "fastener_bearing_1",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -3.411535,
+          "detail": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t..."
+        },
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 50.94 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.056658,
+          "detail": "worst bending stress 50.94 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s..."
+        }
+      ]
+    },
+    {
+      "step": 1,
+      "state_before": "99cc64ddb3597bc1",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            2,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "single",
+          "retention": "channel",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 5,
+        "violation": 13.741304
+      },
+      "terms_before": [
+        {
+          "check": "travel_y",
+          "type": "travel",
+          "requirement": [
+            "L1.1",
+            "L1.2"
+          ],
+          "where": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]] at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]",
+          "deficit": 4.9182,
+          "unit": "mm",
+          "direction": "increase the bolt travel through the declared adjustment range",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -4.918234,
+          "detail": "bodies penetrate travel_1 by 119 mm3 at [[-9.9853, -5.0, 0.0], [9.9853, 5.0, 8.0]]"
+        },
+        {
+          "check": "fastener_bearing_0",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -3.411535,
+          "detail": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t..."
+        },
+        {
+          "check": "fastener_bearing_1",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -3.411535,
+          "detail": "plate seat under a 970 N preload (rule:default_preload): bearing pressure 73.53 MPa on 13.2 mm2 (allowed 16.67), punch-through shear 30.07 MPa on 32.3 mm2 (t..."
+        },
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 294.5 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 50.94 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.056658,
+          "detail": "worst bending stress 50.94 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s..."
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_nut_retention",
+          "target": "plate",
+          "value": "frame",
+          "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+          "targets": [
+            "travel_y"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_nut_retention:plate=frame",
+          "id": "set_nut_retention:plate=frame",
+          "ident": ""
+        },
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "pins",
+          "words": "add_surface_feature top=pins: put raised features on the plate's free face: printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=pins",
+          "id": "add_surface_feature:top=pins",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "set_handedness:plate=mirror_pair",
+          "stop",
+          "add_surface_feature:top=pins",
+          "set_nut_retention:plate=frame",
+          "add_surface_feature:top=studs"
+        ],
+        [
+          "stop",
+          "add_surface_feature:top=pins",
+          "set_nut_retention:plate=frame",
+          "add_surface_feature:top=studs",
+          "set_handedness:plate=mirror_pair"
+        ],
+        [
+          "add_surface_feature:top=pins",
+          "set_nut_retention:plate=frame",
+          "add_surface_feature:top=studs",
+          "set_handedness:plate=mirror_pair",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "set_nut_retention:plate=frame",
+        "votes": {
+          "set_nut_retention:plate=frame": 1,
+          "stop": 1,
+          "add_surface_feature:top=pins": 1
+        },
+        "valid": 3,
+        "calls": 3,
+        "consistency": 0.3333,
+        "confident": false,
+        "orders": [
+          [
+            "set_handedness:plate=mirror_pair",
+            "stop",
+            "add_surface_feature:top=pins",
+            "set_nut_retention:plate=frame",
+            "add_surface_feature:top=studs"
+          ],
+          [
+            "stop",
+            "add_surface_feature:top=pins",
+            "set_nut_retention:plate=frame",
+            "add_surface_feature:top=studs",
+            "set_handedness:plate=mirror_pair"
+          ],
+          [
+            "add_surface_feature:top=pins",
+            "set_nut_retention:plate=frame",
+            "add_surface_feature:top=studs",
+            "set_handedness:plate=mirror_pair",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "set_nut_retention:plate=frame",
+            "position": 3,
+            "reason": "This is the only action that simultaneously fixes the two worst failures: it increases bolt travel through the declared adjustment range (fixing travel_y by letting the plate slide in a pocket that covers the full 20 mm of adjustment), and\u2014"
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "stop",
+            "position": 0,
+            "reason": "None of the available actions resolve the worst failing requirement (travel_y, which needs a longer bolt travel through the declared adjustment range); the other actions address lower-priority requirements and would not fix the primary gap,"
+          },
+          {
+            "ordering": 2,
+            "sample": 0,
+            "answer": "add_surface_feature:top=pins",
+            "position": 0,
+            "reason": "The request explicitly asks for flat pedals with grips for the shoes, and the only failing requirement that addresses this is surface_features (L1.8), which demands raised features on the plate's free face; the pins action adds printed pins"
+          }
+        ],
+        "first_position": 2
+      },
+      "votes": {
+        "set_nut_retention:plate=frame": 1,
+        "stop": 1,
+        "add_surface_feature:top=pins": 1
+      },
+      "consistency": 0.3333,
+      "confident": false,
+      "chosen": "set_nut_retention:plate=frame",
+      "candidates": [
+        {
+          "id": "set_nut_retention:plate=frame",
+          "action": {
+            "kind": "set_nut_retention",
+            "target": "plate",
+            "value": "frame",
+            "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+            "targets": [
+              "travel_y"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_nut_retention:plate=frame",
+            "id": "set_nut_retention:plate=frame",
+            "ident": ""
+          },
+          "votes": 1,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 1.28,
+          "outcome": "kept",
+          "reason": "fewer failing checks (5 -> 2)",
+          "error_after": {
+            "hard_failures": 2,
+            "violation": 2.0
+          },
+          "state_after": "fde5e981e26bd17c",
+          "failing_after": [
+            "handedness_plate",
+            "fastener_bearing_0",
+            "fastener_bearing_1",
+            "load_stress",
+            "surface_features"
+          ],
+          "sensor_delta": {
+            "hard_failures": -3,
+            "violation": -11.741304
+          }
+        },
+        {
+          "id": "add_surface_feature:top=pins",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "pins",
+            "words": "add_surface_feature top=pins: put raised features on the plate's free face: printed cylindrical pins standing on the face (printed with the plate, so that face must print facing up)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=pins",
+            "id": "add_surface_feature:top=pins",
+            "ident": ""
+          },
+          "votes": 1,
+          "rank": 1,
+          "by": "llm:controller",
+          "secs": 3.4,
+          "outcome": "undone",
+          "reason": "more failing checks (5 -> 6)",
+          "error_after": {
+            "hard_failures": 6,
+            "violation": 17.224004
+          },
+          "state_after": "5ed4335147848473",
+          "failing_after": [
+            "handedness_plate",
+            "travel_y",
+            "fastener_bearing_0",
+            "fastener_bearing_1",
+            "thin_feature_plate",
+            "load_stress",
+            "printable"
+          ],
+          "sensor_delta": {
+            "hard_failures": 1,
+            "violation": 3.4827
+          }
+        },
+        {
+          "id": "stop",
+          "action": {
+            "kind": "stop",
+            "target": "",
+            "value": null,
+            "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+            "targets": [],
+            "invalidates": "",
+            "evidence": [],
+            "key": "stop:=None",
+            "id": "stop",
+            "ident": "stop"
+          },
+          "votes": 1,
+          "rank": 2,
+          "outcome": "stop",
+          "error_after": {
+            "hard_failures": 5,
+            "violation": 13.741304
+          },
+          "reason": "keep the design as it is"
+        }
+      ],
+      "evals": 2,
+      "action": {
+        "kind": "set_nut_retention",
+        "target": "plate",
+        "value": "frame",
+        "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+        "targets": [
+          "travel_y"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_nut_retention:plate=frame",
+        "id": "set_nut_retention:plate=frame",
+        "ident": ""
+      },
+      "selected": "set_nut_retention:plate=frame",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (5 -> 2)",
+      "error_after": {
+        "hard_failures": 2,
+        "violation": 2.0
+      },
+      "state_after": "fde5e981e26bd17c",
+      "failing_after": [
+        "handedness_plate",
+        "fastener_bearing_0",
+        "fastener_bearing_1",
+        "load_stress",
+        "surface_features"
+      ],
+      "sensor_delta": {
+        "hard_failures": -3,
+        "violation": -11.741304
+      },
+      "llm_calls": 3,
+      "secs": 18.62
+    },
+    {
+      "step": 2,
+      "state_before": "fde5e981e26bd17c",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            2,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "none",
+          "handedness": "single",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 2,
+        "violation": 2.0
+      },
+      "terms_before": [
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3)"
+        },
+        {
+          "check": "surface_features",
+          "type": "surface_features",
+          "requirement": [
+            "L1.8"
+          ],
+          "where": "no raised features on the face (kind none); spread 0.0 % < 60 %",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "the raised features the text asks for (count, height, edge distance, spread)",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "no raised features on the face (kind none); spread 0.0 % < 60 %"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 58.59 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.515328,
+          "detail": "worst bending stress 58.59 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s..."
+        },
+        {
+          "check": "fastener_bearing_0",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.999715,
+          "detail": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm..."
+        },
+        {
+          "check": "fastener_bearing_1",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.999715,
+          "detail": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm..."
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "add_surface_feature",
+          "target": "top",
+          "value": "studs",
+          "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+          "targets": [
+            "surface_features"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "add_surface_feature:top=studs",
+          "id": "add_surface_feature:top=studs",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "add_surface_feature:top=studs",
+          "stop",
+          "set_handedness:plate=mirror_pair"
+        ],
+        [
+          "stop",
+          "set_handedness:plate=mirror_pair",
+          "add_surface_feature:top=studs"
+        ],
+        [
+          "set_handedness:plate=mirror_pair",
+          "add_surface_feature:top=studs",
+          "stop"
+        ]
+      ],
+      "vote": {
+        "pick": "add_surface_feature:top=studs",
+        "votes": {
+          "set_handedness:plate=mirror_pair": 1,
+          "add_surface_feature:top=studs": 2
+        },
+        "valid": 3,
+        "calls": 3,
+        "consistency": 0.6667,
+        "confident": false,
+        "orders": [
+          [
+            "add_surface_feature:top=studs",
+            "stop",
+            "set_handedness:plate=mirror_pair"
+          ],
+          [
+            "stop",
+            "set_handedness:plate=mirror_pair",
+            "add_surface_feature:top=studs"
+          ],
+          [
+            "set_handedness:plate=mirror_pair",
+            "add_surface_feature:top=studs",
+            "stop"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "set_handedness:plate=mirror_pair",
+            "position": 2,
+            "reason": "The request explicitly asks for a conversion kit that bolts onto both sides of a two-sided SPD pedal, and the only failing requirement that this action can satisfy is handedness_plate (L1.10), which demands either a single part covering one"
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 2,
+            "reason": "The surface_features check (L1.8) explicitly requires raised features on the plate's free face, and the studs option provides threaded set-screw studs standing proud of the face\u2014this directly satisfies the requirement while printing flat on"
+          },
+          {
+            "ordering": 2,
+            "sample": 0,
+            "answer": "add_surface_feature:top=studs",
+            "position": 1,
+            "reason": "The failing surface_features check (L1.8) requires raised features on the plate's free face with at least 60% spread, and the request explicitly asks for grips on the top face; studs provide these raised features while printing flat, and it"
+          }
+        ],
+        "first_position": 0
+      },
+      "votes": {
+        "set_handedness:plate=mirror_pair": 1,
+        "add_surface_feature:top=studs": 2
+      },
+      "consistency": 0.6667,
+      "confident": false,
+      "chosen": "add_surface_feature:top=studs",
+      "candidates": [
+        {
+          "id": "add_surface_feature:top=studs",
+          "action": {
+            "kind": "add_surface_feature",
+            "target": "top",
+            "value": "studs",
+            "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+            "targets": [
+              "surface_features"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "add_surface_feature:top=studs",
+            "id": "add_surface_feature:top=studs",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 2.66,
+          "outcome": "kept",
+          "reason": "fewer failing checks (2 -> 1)",
+          "error_after": {
+            "hard_failures": 1,
+            "violation": 1.0
+          },
+          "state_after": "413f7ba61c3a4534",
+          "failing_after": [
+            "handedness_plate",
+            "fastener_bearing_0",
+            "fastener_bearing_1",
+            "load_stress"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        },
+        {
+          "id": "set_handedness:plate=mirror_pair",
+          "action": {
+            "kind": "set_handedness",
+            "target": "plate",
+            "value": "mirror_pair",
+            "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+            "targets": [
+              "handedness_plate"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_handedness:plate=mirror_pair",
+            "id": "set_handedness:plate=mirror_pair",
+            "ident": ""
+          },
+          "votes": 1,
+          "rank": 1,
+          "by": "llm:controller",
+          "secs": 1.19,
+          "outcome": "not_selected",
+          "reason": "fewer failing checks (2 -> 1)",
+          "error_after": {
+            "hard_failures": 1,
+            "violation": 1.0
+          },
+          "state_after": "dd0fe0546c5e8dcc",
+          "failing_after": [
+            "fastener_bearing_0",
+            "fastener_bearing_1",
+            "load_stress",
+            "surface_features"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        },
+        {
+          "id": "stop",
+          "action": {
+            "kind": "stop",
+            "target": "",
+            "value": null,
+            "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+            "targets": [],
+            "invalidates": "",
+            "evidence": [],
+            "key": "stop:=None",
+            "id": "stop",
+            "ident": "stop"
+          },
+          "votes": 0,
+          "rank": 2,
+          "outcome": "stop",
+          "error_after": {
+            "hard_failures": 2,
+            "violation": 2.0
+          },
+          "reason": "keep the design as it is"
+        }
+      ],
+      "evals": 2,
+      "action": {
+        "kind": "add_surface_feature",
+        "target": "top",
+        "value": "studs",
+        "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+        "targets": [
+          "surface_features"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "add_surface_feature:top=studs",
+        "id": "add_surface_feature:top=studs",
+        "ident": ""
+      },
+      "selected": "add_surface_feature:top=studs",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (2 -> 1)",
+      "error_after": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "state_after": "413f7ba61c3a4534",
+      "failing_after": [
+        "handedness_plate",
+        "fastener_bearing_0",
+        "fastener_bearing_1",
+        "load_stress"
+      ],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -1.0
+      },
+      "llm_calls": 3,
+      "secs": 17.27
+    },
+    {
+      "step": 3,
+      "state_before": "413f7ba61c3a4534",
+      "state_summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            2,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "studs",
+          "handedness": "single",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      },
+      "error_before": {
+        "hard_failures": 1,
+        "violation": 1.0
+      },
+      "terms_before": [
+        {
+          "check": "handedness_plate",
+          "type": "handedness",
+          "requirement": [
+            "L1.10"
+          ],
+          "where": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3) at keepout_mech_1_crank_side",
+          "deficit": 1.0,
+          "unit": "count",
+          "direction": "one part for both sides of the mirror pair, or a declared pair",
+          "controllable": true,
+          "actionable": true,
+          "hard": true,
+          "margin": -1.0,
+          "detail": "mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3)"
+        },
+        {
+          "check": "load_stress",
+          "type": "load_stress",
+          "requirement": [
+            "L1.9"
+          ],
+          "where": "worst bending stress 58.59 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -2.515328,
+          "detail": "worst bending stress 58.59 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s..."
+        },
+        {
+          "check": "fastener_bearing_0",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.999715,
+          "detail": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm..."
+        },
+        {
+          "check": "fastener_bearing_1",
+          "type": "fastener_bearing",
+          "requirement": [
+            "L1.1",
+            "L1.2",
+            "L1.9"
+          ],
+          "where": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...",
+          "deficit": null,
+          "unit": "ratio",
+          "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)",
+          "controllable": false,
+          "actionable": false,
+          "hard": true,
+          "margin": -0.999715,
+          "detail": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm..."
+        }
+      ],
+      "menu": [
+        {
+          "kind": "set_handedness",
+          "target": "plate",
+          "value": "mirror_pair",
+          "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+          "targets": [
+            "handedness_plate"
+          ],
+          "invalidates": "derive",
+          "evidence": [],
+          "key": "set_handedness:plate=mirror_pair",
+          "id": "set_handedness:plate=mirror_pair",
+          "ident": ""
+        },
+        {
+          "kind": "stop",
+          "target": "",
+          "value": null,
+          "words": "stop: keep the design as it is (the failing requirements above stay failing)",
+          "targets": [],
+          "invalidates": "",
+          "evidence": [],
+          "key": "stop:=None",
+          "id": "stop",
+          "ident": "stop"
+        }
+      ],
+      "orders": [
+        [
+          "set_handedness:plate=mirror_pair",
+          "stop"
+        ],
+        [
+          "stop",
+          "set_handedness:plate=mirror_pair"
+        ]
+      ],
+      "vote": {
+        "pick": "set_handedness:plate=mirror_pair",
+        "votes": {
+          "set_handedness:plate=mirror_pair": 2
+        },
+        "valid": 2,
+        "calls": 2,
+        "consistency": 1.0,
+        "confident": true,
+        "orders": [
+          [
+            "set_handedness:plate=mirror_pair",
+            "stop"
+          ],
+          [
+            "stop",
+            "set_handedness:plate=mirror_pair"
+          ]
+        ],
+        "answers": [
+          {
+            "ordering": 0,
+            "sample": 0,
+            "answer": "set_handedness:plate=mirror_pair",
+            "position": 0,
+            "reason": "The only remaining failure is handedness_plate (L1.10), which requires the mirror image to clear keepout_mech_1_crank_side; setting handedness to mirror_pair declares a proper left/right pair so each side has its own part and clears the one"
+          },
+          {
+            "ordering": 1,
+            "sample": 0,
+            "answer": "set_handedness:plate=mirror_pair",
+            "position": 1,
+            "reason": "The request needs a working conversion kit for both sides of the pedal, and the only failing requirement is handedness_plate (L1.10), which demands a declared left/right pair so the mirror image can clear the crank-side keepout without the "
+          }
+        ],
+        "first_position": 1
+      },
+      "votes": {
+        "set_handedness:plate=mirror_pair": 2
+      },
+      "consistency": 1.0,
+      "confident": true,
+      "chosen": "set_handedness:plate=mirror_pair",
+      "candidates": [
+        {
+          "id": "set_handedness:plate=mirror_pair",
+          "action": {
+            "kind": "set_handedness",
+            "target": "plate",
+            "value": "mirror_pair",
+            "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+            "targets": [
+              "handedness_plate"
+            ],
+            "invalidates": "derive",
+            "evidence": [],
+            "key": "set_handedness:plate=mirror_pair",
+            "id": "set_handedness:plate=mirror_pair",
+            "ident": ""
+          },
+          "votes": 2,
+          "rank": 0,
+          "by": "llm:controller",
+          "secs": 2.64,
+          "outcome": "kept",
+          "reason": "fewer failing checks (1 -> 0)",
+          "error_after": {
+            "hard_failures": 0,
+            "violation": 0
+          },
+          "state_after": "79be2f0c007dc496",
+          "failing_after": [
+            "fastener_bearing_0",
+            "fastener_bearing_1",
+            "load_stress"
+          ],
+          "sensor_delta": {
+            "hard_failures": -1,
+            "violation": -1.0
+          }
+        }
+      ],
+      "evals": 1,
+      "action": {
+        "kind": "set_handedness",
+        "target": "plate",
+        "value": "mirror_pair",
+        "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+        "targets": [
+          "handedness_plate"
+        ],
+        "invalidates": "derive",
+        "evidence": [],
+        "key": "set_handedness:plate=mirror_pair",
+        "id": "set_handedness:plate=mirror_pair",
+        "ident": ""
+      },
+      "selected": "set_handedness:plate=mirror_pair",
+      "selected_by": "llm",
+      "accepted": true,
+      "outcome": "kept",
+      "reason": "fewer failing checks (1 -> 0)",
+      "error_after": {
+        "hard_failures": 0,
+        "violation": 0
+      },
+      "state_after": "79be2f0c007dc496",
+      "failing_after": [
+        "fastener_bearing_0",
+        "fastener_bearing_1",
+        "load_stress"
+      ],
+      "sensor_delta": {
+        "hard_failures": -1,
+        "violation": -1.0
+      },
+      "llm_calls": 2,
+      "secs": 11.61
+    }
+  ],
+  "stop": {
+    "reason": "no failing check has an action",
+    "step": 3
+  },
+  "evals": 5,
+  "final": {
+    "state": {
+      "decisions": "79be2f0c007dc496",
+      "graph": "573fa7f0ef6133b1",
+      "summary": {
+        "contents": [
+          [
+            "board",
+            "cleat_shimano_sm_sh51",
+            1,
+            []
+          ],
+          [
+            "mech_1",
+            "pedal_shimano_pd_m520",
+            2,
+            []
+          ]
+        ],
+        "stacks": {},
+        "faces": {},
+        "relations": [],
+        "closure": null,
+        "boss_layout": null,
+        "archetype": "plate+bolt_through",
+        "vent_face": null,
+        "fasteners": {
+          "board": null,
+          "lid": null
+        },
+        "plate": {
+          "surface": "studs",
+          "handedness": "mirror_pair",
+          "retention": "frame",
+          "orientation": "top_face_down"
+        }
+      }
+    },
+    "error": {
+      "hard_failures": 0,
+      "violation": 0
+    },
+    "failing": [
+      "load_stress",
+      "fastener_bearing_0",
+      "fastener_bearing_1"
+    ],
+    "terms": [
+      {
+        "check": "load_stress",
+        "type": "load_stress",
+        "requirement": [
+          "L1.9"
+        ],
+        "where": "worst bending stress 58.59 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s...",
+        "deficit": null,
+        "unit": "ratio",
+        "direction": "decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)",
+        "controllable": false,
+        "actionable": false,
+        "hard": true,
+        "margin": -2.515328,
+        "detail": "worst bending stress 58.59 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s..."
+      },
+      {
+        "check": "fastener_bearing_0",
+        "type": "fastener_bearing",
+        "requirement": [
+          "L1.1",
+          "L1.2",
+          "L1.9"
+        ],
+        "where": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...",
+        "deficit": null,
+        "unit": "ratio",
+        "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)",
+        "controllable": false,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.999715,
+        "detail": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm..."
+      },
+      {
+        "check": "fastener_bearing_1",
+        "type": "fastener_bearing",
+        "requirement": [
+          "L1.1",
+          "L1.2",
+          "L1.9"
+        ],
+        "where": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...",
+        "deficit": null,
+        "unit": "ratio",
+        "direction": "decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)",
+        "controllable": false,
+        "actionable": false,
+        "hard": true,
+        "margin": -0.999715,
+        "detail": "nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm..."
+      }
+    ]
+  },
+  "secs": 47.97,
+  "authority": {
+    "decisions": {
+      "semantic-rule": 1,
+      "llm": 4,
+      "plant": 1,
+      "guardrail": 1
+    },
+    "proposal": {
+      "llm_slots": 17,
+      "default_slots": 10,
+      "llm_contents_items": 2
+    },
+    "semantic_rule_decisions": [
+      {
+        "decision": "primary",
+        "by": "rule:primary_reference",
+        "migration": "R05"
+      }
+    ],
+    "unregistered": [],
+    "llm_share": 0.6389
+  },
+  "accepted": [
+    {
+      "kind": "set_nut_retention",
+      "target": "plate",
+      "value": "frame",
+      "words": "set_nut_retention plate=frame: hold the nuts with frame: a separate printed nut frame holding every nut in a hex trap on its own floor, sliding in a pocket of the plate that covers the adjustment in every declared direction, wide enough to bear on the plate beside the bolt slots",
+      "targets": [
+        "travel_y"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_nut_retention:plate=frame",
+      "id": "set_nut_retention:plate=frame",
+      "ident": "",
+      "step": 1
+    },
+    {
+      "kind": "add_surface_feature",
+      "target": "top",
+      "value": "studs",
+      "words": "add_surface_feature top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)",
+      "targets": [
+        "surface_features"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "add_surface_feature:top=studs",
+      "id": "add_surface_feature:top=studs",
+      "ident": "",
+      "step": 2
+    },
+    {
+      "kind": "set_handedness",
+      "target": "plate",
+      "value": "mirror_pair",
+      "words": "set_handedness plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side",
+      "targets": [
+        "handedness_plate"
+      ],
+      "invalidates": "derive",
+      "evidence": [],
+      "key": "set_handedness:plate=mirror_pair",
+      "id": "set_handedness:plate=mirror_pair",
+      "ident": "",
+      "step": 3
+    }
+  ]
+}

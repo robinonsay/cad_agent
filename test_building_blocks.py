@@ -259,7 +259,7 @@ class TestCradleRetention(Case):
         args += ["--rules", str(test_rules(root, fn=24)), "--out", str(root / "out"), r["request"]]
         with mock.patch.object(ca, "OllamaAgent", lambda *a, **k: llm), mock.patch("builtins.print"):
             rc = ca.main(args)
-        self.assertEqual(rc, 0)
+        self.assertEqual(rc, 3)   # R12 review fix N5: all pass, L1s unlinked -> unverified
         pkg = sorted((root / "out").glob("*/"))[-1]
         for f in ("base.stl", "lid.stl", "layout.json", "controller_trace.json"):
             self.assertTrue((pkg / f).is_file(), f)

@@ -1,0 +1,29 @@
+MODEL: ornith-1.5:9b T=0.3 seed=61000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: An enclosure for a 70 x 50 mm perfboard that will hold a Raspberry Pi Pico 2 CW radio keyer. The board has a mounting hole in each corner. The Pico 2 and two 3.5 mm aux jacks sit on the board, laid out long ways: the Pico's micro-USB port must be exposed through one short end of the enclosure and the two aux ports through the other short end, so cables can be plugged in with the lid on. The board must come out for service, so the enclosure is a base and a removable lid, printed on an FDM printer.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. text_coverage (L1.5, L1.6): module_1.usb (raspberry pi pico 2) is closed, but L1.5 names a micro-usb plug: "With the lid closed, a micro-USB cable shall plug fully into the Pico through one opening in its end wall without touching the enclosure, and that opening sh..."; needs: an opening for each connector whose mating plug the text names
+
+The design now:
+- board (primary): perfboard x1
+- module_1: raspberry pi pico 2 x1; connectors: usb closed
+- connector_1: 3.5 mm jack x2; connectors: jack open through -X
+- lid closure: lip; lid bosses: outside_corners
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- stop: keep the design as it is (the failing requirements above stay failing)
+- expose:module_1.usb: open the enclosure wall for the raspberry pi pico 2's usb connector so a micro-usb plug plugs in with the enclosure closed
+
+Which one action makes the design do what the request asks? First give a one-sentence reason, then the action's id exactly as listed.
+
+=== RESPONSE ===
+{
+  "action": "expose:module_1.usb",
+  "reason": "The failing requirement text_coverage demands an opening for the Pico's micro-USB connector so a plug can pass through the end wall with the lid closed, and expose:module_1.usb creates exactly that opening, whereas stop leaves the USB wall—"
+}

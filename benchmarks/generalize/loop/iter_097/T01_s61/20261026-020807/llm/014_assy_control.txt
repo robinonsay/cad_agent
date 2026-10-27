@@ -1,0 +1,41 @@
+MODEL: ornith-1.5:9b T=0.3 seed=61000
+IMAGES: []
+
+=== SYSTEM ===
+
+
+=== PROMPT ===
+Request: I have a design I need to print. I need flat pedals that I can clip to my SPD clipless mountain bike pedals (like a conversion kit). This design would allow me to bolt on the standard shimano cleats and act as pedals with grips for my shoes. The pedals are Shimano PD-M520-type two-sided SPD pedals and the cleat is the standard Shimano SM-SH51 two-bolt SPD cleat, fastened with M5 bolts and nuts. The cleat position has to be adjustable fore-aft like on a shoe. The platform should be about the size of an ordinary flat pedal (between 80 and 105 mm each way). It is printed on an FDM printer in PETG with no supports, and one printed adapter (or a left/right pair) goes on each pedal.
+
+The design was built and measured. Requirements that fail now (worst first):
+1. handedness_plate (L1.10): mirror image does not clear keepout_mech_1_crank_side (penetrates it by 298.8 mm3) at keepout_mech_1_crank_side; needs: one part for both sides of the mirror pair, or a declared pair
+2. surface_features (L1.8): no raised features on the face (kind none); spread 0.0 % < 60 %; needs: the raised features the text asks for (count, height, edge distance, spread)
+3. load_stress (L1.9): worst bending stress 58.59 MPa at edge +x, patch centre at -23.8 mm along it (arm 17.10 mm, section width 47.1 mm, part shifted [-10.0, 0.0]) vs 16.67 MPa; s...; needs: decrease the bending stress of the load case (typed conflict: the load case needs a bending stress of at most 16.67 MPa, but at the largest allowed thickness (...)
+4. fastener_bearing_0 (L1.1, L1.2, L1.9): nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...; needs: decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)
+5. fastener_bearing_1 (L1.1, L1.2, L1.9): nut_frame seat under a 970 N preload (rule:default_preload): bearing pressure 30.70 MPa on 31.6 mm2 (allowed 16.67), punch-through shear 16.66 MPa on 58.2 mm...; needs: decrease the ratio of a fastener seat's bearing pressure and punch-through shear to what the printed material allows (typed conflict: the nut_frame seat carries 2.00 x what the printed material allows under the 970 N preload (rule:...)
+
+The design now:
+- board (primary): shimano spd cleat x1
+- mech_1: shimano pd-m520 x2
+- structural form: plate (also buildable: shell)
+- plate: 80.1 x 80.1 x 14.0 mm, printed top face down; 2 x bolt_m5_iso4762 12 mm through slots into nut_m5 held in a sliding nut frame (adjustment covered: x 20 of 20 mm, y 5 of 5 mm)
+- raised features on the free face: none
+- handedness: single
+- cuts open on the top face (a contact face): nut_pocket 1382 mm2
+
+Earlier steps:
+- step 1: add_surface_feature:top=pins was undone: more failing checks (5 -> 6); now failing: handedness_plate, travel_y, fastener_bearing_0, fastener_bearing_1, thin_feature_plate, load_stress, printable
+- step 1: set_nut_retention:plate=frame was kept: fewer failing checks (5 -> 2)
+
+Actions you can take now (one per step; Python applies it, rebuilds and measures again):
+- set_handedness:plate=mirror_pair: a declared left/right pair: the part and its mirror image, each for its own side
+- add_surface_feature:top=studs: put raised features on the plate's free face: threaded catalogue set screws in tapped holes, standing proud of the face as studs (not printed, so the face can print flat on the bed)
+- stop: keep the design as it is (the failing requirements above stay failing)
+
+Which one action makes the design do what the request asks? First give a one-sentence reason, then the action's id exactly as listed.
+
+=== RESPONSE ===
+{
+  "action": "add_surface_feature:top=studs",
+  "reason": "The failing surface_features check (L1.8) requires raised features on the plate's free face with at least 60% spread, and the request explicitly asks for grips on the top face; studs provide these raised features while printing flat, and it"
+}

@@ -1,0 +1,120 @@
+{
+  "iter": "095",
+  "generated": "2026-10-26T00:25:21",
+  "code_sha1": "a25fe2b8237e20b2be8f426c5b2dd6db3844a2be",
+  "runs_on_one_code_version": true,
+  "code_versions": [
+    "a25fe2b8237e20b2be8f426c5b2dd6db3844a2be"
+  ],
+  "counts": {
+    "train": {
+      "runs": 1,
+      "rc": {
+        "3": 1
+      },
+      "no_output": 0,
+      "with_renders": 1,
+      "timed_out": 0,
+      "judged": 0,
+      "meets": 0,
+      "correct": 0,
+      "to_judge": 1
+    }
+  },
+  "regression": "not_run",
+  "paraphrase": 0,
+  "stub_verified": 0,
+  "llm_dependent": [],
+  "stub": {
+    "runs": 0,
+    "verified": [],
+    "compared": 0,
+    "same_geometry": [],
+    "verified_share": 0.0
+  },
+  "controller": {
+    "steps": 1,
+    "kept": 1,
+    "designs_with_kept_steps": 1,
+    "decisions": {
+      "semantic-rule": 1,
+      "plant": 2,
+      "llm": 1,
+      "guardrail": 1
+    },
+    "semantic_rule_decisions": 1,
+    "mean_llm_share": 0.5714
+  },
+  "to_judge": [
+    "G16_s51"
+  ],
+  "cached": [],
+  "runs": [
+    {
+      "name": "G16_s51",
+      "id": "G16",
+      "split": "train",
+      "seed": 51,
+      "controller": "llm",
+      "paraphrase": 0,
+      "rc": 3,
+      "timed_out": false,
+      "secs": 96.7,
+      "package": "benchmarks/generalize/loop/iter_095/G16_s51/20261026-002344",
+      "has_renders": true,
+      "geometry_sha1": "7382c46c1d7a90a45570abe0375adbddb52a759b",
+      "stl_files": [
+        "plate.stl"
+      ],
+      "missing": [],
+      "spec_files": [
+        "benchmarks/generalize/designs/G16/requirements.md",
+        "benchmarks/generalize/designs/G16/design.json",
+        "benchmarks/generalize/rubric.md"
+      ],
+      "spec_sha1_at_run": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "code_sha1": "a25fe2b8237e20b2be8f426c5b2dd6db3844a2be",
+      "catalogues": [
+        "benchmarks/generalize/parts",
+        "benchmarks/enclosure/parts"
+      ],
+      "finished": "2026-10-26T00:25:21",
+      "outcome": "unsatisfied",
+      "stage": "done",
+      "last_note": "controller: 1 step(s), 1 kept; stop: no failing check has an action",
+      "controller_run": {
+        "kind": "llm",
+        "steps": 1,
+        "kept": 1,
+        "stop": "no failing check has an action"
+      },
+      "authority": {
+        "decisions": {
+          "semantic-rule": 1,
+          "plant": 2,
+          "llm": 1,
+          "guardrail": 1
+        },
+        "proposal": {
+          "llm_slots": 9,
+          "default_slots": 5,
+          "llm_contents_items": 2
+        },
+        "llm_share": 0.5714,
+        "semantic_rule_decisions": 1,
+        "unregistered": 0
+      },
+      "spec_sha1": "1696b7e26a54acb5e6eb48d9566eb3517fcccd1d",
+      "spec_changed_since_run": false,
+      "verdict": null,
+      "cache": "miss"
+    }
+  ],
+  "code": {
+    "code_sha1": "a25fe2b8237e20b2be8f426c5b2dd6db3844a2be",
+    "files": 87,
+    "previous_iter": "iter_094",
+    "code_unchanged": false,
+    "changed_within_iteration": false
+  }
+}
